@@ -1,0 +1,110 @@
+object ExtractSelectedForm: TExtractSelectedForm
+  Left = 384
+  Height = 496
+  Top = 147
+  Width = 617
+  HorzScrollBar.Page = 616
+  VertScrollBar.Page = 495
+  ActiveControl = FileCheckListBox
+  Caption = 'ExtractSelectedForm'
+  ClientHeight = 496
+  ClientWidth = 617
+  object Panel1: TPanel
+    Height = 242
+    Width = 617
+    Align = alTop
+    Caption = 'Panel1'
+    ClientHeight = 242
+    ClientWidth = 617
+    TabOrder = 0
+    object FileCheckListBox: TCheckListBox
+      Left = 1
+      Height = 240
+      Top = 1
+      Width = 615
+      Align = alClient
+      TabOrder = 0
+      TopIndex = -1
+    end
+  end
+  object Panel2: TPanel
+    Height = 254
+    Top = 242
+    Width = 617
+    Align = alClient
+    Caption = 'Panel2'
+    ClientHeight = 254
+    ClientWidth = 617
+    TabOrder = 1
+    object GroupBox1: TGroupBox
+      Left = 1
+      Height = 190
+      Top = 1
+      Width = 615
+      Align = alTop
+      Caption = ' Restore options '
+      ClientHeight = 174
+      ClientWidth = 609
+      TabOrder = 0
+      object Label1: TLabel
+        Left = 14
+        Height = 20
+        Top = 20
+        Width = 95
+        Caption = 'Restore files to'
+        ParentColor = False
+      end
+      object RestoreDirectoryEdit: TDirectoryEdit
+        Left = 14
+        Height = 23
+        Top = 43
+        Width = 328
+        ButtonWidth = 23
+        NumGlyphs = 1
+        ParentColor = False
+        TabOrder = 0
+      end
+      object FlatRestoreCheckBox: TCheckBox
+        Left = 404
+        Height = 21
+        Top = 42
+        Width = 46
+        Caption = 'Flat'
+        TabOrder = 1
+      end
+      object OverwriteCheckBox: TCheckBox
+        Left = 14
+        Height = 21
+        Top = 82
+        Width = 135
+        Caption = 'Warn on overwrite'
+        Enabled = False
+        TabOrder = 2
+      end
+    end
+    object BitBtn1: TBitBtn
+      Left = 216
+      Height = 30
+      Top = 206
+      Width = 84
+      Caption = '&OK'
+      Default = True
+      Kind = bkOK
+      ModalResult = 1
+      NumGlyphs = 0
+      TabOrder = 1
+    end
+    object BitBtn2: TBitBtn
+      Left = 326
+      Height = 30
+      Top = 206
+      Width = 90
+      Cancel = True
+      Caption = 'Cancel'
+      Kind = bkCancel
+      ModalResult = 2
+      NumGlyphs = 0
+      TabOrder = 2
+    end
+  end
+end

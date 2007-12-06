@@ -1,0 +1,500 @@
+object ArchiveForm: TArchiveForm
+  Left = 380
+  Height = 476
+  Top = 175
+  Width = 637
+  HorzScrollBar.Page = 636
+  VertScrollBar.Page = 475
+  ActiveControl = ArchiveName
+  BorderIcons = [biSystemMenu]
+  BorderStyle = bsDialog
+  Caption = 'New Archive'
+  ClientHeight = 476
+  ClientWidth = 637
+  OnCreate = FormCreate
+  object OKCancelPanel: TPanel
+    Height = 66
+    Top = 410
+    Width = 637
+    Align = alBottom
+    ClientHeight = 66
+    ClientWidth = 637
+    TabOrder = 0
+    object OKButton: TBitBtn
+      Left = 205
+      Height = 30
+      Top = 21
+      Width = 75
+      Caption = '&OK'
+      Default = True
+      Kind = bkOK
+      NumGlyphs = 0
+      OnClick = OKButtonClick
+      TabOrder = 0
+    end
+    object CancelButton: TBitBtn
+      Left = 352
+      Height = 30
+      Top = 21
+      Width = 75
+      Cancel = True
+      Caption = 'Cancel'
+      Kind = bkCancel
+      ModalResult = 2
+      NumGlyphs = 0
+      TabOrder = 1
+    end
+  end
+  object NoteBookPanel: TPanel
+    Height = 410
+    Width = 637
+    Align = alClient
+    Caption = 'NoteBookPanel'
+    ClientHeight = 410
+    ClientWidth = 637
+    TabOrder = 1
+    object ArchiveNotebook: TNotebook
+      Left = 8
+      Height = 384
+      Top = 8
+      Width = 616
+      PageIndex = 0
+      TabOrder = 0
+      object ArchivePage: TPage
+        Caption = 'Archive'
+        ClientWidth = 610
+        ClientHeight = 351
+        object Label1: TLabel
+          Left = 19
+          Height = 20
+          Top = 12
+          Width = 120
+          Caption = 'Archive base name'
+          ParentColor = False
+        end
+        object Label2: TLabel
+          Left = 19
+          Height = 20
+          Top = 132
+          Width = 91
+          Caption = 'Base directory'
+          ParentColor = False
+        end
+        object Label3: TLabel
+          Left = 19
+          Height = 20
+          Top = 68
+          Width = 95
+          Caption = 'Save archive in'
+          ParentColor = False
+        end
+        object ArchiveDirectory: TEdit
+          Left = 19
+          Height = 23
+          Top = 84
+          Width = 350
+          TabOrder = 0
+          Text = 'ArchiveDirectory'
+        end
+        object ArchiveDirButton: TButton
+          Left = 389
+          Height = 25
+          Top = 84
+          Width = 75
+          Caption = 'Browse'
+          OnClick = ArchiveDirButtonClick
+          TabOrder = 1
+        end
+        object BaseDirectory: TEdit
+          Left = 19
+          Height = 23
+          Top = 148
+          Width = 350
+          TabOrder = 2
+          Text = 'Edit1'
+        end
+        object BaseDirButton: TButton
+          Left = 389
+          Height = 25
+          Top = 148
+          Width = 75
+          Caption = 'Browse'
+          OnClick = BaseDirButtonClick
+          TabOrder = 3
+        end
+        object ArchiveName: TEdit
+          Left = 19
+          Height = 24
+          Top = 28
+          Width = 222
+          TabOrder = 4
+        end
+      end
+      object DirectoriesPage: TPage
+        Caption = 'Directories'
+        ClientWidth = 610
+        ClientHeight = 351
+        object Label4: TLabel
+          Left = 19
+          Height = 20
+          Top = 18
+          Width = 121
+          Caption = 'Include directories:'
+          ParentColor = False
+        end
+        object Label5: TLabel
+          Left = 19
+          Height = 20
+          Top = 196
+          Width = 124
+          Caption = 'Exclude directories:'
+          ParentColor = False
+        end
+        object IncludeDirectories: TListBox
+          Left = 19
+          Height = 120
+          Top = 42
+          Width = 506
+          TabOrder = 0
+          TopIndex = -1
+        end
+        object AddIncludeDirButton: TButton
+          Left = 533
+          Height = 25
+          Top = 42
+          Width = 64
+          Caption = 'Add'
+          OnClick = AddIncludeDirButtonClick
+          TabOrder = 1
+        end
+        object DelIncludeDirButton: TButton
+          Left = 533
+          Height = 25
+          Top = 78
+          Width = 64
+          Caption = 'Remove'
+          Enabled = False
+          OnClick = DelIncludeDirButtonClick
+          TabOrder = 2
+        end
+        object ExcludeDirectories: TListBox
+          Left = 19
+          Height = 120
+          Top = 218
+          Width = 506
+          TabOrder = 3
+          TopIndex = -1
+        end
+        object AddExcludeDirButton: TButton
+          Tag = 1
+          Left = 533
+          Height = 25
+          Top = 218
+          Width = 64
+          Caption = 'Add'
+          OnClick = AddIncludeDirButtonClick
+          TabOrder = 4
+        end
+        object DelExcludeDirButton: TButton
+          Tag = 1
+          Left = 533
+          Height = 25
+          Top = 254
+          Width = 64
+          Caption = 'Remove'
+          Enabled = False
+          OnClick = DelIncludeDirButtonClick
+          TabOrder = 5
+        end
+      end
+      object FilesPage: TPage
+        Caption = 'Files'
+        ClientWidth = 610
+        ClientHeight = 351
+        object Label6: TLabel
+          Left = 19
+          Height = 20
+          Top = 18
+          Width = 79
+          Caption = 'Include files:'
+          ParentColor = False
+        end
+        object Label7: TLabel
+          Left = 19
+          Height = 20
+          Top = 196
+          Width = 82
+          Caption = 'Exclude files:'
+          ParentColor = False
+        end
+        object IncludeFiles: TListBox
+          Left = 19
+          Height = 120
+          Top = 42
+          Width = 506
+          TabOrder = 0
+          TopIndex = -1
+        end
+        object ExcludeFiles: TListBox
+          Left = 19
+          Height = 120
+          Top = 218
+          Width = 506
+          Items.Strings = (
+            '*.dar'
+          )
+          TabOrder = 1
+          TopIndex = -1
+        end
+        object DelExcludeFileButton: TButton
+          Tag = 1
+          Left = 533
+          Height = 25
+          Top = 250
+          Width = 64
+          Caption = 'Remove'
+          Enabled = False
+          OnClick = DelExcludeFileButtonClick
+          TabOrder = 2
+        end
+        object AddExcludeFileButton: TButton
+          Tag = 1
+          Left = 533
+          Height = 25
+          Top = 218
+          Width = 64
+          Caption = 'Add'
+          TabOrder = 3
+        end
+        object DelIncludeFileButton: TButton
+          Left = 533
+          Height = 25
+          Top = 78
+          Width = 64
+          Caption = 'Remove'
+          Enabled = False
+          OnClick = DelIncludeFileButtonClick
+          TabOrder = 4
+        end
+        object AddIncludeFileButton: TButton
+          Left = 533
+          Height = 25
+          Top = 42
+          Width = 64
+          Caption = 'Add'
+          OnClick = AddIncludeFileButtonClick
+          TabOrder = 5
+        end
+      end
+      object CompressionPage: TPage
+        Caption = 'Compression'
+        ClientWidth = 610
+        ClientHeight = 351
+        object GroupBox1: TGroupBox
+          Left = 301
+          Height = 329
+          Top = 10
+          Width = 288
+          Caption = ' Do not compress ... '
+          ClientHeight = 313
+          ClientWidth = 282
+          TabOrder = 0
+          object Label9: TLabel
+            Left = 21
+            Height = 20
+            Top = 240
+            Width = 202
+            Caption = 'Lower size limit for compression:'
+            FocusControl = CompressionLwrLimit
+            ParentColor = False
+          end
+          object ListBox1: TListBox
+            Left = 13
+            Height = 192
+            Top = 24
+            Width = 139
+            Items.Strings = (
+              '*.zip'
+              '*.jpg'
+              '*.bz2'
+              '*.gz'
+              '*.gif'
+              '*.png'
+            )
+            TabOrder = 0
+          end
+          object AddCompressMaskButton: TButton
+            Left = 165
+            Height = 25
+            Top = 24
+            Width = 64
+            Caption = 'Add'
+            TabOrder = 1
+          end
+          object DelCompressMaskButton: TButton
+            Left = 165
+            Height = 25
+            Top = 56
+            Width = 64
+            Caption = 'Remove'
+            Enabled = False
+            OnClick = DelIncludeDirButtonClick
+            TabOrder = 2
+          end
+          object CompressionLwrLimit: TEdit
+            Left = 27
+            Height = 23
+            Top = 267
+            Width = 114
+            TabOrder = 3
+            Text = '100'
+          end
+          object CompLwrLimitCombo: TComboBox
+            Left = 149
+            Height = 25
+            Top = 265
+            Width = 100
+            AutoCompleteText = [cbactEndOfLineComplete, cbactSearchAscending]
+            ItemIndex = 0
+            Items.Strings = (
+              'bytes'
+              'kilobytes'
+              'Megabytes'
+            )
+            MaxLength = 0
+            TabOrder = 4
+            Text = 'bytes'
+          end
+        end
+        object GroupBox2: TGroupBox
+          Left = 12
+          Height = 329
+          Top = 11
+          Width = 257
+          Caption = ' Compression type '
+          ClientHeight = 313
+          ClientWidth = 251
+          TabOrder = 1
+          object CompLvlLabel: TLabel
+            Left = 62
+            Height = 20
+            Top = 102
+            Width = 114
+            Caption = 'Compression level'
+            Enabled = False
+            FocusControl = CompressionLevel
+            ParentColor = False
+          end
+          object GZipCheck: TCheckBox
+            Left = 26
+            Height = 21
+            Top = 29
+            Width = 158
+            Caption = 'use gzip compression'
+            OnClick = ZipCheckChange
+            TabOrder = 0
+          end
+          object Bzip2Check: TCheckBox
+            Left = 26
+            Height = 21
+            Top = 67
+            Width = 166
+            Caption = 'use bzip2 compression'
+            OnClick = ZipCheckChange
+            TabOrder = 1
+          end
+          object CompressionLevel: TEdit
+            Left = 62
+            Height = 23
+            Top = 122
+            Width = 80
+            Enabled = False
+            MaxLength = 1
+            OnExit = CompressionLevelExit
+            TabOrder = 2
+            Text = '9'
+          end
+        end
+      end
+      object OptionsPage: TPage
+        Caption = 'Options'
+        ClientWidth = 610
+        ClientHeight = 351
+        object Label8: TLabel
+          Left = 413
+          Height = 20
+          Top = 170
+          Width = 19
+          Caption = 'Mb'
+          ParentColor = False
+        end
+        object Label11: TLabel
+          Left = 205
+          Height = 20
+          Top = 165
+          Width = 57
+          Caption = 'Slice size'
+          ParentColor = False
+        end
+        object ReadConfigCheck: TCheckBox
+          Left = 33
+          Height = 21
+          Top = 42
+          Width = 268
+          Caption = 'Attempt to read DAR configuration files'
+          Checked = True
+          State = cbChecked
+          TabOrder = 0
+        end
+        object DryRunCheck: TCheckBox
+          Left = 33
+          Height = 21
+          Top = 82
+          Width = 68
+          Caption = 'Dry run'
+          TabOrder = 1
+        end
+        object EmptyDirCheck: TCheckBox
+          Left = 33
+          Height = 21
+          Top = 122
+          Width = 149
+          Caption = 'Preserve directories'
+          TabOrder = 2
+        end
+        object SlicesCheck: TCheckBox
+          Left = 33
+          Height = 21
+          Top = 162
+          Width = 86
+          Caption = 'Use slices'
+          TabOrder = 3
+        end
+        object Slicesize: TEdit
+          Left = 314
+          Height = 23
+          Top = 162
+          Width = 80
+          TabOrder = 4
+          Text = '695'
+        end
+      end
+    end
+  end
+  object SelectDirectoryDialog: TSelectDirectoryDialog
+    Title = 'Select Directory'
+    left = 592
+    top = 144
+  end
+  object SaveDialog: TSaveDialog
+    Title = 'Save file as'
+    left = 592
+    top = 64
+  end
+  object OpenDialog: TOpenDialog
+    Title = 'Select file'
+    Options = [ofPathMustExist, ofFileMustExist, ofEnableSizing, ofViewDetail]
+    left = 592
+    top = 104
+  end
+end
