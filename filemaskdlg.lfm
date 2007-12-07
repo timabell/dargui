@@ -1,0 +1,52 @@
+object FileMaskDialog: TFileMaskDialog
+  Left = 359
+  Height = 148
+  Top = 532
+  Width = 278
+  HorzScrollBar.Page = 277
+  VertScrollBar.Page = 147
+  Caption = 'Add file'
+  ClientHeight = 148
+  ClientWidth = 278
+  object FileMaskLabel: TLabel
+    Left = 34
+    Height = 20
+    Top = 24
+    Width = 58
+    Caption = 'File mask'
+    FocusControl = FileMask
+    ParentColor = False
+  end
+  object OKButton: TBitBtn
+    Left = 56
+    Height = 30
+    Top = 96
+    Width = 75
+    Caption = '&OK'
+    Default = True
+    Kind = bkOK
+    ModalResult = 1
+    NumGlyphs = 0
+    TabOrder = 0
+  end
+  object CancelButton: TBitBtn
+    Left = 156
+    Height = 30
+    Top = 96
+    Width = 75
+    Cancel = True
+    Caption = 'Cancel'
+    Kind = bkCancel
+    ModalResult = 2
+    NumGlyphs = 0
+    TabOrder = 1
+  end
+  object FileMask: TEdit
+    Left = 34
+    Height = 23
+    Top = 45
+    Width = 176
+    TabOrder = 2
+    Text = 'FileMask'
+  end
+end

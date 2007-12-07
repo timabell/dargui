@@ -26,9 +26,9 @@ type
     ArchiveName: TEdit;
     AddIncludeDirButton: TButton;
     Bzip2Check: TCheckBox;
-    Slicesize: TEdit;
-    Label11: TLabel;
-    Label8: TLabel;
+    SliceSize: TEdit;
+    SliceSizeLabel: TLabel;
+    SliceMbLabel: TLabel;
     SlicesCheck: TCheckBox;
     CompLwrLimitCombo: TComboBox;
     CompressionLevel: TEdit;
@@ -37,12 +37,12 @@ type
     EmptyDirCheck: TCheckBox;
     DryRunCheck: TCheckBox;
     CompressionPage: TPage;
-    GroupBox1: TGroupBox;
-    GroupBox2: TGroupBox;
+    CompressionExceptions: TGroupBox;
+    CompressionTypes: TGroupBox;
     GZipCheck: TCheckBox;
     CompLvlLabel: TLabel;
     Label9: TLabel;
-    ListBox1: TListBox;
+    NoCompressList: TListBox;
     ReadConfigCheck: TCheckBox;
     DelIncludeDirButton: TButton;
     AddExcludeDirButton: TButton;
@@ -71,16 +71,20 @@ type
     NoteBookPanel: TPanel;
     SaveDialog: TSaveDialog;
     SelectDirectoryDialog: TSelectDirectoryDialog;
+    procedure AddCompressMaskButtonClick ( Sender: TObject ) ;
     procedure AddIncludeDirButtonClick ( Sender: TObject ) ;
     procedure AddIncludeFileButtonClick ( Sender: TObject ) ;
     procedure ArchiveDirButtonClick ( Sender: TObject ) ;
     procedure BaseDirButtonClick ( Sender: TObject ) ;
     procedure CompressionLevelExit ( Sender: TObject ) ;
+    procedure CompressionLwrLimitExit ( Sender: TObject ) ;
+    procedure DelCompressMaskButtonClick ( Sender: TObject ) ;
     procedure OKButtonClick ( Sender: TObject ) ;
     procedure DelExcludeFileButtonClick ( Sender: TObject ) ;
     procedure DelIncludeDirButtonClick ( Sender: TObject ) ;
     procedure DelIncludeFileButtonClick ( Sender: TObject ) ;
     procedure FormCreate ( Sender: TObject ) ;
+    procedure SlicesCheckClick ( Sender: TObject ) ;
     procedure ZipCheckChange ( Sender: TObject ) ;
   private
     { private declarations }
@@ -94,6 +98,8 @@ var
   ArchiveForm: TArchiveForm;
 
 implementation
+
+uses darintf, filemaskdlg;
 
 { TArchiveForm }
 
@@ -121,6 +127,13 @@ procedure TArchiveForm.FormCreate ( Sender: TObject ) ;
 begin
   ArchiveDirectory.Text := GetCurrentDir;
   BaseDirectory.Text := GetCurrentDir;
+end;
+
+procedure TArchiveForm.SlicesCheckClick ( Sender: TObject ) ;
+begin
+  SliceSizeLabel.Enabled :=  TCheckBox(Sender).Checked;
+  SliceSize.Enabled :=  TCheckBox(Sender).Checked;
+  SliceMbLabel.Enabled :=  TCheckBox(Sender).Checked;
 end;
 
 procedure TArchiveForm.ZipCheckChange ( Sender: TObject ) ;
@@ -151,12 +164,23 @@ begin
       end;
 end;
 
+procedure TArchiveForm.AddCompressMaskButtonClick ( Sender: TObject ) ;
+begin
+  FileMaskDialog.FileMask.Text := '';
+  if FileMaskDialog.ShowModal = mrOk then
+     if FileMaskDialog.FileMask.Text <> '' then
+       begin
+       NoCompressList.Items.Add(FileMaskDialog.FileMask.Text);
+       NoCompressList.ItemIndex := NoCompressList.Items.Count-1;
+       DelCompressMaskButton.Enabled := true;
+       end;
+end;
+
 procedure TArchiveForm.AddIncludeFileButtonClick ( Sender: TObject ) ;
 var
   LB: TListBox;
   DelBn: TButton;
 begin
-  OpenDialog.Tag := 1;
   if OpenDialog.Execute then
     if IsInBaseDirectory(OpenDialog.FileName) then
       begin
@@ -171,23 +195,43 @@ end;
 
 procedure TArchiveForm.ArchiveDirButtonClick ( Sender: TObject ) ;
 begin
-  if saveDialog.Execute
-     then ArchiveDirectory.Text := OpenDialog.FileName;
+  if SelectDirectoryDialog.Execute
+     then ArchiveDirectory.Text := SelectDirectoryDialog.FileName;
 end;
 
 procedure TArchiveForm.BaseDirButtonClick ( Sender: TObject ) ;
 begin
-  if OpenDialog.Execute
-     then BaseDirectory.Text := OpenDialog.FileName;
+  if SelectDirectoryDialog.Execute
+     then BaseDirectory.Text := SelectDirectoryDialog.FileName;
 end;
 
 procedure TArchiveForm.CompressionLevelExit ( Sender: TObject ) ;
 begin
-  if not(CompressionLevel.Text[1] in ['0'..'9']) then
+  if not isInteger(CompressionLevel.Text) then
      begin
      ShowMessage('Compression level must be between 0 and 9');
      CompressionLevel.Text := '9';
      CompressionLevel.SetFocus;
+     end;
+end;
+
+procedure TArchiveForm.CompressionLwrLimitExit ( Sender: TObject ) ;
+begin
+  if (not isInteger(TEdit(Sender).Text))
+  or (TEdit(Sender).Text='') then
+     begin
+     ShowMessage('Invalid number for file size');
+     TEdit(Sender).SetFocus;
+     end;
+end;
+
+procedure TArchiveForm.DelCompressMaskButtonClick ( Sender: TObject ) ;
+begin
+  if NoCompressList.Count > 0  then
+     if NoCompressList.ItemIndex > -1 then
+     begin
+     NoCompressList.Items.Delete(NoCompressList.ItemIndex);
+     DelCompressMaskButton.Enabled := NoCompressList.Count > 0;
      end;
 end;
 
@@ -222,6 +266,7 @@ begin
                          + 'Not in Base Directory');
      end;
 end;
+
 
 initialization
   {$I archive.lrs}

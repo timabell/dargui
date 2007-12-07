@@ -244,7 +244,6 @@ object ArchiveForm: TArchiveForm
             '*.dar'
           )
           TabOrder = 1
-          TopIndex = -1
         end
         object DelExcludeFileButton: TButton
           Tag = 1
@@ -290,14 +289,14 @@ object ArchiveForm: TArchiveForm
         Caption = 'Compression'
         ClientWidth = 610
         ClientHeight = 351
-        object GroupBox1: TGroupBox
+        object CompressionExceptions: TGroupBox
           Left = 301
           Height = 329
           Top = 10
           Width = 288
           Caption = ' Do not compress ... '
-          ClientHeight = 313
-          ClientWidth = 282
+          ClientHeight = 312
+          ClientWidth = 284
           TabOrder = 0
           object Label9: TLabel
             Left = 21
@@ -308,7 +307,7 @@ object ArchiveForm: TArchiveForm
             FocusControl = CompressionLwrLimit
             ParentColor = False
           end
-          object ListBox1: TListBox
+          object NoCompressList: TListBox
             Left = 13
             Height = 192
             Top = 24
@@ -329,6 +328,7 @@ object ArchiveForm: TArchiveForm
             Top = 24
             Width = 64
             Caption = 'Add'
+            OnClick = AddCompressMaskButtonClick
             TabOrder = 1
           end
           object DelCompressMaskButton: TButton
@@ -337,8 +337,7 @@ object ArchiveForm: TArchiveForm
             Top = 56
             Width = 64
             Caption = 'Remove'
-            Enabled = False
-            OnClick = DelIncludeDirButtonClick
+            OnClick = DelCompressMaskButtonClick
             TabOrder = 2
           end
           object CompressionLwrLimit: TEdit
@@ -346,6 +345,7 @@ object ArchiveForm: TArchiveForm
             Height = 23
             Top = 267
             Width = 114
+            OnExit = CompressionLwrLimitExit
             TabOrder = 3
             Text = '100'
           end
@@ -366,14 +366,14 @@ object ArchiveForm: TArchiveForm
             Text = 'bytes'
           end
         end
-        object GroupBox2: TGroupBox
+        object CompressionTypes: TGroupBox
           Left = 12
           Height = 329
           Top = 11
           Width = 257
           Caption = ' Compression type '
-          ClientHeight = 313
-          ClientWidth = 251
+          ClientHeight = 312
+          ClientWidth = 253
           TabOrder = 1
           object CompLvlLabel: TLabel
             Left = 62
@@ -387,18 +387,18 @@ object ArchiveForm: TArchiveForm
           end
           object GZipCheck: TCheckBox
             Left = 26
-            Height = 21
+            Height = 22
             Top = 29
-            Width = 158
+            Width = 159
             Caption = 'use gzip compression'
             OnClick = ZipCheckChange
             TabOrder = 0
           end
           object Bzip2Check: TCheckBox
             Left = 26
-            Height = 21
+            Height = 22
             Top = 67
-            Width = 166
+            Width = 167
             Caption = 'use bzip2 compression'
             OnClick = ZipCheckChange
             TabOrder = 1
@@ -420,27 +420,29 @@ object ArchiveForm: TArchiveForm
         Caption = 'Options'
         ClientWidth = 610
         ClientHeight = 351
-        object Label8: TLabel
+        object SliceMbLabel: TLabel
           Left = 413
           Height = 20
           Top = 170
           Width = 19
           Caption = 'Mb'
+          Enabled = False
           ParentColor = False
         end
-        object Label11: TLabel
+        object SliceSizeLabel: TLabel
           Left = 205
           Height = 20
           Top = 165
           Width = 57
           Caption = 'Slice size'
+          Enabled = False
           ParentColor = False
         end
         object ReadConfigCheck: TCheckBox
           Left = 33
-          Height = 21
+          Height = 22
           Top = 42
-          Width = 268
+          Width = 269
           Caption = 'Attempt to read DAR configuration files'
           Checked = True
           State = cbChecked
@@ -448,33 +450,36 @@ object ArchiveForm: TArchiveForm
         end
         object DryRunCheck: TCheckBox
           Left = 33
-          Height = 21
+          Height = 22
           Top = 82
-          Width = 68
+          Width = 69
           Caption = 'Dry run'
           TabOrder = 1
         end
         object EmptyDirCheck: TCheckBox
           Left = 33
-          Height = 21
+          Height = 22
           Top = 122
-          Width = 149
+          Width = 150
           Caption = 'Preserve directories'
           TabOrder = 2
         end
         object SlicesCheck: TCheckBox
           Left = 33
-          Height = 21
+          Height = 22
           Top = 162
-          Width = 86
+          Width = 87
           Caption = 'Use slices'
+          OnClick = SlicesCheckClick
           TabOrder = 3
         end
-        object Slicesize: TEdit
+        object SliceSize: TEdit
           Left = 314
           Height = 23
           Top = 162
           Width = 80
+          Enabled = False
+          OnExit = CompressionLwrLimitExit
           TabOrder = 4
           Text = '695'
         end
