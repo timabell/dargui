@@ -237,7 +237,9 @@ end;
 
 procedure TArchiveForm.OKButtonClick ( Sender: TObject ) ;
 begin
-  if CheckParameters then ModalResult := mrOk;
+  if CheckParameters
+     then ModalResult := mrOk
+     else ShowMessage('Please check the parameters');
 end;
 
 procedure TArchiveForm.DelExcludeFileButtonClick ( Sender: TObject ) ;
@@ -252,6 +254,10 @@ function TArchiveForm.CheckParameters: Boolean;
 begin
   Result := true;
   if ArchiveName.Text = '' then Result := false;
+  if ArchiveDirectory.Text[Length(ArchiveDirectory.Text)] <> DirectorySeparator
+     then ArchiveDirectory.Text := ArchiveDirectory.Text + DirectorySeparator;
+  if BaseDirectory.Text[Length(BaseDirectory.Text)] <> DirectorySeparator
+     then BaseDirectory.Text := BaseDirectory.Text + DirectorySeparator;
   if not FileExists(ArchiveDirectory.Text) then Result := false;
   if not FileExists(BaseDirectory.Text)  then Result := false;
 end;

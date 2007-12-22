@@ -5,7 +5,7 @@ unit darintf;
 interface
 
 uses
-  Classes, SysUtils, Process, Comctrls;
+  Classes, SysUtils, Process, Comctrls, StdCtrls;
   
 type
   TDarInfo = record
@@ -40,6 +40,9 @@ const
    SEGDATE        = 5;
    SEGFILENAME    = 6;
    SEGFILEPATH    = 7;
+   
+   DAR_EXECUTABLE = 'dar';
+   
 
 type
   TFileData = class
@@ -57,6 +60,7 @@ type
 
   function GetDarVersion : TDarInfo;
   function OpenArchive(fn: string; TV: TTreeview): integer;
+  function CreateArchive(Cmd: string; msg: TMemo): integer;
   function PosFrom(const SubStr, Value: String; From: integer): integer;
   function SelectChildren(Node: TTreeNode): integer;
   function isInteger(aString: string): Boolean;
@@ -329,6 +333,54 @@ begin
 end;
 
 
+function CreateArchive ( Cmd: string; msg: TMemo ) : integer;
+var
+  Proc: TProcess;
+  BytesRead: Integer;
+  M: TMemoryStream;
+  n: LongInt;
+begin
+  Proc := TProcess.Create(nil);
+  M := TMemoryStream.Create;
+  BytesRead := 0;
+  Proc.CommandLine := cmd;
+  Proc.Options := [poUsePipes];
+  Proc.Execute;
+  While Proc.Running do
+        begin
+        M.SetSize(BytesRead + READ_BYTES);
+
+        // try reading it
+        n := Proc.Output.Read((M.Memory + BytesRead)^, READ_BYTES);
+        if n > 0
+        then begin
+             Inc(BytesRead, n);
+             Write('.')
+             end
+        else begin
+             // no data, wait 100 ms
+             Sleep(100);
+             end;
+        end;
+  // read last part
+  repeat
+  // make sure we have room
+  M.SetSize(BytesRead + READ_BYTES);
+  // try reading it
+  n := Proc.Output.Read((M.Memory + BytesRead)^, READ_BYTES);
+  if n > 0
+  then begin
+       Inc(BytesRead, n);
+       Write('.');
+       end;
+  until n <= 0;
+  if BytesRead > 0 then WriteLn;
+  M.SetSize(BytesRead);
+  WriteLn('-- executed --');
+
+  msg.Lines.LoadFromStream(M);
+
+end;
 
 // function PosFrom was taken from synautil.pas [ synapse.ararat.cz ]
 function PosFrom(const SubStr, Value: String; From: integer): integer;

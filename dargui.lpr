@@ -8,7 +8,7 @@ uses
   {$ENDIF}{$ENDIF}
   Interfaces, // this includes the LCL widgetset
   Forms
-  { add your units here }, main, darintf, selectrestore, archive;
+  { add your units here }, main, darintf, selectrestore, archive, filemaskdlg;
 
 begin
   Application.Title:='DarGUI';
@@ -16,6 +16,7 @@ begin
   Application.CreateForm(TMainForm, MainForm);
   Application.CreateForm(TExtractSelectedForm, ExtractSelectedForm);
   Application.CreateForm ( TArchiveForm, ArchiveForm ) ;
+  Application.CreateForm ( TFileMaskDialog, FileMaskDialog ) ;
   Application.Run;
 end.
 

@@ -68,6 +68,7 @@ type
     procedure miRestoreAllClick(Sender: TObject);
     procedure tvMenuRestoreSelectedClick(Sender: TObject);
   private
+    LevelColors: array[0..4] of TColor;
     { private declarations }
   public
     { public declarations }
@@ -90,7 +91,22 @@ uses selectrestore, archive;
 
 procedure TMainForm.FormCreate(Sender: TObject);
 begin
+  //set default colors for Treeview levels
+  LevelColors[0] := clBlack;
+  LevelColors[1] := clBlack;
+  LevelColors[2] := clBlack;
+  LevelColors[3] := clBlack;
+  LevelColors[4] := clBlack;
+
   DarInfo := GetDarVersion;
+  if DarInfo.version='-' then
+     begin
+     MessageDlg('Unable to locate dar executable: nothing will work!',
+                        mtWarning,
+                        [mbOk],
+                        0);
+     end;
+     
   UpdatingSelection := false;
   miHideMessages.Checked := false;
   
@@ -100,13 +116,111 @@ begin
 
   OpenDialog.FileName := '/home/malcolm/test_backup.1.dar';
   //OpenDialog.FileName := '/media/hdb2/backups/archive_2007-08-29.1.dar';
-  OpenArchive(OpenDialog.FileName,ArchiveTreeView);
+  if DarInfo.version<>'-'
+     then OpenArchive(OpenDialog.FileName,ArchiveTreeView);
 
 end;
 
 procedure TMainForm.miFileNewClick ( Sender: TObject ) ;
+var
+  BatchFile: TStringList;
+  DarOptions: string;
+  Command: string;
+  x: integer;
+  
+  procedure AddCompressionOptions;
+  var
+    x: integer;
+    ByteSize: string[1];
+  begin
+  ByteSize := '';
+  if ArchiveForm.NoCompressList.Count > 0 then
+    begin
+    BatchFile.Add('');
+    BatchFile.Add('# Do not compress these files');
+    for x := 0 to ArchiveForm.NoCompressList.Count-1 do
+        BatchFile.Add('-Z ' + ArchiveForm.NoCompressList.Items[x]);
+    end;
+  BatchFile.Add('');
+  BatchFile.Add('# Do not compress files smaller than this');
+  if ArchiveForm.CompLwrLimitCombo.ItemIndex > 0
+     then ByteSize := ArchiveForm.CompLwrLimitCombo.Text[1];
+  BatchFile.Add('-m ' + ArchiveForm.CompressionLwrLimit.Text + ByteSize);
+  end;
+  
+  function RemoveBaseDirectory(aFilePath: string): string;
+  begin
+    if Pos(ArchiveForm.BaseDirectory.Text, aFilePath) = 1 then
+       begin
+       Result := Copy(aFilePath, Length(ArchiveForm.BaseDirectory.Text)+1, READ_BYTES);
+       end
+       else
+       begin
+       ShowMessage('Error: Base Directory not in ' + aFilePath);
+       Result := '';
+       end;
+  end;
+  
 begin
-  ArchiveForm.ShowModal;
+  if ArchiveForm.ShowModal = mrOk then
+     try
+     DarOptions := ' -X "' + ArchiveForm.ArchiveName.Text + '"';
+     BatchFile := TStringList.Create;
+     BatchFile.Add('# DAR batch file written by DarGUI');
+     BatchFile.Add('-R "' + ArchiveForm.BaseDirectory.Text + '"');
+     if ArchiveForm.IncludeDirectories.Count > 0 then
+        begin
+        BatchFile.Add('');
+        BatchFile.Add('# Directories to include in archive');
+        for x := 0 to ArchiveForm.IncludeDirectories.Count-1 do
+            BatchFile.Add('-g "' + RemoveBaseDirectory(ArchiveForm.IncludeDirectories.Items[x]) + '"');
+        end;
+     if ArchiveForm.IncludeFiles.Count > 0 then
+        begin
+        BatchFile.Add('');
+        BatchFile.Add('# Files to include in archive');
+        for x := 0 to ArchiveForm.IncludeFiles.Count-1 do
+            BatchFile.Add('-g "' + RemoveBaseDirectory(ArchiveForm.IncludeFiles.Items[x]) + '"');
+        end;
+        writeln('excludedirs: ',ArchiveForm.ExcludeDirectories.Count);
+     if ArchiveForm.ExcludeDirectories.Count > 0 then
+        begin
+        BatchFile.Add('');
+        BatchFile.Add('# Directories to exclude from archive');
+        for x := 0 to ArchiveForm.ExcludeDirectories.Count-1 do
+            BatchFile.Add('-P "' + RemoveBaseDirectory(ArchiveForm.ExcludeDirectories.Items[x]) + '"');
+        end;
+     if ArchiveForm.GZipCheck.Checked
+        then begin
+             BatchFile.Add('');
+             BatchFile.Add('# Use gzip compression');
+             BatchFile.Add('--gzip=' + ArchiveForm.CompressionLevel.Text);
+             AddCompressionOptions;
+             end
+     else if ArchiveForm.Bzip2Check.Checked
+        then begin
+             BatchFile.Add('');
+             BatchFile.Add('# Use bzip2 compression');
+             BatchFile.Add('--bzip2=' + ArchiveForm.CompressionLevel.Text);
+             AddCompressionOptions;
+             end;
+
+     Command := DAR_EXECUTABLE + ' -c "' + ArchiveForm.ArchiveDirectory.Text
+                            + ArchiveForm.ArchiveName.Text + '"'
+                            + ' -B "' + TEMPBATCHFILE + '"'
+                           // + ' -v -e' // for debugging
+                            + DarOptions
+                            + ' -X ' + ArchiveForm.ArchiveName.Text + '.*.dar';
+                            
+     BatchFile.Insert(1, '# ' + Command);
+     BatchFile.SaveToFile(TEMPBATCHFILE);
+     WriteLn(Command);
+     CreateArchive(Command,MessageMemo);
+     OpenArchive(ArchiveForm.ArchiveDirectory.Text
+                            + ArchiveForm.ArchiveName.Text, ArchiveTreeView);
+     finally
+     BatchFile.Free;
+     end;
 end;
 
 procedure TMainForm.ArchiveTreeViewDeletion(Sender: TObject; Node: TTreeNode);
@@ -135,11 +249,7 @@ begin
             UpdatingSelection := true;
             TTreeview(Sender).Items[x].MultiSelected := true;
             Inc(SelectedNodes);
-            //TTreeview(Sender).Items[x].MultiSelected := TTreeview(Sender).Items[x].Parent.MultiSelected;
-            //if TTreeview(Sender).Items[x].Parent.MultiSelected then
-               //Inc(SelectedNodes);
             UpdatingSelection := false;
-            ////if TTreeview(Sender).Items[x].Expanded then writeln('expanded: ' + TTreeview(Sender).Items[x].Text);
             end;
          end;
       end;
@@ -158,6 +268,7 @@ procedure TMainForm.MessageHideButtonClick(Sender: TObject);
 begin
   MessagePanel.Visible := false;
   MessageBoxSplitter.Visible := false;
+  miHideMessages.Checked := true;
 end;
 
 
@@ -206,44 +317,35 @@ begin
       Fullrect := Node.DisplayRect(false);
       Displayrect := Node.DisplayRect(true);
       Displayrect.Right := FullRect.Right;
-//      writeln(DisplayRect.Top,' : ', DisplayRect.Bottom);
       with Sender.Canvas do
         Case Node.Level of
         0: begin
              if Node.MultiSelected then
                 Font.Color := clWhite
              else
-                Font.Color := clGray;
-             Font.Name:='Arial';
+                Font.Color := LevelColors[Node.Level];
              Font.Size:=9;
-             Font.Style:=[];
            end;
         1: begin
              if Node.MultiSelected then
                 Font.Color := clWhite
              else
-                Font.Color := clRed;
-             Font.Name:='Verdana';
+                Font.Color := LevelColors[Node.Level];
              Font.Size:=9;
-             Font.Style:=[];
            end;
         2: begin
              if Node.MultiSelected then
                 Font.Color := clWhite
              else
-                Font.Color := clGreen;
-             Font.Name:='Times New Roman';
+                Font.Color := LevelColors[Node.Level];
              Font.Size:=9;
-             Font.Style:=[fsItalic];
            end;
         else begin
              if Node.MultiSelected then
                 Font.Color := clWhite
              else
-                Font.Color := clNavy;
-             Font.Name:='Verdana';
+                Font.Color := LevelColors[Node.Level];
              Font.Size:=9;
-             Font.Style:=[fsBold];
            end;
         end;//Case
   if stage = cdPostPaint then DefaultDraw := false;
@@ -297,7 +399,8 @@ begin
   RestoreForm.Height := RestoreForm.Height - RestoreForm.FileCheckListBox.Height;
   //writeln('dar -x ' + ArchiveTreeView.TopItem.Text + #32 + restorefiles + ' -O' );
   //RestoreForm.CommandLine := 'dar -x ' + ArchiveTreeView.TopItem.Text + #32 ;
-  RestoreForm.ShowModal
+  writeln('TMainForm.miRestoreAllClick incomplete');
+  //RestoreForm.ShowModal;
 end;
 
 procedure TMainForm.tvMenuRestoreSelectedClick(Sender: TObject);
@@ -318,6 +421,7 @@ pid, status, i , Count, Linestart : longint;
 
 begin
   SelectedNodes := 0;
+  MessageMemo.Clear;
   batch := TStringList.Create;
   RestoreForm := TExtractSelectedForm.Create(Self);
   RestoreForm.RestoreDirectoryEdit.Text := GetCurrentDir;
@@ -343,13 +447,14 @@ begin
           Proc := TProcess.Create(Application);
           M := TMemoryStream.Create;
           BytesRead := 0;
-          daroptions := ' -O';
+          daroptions := ' -O -v';
+          if RestoreForm.FlatRestoreCheckBox.Checked then daroptions := daroptions + ' -f';
           if not RestoreForm.OverwriteCheckBox.Checked then daroptions := daroptions + ' -w';
           batch.Insert(0,'-R "' + RestoreForm.RestoreDirectoryEdit.Text + '"');
           batch.SaveToFile(TEMPBATCHFILE);
-          Proc.CommandLine := ('dar -x ' + ExtractFilePath(OpenDialog.FileName)
+          Proc.CommandLine := (DAR_EXECUTABLE + ' -x ' + ExtractFilePath(OpenDialog.FileName)
                             + ArchiveTreeView.TopItem.Text + ' -B "' + TEMPBATCHFILE + '" ' + daroptions);
-          writeln(Proc.CommandLine);
+          //showMessage(Proc.CommandLine);
           Proc.Options := [poUsePipes, poStdErrToOutput];
           RestoreForm.Free;
           Proc.Execute;
@@ -397,6 +502,7 @@ begin
                                        end;
                                 mrCancel: Proc.Terminate(0);
                                 end;
+                   if Pos('(less destructive choice)', OutputLine) <> 0 then OutputLine := '';
                    if OutputLine <> '' then
                       MessageMemo.Lines.Add(OutputLine);
                    OutputLine := '';
@@ -413,7 +519,6 @@ begin
 
   WriteLn('-- executed --');
 
-//  MessageMemo.Lines.LoadFromStream(M);
   WriteLn('-- linecount = ', MessageMemo.Lines.Count, ' --');
 
 
