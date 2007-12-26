@@ -8,7 +8,7 @@
       <IconPath Value="./"/>
       <TargetFileExt Value=""/>
       <Title Value="DarGUI"/>
-      <ActiveEditorIndexAtStart Value="3"/>
+      <ActiveEditorIndexAtStart Value="1"/>
     </General>
     <VersionInfo>
       <ProjectVersion Value=""/>
@@ -34,14 +34,14 @@
         <MinVersion Major="1" Valid="True"/>
       </Item2>
     </RequiredPackages>
-    <Units Count="50">
+    <Units Count="51">
       <Unit0>
         <Filename Value="dargui.lpr"/>
         <IsPartOfProject Value="True"/>
         <UnitName Value="dargui"/>
-        <CursorPos X="78" Y="11"/>
+        <CursorPos X="27" Y="12"/>
         <TopLine Value="1"/>
-        <UsageCount Value="112"/>
+        <UsageCount Value="121"/>
       </Unit0>
       <Unit1>
         <Filename Value="main.pas"/>
@@ -49,12 +49,12 @@
         <IsPartOfProject Value="True"/>
         <ResourceFilename Value="main.lrs"/>
         <UnitName Value="main"/>
-        <CursorPos X="48" Y="242"/>
-        <TopLine Value="221"/>
+        <CursorPos X="76" Y="294"/>
+        <TopLine Value="267"/>
         <EditorIndex Value="1"/>
-        <UsageCount Value="112"/>
+        <UsageCount Value="121"/>
         <Bookmarks Count="1">
-          <Item0 X="5" Y="245" ID="0"/>
+          <Item0 X="5" Y="246" ID="0"/>
         </Bookmarks>
         <Loaded Value="True"/>
       </Unit1>
@@ -62,10 +62,10 @@
         <Filename Value="darintf.pas"/>
         <IsPartOfProject Value="True"/>
         <UnitName Value="darintf"/>
-        <CursorPos X="14" Y="368"/>
-        <TopLine Value="342"/>
-        <EditorIndex Value="3"/>
-        <UsageCount Value="112"/>
+        <CursorPos X="67" Y="463"/>
+        <TopLine Value="440"/>
+        <EditorIndex Value="4"/>
+        <UsageCount Value="121"/>
         <Loaded Value="True"/>
       </Unit2>
       <Unit3>
@@ -97,7 +97,7 @@
         <Filename Value="/usr/share/fpcsrc/rtl/inc/systemh.inc"/>
         <CursorPos X="11" Y="621"/>
         <TopLine Value="600"/>
-        <UsageCount Value="10"/>
+        <UsageCount Value="9"/>
       </Unit7>
       <Unit8>
         <Filename Value="../synapse/source/lib/synautil.pas"/>
@@ -147,9 +147,9 @@
       </Unit14>
       <Unit15>
         <Filename Value="/usr/share/fpcsrc/rtl/objpas/classes/classesh.inc"/>
-        <CursorPos X="16" Y="650"/>
-        <TopLine Value="625"/>
-        <UsageCount Value="8"/>
+        <CursorPos X="15" Y="502"/>
+        <TopLine Value="481"/>
+        <UsageCount Value="10"/>
       </Unit15>
       <Unit16>
         <Filename Value="/usr/share/fpcsrc/rtl/objpas/classes/compon.inc"/>
@@ -166,7 +166,7 @@
         <CursorPos X="1" Y="29"/>
         <TopLine Value="1"/>
         <EditorIndex Value="0"/>
-        <UsageCount Value="84"/>
+        <UsageCount Value="93"/>
         <Loaded Value="True"/>
       </Unit17>
       <Unit18>
@@ -209,14 +209,14 @@
         <Filename Value="/usr/share/fpcsrc/rtl/objpas/sysutils/filutilh.inc"/>
         <CursorPos X="13" Y="87"/>
         <TopLine Value="58"/>
-        <UsageCount Value="10"/>
+        <UsageCount Value="9"/>
       </Unit23>
       <Unit24>
         <Filename Value="/usr/share/fpcsrc/rtl/unix/sysutils.pp"/>
         <UnitName Value="sysutils"/>
         <CursorPos X="3" Y="452"/>
         <TopLine Value="450"/>
-        <UsageCount Value="10"/>
+        <UsageCount Value="9"/>
       </Unit24>
       <Unit25>
         <Filename Value="/usr/share/fpcsrc/rtl/unix/bunxovlh.inc"/>
@@ -253,7 +253,7 @@
         <CursorPos X="26" Y="242"/>
         <TopLine Value="222"/>
         <EditorIndex Value="2"/>
-        <UsageCount Value="57"/>
+        <UsageCount Value="66"/>
         <Loaded Value="True"/>
       </Unit29>
       <Unit30>
@@ -297,7 +297,7 @@
         <UnitName Value="filemaskdlg"/>
         <CursorPos X="29" Y="4"/>
         <TopLine Value="1"/>
-        <UsageCount Value="48"/>
+        <UsageCount Value="57"/>
       </Unit35>
       <Unit36>
         <Filename Value="/usr/share/lazarus/lcl/include/customform.inc"/>
@@ -346,7 +346,7 @@
         <UnitName Value="ProcessLine"/>
         <CursorPos X="2" Y="120"/>
         <TopLine Value="48"/>
-        <UsageCount Value="27"/>
+        <UsageCount Value="36"/>
       </Unit42>
       <Unit43>
         <Filename Value="StreamUtils.pas"/>
@@ -389,129 +389,141 @@
         <Filename Value="/usr/share/fpcsrc/rtl/inc/file.inc"/>
         <CursorPos X="6" Y="386"/>
         <TopLine Value="381"/>
-        <UsageCount Value="10"/>
+        <UsageCount Value="9"/>
       </Unit49>
+      <Unit50>
+        <Filename Value="archiveinfo.pas"/>
+        <ComponentName Value="InformationForm"/>
+        <IsPartOfProject Value="True"/>
+        <ResourceFilename Value="archiveinfo.lrs"/>
+        <UnitName Value="ArchiveInfo"/>
+        <CursorPos X="13" Y="16"/>
+        <TopLine Value="1"/>
+        <EditorIndex Value="3"/>
+        <UsageCount Value="26"/>
+        <Loaded Value="True"/>
+      </Unit50>
     </Units>
     <JumpHistory Count="30" HistoryIndex="29">
       <Position1>
-        <Filename Value="main.pas"/>
-        <Caret Line="12" Column="37" TopLine="1"/>
+        <Filename Value="darintf.pas"/>
+        <Caret Line="434" Column="1" TopLine="413"/>
       </Position1>
       <Position2>
-        <Filename Value="main.pas"/>
-        <Caret Line="130" Column="1" TopLine="207"/>
+        <Filename Value="darintf.pas"/>
+        <Caret Line="435" Column="1" TopLine="414"/>
       </Position2>
       <Position3>
-        <Filename Value="main.pas"/>
-        <Caret Line="172" Column="23" TopLine="146"/>
+        <Filename Value="darintf.pas"/>
+        <Caret Line="437" Column="20" TopLine="415"/>
       </Position3>
       <Position4>
-        <Filename Value="darintf.pas"/>
-        <Caret Line="420" Column="15" TopLine="405"/>
+        <Filename Value="archive.pas"/>
+        <Caret Line="228" Column="1" TopLine="212"/>
       </Position4>
       <Position5>
-        <Filename Value="darintf.pas"/>
-        <Caret Line="67" Column="21" TopLine="39"/>
+        <Filename Value="archive.pas"/>
+        <Caret Line="249" Column="1" TopLine="238"/>
       </Position5>
       <Position6>
-        <Filename Value="darintf.pas"/>
-        <Caret Line="424" Column="17" TopLine="407"/>
+        <Filename Value="archive.pas"/>
+        <Caret Line="248" Column="31" TopLine="222"/>
       </Position6>
       <Position7>
-        <Filename Value="darintf.pas"/>
-        <Caret Line="427" Column="1" TopLine="406"/>
+        <Filename Value="main.pas"/>
+        <Caret Line="239" Column="6" TopLine="204"/>
       </Position7>
       <Position8>
-        <Filename Value="darintf.pas"/>
-        <Caret Line="428" Column="1" TopLine="407"/>
+        <Filename Value="main.pas"/>
+        <Caret Line="94" Column="3" TopLine="92"/>
       </Position8>
       <Position9>
-        <Filename Value="darintf.pas"/>
-        <Caret Line="431" Column="1" TopLine="410"/>
+        <Filename Value="main.pas"/>
+        <Caret Line="242" Column="48" TopLine="221"/>
       </Position9>
       <Position10>
-        <Filename Value="darintf.pas"/>
-        <Caret Line="432" Column="1" TopLine="411"/>
+        <Filename Value="main.pas"/>
+        <Caret Line="40" Column="17" TopLine="40"/>
       </Position10>
       <Position11>
-        <Filename Value="darintf.pas"/>
-        <Caret Line="427" Column="1" TopLine="406"/>
+        <Filename Value="main.pas"/>
+        <Caret Line="61" Column="58" TopLine="60"/>
       </Position11>
       <Position12>
         <Filename Value="darintf.pas"/>
-        <Caret Line="428" Column="1" TopLine="407"/>
+        <Caret Line="68" Column="25" TopLine="60"/>
       </Position12>
       <Position13>
         <Filename Value="darintf.pas"/>
-        <Caret Line="427" Column="7" TopLine="410"/>
+        <Caret Line="448" Column="5" TopLine="401"/>
       </Position13>
       <Position14>
-        <Filename Value="darintf.pas"/>
-        <Caret Line="432" Column="34" TopLine="411"/>
+        <Filename Value="main.pas"/>
+        <Caret Line="288" Column="3" TopLine="257"/>
       </Position14>
       <Position15>
         <Filename Value="darintf.pas"/>
-        <Caret Line="428" Column="1" TopLine="407"/>
+        <Caret Line="448" Column="1" TopLine="437"/>
       </Position15>
       <Position16>
-        <Filename Value="darintf.pas"/>
-        <Caret Line="429" Column="1" TopLine="408"/>
+        <Filename Value="main.pas"/>
+        <Caret Line="288" Column="70" TopLine="289"/>
       </Position16>
       <Position17>
-        <Filename Value="darintf.pas"/>
-        <Caret Line="432" Column="1" TopLine="411"/>
+        <Filename Value="main.pas"/>
+        <Caret Line="486" Column="59" TopLine="459"/>
       </Position17>
       <Position18>
-        <Filename Value="darintf.pas"/>
-        <Caret Line="433" Column="30" TopLine="412"/>
+        <Filename Value="main.pas"/>
+        <Caret Line="289" Column="59" TopLine="286"/>
       </Position18>
       <Position19>
-        <Filename Value="darintf.pas"/>
-        <Caret Line="428" Column="1" TopLine="407"/>
+        <Filename Value="main.pas"/>
+        <Caret Line="288" Column="44" TopLine="268"/>
       </Position19>
       <Position20>
-        <Filename Value="darintf.pas"/>
-        <Caret Line="429" Column="1" TopLine="408"/>
+        <Filename Value="main.pas"/>
+        <Caret Line="290" Column="37" TopLine="268"/>
       </Position20>
       <Position21>
-        <Filename Value="darintf.pas"/>
-        <Caret Line="432" Column="1" TopLine="411"/>
+        <Filename Value="main.pas"/>
+        <Caret Line="289" Column="96" TopLine="267"/>
       </Position21>
       <Position22>
         <Filename Value="darintf.pas"/>
-        <Caret Line="433" Column="1" TopLine="412"/>
+        <Caret Line="448" Column="17" TopLine="430"/>
       </Position22>
       <Position23>
         <Filename Value="darintf.pas"/>
-        <Caret Line="434" Column="1" TopLine="413"/>
+        <Caret Line="451" Column="5" TopLine="442"/>
       </Position23>
       <Position24>
         <Filename Value="darintf.pas"/>
-        <Caret Line="435" Column="1" TopLine="414"/>
+        <Caret Line="448" Column="1" TopLine="443"/>
       </Position24>
       <Position25>
         <Filename Value="darintf.pas"/>
-        <Caret Line="437" Column="20" TopLine="415"/>
+        <Caret Line="453" Column="46" TopLine="443"/>
       </Position25>
       <Position26>
-        <Filename Value="archive.pas"/>
-        <Caret Line="228" Column="1" TopLine="212"/>
+        <Filename Value="darintf.pas"/>
+        <Caret Line="456" Column="14" TopLine="428"/>
       </Position26>
       <Position27>
-        <Filename Value="archive.pas"/>
-        <Caret Line="249" Column="1" TopLine="238"/>
+        <Filename Value="darintf.pas"/>
+        <Caret Line="451" Column="1" TopLine="430"/>
       </Position27>
       <Position28>
-        <Filename Value="archive.pas"/>
-        <Caret Line="248" Column="31" TopLine="222"/>
+        <Filename Value="darintf.pas"/>
+        <Caret Line="448" Column="14" TopLine="433"/>
       </Position28>
       <Position29>
-        <Filename Value="main.pas"/>
-        <Caret Line="239" Column="6" TopLine="204"/>
+        <Filename Value="darintf.pas"/>
+        <Caret Line="464" Column="40" TopLine="433"/>
       </Position29>
       <Position30>
         <Filename Value="main.pas"/>
-        <Caret Line="94" Column="3" TopLine="92"/>
+        <Caret Line="293" Column="51" TopLine="267"/>
       </Position30>
     </JumpHistory>
   </ProjectOptions>

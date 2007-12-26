@@ -860,6 +860,7 @@ object MainForm: TMainForm
       end
       object miArchiveInformation: TMenuItem
         Caption = 'Information'
+        OnClick = miArchiveInformationClick
       end
     end
     object MenuSettings: TMenuItem

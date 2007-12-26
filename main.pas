@@ -58,6 +58,7 @@ type
       var PaintImages, DefaultDraw: Boolean);
     procedure ArchiveTreeViewDeletion(Sender: TObject; Node: TTreeNode);
     procedure ArchiveTreeViewSelectionChanged(Sender: TObject);
+    procedure miArchiveInformationClick(Sender: TObject);
     procedure miExitClick ( Sender: TObject ) ;
     procedure MessageHideButtonClick(Sender: TObject);
     procedure FormCreate(Sender: TObject);
@@ -85,7 +86,7 @@ const
 
 implementation
 
-uses selectrestore, archive;
+uses selectrestore, archive, archiveinfo;
 
 { TMainForm }
 
@@ -280,6 +281,19 @@ begin
 
      writeln(SelectedNodes);
   end;
+end;
+
+procedure TMainForm.miArchiveInformationClick(Sender: TObject);
+begin
+  if GetArchiveInformation(ExtractFilePath(OpenDialog.FileName)
+                            + ArchiveTreeView.TopItem.Text,InformationForm.InformationMemo) = 0
+      then
+      begin
+        InformationForm.Caption := 'Information for archive: ' + ArchiveTreeView.TopItem.Text;
+        InformationForm.InformationMemo.Lines.Insert(0, 'Location: ' + OpenDialog.FileName);
+        InformationForm.InformationMemo.Lines.Insert(1, StringOfChar('-',45));
+        InformationForm.ShowModal;
+      end;
 end;
 
 

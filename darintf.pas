@@ -65,6 +65,7 @@ type
   function SelectChildren(Node: TTreeNode): integer;
   function isInteger(aString: string): Boolean;
   function DeleteFilesByMask(FileMask: string): integer;
+  function GetArchiveInformation (fn: string; Memo: TMemo): integer;
 
 
 implementation
@@ -441,7 +442,36 @@ Begin
      end;
 End;
 
-end.
+function GetArchiveInformation(fn: string; Memo: TMemo): integer;
+var
+  Proc: TProcess;
+  x: Integer;
+begin
+  Result := -1;
+  Proc := TProcess.Create(nil);
+  Proc.CommandLine := 'dar -l' + fn + ' -v Q';
+  Proc.Options := Proc.Options  + [poWaitOnExit, poUsePipes];
+      try
+      Proc.Execute;
+      Memo.Lines.LoadFromStream(Proc.Output);
+      for x := Memo.Lines.Count -1 downto 0 do
+          begin
+            if Memo.Lines[x] = ''
+               then Memo.Lines[x] := StringOfChar('-',45)
+            else if Pos('aborting', AnsiLowerCase(Memo.Lines[x])) = 1
+               then Memo.Lines.Delete(x)
+            else if Pos('extracting', AnsiLowerCase(Memo.Lines[x])) = 1
+               then Memo.Lines.Delete(x);
+          end;
+      
+      Result := 0;
+      finally
+      Proc.Free;
+      end;
+ end;
+
+
+End.
 
 {EXIT CODES
 dar exits with the following code:

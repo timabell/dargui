@@ -1,0 +1,17 @@
+{ This is an automatically generated lazarus resource file }
+
+LazarusResources.Add('TInformationForm','FORMDATA',[
+  'TPF0'#16'TInformationForm'#15'InformationForm'#4'Left'#3'"'#1#6'Height'#3#23
+  +#1#3'Top'#3#175#0#5'Width'#3#253#1#18'HorzScrollBar.Page'#3#252#1#18'VertScr'
+  +'ollBar.Page'#3#22#1#7'Caption'#6#15'InformationForm'#12'ClientHeight'#3#23#1
+  +#11'ClientWidth'#3#253#1#0#6'TPanel'#11'ButtonPanel'#6'Height'#2'2'#3'Top'#3
+  +#229#0#5'Width'#3#253#1#5'Align'#7#8'alBottom'#12'ClientHeight'#2'2'#11'Clie'
+  +'ntWidth'#3#253#1#8'TabOrder'#2#0#0#7'TBitBtn'#8'OkButton'#4'Left'#3#216#0#6
+  +'Height'#2#30#3'Top'#2#11#5'Width'#2'K'#7'Caption'#6#3'&OK'#7'Default'#9#4'K'
+  +'ind'#7#4'bkOK'#11'ModalResult'#2#1#9'NumGlyphs'#2#0#8'TabOrder'#2#0#0#0#0#6
+  +'TPanel'#9'MemoPanel'#6'Height'#3#229#0#5'Width'#3#253#1#5'Align'#7#8'alClie'
+  +'nt'#12'ClientHeight'#3#229#0#11'ClientWidth'#3#253#1#8'TabOrder'#2#1#0#5'TM'
+  +'emo'#15'InformationMemo'#4'Left'#2#6#6'Height'#3#217#0#3'Top'#2#6#5'Width'#3
+  +#241#1#5'Align'#7#8'alClient'#20'BorderSpacing.Around'#2#5#25'BorderSpacing.'
+  +'InnerBorder'#2#5#8'TabOrder'#2#0#0#0#0#0
+]);

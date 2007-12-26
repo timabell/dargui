@@ -9,7 +9,7 @@ uses
   Interfaces, // this includes the LCL widgetset
   Forms
   { add your units here }, main, darintf, selectrestore, archive, filemaskdlg,
-  ProcessLine;
+  ProcessLine, ArchiveInfo;
 
 begin
   Application.Title:='DarGUI';
@@ -18,6 +18,7 @@ begin
   Application.CreateForm(TExtractSelectedForm, ExtractSelectedForm);
   Application.CreateForm ( TArchiveForm, ArchiveForm ) ;
   Application.CreateForm ( TFileMaskDialog, FileMaskDialog ) ;
+  Application.CreateForm(TInformationForm, InformationForm);
   Application.Run;
 end.
 

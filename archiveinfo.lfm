@@ -1,0 +1,50 @@
+object InformationForm: TInformationForm
+  Left = 290
+  Height = 279
+  Top = 175
+  Width = 509
+  HorzScrollBar.Page = 508
+  VertScrollBar.Page = 278
+  Caption = 'InformationForm'
+  ClientHeight = 279
+  ClientWidth = 509
+  object ButtonPanel: TPanel
+    Height = 50
+    Top = 229
+    Width = 509
+    Align = alBottom
+    ClientHeight = 50
+    ClientWidth = 509
+    TabOrder = 0
+    object OkButton: TBitBtn
+      Left = 216
+      Height = 30
+      Top = 11
+      Width = 75
+      Caption = '&OK'
+      Default = True
+      Kind = bkOK
+      ModalResult = 1
+      NumGlyphs = 0
+      TabOrder = 0
+    end
+  end
+  object MemoPanel: TPanel
+    Height = 229
+    Width = 509
+    Align = alClient
+    ClientHeight = 229
+    ClientWidth = 509
+    TabOrder = 1
+    object InformationMemo: TMemo
+      Left = 6
+      Height = 217
+      Top = 6
+      Width = 497
+      Align = alClient
+      BorderSpacing.Around = 5
+      BorderSpacing.InnerBorder = 5
+      TabOrder = 0
+    end
+  end
+end

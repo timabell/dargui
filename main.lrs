@@ -926,13 +926,14 @@ LazarusResources.Add('TMainForm','FORMDATA',[
   +'tedClick'#0#0#9'TMenuItem'#12'miRestoreAll'#7'Caption'#6#11'Restore all'#7
   +'Enabled'#8#7'OnClick'#7#17'miRestoreAllClick'#0#0#9'TMenuItem'#10'MenuBreak'
   +'2'#7'Caption'#6#1'-'#0#0#9'TMenuItem'#20'miArchiveInformation'#7'Caption'#6
-  +#11'Information'#0#0#0#9'TMenuItem'#12'MenuSettings'#7'Caption'#6#8'Settings'
-  +#0#9'TMenuItem'#14'miHideMessages'#7'Caption'#6#13'Hide messages'#19'ShowAlw'
-  +'aysCheckable'#9#7'OnClick'#7#19'miHideMessagesClick'#0#0#0#0#11'TOpenDialog'
-  +#10'OpenDialog'#5'Title'#6#21'Open existing archive'#6'Filter'#6#18'DAR Arch'
-  +'ives|*.dar'#11'FilterIndex'#2#0#4'left'#2'N'#3'top'#3#149#0#0#0#10'TPopupMe'
-  +'nu'#12'TreeViewMenu'#4'left'#3#3#1#3'top'#3#165#0#0#9'TMenuItem'#21'tvMenuR'
-  +'estoreSelected'#7'Caption'#6#16'Restore Selected'#7'OnClick'#7#26'tvMenuRes'
-  +'toreSelectedClick'#0#0#9'TMenuItem'#16'tvMenuRestoreAll'#7'Caption'#6#11'Re'
-  +'store all'#7'OnClick'#7#17'miRestoreAllClick'#0#0#0#0
+  +#11'Information'#7'OnClick'#7#25'miArchiveInformationClick'#0#0#0#9'TMenuIte'
+  +'m'#12'MenuSettings'#7'Caption'#6#8'Settings'#0#9'TMenuItem'#14'miHideMessag'
+  +'es'#7'Caption'#6#13'Hide messages'#19'ShowAlwaysCheckable'#9#7'OnClick'#7#19
+  +'miHideMessagesClick'#0#0#0#0#11'TOpenDialog'#10'OpenDialog'#5'Title'#6#21'O'
+  +'pen existing archive'#6'Filter'#6#18'DAR Archives|*.dar'#11'FilterIndex'#2#0
+  +#4'left'#2'N'#3'top'#3#149#0#0#0#10'TPopupMenu'#12'TreeViewMenu'#4'left'#3#3
+  +#1#3'top'#3#165#0#0#9'TMenuItem'#21'tvMenuRestoreSelected'#7'Caption'#6#16'R'
+  +'estore Selected'#7'OnClick'#7#26'tvMenuRestoreSelectedClick'#0#0#9'TMenuIte'
+  +'m'#16'tvMenuRestoreAll'#7'Caption'#6#11'Restore all'#7'OnClick'#7#17'miRest'
+  +'oreAllClick'#0#0#0#0
 ]);
