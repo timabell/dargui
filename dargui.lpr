@@ -8,7 +8,8 @@ uses
   {$ENDIF}{$ENDIF}
   Interfaces, // this includes the LCL widgetset
   Forms
-  { add your units here }, main, darintf, selectrestore, archive, filemaskdlg;
+  { add your units here }, main, darintf, selectrestore, archive, filemaskdlg,
+  ProcessLine;
 
 begin
   Application.Title:='DarGUI';

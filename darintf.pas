@@ -5,7 +5,7 @@ unit darintf;
 interface
 
 uses
-  Classes, SysUtils, Process, Comctrls, StdCtrls;
+  Classes, SysUtils, Process, Comctrls, StdCtrls, ProcessLine;
   
 type
   TDarInfo = record
@@ -64,6 +64,8 @@ type
   function PosFrom(const SubStr, Value: String; From: integer): integer;
   function SelectChildren(Node: TTreeNode): integer;
   function isInteger(aString: string): Boolean;
+  function DeleteFilesByMask(FileMask: string): integer;
+
 
 implementation
 
@@ -333,52 +335,38 @@ begin
 end;
 
 
+
+
+// ************** OpenArchive ***************** //
+
 function CreateArchive ( Cmd: string; msg: TMemo ) : integer;
 var
-  Proc: TProcess;
-  BytesRead: Integer;
-  M: TMemoryStream;
-  n: LongInt;
+  Proc: TProcessLineTalk;
+  aLine: String;
 begin
-  Proc := TProcess.Create(nil);
-  M := TMemoryStream.Create;
-  BytesRead := 0;
-  Proc.CommandLine := cmd;
-  Proc.Options := [poUsePipes];
+  Result := -1;
+  Proc := TProcessLineTalk.Create(nil);
+  try
+  Proc.CommandLine := Cmd;
   Proc.Execute;
   While Proc.Running do
         begin
-        M.SetSize(BytesRead + READ_BYTES);
-
-        // try reading it
-        n := Proc.Output.Read((M.Memory + BytesRead)^, READ_BYTES);
-        if n > 0
-        then begin
-             Inc(BytesRead, n);
-             Write('.')
-             end
-        else begin
-             // no data, wait 100 ms
-             Sleep(100);
-             end;
+          aLine := Proc.ReadLine;
+          while aLine <> '' do
+                begin
+                  msg.Lines.Add(aLine);
+                  aLine := Proc.ReadLine;
+                end;
         end;
-  // read last part
-  repeat
-  // make sure we have room
-  M.SetSize(BytesRead + READ_BYTES);
-  // try reading it
-  n := Proc.Output.Read((M.Memory + BytesRead)^, READ_BYTES);
-  if n > 0
-  then begin
-       Inc(BytesRead, n);
-       Write('.');
-       end;
-  until n <= 0;
-  if BytesRead > 0 then WriteLn;
-  M.SetSize(BytesRead);
-  WriteLn('-- executed --');
-
-  msg.Lines.LoadFromStream(M);
+  aLine := Proc.ReadLine;
+  while aLine <> '' do
+        begin
+          msg.Lines.Add(aLine);
+        end;
+  finally
+  Proc.Free;
+  Result := 0;
+  end;
 
 end;
 
@@ -433,6 +421,25 @@ begin
          then Result := false;
 end;
 
+function DeleteFilesByMask(FileMask: string): integer;
+Var
+   UFile : file;
+   SearchRec: TSearchRec;
+   aName:string;
+   filePath: string;
+Begin
+ filePath:= ExtractFilePath(FileMask);
+ if FindFirst(FileMask, faArchive, SearchRec)
+        = 0 then
+     begin
+       repeat
+          aName := filePath + DirectorySeparator + SearchRec.Name;
+          Assign(UFile, aName);
+          Erase (UFile);
+       until FindNext(SearchRec) <> 0;
+       FindClose(SearchRec);
+     end;
+End;
 
 end.
 

@@ -6,7 +6,7 @@ interface
 
 uses
   Classes, SysUtils, LResources, Forms, Controls, Graphics, Dialogs, DarIntf,
-  Menus, ComCtrls, ExtCtrls, Buttons, StdCtrls, Process, LCLType;
+  Menus, ComCtrls, ExtCtrls, Buttons, StdCtrls, Process, LCLType,ProcessLine;
 
 type
 
@@ -114,10 +114,10 @@ begin
        miRestoreAll.Enabled := true;
        miRestoreSelected.Enabled := true;
 
-  OpenDialog.FileName := '/home/malcolm/test_backup.1.dar';
+  //OpenDialog.FileName := '/home/malcolm/test_backup.1.dar';
   //OpenDialog.FileName := '/media/hdb2/backups/archive_2007-08-29.1.dar';
-  if DarInfo.version<>'-'
-     then OpenArchive(OpenDialog.FileName,ArchiveTreeView);
+  //if DarInfo.version<>'-'
+  //   then OpenArchive(OpenDialog.FileName,ArchiveTreeView);
 
 end;
 
@@ -127,6 +127,7 @@ var
   DarOptions: string;
   Command: string;
   x: integer;
+  aLine: String;
   
   procedure AddCompressionOptions;
   var
@@ -167,7 +168,12 @@ begin
      DarOptions := ' -X "' + ArchiveForm.ArchiveName.Text + '"';
      BatchFile := TStringList.Create;
      BatchFile.Add('# DAR batch file written by DarGUI');
-     BatchFile.Add('-R "' + ArchiveForm.BaseDirectory.Text + '"');
+     BatchFile.Add('-R "' + ArchiveForm.BaseDirectory.Text + '"' + #10);
+     if ArchiveForm.DryRunCheck.Checked then
+        begin
+          BatchFile.Add('# Dry run: ths archive will not be written to file unless the next option is removed');
+          BatchFile.Add('--empty' + #10);
+        end;
      if ArchiveForm.IncludeDirectories.Count > 0 then
         begin
         BatchFile.Add('');
@@ -182,13 +188,19 @@ begin
         for x := 0 to ArchiveForm.IncludeFiles.Count-1 do
             BatchFile.Add('-g "' + RemoveBaseDirectory(ArchiveForm.IncludeFiles.Items[x]) + '"');
         end;
-        writeln('excludedirs: ',ArchiveForm.ExcludeDirectories.Count);
      if ArchiveForm.ExcludeDirectories.Count > 0 then
         begin
         BatchFile.Add('');
         BatchFile.Add('# Directories to exclude from archive');
         for x := 0 to ArchiveForm.ExcludeDirectories.Count-1 do
             BatchFile.Add('-P "' + RemoveBaseDirectory(ArchiveForm.ExcludeDirectories.Items[x]) + '"');
+        end;
+     if ArchiveForm.ExcludeFiles.Count > 0 then
+        begin
+        BatchFile.Add('');
+        BatchFile.Add('# Files to exclude from archive');
+        for x := 0 to ArchiveForm.ExcludeFiles.Count-1 do
+            BatchFile.Add('-X "' + RemoveBaseDirectory(ArchiveForm.ExcludeFiles.Items[x]) + '"');
         end;
      if ArchiveForm.GZipCheck.Checked
         then begin
@@ -204,19 +216,31 @@ begin
              BatchFile.Add('--bzip2=' + ArchiveForm.CompressionLevel.Text);
              AddCompressionOptions;
              end;
+     if not ArchiveForm.ReadConfigCheck.Checked then
+        begin
+          BatchFile.Add('# Do not read DAR configuration files (~/.darrc or /etc/darrc)' + #10 + '-N' + #10);
+        end;
+     if ArchiveForm.EmptyDirCheck.Checked then
+        begin
+          BatchFile.Add('# Preserve ignored directory names' + #10 + '-D' +#10);
+        end;
 
      Command := DAR_EXECUTABLE + ' -c "' + ArchiveForm.ArchiveDirectory.Text
                             + ArchiveForm.ArchiveName.Text + '"'
                             + ' -B "' + TEMPBATCHFILE + '"'
-                           // + ' -v -e' // for debugging
+                            + ' -v'
+                            //+ ' -e' // for debugging
                             + DarOptions
-                            + ' -X ' + ArchiveForm.ArchiveName.Text + '.*.dar';
+                            + ' -X ' + ArchiveForm.ArchiveName.Text + '.*.dar -Q';
                             
      BatchFile.Insert(1, '# ' + Command);
      BatchFile.SaveToFile(TEMPBATCHFILE);
-     WriteLn(Command);
-     CreateArchive(Command,MessageMemo);
-     OpenArchive(ArchiveForm.ArchiveDirectory.Text
+
+     MessageMemo.Lines.Add(#32 + StringOfChar('-',45));
+     MessageMemo.Lines.Add('Creating archive: ' + ArchiveForm.ArchiveName.Text);
+
+     if CreateArchive(Command, MessageMemo) = 0
+        then OpenArchive(ArchiveForm.ArchiveDirectory.Text
                             + ArchiveForm.ArchiveName.Text, ArchiveTreeView);
      finally
      BatchFile.Free;

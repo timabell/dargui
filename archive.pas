@@ -237,17 +237,25 @@ end;
 
 procedure TArchiveForm.OKButtonClick ( Sender: TObject ) ;
 begin
-  if CheckParameters
-     then ModalResult := mrOk
+  if CheckParameters then
+     begin
+     ModalResult := mrOk;
+     if FileExists(ArchiveDirectory.Text
+                            + ArchiveName.Text + '.1.dar')
+        then if MessageDlg('Overwrite existing archive?', mtWarning,[mbYes,mbNo],0) = mrNo
+             then ModalResult := mrCancel
+             else DeleteFilesByMask(ArchiveDirectory.Text
+                            + ArchiveName.Text + '.*.dar');
+     end
      else ShowMessage('Please check the parameters');
 end;
 
 procedure TArchiveForm.DelExcludeFileButtonClick ( Sender: TObject ) ;
 begin
-  if ExcludeFiles.Count > 1 then
-     if ExcludeFiles.ItemIndex > 0 then
+  if ExcludeFiles.Count > 0 then
+     if ExcludeFiles.ItemIndex > -1 then
         ExcludeFiles.Items.Delete(ExcludeFiles.ItemIndex);
-  DelExcludeFileButton.Enabled := IncludeFiles.Count > 1;
+  DelExcludeFileButton.Enabled := IncludeFiles.Count > 0;
 end;
 
 function TArchiveForm.CheckParameters: Boolean;
