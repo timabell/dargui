@@ -37,7 +37,7 @@ type
     miFileNew: TMenuItem;
     miFileOpen: TMenuItem;
     OpenDialog: TOpenDialog;
-    Panel1: TPanel;
+    ToolbarPanel: TPanel;
     HeaderPanel: TPanel;
     FilenameHdr: TPanel;
     DateHdr: TPanel;

@@ -42,11 +42,10 @@ object MainForm: TMainForm
     Options = [tvoAllowMultiselect, tvoAutoItemHeight, tvoHotTrack, tvoKeepCollapsedNodes, tvoReadOnly, tvoRowSelect, tvoShowButtons, tvoShowLines, tvoToolTips]
     TreeLineColor = clDefault
   end
-  object Panel1: TPanel
+  object ToolbarPanel: TPanel
     Height = 56
     Width = 893
     Align = alTop
-    Caption = 'Panel1'
     ClientHeight = 56
     ClientWidth = 893
     TabOrder = 1
