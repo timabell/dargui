@@ -9,7 +9,7 @@ uses
   Interfaces, // this includes the LCL widgetset
   Forms
   { add your units here }, main, darintf, selectrestore, archive, filemaskdlg,
-  ProcessLine, ArchiveInfo;
+  ProcessLine, ArchiveInfo, About, olpack;
 
 begin
   Application.Title:='DarGUI';

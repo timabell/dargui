@@ -12,17 +12,17 @@ object MainForm: TMainForm
   Menu = MainMenu
   OnCreate = FormCreate
   object StatusBar1: TStatusBar
-    Height = 26
-    Top = 549
+    Height = 24
+    Top = 551
     Width = 893
     Panels = <>
   end
   object ArchiveTreeView: TTreeView
-    Height = 349
+    Height = 351
     Top = 81
     Width = 893
     Align = alClient
-    DefaultItemHeight = 11
+    DefaultItemHeight = 14
     Font.CharSet = ANSI_CHARSET
     Font.Height = 10
     Font.Name = '-adobe-courier-medium-r-normal-*-*-100-*-*-*-*-iso10646-1'
@@ -765,7 +765,7 @@ object MainForm: TMainForm
   end
   object MessagePanel: TPanel
     Height = 114
-    Top = 435
+    Top = 437
     Width = 893
     Align = alBottom
     Caption = 'MessagePanel'
@@ -784,9 +784,9 @@ object MainForm: TMainForm
       TabOrder = 0
       object MessageLabel: TLabel
         Left = 7
-        Height = 14
+        Height = 17
         Top = 8
-        Width = 70
+        Width = 78
         Caption = 'Messages:'
         ParentColor = False
       end
@@ -815,7 +815,7 @@ object MainForm: TMainForm
   object MessageBoxSplitter: TSplitter
     Cursor = crVSplit
     Height = 5
-    Top = 430
+    Top = 432
     Width = 893
     Align = alBottom
     Beveled = True
@@ -869,6 +869,13 @@ object MainForm: TMainForm
         Caption = 'Hide messages'
         ShowAlwaysCheckable = True
         OnClick = miHideMessagesClick
+      end
+    end
+    object MenuHelp: TMenuItem
+      Caption = '&Help'
+      object miHelpAbout: TMenuItem
+        Caption = 'About'
+        OnClick = miHelpAboutClick
       end
     end
   end

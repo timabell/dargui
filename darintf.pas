@@ -5,7 +5,7 @@ unit darintf;
 interface
 
 uses
-  Classes, SysUtils, Process, Comctrls, StdCtrls, ProcessLine;
+  Classes, SysUtils, Process, Comctrls, StdCtrls, ProcessLine, FileUtil;
   
 type
   TDarInfo = record
@@ -66,6 +66,9 @@ type
   function isInteger(aString: string): Boolean;
   function DeleteFilesByMask(FileMask: string): integer;
   function GetArchiveInformation (fn: string; Memo: TMemo): integer;
+  
+  procedure GetDefaultBrowser(var Browser, Params: string);
+
 
 
 implementation
@@ -469,6 +472,31 @@ begin
       Proc.Free;
       end;
  end;
+ 
+// GetDefaultBrowser taken from LazConf.pp [ Lazarus IDE ]
+procedure GetDefaultBrowser(var Browser, Params: string);
+
+  function Find(const ShortFilename: string; var Filename: string): boolean;
+  begin
+    Filename:=SearchFileInPath(ShortFilename,'',
+                   SysUtils.GetEnvironmentVariable('PATH'),PathSeparator,[]);
+    Result:=Filename<>'';
+  end;
+
+begin
+  Params:='%s';
+  Browser:='';
+  // prefer open source ;)
+  if Find('mozilla',Browser) then exit;
+  if Find('galeon',Browser) then exit;
+  if Find('konqueror',Browser) then exit;
+  if Find('safari',Browser) then exit;
+  if Find('netscape',Browser) then exit;
+  if Find('opera',Browser) then exit;
+  if Find('iexplore.exe',Browser) then exit;
+end;
+
+
 
 
 End.

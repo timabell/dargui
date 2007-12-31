@@ -16,6 +16,8 @@ type
     BitBtn1: TBitBtn;
     BitBtn2: TBitBtn;
     MenuBreak2: TMenuItem;
+    MenuHelp: TMenuItem;
+    miHelpAbout: TMenuItem;
     miArchiveInformation: TMenuItem;
     miHideMessages: TMenuItem;
     MenuSettings: TMenuItem;
@@ -65,6 +67,7 @@ type
     procedure miFileNewClick ( Sender: TObject ) ;
     procedure miFileOpenClick(Sender: TObject);
     procedure Splitter3ChangeBounds(Sender: TObject);
+    procedure miHelpAboutClick ( Sender: TObject ) ;
     procedure miHideMessagesClick(Sender: TObject);
     procedure miRestoreAllClick(Sender: TObject);
     procedure tvMenuRestoreSelectedClick(Sender: TObject);
@@ -86,7 +89,7 @@ const
 
 implementation
 
-uses selectrestore, archive, archiveinfo;
+uses selectrestore, archive, archiveinfo, About;
 
 { TMainForm }
 
@@ -107,7 +110,7 @@ begin
                         [mbOk],
                         0);
      end;
-     
+
   UpdatingSelection := false;
   miHideMessages.Checked := false;
   
@@ -415,6 +418,18 @@ end;
 procedure TMainForm.Splitter3ChangeBounds(Sender: TObject);
 begin
   ArchiveTreeView.Paint;
+end;
+
+procedure TMainForm.miHelpAboutClick ( Sender: TObject ) ;
+var
+  Aboutform: TAboutForm;
+begin
+  Aboutform := TAboutForm.Create(Application);
+  if DarInfo.version = '-'
+     then AboutForm.DarVersionLabel.Caption := '* No DAR executable found! *'
+     else AboutForm.DarVersionLabel.Caption := 'Using DAR version ' + DarInfo.version;
+  AboutForm.ShowModal;
+  Aboutform.Free;
 end;
 
 procedure TMainForm.miHideMessagesClick(Sender: TObject);
