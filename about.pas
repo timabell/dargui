@@ -17,7 +17,7 @@ type
     BitBtn1: TBitBtn;
     Image1: TImage;
     Label1: TLabel;
-    Label2: TLabel;
+    SVNLabel: TLabel;
     Label3: TLabel;
     Label4: TLabel;
     Label5: TLabel;

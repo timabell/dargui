@@ -12,6 +12,7 @@ object AboutForm: TAboutForm
   ClientHeight = 325
   ClientWidth = 400
   FormStyle = fsStayOnTop
+  Position = poMainFormCenter
   object Image1: TImage
     Left = 27
     Height = 136
@@ -392,18 +393,18 @@ object AboutForm: TAboutForm
     Font.Style = [fsBold]
     ParentColor = False
   end
-  object Label2: TLabel
+  object SVNLabel: TLabel
     Left = 176
     Height = 17
     Top = 56
-    Width = 40
-    Caption = 'Date:'
+    Width = 73
+    Caption = 'SVN Rev:'
     ParentColor = False
   end
   object Label3: TLabel
     Left = 176
     Height = 17
-    Top = 80
+    Top = 144
     Width = 98
     Caption = 'Licence: GPL'
     ParentColor = False
@@ -411,7 +412,7 @@ object AboutForm: TAboutForm
   object Label4: TLabel
     Left = 176
     Height = 17
-    Top = 104
+    Top = 120
     Width = 163
     Caption = 'Author: Malcolm Poole'
     ParentColor = False
@@ -419,10 +420,10 @@ object AboutForm: TAboutForm
   object Label5: TLabel
     Left = 27
     Height = 48
-    Top = 171
+    Top = 176
     Width = 349
     AutoSize = False
-    Caption = 'DarGUI was written using Freepascal and the Lazarus IDE'
+    Caption = 'DarGUI was developed using Freepascal and the Lazarus IDE'
     ParentColor = False
     WordWrap = True
   end
@@ -435,7 +436,7 @@ object AboutForm: TAboutForm
   object DarVersionLabel: TLabel
     Left = 176
     Height = 17
-    Top = 128
+    Top = 80
     Width = 120
     Caption = 'DarVersionLabel'
     ParentColor = False
@@ -443,7 +444,7 @@ object AboutForm: TAboutForm
   object HotLabel1: TLabel
     Left = 27
     Height = 17
-    Top = 216
+    Top = 221
     Width = 244
     Caption = 'http://www.lazarus.freepascal.org/'
     Font.Color = 15477010
