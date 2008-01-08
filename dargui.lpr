@@ -9,16 +9,16 @@ uses
   Interfaces, // this includes the LCL widgetset
   Forms
   { add your units here }, main, darintf, selectrestore, archive, filemaskdlg,
-  ProcessLine, ArchiveInfo, About, olpack;
+  ProcessLine, ArchiveInfo, FileOverwrite, About, olpack;
 
 begin
   Application.Title:='DarGUI';
   Application.Initialize;
   Application.CreateForm(TMainForm, MainForm);
-  Application.CreateForm(TExtractSelectedForm, ExtractSelectedForm);
   Application.CreateForm ( TArchiveForm, ArchiveForm ) ;
   Application.CreateForm ( TFileMaskDialog, FileMaskDialog ) ;
   Application.CreateForm(TInformationForm, InformationForm);
+  Application.CreateForm ( TOverwriteFilesForm, OverwriteFilesForm ) ;
   Application.Run;
 end.
 

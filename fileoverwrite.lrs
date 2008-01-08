@@ -1,0 +1,31 @@
+{ This is an automatically generated lazarus resource file }
+
+LazarusResources.Add('TOverwriteFilesForm','FORMDATA',[
+  'TPF0'#19'TOverwriteFilesForm'#18'OverwriteFilesForm'#4'Left'#3'"'#1#6'Height'
+  +#3'K'#1#3'Top'#3#144#0#5'Width'#3'_'#2#18'HorzScrollBar.Page'#3'^'#2#18'Vert'
+  +'ScrollBar.Page'#3'J'#1#7'Caption'#6#26'Confirm files to overwrite'#12'Clien'
+  +'tHeight'#3'K'#1#11'ClientWidth'#3'_'#2#8'Position'#7#9'poDefault'#0#6'TPane'
+  +'l'#16'InstructionPanel'#6'Height'#2'2'#5'Width'#3'_'#2#5'Align'#7#5'alTop'
+  +#12'ClientHeight'#2'2'#11'ClientWidth'#3'_'#2#8'TabOrder'#2#0#0#6'TLabel'#16
+  +'InstructionLabel'#4'Left'#2#15#6'Height'#2#30#3'Top'#2#12#5'Width'#3#173#1#7
+  +'Caption'#6'wWARNING: The files listed below will be overwritten if you cont'
+  +'inue. '#10'Please confirm which files should be overwritten.'#11'ParentColo'
+  +'r'#8#8'WordWrap'#9#0#0#0#6'TPanel'#11'ButtonPanel'#6'Height'#2'2'#3'Top'#3
+  +#25#1#5'Width'#3'_'#2#5'Align'#7#8'alBottom'#12'ClientHeight'#2'2'#11'Client'
+  +'Width'#3'_'#2#8'TabOrder'#2#1#0#7'TBitBtn'#18'OverwriteAllButton'#4'Left'#2
+  +'X'#6'Height'#2#30#3'Top'#2#13#5'Width'#2'P'#7'Caption'#6#3'All'#4'Kind'#7#10
+  +'bkYesToAll'#11'ModalResult'#2#8#9'NumGlyphs'#2#0#8'TabOrder'#2#0#0#0#7'TBit'
+  +'Btn'#19'OverwriteNoneButton'#4'Left'#3#24#1#6'Height'#2#30#3'Top'#2#13#5'Wi'
+  +'dth'#2'P'#7'Caption'#6#4'None'#4'Kind'#7#9'bkNoToAll'#11'ModalResult'#2#9#9
+  +'NumGlyphs'#2#0#8'TabOrder'#2#1#0#0#7'TBitBtn'#21'OverwriteMarkedButton'#4'L'
+  +'eft'#3#184#0#6'Height'#2#30#3'Top'#2#13#5'Width'#2'P'#7'Caption'#6#6'Marked'
+  +#7'Default'#9#4'Kind'#7#5'bkYes'#11'ModalResult'#2#6#9'NumGlyphs'#2#0#8'TabO'
+  +'rder'#2#2#0#0#7'TBitBtn'#11'AbortButton'#4'Left'#3#240#1#6'Height'#2#30#3'T'
+  +'op'#2#13#5'Width'#2'P'#7'Caption'#6#5'Abort'#4'Kind'#7#7'bkAbort'#11'ModalR'
+  +'esult'#2#3#9'NumGlyphs'#2#0#8'TabOrder'#2#3#0#0#0#6'TPanel'#13'FileListPane'
+  +'l'#6'Height'#3#231#0#3'Top'#2'2'#5'Width'#3'_'#2#5'Align'#7#8'alClient'#8'A'
+  +'utoSize'#9#10'BevelOuter'#7#6'bvNone'#7'Caption'#6#13'FileListPanel'#12'Cli'
+  +'entHeight'#3#231#0#11'ClientWidth'#3'_'#2#8'TabOrder'#2#2#0#13'TCheckListBo'
+  +'x'#16'FileCheckListBox'#4'Left'#2#1#6'Height'#3#229#0#3'Top'#2#1#5'Width'#3
+  +']'#2#5'Align'#7#8'alClient'#8'TabOrder'#2#0#8'TopIndex'#2#255#0#0#0#0
+]);

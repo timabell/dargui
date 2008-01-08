@@ -1,0 +1,104 @@
+object OverwriteFilesForm: TOverwriteFilesForm
+  Left = 290
+  Height = 331
+  Top = 144
+  Width = 607
+  HorzScrollBar.Page = 606
+  VertScrollBar.Page = 330
+  Caption = 'Confirm files to overwrite'
+  ClientHeight = 331
+  ClientWidth = 607
+  Position = poDefault
+  object InstructionPanel: TPanel
+    Height = 50
+    Width = 607
+    Align = alTop
+    ClientHeight = 50
+    ClientWidth = 607
+    TabOrder = 0
+    object InstructionLabel: TLabel
+      Left = 15
+      Height = 30
+      Top = 12
+      Width = 429
+      Caption = 'WARNING: The files listed below will be overwritten if you continue. '#10'Please confirm which files should be overwritten.'
+      ParentColor = False
+      WordWrap = True
+    end
+  end
+  object ButtonPanel: TPanel
+    Height = 50
+    Top = 281
+    Width = 607
+    Align = alBottom
+    ClientHeight = 50
+    ClientWidth = 607
+    TabOrder = 1
+    object OverwriteAllButton: TBitBtn
+      Left = 88
+      Height = 30
+      Top = 13
+      Width = 80
+      Caption = 'All'
+      Kind = bkYesToAll
+      ModalResult = 8
+      NumGlyphs = 0
+      TabOrder = 0
+    end
+    object OverwriteNoneButton: TBitBtn
+      Left = 280
+      Height = 30
+      Top = 13
+      Width = 80
+      Caption = 'None'
+      Kind = bkNoToAll
+      ModalResult = 9
+      NumGlyphs = 0
+      TabOrder = 1
+    end
+    object OverwriteMarkedButton: TBitBtn
+      Left = 184
+      Height = 30
+      Top = 13
+      Width = 80
+      Caption = 'Marked'
+      Default = True
+      Kind = bkYes
+      ModalResult = 6
+      NumGlyphs = 0
+      TabOrder = 2
+    end
+    object AbortButton: TBitBtn
+      Left = 496
+      Height = 30
+      Top = 13
+      Width = 80
+      Caption = 'Abort'
+      Kind = bkAbort
+      ModalResult = 3
+      NumGlyphs = 0
+      TabOrder = 3
+    end
+  end
+  object FileListPanel: TPanel
+    Height = 231
+    Top = 50
+    Width = 607
+    Align = alClient
+    AutoSize = True
+    BevelOuter = bvNone
+    Caption = 'FileListPanel'
+    ClientHeight = 231
+    ClientWidth = 607
+    TabOrder = 2
+    object FileCheckListBox: TCheckListBox
+      Left = 1
+      Height = 229
+      Top = 1
+      Width = 605
+      Align = alClient
+      TabOrder = 0
+      TopIndex = -1
+    end
+  end
+end
