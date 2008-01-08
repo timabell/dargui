@@ -59,15 +59,18 @@ type
 
 
   function GetDarVersion : TDarInfo;
-  function OpenArchive(fn: string; TV: TTreeview): integer;
+  function OpenArchive(fn: TFilename; TV: TTreeview): integer;
   function CreateArchive(Cmd: string; msg: TMemo): integer;
   function PosFrom(const SubStr, Value: String; From: integer): integer;
   function SelectChildren(Node: TTreeNode): integer;
   function isInteger(aString: string): Boolean;
   function DeleteFilesByMask(FileMask: string): integer;
-  function GetArchiveInformation (fn: string; Memo: TMemo): integer;
+  function GetArchiveInformation (fn: TFilename; Memo: TMemo): integer;
+  
+  procedure WriteArchiveScript(fn: TFilename);
   
   procedure GetDefaultBrowser(var Browser, Params: string);
+  
 
 
 
@@ -163,7 +166,7 @@ end;
 
 // ************** OpenArchive ***************** //
 
-function OpenArchive(fn: string; TV : TTreeview): integer;
+function OpenArchive(fn: TFilename; TV : TTreeview): integer;
 var
   Proc : TProcess;
   Output: TStringList;
@@ -341,7 +344,7 @@ end;
 
 
 
-// ************** OpenArchive ***************** //
+// ************** CreateArchive ***************** //
 
 function CreateArchive ( Cmd: string; msg: TMemo ) : integer;
 var
@@ -445,7 +448,7 @@ Begin
      end;
 End;
 
-function GetArchiveInformation(fn: string; Memo: TMemo): integer;
+function GetArchiveInformation(fn: TFilename; Memo: TMemo): integer;
 var
   Proc: TProcess;
   x: Integer;
@@ -494,6 +497,15 @@ begin
   if Find('netscape',Browser) then exit;
   if Find('opera',Browser) then exit;
   if Find('iexplore.exe',Browser) then exit;
+end;
+
+
+
+
+//TODO: implement this procedure WriteArchiveScript(fn: TFilename);
+procedure WriteArchiveScript(fn: TFilename);
+begin
+
 end;
 
 

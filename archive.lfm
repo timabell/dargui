@@ -12,6 +12,7 @@ object ArchiveForm: TArchiveForm
   ClientHeight = 476
   ClientWidth = 637
   OnCreate = FormCreate
+  Position = poMainFormCenter
   object OKCancelPanel: TPanel
     Height = 66
     Top = 410
@@ -21,7 +22,7 @@ object ArchiveForm: TArchiveForm
     ClientWidth = 637
     TabOrder = 0
     object OKButton: TBitBtn
-      Left = 205
+      Left = 216
       Height = 30
       Top = 21
       Width = 75
@@ -62,8 +63,8 @@ object ArchiveForm: TArchiveForm
       TabOrder = 0
       object ArchivePage: TPage
         Caption = 'Archive'
-        ClientWidth = 616
-        ClientHeight = 384
+        ClientWidth = 612
+        ClientHeight = 350
         object Label1: TLabel
           Left = 19
           Height = 17
@@ -129,11 +130,38 @@ object ArchiveForm: TArchiveForm
           Width = 222
           TabOrder = 4
         end
+        object SaveScriptCheckBox: TCheckBox
+          Left = 19
+          Height = 24
+          Top = 224
+          Width = 126
+          Caption = 'Save script as'
+          OnClick = SaveScriptCheckBoxClick
+          TabOrder = 5
+        end
+        object ScriptFilenameBox: TEdit
+          Left = 19
+          Height = 23
+          Top = 250
+          Width = 350
+          Enabled = False
+          TabOrder = 6
+        end
+        object ScriptFileButton: TButton
+          Left = 389
+          Height = 25
+          Top = 248
+          Width = 75
+          Caption = 'Browse'
+          Enabled = False
+          OnClick = ScriptFileButtonClick
+          TabOrder = 7
+        end
       end
       object DirectoriesPage: TPage
         Caption = 'Directories'
-        ClientWidth = 616
-        ClientHeight = 384
+        ClientWidth = 612
+        ClientHeight = 350
         object Label4: TLabel
           Left = 19
           Height = 17
@@ -209,8 +237,8 @@ object ArchiveForm: TArchiveForm
       end
       object FilesPage: TPage
         Caption = 'Files'
-        ClientWidth = 616
-        ClientHeight = 384
+        ClientWidth = 612
+        ClientHeight = 350
         object Label6: TLabel
           Left = 19
           Height = 17
@@ -231,7 +259,7 @@ object ArchiveForm: TArchiveForm
           Left = 19
           Height = 120
           Top = 42
-          Width = 506
+          Width = 467
           TabOrder = 0
           TopIndex = -1
         end
@@ -239,16 +267,16 @@ object ArchiveForm: TArchiveForm
           Left = 19
           Height = 120
           Top = 218
-          Width = 506
+          Width = 467
           TabOrder = 1
           TopIndex = -1
         end
         object DelExcludeFileButton: TButton
           Tag = 1
-          Left = 533
+          Left = 502
           Height = 25
-          Top = 250
-          Width = 64
+          Top = 312
+          Width = 95
           Caption = 'Remove'
           Enabled = False
           OnClick = DelExcludeFileButtonClick
@@ -256,46 +284,66 @@ object ArchiveForm: TArchiveForm
         end
         object AddExcludeFileButton: TButton
           Tag = 1
-          Left = 533
+          Left = 502
           Height = 25
           Top = 218
-          Width = 64
-          Caption = 'Add'
+          Width = 95
+          Caption = 'Add file'
           OnClick = AddIncludeFileButtonClick
           TabOrder = 3
         end
         object DelIncludeFileButton: TButton
-          Left = 533
+          Left = 502
           Height = 25
-          Top = 78
-          Width = 64
+          Top = 136
+          Width = 95
           Caption = 'Remove'
           Enabled = False
           OnClick = DelIncludeFileButtonClick
           TabOrder = 4
         end
         object AddIncludeFileButton: TButton
-          Left = 533
+          Left = 502
           Height = 25
           Top = 42
-          Width = 64
-          Caption = 'Add'
+          Width = 95
+          Caption = 'Add file'
           OnClick = AddIncludeFileButtonClick
           TabOrder = 5
+        end
+        object AddIncludeFileMaskButton: TButton
+          Tag = 1
+          Left = 502
+          Height = 25
+          Top = 72
+          Width = 95
+          Caption = 'Add mask'
+          OnClick = AddCompressMaskButtonClick
+          TabOrder = 6
+        end
+        object AddExcludeFileMaskButton: TButton
+          Tag = 2
+          Left = 502
+          Height = 25
+          Top = 248
+          Width = 95
+          Caption = 'Add mask'
+          OnClick = AddCompressMaskButtonClick
+          TabOrder = 7
         end
       end
       object CompressionPage: TPage
         Caption = 'Compression'
-        ClientWidth = 616
-        ClientHeight = 384
+        ClientWidth = 612
+        ClientHeight = 350
         object CompressionExceptions: TGroupBox
           Left = 301
           Height = 329
           Top = 10
           Width = 288
           Caption = ' Do not compress ... '
-          ClientHeight = 329
-          ClientWidth = 288
+          ClientHeight = 308
+          ClientWidth = 284
           TabOrder = 0
           object Label9: TLabel
             Left = 21
@@ -370,8 +418,8 @@ object ArchiveForm: TArchiveForm
           Top = 11
           Width = 257
           Caption = ' Compression type '
-          ClientHeight = 329
-          ClientWidth = 257
+          ClientHeight = 308
+          ClientWidth = 253
           TabOrder = 1
           object CompLvlLabel: TLabel
             Left = 62
@@ -416,8 +464,8 @@ object ArchiveForm: TArchiveForm
       end
       object OptionsPage: TPage
         Caption = 'Options'
-        ClientWidth = 616
-        ClientHeight = 384
+        ClientWidth = 612
+        ClientHeight = 350
         object SliceMbLabel: TLabel
           Left = 413
           Height = 17

@@ -16,6 +16,11 @@ type
 
   TArchiveForm = class ( TForm )
     AddCompressMaskButton: TButton;
+    AddExcludeFileMaskButton: TButton;
+    AddIncludeFileMaskButton: TButton;
+    ScriptFileButton: TButton;
+    ScriptFilenameBox: TEdit;
+    SaveScriptCheckBox: TCheckBox;
     OKButton: TBitBtn;
     CancelButton: TBitBtn;
     ArchiveDirButton: TButton;
@@ -84,6 +89,8 @@ type
     procedure DelIncludeDirButtonClick ( Sender: TObject ) ;
     procedure DelIncludeFileButtonClick ( Sender: TObject ) ;
     procedure FormCreate ( Sender: TObject ) ;
+    procedure SaveScriptCheckBoxClick ( Sender: TObject ) ;
+    procedure ScriptFileButtonClick ( Sender: TObject ) ;
     procedure SlicesCheckClick ( Sender: TObject ) ;
     procedure ZipCheckChange ( Sender: TObject ) ;
   private
@@ -129,6 +136,18 @@ begin
   BaseDirectory.Text := GetCurrentDir;
 end;
 
+procedure TArchiveForm.SaveScriptCheckBoxClick ( Sender: TObject ) ;
+begin
+  ScriptFilenameBox.Enabled := SaveScriptCheckBox.Checked;
+  ScriptFileButton.Enabled := SaveScriptCheckBox.Checked;
+end;
+
+procedure TArchiveForm.ScriptFileButtonClick ( Sender: TObject ) ;
+begin
+  if SaveDialog.Execute
+     then ScriptFilenameBox.Text := SaveDialog.FileName;
+end;
+
 procedure TArchiveForm.SlicesCheckClick ( Sender: TObject ) ;
 begin
   SliceSizeLabel.Enabled :=  TCheckBox(Sender).Checked;
@@ -169,11 +188,23 @@ begin
   FileMaskDialog.FileMask.Text := '';
   if FileMaskDialog.ShowModal = mrOk then
      if FileMaskDialog.FileMask.Text <> '' then
-       begin
-       NoCompressList.Items.Add(FileMaskDialog.FileMask.Text);
-       NoCompressList.ItemIndex := NoCompressList.Items.Count-1;
-       DelCompressMaskButton.Enabled := true;
-       end;
+      case TComponent(Sender).Tag of
+          0: begin
+               NoCompressList.Items.Add(FileMaskDialog.FileMask.Text);
+               NoCompressList.ItemIndex := NoCompressList.Items.Count-1;
+               DelCompressMaskButton.Enabled := true;
+             end;
+          1: begin
+               IncludeFiles.Items.Add(FileMaskDialog.FileMask.Text);
+               IncludeFiles.ItemIndex := IncludeFiles.Items.Count-1;
+               DelIncludeFileButton.Enabled := true;
+             end;
+          2: begin
+               ExcludeFiles.Items.Add(FileMaskDialog.FileMask.Text);
+               ExcludeFiles.ItemIndex := ExcludeFiles.Items.Count-1;
+               DelExcludeFileButton.Enabled := true;
+             end;
+          end;
 end;
 
 procedure TArchiveForm.AddIncludeFileButtonClick ( Sender: TObject ) ;
@@ -255,7 +286,7 @@ begin
   if ExcludeFiles.Count > 0 then
      if ExcludeFiles.ItemIndex > -1 then
         ExcludeFiles.Items.Delete(ExcludeFiles.ItemIndex);
-  DelExcludeFileButton.Enabled := IncludeFiles.Count > 0;
+  DelExcludeFileButton.Enabled := ExcludeFiles.Count > 0;
 end;
 
 function TArchiveForm.CheckParameters: Boolean;

@@ -146,11 +146,13 @@ var
     for x := 0 to ArchiveForm.NoCompressList.Count-1 do
         BatchFile.Add('-Z ' + ArchiveForm.NoCompressList.Items[x]);
     end;
-  BatchFile.Add('');
-  BatchFile.Add('# Do not compress files smaller than this');
   if ArchiveForm.CompLwrLimitCombo.ItemIndex > 0
      then ByteSize := ArchiveForm.CompLwrLimitCombo.Text[1];
-  BatchFile.Add('-m ' + ArchiveForm.CompressionLwrLimit.Text + ByteSize);
+  if (ArchiveForm.CompressionLwrLimit.Text <> '100') or (ByteSize <> 'b') then
+     begin
+       BatchFile.Add(#10 + '# Do not compress files smaller than this');
+       BatchFile.Add('-m ' + ArchiveForm.CompressionLwrLimit.Text + ByteSize);
+     end;
   end;
   
   function RemoveBaseDirectory(aFilePath: string): string;
@@ -243,9 +245,15 @@ begin
      MessageMemo.Lines.Add(#32 + StringOfChar('-',45));
      MessageMemo.Lines.Add('Creating archive: ' + ArchiveForm.ArchiveName.Text);
 
-     if CreateArchive(Command, MessageMemo) = 0
-        then OpenArchive(ArchiveForm.ArchiveDirectory.Text
-                            + ArchiveForm.ArchiveName.Text, ArchiveTreeView);
+     if CreateArchive(Command, MessageMemo) = 0 then
+        begin
+          OpenDialog.FileName := ArchiveForm.ArchiveDirectory.Text
+                            + ArchiveForm.ArchiveName.Text;
+          OpenArchive(OpenDialog.FileName, ArchiveTreeView);
+        end;
+     if ArchiveForm.SaveScriptCheckBox.Checked
+        then if ArchiveForm.ScriptFilenameBox.Text <> ''
+             then WriteArchiveScript(ArchiveForm.ScriptFilenameBox.Text);
      finally
      BatchFile.Free;
      end;
@@ -420,19 +428,6 @@ begin
   ArchiveTreeView.Paint;
 end;
 
-<<<<<<< .mine
-procedure TMainForm.miHelpAboutClick ( Sender: TObject ) ;
-var
-  Aboutform: TAboutForm;
-begin
-  Aboutform := TAboutForm.Create(Application);
-  if DarInfo.version = '-'
-     then AboutForm.DarVersionLabel.Caption := '* No DAR executable found! *'
-     else AboutForm.DarVersionLabel.Caption := 'Using DAR version ' + DarInfo.version;
-  AboutForm.ShowModal;
-  Aboutform.Free;
-end;
-=======
 procedure TMainForm.miHelpAboutClick ( Sender: TObject ) ;
 var
   Aboutform: TAboutForm;
@@ -445,7 +440,6 @@ begin
   Aboutform.Free;
 end;
 
->>>>>>> .r7
 procedure TMainForm.miHideMessagesClick(Sender: TObject);
 begin
   TMenuItem(Sender).Checked := not TMenuItem(Sender).Checked;
