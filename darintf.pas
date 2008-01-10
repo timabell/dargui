@@ -59,7 +59,7 @@ type
 
 
   function GetDarVersion : TDarInfo;
-  function OpenArchive(fn: TFilename; TV: TTreeview): integer;
+  function OpenArchive(fn: string; TV: TTreeview): integer;
   function CreateArchive(Cmd: string; msg: TMemo): integer;
   function PosFrom(const SubStr, Value: String; From: integer): integer;
   function SelectChildren(Node: TTreeNode): integer;
@@ -166,7 +166,7 @@ end;
 
 // ************** OpenArchive ***************** //
 
-function OpenArchive(fn: TFilename; TV : TTreeview): integer;
+function OpenArchive(fn: string; TV : TTreeview): integer;
 var
   Proc : TProcess;
   Output: TStringList;
@@ -263,10 +263,6 @@ var
 begin
   TV.Items.Clear;
   Result := -1;
-  x := Length(fn) - 4;
-  while fn[x] <> '.' do
-        Dec(x);
-  Delete(fn,x,100);
   Proc := TProcess.Create(nil);
   Output := TStringList.Create;
   M := TMemoryStream.Create;
