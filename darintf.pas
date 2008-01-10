@@ -455,8 +455,8 @@ var
 begin
   Result := -1;
   Proc := TProcess.Create(nil);
-  Proc.CommandLine := 'dar -l' + fn + ' -v Q';
-  Proc.Options := Proc.Options  + [poWaitOnExit, poUsePipes];
+  Proc.CommandLine := 'dar -l' + fn + ' -v -Q';
+  Proc.Options := Proc.Options  + [poWaitOnExit, poUsePipes, poStderrToOutPut];
       try
       Proc.Execute;
       Memo.Lines.LoadFromStream(Proc.Output);
