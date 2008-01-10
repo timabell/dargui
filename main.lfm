@@ -675,7 +675,7 @@ object MainForm: TMainForm
       TabOrder = 0
     end
     object DateHdr: TPanel
-      Left = 240
+      Left = 241
       Height = 23
       Top = 1
       Width = 214
@@ -684,7 +684,7 @@ object MainForm: TMainForm
       TabOrder = 1
     end
     object SizeHdr: TPanel
-      Left = 457
+      Left = 458
       Height = 23
       Top = 1
       Width = 64
@@ -693,7 +693,7 @@ object MainForm: TMainForm
       TabOrder = 2
     end
     object UserHdr: TPanel
-      Left = 523
+      Left = 524
       Height = 23
       Top = 1
       Width = 87
@@ -702,7 +702,7 @@ object MainForm: TMainForm
       TabOrder = 3
     end
     object GroupHdr: TPanel
-      Left = 612
+      Left = 613
       Height = 23
       Top = 1
       Width = 98
@@ -711,10 +711,10 @@ object MainForm: TMainForm
       TabOrder = 4
     end
     object StatusHdr: TPanel
-      Left = 712
+      Left = 713
       Height = 23
       Top = 1
-      Width = 180
+      Width = 179
       Align = alClient
       Caption = 'Status'
       TabOrder = 5
@@ -723,23 +723,24 @@ object MainForm: TMainForm
       Left = 238
       Height = 23
       Top = 1
-      Width = 2
+      Width = 3
       Beveled = True
+      Constraints.MaxWidth = 3
+      Constraints.MinWidth = 3
       OnChangeBounds = Splitter3ChangeBounds
     end
     object Splitter2: TSplitter
-      Left = 454
+      Left = 455
       Height = 23
       Top = 1
       Width = 3
       Beveled = True
       Constraints.MaxWidth = 3
       Constraints.MinWidth = 3
-      ResizeStyle = rsLine
       OnChangeBounds = Splitter3ChangeBounds
     end
     object Splitter3: TSplitter
-      Left = 521
+      Left = 522
       Height = 23
       Top = 1
       Width = 2
@@ -747,7 +748,7 @@ object MainForm: TMainForm
       OnChangeBounds = Splitter3ChangeBounds
     end
     object Splitter4: TSplitter
-      Left = 610
+      Left = 611
       Height = 23
       Top = 1
       Width = 2
@@ -755,7 +756,7 @@ object MainForm: TMainForm
       OnChangeBounds = Splitter3ChangeBounds
     end
     object Splitter5: TSplitter
-      Left = 710
+      Left = 711
       Height = 23
       Top = 1
       Width = 2
@@ -846,20 +847,25 @@ object MainForm: TMainForm
     object MenuArchive: TMenuItem
       Caption = 'Archive'
       object miRestoreSelected: TMenuItem
+        Tag = 1
         Caption = 'Restore selected'
         Enabled = False
         OnClick = tvMenuRestoreSelectedClick
       end
       object miRestoreAll: TMenuItem
+        Tag = 1
         Caption = 'Restore all'
         Enabled = False
         OnClick = miRestoreAllClick
       end
       object MenuBreak2: TMenuItem
+        Tag = 1
         Caption = '-'
       end
       object miArchiveInformation: TMenuItem
+        Tag = 1
         Caption = 'Information'
+        Enabled = False
         OnClick = miArchiveInformationClick
       end
     end
@@ -890,11 +896,15 @@ object MainForm: TMainForm
     left = 259
     top = 165
     object tvMenuRestoreSelected: TMenuItem
+      Tag = 1
       Caption = 'Restore Selected'
+      Enabled = False
       OnClick = tvMenuRestoreSelectedClick
     end
     object tvMenuRestoreAll: TMenuItem
+      Tag = 1
       Caption = 'Restore all'
+      Enabled = False
       OnClick = miRestoreAllClick
     end
   end

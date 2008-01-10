@@ -71,6 +71,7 @@ type
     procedure miHideMessagesClick(Sender: TObject);
     procedure miRestoreAllClick(Sender: TObject);
     procedure tvMenuRestoreSelectedClick(Sender: TObject);
+    procedure EnableArchiveMenus;
   private
     LevelColors: array[0..4] of TColor;
     { private declarations }
@@ -87,6 +88,8 @@ var
   
 const
   TEMPBATCHFILE = '/tmp/dargui.batch';
+  ARCHIVEMENU_TAG = 1; //used for enabling menuitems after loading archive
+
 
 implementation
 
@@ -117,15 +120,14 @@ begin
   miHideMessages.Checked := false;
   
   writeln(DarInfo.version);
-  miRestoreAll.Enabled := true;
-  miRestoreSelected.Enabled := true;
-
+  
   if Paramcount > 0 then
        if FileExists(ParamStr(1)) then
           begin
             OpenDialog.FileName := ParamStr(1);
             if DarInfo.version<>'-'
-               then OpenArchive(OpenDialog.FileName,ArchiveTreeView);
+               then if OpenArchive(OpenDialog.FileName,ArchiveTreeView) = 0
+                    then EnableArchiveMenus';
           end;
 end;
 
@@ -419,11 +421,8 @@ end;
 procedure TMainForm.miFileOpenClick(Sender: TObject);
 begin
   if OpenDialog.Execute then
-     begin
-       OpenArchive(OpenDialog.FileName, ArchiveTreeView);
-       miRestoreAll.Enabled := true;
-       miRestoreSelected.Enabled := true;
-     end;
+     if OpenArchive(OpenDialog.FileName, ArchiveTreeView) = 0
+        then EnableArchiveMenus;
 end;
 
 procedure TMainForm.Splitter3ChangeBounds(Sender: TObject);
@@ -602,6 +601,16 @@ writeln('Executing: ', Proc.CommandLine);
      else ShowMessage('Error: no files were selected');
   RestoreForm.Free;
   batch.Free;
+end;
+
+procedure TMainForm.EnableArchiveMenus;
+var
+  x: Integer;
+begin
+  for x := 0 to ComponentCount-1 do
+      if Components[x] is TMenuItem then
+         if TMenuItem(Components[x]).Tag = ARCHIVEMENU_TAG
+            then TMenuItem(Components[x]).Enabled := true;
 end;
 
 
