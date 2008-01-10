@@ -1,28 +1,28 @@
 object MainForm: TMainForm
-  Left = 232
+  Left = 123
   Height = 605
-  Top = 269
+  Top = 83
   Width = 893
   HorzScrollBar.Page = 892
-  VertScrollBar.Page = 574
+  VertScrollBar.Page = 578
   ActiveControl = ArchiveTreeView
   Caption = 'DarGUI'
-  ClientHeight = 575
+  ClientHeight = 579
   ClientWidth = 893
   Menu = MainMenu
   OnCreate = FormCreate
   object StatusBar1: TStatusBar
-    Height = 24
-    Top = 551
+    Height = 22
+    Top = 357
     Width = 893
     Panels = <>
   end
   object ArchiveTreeView: TTreeView
-    Height = 351
+    Height = 271
     Top = 81
     Width = 893
     Align = alClient
-    DefaultItemHeight = 14
+    DefaultItemHeight = 17
     Font.CharSet = ANSI_CHARSET
     Font.Height = 10
     Font.Name = '-adobe-courier-medium-r-normal-*-*-100-*-*-*-*-iso10646-1'
@@ -764,12 +764,12 @@ object MainForm: TMainForm
     end
   end
   object MessagePanel: TPanel
-    Height = 114
-    Top = 437
+    Height = 200
+    Top = 379
     Width = 893
     Align = alBottom
     Caption = 'MessagePanel'
-    ClientHeight = 114
+    ClientHeight = 200
     ClientWidth = 893
     TabOrder = 3
     object MessageClosePanel: TPanel
@@ -803,7 +803,7 @@ object MainForm: TMainForm
     end
     object MessageMemo: TMemo
       Left = 1
-      Height = 86
+      Height = 172
       Top = 27
       Width = 891
       Align = alClient
@@ -815,7 +815,7 @@ object MainForm: TMainForm
   object MessageBoxSplitter: TSplitter
     Cursor = crVSplit
     Height = 5
-    Top = 432
+    Top = 352
     Width = 893
     Align = alBottom
     Beveled = True

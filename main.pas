@@ -97,6 +97,7 @@ uses selectrestore, archive, archiveinfo, About;
 procedure TMainForm.FormCreate(Sender: TObject);
 begin
   //set default colors for Treeview levels
+  //at some point it will be possible for the user to change these
   LevelColors[0] := clBlack;
   LevelColors[1] := clBlack;
   LevelColors[2] := clBlack;
@@ -116,14 +117,16 @@ begin
   miHideMessages.Checked := false;
   
   writeln(DarInfo.version);
-       miRestoreAll.Enabled := true;
-       miRestoreSelected.Enabled := true;
+  miRestoreAll.Enabled := true;
+  miRestoreSelected.Enabled := true;
 
-  //OpenDialog.FileName := '/home/malcolm/test_backup.1.dar';
-  //OpenDialog.FileName := '/media/hdb2/backups/archive_2007-08-29.1.dar';
-  //if DarInfo.version<>'-'
-  //   then OpenArchive(OpenDialog.FileName,ArchiveTreeView);
-
+  if Paramcount > 0 then
+       if FileExists(ParamStr(1)) then
+          begin
+            OpenDialog.FileName := ParamStr(1);
+            if DarInfo.version<>'-'
+               then OpenArchive(OpenDialog.FileName,ArchiveTreeView);
+          end;
 end;
 
 procedure TMainForm.miFileNewClick ( Sender: TObject ) ;
@@ -516,7 +519,6 @@ writeln('Executing: ', Proc.CommandLine);
 end;
 
 
-//TODO:   NEEDS REWRITING to use TProcessLineTalk and take account of overwriting files  //
 procedure TMainForm.tvMenuRestoreSelectedClick(Sender: TObject);
 var
   x: integer;
