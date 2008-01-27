@@ -160,8 +160,8 @@ object ArchiveForm: TArchiveForm
       end
       object DirectoriesPage: TPage
         Caption = 'Directories'
-        ClientWidth = 612
-        ClientHeight = 350
+        ClientWidth = 616
+        ClientHeight = 384
         object Label4: TLabel
           Left = 19
           Height = 17
@@ -237,8 +237,8 @@ object ArchiveForm: TArchiveForm
       end
       object FilesPage: TPage
         Caption = 'Files'
-        ClientWidth = 612
-        ClientHeight = 350
+        ClientWidth = 616
+        ClientHeight = 384
         object Label6: TLabel
           Left = 19
           Height = 17
@@ -402,8 +402,9 @@ object ArchiveForm: TArchiveForm
             Top = 265
             Width = 100
             AutoCompleteText = [cbactEndOfLineComplete, cbactSearchAscending]
+            ItemIndex = 0
             Items.Strings = (
-              ' bytes'
+              'bytes'
               'kilobytes'
               'Megabytes'
             )
@@ -464,8 +465,8 @@ object ArchiveForm: TArchiveForm
       end
       object OptionsPage: TPage
         Caption = 'Options'
-        ClientWidth = 612
-        ClientHeight = 350
+        ClientWidth = 616
+        ClientHeight = 384
         object SliceMbLabel: TLabel
           Left = 413
           Height = 17

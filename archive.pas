@@ -299,6 +299,7 @@ begin
      then BaseDirectory.Text := BaseDirectory.Text + DirectorySeparator;
   if not FileExists(ArchiveDirectory.Text) then Result := false;
   if not FileExists(BaseDirectory.Text)  then Result := false;
+  if CompLwrLimitCombo.ItemIndex< 0 then CompLwrLimitCombo.ItemIndex := 0;
 end;
 
 function TArchiveForm.IsInBaseDirectory(aDir: string): Boolean;
