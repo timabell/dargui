@@ -17,6 +17,7 @@ type
     CancelButton: TBitBtn;
     FileMask: TEdit;
     FileMaskLabel: TLabel;
+    procedure FormShow ( Sender: TObject ) ;
   private
     { private declarations }
   public
@@ -27,6 +28,13 @@ var
   FileMaskDialog: TFileMaskDialog;
 
 implementation
+
+{ TFileMaskDialog }
+
+procedure TFileMaskDialog.FormShow ( Sender: TObject ) ;
+begin
+  FileMask.SetFocus;
+end;
 
 initialization
   {$I filemaskdlg.lrs}
