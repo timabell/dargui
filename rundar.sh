@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 
 CommandLine=$@
 
@@ -11,6 +11,7 @@ echo $? > /tmp/dar_exit
 
 echo "--------------------------------------------------"
 echo "Operation complete: Press enter"
+echo -ne "\e]2;DarGUI: Operation complete. Please press ENTER \a"
 read anyinput
 
 exit $DarStatus
