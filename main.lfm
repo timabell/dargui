@@ -4,21 +4,21 @@ object MainForm: TMainForm
   Top = 83
   Width = 893
   HorzScrollBar.Page = 892
-  VertScrollBar.Page = 570
+  VertScrollBar.Page = 574
   ActiveControl = ArchiveTreeView
   Caption = 'DarGUI'
-  ClientHeight = 571
+  ClientHeight = 575
   ClientWidth = 893
   Menu = MainMenu
   OnCreate = FormCreate
   object StatusBar1: TStatusBar
-    Height = 28
-    Top = 343
+    Height = 24
+    Top = 351
     Width = 893
     Panels = <>
   end
   object ArchiveTreeView: TTreeView
-    Height = 257
+    Height = 265
     Top = 81
     Width = 893
     Align = alClient
@@ -766,7 +766,7 @@ object MainForm: TMainForm
   end
   object MessagePanel: TPanel
     Height = 200
-    Top = 371
+    Top = 375
     Width = 893
     Align = alBottom
     Caption = 'MessagePanel'
@@ -787,7 +787,7 @@ object MainForm: TMainForm
         Left = 7
         Height = 17
         Top = 8
-        Width = 79
+        Width = 78
         Caption = 'Messages:'
         ParentColor = False
       end
@@ -816,7 +816,7 @@ object MainForm: TMainForm
   object MessageBoxSplitter: TSplitter
     Cursor = crVSplit
     Height = 5
-    Top = 338
+    Top = 346
     Width = 893
     Align = alBottom
     Beveled = True

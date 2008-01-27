@@ -85,6 +85,7 @@ var
   DarInfo: TDarInfo;
   SelectedNodes: integer;
   UpdatingSelection: Boolean;
+  
 
   
 const
@@ -116,6 +117,9 @@ begin
                         [mbOk],
                         0);
      end;
+     
+  GetTerminalCommand(TerminalCommand);
+  RunscriptPath := GetRunscriptPath;
 
   UpdatingSelection := false;
   miHideMessages.Checked := false;
@@ -142,9 +146,9 @@ var
   procedure AddCompressionOptions;
   var
     x: integer;
-    ByteSize: string[1];
+    B: string[1];
   begin
-  ByteSize := '';
+  B := '';
   if ArchiveForm.NoCompressList.Count > 0 then
     begin
     BatchFile.Add('');
@@ -152,12 +156,12 @@ var
     for x := 0 to ArchiveForm.NoCompressList.Count-1 do
         BatchFile.Add('-Z ' + ArchiveForm.NoCompressList.Items[x]);
     end;
-  if ArchiveForm.CompLwrLimitCombo.ItemIndex > 0
-     then ByteSize := ArchiveForm.CompLwrLimitCombo.Text[1];
-  if (ArchiveForm.CompressionLwrLimit.Text <> '100') or (ByteSize <> 'b') then
+  if ArchiveForm.CompLwrLimitCombo.ItemIndex > -1
+     then B := ArchiveForm.CompLwrLimitCombo.Items[ArchiveForm.CompLwrLimitCombo.ItemIndex][1];
+  if not ((ArchiveForm.CompressionLwrLimit.Text = '100') and (B = 'b')) then
      begin
        BatchFile.Add(#10 + '# Do not compress files smaller than this');
-       BatchFile.Add('-m ' + ArchiveForm.CompressionLwrLimit.Text + ByteSize);
+       BatchFile.Add('-m ' + ArchiveForm.CompressionLwrLimit.Text + B);
      end;
   end;
   
@@ -177,7 +181,7 @@ var
 begin
   if ArchiveForm.ShowModal = mrOk then
      try
-     DarOptions := ' -X "' + ArchiveForm.ArchiveName.Text + '"';
+     DarOptions := ' -X "' + ArchiveForm.ArchiveName.Text + '.*.dar"';
      BatchFile := TStringList.Create;
      BatchFile.Add('# DAR batch file written by DarGUI');
      BatchFile.Add('-R "' + ArchiveForm.BaseDirectory.Text + '"' + #10);
@@ -243,7 +247,7 @@ begin
                             + ' -v'
                             //+ ' -e' // for debugging
                             + DarOptions
-                            + ' -X ' + ArchiveForm.ArchiveName.Text + '.*.dar -Q';
+                            + ' -Q';
                             
      BatchFile.Insert(1, '# ' + Command);
      BatchFile.SaveToFile(TEMPBATCHFILE);
@@ -251,11 +255,12 @@ begin
      MessageMemo.Lines.Add(#32 + StringOfChar('-',45));
      MessageMemo.Lines.Add('Creating archive: ' + ArchiveForm.ArchiveName.Text);
 
-     if CreateArchive(Command, MessageMemo) = 0 then
+     if CreateArchive(Command, Left+100, Top+150) = 0 then
         begin
           CurrentArchive := ArchiveForm.ArchiveDirectory.Text
                             + ArchiveForm.ArchiveName.Text;
           OpenArchive(CurrentArchive, ArchiveTreeView);
+          EnableArchiveMenus;
         end;
      if ArchiveForm.SaveScriptCheckBox.Checked
         then if ArchiveForm.ScriptFilenameBox.Text <> ''

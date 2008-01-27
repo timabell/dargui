@@ -43,6 +43,9 @@ const
    
    DAR_EXECUTABLE = 'dar';
    
+   OPERATION_LOGFILE = '/tmp/dargui.log';
+   RUNSCRIPT         = 'rundar.sh';
+   
 
 type
   TFileData = class
@@ -59,8 +62,11 @@ type
 
 
   function GetDarVersion : TDarInfo;
+  function GetDarExit: integer;
+  procedure GetTerminalCommand(var Terminal: string);
+  function GetRunscriptPath: string;
   function OpenArchive(fn: string; TV: TTreeview): integer;
-  function CreateArchive(Cmd: string; msg: TMemo): integer;
+  function CreateArchive( Cmd: string; x, y :integer ): integer;
   function PosFrom(const SubStr, Value: String; From: integer): integer;
   function SelectChildren(Node: TTreeNode): integer;
   function isInteger(aString: string): Boolean;
@@ -70,6 +76,12 @@ type
   procedure WriteArchiveScript(fn: TFilename);
   
   procedure GetDefaultBrowser(var Browser, Params: string);
+  
+  
+var
+  TerminalCommand: string;
+  RunscriptPath: String;
+
   
 
 
@@ -165,6 +177,47 @@ end;
 
 
 // ************** OpenArchive ***************** //
+
+function GetDarExit: integer;
+var
+  fout: Text;
+  s: string;
+begin
+  Result := -1;
+  if FileExists('/tmp/dar_exit') then
+      begin
+      Assign(fout, '/tmp/dar_exit');
+      Reset(fout);
+      ReadLn(fout,s);
+      Result := StrToInt(s);
+      Close(fout);
+      Erase(fout);
+      end;
+end;
+
+procedure GetTerminalCommand(var Terminal: string);
+
+  function Find(const ShortFilename: string; var Filename: string): boolean;
+  begin
+    Filename:=SearchFileInPath(ShortFilename,'',
+                   SysUtils.GetEnvironmentVariable('PATH'),PathSeparator,[]);
+    Result:=Filename<>'';
+  end;
+
+begin
+  Terminal:='';
+  // prefer xterm ;)
+  if Find('xterm',Terminal) then exit;
+  if Find('konsole',Terminal) then exit;
+  if Find('gnome-terminal',Terminal) then exit;
+  if Find('rxvt',Terminal) then exit;
+end;
+
+function GetRunscriptPath: string;
+begin
+  Result := '/home/malcolm/lazarus/dargui/';
+  //TODO: replace this by check for runscript.sh in appropriate directory
+end;
 
 function OpenArchive(fn: string; TV : TTreeview): integer;
 var
@@ -286,6 +339,7 @@ begin
              // no data, wait 100 ms
              Sleep(100);
              end;
+        //TODO: detect if dar is paused and waiting for input, then kill process and report problem
         end;
   // read last part
   repeat
@@ -342,35 +396,39 @@ end;
 
 // ************** CreateArchive ***************** //
 
-function CreateArchive ( Cmd: string; msg: TMemo ) : integer;
+function CreateArchive ( Cmd: string; x, y :integer ) : integer;
 var
-  Proc: TProcessLineTalk;
+  Proc: TProcess;
   aLine: String;
 begin
   Result := -1;
-  Proc := TProcessLineTalk.Create(nil);
+  Proc := TProcess.Create(nil);
   try
-  Proc.CommandLine := Cmd;
+  Proc.CommandLine := TerminalCommand +  ' -geometry 100x15+' + IntToStr(x) + '+' + IntToStr(y) + ' -T "DarGUI: Extracting files..." -l -lf '
+                           + OPERATION_LOGFILE
+                           + ' -e '
+                           + RunscriptPath + RUNSCRIPT + #32 + Cmd ;
+  Proc.Options := Proc.Options + [poWaitOnExit];
   Proc.Execute;
-  While Proc.Running do
-        begin
-          aLine := Proc.ReadLine;
-          while aLine <> '' do
-                begin
-                  msg.Lines.Add(aLine);
-                  aLine := Proc.ReadLine;
-                end;
-        end;
-  aLine := Proc.ReadLine;
-  while aLine <> '' do
-        begin
-          msg.Lines.Add(aLine);
-        end;
+  //While Proc.Running do
+        //begin
+          //aLine := Proc.ReadLine;
+          //while aLine <> '' do
+                //begin
+                  //msg.Lines.Add(aLine);
+                  //aLine := Proc.ReadLine;
+                //end;
+        //end;
+  //aLine := Proc.ReadLine;
+  //while aLine <> '' do
+        //begin
+          //msg.Lines.Add(aLine);
+        //end;
   finally
   Proc.Free;
-  Result := 0;
+  Result := GetDarExit;
+  //TODO: This function should return the return value of dar
   end;
-
 end;
 
 // function PosFrom was taken from synautil.pas [ synapse.ararat.cz ]
