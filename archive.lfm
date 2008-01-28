@@ -63,8 +63,8 @@ object ArchiveForm: TArchiveForm
       TabOrder = 0
       object ArchivePage: TPage
         Caption = 'Archive'
-        ClientWidth = 616
-        ClientHeight = 384
+        ClientWidth = 612
+        ClientHeight = 350
         object Label1: TLabel
           Left = 19
           Height = 17
@@ -160,8 +160,8 @@ object ArchiveForm: TArchiveForm
       end
       object DirectoriesPage: TPage
         Caption = 'Directories'
-        ClientWidth = 616
-        ClientHeight = 384
+        ClientWidth = 612
+        ClientHeight = 350
         object Label4: TLabel
           Left = 19
           Height = 17
@@ -535,6 +535,7 @@ object ArchiveForm: TArchiveForm
   end
   object SelectDirectoryDialog: TSelectDirectoryDialog
     Title = 'Select Directory'
+    Options = [ofFileMustExist, ofEnableSizing, ofViewDetail]
     left = 592
     top = 144
   end
