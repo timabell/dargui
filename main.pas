@@ -181,6 +181,7 @@ var
 begin
   if ArchiveForm.ShowModal = mrOk then
      try
+     Enabled := false;
      DarOptions := ' -X "' + ArchiveForm.ArchiveName.Text + '.*.dar"';
      BatchFile := TStringList.Create;
      BatchFile.Add('# DAR batch file written by DarGUI');
@@ -267,6 +268,7 @@ begin
              then WriteArchiveScript(ArchiveForm.ScriptFilenameBox.Text);
      finally
      BatchFile.Free;
+     Enabled := true;
      end;
 end;
 
@@ -476,24 +478,20 @@ var
   RestoreForm: TExtractSelectedForm;
   Batch: TStringList;
   x: Integer;
-  Proc: TProcessLineTalk;
   daroptions: String;
-  ProcCommandlineOption: String;
-  aLine: String;
+  CommandLine: String;
 begin
   SelectedNodes := 0;
   Batch := TStringList.Create;
-  Proc := TProcessLineTalk.Create(Application);
   RestoreForm := TExtractSelectedForm.Create(Self);
   RestoreForm.FullRestore := true;
   RestoreForm.Caption := 'Restore ' + IntToStr(ArchiveTreeView.Items.Count-1) + ' nodes...';
-  RestoreForm.RestoreDirectoryEdit.Text := GetCurrentDir;
   if RestoreForm.ShowModal = mrOK then
      begin
        Batch.Add('-R "' + RestoreForm.RestoreDirectoryEdit.Text + '"' + #10);
        if RestoreForm.ExistingFiles.Count > 0 then
           begin
-          Batch.Add('# We chose not to overwrite these files');
+          Batch.Add('# Do not overwrite these files');
           for x := RestoreForm.ExistingFiles.Count-1 downto 0 do
               begin
                 Batch.Add('-X "' + RestoreForm.ExistingFiles.Strings[x] + '"');
@@ -503,38 +501,17 @@ begin
         if RestoreForm.FlatRestoreCheckBox.Checked then daroptions := daroptions + ' -f';
         case RestoreForm.OverwriteOptions.ItemIndex of
              0: daroptions := daroptions + '--no-warn';
-             // DAR will try to interact - we need to work around this by anticipating overwrites
-             1: ProcCommandlineOption := ' --no-warn';
+             1: ;
              2: daroptions := daroptions + ' --no-overwrite';
              end;
         batch.SaveToFile(TEMPBATCHFILE);
-        Proc.CommandLine := (DAR_EXECUTABLE + ' -x ' + ExtractFilePath(OpenDialog.FileName)
-                          + ArchiveTreeView.TopItem.Text + ' -B "' + TEMPBATCHFILE + '" ' + daroptions + ProcCommandlineOption);
-writeln('Executing: ', Proc.CommandLine);
-        Proc.Options := Proc.Options + [poStdErrToOutput];
-        Proc.Execute;
-        while Proc.Running do
-          begin
-            aLine := Proc.ReadLine;
-            while aLine <> '' do
-                  begin
-                    MessageMemo.Lines.Add(aLine);
-                    aLine := Proc.ReadLine;
-                    Application.ProcessMessages;
-                  end;
-          end;
-        aLine := Proc.ReadLine;
-        while aLine <> '' do
-                begin
-                MessageMemo.Lines.Add(aLine);
-                aLine := Proc.ReadLine;
-                end;
-  WriteLn('-- executed --');
+        CommandLine := (DAR_EXECUTABLE + ' -x ' + ExtractFilePath(OpenDialog.FileName)
+                          + ArchiveTreeView.TopItem.Text + ' -B "' + TEMPBATCHFILE + '" ' + daroptions);
+        RestoreFiles(CommandLine, Left+100, Top+150);
         end
         else MessageMemo.Lines.Add('Operation aborted: Restore selected files' );
   Batch.Free;
   RestoreForm.Free;
-  Proc.Free;
 end;
 
 
@@ -546,8 +523,7 @@ var
   batch : TStringList;
   RestoreForm: TExtractSelectedForm;
   daroptions: string;
-  Proc : TProcessLineTalk;
-  aLine: String;
+  CommandLine: String;
   ProcCommandlineOption: String;
 
 begin
@@ -556,7 +532,6 @@ begin
   batch := TStringList.Create;
   RestoreForm := TExtractSelectedForm.Create(Self);
   RestoreForm.FullRestore := false;
-  RestoreForm.RestoreDirectoryEdit.Text := GetCurrentDir;
   for x := 0 to ArchiveTreeView.Items.Count-1 do    {make list of selected files}
       if ArchiveTreeView.Items[x].MultiSelected then
          begin
@@ -572,14 +547,14 @@ begin
        if RestoreForm.ShowModal = mrOK then
          if RestoreForm.SelectedFiles.Count > 0 then
             begin
-              Proc := TProcessLineTalk.Create(Application);
+              Enabled := false;
+              Application.ProcessMessages;
               daroptions := ' -O -v';
               if RestoreForm.FlatRestoreCheckBox.Checked
                  then daroptions := daroptions + ' -f';
               case RestoreForm.OverwriteOptions.ItemIndex of
                    0: daroptions := daroptions + ' --no-warn';
-                   // DAR will try to interact - we need to work around this by anticipating overwrites
-                   1: ProcCommandlineOption := ' --no-warn';
+                   1: ;
                    2: daroptions := daroptions + ' --no-overwrite';
                    end;
               Batch.Add(#10 + '# Files to restore');
@@ -587,35 +562,16 @@ begin
                   Batch.Add('-g "' + RestoreForm.SelectedFiles.Strings[x] + '"');
               batch.Insert(0,'-R "' + RestoreForm.RestoreDirectoryEdit.Text + '"');
               batch.SaveToFile(TEMPBATCHFILE);
-              Proc.CommandLine := (DAR_EXECUTABLE + ' -x "' + CurrentArchive + '" -B "' + TEMPBATCHFILE + '" ' + daroptions + ProcCommandlineOption);
-              writeln('Executing: ', Proc.CommandLine);
-              Proc.Options := Proc.Options + [poStdErrToOutput];
+              CommandLine := (DAR_EXECUTABLE + ' -x "' + CurrentArchive + '" -B "' + TEMPBATCHFILE + '" ' + daroptions + ProcCommandlineOption);
+              RestoreFiles(CommandLine, Left+100, Top+150);
               //TODO: check that some files do need to be restored: ie not all excluded by overwrite rule
-              Proc.Execute;
-              while Proc.Running do
-                begin
-                  aLine := Proc.ReadLine;
-                  while aLine <> '' do
-                        begin
-                          MessageMemo.Lines.Add(aLine);
-                          aLine := Proc.ReadLine;
-                          Application.ProcessMessages;
-                        end;
-                end;
-              aLine := Proc.ReadLine;
-              while aLine <> '' do
-                      begin
-                      MessageMemo.Lines.Add(aLine);
-                      aLine := Proc.ReadLine;
-                      end;
-              WriteLn('-- executed --');
-              Proc.Free;
             end
             else MessageMemo.Lines.Add('Operation aborted: Restore selected files' );
        end
        else ShowMessage('Error: no files were selected');
   RestoreForm.Free;
   batch.Free;
+  Enabled := True;
 end;
 
 procedure TMainForm.EnableArchiveMenus;

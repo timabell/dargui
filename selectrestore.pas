@@ -47,8 +47,11 @@ begin
   SelectedFiles := TStringList.Create;
   ExistingFiles := TStringList.Create;
   FullRestore := true;
+  RestoreDirectoryEdit.Directory := SysUtils.GetEnvironmentVariable('HOME');
 end;
 
+
+//TODO: Remove this function if definitely redundant
 function TExtractSelectedForm.ConfirmOverwriteFiles: TModalResult;
 var
   fp: String;
@@ -106,12 +109,12 @@ end;
 
 procedure TExtractSelectedForm.OkButtonClick(Sender: TObject);
 begin
-  if OverwriteOptions.ItemIndex = 1
-    then
-     begin
-       ModalResult := ConfirmOverwriteFiles;
-       SelectedFiles.Text := SelectedFiles.Text + ExistingFiles.Text;
-     end;
+  //if OverwriteOptions.ItemIndex = 1
+    //then
+     //begin
+       //ModalResult := ConfirmOverwriteFiles;
+       //SelectedFiles.Text := SelectedFiles.Text + ExistingFiles.Text;
+     //end;
   if ModalResult <> mrCancel then ModalResult := mrOk;
 end;
 

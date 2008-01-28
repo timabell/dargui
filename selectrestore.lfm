@@ -5,6 +5,7 @@ object ExtractSelectedForm: TExtractSelectedForm
   Width = 617
   HorzScrollBar.Page = 616
   VertScrollBar.Page = 244
+  ActiveControl = OkButton
   Caption = 'ExtractSelectedForm'
   ClientHeight = 245
   ClientWidth = 617
@@ -19,9 +20,9 @@ object ExtractSelectedForm: TExtractSelectedForm
     TabOrder = 0
     object Label1: TLabel
       Left = 13
-      Height = 14
+      Height = 17
       Top = 16
-      Width = 96
+      Width = 110
       Caption = 'Restore files to'
       ParentColor = False
     end
@@ -60,6 +61,7 @@ object ExtractSelectedForm: TExtractSelectedForm
       Height = 23
       Top = 31
       Width = 328
+      DialogTitle = 'Restore files to'
       ButtonWidth = 23
       NumGlyphs = 1
       ParentColor = False
@@ -67,9 +69,9 @@ object ExtractSelectedForm: TExtractSelectedForm
     end
     object FlatRestoreCheckBox: TCheckBox
       Left = 403
-      Height = 26
+      Height = 24
       Top = 30
-      Width = 135
+      Width = 147
       Caption = 'Ignore directories'
       TabOrder = 3
     end
@@ -88,7 +90,7 @@ object ExtractSelectedForm: TExtractSelectedForm
       ChildSizing.ShrinkVertical = crsScaleChilds
       ChildSizing.Layout = cclLeftToRightThenTopToBottom
       ChildSizing.ControlsPerLine = 1
-      ClientHeight = 74
+      ClientHeight = 76
       ClientWidth = 309
       ItemIndex = 2
       Items.Strings = (

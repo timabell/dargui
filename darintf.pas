@@ -5,7 +5,7 @@ unit darintf;
 interface
 
 uses
-  Classes, SysUtils, Process, Comctrls, StdCtrls, ProcessLine, FileUtil;
+  Classes, SysUtils, Process, Comctrls, StdCtrls, ProcessLine, FileUtil, Forms;
   
 type
   TDarInfo = record
@@ -67,6 +67,7 @@ type
   function GetRunscriptPath: string;
   function OpenArchive(fn: string; TV: TTreeview): integer;
   function CreateArchive( Cmd: string; x, y :integer ): integer;
+  function RestoreFiles( Cmd: string; x, y :integer ): integer;
   function PosFrom(const SubStr, Value: String; From: integer): integer;
   function SelectChildren(Node: TTreeNode): integer;
   function isInteger(aString: string): Boolean;
@@ -132,7 +133,7 @@ var
 begin
   info.version := '';
   Result := info;
-  Proc := TProcess.Create(nil);
+  Proc := TProcess.Create(Application);
   Output := TStringList.Create;
   Proc.CommandLine := 'dar -V';
   Proc.Options := Proc.Options  + [poWaitOnExit, poUsePipes];
@@ -402,32 +403,43 @@ var
   aLine: String;
 begin
   Result := -1;
-  Proc := TProcess.Create(nil);
+  Proc := TProcess.Create(Application);
   try
-  Proc.CommandLine := TerminalCommand +  ' -geometry 100x15+' + IntToStr(x) + '+' + IntToStr(y) + ' -T "DarGUI: Extracting files..." -l -lf '
+    Proc.CommandLine := TerminalCommand +  ' -geometry 100x15+' + IntToStr(x) + '+' + IntToStr(y) + ' -T "DarGUI: Creating archive..." -l -lf '
+                             + OPERATION_LOGFILE
+                             + ' -e '
+                             + RunscriptPath + RUNSCRIPT + #32 + Cmd ;
+    Proc.Options := Proc.Options + [poStderrToOutPut];
+    Proc.Execute;
+    While Proc.Running do
+          Application.ProcessMessages;
+  finally
+    Proc.Free;
+    Result := GetDarExit;
+  end;
+end;
+
+
+// ************** RestoreFiles ***************** //
+
+function RestoreFiles ( Cmd: string; x, y: integer ) : integer;
+var
+  Proc: TProcess;
+begin
+  Result := -1;
+  Proc := TProcess.Create(Application);
+  try
+    Proc.CommandLine := TerminalCommand +  ' -geometry 100x15+' + IntToStr(x) + '+' + IntToStr(y) + ' -T "DarGUI: Extracting files..." -l -lf '
                            + OPERATION_LOGFILE
                            + ' -e '
                            + RunscriptPath + RUNSCRIPT + #32 + Cmd ;
-  Proc.Options := Proc.Options + [poWaitOnExit];
-  Proc.Execute;
-  //While Proc.Running do
-        //begin
-          //aLine := Proc.ReadLine;
-          //while aLine <> '' do
-                //begin
-                  //msg.Lines.Add(aLine);
-                  //aLine := Proc.ReadLine;
-                //end;
-        //end;
-  //aLine := Proc.ReadLine;
-  //while aLine <> '' do
-        //begin
-          //msg.Lines.Add(aLine);
-        //end;
+    Proc.Options := Proc.Options + [poStderrToOutPut];
+    Proc.Execute;
+    While Proc.Running do
+          Application.ProcessMessages;
   finally
-  Proc.Free;
-  Result := GetDarExit;
-  //TODO: This function should return the return value of dar
+    Proc.Free;
+    Result := GetDarExit;
   end;
 end;
 
