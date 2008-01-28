@@ -256,7 +256,7 @@ begin
      MessageMemo.Lines.Add(#32 + StringOfChar('-',45));
      MessageMemo.Lines.Add('Creating archive: ' + ArchiveForm.ArchiveName.Text);
 
-     if CreateArchive(Command, Left+100, Top+150) = 0 then
+     if RunDarCommand(Command, 'creating archive...', Left+100, Top+150) = 0 then
         begin
           CurrentArchive := ArchiveForm.ArchiveDirectory.Text
                             + ArchiveForm.ArchiveName.Text;
@@ -476,27 +476,16 @@ end;
 procedure TMainForm.miRestoreAllClick(Sender: TObject);
 var
   RestoreForm: TExtractSelectedForm;
-  Batch: TStringList;
   x: Integer;
   daroptions: String;
   CommandLine: String;
 begin
   SelectedNodes := 0;
-  Batch := TStringList.Create;
   RestoreForm := TExtractSelectedForm.Create(Self);
   RestoreForm.FullRestore := true;
   RestoreForm.Caption := 'Restore ' + IntToStr(ArchiveTreeView.Items.Count-1) + ' nodes...';
   if RestoreForm.ShowModal = mrOK then
      begin
-       Batch.Add('-R "' + RestoreForm.RestoreDirectoryEdit.Text + '"' + #10);
-       if RestoreForm.ExistingFiles.Count > 0 then
-          begin
-          Batch.Add('# Do not overwrite these files');
-          for x := RestoreForm.ExistingFiles.Count-1 downto 0 do
-              begin
-                Batch.Add('-X "' + RestoreForm.ExistingFiles.Strings[x] + '"');
-              end;
-          end;
         daroptions := ' -O -v';
         if RestoreForm.FlatRestoreCheckBox.Checked then daroptions := daroptions + ' -f';
         case RestoreForm.OverwriteOptions.ItemIndex of
@@ -504,13 +493,10 @@ begin
              1: ;
              2: daroptions := daroptions + ' --no-overwrite';
              end;
-        batch.SaveToFile(TEMPBATCHFILE);
-        CommandLine := (DAR_EXECUTABLE + ' -x ' + ExtractFilePath(OpenDialog.FileName)
-                          + ArchiveTreeView.TopItem.Text + ' -B "' + TEMPBATCHFILE + '" ' + daroptions);
-        RestoreFiles(CommandLine, Left+100, Top+150);
+        CommandLine := (DAR_EXECUTABLE + ' -R "' + RestoreForm.RestoreDirectoryEdit.Text + '" -x "' + CurrentArchive + '" ' + daroptions);
+        RunDarCommand(CommandLine, 'restoring files...', Left+100, Top+150);
         end
         else MessageMemo.Lines.Add('Operation aborted: Restore selected files' );
-  Batch.Free;
   RestoreForm.Free;
 end;
 
@@ -562,8 +548,8 @@ begin
                   Batch.Add('-g "' + RestoreForm.SelectedFiles.Strings[x] + '"');
               batch.Insert(0,'-R "' + RestoreForm.RestoreDirectoryEdit.Text + '"');
               batch.SaveToFile(TEMPBATCHFILE);
-              CommandLine := (DAR_EXECUTABLE + ' -x "' + CurrentArchive + '" -B "' + TEMPBATCHFILE + '" ' + daroptions + ProcCommandlineOption);
-              RestoreFiles(CommandLine, Left+100, Top+150);
+              CommandLine := (DAR_EXECUTABLE + ' -x "' + CurrentArchive + '" -B "' + TEMPBATCHFILE + '" ' + daroptions);
+              RunDarCommand(CommandLine, 'restoring files...', Left+100, Top+150);
               //TODO: check that some files do need to be restored: ie not all excluded by overwrite rule
             end
             else MessageMemo.Lines.Add('Operation aborted: Restore selected files' );

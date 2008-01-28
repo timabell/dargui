@@ -66,8 +66,7 @@ type
   procedure GetTerminalCommand(var Terminal: string);
   function GetRunscriptPath: string;
   function OpenArchive(fn: string; TV: TTreeview): integer;
-  function CreateArchive( Cmd: string; x, y :integer ): integer;
-  function RestoreFiles( Cmd: string; x, y :integer ): integer;
+  function RunDarCommand ( Cmd, Title: string; x, y :integer ) : integer;
   function PosFrom(const SubStr, Value: String; From: integer): integer;
   function SelectChildren(Node: TTreeNode): integer;
   function isInteger(aString: string): Boolean;
@@ -177,7 +176,7 @@ begin
 end;
 
 
-// ************** OpenArchive ***************** //
+
 
 function GetDarExit: integer;
 var
@@ -220,6 +219,7 @@ begin
   //TODO: replace this by check for runscript.sh in appropriate directory
 end;
 
+// ************** OpenArchive ***************** //
 function OpenArchive(fn: string; TV : TTreeview): integer;
 var
   Proc : TProcess;
@@ -395,9 +395,9 @@ end;
 
 
 
-// ************** CreateArchive ***************** //
+// ************** RunDarCommand ***************** //
 
-function CreateArchive ( Cmd: string; x, y :integer ) : integer;
+function RunDarCommand ( Cmd, Title: string; x, y :integer ) : integer;
 var
   Proc: TProcess;
   aLine: String;
@@ -405,7 +405,7 @@ begin
   Result := -1;
   Proc := TProcess.Create(Application);
   try
-    Proc.CommandLine := TerminalCommand +  ' -geometry 100x15+' + IntToStr(x) + '+' + IntToStr(y) + ' -T "DarGUI: Creating archive..." -l -lf '
+    Proc.CommandLine := TerminalCommand +  ' -geometry 100x15+' + IntToStr(x) + '+' + IntToStr(y) + ' -T "DarGUI: ' + Title + '" -l -lf '
                              + OPERATION_LOGFILE
                              + ' -e '
                              + RunscriptPath + RUNSCRIPT + #32 + Cmd ;
@@ -420,28 +420,6 @@ begin
 end;
 
 
-// ************** RestoreFiles ***************** //
-
-function RestoreFiles ( Cmd: string; x, y: integer ) : integer;
-var
-  Proc: TProcess;
-begin
-  Result := -1;
-  Proc := TProcess.Create(Application);
-  try
-    Proc.CommandLine := TerminalCommand +  ' -geometry 100x15+' + IntToStr(x) + '+' + IntToStr(y) + ' -T "DarGUI: Extracting files..." -l -lf '
-                           + OPERATION_LOGFILE
-                           + ' -e '
-                           + RunscriptPath + RUNSCRIPT + #32 + Cmd ;
-    Proc.Options := Proc.Options + [poStderrToOutPut];
-    Proc.Execute;
-    While Proc.Running do
-          Application.ProcessMessages;
-  finally
-    Proc.Free;
-    Result := GetDarExit;
-  end;
-end;
 
 // function PosFrom was taken from synautil.pas [ synapse.ararat.cz ]
 function PosFrom(const SubStr, Value: String; From: integer): integer;
