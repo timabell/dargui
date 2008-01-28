@@ -18,8 +18,8 @@ LazarusResources.Add('TArchiveForm','FORMDATA',[
   +'Caption'#6#13'NoteBookPanel'#12'ClientHeight'#3#154#1#11'ClientWidth'#3'}'#2
   +#8'TabOrder'#2#1#0#9'TNotebook'#15'ArchiveNotebook'#4'Left'#2#8#6'Height'#3
   +#128#1#3'Top'#2#8#5'Width'#3'h'#2#9'PageIndex'#2#0#8'TabOrder'#2#0#0#5'TPage'
-  +#11'ArchivePage'#7'Caption'#6#7'Archive'#11'ClientWidth'#3'd'#2#12'ClientHei'
-  +'ght'#3'^'#1#0#6'TLabel'#6'Label1'#4'Left'#2#19#6'Height'#2#17#3'Top'#2#12#5
+  +#11'ArchivePage'#7'Caption'#6#7'Archive'#11'ClientWidth'#3'h'#2#12'ClientHei'
+  +'ght'#3#128#1#0#6'TLabel'#6'Label1'#4'Left'#2#19#6'Height'#2#17#3'Top'#2#12#5
   +'Width'#3#140#0#7'Caption'#6#17'Archive base name'#11'ParentColor'#8#0#0#6'T'
   +'Label'#6'Label2'#4'Left'#2#19#6'Height'#2#17#3'Top'#3#132#0#5'Width'#2'h'#7
   +'Caption'#6#14'Base directory'#11'ParentColor'#8#0#0#6'TLabel'#6'Label3'#4'L'
@@ -41,11 +41,11 @@ LazarusResources.Add('TArchiveForm','FORMDATA',[
   +'ScriptFileButton'#4'Left'#3#133#1#6'Height'#2#25#3'Top'#3#248#0#5'Width'#2
   +'K'#7'Caption'#6#6'Browse'#7'Enabled'#8#7'OnClick'#7#21'ScriptFileButtonClic'
   +'k'#8'TabOrder'#2#7#0#0#0#5'TPage'#15'DirectoriesPage'#7'Caption'#6#11'Direc'
-  +'tories'#11'ClientWidth'#3'd'#2#12'ClientHeight'#3'^'#1#0#6'TLabel'#6'Label4'
-  +#4'Left'#2#19#6'Height'#2#17#3'Top'#2#18#5'Width'#3#134#0#7'Caption'#6#20'In'
-  +'clude directories:'#11'ParentColor'#8#0#0#6'TLabel'#6'Label5'#4'Left'#2#19#6
-  +'Height'#2#17#3'Top'#3#196#0#5'Width'#3#140#0#7'Caption'#6#20'Exclude direct'
-  +'ories:'#11'ParentColor'#8#0#0#8'TListBox'#18'IncludeDirectories'#4'Left'#2
+  +'tories'#11'ClientWidth'#3'h'#2#12'ClientHeight'#3#128#1#0#6'TLabel'#6'Label'
+  +'4'#4'Left'#2#19#6'Height'#2#17#3'Top'#2#18#5'Width'#3#134#0#7'Caption'#6#20
+  +'Include directories:'#11'ParentColor'#8#0#0#6'TLabel'#6'Label5'#4'Left'#2#19
+  +#6'Height'#2#17#3'Top'#3#196#0#5'Width'#3#140#0#7'Caption'#6#20'Exclude dire'
+  +'ctories:'#11'ParentColor'#8#0#0#8'TListBox'#18'IncludeDirectories'#4'Left'#2
   +#19#6'Height'#2'x'#3'Top'#2'*'#5'Width'#3#250#1#8'TabOrder'#2#0#8'TopIndex'#2
   +#255#0#0#7'TButton'#19'AddIncludeDirButton'#4'Left'#3#21#2#6'Height'#2#25#3
   +'Top'#2'*'#5'Width'#2'@'#7'Caption'#6#3'Add'#7'OnClick'#7#24'AddIncludeDirBu'
@@ -59,8 +59,8 @@ LazarusResources.Add('TArchiveForm','FORMDATA',[
   +'er'#2#4#0#0#7'TButton'#19'DelExcludeDirButton'#3'Tag'#2#1#4'Left'#3#21#2#6
   +'Height'#2#25#3'Top'#3#254#0#5'Width'#2'@'#7'Caption'#6#6'Remove'#7'Enabled'
   +#8#7'OnClick'#7#24'DelIncludeDirButtonClick'#8'TabOrder'#2#5#0#0#0#5'TPage'#9
-  +'FilesPage'#7'Caption'#6#5'Files'#11'ClientWidth'#3'd'#2#12'ClientHeight'#3
-  +'^'#1#0#6'TLabel'#6'Label6'#4'Left'#2#19#6'Height'#2#17#3'Top'#2#18#5'Width'
+  +'FilesPage'#7'Caption'#6#5'Files'#11'ClientWidth'#3'h'#2#12'ClientHeight'#3
+  +#128#1#0#6'TLabel'#6'Label6'#4'Left'#2#19#6'Height'#2#17#3'Top'#2#18#5'Width'
   +#2'Y'#7'Caption'#6#14'Include files:'#11'ParentColor'#8#0#0#6'TLabel'#6'Labe'
   +'l7'#4'Left'#2#19#6'Height'#2#17#3'Top'#3#196#0#5'Width'#2'_'#7'Caption'#6#14
   +'Exclude files:'#11'ParentColor'#8#0#0#8'TListBox'#12'IncludeFiles'#4'Left'#2

@@ -97,6 +97,7 @@ type
     { private declarations }
     function CheckParameters: Boolean;
     function IsInBaseDirectory(aDir: string): Boolean;
+    procedure SetFileMaskPosition;
   public
     { public declarations }
   end; 
@@ -187,6 +188,7 @@ end;
 
 procedure TArchiveForm.AddCompressMaskButtonClick ( Sender: TObject ) ;
 begin
+  SetFileMaskPosition;
   FileMaskDialog.FileMask.Text := '';
   if FileMaskDialog.ShowModal = mrOk then
      if FileMaskDialog.FileMask.Text <> '' then
@@ -315,6 +317,12 @@ begin
      ShowMessage('Unable to add directory' + #13#10
                          + 'Not in Base Directory');
      end;
+end;
+
+procedure TArchiveForm.SetFileMaskPosition;
+begin
+  FileMaskDialog.Top := Top + ((Height - FileMaskDialog.Height) div 2);
+  FileMaskDialog.Left := Left + ((Width - FileMaskDialog.Width) div 2);
 end;
 
 
