@@ -175,8 +175,8 @@ var
        end
        else
        begin
-       ShowMessage('Error: Base Directory not in ' + aFilePath);
-       Result := '';
+       //ShowMessage('Error: Base Directory not in ' + aFilePath);
+       Result := aFilePath;
        end;
   end;
   
@@ -205,7 +205,7 @@ begin
         BatchFile.Add('');
         BatchFile.Add('# Files to include in archive');
         for x := 0 to ArchiveForm.IncludeFiles.Count-1 do
-            BatchFile.Add('-g "' + RemoveBaseDirectory(ArchiveForm.IncludeFiles.Items[x]) + '"');
+            BatchFile.Add('-I "' + RemoveBaseDirectory(ArchiveForm.IncludeFiles.Items[x]) + '"');
         end;
      if ArchiveForm.ExcludeDirectories.Count > 0 then
         begin
