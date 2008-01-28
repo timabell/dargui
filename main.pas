@@ -126,6 +126,8 @@ begin
   
   writeln(DarInfo.version);
   
+  OpenDialog.InitialDir := SysUtils.GetEnvironmentVariable('HOME');
+  
   if Paramcount > 0 then
        if FileExists(ParamStr(1)) then
           begin
@@ -294,7 +296,6 @@ begin
          begin
          if TTreeview(Sender).Items[x].Parent.MultiSelected then
             begin
-            writeln(TTreeview(Sender).Items[x].Parent.Text);
             UpdatingSelection := true;
             TTreeview(Sender).Items[x].MultiSelected := true;
             Inc(SelectedNodes);
@@ -302,8 +303,6 @@ begin
             end;
          end;
       end;
-
-     writeln(SelectedNodes);
   end;
 end;
 

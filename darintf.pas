@@ -243,14 +243,12 @@ var
      S := SEGSTATUS;
      a := 1;
      b := PosFrom('+', colheading, a);
-   //  writeln(a);
      DataCoords[S].StartChar := a;
      DataCoords[S].EndChar := b;
      While b <> 0 do
            begin
            Inc(S);
            a := b+1;
-      //     writeln(a);
            b := PosFrom('+', colheading, a);
            DataCoords[S].StartChar := a;
            DataCoords[S].EndChar := b;
@@ -321,7 +319,6 @@ begin
   Output := TStringList.Create;
   M := TMemoryStream.Create;
   BytesRead := 0;
-  writeln(fn);
   Proc.CommandLine := 'dar -l ' + fn;
   Proc.Options := [poUsePipes];
   Proc.Execute;
@@ -356,11 +353,9 @@ begin
   until n <= 0;
   if BytesRead > 0 then WriteLn;
   M.SetSize(BytesRead);
-  WriteLn('-- executed --');
 
   Output.LoadFromStream(M);
-  WriteLn('-- linecount = ', Output.Count, ' --');
-  
+
   rootnode := TTreeview(TV).Items.AddFirst(nil, ExtractFileName(fn));
   rootnode.Data := TFileData.Create;
   TFileData(rootnode.Data).item[SEGFILENAME] := rootnode.Text;
@@ -389,7 +384,6 @@ begin
   M.Free;
   Proc.Free;
   Output.Free;
-  writeln('----- archive opened successfully -----');
 end;
 
 
@@ -405,10 +399,11 @@ begin
   Result := -1;
   Proc := TProcess.Create(Application);
   try
-    Proc.CommandLine := TerminalCommand +  ' -geometry 100x15+' + IntToStr(x) + '+' + IntToStr(y) + ' -T "DarGUI: ' + Title + '" -l -lf '
-                             + OPERATION_LOGFILE
-                             + ' -e '
-                             + RunscriptPath + RUNSCRIPT + #32 + Cmd ;
+    Proc.CommandLine := TerminalCommand
+                             +  ' -geometry 100x15+' + IntToStr(x) + '+' + IntToStr(y)
+                             + ' -T "DarGUI: ' + Title
+                             + '" -l -lf ' + OPERATION_LOGFILE
+                             + ' -e ' + RunscriptPath + RUNSCRIPT + #32 + Cmd ;
     Proc.Options := Proc.Options + [poStderrToOutPut];
     Proc.Execute;
     While Proc.Running do
