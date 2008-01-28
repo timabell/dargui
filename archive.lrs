@@ -41,11 +41,11 @@ LazarusResources.Add('TArchiveForm','FORMDATA',[
   +'ScriptFileButton'#4'Left'#3#133#1#6'Height'#2#25#3'Top'#3#248#0#5'Width'#2
   +'K'#7'Caption'#6#6'Browse'#7'Enabled'#8#7'OnClick'#7#21'ScriptFileButtonClic'
   +'k'#8'TabOrder'#2#7#0#0#0#5'TPage'#15'DirectoriesPage'#7'Caption'#6#11'Direc'
-  +'tories'#11'ClientWidth'#3'h'#2#12'ClientHeight'#3#128#1#0#6'TLabel'#6'Label'
-  +'4'#4'Left'#2#19#6'Height'#2#17#3'Top'#2#18#5'Width'#3#134#0#7'Caption'#6#20
-  +'Include directories:'#11'ParentColor'#8#0#0#6'TLabel'#6'Label5'#4'Left'#2#19
-  +#6'Height'#2#17#3'Top'#3#196#0#5'Width'#3#140#0#7'Caption'#6#20'Exclude dire'
-  +'ctories:'#11'ParentColor'#8#0#0#8'TListBox'#18'IncludeDirectories'#4'Left'#2
+  +'tories'#11'ClientWidth'#3'd'#2#12'ClientHeight'#3'^'#1#0#6'TLabel'#6'Label4'
+  +#4'Left'#2#19#6'Height'#2#17#3'Top'#2#18#5'Width'#3#134#0#7'Caption'#6#20'In'
+  +'clude directories:'#11'ParentColor'#8#0#0#6'TLabel'#6'Label5'#4'Left'#2#19#6
+  +'Height'#2#17#3'Top'#3#196#0#5'Width'#3#140#0#7'Caption'#6#20'Exclude direct'
+  +'ories:'#11'ParentColor'#8#0#0#8'TListBox'#18'IncludeDirectories'#4'Left'#2
   +#19#6'Height'#2'x'#3'Top'#2'*'#5'Width'#3#250#1#8'TabOrder'#2#0#8'TopIndex'#2
   +#255#0#0#7'TButton'#19'AddIncludeDirButton'#4'Left'#3#21#2#6'Height'#2#25#3
   +'Top'#2'*'#5'Width'#2'@'#7'Caption'#6#3'Add'#7'OnClick'#7#24'AddIncludeDirBu'
@@ -59,8 +59,8 @@ LazarusResources.Add('TArchiveForm','FORMDATA',[
   +'er'#2#4#0#0#7'TButton'#19'DelExcludeDirButton'#3'Tag'#2#1#4'Left'#3#21#2#6
   +'Height'#2#25#3'Top'#3#254#0#5'Width'#2'@'#7'Caption'#6#6'Remove'#7'Enabled'
   +#8#7'OnClick'#7#24'DelIncludeDirButtonClick'#8'TabOrder'#2#5#0#0#0#5'TPage'#9
-  +'FilesPage'#7'Caption'#6#5'Files'#11'ClientWidth'#3'h'#2#12'ClientHeight'#3
-  +#128#1#0#6'TLabel'#6'Label6'#4'Left'#2#19#6'Height'#2#17#3'Top'#2#18#5'Width'
+  +'FilesPage'#7'Caption'#6#5'Files'#11'ClientWidth'#3'd'#2#12'ClientHeight'#3
+  +'^'#1#0#6'TLabel'#6'Label6'#4'Left'#2#19#6'Height'#2#17#3'Top'#2#18#5'Width'
   +#2'Y'#7'Caption'#6#14'Include files:'#11'ParentColor'#8#0#0#6'TLabel'#6'Labe'
   +'l7'#4'Left'#2#19#6'Height'#2#17#3'Top'#3#196#0#5'Width'#2'_'#7'Caption'#6#14
   +'Exclude files:'#11'ParentColor'#8#0#0#8'TListBox'#12'IncludeFiles'#4'Left'#2
@@ -83,10 +83,10 @@ LazarusResources.Add('TArchiveForm','FORMDATA',[
   +'FileMaskButton'#3'Tag'#2#2#4'Left'#3#246#1#6'Height'#2#25#3'Top'#3#248#0#5
   +'Width'#2'_'#7'Caption'#6#8'Add mask'#7'OnClick'#7#26'AddCompressMaskButtonC'
   +'lick'#8'TabOrder'#2#7#0#0#0#5'TPage'#15'CompressionPage'#7'Caption'#6#11'Co'
-  +'mpression'#11'ClientWidth'#3'd'#2#12'ClientHeight'#3'^'#1#0#9'TGroupBox'#21
+  +'mpression'#11'ClientWidth'#3'h'#2#12'ClientHeight'#3#128#1#0#9'TGroupBox'#21
   +'CompressionExceptions'#4'Left'#3'-'#1#6'Height'#3'I'#1#3'Top'#2#10#5'Width'
-  +#3' '#1#7'Caption'#6#21' Do not compress ... '#12'ClientHeight'#3'4'#1#11'Cl'
-  +'ientWidth'#3#28#1#8'TabOrder'#2#0#0#6'TLabel'#6'Label9'#4'Left'#2#21#6'Heig'
+  +#3' '#1#7'Caption'#6#21' Do not compress ... '#12'ClientHeight'#3'I'#1#11'Cl'
+  +'ientWidth'#3' '#1#8'TabOrder'#2#0#0#6'TLabel'#6'Label9'#4'Left'#2#21#6'Heig'
   +'ht'#2#17#3'Top'#3#240#0#5'Width'#3#235#0#7'Caption'#6'!Lower size limit for'
   +' compression:'#12'FocusControl'#7#19'CompressionLwrLimit'#11'ParentColor'#8
   +#0#0#8'TListBox'#14'NoCompressList'#4'Left'#2#13#6'Height'#3#192#0#3'Top'#2
@@ -104,8 +104,8 @@ LazarusResources.Add('TArchiveForm','FORMDATA',[
   +'ex'#2#0#13'Items.Strings'#1#6#5'bytes'#6#9'kilobytes'#6#9'Megabytes'#0#9'Ma'
   +'xLength'#2#0#8'TabOrder'#2#4#4'Text'#6#5'bytes'#0#0#0#9'TGroupBox'#16'Compr'
   +'essionTypes'#4'Left'#2#12#6'Height'#3'I'#1#3'Top'#2#11#5'Width'#3#1#1#7'Cap'
-  +'tion'#6#18' Compression type '#12'ClientHeight'#3'4'#1#11'ClientWidth'#3#253
-  +#0#8'TabOrder'#2#1#0#6'TLabel'#12'CompLvlLabel'#4'Left'#2'>'#6'Height'#2#17#3
+  +'tion'#6#18' Compression type '#12'ClientHeight'#3'I'#1#11'ClientWidth'#3#1#1
+  +#8'TabOrder'#2#1#0#6'TLabel'#12'CompLvlLabel'#4'Left'#2'>'#6'Height'#2#17#3
   +'Top'#2'f'#5'Width'#3#133#0#7'Caption'#6#17'Compression level'#7'Enabled'#8
   +#12'FocusControl'#7#16'CompressionLevel'#11'ParentColor'#8#0#0#9'TCheckBox'#9
   +'GZipCheck'#4'Left'#2#26#6'Height'#2#24#3'Top'#2#29#5'Width'#3#180#0#7'Capti'

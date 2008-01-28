@@ -160,8 +160,8 @@ object ArchiveForm: TArchiveForm
       end
       object DirectoriesPage: TPage
         Caption = 'Directories'
-        ClientWidth = 616
-        ClientHeight = 384
+        ClientWidth = 612
+        ClientHeight = 350
         object Label4: TLabel
           Left = 19
           Height = 17
@@ -237,8 +237,8 @@ object ArchiveForm: TArchiveForm
       end
       object FilesPage: TPage
         Caption = 'Files'
-        ClientWidth = 616
-        ClientHeight = 384
+        ClientWidth = 612
+        ClientHeight = 350
         object Label6: TLabel
           Left = 19
           Height = 17
@@ -334,16 +334,16 @@ object ArchiveForm: TArchiveForm
       end
       object CompressionPage: TPage
         Caption = 'Compression'
-        ClientWidth = 612
-        ClientHeight = 350
+        ClientWidth = 616
+        ClientHeight = 384
         object CompressionExceptions: TGroupBox
           Left = 301
           Height = 329
           Top = 10
           Width = 288
           Caption = ' Do not compress ... '
-          ClientHeight = 308
-          ClientWidth = 284
+          ClientHeight = 329
+          ClientWidth = 288
           TabOrder = 0
           object Label9: TLabel
             Left = 21
@@ -419,8 +419,8 @@ object ArchiveForm: TArchiveForm
           Top = 11
           Width = 257
           Caption = ' Compression type '
-          ClientHeight = 308
-          ClientWidth = 253
+          ClientHeight = 329
+          ClientWidth = 257
           TabOrder = 1
           object CompLvlLabel: TLabel
             Left = 62

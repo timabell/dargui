@@ -132,8 +132,10 @@ end;
 
 procedure TArchiveForm.FormCreate ( Sender: TObject ) ;
 begin
-  ArchiveDirectory.Text := GetCurrentDir;
-  BaseDirectory.Text := GetCurrentDir;
+  ArchiveDirectory.Text := SysUtils.GetEnvironmentVariable('HOME');
+  BaseDirectory.Text := SysUtils.GetEnvironmentVariable('HOME');
+  OpenDialog.FileName := SysUtils.GetEnvironmentVariable('HOME');
+  SaveDialog.FileName := SysUtils.GetEnvironmentVariable('HOME');
 end;
 
 procedure TArchiveForm.SaveScriptCheckBoxClick ( Sender: TObject ) ;
@@ -226,12 +228,14 @@ end;
 
 procedure TArchiveForm.ArchiveDirButtonClick ( Sender: TObject ) ;
 begin
+  SelectDirectoryDialog.FileName := ArchiveDirectory.Text;
   if SelectDirectoryDialog.Execute
      then ArchiveDirectory.Text := SelectDirectoryDialog.FileName;
 end;
 
 procedure TArchiveForm.BaseDirButtonClick ( Sender: TObject ) ;
 begin
+  SelectDirectoryDialog.FileName := BaseDirectory.Text;
   if SelectDirectoryDialog.Execute
      then BaseDirectory.Text := SelectDirectoryDialog.FileName;
 end;
