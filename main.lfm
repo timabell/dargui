@@ -11,9 +11,9 @@ object MainForm: TMainForm
   ClientWidth = 893
   Menu = MainMenu
   OnCreate = FormCreate
-  object StatusBar1: TStatusBar
+  object StatusBar: TStatusBar
     Height = 24
-    Top = 351
+    Top = 551
     Width = 893
     Panels = <>
   end
@@ -766,7 +766,7 @@ object MainForm: TMainForm
   end
   object MessagePanel: TPanel
     Height = 200
-    Top = 375
+    Top = 351
     Width = 893
     Align = alBottom
     Caption = 'MessagePanel'

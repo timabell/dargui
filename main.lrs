@@ -5,8 +5,8 @@ LazarusResources.Add('TMainForm','FORMDATA',[
   +'idth'#3'}'#3#18'HorzScrollBar.Page'#3'|'#3#18'VertScrollBar.Page'#3'>'#2#13
   +'ActiveControl'#7#15'ArchiveTreeView'#7'Caption'#6#6'DarGUI'#12'ClientHeight'
   +#3'?'#2#11'ClientWidth'#3'}'#3#4'Menu'#7#8'MainMenu'#8'OnCreate'#7#10'FormCr'
-  +'eate'#0#10'TStatusBar'#10'StatusBar1'#6'Height'#2#24#3'Top'#3'_'#1#5'Width'
-  +#3'}'#3#6'Panels'#14#0#0#0#9'TTreeView'#15'ArchiveTreeView'#6'Height'#3#9#1#3
+  +'eate'#0#10'TStatusBar'#9'StatusBar'#6'Height'#2#24#3'Top'#3''''#2#5'Width'#3
+  +'}'#3#6'Panels'#14#0#0#0#9'TTreeView'#15'ArchiveTreeView'#6'Height'#3#9#1#3
   +'Top'#2'Q'#5'Width'#3'}'#3#5'Align'#7#8'alClient'#17'DefaultItemHeight'#2#14
   +#12'Font.CharSet'#7#12'ANSI_CHARSET'#11'Font.Height'#2#10#9'Font.Name'#6'9-a'
   +'dobe-courier-medium-r-normal-*-*-100-*-*-*-*-iso10646-1'#10'Font.Pitch'#7#7
@@ -902,7 +902,7 @@ LazarusResources.Add('TMainForm','FORMDATA',[
   +'s'#7#21'Splitter3ChangeBounds'#0#0#9'TSplitter'#9'Splitter5'#4'Left'#3#199#2
   +#6'Height'#2#23#3'Top'#2#1#5'Width'#2#2#7'Beveled'#9#14'OnChangeBounds'#7#21
   +'Splitter3ChangeBounds'#0#0#0#6'TPanel'#12'MessagePanel'#6'Height'#3#200#0#3
-  +'Top'#3'w'#1#5'Width'#3'}'#3#5'Align'#7#8'alBottom'#7'Caption'#6#12'MessageP'
+  +'Top'#3'_'#1#5'Width'#3'}'#3#5'Align'#7#8'alBottom'#7'Caption'#6#12'MessageP'
   +'anel'#12'ClientHeight'#3#200#0#11'ClientWidth'#3'}'#3#8'TabOrder'#2#3#0#6'T'
   +'Panel'#17'MessageClosePanel'#4'Left'#2#1#6'Height'#2#26#3'Top'#2#1#5'Width'
   +#3'{'#3#5'Align'#7#5'alTop'#10'BevelOuter'#7#6'bvNone'#12'ClientHeight'#2#26

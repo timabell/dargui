@@ -53,7 +53,7 @@ type
     UserHdr: TPanel;
     GroupHdr: TPanel;
     StatusHdr: TPanel;
-    StatusBar1: TStatusBar;
+    StatusBar: TStatusBar;
     ArchiveTreeView: TTreeView;
     procedure ArchiveTreeViewAdvancedCustomDrawItem(Sender: TCustomTreeView;
       Node: TTreeNode; State: TCustomDrawState; Stage: TCustomDrawStage;
