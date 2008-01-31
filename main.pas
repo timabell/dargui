@@ -488,7 +488,7 @@ begin
         daroptions := ' -O -v';
         if RestoreForm.FlatRestoreCheckBox.Checked then daroptions := daroptions + ' -f';
         case RestoreForm.OverwriteOptions.ItemIndex of
-             0: daroptions := daroptions + '--no-warn';
+             0: daroptions := daroptions + ' --no-warn';
              1: ;
              2: daroptions := daroptions + ' --no-overwrite';
              end;
