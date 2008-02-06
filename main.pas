@@ -433,10 +433,6 @@ begin
   if OpenDialog.Execute then
      begin
        fn := OpenDialog.FileName;
-       x := Length(fn) - 4;
-       while fn[x] <> '.' do
-             Dec(x);
-       Delete(fn,x,100);
        if OpenArchive(fn, ArchiveTreeView) = 0 then
         begin
           EnableArchiveMenus;

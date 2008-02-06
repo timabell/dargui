@@ -315,6 +315,15 @@ var
 begin
   TV.Items.Clear;
   Result := -1;
+  fn := Trim(fn);
+  x := Pos('.dar',fn);
+  if x = Length(fn)-3 then
+     begin
+     x := x-1;
+       while fn[x] <> '.' do
+             Dec(x);
+       Delete(fn,x,100);
+     end;
   Proc := TProcess.Create(nil);
   Output := TStringList.Create;
   M := TMemoryStream.Create;
