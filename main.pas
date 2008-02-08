@@ -17,6 +17,7 @@ type
     BitBtn2: TBitBtn;
     MenuBreak2: TMenuItem;
     MenuHelp: TMenuItem;
+    miOperationlogs: TMenuItem;
     miHelpAbout: TMenuItem;
     miArchiveInformation: TMenuItem;
     miHideMessages: TMenuItem;
@@ -69,6 +70,7 @@ type
     procedure Splitter3ChangeBounds(Sender: TObject);
     procedure miHelpAboutClick ( Sender: TObject ) ;
     procedure miHideMessagesClick(Sender: TObject);
+    procedure miOperationlogsClick ( Sender: TObject ) ;
     procedure miRestoreAllClick(Sender: TObject);
     procedure tvMenuRestoreSelectedClick(Sender: TObject);
     procedure EnableArchiveMenus;
@@ -95,7 +97,7 @@ const
 
 implementation
 
-uses selectrestore, archive, archiveinfo, About;
+uses selectrestore, archive, archiveinfo, About, oplog;
 
 { TMainForm }
 
@@ -122,7 +124,7 @@ begin
   RunscriptPath := GetRunscriptPath;
 
   UpdatingSelection := false;
-  miHideMessages.Checked := false;
+  miHideMessages.Checked := true;
   
   writeln(DarInfo.version);
   
@@ -265,6 +267,7 @@ begin
           OpenArchive(CurrentArchive, ArchiveTreeView);
           EnableArchiveMenus;
           OpenDialog.FileName := CurrentArchive;
+          OpLogForm.RefreshOpList;
         end;
      if ArchiveForm.SaveScriptCheckBox.Checked
         then if ArchiveForm.ScriptFilenameBox.Text <> ''
@@ -468,6 +471,11 @@ begin
   MessageBoxSplitter.Visible := MessagePanel.Visible;
 end;
 
+procedure TMainForm.miOperationlogsClick ( Sender: TObject ) ;
+begin
+  OpLogForm.ShowOnTop;
+end;
+
 
 procedure TMainForm.miRestoreAllClick(Sender: TObject);
 var
@@ -491,6 +499,7 @@ begin
              end;
         CommandLine := (DAR_EXECUTABLE + ' -R "' + RestoreForm.RestoreDirectoryEdit.Text + '" -x "' + CurrentArchive + '" ' + daroptions);
         RunDarCommand(CommandLine, 'restoring files...', Left+100, Top+150);
+        OpLogForm.RefreshOpList;
         end
         else MessageMemo.Lines.Add('Operation aborted: Restore selected files' );
   RestoreForm.Free;
@@ -546,6 +555,7 @@ begin
               batch.SaveToFile(TEMPBATCHFILE);
               CommandLine := (DAR_EXECUTABLE + ' -x "' + CurrentArchive + '" -B "' + TEMPBATCHFILE + '" ' + daroptions);
               RunDarCommand(CommandLine, 'restoring files...', Left+100, Top+150);
+              OpLogForm.RefreshOpList;
               //TODO: check that some files do need to be restored: ie not all excluded by overwrite rule
             end
             else MessageMemo.Lines.Add('Operation aborted: Restore selected files' );

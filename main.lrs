@@ -1,3 +1,5 @@
+{ This is an automatically generated lazarus resource file }
+
 LazarusResources.Add('TMainForm','FORMDATA',[
   'TPF0'#9'TMainForm'#8'MainForm'#4'Left'#2'{'#6'Height'#3']'#2#3'Top'#2'S'#5'W'
   +'idth'#3'}'#3#18'HorzScrollBar.Page'#3'|'#3#18'VertScrollBar.Page'#3'>'#2#13
@@ -901,40 +903,42 @@ LazarusResources.Add('TMainForm','FORMDATA',[
   +#6'Height'#2#23#3'Top'#2#1#5'Width'#2#2#7'Beveled'#9#14'OnChangeBounds'#7#21
   +'Splitter3ChangeBounds'#0#0#0#6'TPanel'#12'MessagePanel'#6'Height'#3#200#0#3
   +'Top'#3'_'#1#5'Width'#3'}'#3#5'Align'#7#8'alBottom'#7'Caption'#6#12'MessageP'
-  +'anel'#12'ClientHeight'#3#200#0#11'ClientWidth'#3'}'#3#8'TabOrder'#2#3#0#6'T'
-  +'Panel'#17'MessageClosePanel'#4'Left'#2#1#6'Height'#2#26#3'Top'#2#1#5'Width'
-  +#3'{'#3#5'Align'#7#5'alTop'#10'BevelOuter'#7#6'bvNone'#12'ClientHeight'#2#26
-  +#11'ClientWidth'#3'{'#3#8'TabOrder'#2#0#0#6'TLabel'#12'MessageLabel'#4'Left'
-  +#2#7#6'Height'#2#17#3'Top'#2#8#5'Width'#2'N'#7'Caption'#6#9'Messages:'#11'Pa'
-  +'rentColor'#8#0#0#7'TBitBtn'#17'MessageHideButton'#4'Left'#3'a'#3#6'Height'#2
-  +#26#5'Width'#2#26#5'Align'#7#7'alRight'#7'Caption'#6#1'X'#9'NumGlyphs'#2#0#7
-  +'OnClick'#7#22'MessageHideButtonClick'#8'TabOrder'#2#0#0#0#0#5'TMemo'#11'Mes'
-  +'sageMemo'#4'Left'#2#1#6'Height'#3#172#0#3'Top'#2#27#5'Width'#3'{'#3#5'Align'
-  +#7#8'alClient'#8'ReadOnly'#9#10'ScrollBars'#7#10'ssAutoBoth'#8'TabOrder'#2#1
-  +#0#0#0#9'TSplitter'#18'MessageBoxSplitter'#6'Cursor'#7#8'crVSplit'#6'Height'
-  +#2#5#3'Top'#3'Z'#1#5'Width'#3'}'#3#5'Align'#7#8'alBottom'#7'Beveled'#9#11'Re'
-  +'sizeStyle'#7#6'rsNone'#12'ResizeAnchor'#7#8'akBottom'#0#0#9'TMainMenu'#8'Ma'
-  +'inMenu'#4'left'#3#146#0#3'top'#3#170#0#0#9'TMenuItem'#8'MenuFile'#7'Caption'
-  +#6#4'File'#0#9'TMenuItem'#10'miFileOpen'#7'Caption'#6#4'Open'#7'OnClick'#7#15
-  +'miFileOpenClick'#0#0#9'TMenuItem'#9'miFileNew'#7'Caption'#6#3'New'#7'OnClic'
-  +'k'#7#14'miFileNewClick'#0#0#9'TMenuItem'#10'MenuBreak1'#7'Caption'#6#1'-'#0
-  +#0#9'TMenuItem'#6'miExit'#7'Caption'#6#4'Exit'#7'OnClick'#7#11'miExitClick'#0
-  +#0#0#9'TMenuItem'#11'MenuArchive'#7'Caption'#6#7'Archive'#0#9'TMenuItem'#17
-  +'miRestoreSelected'#3'Tag'#2#1#7'Caption'#6#16'Restore selected'#7'Enabled'#8
-  +#7'OnClick'#7#26'tvMenuRestoreSelectedClick'#0#0#9'TMenuItem'#12'miRestoreAl'
-  +'l'#3'Tag'#2#1#7'Caption'#6#11'Restore all'#7'Enabled'#8#7'OnClick'#7#17'miR'
-  +'estoreAllClick'#0#0#9'TMenuItem'#10'MenuBreak2'#3'Tag'#2#1#7'Caption'#6#1'-'
-  +#0#0#9'TMenuItem'#20'miArchiveInformation'#3'Tag'#2#1#7'Caption'#6#11'Inform'
-  +'ation'#7'Enabled'#8#7'OnClick'#7#25'miArchiveInformationClick'#0#0#0#9'TMen'
-  +'uItem'#12'MenuSettings'#7'Caption'#6#8'Settings'#0#9'TMenuItem'#14'miHideMe'
-  +'ssages'#7'Caption'#6#13'Hide messages'#19'ShowAlwaysCheckable'#9#7'OnClick'
-  +#7#19'miHideMessagesClick'#0#0#0#9'TMenuItem'#8'MenuHelp'#7'Caption'#6#5'&He'
-  +'lp'#0#9'TMenuItem'#11'miHelpAbout'#7'Caption'#6#5'About'#7'OnClick'#7#16'mi'
-  +'HelpAboutClick'#0#0#0#0#11'TOpenDialog'#10'OpenDialog'#5'Title'#6#21'Open e'
-  +'xisting archive'#6'Filter'#6#18'DAR Archives|*.dar'#11'FilterIndex'#2#0#4'l'
-  +'eft'#2'N'#3'top'#3#149#0#0#0#10'TPopupMenu'#12'TreeViewMenu'#4'left'#3#3#1#3
-  +'top'#3#165#0#0#9'TMenuItem'#21'tvMenuRestoreSelected'#3'Tag'#2#1#7'Caption'
-  +#6#16'Restore Selected'#7'Enabled'#8#7'OnClick'#7#26'tvMenuRestoreSelectedCl'
-  +'ick'#0#0#9'TMenuItem'#16'tvMenuRestoreAll'#3'Tag'#2#1#7'Caption'#6#11'Resto'
-  +'re all'#7'Enabled'#8#7'OnClick'#7#17'miRestoreAllClick'#0#0#0#0
+  +'anel'#12'ClientHeight'#3#200#0#11'ClientWidth'#3'}'#3#8'TabOrder'#2#3#7'Vis'
+  +'ible'#8#0#6'TPanel'#17'MessageClosePanel'#4'Left'#2#1#6'Height'#2#26#3'Top'
+  +#2#1#5'Width'#3'{'#3#5'Align'#7#5'alTop'#10'BevelOuter'#7#6'bvNone'#12'Clien'
+  +'tHeight'#2#26#11'ClientWidth'#3'{'#3#8'TabOrder'#2#0#0#6'TLabel'#12'Message'
+  +'Label'#4'Left'#2#7#6'Height'#2#17#3'Top'#2#8#5'Width'#2'N'#7'Caption'#6#9'M'
+  +'essages:'#11'ParentColor'#8#0#0#7'TBitBtn'#17'MessageHideButton'#4'Left'#3
+  +'a'#3#6'Height'#2#26#5'Width'#2#26#5'Align'#7#7'alRight'#7'Caption'#6#1'X'#9
+  +'NumGlyphs'#2#0#7'OnClick'#7#22'MessageHideButtonClick'#8'TabOrder'#2#0#0#0#0
+  +#5'TMemo'#11'MessageMemo'#4'Left'#2#1#6'Height'#3#172#0#3'Top'#2#27#5'Width'
+  +#3'{'#3#5'Align'#7#8'alClient'#8'ReadOnly'#9#10'ScrollBars'#7#10'ssAutoBoth'
+  +#8'TabOrder'#2#1#0#0#0#9'TSplitter'#18'MessageBoxSplitter'#6'Cursor'#7#8'crV'
+  +'Split'#6'Height'#2#5#3'Top'#3'Z'#1#5'Width'#3'}'#3#5'Align'#7#8'alBottom'#7
+  +'Beveled'#9#11'ResizeStyle'#7#6'rsNone'#7'Visible'#8#12'ResizeAnchor'#7#8'ak'
+  +'Bottom'#0#0#9'TMainMenu'#8'MainMenu'#4'left'#3#146#0#3'top'#3#170#0#0#9'TMe'
+  +'nuItem'#8'MenuFile'#7'Caption'#6#4'File'#0#9'TMenuItem'#10'miFileOpen'#7'Ca'
+  +'ption'#6#4'Open'#7'OnClick'#7#15'miFileOpenClick'#0#0#9'TMenuItem'#9'miFile'
+  +'New'#7'Caption'#6#3'New'#7'OnClick'#7#14'miFileNewClick'#0#0#9'TMenuItem'#10
+  +'MenuBreak1'#7'Caption'#6#1'-'#0#0#9'TMenuItem'#6'miExit'#7'Caption'#6#4'Exi'
+  +'t'#7'OnClick'#7#11'miExitClick'#0#0#0#9'TMenuItem'#11'MenuArchive'#7'Captio'
+  +'n'#6#7'Archive'#0#9'TMenuItem'#17'miRestoreSelected'#3'Tag'#2#1#7'Caption'#6
+  +#16'Restore selected'#7'Enabled'#8#7'OnClick'#7#26'tvMenuRestoreSelectedClic'
+  +'k'#0#0#9'TMenuItem'#12'miRestoreAll'#3'Tag'#2#1#7'Caption'#6#11'Restore all'
+  +#7'Enabled'#8#7'OnClick'#7#17'miRestoreAllClick'#0#0#9'TMenuItem'#10'MenuBre'
+  +'ak2'#3'Tag'#2#1#7'Caption'#6#1'-'#0#0#9'TMenuItem'#20'miArchiveInformation'
+  +#3'Tag'#2#1#7'Caption'#6#11'Information'#7'Enabled'#8#7'OnClick'#7#25'miArch'
+  +'iveInformationClick'#0#0#0#9'TMenuItem'#12'MenuSettings'#7'Caption'#6#7'Opt'
+  +'ions'#0#9'TMenuItem'#14'miHideMessages'#7'Caption'#6#13'Hide messages'#7'Ch'
+  +'ecked'#9#19'ShowAlwaysCheckable'#9#7'OnClick'#7#19'miHideMessagesClick'#0#0
+  +#9'TMenuItem'#15'miOperationlogs'#7'Caption'#6#14'Operation logs'#7'OnClick'
+  +#7#20'miOperationlogsClick'#0#0#0#9'TMenuItem'#8'MenuHelp'#7'Caption'#6#5'&H'
+  +'elp'#0#9'TMenuItem'#11'miHelpAbout'#7'Caption'#6#5'About'#7'OnClick'#7#16'm'
+  +'iHelpAboutClick'#0#0#0#0#11'TOpenDialog'#10'OpenDialog'#5'Title'#6#21'Open '
+  +'existing archive'#6'Filter'#6#18'DAR Archives|*.dar'#11'FilterIndex'#2#0#4
+  +'left'#2'N'#3'top'#3#149#0#0#0#10'TPopupMenu'#12'TreeViewMenu'#4'left'#3#3#1
+  +#3'top'#3#165#0#0#9'TMenuItem'#21'tvMenuRestoreSelected'#3'Tag'#2#1#7'Captio'
+  +'n'#6#16'Restore Selected'#7'Enabled'#8#7'OnClick'#7#26'tvMenuRestoreSelecte'
+  +'dClick'#0#0#9'TMenuItem'#16'tvMenuRestoreAll'#3'Tag'#2#1#7'Caption'#6#11'Re'
+  +'store all'#7'Enabled'#8#7'OnClick'#7#17'miRestoreAllClick'#0#0#0#0
 ]);

@@ -773,6 +773,7 @@ object MainForm: TMainForm
     ClientHeight = 200
     ClientWidth = 893
     TabOrder = 3
+    Visible = False
     object MessageClosePanel: TPanel
       Left = 1
       Height = 26
@@ -821,6 +822,7 @@ object MainForm: TMainForm
     Align = alBottom
     Beveled = True
     ResizeStyle = rsNone
+    Visible = False
     ResizeAnchor = akBottom
   end
   object MainMenu: TMainMenu
@@ -870,11 +872,16 @@ object MainForm: TMainForm
       end
     end
     object MenuSettings: TMenuItem
-      Caption = 'Settings'
+      Caption = 'Options'
       object miHideMessages: TMenuItem
         Caption = 'Hide messages'
+        Checked = True
         ShowAlwaysCheckable = True
         OnClick = miHideMessagesClick
+      end
+      object miOperationlogs: TMenuItem
+        Caption = 'Operation logs'
+        OnClick = miOperationlogsClick
       end
     end
     object MenuHelp: TMenuItem

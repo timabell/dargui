@@ -43,7 +43,7 @@ const
    
    DAR_EXECUTABLE = 'dar';
    
-   OPERATION_LOGFILE = '/tmp/dargui.log';
+   LOGFILE_MASK = '/tmp/dargui*.log';
    TOOLDIR           = '/usr/share/dargui/';
    RUNSCRIPT         = 'rundar.sh';
    
@@ -64,6 +64,8 @@ type
 
   function GetDarVersion : TDarInfo;
   function GetDarExit: integer;
+  function LogNumber(fn: string): integer;
+  function GetNewLogName: string;
   procedure GetTerminalCommand(var Terminal: string);
   function GetRunscriptPath: string;
   function OpenArchive(fn: string; TV: TTreeview): integer;
@@ -194,6 +196,46 @@ begin
       Close(fout);
       Erase(fout);
       end;
+end;
+
+function LogNumber(fn: string): integer;
+var
+  x: Integer;
+  y: Integer;
+  NumAsString: String;
+begin
+  x := 1;
+  while ((not (fn[x] in ['0'..'9'])) and (x < Length(fn))) do
+      Inc(x);
+  y := x + 1;
+  while ((fn[y] in ['0'..'9']) and (y < Length(fn))) do
+      Inc(y);
+  NumAsString := Copy(fn, x, y-x);
+  try
+   Result := StrToInt(NumAsString);
+   except
+   Result := -1;
+   end
+end;
+
+function GetNewLogName: string;
+var
+ Rec : TSearchRec;
+ fn: string;
+ HighNum: integer;
+ begin
+  HighNum := 1;
+  if FindFirst (LOGFILE_MASK, faAnyFile - faDirectory, Rec) = 0 then
+  try
+   repeat
+      fn := Rec.Name;
+      if LogNumber(fn) = HighNum
+         then Inc(HighNum);
+   until FindNext(Rec) <> 0;
+  finally
+   FindClose(Rec) ;
+  end;
+  Result := '/tmp/dargui' + IntToStr(HighNum) + '.log';
 end;
 
 procedure GetTerminalCommand(var Terminal: string);
@@ -405,14 +447,17 @@ function RunDarCommand ( Cmd, Title: string; x, y :integer ) : integer;
 var
   Proc: TProcess;
   aLine: String;
+  LogFile: string;
 begin
   Result := -1;
+  LogFile := GetNewLogName;
+  writeln(LogFile);
   Proc := TProcess.Create(Application);
   try
     Proc.CommandLine := TerminalCommand
                              +  ' -geometry 100x15+' + IntToStr(x) + '+' + IntToStr(y)
                              + ' -T "DarGUI: ' + Title
-                             + '" -l -lf ' + OPERATION_LOGFILE
+                             + '" -l -lf ' + LogFile
                              + ' -e ' + RunscriptPath + RUNSCRIPT + #32 + Cmd ;
     Proc.Options := Proc.Options + [poStderrToOutPut];
     Proc.Execute;
