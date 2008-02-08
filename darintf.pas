@@ -44,6 +44,7 @@ const
    DAR_EXECUTABLE = 'dar';
    
    OPERATION_LOGFILE = '/tmp/dargui.log';
+   TOOLDIR           = '/usr/share/dargui/';
    RUNSCRIPT         = 'rundar.sh';
    
 
@@ -215,7 +216,7 @@ end;
 
 function GetRunscriptPath: string;
 begin
-  Result := '/home/malcolm/lazarus/dargui/';
+  Result := TOOLDIR;
   //TODO: replace this by check for runscript.sh in appropriate directory
 end;
 
