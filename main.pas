@@ -264,6 +264,7 @@ begin
                             + ArchiveForm.ArchiveName.Text;
           OpenArchive(CurrentArchive, ArchiveTreeView);
           EnableArchiveMenus;
+          OpenDialog.FileName := CurrentArchive;
         end;
      if ArchiveForm.SaveScriptCheckBox.Checked
         then if ArchiveForm.ScriptFilenameBox.Text <> ''
