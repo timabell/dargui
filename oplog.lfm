@@ -5,6 +5,7 @@ object OpLogForm: TOpLogForm
   Width = 717
   HorzScrollBar.Page = 716
   VertScrollBar.Page = 386
+  ActiveControl = OpSelector
   Caption = 'Logs'
   ClientHeight = 387
   ClientWidth = 717
@@ -65,6 +66,8 @@ object OpLogForm: TOpLogForm
       Width = 705
       Align = alClient
       BorderSpacing.Around = 5
+      ReadOnly = True
+      ScrollBars = ssAutoBoth
       TabOrder = 0
     end
   end

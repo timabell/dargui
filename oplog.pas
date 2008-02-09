@@ -56,8 +56,13 @@ begin
 end;
 
 procedure TOpLogForm.OpSelectorSelect ( Sender: TObject ) ;
+var
+  x: Integer;
 begin
   ContentMemo.Lines.LoadFromFile(LogList.Strings[OpSelector.ItemIndex]);
+  ContentMemo.Lines.Delete(0);
+  for x := 1 to 3 do
+      ContentMemo.Lines.Delete( ContentMemo.Lines.Count-1 );
 end;
 
 procedure TOpLogForm.RefreshOpList;
@@ -67,8 +72,10 @@ var
  topLine: string;
  fileHandle: TextFile;
  LogNum: string;
+ LogfileMask: String;
  begin
-  if FindFirst (LOGFILE_MASK, faAnyFile - faDirectory, Rec) = 0 then
+  LogfileMask := TEMP_DIRECTORY + LOGFILE_BASE + '*';
+  if FindFirst (LogfileMask, faAnyFile - faDirectory, Rec) = 0 then
   try
    repeat
       fn := Rec.Name;
@@ -76,13 +83,13 @@ var
       LogNum := IntToStr(LogNumber(fn));
       if LogList.IndexOf(LogNum) < 0 then
          begin
-          AssignFile(fileHandle, '/tmp/' + fn);
+          AssignFile(fileHandle, TEMP_DIRECTORY + fn);
           Reset(fileHandle);
           ReadLn(fileHandle, topLine);
           if Pos('dar ',topLine) = 1 then
              begin
                OpSelector.Items.Add(topLine);
-               LogList.Add('/tmp/' + fn);
+               LogList.Add(TEMP_DIRECTORY + fn);
              end;
          end;
    until FindNext(Rec) <> 0;

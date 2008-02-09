@@ -43,7 +43,8 @@ const
    
    DAR_EXECUTABLE = 'dar';
    
-   LOGFILE_MASK = '/tmp/dargui*.log';
+   TEMP_DIRECTORY = '/tmp/dargui/';
+   LOGFILE_BASE = 'dargui.log.';
    TOOLDIR           = '/usr/share/dargui/';
    RUNSCRIPT         = 'rundar.sh';
    
@@ -201,16 +202,12 @@ end;
 function LogNumber(fn: string): integer;
 var
   x: Integer;
-  y: Integer;
   NumAsString: String;
 begin
-  x := 1;
-  while ((not (fn[x] in ['0'..'9'])) and (x < Length(fn))) do
-      Inc(x);
-  y := x + 1;
-  while ((fn[y] in ['0'..'9']) and (y < Length(fn))) do
-      Inc(y);
-  NumAsString := Copy(fn, x, y-x);
+  x := Length(fn);
+  while ((fn[x] in ['0'..'9']) and (x > 1)) do
+      Dec(x);
+  NumAsString := Copy(fn, x+1, 8);
   try
    Result := StrToInt(NumAsString);
    except
@@ -223,9 +220,11 @@ var
  Rec : TSearchRec;
  fn: string;
  HighNum: integer;
+ LogfileMask: String;
  begin
   HighNum := 1;
-  if FindFirst (LOGFILE_MASK, faAnyFile - faDirectory, Rec) = 0 then
+  LogfileMask := TEMP_DIRECTORY + LOGFILE_BASE + '*';
+  if FindFirst (LogfileMask, faAnyFile - faDirectory, Rec) = 0 then
   try
    repeat
       fn := Rec.Name;
@@ -235,7 +234,7 @@ var
   finally
    FindClose(Rec) ;
   end;
-  Result := '/tmp/dargui' + IntToStr(HighNum) + '.log';
+  Result :=  TEMP_DIRECTORY + LOGFILE_BASE + IntToStr(HighNum);
 end;
 
 procedure GetTerminalCommand(var Terminal: string);

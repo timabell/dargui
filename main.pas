@@ -119,6 +119,9 @@ begin
                         [mbOk],
                         0);
      end;
+
+  if not FileExists(TEMP_DIRECTORY)
+     then mkdir(TEMP_DIRECTORY);
      
   GetTerminalCommand(TerminalCommand);
   RunscriptPath := GetRunscriptPath;
