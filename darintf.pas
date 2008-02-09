@@ -222,6 +222,7 @@ var
  fn: string;
  HighNum: integer;
  LogfileMask: String;
+ ThisNum: LongInt;
  begin
   HighNum := 1;
   LogfileMask := FileBase + '*';
@@ -229,8 +230,9 @@ var
   try
    repeat
       fn := Rec.Name;
-      if LogNumber(fn) = HighNum
-         then Inc(HighNum);
+      ThisNum := LogNumber(fn);
+      if ThisNum >= HighNum
+              then HighNum := ThisNum+1;
    until FindNext(Rec) <> 0;
   finally
    FindClose(Rec) ;
