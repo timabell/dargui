@@ -43,11 +43,6 @@ procedure TOpLogForm.FormCreate ( Sender: TObject ) ;
 begin
   LogList := TStringList.Create;
   RefreshOpList;
-  if LogList.Count > 0 then
-     begin
-       OpSelector.ItemIndex := LogList.Count-1;
-       OpSelectorSelect(Sender);
-     end;
 end;
 
 procedure TOpLogForm.FormDestroy ( Sender: TObject ) ;
@@ -74,27 +69,30 @@ var
  LogNum: string;
  LogfileMask: String;
  begin
-  LogfileMask := TEMP_DIRECTORY + LOGFILE_BASE + '*';
+  LogfileMask := TEMP_DIRECTORY + LOGFILE_BASE +'*';
   if FindFirst (LogfileMask, faAnyFile - faDirectory, Rec) = 0 then
   try
    repeat
-      fn := Rec.Name;
-      writeln(fn);
-      LogNum := IntToStr(LogNumber(fn));
-      if LogList.IndexOf(LogNum) < 0 then
+      fn := TEMP_DIRECTORY + Rec.Name;
+      if LogList.IndexOf(fn) < 0 then
          begin
-          AssignFile(fileHandle, TEMP_DIRECTORY + fn);
+          AssignFile(fileHandle, fn);
           Reset(fileHandle);
           ReadLn(fileHandle, topLine);
           if Pos('dar ',topLine) = 1 then
              begin
                OpSelector.Items.Add(topLine);
-               LogList.Add(TEMP_DIRECTORY + fn);
+               LogList.Add(fn);
              end;
          end;
    until FindNext(Rec) <> 0;
   finally
    FindClose(Rec) ;
+  if LogList.Count > 0 then
+     begin
+       OpSelector.ItemIndex := LogList.Count-1;
+       OpSelectorSelect(nil);
+     end;
   end;
 end;
 
