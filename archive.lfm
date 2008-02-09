@@ -63,8 +63,8 @@ object ArchiveForm: TArchiveForm
       TabOrder = 0
       object ArchivePage: TPage
         Caption = 'Archive'
-        ClientWidth = 612
-        ClientHeight = 350
+        ClientWidth = 616
+        ClientHeight = 384
         object Label1: TLabel
           Left = 19
           Height = 17
@@ -87,6 +87,14 @@ object ArchiveForm: TArchiveForm
           Top = 68
           Width = 111
           Caption = 'Save archive in'
+          ParentColor = False
+        end
+        object Label8: TLabel
+          Left = 19
+          Height = 17
+          Top = 200
+          Width = 68
+          Caption = 'Batch file'
           ParentColor = False
         end
         object ArchiveDirectory: TEdit
@@ -133,7 +141,7 @@ object ArchiveForm: TArchiveForm
         object SaveScriptCheckBox: TCheckBox
           Left = 19
           Height = 24
-          Top = 224
+          Top = 264
           Width = 126
           Caption = 'Save script as'
           OnClick = SaveScriptCheckBoxClick
@@ -142,7 +150,7 @@ object ArchiveForm: TArchiveForm
         object ScriptFilenameBox: TEdit
           Left = 19
           Height = 23
-          Top = 250
+          Top = 290
           Width = 350
           Enabled = False
           TabOrder = 6
@@ -150,18 +158,35 @@ object ArchiveForm: TArchiveForm
         object ScriptFileButton: TButton
           Left = 389
           Height = 25
-          Top = 248
+          Top = 288
           Width = 75
           Caption = 'Browse'
           Enabled = False
           OnClick = ScriptFileButtonClick
           TabOrder = 7
         end
+        object BatchFileButton: TButton
+          Left = 389
+          Height = 25
+          Top = 216
+          Width = 75
+          Caption = 'Browse'
+          OnClick = BatchFileButtonClick
+          TabOrder = 8
+        end
+        object BatchFile: TEdit
+          Left = 19
+          Height = 23
+          Top = 216
+          Width = 350
+          TabOrder = 9
+          Text = 'Edit1'
+        end
       end
       object DirectoriesPage: TPage
         Caption = 'Directories'
-        ClientWidth = 612
-        ClientHeight = 350
+        ClientWidth = 616
+        ClientHeight = 384
         object Label4: TLabel
           Left = 19
           Height = 17

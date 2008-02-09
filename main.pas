@@ -91,7 +91,6 @@ var
 
   
 const
-  TEMPBATCHFILE = '/tmp/dargui.batch';
   ARCHIVEMENU_TAG = 1; //used for enabling menuitems after loading archive
 
 
@@ -186,6 +185,7 @@ var
   end;
   
 begin
+  ArchiveForm.BatchFile.Text := GetNextFileName(TEMP_DIRECTORY + BATCHFILE_BASE);
   if ArchiveForm.ShowModal = mrOk then
      try
      Enabled := false;
@@ -251,14 +251,14 @@ begin
 
      Command := DAR_EXECUTABLE + ' -c "' + ArchiveForm.ArchiveDirectory.Text
                             + ArchiveForm.ArchiveName.Text + '"'
-                            + ' -B "' + TEMPBATCHFILE + '"'
+                            + ' -B "' + ArchiveForm.BatchFile.Text + '"'
                             + ' -v'
                             //+ ' -e' // for debugging
                             + DarOptions
                             + ' -Q';
                             
      BatchFile.Insert(1, '# ' + Command);
-     BatchFile.SaveToFile(TEMPBATCHFILE);
+     BatchFile.SaveToFile(ArchiveForm.BatchFile.Text);
 
      MessageMemo.Lines.Add(#32 + StringOfChar('-',45));
      MessageMemo.Lines.Add('Creating archive: ' + ArchiveForm.ArchiveName.Text);
@@ -555,8 +555,8 @@ begin
               for x := 0 to RestoreForm.SelectedFiles.Count-1 do
                   Batch.Add('-g "' + RestoreForm.SelectedFiles.Strings[x] + '"');
               batch.Insert(0,'-R "' + RestoreForm.RestoreDirectoryEdit.Text + '"');
-              batch.SaveToFile(TEMPBATCHFILE);
-              CommandLine := (DAR_EXECUTABLE + ' -x "' + CurrentArchive + '" -B "' + TEMPBATCHFILE + '" ' + daroptions);
+              batch.SaveToFile(GetNextFileName(TEMP_DIRECTORY + BATCHFILE_BASE));
+              CommandLine := (DAR_EXECUTABLE + ' -x "' + CurrentArchive + '" -B "' + GetNextFileName(TEMP_DIRECTORY + BATCHFILE_BASE) + '" ' + daroptions);
               RunDarCommand(CommandLine, 'restoring files...', Left+100, Top+150);
               OpLogForm.RefreshOpList;
               //TODO: check that some files do need to be restored: ie not all excluded by overwrite rule

@@ -18,6 +18,9 @@ type
     AddCompressMaskButton: TButton;
     AddExcludeFileMaskButton: TButton;
     AddIncludeFileMaskButton: TButton;
+    BatchFileButton: TButton;
+    BatchFile: TEdit;
+    Label8: TLabel;
     ScriptFileButton: TButton;
     ScriptFilenameBox: TEdit;
     SaveScriptCheckBox: TCheckBox;
@@ -81,6 +84,7 @@ type
     procedure AddIncludeFileButtonClick ( Sender: TObject ) ;
     procedure ArchiveDirButtonClick ( Sender: TObject ) ;
     procedure BaseDirButtonClick ( Sender: TObject ) ;
+    procedure BatchFileButtonClick ( Sender: TObject ) ;
     procedure CompressionLevelExit ( Sender: TObject ) ;
     procedure CompressionLwrLimitExit ( Sender: TObject ) ;
     procedure DelCompressMaskButtonClick ( Sender: TObject ) ;
@@ -241,6 +245,13 @@ begin
   SelectDirectoryDialog.InitialDir := BaseDirectory.Text;
   if SelectDirectoryDialog.Execute
      then BaseDirectory.Text := SelectDirectoryDialog.FileName;
+end;
+
+procedure TArchiveForm.BatchFileButtonClick ( Sender: TObject ) ;
+begin
+  SaveDialog.FileName := BatchFile.Text;
+  if SaveDialog.Execute
+     then BatchFile.Text := SaveDialog.FileName;
 end;
 
 procedure TArchiveForm.CompressionLevelExit ( Sender: TObject ) ;

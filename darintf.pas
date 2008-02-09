@@ -45,6 +45,7 @@ const
    
    TEMP_DIRECTORY = '/tmp/dargui/';
    LOGFILE_BASE = 'dargui.log.';
+   BATCHFILE_BASE = 'dargui.batch.';
    TOOLDIR           = '/usr/share/dargui/';
    RUNSCRIPT         = 'rundar.sh';
    
@@ -66,7 +67,7 @@ type
   function GetDarVersion : TDarInfo;
   function GetDarExit: integer;
   function LogNumber(fn: string): integer;
-  function GetNewLogName: string;
+  function GetNextFileName( FileBase: string): string;
   procedure GetTerminalCommand(var Terminal: string);
   function GetRunscriptPath: string;
   function OpenArchive(fn: string; TV: TTreeview): integer;
@@ -215,7 +216,7 @@ begin
    end
 end;
 
-function GetNewLogName: string;
+function GetNextFileName( FileBase: string): string;
 var
  Rec : TSearchRec;
  fn: string;
@@ -223,7 +224,7 @@ var
  LogfileMask: String;
  begin
   HighNum := 1;
-  LogfileMask := TEMP_DIRECTORY + LOGFILE_BASE + '*';
+  LogfileMask := FileBase + '*';
   if FindFirst (LogfileMask, faAnyFile - faDirectory, Rec) = 0 then
   try
    repeat
@@ -234,7 +235,7 @@ var
   finally
    FindClose(Rec) ;
   end;
-  Result :=  TEMP_DIRECTORY + LOGFILE_BASE + IntToStr(HighNum);
+  Result :=  FileBase + IntToStr(HighNum);
 end;
 
 procedure GetTerminalCommand(var Terminal: string);
@@ -449,7 +450,7 @@ var
   LogFile: string;
 begin
   Result := -1;
-  LogFile := GetNewLogName;
+  LogFile := GetNextFileName(TEMP_DIRECTORY + LOGFILE_BASE);
   writeln(LogFile);
   Proc := TProcess.Create(Application);
   try
