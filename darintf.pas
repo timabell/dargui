@@ -70,7 +70,7 @@ type
   function GetNextFileName( FileBase: string): string;
   procedure GetTerminalCommand(var Terminal: string);
   function GetRunscriptPath: string;
-  function OpenArchive(fn: string; TV: TTreeview): integer;
+  function OpenArchive(var fn: string; TV: TTreeview): integer;
   function RunDarCommand ( Cmd, Title: string; x, y :integer ) : integer;
   function PosFrom(const SubStr, Value: String; From: integer): integer;
   function SelectChildren(Node: TTreeNode): integer;
@@ -265,7 +265,7 @@ begin
 end;
 
 // ************** OpenArchive ***************** //
-function OpenArchive(fn: string; TV : TTreeview): integer;
+function OpenArchive(var fn: string; TV : TTreeview): integer;
 var
   Proc : TProcess;
   Output: TStringList;
