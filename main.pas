@@ -248,6 +248,18 @@ begin
         begin
           BatchFile.Add('# Preserve ignored directory names' + #10 + '-D' +#10);
         end;
+     if ArchiveForm.SlicesCheck.Checked then
+        begin
+          try
+            StrToInt(ArchiveForm.SliceSize.Text);
+          except
+            ArchiveForm.SliceSize.Text := '650';
+          end;
+          BatchFile.Add('# Create slices of size in Mb' + #10 + '--slice ' + ArchiveForm.SliceSize.Text + 'M' + #10);
+          if ArchiveForm.PauseCheck.Checked then
+             BatchFile.Add('# Pause between slices' + #10 + '--pause ' + #10);
+        end;
+
 
      Command := DAR_EXECUTABLE + ' -c "' + ArchiveForm.ArchiveDirectory.Text
                             + ArchiveForm.ArchiveName.Text + '"'

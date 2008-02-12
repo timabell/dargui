@@ -1,8 +1,8 @@
 { This is an automatically generated lazarus resource file }
 
 LazarusResources.Add('TArchiveForm','FORMDATA',[
-  'TPF0'#12'TArchiveForm'#11'ArchiveForm'#4'Left'#3'|'#1#6'Height'#3#220#1#3'To'
-  +'p'#3#175#0#5'Width'#3'}'#2#18'HorzScrollBar.Page'#3'|'#2#18'VertScrollBar.P'
+  'TPF0'#12'TArchiveForm'#11'ArchiveForm'#4'Left'#3'm'#1#6'Height'#3#220#1#3'To'
+  +'p'#3#237#0#5'Width'#3'}'#2#18'HorzScrollBar.Page'#3'|'#2#18'VertScrollBar.P'
   +'age'#3#219#1#13'ActiveControl'#7#11'ArchiveName'#11'BorderIcons'#11#12'biSy'
   +'stemMenu'#0#11'BorderStyle'#7#8'bsDialog'#7'Caption'#6#11'New Archive'#12'C'
   +'lientHeight'#3#220#1#11'ClientWidth'#3'}'#2#8'OnCreate'#7#10'FormCreate'#8
@@ -18,8 +18,8 @@ LazarusResources.Add('TArchiveForm','FORMDATA',[
   +'Caption'#6#13'NoteBookPanel'#12'ClientHeight'#3#154#1#11'ClientWidth'#3'}'#2
   +#8'TabOrder'#2#1#0#9'TNotebook'#15'ArchiveNotebook'#4'Left'#2#8#6'Height'#3
   +#128#1#3'Top'#2#8#5'Width'#3'h'#2#9'PageIndex'#2#0#8'TabOrder'#2#0#0#5'TPage'
-  +#11'ArchivePage'#7'Caption'#6#7'Archive'#11'ClientWidth'#3'h'#2#12'ClientHei'
-  +'ght'#3#128#1#0#6'TLabel'#6'Label1'#4'Left'#2#19#6'Height'#2#17#3'Top'#2#12#5
+  +#11'ArchivePage'#7'Caption'#6#7'Archive'#11'ClientWidth'#3'd'#2#12'ClientHei'
+  +'ght'#3'^'#1#0#6'TLabel'#6'Label1'#4'Left'#2#19#6'Height'#2#17#3'Top'#2#12#5
   +'Width'#3#140#0#7'Caption'#6#17'Archive base name'#11'ParentColor'#8#0#0#6'T'
   +'Label'#6'Label2'#4'Left'#2#19#6'Height'#2#17#3'Top'#3#132#0#5'Width'#2'h'#7
   +'Caption'#6#14'Base directory'#11'ParentColor'#8#0#0#6'TLabel'#6'Label3'#4'L'
@@ -121,7 +121,7 @@ LazarusResources.Add('TArchiveForm','FORMDATA',[
   +'pressionLevel'#4'Left'#2'>'#6'Height'#2#23#3'Top'#2'z'#5'Width'#2'P'#7'Enab'
   +'led'#8#9'MaxLength'#2#1#6'OnExit'#7#20'CompressionLevelExit'#8'TabOrder'#2#2
   +#4'Text'#6#1'9'#0#0#0#0#5'TPage'#11'OptionsPage'#7'Caption'#6#7'Options'#11
-  +'ClientWidth'#3'h'#2#12'ClientHeight'#3#128#1#0#6'TLabel'#12'SliceMbLabel'#4
+  +'ClientWidth'#3'd'#2#12'ClientHeight'#3'^'#1#0#6'TLabel'#12'SliceMbLabel'#4
   +'Left'#3#157#1#6'Height'#2#17#3'Top'#3#170#0#5'Width'#2#23#7'Caption'#6#2'Mb'
   +#7'Enabled'#8#11'ParentColor'#8#0#0#6'TLabel'#14'SliceSizeLabel'#4'Left'#3
   +#205#0#6'Height'#2#17#3'Top'#3#165#0#5'Width'#2'D'#7'Caption'#6#10'Slice siz'
@@ -129,18 +129,20 @@ LazarusResources.Add('TArchiveForm','FORMDATA',[
   +'ft'#2'!'#6'Height'#2#24#3'Top'#2'*'#5'Width'#3'4'#1#7'Caption'#6'''Attempt '
   +'to read DAR configuration files'#7'Checked'#9#5'State'#7#9'cbChecked'#8'Tab'
   +'Order'#2#0#0#0#9'TCheckBox'#11'DryRunCheck'#4'Left'#2'!'#6'Height'#2#24#3'T'
-  ,'op'#3#200#0#5'Width'#2'v'#7'Caption'#6#13'Test run only'#8'TabOrder'#2#1#0#0
+  ,'op'#3#248#0#5'Width'#2'v'#7'Caption'#6#13'Test run only'#8'TabOrder'#2#1#0#0
   +#9'TCheckBox'#13'EmptyDirCheck'#4'Left'#2'!'#6'Height'#2#24#3'Top'#2'z'#5'Wi'
   +'dth'#3#166#0#7'Caption'#6#20'Preserve directories'#8'TabOrder'#2#2#0#0#9'TC'
   +'heckBox'#11'SlicesCheck'#4'Left'#2'!'#6'Height'#2#24#3'Top'#3#162#0#5'Width'
   +#2'a'#7'Caption'#6#10'Use slices'#7'OnClick'#7#16'SlicesCheckClick'#8'TabOrd'
   +'er'#2#3#0#0#5'TEdit'#9'SliceSize'#4'Left'#3':'#1#6'Height'#2#23#3'Top'#3#162
   +#0#5'Width'#2'P'#7'Enabled'#8#6'OnExit'#7#23'CompressionLwrLimitExit'#8'TabO'
-  +'rder'#2#4#4'Text'#6#3'695'#0#0#0#0#0#22'TSelectDirectoryDialog'#21'SelectDi'
-  +'rectoryDialog'#5'Title'#6#16'Select Directory'#7'Options'#11#15'ofFileMustE'
-  +'xist'#14'ofEnableSizing'#12'ofViewDetail'#0#4'left'#3'P'#2#3'top'#3#144#0#0
-  +#0#11'TSaveDialog'#10'SaveDialog'#5'Title'#6#12'Save file as'#4'left'#3'P'#2
-  +#3'top'#2'@'#0#0#11'TOpenDialog'#10'OpenDialog'#5'Title'#6#11'Select file'#7
-  +'Options'#11#15'ofPathMustExist'#15'ofFileMustExist'#14'ofEnableSizing'#12'o'
-  +'fViewDetail'#0#4'left'#3'P'#2#3'top'#2'h'#0#0#0
+  +'rder'#2#4#4'Text'#6#3'695'#0#0#9'TCheckBox'#10'PauseCheck'#4'Left'#2'}'#6'H'
+  +'eight'#2#23#3'Top'#3#203#0#5'Width'#2'Z'#7'Caption'#6#20'Pause between slic'
+  +'es'#7'Enabled'#8#8'TabOrder'#2#5#0#0#0#0#0#22'TSelectDirectoryDialog'#21'Se'
+  +'lectDirectoryDialog'#5'Title'#6#16'Select Directory'#7'Options'#11#15'ofFil'
+  +'eMustExist'#14'ofEnableSizing'#12'ofViewDetail'#0#4'left'#3'P'#2#3'top'#3
+  +#144#0#0#0#11'TSaveDialog'#10'SaveDialog'#5'Title'#6#12'Save file as'#4'left'
+  +#3'P'#2#3'top'#2'@'#0#0#11'TOpenDialog'#10'OpenDialog'#5'Title'#6#11'Select '
+  +'file'#7'Options'#11#15'ofPathMustExist'#15'ofFileMustExist'#14'ofEnableSizi'
+  +'ng'#12'ofViewDetail'#0#4'left'#3'P'#2#3'top'#2'h'#0#0#0
 ]);

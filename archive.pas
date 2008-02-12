@@ -20,6 +20,7 @@ type
     AddIncludeFileMaskButton: TButton;
     BatchFileButton: TButton;
     BatchFile: TEdit;
+    PauseCheck: TCheckBox;
     Label8: TLabel;
     ScriptFileButton: TButton;
     ScriptFilenameBox: TEdit;
@@ -161,6 +162,7 @@ begin
   SliceSizeLabel.Enabled :=  TCheckBox(Sender).Checked;
   SliceSize.Enabled :=  TCheckBox(Sender).Checked;
   SliceMbLabel.Enabled :=  TCheckBox(Sender).Checked;
+  PauseCheck.Enabled := TCheckBox(Sender).Checked;
 end;
 
 procedure TArchiveForm.ZipCheckChange ( Sender: TObject ) ;

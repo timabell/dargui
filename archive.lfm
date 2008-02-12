@@ -1,7 +1,7 @@
 object ArchiveForm: TArchiveForm
-  Left = 380
+  Left = 365
   Height = 476
-  Top = 175
+  Top = 237
   Width = 637
   HorzScrollBar.Page = 636
   VertScrollBar.Page = 475
@@ -63,8 +63,8 @@ object ArchiveForm: TArchiveForm
       TabOrder = 0
       object ArchivePage: TPage
         Caption = 'Archive'
-        ClientWidth = 616
-        ClientHeight = 384
+        ClientWidth = 612
+        ClientHeight = 350
         object Label1: TLabel
           Left = 19
           Height = 17
@@ -490,8 +490,8 @@ object ArchiveForm: TArchiveForm
       end
       object OptionsPage: TPage
         Caption = 'Options'
-        ClientWidth = 616
-        ClientHeight = 384
+        ClientWidth = 612
+        ClientHeight = 350
         object SliceMbLabel: TLabel
           Left = 413
           Height = 17
@@ -523,7 +523,7 @@ object ArchiveForm: TArchiveForm
         object DryRunCheck: TCheckBox
           Left = 33
           Height = 24
-          Top = 200
+          Top = 248
           Width = 118
           Caption = 'Test run only'
           TabOrder = 1
@@ -554,6 +554,15 @@ object ArchiveForm: TArchiveForm
           OnExit = CompressionLwrLimitExit
           TabOrder = 4
           Text = '695'
+        end
+        object PauseCheck: TCheckBox
+          Left = 125
+          Height = 23
+          Top = 203
+          Width = 90
+          Caption = 'Pause between slices'
+          Enabled = False
+          TabOrder = 5
         end
       end
     end
