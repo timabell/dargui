@@ -526,6 +526,7 @@ var
   x: integer;
   fd: TFileData;
   fn: string;
+  batchfile: string;
   batch : TStringList;
   RestoreForm: TExtractSelectedForm;
   daroptions: string;
@@ -567,8 +568,9 @@ begin
               for x := 0 to RestoreForm.SelectedFiles.Count-1 do
                   Batch.Add('-g "' + RestoreForm.SelectedFiles.Strings[x] + '"');
               batch.Insert(0,'-R "' + RestoreForm.RestoreDirectoryEdit.Text + '"');
-              batch.SaveToFile(GetNextFileName(TEMP_DIRECTORY + BATCHFILE_BASE));
-              CommandLine := (DAR_EXECUTABLE + ' -x "' + CurrentArchive + '" -B "' + GetNextFileName(TEMP_DIRECTORY + BATCHFILE_BASE) + '" ' + daroptions);
+              batchfile := GetNextFileName(TEMP_DIRECTORY + BATCHFILE_BASE);
+              batch.SaveToFile(batchfile);
+              CommandLine := (DAR_EXECUTABLE + ' -x "' + CurrentArchive + '" -B "' + batchfile + '" ' + daroptions);
               RunDarCommand(CommandLine, 'restoring files...', Left+100, Top+150);
               OpLogForm.RefreshOpList;
               //TODO: check that some files do need to be restored: ie not all excluded by overwrite rule
