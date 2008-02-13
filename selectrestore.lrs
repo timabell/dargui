@@ -4,31 +4,76 @@ LazarusResources.Add('TExtractSelectedForm','FORMDATA',[
   'TPF0'#20'TExtractSelectedForm'#19'ExtractSelectedForm'#4'Left'#3#128#1#6'Hei'
   +'ght'#3#245#0#3'Top'#3#147#0#5'Width'#3'i'#2#18'HorzScrollBar.Page'#3'h'#2#18
   +'VertScrollBar.Page'#3#244#0#13'ActiveControl'#7#8'OkButton'#7'Caption'#6#19
-  +'ExtractSelectedForm'#12'ClientHeight'#3#245#0#11'ClientWidth'#3'i'#2#8'OnCr'
-  +'eate'#7#10'FormCreate'#9'OnDestroy'#7#11'FormDestroy'#0#6'TPanel'#11'Button'
-  +'Panel'#6'Height'#3#245#0#5'Width'#3'i'#2#5'Align'#7#8'alClient'#12'ClientHe'
-  +'ight'#3#245#0#11'ClientWidth'#3'i'#2#8'TabOrder'#2#0#0#6'TLabel'#6'Label1'#4
-  +'Left'#2#13#6'Height'#2#17#3'Top'#2#16#5'Width'#2'n'#7'Caption'#6#16'Restore'
-  +' files to'#11'ParentColor'#8#0#0#6'TBevel'#6'Bevel1'#4'Left'#2#3#6'Height'#2
-  +#2#3'Top'#3#192#0#5'Width'#3']'#2#0#0#7'TBitBtn'#8'OkButton'#4'Left'#3#216#0
-  +#6'Height'#2#30#3'Top'#3#206#0#5'Width'#2'T'#7'Caption'#6#3'&OK'#7'Default'#9
-  +#4'Kind'#7#4'bkOK'#9'NumGlyphs'#2#0#7'OnClick'#7#13'OkButtonClick'#8'TabOrde'
-  +'r'#2#0#0#0#7'TBitBtn'#12'CancelButton'#4'Left'#3'F'#1#6'Height'#2#30#3'Top'
-  +#3#206#0#5'Width'#2'Z'#6'Cancel'#9#7'Caption'#6#6'Cancel'#4'Kind'#7#8'bkCanc'
-  +'el'#11'ModalResult'#2#2#9'NumGlyphs'#2#0#8'TabOrder'#2#1#0#0#14'TDirectoryE'
-  +'dit'#20'RestoreDirectoryEdit'#4'Left'#2#13#6'Height'#2#23#3'Top'#2#31#5'Wid'
-  +'th'#3'H'#1#11'DialogTitle'#6#16'Restore files to'#11'ButtonWidth'#2#23#9'Nu'
-  +'mGlyphs'#2#1#11'ParentColor'#8#8'TabOrder'#2#2#0#0#9'TCheckBox'#19'FlatRest'
-  +'oreCheckBox'#4'Left'#3#147#1#6'Height'#2#24#3'Top'#2#30#5'Width'#3#147#0#7
-  +'Caption'#6#18'Ignore directories'#8'TabOrder'#2#3#0#0#11'TRadioGroup'#16'Ov'
-  +'erwriteOptions'#4'Left'#2#13#6'Height'#2'a'#3'Top'#2'H'#5'Width'#3'9'#1#8'A'
-  +'utoFill'#9#7'Caption'#6#16' Existing files '#28'ChildSizing.LeftRightSpacin'
-  +'g'#2#6#28'ChildSizing.TopBottomSpacing'#2#6#29'ChildSizing.EnlargeHorizonta'
-  +'l'#7#24'crsHomogenousChildResize'#27'ChildSizing.EnlargeVertical'#7#24'crsH'
-  +'omogenousChildResize'#28'ChildSizing.ShrinkHorizontal'#7#14'crsScaleChilds'
-  +#26'ChildSizing.ShrinkVertical'#7#14'crsScaleChilds'#18'ChildSizing.Layout'#7
-  +#29'cclLeftToRightThenTopToBottom'#27'ChildSizing.ControlsPerLine'#2#1#12'Cl'
-  +'ientHeight'#2'L'#11'ClientWidth'#3'5'#1#9'ItemIndex'#2#2#13'Items.Strings'#1
-  +#6#24'Overwrite existing files'#6#26'Confirm before overwriting'#6#31'Do not'
-  +' overwrite existing files'#0#8'TabOrder'#2#4#0#0#0#0
+  +'ExtractSelectedForm'#12'ClientHeight'#3#245#0#11'ClientWidth'#3'i'#2#9'Icon'
+  +'.Data'#10#197#10#0#0#193#10#0#0'/* XPM */'#10'static char *dargui16[]={'#10
+  +'"16 16 133 2",'#10'"Qt c None",'#10'"#I c #2f3236",'#10'"#9 c #475f67",'#10
+  +'".d c #9dade5",'#10'"#B c #6b75a3",'#10'".l c #a2b7fc",'#10'".e c #5e6692",'
+  +#10'"#8 c #22211e",'#10'".F c #192329",'#10'".C c #1c262a",'#10'"ac c #232e2'
+  +'e",'#10'".# c #727caf",'#10'"#k c #5e6188",'#10'"a. c #30352b",'#10'".t c #'
+  +'5d6085",'#10'".U c #36341f",'#10'"#C c #3a415b",'#10'"#J c #464221",'#10'".'
+  +'c c #9dabe2",'#10'".D c #56522a",'#10'".E c #57522b",'#10'"#u c #757da4",'
+  +#10'".s c #b2c2fb",'#10'"#7 c #5a4f19",'#10'"#Q c #524710",'#10'"#1 c #52471'
+  +'1",'#10'"#H c #534a13",'#10'"#j c #534b16",'#10'".9 c #564e19",'#10'"#2 c #'
+  +'83711a",'#10'"a# c #7d7022",'#10'".a c #a5aed5",'#10'"ab c #534a1a",'#10'".'
+  +'G c #9094b5",'#10'".b c #acb7e0",'#10'"#. c #9297b6",'#10'"#K c #897820",'
+  +#10'".f c #a5aac7",'#10'".B c #becdfa",'#10'".m c #8a92ba",'#10'".T c #5f541'
+  +'f",'#10'".k c #c4d0f6",'#10'".K c #9da9d5",'#10'".V c #9198bd",'#10'"#R c #'
+  +'bc9f17",'#10'"#W c #bea116",'#10'"#6 c #605414",'#10'"aa c #736822",'#10'".'
+  +'S c #807020",'#10'"#v c #b3bbd9",'#10'".Y c #76766a",'#10'"#3 c #ad951f",'
+  +#10'"#L c #ae951d",'#10'".2 c #171e19",'#10'".0 c #1b140e",'#10'".1 c #201e1'
+  +'6",'#10'"#h c #2f3e25",'#10'"#t c #2f511f",'#10'".3 c #30311c",'#10'"#i c #'
+  +'30531f",'#10'"#s c #394b2a",'#10'"#P c #3f3e2e",'#10'"#g c #433105",'#10'".'
+  +'Z c #45454d",'#10'"#O c #49493e",'#10'"#y c #635c44",'#10'".4 c #655a20",'
+  +#10'"#A c #6a685b",'#10'"#G c #6c6a5c",'#10'"#r c #6e5306",'#10'"#p c #6f5c1'
+  +'1",'#10'"#N c #6f6534",'#10'".6 c #716110",'#10'"#z c #74757d",'#10'".N c #'
+  +'767563",'#10'"#E c #7a7762",'#10'"#o c #7b6917",'#10'".5 c #7d6b14",'#10'"#'
+  +'5 c #7e6a0e",'#10'".7 c #86700d",'#10'"#f c #887214",'#10'".8 c #89730b",'
+  +#10'"#F c #898b93",'#10'".M c #8e95a5",'#10'"#Y c #947b10",'#10'"#w c #94a0c'
+  +'0",'#10'".O c #9f8d33",'#10'".u c #a6b5e8",'#10'"#S c #a78f1e",'#10'"#V c #'
+  +'a7901f",'#10'".v c #a7baf3",'#10'"#Z c #a88d15",'#10'"#n c #a8b2c8",'#10'".'
+  +'H c #a8bbf3",'#10'"#T c #ad9319",'#10'"#0 c #af951b",'#10'"#e c #b79a19",'
+  +#10'".J c #b7c1e5",'#10'".I c #b9c8f5",'#10'".X c #bdc3d2",'#10'".W c #bdcbf'
+  +'5",'#10'"#b c #bec3ca",'#10'".i c #c0cdf6",'#10'".R c #caac1f",'#10'".n c #'
+  +'cbd6f8",'#10'".P c #d1b11d",'#10'".q c #d2ddf8",'#10'".L c #d3dcf9",'#10'"#'
+  +'X c #d5b318",'#10'".w c #d8e0f8",'#10'".j c #d9e1f9",'#10'".x c #dae0f5",'
+  +#10'".A c #dae2f9",'#10'"#M c #dcb91a",'#10'"#l c #dee1ec",'#10'"#4 c #dfbc1'
+  +'c",'#10'"#q c #e1be1e",'#10'"#d c #e2be1b",'#10'".g c #e4e7f1",'#10'".h c #'
+  +'e5eafb",'#10'"#D c #e6c119",'#10'"#c c #e6c219",'#10'"#U c #e7c31a",'#10'".'
+  +'y c #e8eefb",'#10'".p c #e8effb",'#10'".Q c #e9c41a",'#10'"## c #e9edfb",'
+  +#10'"#x c #eac51a",'#10'".z c #f3f7fc",'#10'"#m c #f4f6fc",'#10'".o c #f5f7f'
+  +'d",'#10'".r c #f5f8fd",'#10'"#a c #f8fafd",'#10'"QtQtQt.#.a.b.c.dQtQtQtQtQt'
+  +'QtQtQt",'#10'"Qt.e.f.g.h.i.j.k.lQtQtQtQtQtQtQt",'#10'"Qt.m.n.o.p.q.o.r.sQtQ'
+  +'tQtQtQtQtQt",'#10'".t.u.v.w.x.y.z.A.B.C.D.E.FQtQtQt",'#10'".G.H.I.J.K.L.M.N'
+  +'.O.P.Q.Q.R.S.T.U",'#10'".V.W.A.X.Y.Z.0.1.2.3.4.5.6.7.8.9",'#10'"#.###a#b#c#'
+  +'d#e#f#g#h#i.8.8.8.8#j",'#10'"#k#l#m#n#c#o#p#q#r#s#t.8.8.8.8#j",'#10'"Qt#u#v'
+  +'#w#c#x#x#x#y#z#A.8.8.8.8#j",'#10'"QtQt#B#C#D#x#x#x#E#F#G.8.8.8.8#H",'#10'"Q'
+  +'tQtQt#I#J#K#L#M#N#O#P.8.8.8.8#Q",'#10'"QtQtQtQtQtQt#R#S#T#U#V.8.8.8.8#Q",'
+  +#10'"QtQtQtQtQtQt#W#X#Y#Z#0.8.8.8.8#Q",'#10'"QtQtQtQtQtQt#W#x#x#x#0.8.8.8.8#'
+  +'1",'#10'"QtQtQtQtQtQt#2#3#4#x#0.8#5#6#7#8",'#10'"QtQtQtQtQtQtQt#9a.a#aaabac'
+  +'QtQtQt"};'#10#8'OnCreate'#7#10'FormCreate'#9'OnDestroy'#7#11'FormDestroy'#0
+  +#6'TPanel'#11'ButtonPanel'#6'Height'#3#245#0#5'Width'#3'i'#2#5'Align'#7#8'al'
+  +'Client'#12'ClientHeight'#3#245#0#11'ClientWidth'#3'i'#2#8'TabOrder'#2#0#0#6
+  +'TLabel'#6'Label1'#4'Left'#2#13#6'Height'#2#17#3'Top'#2#16#5'Width'#2'n'#7'C'
+  +'aption'#6#16'Restore files to'#11'ParentColor'#8#0#0#6'TBevel'#6'Bevel1'#4
+  +'Left'#2#3#6'Height'#2#2#3'Top'#3#192#0#5'Width'#3']'#2#0#0#7'TBitBtn'#8'OkB'
+  +'utton'#4'Left'#3#216#0#6'Height'#2#30#3'Top'#3#206#0#5'Width'#2'T'#7'Captio'
+  +'n'#6#3'&OK'#7'Default'#9#4'Kind'#7#4'bkOK'#9'NumGlyphs'#2#0#7'OnClick'#7#13
+  +'OkButtonClick'#8'TabOrder'#2#0#0#0#7'TBitBtn'#12'CancelButton'#4'Left'#3'F'
+  +#1#6'Height'#2#30#3'Top'#3#206#0#5'Width'#2'Z'#6'Cancel'#9#7'Caption'#6#6'Ca'
+  +'ncel'#4'Kind'#7#8'bkCancel'#11'ModalResult'#2#2#9'NumGlyphs'#2#0#8'TabOrder'
+  +#2#1#0#0#14'TDirectoryEdit'#20'RestoreDirectoryEdit'#4'Left'#2#13#6'Height'#2
+  +#23#3'Top'#2#31#5'Width'#3'H'#1#11'DialogTitle'#6#16'Restore files to'#11'Bu'
+  +'ttonWidth'#2#23#9'NumGlyphs'#2#1#11'ParentColor'#8#8'TabOrder'#2#2#0#0#9'TC'
+  +'heckBox'#19'FlatRestoreCheckBox'#4'Left'#3#147#1#6'Height'#2#24#3'Top'#2#30
+  ,#5'Width'#3#147#0#7'Caption'#6#18'Ignore directories'#8'TabOrder'#2#3#0#0#11
+  +'TRadioGroup'#16'OverwriteOptions'#4'Left'#2#13#6'Height'#2'a'#3'Top'#2'H'#5
+  +'Width'#3'9'#1#8'AutoFill'#9#7'Caption'#6#16' Existing files '#28'ChildSizin'
+  +'g.LeftRightSpacing'#2#6#28'ChildSizing.TopBottomSpacing'#2#6#29'ChildSizing'
+  +'.EnlargeHorizontal'#7#24'crsHomogenousChildResize'#27'ChildSizing.EnlargeVe'
+  +'rtical'#7#24'crsHomogenousChildResize'#28'ChildSizing.ShrinkHorizontal'#7#14
+  +'crsScaleChilds'#26'ChildSizing.ShrinkVertical'#7#14'crsScaleChilds'#18'Chil'
+  +'dSizing.Layout'#7#29'cclLeftToRightThenTopToBottom'#27'ChildSizing.Controls'
+  +'PerLine'#2#1#12'ClientHeight'#2'L'#11'ClientWidth'#3'5'#1#9'ItemIndex'#2#2
+  +#13'Items.Strings'#1#6#24'Overwrite existing files'#6#26'Confirm before over'
+  +'writing'#6#31'Do not overwrite existing files'#0#8'TabOrder'#2#4#0#0#0#0
 ]);
