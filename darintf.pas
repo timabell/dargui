@@ -588,6 +588,8 @@ begin
   // prefer open source ;)
   if Find('mozilla',Browser) then exit;
   if Find('galeon',Browser) then exit;
+  if Find('firefox',Browser) then exit;
+  if Find('dillo',Browser) then exit;
   if Find('konqueror',Browser) then exit;
   if Find('safari',Browser) then exit;
   if Find('netscape',Browser) then exit;
