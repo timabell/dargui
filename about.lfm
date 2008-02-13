@@ -290,7 +290,7 @@ object AboutForm: TAboutForm
     Height = 17
     Top = 32
     Width = 159
-    Caption = 'Version number: 0.2.0'
+    Caption = 'Version number: 0.1.0'
     Font.Style = [fsBold]
     ParentColor = False
   end
@@ -298,8 +298,8 @@ object AboutForm: TAboutForm
     Left = 176
     Height = 17
     Top = 56
-    Width = 73
-    Caption = 'SVN Rev:'
+    Width = 128
+    Caption = 'SVN Revision: 44'
     ParentColor = False
   end
   object Label3: TLabel
@@ -324,7 +324,7 @@ object AboutForm: TAboutForm
     Top = 176
     Width = 349
     AutoSize = False
-    Caption = 'DarGUI was developed using Freepascal and the Lazarus IDE'
+    Caption = 'DarGUI has been developed using Freepascal and the Lazarus IDE'
     ParentColor = False
     WordWrap = True
   end
