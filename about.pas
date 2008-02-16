@@ -48,6 +48,7 @@ var
   Proc: TProcess;
 begin
   GetDefaultBrowser(B, P);
+  writeln(B);
   if B <> '' then
      begin
        Proc := TProcess.Create(Application);
