@@ -93,6 +93,9 @@ var
 
   
 const
+  APP_VERSION = '0.1.0';
+  SVN_REVISION = '';
+
   ARCHIVEMENU_TAG = 1; //used for enabling menuitems after loading archive
 
 
@@ -111,6 +114,8 @@ begin
   LevelColors[2] := clBlack;
   LevelColors[3] := clBlack;
   LevelColors[4] := clBlack;
+  
+  Caption := Caption + #32 + APP_VERSION;
 
   DarInfo := GetDarVersion;
   if DarInfo.version='-' then
@@ -513,6 +518,8 @@ begin
   if DarInfo.version = '-'
      then AboutForm.DarVersionLabel.Caption := '* No DAR executable found! *'
      else AboutForm.DarVersionLabel.Caption := 'Using DAR version ' + DarInfo.version;
+  Aboutform.VersionLabel.Caption := Aboutform.VersionLabel.Caption + APP_VERSION;
+  Aboutform.SVNLabel.Caption := Aboutform.SVNLabel.Caption + SVN_REVISION;
   AboutForm.ShowModal;
   Aboutform.Free;
 end;

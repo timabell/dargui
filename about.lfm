@@ -285,12 +285,12 @@ object AboutForm: TAboutForm
     }
     Transparent = False
   end
-  object Label1: TLabel
+  object VersionLabel: TLabel
     Left = 176
     Height = 17
     Top = 32
-    Width = 159
-    Caption = 'Version number: 0.1.0'
+    Width = 124
+    Caption = 'Version number: '
     Font.Style = [fsBold]
     ParentColor = False
   end
@@ -298,8 +298,8 @@ object AboutForm: TAboutForm
     Left = 176
     Height = 17
     Top = 56
-    Width = 128
-    Caption = 'SVN Revision: 44'
+    Width = 110
+    Caption = 'SVN Revision: '
     ParentColor = False
   end
   object Label3: TLabel

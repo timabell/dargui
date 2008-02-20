@@ -16,7 +16,7 @@ type
     Bevel1: TBevel;
     BitBtn1: TBitBtn;
     Image1: TImage;
-    Label1: TLabel;
+    VersionLabel: TLabel;
     SVNLabel: TLabel;
     Label3: TLabel;
     Label4: TLabel;

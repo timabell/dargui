@@ -285,19 +285,19 @@ LazarusResources.Add('TAboutForm','FORMDATA',[
   +'N3'#231#9#217'U'#171#248'i'#242#236#25#160'oZ'#183#184'>uW'#223'4'#130'('#31
   +#249#167#150#131#173#233#242#182#148#128#251#188#226#159#7'@'#218#233#246#255
   +#167#214#12'*PO'#178'x'#0#0#0#0'IEND'#174'B`'#130#11'Transparent'#8#0#0#6'TL'
-  +'abel'#6'Label1'#4'Left'#3#176#0#6'Height'#2#17#3'Top'#2' '#5'Width'#3#159#0
-  +#7'Caption'#6#21'Version number: 0.1.0'#10'Font.Style'#11#6'fsBold'#0#11'Par'
-  +'entColor'#8#0#0#6'TLabel'#8'SVNLabel'#4'Left'#3#176#0#6'Height'#2#17#3'Top'
-  +#2'8'#5'Width'#3#128#0#7'Caption'#6#16'SVN Revision: 44'#11'ParentColor'#8#0
-  +#0#6'TLabel'#6'Label3'#4'Left'#3#176#0#6'Height'#2#17#3'Top'#3#144#0#5'Width'
-  +#2'b'#7'Caption'#6#12'Licence: GPL'#11'ParentColor'#8#0#0#6'TLabel'#6'Label4'
-  +#4'Left'#3#176#0#6'Height'#2#17#3'Top'#2'x'#5'Width'#3#163#0#7'Caption'#6#21
-  +'Author: Malcolm Poole'#11'ParentColor'#8#0#0#6'TLabel'#6'Label5'#4'Left'#2
-  +#27#6'Height'#2'0'#3'Top'#3#176#0#5'Width'#3']'#1#8'AutoSize'#8#7'Caption'#6
-  +'>DarGUI has been developed using Freepascal and the Lazarus IDE'#11'ParentC'
-  +'olor'#8#8'WordWrap'#9#0#0#6'TBevel'#6'Bevel1'#4'Left'#2#5#6'Height'#2#3#3'T'
-  +'op'#3#2#1#5'Width'#3#129#1#0#0#6'TLabel'#15'DarVersionLabel'#4'Left'#3#176#0
-  +#6'Height'#2#17#3'Top'#2'P'#5'Width'#2'x'#7'Caption'#6#15'DarVersionLabel'#11
+  +'abel'#12'VersionLabel'#4'Left'#3#176#0#6'Height'#2#17#3'Top'#2' '#5'Width'#2
+  +'|'#7'Caption'#6#16'Version number: '#10'Font.Style'#11#6'fsBold'#0#11'Paren'
+  +'tColor'#8#0#0#6'TLabel'#8'SVNLabel'#4'Left'#3#176#0#6'Height'#2#17#3'Top'#2
+  +'8'#5'Width'#2'n'#7'Caption'#6#14'SVN Revision: '#11'ParentColor'#8#0#0#6'TL'
+  +'abel'#6'Label3'#4'Left'#3#176#0#6'Height'#2#17#3'Top'#3#144#0#5'Width'#2'b'
+  +#7'Caption'#6#12'Licence: GPL'#11'ParentColor'#8#0#0#6'TLabel'#6'Label4'#4'L'
+  +'eft'#3#176#0#6'Height'#2#17#3'Top'#2'x'#5'Width'#3#163#0#7'Caption'#6#21'Au'
+  +'thor: Malcolm Poole'#11'ParentColor'#8#0#0#6'TLabel'#6'Label5'#4'Left'#2#27
+  +#6'Height'#2'0'#3'Top'#3#176#0#5'Width'#3']'#1#8'AutoSize'#8#7'Caption'#6'>D'
+  +'arGUI has been developed using Freepascal and the Lazarus IDE'#11'ParentCol'
+  +'or'#8#8'WordWrap'#9#0#0#6'TBevel'#6'Bevel1'#4'Left'#2#5#6'Height'#2#3#3'Top'
+  +#3#2#1#5'Width'#3#129#1#0#0#6'TLabel'#15'DarVersionLabel'#4'Left'#3#176#0#6
+  +'Height'#2#17#3'Top'#2'P'#5'Width'#2'x'#7'Caption'#6#15'DarVersionLabel'#11
   +'ParentColor'#8#0#0#6'TLabel'#9'HotLabel1'#4'Left'#2#27#6'Height'#2#17#3'Top'
   +#3#221#0#5'Width'#3#244#0#7'Caption'#6'"http://www.lazarus.freepascal.org/'
   +#10'Font.Color'#4#18')'#236#0#11'ParentColor'#8#7'OnClick'#7#14'HotLabel1Cli'
