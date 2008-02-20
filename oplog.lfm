@@ -5,7 +5,6 @@ object OpLogForm: TOpLogForm
   Width = 717
   HorzScrollBar.Page = 716
   VertScrollBar.Page = 386
-  ActiveControl = OpSelector
   Caption = 'Logs'
   ClientHeight = 387
   ClientWidth = 717
@@ -102,22 +101,29 @@ object OpLogForm: TOpLogForm
   OnDestroy = FormDestroy
   Position = poMainFormCenter
   object OpSelectPanel: TPanel
-    Height = 50
+    Height = 160
     Width = 717
     Align = alTop
-    ClientHeight = 50
+    ClientHeight = 160
     ClientWidth = 717
     TabOrder = 0
-    object OpSelector: TComboBox
+    object Label1: TLabel
       Left = 8
-      Height = 25
-      Top = 10
-      Width = 699
-      AutoCompleteText = [cbactEndOfLineComplete, cbactSearchAscending]
-      MaxLength = 65535
-      OnSelect = OpSelectorSelect
-      Style = csDropDownList
+      Height = 17
+      Top = 14
+      Width = 85
+      Caption = 'Commands'
+      ParentColor = False
+    end
+    object OpList: TListBox
+      Left = 8
+      Height = 120
+      Top = 32
+      Width = 700
+      OnSelectionChange = OpListSelectionChange
+      PopupMenu = OpListPopupMenu
       TabOrder = 0
+      TopIndex = -1
     end
   end
   object ButtonPanel: TPanel
@@ -140,17 +146,17 @@ object OpLogForm: TOpLogForm
     end
   end
   object ContentPanel: TPanel
-    Height = 286
-    Top = 50
+    Height = 176
+    Top = 160
     Width = 717
     Align = alClient
     Caption = 'ContentPanel'
-    ClientHeight = 286
+    ClientHeight = 176
     ClientWidth = 717
     TabOrder = 2
     object ContentMemo: TMemo
       Left = 6
-      Height = 274
+      Height = 164
       Top = 6
       Width = 705
       Align = alClient
@@ -158,6 +164,18 @@ object OpLogForm: TOpLogForm
       ReadOnly = True
       ScrollBars = ssAutoBoth
       TabOrder = 0
+    end
+  end
+  object OpListPopupMenu: TPopupMenu
+    left = 181
+    top = 99
+    object miCopyCommand: TMenuItem
+      Caption = 'Copy Selected'
+      OnClick = miCopyCommandClick
+    end
+    object miExecuteCommand: TMenuItem
+      Caption = 'Execute'
+      OnClick = miExecuteCommandClick
     end
   end
 end
