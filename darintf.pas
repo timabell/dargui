@@ -434,6 +434,7 @@ begin
               end;
          end;
       end;
+      TV.AlphaSort;
   Result := Proc.ExitStatus;
   M.Free;
   Proc.Free;

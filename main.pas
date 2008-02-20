@@ -59,6 +59,8 @@ type
     procedure ArchiveTreeViewAdvancedCustomDrawItem(Sender: TCustomTreeView;
       Node: TTreeNode; State: TCustomDrawState; Stage: TCustomDrawStage;
       var PaintImages, DefaultDraw: Boolean);
+    procedure ArchiveTreeViewCompare ( Sender: TObject; Node1,
+      Node2: TTreeNode; var Compare: Integer ) ;
     procedure ArchiveTreeViewDeletion(Sender: TObject; Node: TTreeNode);
     procedure ArchiveTreeViewSelectionChanged(Sender: TObject);
     procedure miArchiveInformationClick(Sender: TObject);
@@ -442,6 +444,43 @@ begin
             TrimText(TFileData(Node.Data).item[SEGGROUP], SEGGROUP, 0));
   Sender.Canvas.TextOut(StatusHdr.Left,DisplayRect.Top+1,
             TrimText(TFileData(Node.Data).item[SEGSTATUS], SEGSTATUS, 0));
+end;
+
+
+{ Adapted from treeview.inc [ Lazarus Component Library ] }
+procedure TMainForm.ArchiveTreeViewCompare ( Sender: TObject; Node1,
+  Node2: TTreeNode; var Compare: Integer ) ;
+  
+ {Inline function returns true if Node is a File}
+  function IsAFile(  Node : TTreeNode  ) : boolean;
+  begin
+     Result := (Pos('-----', TFileData(Node.Data).item[SEGSTATUS]) < 1);
+  end;
+
+     {Inline function returns true if Node is a Folder}
+  function IsAFolder(  Node : TTreeNode  ) : boolean;
+  begin
+     Result := (Pos('-----', TFileData(Node.Data).item[SEGSTATUS]) > 0);
+  end;
+
+
+begin
+     {Files before folders}
+  if(   IsAFile(  Node1  ) and IsAFolder(  Node2  )   ) then
+  begin
+     Compare := 1;
+     Exit;
+  end;
+
+     {Folder after file}
+  if(   IsAFolder(  Node1  ) and IsAFile(  Node2  )   ) then
+  begin
+     Compare := -1;
+     Exit;
+  end;
+
+     {Nodes are of the same type, so do a normal alpha sort}
+  Compare := AnsiCompareStr(Node1.Text,Node2.Text);
 end;
 
 procedure TMainForm.miFileOpenClick(Sender: TObject);

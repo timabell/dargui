@@ -1,7 +1,7 @@
 object MainForm: TMainForm
-  Left = 123
+  Left = 129
   Height = 605
-  Top = 83
+  Top = 104
   Width = 893
   HorzScrollBar.Page = 892
   VertScrollBar.Page = 574
@@ -126,6 +126,7 @@ object MainForm: TMainForm
     SortType = stText
     TabOrder = 0
     OnAdvancedCustomDrawItem = ArchiveTreeViewAdvancedCustomDrawItem
+    OnCompare = ArchiveTreeViewCompare
     OnDeletion = ArchiveTreeViewDeletion
     OnSelectionChanged = ArchiveTreeViewSelectionChanged
     Options = [tvoAllowMultiselect, tvoAutoItemHeight, tvoHotTrack, tvoKeepCollapsedNodes, tvoReadOnly, tvoRowSelect, tvoShowButtons, tvoShowLines, tvoToolTips]
