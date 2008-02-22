@@ -274,7 +274,7 @@ begin
                             + ' -v'
                             //+ ' -e' // for debugging
                             + DarOptions
-                            + ' -Q';
+                            {+ ' -Q'};
                             
      BatchFile.Insert(1, '# ' + Command);
      BatchFile.SaveToFile(ArchiveForm.BatchFile.Text);
