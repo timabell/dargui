@@ -1,9 +1,13 @@
 #!/bin/bash
 
-CommandLine=$@
+p=$@
 
-echo $CommandLine
-$CommandLine
+CommandLine=${p%;*}
+Logfile=${p#*;}
+
+echo $CommandLine > $Logfile
+
+$CommandLine | /home/malcolm/lazarus/dargui/darlogger $Logfile
   
 DarStatus=$?
   
@@ -17,3 +21,5 @@ read anyinput
 exit $DarStatus
 
 # end.
+
+

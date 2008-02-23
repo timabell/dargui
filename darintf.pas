@@ -46,7 +46,8 @@ const
    TEMP_DIRECTORY = '/tmp/dargui/';
    LOGFILE_BASE = 'dargui.log.';
    BATCHFILE_BASE = 'dargui.batch.';
-   TOOLDIR           = '/usr/share/dargui/';
+//   TOOLDIR           = '/usr/share/dargui/';
+TOOLDIR = '/home/malcolm/lazarus/dargui/';
    RUNSCRIPT         = 'rundar.sh';
    
 
@@ -454,14 +455,15 @@ var
 begin
   Result := -1;
   LogFile := GetNextFileName(TEMP_DIRECTORY + LOGFILE_BASE);
-  writeln(LogFile);
   Proc := TProcess.Create(Application);
   try
     Proc.CommandLine := TerminalCommand
                              +  ' -geometry 100x15+' + IntToStr(x) + '+' + IntToStr(y)
                              + ' -T "DarGUI: ' + Title
-                             + '" -l -lf ' + LogFile
-                             + ' -e ' + RunscriptPath + RUNSCRIPT + #32 + Cmd ;
+                             + '" '
+                            // + '" -l -lf ' + LogFile
+                             + ' -e ' + RunscriptPath + RUNSCRIPT + #32  + Cmd //;
+                             + ';' + Logfile;
     Proc.Options := Proc.Options + [poStderrToOutPut];
     Proc.Execute;
     While Proc.Running do

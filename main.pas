@@ -289,7 +289,8 @@ begin
           OpenArchive(CurrentArchive, ArchiveTreeView);
           EnableArchiveMenus;
           OpenDialog.FileName := CurrentArchive;
-          OpLogForm.AddCommand(Command);
+          //OpLogForm.AddCommand(Command);
+          OpLogForm.RefreshOpList;
         end;
      if ArchiveForm.SaveScriptCheckBox.Checked
         then if ArchiveForm.ScriptFilenameBox.Text <> ''
@@ -618,7 +619,8 @@ begin
               batch.SaveToFile(batchfile);
               CommandLine := (DAR_EXECUTABLE + ' -x "' + CurrentArchive + '" -B "' + batchfile + '" ' + daroptions);
               RunDarCommand(CommandLine, 'restoring files...', Left+100, Top+150);
-              OpLogForm.AddCommand(CommandLine);
+              //OpLogForm.AddCommand(CommandLine);
+              OpLogForm.RefreshOpList;
               //TODO: check that some files do need to be restored: ie not all excluded by overwrite rule
             end
             else MessageMemo.Lines.Add('Operation aborted: Restore selected files' );

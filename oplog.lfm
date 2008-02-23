@@ -5,6 +5,7 @@ object OpLogForm: TOpLogForm
   Width = 717
   HorzScrollBar.Page = 716
   VertScrollBar.Page = 386
+  ActiveControl = CloseButton
   Caption = 'Logs'
   ClientHeight = 387
   ClientWidth = 717

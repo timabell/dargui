@@ -26,7 +26,6 @@ type
     procedure FormCreate ( Sender: TObject ) ;
     procedure FormDestroy ( Sender: TObject ) ;
     procedure OpListSelectionChange ( Sender: TObject; User: boolean ) ;
-    procedure OpSelectorSelect ( Sender: TObject ) ;
     procedure miCopyCommandClick ( Sender: TObject ) ;
     procedure miExecuteCommandClick ( Sender: TObject ) ;
   private
@@ -50,7 +49,7 @@ uses darintf;
 procedure TOpLogForm.FormCreate ( Sender: TObject ) ;
 begin
   LogList := TStringList.Create;
-  //RefreshOpList;
+  RefreshOpList;
 end;
 
 procedure TOpLogForm.FormDestroy ( Sender: TObject ) ;
@@ -59,22 +58,12 @@ begin
 end;
 
 procedure TOpLogForm.OpListSelectionChange ( Sender: TObject; User: boolean ) ;
-var
-  x: Integer;
 begin
   if LogList.Count > 0 then
      begin
       ContentMemo.Lines.LoadFromFile(LogList.Strings[OpList.ItemIndex]);
       ContentMemo.Lines.Delete(0);
-      for x := 1 to 3 do
-          ContentMemo.Lines.Delete( ContentMemo.Lines.Count-1 );
      end;
-end;
-
-procedure TOpLogForm.OpSelectorSelect ( Sender: TObject ) ;
-var
-  x: Integer;
-begin
 end;
 
 procedure TOpLogForm.miCopyCommandClick ( Sender: TObject ) ;
@@ -93,7 +82,6 @@ var
  fn: string;
  topLine: string;
  fileHandle: TextFile;
- LogNum: string;
  LogfileMask: String;
  begin
   LogfileMask := TEMP_DIRECTORY + LOGFILE_BASE +'*';
@@ -119,6 +107,8 @@ var
      begin
 //       OpSelector.ItemIndex := LogList.Count-1;
 //       OpSelectorSelect(nil);
+       OpList.ItemIndex := LogList.Count-1;
+       OpListSelectionChange(nil, false);
      end;
   end;
 end;
