@@ -23,6 +23,7 @@ type
     ButtonPanel: TPanel;
     ContentPanel: TPanel;
     OpListPopupMenu: TPopupMenu;
+    Splitter1: TSplitter;
     procedure FormCreate ( Sender: TObject ) ;
     procedure FormDestroy ( Sender: TObject ) ;
     procedure OpListSelectionChange ( Sender: TObject; User: boolean ) ;
