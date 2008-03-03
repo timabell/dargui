@@ -13,10 +13,13 @@ type
   { TMainForm }
 
   TMainForm = class(TForm)
-    BitBtn1: TBitBtn;
-    BitBtn2: TBitBtn;
+    tbDiff: TBitBtn;
+    tbOpen: TBitBtn;
+    tbCreate: TBitBtn;
+    tbIsolate: TBitBtn;
     MenuBreak2: TMenuItem;
     MenuHelp: TMenuItem;
+    miIsolate: TMenuItem;
     miOperationlogs: TMenuItem;
     miHelpAbout: TMenuItem;
     miArchiveInformation: TMenuItem;
@@ -72,8 +75,10 @@ type
     procedure Splitter3ChangeBounds(Sender: TObject);
     procedure miHelpAboutClick ( Sender: TObject ) ;
     procedure miHideMessagesClick(Sender: TObject);
+    procedure miIsolateClick ( Sender: TObject ) ;
     procedure miOperationlogsClick ( Sender: TObject ) ;
     procedure miRestoreAllClick(Sender: TObject);
+    procedure tbDiffClick ( Sender: TObject ) ;
     procedure tvMenuRestoreSelectedClick(Sender: TObject);
     procedure EnableArchiveMenus;
   private
@@ -101,7 +106,7 @@ const
 
 implementation
 
-uses selectrestore, archive, archiveinfo, About, oplog;
+uses selectrestore, archive, archiveinfo, About, oplog, isolate, diff;
 
 { TMainForm }
 
@@ -533,6 +538,31 @@ begin
   MessageBoxSplitter.Visible := MessagePanel.Visible;
 end;
 
+procedure TMainForm.miIsolateClick ( Sender: TObject ) ;
+var
+  IsolateForm: TIsolateForm;
+  Cmd: String;
+begin
+  IsolateForm := TIsolateForm.Create(Self);
+  try
+    if CurrentArchive <> ''
+       then
+       begin
+         IsolateForm.ArchiveBox.Text := CurrentArchive;
+         IsolateForm.CatalogueBox.Text :=  CurrentArchive + '_cat';
+       end;
+    if IsolateForm.ShowModal = mrOK then
+       begin
+         Cmd := DAR_EXECUTABLE + ' -C ' + IsolateForm.CatalogueBox.Text
+                       + ' -A ' + IsolateForm.ArchiveBox.Text + ' -v';
+         RunDarCommand(Cmd, 'DarGUI: Isolating catalogue...', Left+100, Top+150);
+         OpLogForm.AddCommand(Cmd);
+       end;
+  finally
+    IsolateForm.Free;
+  end;
+end;
+
 procedure TMainForm.miOperationlogsClick ( Sender: TObject ) ;
 begin
   OpLogForm.ShowOnTop;
@@ -565,6 +595,21 @@ begin
         end
         else MessageMemo.Lines.Add('Operation aborted: Restore selected files' );
   RestoreForm.Free;
+end;
+
+procedure TMainForm.tbDiffClick ( Sender: TObject ) ;
+var
+  DiffForm: TDiffForm;
+begin
+  DiffForm := TDiffForm.Create(Self);
+  try
+    if CurrentArchive <> ''
+       then DiffForm.ArchiveBox.Text := CurrentArchive;
+    DiffForm.BaseDirBox.Text := SysUtils.GetEnvironmentVariable('HOME');
+    DiffForm.ShowModal;
+  finally
+    DiffForm.Free;
+  end;
 end;
 
 

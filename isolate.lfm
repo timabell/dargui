@@ -1,0 +1,117 @@
+object IsolateForm: TIsolateForm
+  Left = 494
+  Height = 247
+  Top = 227
+  Width = 479
+  HorzScrollBar.Page = 478
+  VertScrollBar.Page = 246
+  ActiveControl = ArchiveBox
+  BorderIcons = [biSystemMenu]
+  BorderStyle = bsDialog
+  Caption = 'Isolate archive catalogue'
+  ClientHeight = 247
+  ClientWidth = 479
+  Position = poOwnerFormCenter
+  object MainPanel: TPanel
+    Height = 181
+    Width = 479
+    Align = alClient
+    ClientHeight = 181
+    ClientWidth = 479
+    TabOrder = 0
+    object ArchiveBox: TLabeledEdit
+      Left = 17
+      Height = 23
+      Top = 48
+      Width = 335
+      EditLabel.Left = 17
+      EditLabel.Height = 17
+      EditLabel.Top = 28
+      EditLabel.Width = 54
+      EditLabel.Caption = 'Archive'
+      EditLabel.ParentColor = False
+      ParentColor = False
+      TabOrder = 0
+      OnExit = OnEditBoxExit
+    end
+    object CatalogueBox: TLabeledEdit
+      Left = 17
+      Height = 23
+      Top = 104
+      Width = 335
+      EditLabel.Left = 17
+      EditLabel.Height = 17
+      EditLabel.Top = 84
+      EditLabel.Width = 135
+      EditLabel.Caption = 'Save catalogue as'
+      EditLabel.ParentColor = False
+      ParentColor = False
+      TabOrder = 2
+      OnExit = OnEditBoxExit
+    end
+    object ArchiveButton: TButton
+      Left = 368
+      Height = 25
+      Top = 48
+      Width = 90
+      Caption = 'Browse'
+      OnClick = ArchiveButtonClick
+      TabOrder = 1
+    end
+    object CatalogueButton: TButton
+      Left = 368
+      Height = 25
+      Top = 104
+      Width = 90
+      Caption = 'Browse'
+      OnClick = CatalogueButtonClick
+      TabOrder = 3
+    end
+  end
+  object OKCancelPanel: TPanel
+    Height = 66
+    Top = 181
+    Width = 479
+    Align = alBottom
+    ClientHeight = 66
+    ClientWidth = 479
+    TabOrder = 1
+    object OKButton: TBitBtn
+      Left = 112
+      Height = 30
+      Top = 21
+      Width = 100
+      Caption = '&OK'
+      Default = True
+      Kind = bkOK
+      NumGlyphs = 0
+      OnClick = OKButtonClick
+      TabOrder = 0
+    end
+    object CancelButton: TBitBtn
+      Left = 248
+      Height = 30
+      Top = 21
+      Width = 100
+      Cancel = True
+      Caption = 'Cancel'
+      Kind = bkCancel
+      ModalResult = 2
+      NumGlyphs = 0
+      TabOrder = 1
+    end
+  end
+  object OpenDialog: TOpenDialog
+    Title = 'Open existing file'
+    Filter = 'DAR archives|*.*.dar'
+    Options = [ofFileMustExist, ofEnableSizing, ofViewDetail]
+    left = 408
+    top = 8
+  end
+  object SaveDialog: TSaveDialog
+    Title = 'Save file as'
+    Options = [ofNoTestFileCreate, ofEnableSizing]
+    left = 440
+    top = 8
+  end
+end

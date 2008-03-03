@@ -80,6 +80,7 @@ type
   function GetArchiveInformation (fn: TFilename; Memo: TMemo): integer;
   
   procedure WriteArchiveScript(fn: TFilename);
+  function TrimToBase(fn: string): string;
   
   procedure GetDefaultBrowser(var Browser, Params: string);
   
@@ -361,15 +362,7 @@ var
 begin
   TV.Items.Clear;
   Result := -1;
-  fn := Trim(fn);
-  x := Pos('.dar',fn);
-  if x = Length(fn)-3 then
-     begin
-     x := x-1;
-       while fn[x] <> '.' do
-             Dec(x);
-       Delete(fn,x,100);
-     end;
+  fn := TrimToBase(fn);
   Proc := TProcess.Create(nil);
   Output := TStringList.Create;
   M := TMemoryStream.Create;
@@ -574,7 +567,24 @@ begin
       Proc.Free;
       end;
  end;
- 
+
+function TrimToBase(fn: string): string;
+var
+  x: LongInt;
+begin
+  Result := fn;
+  fn := Trim(fn);
+  x := Pos('.dar',fn);
+  if x = Length(fn)-3 then
+     begin
+     x := x-1;
+       while fn[x] <> '.' do
+             Dec(x);
+       Delete(fn,x,100);
+       Result := fn;
+     end;
+end;
+
 // GetDefaultBrowser taken from LazConf.pp [ Lazarus IDE ]
 procedure GetDefaultBrowser(var Browser, Params: string);
 

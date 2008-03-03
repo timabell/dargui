@@ -1,0 +1,46 @@
+{ This is an automatically generated lazarus resource file }
+
+LazarusResources.Add('TDiffForm','FORMDATA',[
+  'TPF0'#9'TDiffForm'#8'DiffForm'#4'Left'#3#204#1#6'Height'#3'$'#1#3'Top'#3#6#1
+  +#5'Width'#3'Q'#2#18'HorzScrollBar.Page'#3'P'#2#18'VertScrollBar.Page'#3'#'#1
+  +#7'Caption'#6#30'Compare archive and filesystem'#12'ClientHeight'#3'$'#1#11
+  +'ClientWidth'#3'Q'#2#8'Position'#7#17'poOwnerFormCenter'#0#6'TPanel'#11'Dial'
+  +'ogPanel'#6'Height'#3#184#0#5'Width'#3'Q'#2#5'Align'#7#8'alClient'#12'Client'
+  +'Height'#3#184#0#11'ClientWidth'#3'Q'#2#8'TabOrder'#2#2#0#12'TLabeledEdit'#10
+  +'ArchiveBox'#4'Left'#2#15#6'Height'#2#23#3'Top'#2'#'#5'Width'#3#169#1#14'Edi'
+  +'tLabel.Left'#2#15#16'EditLabel.Height'#2#17#13'EditLabel.Top'#2#15#15'EditL'
+  +'abel.Width'#2'6'#17'EditLabel.Caption'#6#7'Archive'#21'EditLabel.ParentColo'
+  +'r'#8#11'ParentColor'#8#8'TabOrder'#2#0#0#0#12'TLabeledEdit'#10'BaseDirBox'#4
+  +'Left'#2#15#6'Height'#2#23#3'Top'#2'h'#5'Width'#3#169#1#14'EditLabel.Left'#2
+  +#15#16'EditLabel.Height'#2#17#13'EditLabel.Top'#2'T'#15'EditLabel.Width'#2'k'
+  +#17'EditLabel.Caption'#6#14'Base Directory'#21'EditLabel.ParentColor'#8#11'P'
+  +'arentColor'#8#8'TabOrder'#2#2#0#0#7'TButton'#13'BrowseArchive'#4'Left'#3#209
+  +#1#6'Height'#2#30#3'Top'#2'"'#5'Width'#2'Z'#7'Caption'#6#6'Browse'#7'OnClick'
+  +#7#18'BrowseArchiveClick'#8'TabOrder'#2#1#0#0#7'TButton'#15'BrowseDirectory'
+  +#4'Left'#3#209#1#6'Height'#2#30#3'Top'#2'h'#5'Width'#2'Z'#7'Caption'#6#6'Bro'
+  +'wse'#7'OnClick'#7#20'BrowseDirectoryClick'#8'TabOrder'#2#3#0#0#9'TCheckBox'
+  +#12'VerboseCheck'#4'Left'#2#15#6'Height'#2#24#3'Top'#3#144#0#5'Width'#3#140#0
+  +#7'Caption'#6#15' Verbose output'#7'Checked'#9#5'State'#7#9'cbChecked'#8'Tab'
+  +'Order'#2#4#0#0#0#6'TPanel'#11'ResultPanel'#6'Height'#3#184#0#5'Width'#3'Q'#2
+  +#5'Align'#7#8'alClient'#7'Caption'#6#11'ResultPanel'#12'ClientHeight'#3#184#0
+  +#11'ClientWidth'#3'Q'#2#8'TabOrder'#2#3#7'Visible'#8#0#6'TLabel'#6'Label1'#4
+  +'Left'#2#8#6'Height'#2#17#3'Top'#2#16#5'Width'#2'7'#7'Caption'#6#7'Results'
+  +#11'ParentColor'#8#0#0#8'TListBox'#8'ListBox1'#4'Left'#2#6#6'Height'#3#138#0
+  +#3'Top'#2'('#5'Width'#3'E'#2#5'Align'#7#8'alBottom'#20'BorderSpacing.Around'
+  +#2#5#8'TabOrder'#2#0#8'TopIndex'#2#255#0#0#0#6'TPanel'#17'DialogButtonPanel'
+  +#6'Height'#2'2'#3'Top'#3#242#0#5'Width'#3'Q'#2#5'Align'#7#8'alBottom'#12'Cli'
+  +'entHeight'#2'2'#11'ClientWidth'#3'Q'#2#8'TabOrder'#2#0#0#7'TBitBtn'#8'OKBut'
+  +'ton'#4'Left'#3#200#0#6'Height'#2#30#3'Top'#2#11#5'Width'#2'Z'#7'Caption'#6#3
+  +'&OK'#7'Default'#9#4'Kind'#7#4'bkOK'#9'NumGlyphs'#2#0#8'TabOrder'#2#0#0#0#7
+  +'TBitBtn'#12'CancelButton'#4'Left'#3'8'#1#6'Height'#2#30#3'Top'#2#11#5'Width'
+  +#2'Z'#6'Cancel'#9#7'Caption'#6#6'Cancel'#4'Kind'#7#8'bkCancel'#11'ModalResul'
+  +'t'#2#2#9'NumGlyphs'#2#0#8'TabOrder'#2#1#0#0#0#6'TPanel'#17'ResultButtonPane'
+  +'l'#6'Height'#2':'#3'Top'#3#184#0#5'Width'#3'Q'#2#5'Align'#7#8'alBottom'#12
+  +'ClientHeight'#2':'#11'ClientWidth'#3'Q'#2#8'TabOrder'#2#1#7'Visible'#8#0#7
+  +'TBitBtn'#11'CloseButton'#4'Left'#3#225#0#6'Height'#2#30#3'Top'#2#12#5'Width'
+  +#2'Z'#7'Caption'#6#6'&Close'#4'Kind'#7#7'bkClose'#11'ModalResult'#2#1#9'NumG'
+  +'lyphs'#2#0#8'TabOrder'#2#0#0#0#0#11'TOpenDialog'#10'OpenDialog'#5'Title'#6
+  +#18'Open existing file'#6'Filter'#6#20'DAR archives|*.*.dar'#4'left'#3#136#1
+  +#3'top'#2#16#0#0#22'TSelectDirectoryDialog'#21'SelectDirectoryDialog'#5'Titl'
+  +'e'#6#16'Select Directory'#4'left'#3#136#1#3'top'#2'X'#0#0#0
+]);
