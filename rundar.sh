@@ -5,6 +5,7 @@ p=$@
 CommandLine=${p%;*}
 Logfile=${p#*;}
 
+echo $CommandLine
 echo $CommandLine > $Logfile
 
 $CommandLine | /home/malcolm/lazarus/dargui/darlogger $Logfile
