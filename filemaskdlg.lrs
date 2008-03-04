@@ -7,10 +7,10 @@ LazarusResources.Add('TFileMaskDialog','FORMDATA',[
   +'ClientHeight'#3#148#0#11'ClientWidth'#3#22#1#6'OnShow'#7#8'FormShow'#0#6'TL'
   +'abel'#13'FileMaskLabel'#4'Left'#2'"'#6'Height'#2#17#3'Top'#2#24#5'Width'#2
   +'F'#7'Caption'#6#9'File mask'#12'FocusControl'#7#8'FileMask'#11'ParentColor'
-  +#8#0#0#7'TBitBtn'#8'OKButton'#4'Left'#2'8'#6'Height'#2#30#3'Top'#2'`'#5'Widt'
-  +'h'#2'K'#7'Caption'#6#3'&OK'#7'Default'#9#4'Kind'#7#4'bkOK'#11'ModalResult'#2
+  +#8#0#0#7'TBitBtn'#8'OKButton'#4'Left'#2'0'#6'Height'#2#30#3'Top'#2'`'#5'Widt'
+  +'h'#2'Z'#7'Caption'#6#3'&OK'#7'Default'#9#4'Kind'#7#4'bkOK'#11'ModalResult'#2
   +#1#9'NumGlyphs'#2#0#8'TabOrder'#2#1#0#0#7'TBitBtn'#12'CancelButton'#4'Left'#3
-  +#156#0#6'Height'#2#30#3'Top'#2'`'#5'Width'#2'K'#6'Cancel'#9#7'Caption'#6#6'C'
+  +#148#0#6'Height'#2#30#3'Top'#2'`'#5'Width'#2'Z'#6'Cancel'#9#7'Caption'#6#6'C'
   +'ancel'#4'Kind'#7#8'bkCancel'#11'ModalResult'#2#2#9'NumGlyphs'#2#0#8'TabOrde'
   +'r'#2#2#0#0#5'TEdit'#8'FileMask'#4'Left'#2'"'#6'Height'#2#23#3'Top'#2'-'#5'W'
   +'idth'#3#176#0#8'TabOrder'#2#0#4'Text'#6#8'FileMask'#0#0#0

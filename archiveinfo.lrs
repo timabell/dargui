@@ -52,8 +52,8 @@ LazarusResources.Add('TInformationForm','FORMDATA',[
   +'tQtQtQtQtQt#2#3#4#x#0.8#5#6#7#8",'#10'"QtQtQtQtQtQtQt#9a.a#aaabacQtQtQt"};'
   +#10#0#6'TPanel'#11'ButtonPanel'#6'Height'#2'2'#3'Top'#3#229#0#5'Width'#3#253
   +#1#5'Align'#7#8'alBottom'#12'ClientHeight'#2'2'#11'ClientWidth'#3#253#1#8'Ta'
-  +'bOrder'#2#0#0#7'TBitBtn'#8'OkButton'#4'Left'#3#216#0#6'Height'#2#30#3'Top'#2
-  +#11#5'Width'#2'K'#7'Caption'#6#3'&OK'#7'Default'#9#4'Kind'#7#4'bkOK'#11'Moda'
+  +'bOrder'#2#0#0#7'TBitBtn'#8'OkButton'#4'Left'#3#208#0#6'Height'#2#30#3'Top'#2
+  +#11#5'Width'#2'Z'#7'Caption'#6#3'&OK'#7'Default'#9#4'Kind'#7#4'bkOK'#11'Moda'
   +'lResult'#2#1#9'NumGlyphs'#2#0#8'TabOrder'#2#0#0#0#0#6'TPanel'#9'MemoPanel'#6
   +'Height'#3#229#0#5'Width'#3#253#1#5'Align'#7#8'alClient'#12'ClientHeight'#3
   +#229#0#11'ClientWidth'#3#253#1#8'TabOrder'#2#1#0#5'TMemo'#15'InformationMemo'

@@ -20,10 +20,10 @@ object FileMaskDialog: TFileMaskDialog
     ParentColor = False
   end
   object OKButton: TBitBtn
-    Left = 56
+    Left = 48
     Height = 30
     Top = 96
-    Width = 75
+    Width = 90
     Caption = '&OK'
     Default = True
     Kind = bkOK
@@ -32,10 +32,10 @@ object FileMaskDialog: TFileMaskDialog
     TabOrder = 1
   end
   object CancelButton: TBitBtn
-    Left = 156
+    Left = 148
     Height = 30
     Top = 96
-    Width = 75
+    Width = 90
     Cancel = True
     Caption = 'Cancel'
     Kind = bkCancel

@@ -122,19 +122,19 @@ object ExtractSelectedForm: TExtractSelectedForm
       Width = 605
     end
     object OkButton: TBitBtn
-      Left = 216
+      Left = 200
       Height = 30
       Top = 206
-      Width = 84
+      Width = 90
       Caption = '&OK'
       Default = True
       Kind = bkOK
       NumGlyphs = 0
       OnClick = OkButtonClick
-      TabOrder = 0
+      TabOrder = 3
     end
     object CancelButton: TBitBtn
-      Left = 326
+      Left = 310
       Height = 30
       Top = 206
       Width = 90
@@ -143,7 +143,7 @@ object ExtractSelectedForm: TExtractSelectedForm
       Kind = bkCancel
       ModalResult = 2
       NumGlyphs = 0
-      TabOrder = 1
+      TabOrder = 4
     end
     object RestoreDirectoryEdit: TDirectoryEdit
       Left = 13
@@ -154,7 +154,7 @@ object ExtractSelectedForm: TExtractSelectedForm
       ButtonWidth = 23
       NumGlyphs = 1
       ParentColor = False
-      TabOrder = 2
+      TabOrder = 0
     end
     object FlatRestoreCheckBox: TCheckBox
       Left = 403
@@ -162,7 +162,7 @@ object ExtractSelectedForm: TExtractSelectedForm
       Top = 30
       Width = 147
       Caption = 'Ignore directories'
-      TabOrder = 3
+      TabOrder = 1
     end
     object OverwriteOptions: TRadioGroup
       Left = 13
@@ -187,7 +187,7 @@ object ExtractSelectedForm: TExtractSelectedForm
         'Confirm before overwriting'
         'Do not overwrite existing files'
       )
-      TabOrder = 4
+      TabOrder = 2
     end
   end
 end

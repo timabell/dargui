@@ -114,7 +114,7 @@ object ArchiveForm: TArchiveForm
       Left = 216
       Height = 30
       Top = 21
-      Width = 75
+      Width = 90
       Caption = '&OK'
       Default = True
       Kind = bkOK
@@ -126,7 +126,7 @@ object ArchiveForm: TArchiveForm
       Left = 352
       Height = 30
       Top = 21
-      Width = 75
+      Width = 90
       Cancel = True
       Caption = 'Cancel'
       Kind = bkCancel
@@ -152,8 +152,8 @@ object ArchiveForm: TArchiveForm
       TabOrder = 0
       object ArchivePage: TPage
         Caption = 'Archive'
-        ClientWidth = 616
-        ClientHeight = 384
+        ClientWidth = 612
+        ClientHeight = 350
         object Label1: TLabel
           Left = 19
           Height = 17
@@ -191,41 +191,41 @@ object ArchiveForm: TArchiveForm
           Height = 23
           Top = 84
           Width = 350
-          TabOrder = 0
+          TabOrder = 1
           Text = 'ArchiveDirectory'
         end
         object ArchiveDirButton: TButton
           Left = 389
-          Height = 25
+          Height = 30
           Top = 84
-          Width = 75
+          Width = 90
           Caption = 'Browse'
           OnClick = ArchiveDirButtonClick
-          TabOrder = 1
+          TabOrder = 2
         end
         object BaseDirectory: TEdit
           Left = 19
           Height = 23
           Top = 148
           Width = 350
-          TabOrder = 2
+          TabOrder = 3
           Text = 'Edit1'
         end
         object BaseDirButton: TButton
           Left = 389
-          Height = 25
+          Height = 30
           Top = 148
-          Width = 75
+          Width = 90
           Caption = 'Browse'
           OnClick = BaseDirButtonClick
-          TabOrder = 3
+          TabOrder = 4
         end
         object ArchiveName: TEdit
           Left = 19
           Height = 24
           Top = 28
           Width = 222
-          TabOrder = 4
+          TabOrder = 0
         end
         object SaveScriptCheckBox: TCheckBox
           Left = 19
@@ -234,7 +234,7 @@ object ArchiveForm: TArchiveForm
           Width = 126
           Caption = 'Save script as'
           OnClick = SaveScriptCheckBoxClick
-          TabOrder = 5
+          TabOrder = 7
           Visible = False
         end
         object ScriptFilenameBox: TEdit
@@ -243,42 +243,42 @@ object ArchiveForm: TArchiveForm
           Top = 290
           Width = 350
           Enabled = False
-          TabOrder = 6
+          TabOrder = 8
           Visible = False
         end
         object ScriptFileButton: TButton
           Left = 389
-          Height = 25
+          Height = 30
           Top = 288
-          Width = 75
+          Width = 90
           Caption = 'Browse'
           Enabled = False
           OnClick = ScriptFileButtonClick
-          TabOrder = 7
+          TabOrder = 9
           Visible = False
         end
         object BatchFileButton: TButton
           Left = 389
-          Height = 25
+          Height = 30
           Top = 216
-          Width = 75
+          Width = 90
           Caption = 'Browse'
           OnClick = BatchFileButtonClick
-          TabOrder = 8
+          TabOrder = 6
         end
         object BatchFile: TEdit
           Left = 19
           Height = 23
           Top = 216
           Width = 350
-          TabOrder = 9
+          TabOrder = 5
           Text = 'Edit1'
         end
       end
       object DirectoriesPage: TPage
         Caption = 'Directories'
-        ClientWidth = 616
-        ClientHeight = 384
+        ClientWidth = 612
+        ClientHeight = 350
         object Label4: TLabel
           Left = 19
           Height = 17
@@ -299,24 +299,24 @@ object ArchiveForm: TArchiveForm
           Left = 19
           Height = 120
           Top = 42
-          Width = 506
+          Width = 483
           TabOrder = 0
           TopIndex = -1
         end
         object AddIncludeDirButton: TButton
-          Left = 533
-          Height = 25
+          Left = 510
+          Height = 30
           Top = 42
-          Width = 64
+          Width = 90
           Caption = 'Add'
           OnClick = AddIncludeDirButtonClick
           TabOrder = 1
         end
         object DelIncludeDirButton: TButton
-          Left = 533
-          Height = 25
-          Top = 78
-          Width = 64
+          Left = 510
+          Height = 30
+          Top = 80
+          Width = 90
           Caption = 'Remove'
           Enabled = False
           OnClick = DelIncludeDirButtonClick
@@ -326,26 +326,26 @@ object ArchiveForm: TArchiveForm
           Left = 19
           Height = 120
           Top = 218
-          Width = 506
+          Width = 483
           TabOrder = 3
           TopIndex = -1
         end
         object AddExcludeDirButton: TButton
           Tag = 1
-          Left = 533
-          Height = 25
+          Left = 510
+          Height = 30
           Top = 218
-          Width = 64
+          Width = 90
           Caption = 'Add'
           OnClick = AddIncludeDirButtonClick
           TabOrder = 4
         end
         object DelExcludeDirButton: TButton
           Tag = 1
-          Left = 533
-          Height = 25
-          Top = 254
-          Width = 64
+          Left = 510
+          Height = 30
+          Top = 256
+          Width = 90
           Caption = 'Remove'
           Enabled = False
           OnClick = DelIncludeDirButtonClick
@@ -354,8 +354,8 @@ object ArchiveForm: TArchiveForm
       end
       object FilesPage: TPage
         Caption = 'Files'
-        ClientWidth = 616
-        ClientHeight = 384
+        ClientWidth = 612
+        ClientHeight = 350
         object Label6: TLabel
           Left = 19
           Height = 17
@@ -385,82 +385,82 @@ object ArchiveForm: TArchiveForm
           Height = 120
           Top = 218
           Width = 467
-          TabOrder = 1
+          TabOrder = 4
           TopIndex = -1
         end
         object DelExcludeFileButton: TButton
           Tag = 1
           Left = 502
-          Height = 25
+          Height = 30
           Top = 312
           Width = 95
           Caption = 'Remove'
           Enabled = False
           OnClick = DelExcludeFileButtonClick
-          TabOrder = 2
+          TabOrder = 7
         end
         object AddExcludeFileButton: TButton
           Tag = 1
           Left = 502
-          Height = 25
+          Height = 30
           Top = 218
-          Width = 95
-          Caption = 'Add file'
-          OnClick = AddIncludeFileButtonClick
-          TabOrder = 3
-        end
-        object DelIncludeFileButton: TButton
-          Left = 502
-          Height = 25
-          Top = 136
-          Width = 95
-          Caption = 'Remove'
-          Enabled = False
-          OnClick = DelIncludeFileButtonClick
-          TabOrder = 4
-        end
-        object AddIncludeFileButton: TButton
-          Left = 502
-          Height = 25
-          Top = 42
           Width = 95
           Caption = 'Add file'
           OnClick = AddIncludeFileButtonClick
           TabOrder = 5
         end
+        object DelIncludeFileButton: TButton
+          Left = 502
+          Height = 30
+          Top = 136
+          Width = 95
+          Caption = 'Remove'
+          Enabled = False
+          OnClick = DelIncludeFileButtonClick
+          TabOrder = 3
+        end
+        object AddIncludeFileButton: TButton
+          Left = 502
+          Height = 30
+          Top = 42
+          Width = 95
+          Caption = 'Add file'
+          OnClick = AddIncludeFileButtonClick
+          TabOrder = 1
+        end
         object AddIncludeFileMaskButton: TButton
           Tag = 1
           Left = 502
-          Height = 25
-          Top = 72
+          Height = 30
+          Top = 80
+          Width = 95
+          Caption = 'Add mask'
+          OnClick = AddCompressMaskButtonClick
+          TabOrder = 2
+        end
+        object AddExcludeFileMaskButton: TButton
+          Tag = 2
+          Left = 502
+          Height = 30
+          Top = 256
           Width = 95
           Caption = 'Add mask'
           OnClick = AddCompressMaskButtonClick
           TabOrder = 6
         end
-        object AddExcludeFileMaskButton: TButton
-          Tag = 2
-          Left = 502
-          Height = 25
-          Top = 248
-          Width = 95
-          Caption = 'Add mask'
-          OnClick = AddCompressMaskButtonClick
-          TabOrder = 7
-        end
       end
       object CompressionPage: TPage
         Caption = 'Compression'
-        ClientWidth = 616
-        ClientHeight = 384
+        ClientWidth = 612
+        ClientHeight = 350
         object CompressionExceptions: TGroupBox
           Left = 301
           Height = 329
           Top = 10
           Width = 288
           Caption = ' Do not compress ... '
-          ClientHeight = 329
-          ClientWidth = 288
+          ClientHeight = 308
+          ClientWidth = 284
           TabOrder = 0
           object Label9: TLabel
             Left = 21
@@ -488,18 +488,18 @@ object ArchiveForm: TArchiveForm
           end
           object AddCompressMaskButton: TButton
             Left = 165
-            Height = 25
+            Height = 30
             Top = 24
-            Width = 64
+            Width = 90
             Caption = 'Add'
             OnClick = AddCompressMaskButtonClick
             TabOrder = 1
           end
           object DelCompressMaskButton: TButton
             Left = 165
-            Height = 25
-            Top = 56
-            Width = 64
+            Height = 30
+            Top = 59
+            Width = 90
             Caption = 'Remove'
             OnClick = DelCompressMaskButtonClick
             TabOrder = 2
@@ -536,8 +536,8 @@ object ArchiveForm: TArchiveForm
           Top = 11
           Width = 257
           Caption = ' Compression type '
-          ClientHeight = 329
-          ClientWidth = 257
+          ClientHeight = 308
+          ClientWidth = 253
           TabOrder = 1
           object CompLvlLabel: TLabel
             Left = 62
@@ -582,8 +582,8 @@ object ArchiveForm: TArchiveForm
       end
       object OptionsPage: TPage
         Caption = 'Options'
-        ClientWidth = 616
-        ClientHeight = 384
+        ClientWidth = 612
+        ClientHeight = 350
         object SliceMbLabel: TLabel
           Left = 413
           Height = 17
@@ -618,7 +618,7 @@ object ArchiveForm: TArchiveForm
           Top = 248
           Width = 118
           Caption = 'Test run only'
-          TabOrder = 1
+          TabOrder = 5
         end
         object EmptyDirCheck: TCheckBox
           Left = 33
@@ -626,7 +626,7 @@ object ArchiveForm: TArchiveForm
           Top = 122
           Width = 166
           Caption = 'Preserve directories'
-          TabOrder = 2
+          TabOrder = 1
         end
         object SlicesCheck: TCheckBox
           Left = 33
@@ -635,7 +635,7 @@ object ArchiveForm: TArchiveForm
           Width = 97
           Caption = 'Use slices'
           OnClick = SlicesCheckClick
-          TabOrder = 3
+          TabOrder = 2
         end
         object SliceSize: TEdit
           Left = 314
@@ -644,17 +644,17 @@ object ArchiveForm: TArchiveForm
           Width = 80
           Enabled = False
           OnExit = CompressionLwrLimitExit
-          TabOrder = 4
+          TabOrder = 3
           Text = '695'
         end
         object PauseCheck: TCheckBox
           Left = 125
-          Height = 23
+          Height = 24
           Top = 203
-          Width = 90
+          Width = 181
           Caption = 'Pause between slices'
           Enabled = False
-          TabOrder = 5
+          TabOrder = 4
         end
       end
     end
