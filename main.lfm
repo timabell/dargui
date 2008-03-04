@@ -946,6 +946,7 @@ object MainForm: TMainForm
         Caption = 'Hide messages'
         Checked = True
         ShowAlwaysCheckable = True
+        Visible = False
         OnClick = miHideMessagesClick
       end
       object miOperationlogs: TMenuItem
