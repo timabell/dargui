@@ -9,6 +9,7 @@ object DiffForm: TDiffForm
   Caption = 'Compare archive and filesystem'
   ClientHeight = 292
   ClientWidth = 593
+  OnResize = FormResize
   Position = poOwnerFormCenter
   object DialogPanel: TPanel
     Height = 184
@@ -83,7 +84,6 @@ object DiffForm: TDiffForm
     ClientWidth = 593
     TabOrder = 3
     Visible = False
-    OnResize = ResultPanelResize
     object Label1: TLabel
       Left = 8
       Height = 17

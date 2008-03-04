@@ -32,8 +32,8 @@ type
     ResultPanel: TPanel;
     procedure BrowseArchiveClick ( Sender: TObject ) ;
     procedure BrowseDirectoryClick ( Sender: TObject ) ;
+    procedure FormResize ( Sender: TObject ) ;
     procedure OKButtonClick ( Sender: TObject ) ;
-    procedure ResultPanelResize ( Sender: TObject ) ;
   private
     { private declarations }
   public
@@ -59,6 +59,14 @@ begin
   SelectDirectoryDialog.InitialDir := BaseDirBox.Text;
   if SelectDirectoryDialog.Execute
      then BaseDirBox.Text := SelectDirectoryDialog.FileName;
+end;
+
+procedure TDiffForm.FormResize ( Sender: TObject ) ;
+begin
+  ResultListBox.Height := ResultPanel.Height-70;
+  CloseButton.Left := (ResultPanel.Width - CloseButton.Width) div 2;
+  OKButton.Left := (DialogButtonPanel.Width div 2) - OKButton.Width - 20;
+  CancelButton.Left := (DialogButtonPanel.Width div 2) + 20;
 end;
 
 procedure TDiffForm.OKButtonClick ( Sender: TObject ) ;
@@ -89,9 +97,10 @@ begin
   if RunDarCommand(Cmd, 'comparing files...', Left+100, Top+150) = 0
      then begin
        ResultListBox.Items.LoadFromFile(LogFile);
-       if ResultListBox.Count > 2 then
-          for x := 1 downto 0 do
-              ResultListBox.Items.Delete(x);
+       if Pos(DAR_EXECUTABLE, ResultListBox.Items[0]) = 1
+          then ResultListBox.Items.Delete(0);
+       if Pos('Extracting contents ', ResultListBox.Items[0]) = 1
+          then ResultListBox.Items.Delete(0);
        if ResultListBox.Count > 6 then
           begin
             x := ResultListBox.Count-1;
@@ -108,8 +117,12 @@ begin
               aLine :=  Trim(ResultListBox.Items[x+1]);
               DiffCount := StrToInt(Copy(aLine, 1, Pos(#32, aLine)-1));
               ReportLabel.Caption := IntToStr(InodeCount) + ' inodes checked : ' + IntToStr(DiffCount) + ' differences found';
-              for x := ResultListBox.Count-1 downto InodeCount do
-                  ResultListBox.Items.Delete(x);
+              if verboseflag = ' -v' then
+                for x := ResultListBox.Count-1 downto InodeCount do
+                    ResultListBox.Items.Delete(x)
+                else
+                for x := ResultListBox.Count-1 downto DiffCount do
+                    ResultListBox.Items.Delete(x);
             except
               Showmessage('diff.pas line 103 : Error when converting ' + aLine);
             end
@@ -120,15 +133,10 @@ begin
        DialogButtonPanel.Visible := false;
        ResultPanel.Visible := true;
        ResultButtonPanel.Visible := true;
-       ResultPanelResize(nil);
+       FormResize(nil);
      end;
 
   
-end;
-
-procedure TDiffForm.ResultPanelResize ( Sender: TObject ) ;
-begin
-  ResultListBox.Height :=ResultPanel.Height-70;
 end;
 
 initialization
