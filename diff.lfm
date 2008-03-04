@@ -1,10 +1,11 @@
 object DiffForm: TDiffForm
   Left = 460
   Height = 292
-  Top = 262
+  Top = 254
   Width = 593
   HorzScrollBar.Page = 592
   VertScrollBar.Page = 291
+  ActiveControl = OKButton
   Caption = 'Compare archive and filesystem'
   ClientHeight = 292
   ClientWidth = 593
@@ -82,55 +83,32 @@ object DiffForm: TDiffForm
     ClientWidth = 593
     TabOrder = 3
     Visible = False
+    OnResize = ResultPanelResize
     object Label1: TLabel
       Left = 8
       Height = 17
       Top = 16
-      Width = 55
-      Caption = 'Results'
+      Width = 59
+      Caption = 'Results:'
       ParentColor = False
     end
-    object ListBox1: TListBox
-      Left = 6
-      Height = 138
+    object ReportLabel: TLabel
+      Left = 8
+      Height = 17
       Top = 40
+      Width = 89
+      Caption = 'ReportLabel'
+      ParentColor = False
+    end
+    object ResultListBox: TListBox
+      Left = 6
+      Height = 114
+      Top = 64
       Width = 581
       Align = alBottom
       BorderSpacing.Around = 5
       TabOrder = 0
       TopIndex = -1
-    end
-  end
-  object DialogButtonPanel: TPanel
-    Height = 50
-    Top = 242
-    Width = 593
-    Align = alBottom
-    ClientHeight = 50
-    ClientWidth = 593
-    TabOrder = 0
-    object OKButton: TBitBtn
-      Left = 200
-      Height = 30
-      Top = 11
-      Width = 90
-      Caption = '&OK'
-      Default = True
-      Kind = bkOK
-      NumGlyphs = 0
-      TabOrder = 0
-    end
-    object CancelButton: TBitBtn
-      Left = 312
-      Height = 30
-      Top = 11
-      Width = 90
-      Cancel = True
-      Caption = 'Cancel'
-      Kind = bkCancel
-      ModalResult = 2
-      NumGlyphs = 0
-      TabOrder = 1
     end
   end
   object ResultButtonPanel: TPanel
@@ -152,6 +130,39 @@ object DiffForm: TDiffForm
       ModalResult = 1
       NumGlyphs = 0
       TabOrder = 0
+    end
+  end
+  object DialogButtonPanel: TPanel
+    Height = 50
+    Top = 242
+    Width = 593
+    Align = alBottom
+    ClientHeight = 50
+    ClientWidth = 593
+    TabOrder = 0
+    object OKButton: TBitBtn
+      Left = 200
+      Height = 30
+      Top = 11
+      Width = 90
+      Caption = '&OK'
+      Default = True
+      Kind = bkOK
+      NumGlyphs = 0
+      OnClick = OKButtonClick
+      TabOrder = 0
+    end
+    object CancelButton: TBitBtn
+      Left = 312
+      Height = 30
+      Top = 11
+      Width = 90
+      Cancel = True
+      Caption = 'Cancel'
+      Kind = bkCancel
+      ModalResult = 2
+      NumGlyphs = 0
+      TabOrder = 1
     end
   end
   object OpenDialog: TOpenDialog

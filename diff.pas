@@ -15,7 +15,8 @@ type
   TDiffForm = class ( TForm )
     CloseButton: TBitBtn;
     Label1: TLabel;
-    ListBox1: TListBox;
+    ReportLabel: TLabel;
+    ResultListBox: TListBox;
     OKButton: TBitBtn;
     CancelButton: TBitBtn;
     BrowseArchive: TButton;
@@ -31,6 +32,8 @@ type
     ResultPanel: TPanel;
     procedure BrowseArchiveClick ( Sender: TObject ) ;
     procedure BrowseDirectoryClick ( Sender: TObject ) ;
+    procedure OKButtonClick ( Sender: TObject ) ;
+    procedure ResultPanelResize ( Sender: TObject ) ;
   private
     { private declarations }
   public
@@ -56,6 +59,76 @@ begin
   SelectDirectoryDialog.InitialDir := BaseDirBox.Text;
   if SelectDirectoryDialog.Execute
      then BaseDirBox.Text := SelectDirectoryDialog.FileName;
+end;
+
+procedure TDiffForm.OKButtonClick ( Sender: TObject ) ;
+var
+  verboseflag: String;
+  Cmd: String;
+  LogFile: String;
+  x: Integer;
+  aLine: string;
+  InodeCount: LongInt;
+  DiffCount: LongInt;
+begin
+  if not FileExists(ArchiveBox.Text + '.1.dar')
+     then begin
+       ShowMessage('Unable to find ' + ArchiveBox.Text + '.1.dar');
+       ArchiveBox.SetFocus;
+       exit;
+     end;
+  if not FileExists(BaseDirBox.Text)
+     then begin
+       ShowMessage('Error: ' + BaseDirBox.Text + ' not found');
+       BaseDirBox.SetFocus;
+       exit;
+     end;
+  LogFile := GetNextFileName(TEMP_DIRECTORY + LOGFILE_BASE);
+  if VerboseCheck.Checked then verboseflag := ' -v';
+  Cmd :=  DAR_EXECUTABLE + ' -d ' + ArchiveBox.Text + ' -R ' + BaseDirBox.Text + verboseflag;
+  if RunDarCommand(Cmd, 'comparing files...', Left+100, Top+150) = 0
+     then begin
+       ResultListBox.Items.LoadFromFile(LogFile);
+       if ResultListBox.Count > 2 then
+          for x := 1 downto 0 do
+              ResultListBox.Items.Delete(x);
+       if ResultListBox.Count > 6 then
+          begin
+            x := ResultListBox.Count-1;
+            aLine := Trim(ResultListBox.Items[x]);
+            while (Pos('inode(s) treated',aline) < 1) and (x > 0) do
+                  begin
+                    Dec(x);
+                    aLine := Trim(ResultListBox.Items[x]);
+                  end;
+          if x > 0 then
+            Try
+              writeln(Copy(aLine, 1, Pos(#32, aLine)-1));
+              InodeCount := StrToInt(Copy(aLine, 1, Pos(#32, aLine)-1));
+              aLine :=  Trim(ResultListBox.Items[x+1]);
+              DiffCount := StrToInt(Copy(aLine, 1, Pos(#32, aLine)-1));
+              ReportLabel.Caption := IntToStr(InodeCount) + ' inodes checked : ' + IntToStr(DiffCount) + ' differences found';
+              for x := ResultListBox.Count-1 downto InodeCount do
+                  ResultListBox.Items.Delete(x);
+            except
+              Showmessage('diff.pas line 103 : Error when converting ' + aLine);
+            end
+            else ReportLabel.Caption := 'No statistics available - operation aborted?';
+          end;
+
+       DialogPanel.Visible := false;
+       DialogButtonPanel.Visible := false;
+       ResultPanel.Visible := true;
+       ResultButtonPanel.Visible := true;
+       ResultPanelResize(nil);
+     end;
+
+  
+end;
+
+procedure TDiffForm.ResultPanelResize ( Sender: TObject ) ;
+begin
+  ResultListBox.Height :=ResultPanel.Height-70;
 end;
 
 initialization
