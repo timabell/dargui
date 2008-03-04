@@ -119,7 +119,7 @@ begin
   LevelColors[2] := clBlack;
   LevelColors[3] := clBlack;
   LevelColors[4] := clBlack;
-  
+
   Caption := Caption + #32 + APP_VERSION;
 
   DarInfo := GetDarVersion;
@@ -133,17 +133,17 @@ begin
 
   if not FileExists(TEMP_DIRECTORY)
      then mkdir(TEMP_DIRECTORY);
-     
+
   GetTerminalCommand(TerminalCommand);
   RunscriptPath := GetRunscriptPath;
 
   UpdatingSelection := false;
   miHideMessages.Checked := true;
-  
+
   writeln(DarInfo.version);
-  
+
   OpenDialog.InitialDir := SysUtils.GetEnvironmentVariable('HOME');
-  
+
   if Paramcount > 0 then
        if FileExists(ParamStr(1)) then
           begin
@@ -497,7 +497,6 @@ end;
 procedure TMainForm.miFileOpenClick(Sender: TObject);
 var
   fn: String;
-  x: Integer;
 begin
   if OpenDialog.Execute then
      begin
@@ -607,6 +606,7 @@ begin
        then DiffForm.ArchiveBox.Text := CurrentArchive;
     DiffForm.BaseDirBox.Text := SysUtils.GetEnvironmentVariable('HOME');
     DiffForm.ShowModal;
+    OpLogForm.RefreshOpList;
   finally
     DiffForm.Free;
   end;

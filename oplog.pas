@@ -55,7 +55,7 @@ end;
 
 procedure TOpLogForm.FormDestroy ( Sender: TObject ) ;
 begin
-  LogList.Destroy;
+  LogList.Free;
 end;
 
 procedure TOpLogForm.OpListSelectionChange ( Sender: TObject; User: boolean ) ;
@@ -85,9 +85,9 @@ var
  fileHandle: TextFile;
  LogfileMask: String;
  begin
-  LogfileMask := TEMP_DIRECTORY + LOGFILE_BASE +'*';
-  if FindFirst (LogfileMask, faAnyFile - faDirectory, Rec) = 0 then
+  LogfileMask := TEMP_DIRECTORY + LOGFILE_BASE + '*';
   try
+  if FindFirst (LogfileMask, faAnyFile - faDirectory, Rec) = 0 then
    repeat
       fn := TEMP_DIRECTORY + Rec.Name;
       if LogList.IndexOf(fn) < 0 then
@@ -95,6 +95,7 @@ var
           AssignFile(fileHandle, fn);
           Reset(fileHandle);
           ReadLn(fileHandle, topLine);
+          CloseFile(fileHandle);
           if Pos('dar ',topLine) = 1 then
              begin
                OpList.Items.Add(topLine);
@@ -106,8 +107,6 @@ var
    FindClose(Rec) ;
   if LogList.Count > 0 then
      begin
-//       OpSelector.ItemIndex := LogList.Count-1;
-//       OpSelectorSelect(nil);
        OpList.ItemIndex := LogList.Count-1;
        OpListSelectionChange(nil, false);
      end;

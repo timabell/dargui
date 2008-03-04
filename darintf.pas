@@ -228,8 +228,8 @@ var
  begin
   HighNum := 1;
   LogfileMask := FileBase + '*';
-  if FindFirst (LogfileMask, faAnyFile - faDirectory, Rec) = 0 then
   try
+  if FindFirst (LogfileMask, faAnyFile - faDirectory, Rec) = 0 then
    repeat
       fn := Rec.Name;
       ThisNum := LogNumber(fn);
