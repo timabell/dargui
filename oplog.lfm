@@ -7,8 +7,6 @@ object OpLogForm: TOpLogForm
   VertScrollBar.Page = 386
   ActiveControl = CloseButton
   Caption = 'Logs'
-  ClientHeight = 387
-  ClientWidth = 717
   Icon.Data = {
     C10A00002F2A2058504D202A2F0A7374617469632063686172202A6461726775
     6931365B5D3D7B0A223136203136203133332032222C0A2251742063204E6F6E
@@ -100,27 +98,30 @@ object OpLogForm: TOpLogForm
   }
   OnCreate = FormCreate
   OnDestroy = FormDestroy
+  OnResize = FormResize
   Position = poMainFormCenter
   object OpSelectPanel: TPanel
     Height = 100
     Width = 717
     Align = alTop
-    ClientHeight = 100
-    ClientWidth = 717
     TabOrder = 0
+    OnResize = OpSelectPanelResize
     object Label1: TLabel
       Left = 8
       Height = 17
       Top = 14
-      Width = 85
+      Width = 83
       Caption = 'Commands'
+      Color = clNone
       ParentColor = False
     end
     object OpList: TListBox
-      Left = 8
-      Height = 120
-      Top = 32
-      Width = 700
+      Left = 6
+      Height = 60
+      Top = 34
+      Width = 705
+      Align = alBottom
+      BorderSpacing.Around = 5
       OnSelectionChange = OpListSelectionChange
       PopupMenu = OpListPopupMenu
       TabOrder = 0
@@ -132,8 +133,6 @@ object OpLogForm: TOpLogForm
     Top = 336
     Width = 717
     Align = alBottom
-    ClientHeight = 51
-    ClientWidth = 717
     TabOrder = 1
     object CloseButton: TBitBtn
       Left = 632
@@ -152,8 +151,6 @@ object OpLogForm: TOpLogForm
     Width = 717
     Align = alClient
     Caption = 'ContentPanel'
-    ClientHeight = 231
-    ClientWidth = 717
     TabOrder = 2
     object ContentMemo: TMemo
       Left = 6

@@ -26,7 +26,9 @@ type
     Splitter1: TSplitter;
     procedure FormCreate ( Sender: TObject ) ;
     procedure FormDestroy ( Sender: TObject ) ;
+    procedure FormResize(Sender: TObject);
     procedure OpListSelectionChange ( Sender: TObject; User: boolean ) ;
+    procedure OpSelectPanelResize(Sender: TObject);
     procedure miCopyCommandClick ( Sender: TObject ) ;
     procedure miExecuteCommandClick ( Sender: TObject ) ;
   private
@@ -58,6 +60,11 @@ begin
   LogList.Free;
 end;
 
+procedure TOpLogForm.FormResize(Sender: TObject);
+begin
+  CloseButton.Left := ButtonPanel.Width - CloseButton.Width - 10;
+end;
+
 procedure TOpLogForm.OpListSelectionChange ( Sender: TObject; User: boolean ) ;
 begin
   if LogList.Count > 0 then
@@ -65,6 +72,11 @@ begin
       ContentMemo.Lines.LoadFromFile(LogList.Strings[OpList.ItemIndex]);
       ContentMemo.Lines.Delete(0);
      end;
+end;
+
+procedure TOpLogForm.OpSelectPanelResize(Sender: TObject);
+begin
+  Oplist.Height := OpSelectPanel.Height - 40;
 end;
 
 procedure TOpLogForm.miCopyCommandClick ( Sender: TObject ) ;
