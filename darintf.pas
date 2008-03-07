@@ -5,7 +5,7 @@ unit darintf;
 interface
 
 uses
-  Classes, SysUtils, Process, Comctrls, StdCtrls, ProcessLine, FileUtil, Forms;
+  Classes, SysUtils, Process, Comctrls, StdCtrls, FileUtil, Forms;
   
 type
   TDarInfo = record
@@ -46,8 +46,7 @@ const
    TEMP_DIRECTORY = '/tmp/dargui/';
    LOGFILE_BASE = 'dargui.log.';
    BATCHFILE_BASE = 'dargui.batch.';
-//   TOOLDIR           = '/usr/share/dargui/';
-TOOLDIR = '/home/malcolm/lazarus/dargui/';
+   TOOLDIR           = '/usr/share/dargui/';
    RUNSCRIPT         = 'rundar.sh';
    
 
@@ -280,7 +279,6 @@ var
   parentnode: TTreeNode;
   DataCoords : array[SEGSTATUS .. SEGFILENAME] of TdgSegment;
   CurrentFile : array[SEGSTATUS .. SEGFILEPATH] of string;
-  FileData : TFileData;
 
    procedure SetSegments(colheading: string);
    var
@@ -443,7 +441,6 @@ end;
 function RunDarCommand ( Cmd, Title: string; x, y :integer ) : integer;
 var
   Proc: TProcess;
-  aLine: String;
   LogFile: string;
 begin
   Result := -1;
@@ -454,8 +451,7 @@ begin
                              +  ' -geometry 100x15+' + IntToStr(x) + '+' + IntToStr(y)
                              + ' -T "DarGUI: ' + Title
                              + '" '
-                            // + '" -l -lf ' + LogFile
-                             + ' -e ' + RunscriptPath + RUNSCRIPT + #32  + Cmd //;
+                             + ' -e ' + RunscriptPath + RUNSCRIPT + #32  + Cmd
                              + ';' + Logfile;
     Proc.Options := Proc.Options + [poStderrToOutPut];
     Proc.Execute;
@@ -499,7 +495,6 @@ end;
 
 function SelectChildren(Node: TTreeNode): integer;
 var
-  x: integer;
   count: integer;
   ChildNode: TTreeNode;
 begin

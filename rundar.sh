@@ -8,7 +8,7 @@ Logfile=${p#*;}
 echo $CommandLine
 echo $CommandLine > $Logfile
 
-$CommandLine | /home/malcolm/lazarus/dargui/darlogger $Logfile
+$CommandLine | /usr/share/dargui/darlogger $Logfile
   
 DarStatus=$?
   

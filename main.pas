@@ -6,7 +6,7 @@ interface
 
 uses
   Classes, SysUtils, LResources, Forms, Controls, Graphics, Dialogs, DarIntf,
-  Menus, ComCtrls, ExtCtrls, Buttons, StdCtrls, Process, LCLType,ProcessLine;
+  Menus, ComCtrls, ExtCtrls, Buttons, StdCtrls, Process, LCLType;
 
 type
 
@@ -555,7 +555,7 @@ begin
          Cmd := DAR_EXECUTABLE + ' -C ' + IsolateForm.CatalogueBox.Text
                        + ' -A ' + IsolateForm.ArchiveBox.Text + ' -v';
          RunDarCommand(Cmd, 'DarGUI: Isolating catalogue...', Left+100, Top+150);
-         OpLogForm.AddCommand(Cmd);
+         //OpLogForm.AddCommand(Cmd);
        end;
   finally
     IsolateForm.Free;
@@ -571,7 +571,6 @@ end;
 procedure TMainForm.miRestoreAllClick(Sender: TObject);
 var
   RestoreForm: TExtractSelectedForm;
-  x: Integer;
   daroptions: String;
   CommandLine: String;
 begin
@@ -623,7 +622,6 @@ var
   RestoreForm: TExtractSelectedForm;
   daroptions: string;
   CommandLine: String;
-  ProcCommandlineOption: String;
 
 begin
   SelectedNodes := 0;
