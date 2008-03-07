@@ -1,3 +1,5 @@
+{ This is an automatically generated lazarus resource file }
+
 LazarusResources.Add('TIsolateForm','FORMDATA',[
   'TPF0'#12'TIsolateForm'#11'IsolateForm'#4'Left'#3#238#1#6'Height'#3#247#0#3'T'
   +'op'#3#227#0#5'Width'#3#223#1#18'HorzScrollBar.Page'#3#222#1#18'VertScrollBa'

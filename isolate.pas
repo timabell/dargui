@@ -44,16 +44,21 @@ procedure TIsolateForm.OnEditBoxExit ( Sender: TObject ) ;
 var
   fn: String;
 begin
-  if TEdit(Sender).Text <> ''
-     then TEdit(Sender).Text := TrimToBase(TEdit(Sender).Text);
-  if (Sender = ArchiveBox) and (CatalogueBox.Text = '')
-     then CatalogueBox.Text := ArchiveBox.Text + '_cat';
+  if TEdit(Sender).Text <> '' then
+     begin
+       TEdit(Sender).Text := TrimToBase(TEdit(Sender).Text);
+       if (Sender = ArchiveBox) and (CatalogueBox.Text = '')
+          then CatalogueBox.Text := ArchiveBox.Text + '_cat';
+     end;
 end;
 
 procedure TIsolateForm.ArchiveButtonClick ( Sender: TObject ) ;
 begin
-  if OpenDialog.Execute
-     then ArchiveBox.Text := TrimToBase(OpenDialog.FileName);
+  if OpenDialog.Execute then
+     begin
+       ArchiveBox.Text := TrimToBase(OpenDialog.FileName);
+       OnEditBoxExit(ArchiveBox);
+     end;
 end;
 
 procedure TIsolateForm.CatalogueButtonClick ( Sender: TObject ) ;
