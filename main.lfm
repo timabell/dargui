@@ -956,8 +956,15 @@ object MainForm: TMainForm
     end
     object MenuHelp: TMenuItem
       Caption = '&Help'
+      object miHelpDar: TMenuItem
+        Caption = 'Dar Documentation'
+        OnClick = miHelpDarClick
+      end
+      object MenuBreak3: TMenuItem
+        Caption = '-'
+      end
       object miHelpAbout: TMenuItem
-        Caption = 'About'
+        Caption = 'About DarGUI'
         OnClick = miHelpAboutClick
       end
     end

@@ -13,6 +13,8 @@ type
   { TMainForm }
 
   TMainForm = class(TForm)
+    MenuBreak3: TMenuItem;
+    miHelpDar: TMenuItem;
     tbDiff: TBitBtn;
     tbOpen: TBitBtn;
     tbCreate: TBitBtn;
@@ -74,6 +76,7 @@ type
     procedure miFileOpenClick(Sender: TObject);
     procedure Splitter3ChangeBounds(Sender: TObject);
     procedure miHelpAboutClick ( Sender: TObject ) ;
+    procedure miHelpDarClick ( Sender: TObject ) ;
     procedure miHideMessagesClick(Sender: TObject);
     procedure miIsolateClick ( Sender: TObject ) ;
     procedure miOperationlogsClick ( Sender: TObject ) ;
@@ -527,6 +530,21 @@ begin
   Aboutform.SVNLabel.Caption := Aboutform.SVNLabel.Caption + SVN_REVISION;
   AboutForm.ShowModal;
   Aboutform.Free;
+end;
+
+procedure TMainForm.miHelpDarClick ( Sender: TObject ) ;
+var
+  Browser: string;
+  brParams: string;
+  Proc: TProcess;
+begin
+  GetDefaultBrowser(Browser, brParams);
+  if Browser <> '' then
+     begin
+     Proc := TProcess.Create(Application);
+     Proc.CommandLine := Browser + ' http://dar.linux.free.fr/doc/index.html';
+     Proc.Execute;
+     end;
 end;
 
 procedure TMainForm.miHideMessagesClick(Sender: TObject);
