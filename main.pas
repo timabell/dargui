@@ -13,6 +13,7 @@ type
   { TMainForm }
 
   TMainForm = class(TForm)
+    IconList: TImageList;
     MenuBreak3: TMenuItem;
     miHelpDar: TMenuItem;
     tbDiff: TBitBtn;
@@ -105,7 +106,8 @@ const
   SVN_REVISION = '';
 
   ARCHIVEMENU_TAG = 1; //used for enabling menuitems after loading archive
-  SELECT_STATUSBAR = 0;
+  SELECT_STATUSBAR = 0;   //index of panel which displays number of selected nodes
+  FOLDERICON = 0;  //index of folder icon in IconList
 
 
 implementation
@@ -378,7 +380,8 @@ procedure TMainForm.ArchiveTreeViewAdvancedCustomDrawItem(
   Stage: TCustomDrawStage; var PaintImages, DefaultDraw: Boolean);
 var
   FullRect, DisplayRect : TRect;
- TextStyle: TTextstyle;
+  TextStyle: TTextstyle;
+  FolderGraphic: TBitmap;
  
      function TrimText(aText: string; aCol, leftMargin: integer): string;
      var
@@ -451,18 +454,30 @@ begin
         end;//Case
   if stage = cdPostPaint then DefaultDraw := false;
   Sender.Canvas.FillRect(Displayrect);
-  Sender.Canvas.TextOut(Displayrect.Left,DisplayRect.Top+1,
-            TrimText(TFileData(Node.Data).item[SEGFILENAME], SEGFILENAME,Displayrect.Left));
-  Sender.Canvas.TextOut(DateHdr.Left,DisplayRect.Top+1,
-            TrimText(TFileData(Node.Data).item[SEGDATE], SEGDATE, 0));
-  Sender.Canvas.TextOut(SizeHdr.Left,DisplayRect.Top+1,
-            TrimText(TFileData(Node.Data).item[SEGSIZE], SEGSIZE, 0));
-  Sender.Canvas.TextOut(UserHdr.Left,DisplayRect.Top+1,
-            TrimText(TFileData(Node.Data).item[SEGUSER], SEGUSER, 0));
-  Sender.Canvas.TextOut(GroupHdr.Left,DisplayRect.Top+1,
-            TrimText(TFileData(Node.Data).item[SEGGROUP], SEGGROUP, 0));
-  Sender.Canvas.TextOut(StatusHdr.Left,DisplayRect.Top+1,
-            TrimText(TFileData(Node.Data).item[SEGSTATUS], SEGSTATUS, 0));
+  if Node.Data <> nil then
+     begin
+      if TFileData(Node.Data).folder then
+         begin
+           FolderGraphic := TBitmap.Create;
+           IconList.GetBitmap(FOLDERICON, FolderGraphic);
+           Sender.Canvas.Draw(Displayrect.Left, DisplayRect.Top, FolderGraphic);
+           Sender.Canvas.TextOut(Displayrect.Left + FolderGraphic.Width, DisplayRect.Top+1,
+                TrimText(TFileData(Node.Data).item[SEGFILENAME], SEGFILENAME, Displayrect.Left + FolderGraphic.Width));
+         end
+         else Sender.Canvas.TextOut(Displayrect.Left,DisplayRect.Top+1,
+                TrimText(TFileData(Node.Data).item[SEGFILENAME], SEGFILENAME,Displayrect.Left));
+      Sender.Canvas.TextOut(DateHdr.Left,DisplayRect.Top+1,
+                TrimText(TFileData(Node.Data).item[SEGDATE], SEGDATE, 0));
+      Sender.Canvas.TextOut(SizeHdr.Left,DisplayRect.Top+1,
+                TrimText(TFileData(Node.Data).item[SEGSIZE], SEGSIZE, 0));
+      Sender.Canvas.TextOut(UserHdr.Left,DisplayRect.Top+1,
+                TrimText(TFileData(Node.Data).item[SEGUSER], SEGUSER, 0));
+      Sender.Canvas.TextOut(GroupHdr.Left,DisplayRect.Top+1,
+                TrimText(TFileData(Node.Data).item[SEGGROUP], SEGGROUP, 0));
+      Sender.Canvas.TextOut(StatusHdr.Left,DisplayRect.Top+1,
+                TrimText(TFileData(Node.Data).item[SEGSTATUS], SEGSTATUS, 0));
+      if TFileData(Node.Data).folder then FolderGraphic.Free;
+     end;
 end;
 
 

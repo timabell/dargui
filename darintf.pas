@@ -53,6 +53,7 @@ const
 type
   TFileData = class
     item : array[SEGSTATUS .. SEGFILEPATH] of string;
+    folder : Boolean;
     //Filename      : string;
     //Filepath      : string;
     //Archivestatus : string;
@@ -416,14 +417,19 @@ begin
          begin
          ParseCurrentFile(Output.Strings[x]);
          currentnode :=  TTreeView(TV).Items.AddChild(GetParentDirectoryNode(Currentfile[SEGFILEPATH]), CurrentFile[SEGFILENAME]);
-         if Pos('[-----]', CurrentFile[SEGSTATUS]) > 0
-            then parentnode := currentnode;
          currentnode.Data := TFileData.Create;
          with TFileData(currentnode.data) do
               begin
-              for n := SEGSTATUS to SEGFILEPATH do
-                  item[n] := CurrentFile[n];
+                for n := SEGSTATUS to SEGFILEPATH do
+                    item[n] := CurrentFile[n];
+                folder := false;
               end;
+         if Pos('[-----]', CurrentFile[SEGSTATUS]) > 0
+            then
+            begin
+              parentnode := currentnode;
+              TFileData(currentnode.Data).folder := true;
+            end;
          end;
       end;
       TV.AlphaSort;
