@@ -1,13 +1,13 @@
 object MainForm: TMainForm
-  Left = 378
+  Left = 381
   Height = 605
-  Top = 91
+  Top = 131
   Width = 893
   HorzScrollBar.Page = 892
-  VertScrollBar.Page = 583
+  VertScrollBar.Page = 577
   ActiveControl = ArchiveTreeView
   Caption = 'DarGUI'
-  ClientHeight = 584
+  ClientHeight = 578
   ClientWidth = 893
   Icon.Data = {
     C10A00002F2A2058504D202A2F0A7374617469632063686172202A6461726775
@@ -101,13 +101,20 @@ object MainForm: TMainForm
   Menu = MainMenu
   OnCreate = FormCreate
   object StatusBar: TStatusBar
-    Height = 17
-    Top = 567
+    Height = 21
+    Top = 557
     Width = 893
-    Panels = <>
+    Panels = <    
+      item
+        Width = 250
+      end    
+      item
+        Width = 50
+      end>
+    SimplePanel = False
   end
   object ArchiveTreeView: TTreeView
-    Height = 289
+    Height = 279
     Top = 73
     Width = 893
     Align = alClient
@@ -122,14 +129,13 @@ object MainForm: TMainForm
     ReadOnly = True
     RowSelect = True
     ScrollBars = ssAutoVertical
-    ShowRoot = False
     SortType = stText
     TabOrder = 0
     OnAdvancedCustomDrawItem = ArchiveTreeViewAdvancedCustomDrawItem
     OnCompare = ArchiveTreeViewCompare
     OnDeletion = ArchiveTreeViewDeletion
     OnSelectionChanged = ArchiveTreeViewSelectionChanged
-    Options = [tvoAllowMultiselect, tvoAutoItemHeight, tvoHotTrack, tvoKeepCollapsedNodes, tvoReadOnly, tvoRowSelect, tvoShowButtons, tvoShowLines, tvoToolTips]
+    Options = [tvoAllowMultiselect, tvoAutoItemHeight, tvoHotTrack, tvoKeepCollapsedNodes, tvoReadOnly, tvoRowSelect, tvoShowButtons, tvoShowLines, tvoShowRoot, tvoToolTips]
     TreeLineColor = clDefault
   end
   object ToolbarPanel: TPanel
@@ -831,7 +837,7 @@ object MainForm: TMainForm
   end
   object MessagePanel: TPanel
     Height = 200
-    Top = 367
+    Top = 357
     Width = 893
     Align = alBottom
     Caption = 'MessagePanel'
@@ -882,7 +888,7 @@ object MainForm: TMainForm
   object MessageBoxSplitter: TSplitter
     Cursor = crVSplit
     Height = 5
-    Top = 362
+    Top = 352
     Width = 893
     Align = alBottom
     Beveled = True

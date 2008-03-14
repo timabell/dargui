@@ -101,10 +101,11 @@ var
 
   
 const
-  APP_VERSION = '0.1.0';
+  APP_VERSION = '0.2.1';
   SVN_REVISION = '';
 
   ARCHIVEMENU_TAG = 1; //used for enabling menuitems after loading archive
+  SELECT_STATUSBAR = 0;
 
 
 implementation
@@ -329,14 +330,18 @@ begin
          end;
       if TTreeview(Sender).Items[x].Parent <> nil then
          begin
-         if TTreeview(Sender).Items[x].Parent.MultiSelected then
-            begin
-            UpdatingSelection := true;
-            TTreeview(Sender).Items[x].MultiSelected := true;
-            Inc(SelectedNodes);
-            UpdatingSelection := false;
-            end;
+           if TTreeview(Sender).Items[x].Parent.MultiSelected then
+               // only select childnodes if Parent is collapsed
+               if not TTreeview(Sender).Items[x].Parent.Expanded then
+                  begin
+                    UpdatingSelection := true;
+                    TTreeview(Sender).Items[x].MultiSelected := true;
+                    Inc(SelectedNodes);
+                    UpdatingSelection := false;
+                  end;
          end;
+        StatusBar.Panels[SELECT_STATUSBAR].Text :=
+             #32 + IntToStr(SelectedNodes) + ' node(s) selected';
       end;
   end;
 end;
