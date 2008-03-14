@@ -433,14 +433,16 @@ begin
          ParseCurrentFile(Output.Strings[x]);
          currentnode :=  TTreeView(TV).Items.AddChild(GetParentDirectoryNode(Currentfile[SEGFILEPATH]), CurrentFile[SEGFILENAME]);
          currentnode.Data := TFileData.Create;
+         if currentnode.Level < 2
+            then currentnode.Parent.Expand(false);
          with TFileData(currentnode.data) do
               begin
                 for n := SEGSTATUS to SEGFILEPATH do
                     item[n] := CurrentFile[n];
                 folder := false;
               end;
-         if Pos('[-----]', CurrentFile[SEGSTATUS]) > 0
-            then
+         if Pos('[-----]', CurrentFile[SEGSTATUS]) > 0 then
+         // this doesn't work correctly with isolated catalogues
             begin
               parentnode := currentnode;
               TFileData(currentnode.Data).folder := true;

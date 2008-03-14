@@ -1,0 +1,124 @@
+#: TMAINFORM.CAPTION
+msgid "DarGUI"
+msgstr ""
+
+#: TMAINFORM.TBOPEN.HINT
+msgid "Open an archive"
+msgstr ""
+
+#: TMAINFORM.TBCREATE.HINT
+msgid "Create a new archive"
+msgstr ""
+
+#: TMAINFORM.TBISOLATE.HINT
+msgid "Isolate archive catalogue"
+msgstr ""
+
+#: TMAINFORM.TBDIFF.HINT
+msgid "Compare archive and filesystem"
+msgstr ""
+
+#: TMAINFORM.HEADERPANEL.CAPTION
+msgid "HeaderPanel"
+msgstr ""
+
+#: TMAINFORM.FILENAMEHDR.CAPTION
+msgid "File"
+msgstr ""
+
+#: TMAINFORM.DATEHDR.CAPTION
+msgid "Date"
+msgstr ""
+
+#: TMAINFORM.SIZEHDR.CAPTION
+msgid "Size"
+msgstr ""
+
+#: TMAINFORM.USERHDR.CAPTION
+msgid "User"
+msgstr ""
+
+#: TMAINFORM.GROUPHDR.CAPTION
+msgid "Group"
+msgstr ""
+
+#: TMAINFORM.STATUSHDR.CAPTION
+msgid "Status"
+msgstr ""
+
+#: TMAINFORM.MESSAGEPANEL.CAPTION
+msgid "MessagePanel"
+msgstr ""
+
+#: TMAINFORM.MESSAGELABEL.CAPTION
+msgid "Messages:"
+msgstr ""
+
+#: TMAINFORM.MESSAGEHIDEBUTTON.CAPTION
+msgid "X"
+msgstr ""
+
+#: TMAINFORM.MIFILEOPEN.CAPTION
+msgid "Open"
+msgstr ""
+
+#: TMAINFORM.MIFILENEW.CAPTION
+msgid "New"
+msgstr ""
+
+#: TMAINFORM.MENUBREAK1.CAPTION
+msgid "-"
+msgstr ""
+
+#: TMAINFORM.MIEXIT.CAPTION
+msgid "Exit"
+msgstr ""
+
+#: TMAINFORM.MENUARCHIVE.CAPTION
+msgid "Archive"
+msgstr ""
+
+#: TMAINFORM.MIRESTORESELECTED.CAPTION
+msgid "Restore selected"
+msgstr ""
+
+#: TMAINFORM.MIRESTOREALL.CAPTION
+msgid "Restore all"
+msgstr ""
+
+#: TMAINFORM.MIISOLATE.CAPTION
+msgid "Isolate catalogue"
+msgstr ""
+
+#: TMAINFORM.MIARCHIVEINFORMATION.CAPTION
+msgid "Information"
+msgstr ""
+
+#: TMAINFORM.MENUSETTINGS.CAPTION
+msgid "Options"
+msgstr ""
+
+#: TMAINFORM.MIHIDEMESSAGES.CAPTION
+msgid "Hide messages"
+msgstr ""
+
+#: TMAINFORM.MIOPERATIONLOGS.CAPTION
+msgid "Operation logs"
+msgstr ""
+
+#: TMAINFORM.MENUHELP.CAPTION
+msgid "&Help"
+msgstr ""
+
+#: TMAINFORM.MIHELPDAR.CAPTION
+msgid "Dar Documentation"
+msgstr ""
+
+#: TMAINFORM.MIHELPABOUT.CAPTION
+msgid "About DarGUI"
+msgstr ""
+
+#: TMAINFORM.TVMENURESTORESELECTED.CAPTION
+msgid "Restore Selected"
+msgstr ""
+
