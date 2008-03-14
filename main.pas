@@ -127,7 +127,11 @@ begin
   LevelColors[4] := clBlack;
 
   Caption := Caption + #32 + APP_VERSION;
-
+  case CheckSupportingApps of
+       1: ShowMessage('Unable to find xterm: some features disabled');
+       2: ShowMessage('Unable to find bash: some features disabled');
+       3: ShowMessage('Unable to find xterm or bash: some features disabled');
+       end;
   DarInfo := GetDarVersion;
   if DarInfo.version='-' then
      begin

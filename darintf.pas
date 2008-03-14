@@ -66,6 +66,7 @@ type
 
 
   function GetDarVersion : TDarInfo;
+  function CheckSupportingApps : integer;
   function GetDarExit: integer;
   function LogNumber(fn: string): integer;
   function GetNextFileName( FileBase: string): string;
@@ -184,6 +185,20 @@ end;
 
 
 
+function CheckSupportingApps: integer;
+var
+  Returnvalue: integer;
+begin
+  Result := -1;
+  Returnvalue := 0;
+  if SearchFileInPath('xterm','',
+                   SysUtils.GetEnvironmentVariable('PATH'),PathSeparator,[]) = ''
+     then Returnvalue := 1;
+  if SearchFileInPath('bash','',
+                   SysUtils.GetEnvironmentVariable('PATH'),PathSeparator,[]) = ''
+     then Returnvalue := Returnvalue + 2;
+  Result := Returnvalue;
+end;
 
 function GetDarExit: integer;
 var
