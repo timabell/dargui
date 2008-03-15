@@ -122,3 +122,7 @@ msgstr ""
 msgid "Restore Selected"
 msgstr ""
 
+#: TMAINFORM.MIOPENRECENT.CAPTION
+msgid "Open recent ..."
+msgstr ""
+

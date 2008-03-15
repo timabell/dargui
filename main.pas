@@ -71,6 +71,7 @@ type
     procedure ArchiveTreeViewDeletion(Sender: TObject; Node: TTreeNode);
     procedure ArchiveTreeViewSelectionChanged(Sender: TObject);
     procedure FormClose(Sender: TObject; var CloseAction: TCloseAction);
+    procedure RecentMenuClick ( Sender: TObject ) ;
     procedure miArchiveInformationClick(Sender: TObject);
     procedure miExitClick ( Sender: TObject ) ;
     procedure MessageHideButtonClick(Sender: TObject);
@@ -143,9 +144,11 @@ begin
      then mkdir(SettingsDir);
   PrefFileName := SettingsDir + 'darguirc';
   RecentList := TRecentFiles.Create(Self);
+  RecentList.OnClick := @RecentMenuClick;
   miOpenRecent.Add(RecentList);
 
   Preferences := TSettingsFile.Create(PrefFileName);
+  RecentList.IniFile := Preferences;
   x := 0;
   RecentFile := Preferences.ReadString('Recent Files','Recent'+IntToStr(x),'');
   While RecentFile <> '' do
@@ -386,6 +389,20 @@ begin
   Preferences.Free;
 end;
 
+procedure TMainForm.RecentMenuClick ( Sender: TObject ) ;
+var
+  fn: string;
+begin
+  fn := TMenuItem(Sender).Caption + '.1.dar';
+  if FileExists(fn) then
+          begin
+            OpenDialog.FileName := fn;
+            if DarInfo.version<>'-'
+               then if OpenArchive(OpenDialog.FileName,ArchiveTreeView) = 0
+                    then EnableArchiveMenus;
+          end;
+end;
+
 procedure TMainForm.miArchiveInformationClick(Sender: TObject);
 begin
   if GetArchiveInformation(ExtractFilePath(OpenDialog.FileName)
@@ -567,7 +584,7 @@ begin
           EnableArchiveMenus;
           CurrentArchive := fn;
           RecentList.AddFile(fn);
-          Preferences.WriteString('Recent files','Recent0',fn);
+          //Preferences.WriteString('Recent files','Recent0',fn);
         end;
      end;
 
