@@ -6,7 +6,7 @@ interface
 
 uses
   Classes, SysUtils, LResources, Forms, Controls, Graphics, Dialogs, DarIntf,
-  Menus, ComCtrls, ExtCtrls, Buttons, StdCtrls, Process, LCLType;
+  Menus, ComCtrls, ExtCtrls, Buttons, StdCtrls, Process, LCLType, historymenu;
 
 type
 
@@ -15,6 +15,7 @@ type
   TMainForm = class(TForm)
     IconList: TImageList;
     MenuBreak3: TMenuItem;
+    miOpenRecent: TMenuItem;
     miHelpDar: TMenuItem;
     tbDiff: TBitBtn;
     tbOpen: TBitBtn;
@@ -69,6 +70,7 @@ type
       Node2: TTreeNode; var Compare: Integer ) ;
     procedure ArchiveTreeViewDeletion(Sender: TObject; Node: TTreeNode);
     procedure ArchiveTreeViewSelectionChanged(Sender: TObject);
+    procedure FormClose(Sender: TObject; var CloseAction: TCloseAction);
     procedure miArchiveInformationClick(Sender: TObject);
     procedure miExitClick ( Sender: TObject ) ;
     procedure MessageHideButtonClick(Sender: TObject);
@@ -98,6 +100,9 @@ var
   DarInfo: TDarInfo;
   SelectedNodes: integer;
   UpdatingSelection: Boolean;
+  UserHome: string;
+  SettingsDir: string;
+  RecentList : TRecentFiles;
   
 
   
@@ -112,11 +117,15 @@ const
 
 implementation
 
-uses selectrestore, archive, archiveinfo, About, oplog, isolate, diff;
+uses selectrestore, archive, archiveinfo, About, oplog, isolate, diff, prefs;
 
 { TMainForm }
 
 procedure TMainForm.FormCreate(Sender: TObject);
+var
+  PrefFileName: string;
+  RecentFile: string;
+  x: integer;
 begin
   //set default colors for Treeview levels
   //at some point it will be possible for the user to change these
@@ -125,6 +134,26 @@ begin
   LevelColors[2] := clBlack;
   LevelColors[3] := clBlack;
   LevelColors[4] := clBlack;
+  
+  UserHome := SysUtils.GetEnvironmentVariable('HOME');
+  if FileExists(UserHome + '/.config')
+     then SettingsDir := UserHome + '/.config/dargui/'
+     else SettingsDir := UserHome + '/.dargui/';
+  if not FileExists(SettingsDir)
+     then mkdir(SettingsDir);
+  PrefFileName := SettingsDir + 'darguirc';
+  RecentList := TRecentFiles.Create(Self);
+  miOpenRecent.Add(RecentList);
+
+  Preferences := TSettingsFile.Create(PrefFileName);
+  x := 0;
+  RecentFile := Preferences.ReadString('Recent Files','Recent'+IntToStr(x),'');
+  While RecentFile <> '' do
+        begin
+          RecentList.AddFile(RecentFile, false);
+          Inc(x);
+          RecentFile := Preferences.ReadString('Recent Files','Recent'+IntToStr(x),'');
+        end;
 
   Caption := Caption + #32 + APP_VERSION;
   case CheckSupportingApps of
@@ -352,6 +381,11 @@ begin
   end;
 end;
 
+procedure TMainForm.FormClose(Sender: TObject; var CloseAction: TCloseAction);
+begin
+  Preferences.Free;
+end;
+
 procedure TMainForm.miArchiveInformationClick(Sender: TObject);
 begin
   if GetArchiveInformation(ExtractFilePath(OpenDialog.FileName)
@@ -532,6 +566,8 @@ begin
         begin
           EnableArchiveMenus;
           CurrentArchive := fn;
+          RecentList.AddFile(fn);
+          Preferences.WriteString('Recent files','Recent0',fn);
         end;
      end;
 

@@ -28,7 +28,8 @@ uses
   Interfaces, // this includes the LCL widgetset
   Forms
   { add your units here }, main, darintf, selectrestore, archive, filemaskdlg,
-  ProcessLine, ArchiveInfo, FileOverwrite, About, oplog, isolate, diff;
+  ProcessLine, ArchiveInfo, FileOverwrite, About, oplog, isolate, diff, prefs,
+  historymenu;
 
 begin
   Application.Title:='DarGUI';
