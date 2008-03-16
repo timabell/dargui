@@ -134,3 +134,23 @@ msgstr ""
 msgid "Show Toolbar"
 msgstr ""
 
+#: dgstrconst.rscfgshowtoolbar
+msgid "ShowToolbar"
+msgstr ""
+
+#: dgstrconst.rscfguserprefs
+msgid "User Preferences"
+msgstr ""
+
+#: dgstrconst.rscfgrecentfiles
+msgid "Recent Files"
+msgstr ""
+
+#: dgstrconst.rscfgrecentx
+msgid "Recent"
+msgstr ""
+
+#: TMAINFORM.TVMENURESTOREALL.CAPTION
+msgid "Restore All"
+msgstr ""
+

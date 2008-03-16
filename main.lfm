@@ -949,7 +949,7 @@ object MainForm: TMainForm
     end
     object tvMenuRestoreAll: TMenuItem
       Tag = 1
-      Caption = 'Restore all'
+      Caption = 'Restore All'
       Enabled = False
       OnClick = miRestoreAllClick
     end

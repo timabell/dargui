@@ -29,7 +29,7 @@ uses
   Forms
   { add your units here }, main, darintf, selectrestore, archive, filemaskdlg,
   ProcessLine, ArchiveInfo, FileOverwrite, About, oplog, isolate, diff, prefs,
-  historymenu;
+  historymenu, dgStrConst;
 
 begin
   Application.Title:='DarGUI';

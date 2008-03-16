@@ -1,5 +1,3 @@
-{ This is an automatically generated lazarus resource file }
-
 LazarusResources.Add('TMainForm','FORMDATA',[
   'TPF0'#9'TMainForm'#8'MainForm'#4'Left'#2#6#6'Height'#3']'#2#3'Top'#2'/'#5'Wi'
   +'dth'#3'}'#3#18'HorzScrollBar.Page'#3'|'#3#18'VertScrollBar.Page'#3'A'#2#13
@@ -795,7 +793,7 @@ LazarusResources.Add('TMainForm','FORMDATA',[
   +'pupMenu'#12'TreeViewMenu'#4'left'#3'0'#3#3'top'#2#8#0#9'TMenuItem'#21'tvMen'
   +'uRestoreSelected'#3'Tag'#2#1#7'Caption'#6#16'Restore Selected'#7'Enabled'#8
   +#7'OnClick'#7#26'tvMenuRestoreSelectedClick'#0#0#9'TMenuItem'#16'tvMenuResto'
-  +'reAll'#3'Tag'#2#1#7'Caption'#6#11'Restore all'#7'Enabled'#8#7'OnClick'#7#17
+  +'reAll'#3'Tag'#2#1#7'Caption'#6#11'Restore All'#7'Enabled'#8#7'OnClick'#7#17
   +'miRestoreAllClick'#0#0#0#10'TImageList'#8'IconList'#4'left'#3#232#2#3'top'#2
   +#8#6'Bitmap'#10#14#4#0#0'Li'#1#0#0#0#16#0#0#0#16#0#0#0#216#211#238#0#216#211
   +#238#0#240#233#193#0#240#233#193#0#0#0#0#0#0#0#0#0#0#0#0#0#0#0#0#0'y|{'#0'SW'

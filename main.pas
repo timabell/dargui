@@ -120,7 +120,7 @@ const
 
 implementation
 
-uses selectrestore, archive, archiveinfo, About, oplog, isolate, diff, prefs;
+uses dgStrConst, selectrestore, archive, archiveinfo, About, oplog, isolate, diff, prefs;
 
 { TMainForm }
 
@@ -152,14 +152,14 @@ begin
   Preferences := TSettingsFile.Create(PrefFileName);
   RecentList.IniFile := Preferences;
   x := 0;
-  RecentFile := Preferences.ReadString('Recent Files','Recent'+IntToStr(x),'');
+  RecentFile := Preferences.ReadString ( rsCfgRecentFiles, rsCfgRecentX + IntToStr(x) , '' ) ;
   While RecentFile <> '' do
         begin
           RecentList.AddFile(RecentFile, false);
           Inc(x);
-          RecentFile := Preferences.ReadString('Recent Files','Recent'+IntToStr(x),'');
+          RecentFile := Preferences.ReadString(rsCfgRecentFiles,rsCfgRecentX + IntToStr(x),'');
         end;
-  miShowToolbar.Checked := Preferences.ReadString('User Preferences','ShowToolbar','1')='1';
+  miShowToolbar.Checked := Preferences.ReadString ( rsCfgUserPrefs, rsCfgShowToolbar, '1' ) = '1';
   ToolbarPanel.Visible := miShowToolbar.Checked;
   Caption := Caption + #32 + APP_VERSION;
   case CheckSupportingApps of

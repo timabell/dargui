@@ -23,7 +23,6 @@
     </VersionInfo>
     <PublishOptions>
       <Version Value="2"/>
-      <IgnoreBinaries Value="False"/>
       <IncludeFileFilter Value="*.(pas|pp|inc|lfm|lpr|lrs|lpi|lpk|sh|xml)"/>
       <ExcludeFileFilter Value="*.(bak|ppu|ppw|o|so);*~;backup"/>
     </PublishOptions>
@@ -42,7 +41,7 @@
         <MinVersion Major="1" Valid="True"/>
       </Item2>
     </RequiredPackages>
-    <Units Count="12">
+    <Units Count="13">
       <Unit0>
         <Filename Value="dargui.lpr"/>
         <IsPartOfProject Value="True"/>
@@ -119,6 +118,11 @@
         <IsPartOfProject Value="True"/>
         <UnitName Value="historymenu"/>
       </Unit11>
+      <Unit12>
+        <Filename Value="dgstrconst.pas"/>
+        <IsPartOfProject Value="True"/>
+        <UnitName Value="dgStrConst"/>
+      </Unit12>
     </Units>
   </ProjectOptions>
   <CompilerOptions>

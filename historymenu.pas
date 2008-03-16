@@ -30,6 +30,8 @@ type
 
 implementation
 
+uses dgStrConst;
+
 { TRecentFiles }
 
 procedure TRecentFiles.SetMax ( Value: integer ) ;
@@ -57,8 +59,8 @@ begin
                 end;
              if Assigned(fIniFile) then
                 begin
-                  if fIniFile.ReadString('Recent Files','Recent'+IntToStr(x),'') <> ''
-                     then fIniFile.DeleteKey('Recent Files', 'Recent' + IntToStr(x));
+                  if fIniFile.ReadString(rsCfgRecentFiles, rsCfgRecentX + IntToStr(x),'') <> ''
+                     then fIniFile.DeleteKey(rsCfgRecentFiles, rsCfgRecentX + IntToStr(x));
                 end;
             end;
 end;
@@ -114,7 +116,7 @@ begin
               begin
                 TMenuItem(fItems[x]).Caption := TMenuItem(fItems[x-1]).Caption;
                 if Assigned(fIniFile) then
-                   fIniFile.WriteString('Recent Files', 'Recent'+ IntToStr(x),TMenuItem(fItems[x-1]).Caption);
+                   fIniFile.WriteString(rsCfgRecentFiles, rsCfgRecentX + IntToStr(x),TMenuItem(fItems[x-1]).Caption);
               end;
           Caption := aCaption;
          end
@@ -127,7 +129,7 @@ begin
          end;
      end;
   if Assigned(fIniFile) then
-                fIniFile.WriteString('Recent Files', 'Recent0',Caption);
+                fIniFile.WriteString(rsCfgRecentFiles, rsCfgRecentX + '0',Caption);
 end;
 
 end.
