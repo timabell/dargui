@@ -15,6 +15,7 @@ type
   TMainForm = class(TForm)
     IconList: TImageList;
     MenuBreak3: TMenuItem;
+    miShowToolbar: TMenuItem;
     miOpenRecent: TMenuItem;
     miHelpDar: TMenuItem;
     tbDiff: TBitBtn;
@@ -85,6 +86,7 @@ type
     procedure miIsolateClick ( Sender: TObject ) ;
     procedure miOperationlogsClick ( Sender: TObject ) ;
     procedure miRestoreAllClick(Sender: TObject);
+    procedure miShowToolbarClick ( Sender: TObject ) ;
     procedure tbDiffClick ( Sender: TObject ) ;
     procedure tvMenuRestoreSelectedClick(Sender: TObject);
     procedure EnableArchiveMenus;
@@ -157,7 +159,8 @@ begin
           Inc(x);
           RecentFile := Preferences.ReadString('Recent Files','Recent'+IntToStr(x),'');
         end;
-
+  miShowToolbar.Checked := Preferences.ReadString('User Preferences','ShowToolbar','1')='1';
+  ToolbarPanel.Visible := miShowToolbar.Checked;
   Caption := Caption + #32 + APP_VERSION;
   case CheckSupportingApps of
        1: ShowMessage('Unable to find xterm: some features disabled');
@@ -688,6 +691,15 @@ begin
         end
         else MessageMemo.Lines.Add('Operation aborted: Restore selected files' );
   RestoreForm.Free;
+end;
+
+procedure TMainForm.miShowToolbarClick ( Sender: TObject ) ;
+begin
+  miShowToolbar.Checked := not miShowToolbar.Checked;
+  ToolbarPanel.Visible := miShowToolbar.Checked;
+  if miShowToolbar.Checked
+     then Preferences.WriteString('User Preferences','ShowToolbar','1')
+     else Preferences.WriteString('User Preferences','ShowToolbar','0');
 end;
 
 procedure TMainForm.tbDiffClick ( Sender: TObject ) ;

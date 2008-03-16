@@ -910,6 +910,11 @@ object MainForm: TMainForm
         Caption = 'Operation logs'
         OnClick = miOperationlogsClick
       end
+      object miShowToolbar: TMenuItem
+        Caption = 'Show Toolbar'
+        Checked = True
+        OnClick = miShowToolbarClick
+      end
     end
     object MenuHelp: TMenuItem
       Caption = '&Help'

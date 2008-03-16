@@ -126,3 +126,11 @@ msgstr ""
 msgid "Open recent ..."
 msgstr ""
 
+#: TMAINFORM.MISHOWBUTTONS.CAPTION
+msgid "Show Buttonbar"
+msgstr ""
+
+#: TMAINFORM.MISHOWTOOLBAR.CAPTION
+msgid "Show Toolbar"
+msgstr ""
+
