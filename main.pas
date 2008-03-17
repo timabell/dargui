@@ -163,14 +163,14 @@ begin
   ToolbarPanel.Visible := miShowToolbar.Checked;
   Caption := Caption + #32 + APP_VERSION;
   case CheckSupportingApps of
-       1: ShowMessage('Unable to find xterm: some features disabled');
-       2: ShowMessage('Unable to find bash: some features disabled');
-       3: ShowMessage('Unable to find xterm or bash: some features disabled');
+       1: ShowMessage ( rsErrNoXterm ) ;
+       2: ShowMessage ( rsErrNoBash ) ;
+       3: ShowMessage ( rsErrNoXtermBash ) ;
        end;
   DarInfo := GetDarVersion;
   if DarInfo.version='-' then
      begin
-     MessageDlg('Unable to locate dar executable: nothing will work!',
+     MessageDlg ( rsErrDarNotFound,
                         mtWarning,
                         [mbOk],
                         0);
@@ -215,7 +215,7 @@ var
   if ArchiveForm.NoCompressList.Count > 0 then
     begin
     BatchFile.Add('');
-    BatchFile.Add('# Do not compress these files');
+    BatchFile.Add ( rsNotCompressThese ) ;
     for x := 0 to ArchiveForm.NoCompressList.Count-1 do
         BatchFile.Add('-Z ' + ArchiveForm.NoCompressList.Items[x]);
     end;
@@ -223,7 +223,7 @@ var
      then B := ArchiveForm.CompLwrLimitCombo.Items[ArchiveForm.CompLwrLimitCombo.ItemIndex][1];
   if not ((ArchiveForm.CompressionLwrLimit.Text = '100') and (B = 'b')) then
      begin
-       BatchFile.Add(#10 + '# Do not compress files smaller than this');
+       BatchFile.Add(#10 + rsNotCompressSmaller);
        BatchFile.Add('-m ' + ArchiveForm.CompressionLwrLimit.Text + B);
      end;
   end;
@@ -248,62 +248,62 @@ begin
      Enabled := false;
      DarOptions := ' -X "' + ArchiveForm.ArchiveName.Text + '.*.dar"';
      BatchFile := TStringList.Create;
-     BatchFile.Add('# DAR batch file written by DarGUI');
+     BatchFile.Add ( rsDARBatchFile ) ;
      BatchFile.Add('-R "' + ArchiveForm.BaseDirectory.Text + '"' + #10);
      if ArchiveForm.DryRunCheck.Checked then
         begin
-          BatchFile.Add('# Dry run: ths archive will not be written to file unless the next option is removed');
+          BatchFile.Add ( rsDryRun ) ;
           BatchFile.Add('--empty' + #10);
         end;
      if ArchiveForm.IncludeDirectories.Count > 0 then
         begin
         BatchFile.Add('');
-        BatchFile.Add('# Directories to include in archive');
+        BatchFile.Add ( rsIncDirectories ) ;
         for x := 0 to ArchiveForm.IncludeDirectories.Count-1 do
             BatchFile.Add('-g "' + RemoveBaseDirectory(ArchiveForm.IncludeDirectories.Items[x]) + '"');
         end;
      if ArchiveForm.IncludeFiles.Count > 0 then
         begin
         BatchFile.Add('');
-        BatchFile.Add('# Files to include in archive');
+        BatchFile.Add ( rsIncFiles ) ;
         for x := 0 to ArchiveForm.IncludeFiles.Count-1 do
             BatchFile.Add('-I "' + RemoveBaseDirectory(ArchiveForm.IncludeFiles.Items[x]) + '"');
         end;
      if ArchiveForm.ExcludeDirectories.Count > 0 then
         begin
         BatchFile.Add('');
-        BatchFile.Add('# Directories to exclude from archive');
+        BatchFile.Add ( rsExclDirectories ) ;
         for x := 0 to ArchiveForm.ExcludeDirectories.Count-1 do
             BatchFile.Add('-P "' + RemoveBaseDirectory(ArchiveForm.ExcludeDirectories.Items[x]) + '"');
         end;
      if ArchiveForm.ExcludeFiles.Count > 0 then
         begin
         BatchFile.Add('');
-        BatchFile.Add('# Files to exclude from archive');
+        BatchFile.Add ( rsExclFiles ) ;
         for x := 0 to ArchiveForm.ExcludeFiles.Count-1 do
             BatchFile.Add('-X "' + RemoveBaseDirectory(ArchiveForm.ExcludeFiles.Items[x]) + '"');
         end;
      if ArchiveForm.GZipCheck.Checked
         then begin
              BatchFile.Add('');
-             BatchFile.Add('# Use gzip compression');
+             BatchFile.Add ( rsUseGzipCompr ) ;
              BatchFile.Add('--gzip=' + ArchiveForm.CompressionLevel.Text);
              AddCompressionOptions;
              end
      else if ArchiveForm.Bzip2Check.Checked
         then begin
              BatchFile.Add('');
-             BatchFile.Add('# Use bzip2 compression');
+             BatchFile.Add ( rsUseBzip2Comp ) ;
              BatchFile.Add('--bzip2=' + ArchiveForm.CompressionLevel.Text);
              AddCompressionOptions;
              end;
      if not ArchiveForm.ReadConfigCheck.Checked then
         begin
-          BatchFile.Add('# Do not read DAR configuration files (~/.darrc or /etc/darrc)' + #10 + '-N' + #10);
+          BatchFile.Add ( rsNotReadDARcfg + #10 + '-N' + #10 ) ;
         end;
      if ArchiveForm.EmptyDirCheck.Checked then
         begin
-          BatchFile.Add('# Preserve ignored directory names' + #10 + '-D' +#10);
+          BatchFile.Add ( rsPreserveDirs + #10 + '-D' + #10 ) ;
         end;
      if ArchiveForm.SlicesCheck.Checked then
         begin
@@ -312,9 +312,10 @@ begin
           except
             ArchiveForm.SliceSize.Text := '650';
           end;
-          BatchFile.Add('# Create slices of size in Mb' + #10 + '--slice ' + ArchiveForm.SliceSize.Text + 'M' + #10);
+          BatchFile.Add ( rsCreateSlices  + #10 + '--slice ' +
+            ArchiveForm.SliceSize.Text + 'M' + #10 ) ;
           if ArchiveForm.PauseCheck.Checked then
-             BatchFile.Add('# Pause between slices' + #10 + '--pause ' + #10);
+             BatchFile.Add ( rsPauseBetween + #10 + '--pause ' + #10 ) ;
         end;
 
 
@@ -332,7 +333,8 @@ begin
      MessageMemo.Lines.Add(#32 + StringOfChar('-',45));
      MessageMemo.Lines.Add('Creating archive: ' + ArchiveForm.ArchiveName.Text);
 
-     if RunDarCommand(Command, 'creating archive...', Left+100, Top+150) = 0 then
+     if RunDarCommand ( Command, rsCptCreatingArchive, Left + 100, Top + 150 )
+       = 0 then
         begin
           CurrentArchive := ArchiveForm.ArchiveDirectory.Text
                             + ArchiveForm.ArchiveName.Text;
@@ -382,7 +384,7 @@ begin
                   end;
          end;
         StatusBar.Panels[SELECT_STATUSBAR].Text :=
-             #32 + IntToStr(SelectedNodes) + ' node(s) selected';
+              Format ( rsStatusNodeSelect, [ IntToStr ( SelectedNodes ) ] ) ;
       end;
   end;
 end;
@@ -412,8 +414,10 @@ begin
                             + ArchiveTreeView.TopItem.Text,InformationForm.InformationMemo) = 0
       then
       begin
-        InformationForm.Caption := 'Information for archive: ' + ArchiveTreeView.TopItem.Text;
-        InformationForm.InformationMemo.Lines.Insert(0, 'Location: ' + OpenDialog.FileName);
+        InformationForm.Caption := Format ( rsInformationF, [
+          ArchiveTreeView.TopItem.Text ] ) ;
+        InformationForm.InformationMemo.Lines.Insert ( 0, Format (
+          rsInfoFormLocation, [ OpenDialog.FileName ] ) ) ;
         InformationForm.InformationMemo.Lines.Insert(1, StringOfChar('-',45));
         InformationForm.ShowModal;
       end;
@@ -579,6 +583,8 @@ procedure TMainForm.miFileOpenClick(Sender: TObject);
 var
   fn: String;
 begin
+  OpenDialog.Title := rsOpenExisting;
+  OpenDialog.Filter := rsFilterDARArchives + '|*.*.dar';
   if OpenDialog.Execute then
      begin
        fn := OpenDialog.FileName;
@@ -604,8 +610,9 @@ var
 begin
   Aboutform := TAboutForm.Create(Application);
   if DarInfo.version = '-'
-     then AboutForm.DarVersionLabel.Caption := '* No DAR executable found! *'
-     else AboutForm.DarVersionLabel.Caption := 'Using DAR version ' + DarInfo.version;
+     then AboutForm.DarVersionLabel.Caption := rsAboutNoDAR
+     else AboutForm.DarVersionLabel.Caption := Format ( rsAboutDARVersion, [
+       DarInfo.version ] ) ;
   Aboutform.VersionLabel.Caption := Aboutform.VersionLabel.Caption + APP_VERSION;
   Aboutform.SVNLabel.Caption := Aboutform.SVNLabel.Caption + SVN_REVISION;
   AboutForm.ShowModal;
@@ -622,7 +629,7 @@ begin
   if Browser <> '' then
      begin
      Proc := TProcess.Create(Application);
-     Proc.CommandLine := Browser + ' http://dar.linux.free.fr/doc/index.html';
+     Proc.CommandLine := Browser + #32 + DAR_DOCPAGE;
      Proc.Execute;
      end;
 end;
@@ -652,7 +659,7 @@ begin
        begin
          Cmd := DAR_EXECUTABLE + ' -C ' + IsolateForm.CatalogueBox.Text
                        + ' -A ' + IsolateForm.ArchiveBox.Text + ' -v';
-         RunDarCommand(Cmd, 'DarGUI: Isolating catalogue...', Left+100, Top+150);
+         RunDarCommand ( Cmd, rsCptIsolating, Left + 100, Top + 150 ) ;
          //OpLogForm.AddCommand(Cmd);
        end;
   finally
@@ -675,7 +682,8 @@ begin
   SelectedNodes := 0;
   RestoreForm := TExtractSelectedForm.Create(Self);
   RestoreForm.FullRestore := true;
-  RestoreForm.Caption := 'Restore ' + IntToStr(ArchiveTreeView.Items.Count-1) + ' nodes...';
+  RestoreForm.Caption := Format ( rsCptRestoreNodes, [ IntToStr (
+    ArchiveTreeView.Items.Count - 1 ) ] ) ;
   if RestoreForm.ShowModal = mrOK then
      begin
         daroptions := ' -O -v';
@@ -686,10 +694,11 @@ begin
              2: daroptions := daroptions + ' --no-overwrite';
              end;
         CommandLine := (DAR_EXECUTABLE + ' -R "' + RestoreForm.RestoreDirectoryEdit.Text + '" -x "' + CurrentArchive + '" ' + daroptions);
-        RunDarCommand(CommandLine, 'restoring files...', Left+100, Top+150);
+        RunDarCommand ( CommandLine, rsCptRestoringFiles, Left + 100, Top + 150
+          ) ;
         OpLogForm.AddCommand(CommandLine);
         end
-        else MessageMemo.Lines.Add('Operation aborted: Restore selected files' );
+        else MessageMemo.Lines.Add ( rsErrRestoreAborted ) ;
   RestoreForm.Free;
 end;
 
@@ -698,8 +707,8 @@ begin
   miShowToolbar.Checked := not miShowToolbar.Checked;
   ToolbarPanel.Visible := miShowToolbar.Checked;
   if miShowToolbar.Checked
-     then Preferences.WriteString('User Preferences','ShowToolbar','1')
-     else Preferences.WriteString('User Preferences','ShowToolbar','0');
+     then Preferences.WriteString(rsCfgUserPrefs,rsCfgShowToolbar,'1')
+     else Preferences.WriteString(rsCfgUserPrefs,rsCfgShowToolbar,'0');
 end;
 
 procedure TMainForm.tbDiffClick ( Sender: TObject ) ;
@@ -744,7 +753,7 @@ begin
          RestoreForm.SelectedFiles.Add(fn);
          Inc(SelectedNodes);
          end;
-  RestoreForm.Caption := 'Restore selected files';
+  RestoreForm.Caption := rsCptRestoreSelected;
   fd := TFileData(ArchiveTreeView.Selected.Data);
   if SelectedNodes > 0 then
        begin
@@ -761,21 +770,21 @@ begin
                    1: ;
                    2: daroptions := daroptions + ' --no-overwrite';
                    end;
-              Batch.Add(#10 + '# Files to restore');
+              Batch.Add(#10 + rsFilesToRestore);
               for x := 0 to RestoreForm.SelectedFiles.Count-1 do
                   Batch.Add('-g "' + RestoreForm.SelectedFiles.Strings[x] + '"');
               batch.Insert(0,'-R "' + RestoreForm.RestoreDirectoryEdit.Text + '"');
               batchfile := GetNextFileName(TEMP_DIRECTORY + BATCHFILE_BASE);
               batch.SaveToFile(batchfile);
               CommandLine := (DAR_EXECUTABLE + ' -x "' + CurrentArchive + '" -B "' + batchfile + '" ' + daroptions);
-              RunDarCommand(CommandLine, 'restoring files...', Left+100, Top+150);
+              RunDarCommand(CommandLine, rsCptRestoringFiles, Left+100, Top+150);
               //OpLogForm.AddCommand(CommandLine);
               OpLogForm.RefreshOpList;
               //TODO: check that some files do need to be restored: ie not all excluded by overwrite rule
             end
-            else MessageMemo.Lines.Add('Operation aborted: Restore selected files' );
+            else MessageMemo.Lines.Add(rsErrRestoreAborted );
        end
-       else ShowMessage('Error: no files were selected');
+       else ShowMessage ( rsErrNoFilesSelected ) ;
   RestoreForm.Free;
   batch.Free;
   Enabled := True;

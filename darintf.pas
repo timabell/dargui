@@ -49,6 +49,8 @@ const
    TOOLDIR           = '/usr/share/dargui/';
    RUNSCRIPT         = 'rundar.sh';
    
+   DAR_DOCPAGE = 'http://dar.linux.free.fr/doc/index.html';
+   
 
 type
   TFileData = class
