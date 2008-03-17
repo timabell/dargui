@@ -154,3 +154,159 @@ msgstr ""
 msgid "Restore All"
 msgstr ""
 
+#: dgstrconst.rserrdarnotfound
+msgid "Unable to locate dar executable: nothing wil'"
+msgstr ""
+
+#: 
+msgid "l work!"
+msgstr ""
+
+#: dgstrconst.rserrrestoreaborted
+msgid "Operation aborted: Restore selected files'"
+msgstr ""
+
+#: dgstrconst.rserrnofilesselected
+msgid "Error: no files were selected"
+msgstr ""
+
+#: dgstrconst.rserrnoxterm
+msgid "Unable to find xterm: some features disabled"
+msgstr ""
+
+#: dgstrconst.rserrnobash
+msgid "Unable to find bash: some features disabled"
+msgstr ""
+
+#: dgstrconst.rserrnoxtermbash
+msgid "Unable to find xterm or bash: some features '"
+msgstr ""
+
+#: 
+msgid "disabled"
+msgstr ""
+
+#: dgstrconst.rsnotcompressthese
+msgid "\# Do not compress these files"
+msgstr ""
+
+#: dgstrconst.rsnotcompresssmaller
+msgid "\# Do not compress files smaller than thi'"
+msgstr ""
+
+#: 
+msgid "s"
+msgstr ""
+
+#: dgstrconst.rsdarbatchfile
+msgid "\# DAR batch file written by DarGUI"
+msgstr ""
+
+#: dgstrconst.rsdryrun
+msgid "\# Dry run: ths archive will not be written to file u'"
+msgstr ""
+
+#: 
+msgid "nless the next option is removed"
+msgstr ""
+
+#: dgstrconst.rsincdirectories
+msgid "\# Directories to include in archive"
+msgstr ""
+
+#: dgstrconst.rsincfiles
+msgid "\# Files to include in archive"
+msgstr ""
+
+#: dgstrconst.rsexcldirectories
+msgid "\# Directories to exclude from archive"
+msgstr ""
+
+#: dgstrconst.rsexclfiles
+msgid "\# Files to exclude from archive"
+msgstr ""
+
+#: dgstrconst.rsusegzipcompr
+msgid "\# Use gzip compression"
+msgstr ""
+
+#: dgstrconst.rsusebzip2comp
+msgid "\# Use bzip2 compression"
+msgstr ""
+
+#: dgstrconst.rsnotreaddarcfg
+msgid "\# Do not read DAR configuration files (~/.dar'"
+msgstr ""
+
+#: 
+msgid "rc or /etc/darrc)"
+msgstr ""
+
+#: dgstrconst.rspreservedirs
+msgid "\# Preserve ignored directory names"
+msgstr ""
+
+#: dgstrconst.rscreateslices
+msgid "\# Create slices of size in Mb"
+msgstr ""
+
+#: dgstrconst.rspausebetween
+msgid "\# Pause between slices"
+msgstr ""
+
+#: dgstrconst.rsfilestorestore
+msgid "\# Files to restore"
+msgstr ""
+
+#: dgstrconst.rscptcreatingarchive
+msgid "creating archive..."
+msgstr ""
+
+#: dgstrconst.rsstatusnodeselect
+msgid " \%s node(s) selected"
+msgstr ""
+
+#: dgstrconst.rsinformationf
+msgid "Information for archive: \%s"
+msgstr ""
+
+#: dgstrconst.rsinfoformlocation
+msgid "Location: \%s"
+msgstr ""
+
+#: dgstrconst.rsaboutnodar
+msgid "* No DAR executable found! *"
+msgstr ""
+
+#: dgstrconst.rsaboutdarversion
+msgid "Using DAR version \%s"
+msgstr ""
+
+#: dgstrconst.rscptisolating
+msgid "DarGUI: Isolating catalogue..."
+msgstr ""
+
+#: dgstrconst.rscptrestorenodes
+msgid "Restore \%s nodes..."
+msgstr ""
+
+#: dgstrconst.rscptrestoringfiles
+msgid "restoring files..."
+msgstr ""
+
+#: dgstrconst.rscptrestoreselected
+msgid "Restore selected files"
+msgstr ""
+
+#: dgstrconst.rsopenexisting
+msgid "Open existing archive"
+msgstr ""
+
+#: dgstrconst.rsfilterdararchives
+msgid "DAR archives"
+msgstr ""
+
+#: TMAINFORM.MITOGGLESELECT.CAPTION
+msgid "Toggle Selected"
+msgstr ""
+

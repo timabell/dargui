@@ -15,6 +15,10 @@ type
   TMainForm = class(TForm)
     IconList: TImageList;
     MenuBreak3: TMenuItem;
+    MenuBreak4: TMenuItem;
+    miToggleSelect: TMenuItem;
+    PopupBreak1: TMenuItem;
+    pmiToggleSelect: TMenuItem;
     miShowToolbar: TMenuItem;
     miOpenRecent: TMenuItem;
     miHelpDar: TMenuItem;
@@ -42,8 +46,8 @@ type
     MessagePanel: TPanel;
     MessageClosePanel: TPanel;
     MessageBoxSplitter: TSplitter;
-    tvMenuRestoreSelected: TMenuItem;
-    tvMenuRestoreAll: TMenuItem;
+    pmiRestoreSelected: TMenuItem;
+    pmiRestoreAll: TMenuItem;
     miExit: TMenuItem;
     miFileNew: TMenuItem;
     miFileOpen: TMenuItem;
@@ -87,8 +91,9 @@ type
     procedure miOperationlogsClick ( Sender: TObject ) ;
     procedure miRestoreAllClick(Sender: TObject);
     procedure miShowToolbarClick ( Sender: TObject ) ;
+    procedure pmiToggleSelectClick ( Sender: TObject ) ;
     procedure tbDiffClick ( Sender: TObject ) ;
-    procedure tvMenuRestoreSelectedClick(Sender: TObject);
+    procedure pmiRestoreSelectedClick(Sender: TObject);
     procedure EnableArchiveMenus;
   private
     LevelColors: array[0..4] of TColor;
@@ -148,7 +153,6 @@ begin
   RecentList := TRecentFiles.Create(Self);
   RecentList.OnClick := @RecentMenuClick;
   miOpenRecent.Add(RecentList);
-
   Preferences := TSettingsFile.Create(PrefFileName);
   RecentList.IniFile := Preferences;
   x := 0;
@@ -711,6 +715,14 @@ begin
      else Preferences.WriteString(rsCfgUserPrefs,rsCfgShowToolbar,'0');
 end;
 
+procedure TMainForm.pmiToggleSelectClick ( Sender: TObject ) ;
+var
+  x: integer;
+begin
+  for x := 0 to ArchiveTreeView.Items.Count-1 do
+     ArchiveTreeView.Items[x].MultiSelected := not ArchiveTreeView.Items[x].MultiSelected;
+end;
+
 procedure TMainForm.tbDiffClick ( Sender: TObject ) ;
 var
   DiffForm: TDiffForm;
@@ -728,7 +740,7 @@ begin
 end;
 
 
-procedure TMainForm.tvMenuRestoreSelectedClick(Sender: TObject);
+procedure TMainForm.pmiRestoreSelectedClick(Sender: TObject);
 var
   x: integer;
   fd: TFileData;

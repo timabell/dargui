@@ -1,13 +1,13 @@
 object MainForm: TMainForm
-  Left = 6
+  Left = 4
   Height = 605
-  Top = 47
+  Top = 4
   Width = 893
   HorzScrollBar.Page = 892
-  VertScrollBar.Page = 577
+  VertScrollBar.Page = 583
   ActiveControl = ArchiveTreeView
   Caption = 'DarGUI'
-  ClientHeight = 578
+  ClientHeight = 584
   ClientWidth = 893
   Icon.Data = {
     36040000424D3604000000000000360000002800000010000000100000000100
@@ -49,8 +49,8 @@ object MainForm: TMainForm
   OnClose = FormClose
   OnCreate = FormCreate
   object StatusBar: TStatusBar
-    Height = 21
-    Top = 557
+    Height = 17
+    Top = 567
     Width = 893
     Panels = <    
       item
@@ -62,7 +62,7 @@ object MainForm: TMainForm
     SimplePanel = False
   end
   object ArchiveTreeView: TTreeView
-    Height = 279
+    Height = 289
     Top = 73
     Width = 893
     Align = alClient
@@ -785,7 +785,7 @@ object MainForm: TMainForm
   end
   object MessagePanel: TPanel
     Height = 200
-    Top = 357
+    Top = 367
     Width = 893
     Align = alBottom
     Caption = 'MessagePanel'
@@ -836,7 +836,7 @@ object MainForm: TMainForm
   object MessageBoxSplitter: TSplitter
     Cursor = crVSplit
     Height = 5
-    Top = 352
+    Top = 362
     Width = 893
     Align = alBottom
     Beveled = True
@@ -874,7 +874,7 @@ object MainForm: TMainForm
         Tag = 1
         Caption = 'Restore selected'
         Enabled = False
-        OnClick = tvMenuRestoreSelectedClick
+        OnClick = pmiRestoreSelectedClick
       end
       object miRestoreAll: TMenuItem
         Tag = 1
@@ -885,6 +885,15 @@ object MainForm: TMainForm
       object miIsolate: TMenuItem
         Caption = 'Isolate catalogue'
         OnClick = miIsolateClick
+      end
+      object MenuBreak4: TMenuItem
+        Caption = '-'
+      end
+      object miToggleSelect: TMenuItem
+        Tag = 1
+        Caption = 'Toggle Selected'
+        Enabled = False
+        OnClick = pmiToggleSelectClick
       end
       object MenuBreak2: TMenuItem
         Tag = 1
@@ -941,17 +950,26 @@ object MainForm: TMainForm
   object TreeViewMenu: TPopupMenu
     left = 816
     top = 8
-    object tvMenuRestoreSelected: TMenuItem
+    object pmiRestoreSelected: TMenuItem
       Tag = 1
       Caption = 'Restore Selected'
       Enabled = False
-      OnClick = tvMenuRestoreSelectedClick
+      OnClick = pmiRestoreSelectedClick
     end
-    object tvMenuRestoreAll: TMenuItem
+    object pmiRestoreAll: TMenuItem
       Tag = 1
       Caption = 'Restore All'
       Enabled = False
       OnClick = miRestoreAllClick
+    end
+    object PopupBreak1: TMenuItem
+      Caption = '-'
+    end
+    object pmiToggleSelect: TMenuItem
+      Tag = 1
+      Caption = 'Toggle Selected'
+      Enabled = False
+      OnClick = pmiToggleSelectClick
     end
   end
   object IconList: TImageList
