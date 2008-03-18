@@ -22,6 +22,7 @@ rsErrNoXterm = 'Unable to find xterm: some features disabled';
 rsErrNoBash = 'Unable to find bash: some features disabled';
 rsErrNoXtermBash = 'Unable to find xterm or bash: some features disabled';
 
+
 // Batch File Comments
 rsNotCompressThese = '# Do not compress these files';
 rsNotCompressSmaller = '# Do not compress files smaller than this';
@@ -57,6 +58,39 @@ rsCptRestoreSelected = 'Restore selected files';
 rsOpenExisting = 'Open existing archive';
 rsFilterDARArchives = 'DAR archives';
 rsFCptSelectbyFilter = 'Select using filters...';
+
+// Mainform Interface
+rsMenuSelectByFilter = 'Select by Filter';
+rsMenuToggleSelect = 'Toggle Selection';
+rsMenuShowToolbar = 'Show Toolbar';
+rsMenuOpenRecent = 'Open Recent...';
+rsMenuDarDocumentation = 'Dar Documentation';
+rsHintCompareArchiveFile = 'Compare archive and filesystem';
+rsHintOpenAnArchive = 'Open an archive';
+rsHintCreateANewArchive = 'Create a new archive';
+rsHintIsolateCatalogue = 'Isolate catalogue from archive';
+rsMenuHelp = 'Help';
+rsMenuIsolateCatalogue = 'Isolate Catalogue';
+rsMenuOperationLogs = 'Operation Logs';
+rsMenuInformation = 'Information';
+rsMenuOptions = 'Options';
+rsMenuFile = 'File';
+rsColFileName = 'File';
+rsMenuArchive = 'Archive';
+rsMenuRestoreSelected = 'Restore Selected';
+rsMenuRestoreAll = 'Restore All';
+rsMenuExit = 'Exit';
+rsMenuNew = 'New';
+rsMenuOpen = 'Open';
+rsColDate = 'Date';
+rsColSize = 'Size';
+rsColUser = 'User';
+rsColGroup = 'Group';
+rsColStatus = 'Status';
+
+// Messages
+rsMessBUSY = 'BUSY...';
+
 
 
 implementation

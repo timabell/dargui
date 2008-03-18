@@ -58,6 +58,9 @@ object MainForm: TMainForm
       end    
       item
         Width = 50
+      end    
+      item
+        Width = 50
       end>
     SimplePanel = False
   end
@@ -77,13 +80,14 @@ object MainForm: TMainForm
     ReadOnly = True
     RowSelect = True
     ScrollBars = ssAutoVertical
+    ShowRoot = False
     SortType = stText
     TabOrder = 0
     OnAdvancedCustomDrawItem = ArchiveTreeViewAdvancedCustomDrawItem
     OnCompare = ArchiveTreeViewCompare
     OnDeletion = ArchiveTreeViewDeletion
     OnSelectionChanged = ArchiveTreeViewSelectionChanged
-    Options = [tvoAllowMultiselect, tvoHotTrack, tvoKeepCollapsedNodes, tvoReadOnly, tvoRowSelect, tvoShowButtons, tvoShowLines, tvoShowRoot, tvoToolTips]
+    Options = [tvoAllowMultiselect, tvoHotTrack, tvoKeepCollapsedNodes, tvoReadOnly, tvoRowSelect, tvoShowButtons, tvoShowLines, tvoToolTips]
     TreeLineColor = clDefault
   end
   object ToolbarPanel: TPanel

@@ -76,13 +76,13 @@ type
       Node2: TTreeNode; var Compare: Integer ) ;
     procedure ArchiveTreeViewDeletion(Sender: TObject; Node: TTreeNode);
     procedure ArchiveTreeViewSelectionChanged(Sender: TObject);
+    procedure FormCreate(Sender: TObject);
     procedure FormClose(Sender: TObject; var CloseAction: TCloseAction);
     procedure RecentMenuClick ( Sender: TObject ) ;
     procedure ToolbarPanelClick ( Sender: TObject ) ;
     procedure miArchiveInformationClick(Sender: TObject);
     procedure miExitClick ( Sender: TObject ) ;
     procedure MessageHideButtonClick(Sender: TObject);
-    procedure FormCreate(Sender: TObject);
     procedure miFileNewClick ( Sender: TObject ) ;
     procedure miFileOpenClick(Sender: TObject);
     procedure Splitter3ChangeBounds(Sender: TObject);
@@ -98,6 +98,7 @@ type
     procedure tbDiffClick ( Sender: TObject ) ;
     procedure pmiRestoreSelectedClick(Sender: TObject);
     procedure EnableArchiveMenus;
+    procedure InitialiseInterface;
   private
     LevelColors: array[0..4] of TColor;
     { private declarations }
@@ -111,6 +112,7 @@ var
   DarInfo: TDarInfo;
   SelectedNodes: integer;
   UpdatingSelection: Boolean;
+  AllowRecursiveSelect: Boolean;
   UserHome: string;
   SettingsDir: string;
   RecentList : TRecentFiles;
@@ -146,7 +148,8 @@ begin
   LevelColors[2] := clBlack;
   LevelColors[3] := clBlack;
   LevelColors[4] := clBlack;
-  
+  InitialiseInterface;
+  AllowRecursiveSelect := true;
   UserHome := SysUtils.GetEnvironmentVariable('HOME');
   if FileExists(UserHome + '/.config')
      then SettingsDir := UserHome + '/.config/dargui/'
@@ -373,24 +376,29 @@ begin
   if not UpdatingSelection then
   begin
   SelectedNodes := 0;
-  for x := 0 to TTreeview(Sender).Items.Count-1 do
+  for x := 1 to TTreeview(Sender).Items.Count-1 do
       begin
       if TTreeview(Sender).Items[x].MultiSelected then
          begin
          Inc(SelectedNodes);
          end;
-      if TTreeview(Sender).Items[x].Parent <> nil then
-         begin
-           if TTreeview(Sender).Items[x].Parent.MultiSelected then
-               // only select childnodes if Parent is collapsed
-               if not TTreeview(Sender).Items[x].Parent.Expanded then
-                  begin
-                    UpdatingSelection := true;
-                    TTreeview(Sender).Items[x].MultiSelected := true;
-                    Inc(SelectedNodes);
-                    UpdatingSelection := false;
-                  end;
-         end;
+      if AllowRecursiveSelect then
+          if TTreeview(Sender).Items[x].Parent <> nil then
+             begin
+               if TTreeview(Sender).Items[x].Parent.MultiSelected then
+                   // only select childnodes if Parent is collapsed
+                   if (not TTreeview(Sender).Items[x].Parent.Expanded)
+                   // or hidden from view
+                     or (not TTreeView(Sender).Items[x].Parent.IsVisible) then
+                     // don't count it again if already Multiselected
+                        if not TTreeView(Sender).Items[x].MultiSelected then
+                          begin
+                            UpdatingSelection := true;
+                            TTreeview(Sender).Items[x].MultiSelected := true;
+                            Inc(SelectedNodes);
+                            UpdatingSelection := false;
+                          end;
+             end;
         StatusBar.Panels[SELECT_STATUSBAR].Text :=
               Format ( rsStatusNodeSelect, [ IntToStr ( SelectedNodes ) ] ) ;
       end;
@@ -731,7 +739,17 @@ begin
   SelectFilterForm := TSelectFilterForm.Create(Self);
   SelectFilterForm.FileView := ArchiveTreeView;
   SelectFilterForm.Caption := rsFCptSelectbyFilter;
-  SelectFilterForm.ShowModal;
+  if SelectFilterForm.ShowModal = mrOK then
+     begin
+       //StatusBar.Panels [ SELECT_STATUSBAR ] .Text := rsMessBUSY;
+       //Application.ProcessMessages;
+       //AllowRecursiveSelect := false;
+       //UpdatingSelection := true;
+       //SelectFilterForm.SelectByFilter;
+       //UpdatingSelection := false;
+       //ArchiveTreeViewSelectionChanged(ArchiveTreeView);
+       //AllowRecursiveSelect := true;
+     end;
   SelectFilterForm.Free;
 end;
 
@@ -739,8 +757,16 @@ procedure TMainForm.pmiToggleSelectClick ( Sender: TObject ) ;
 var
   x: integer;
 begin
-  for x := 0 to ArchiveTreeView.Items.Count-1 do
+  ArchiveTreeView.Items[0].MultiSelected := false;
+  AllowRecursiveSelect := false;
+  UpdatingSelection := true;
+  for x := 1 to ArchiveTreeView.Items.Count-1 do
      ArchiveTreeView.Items[x].MultiSelected := not ArchiveTreeView.Items[x].MultiSelected;
+  if ArchiveTreeView.Selected <> nil then
+  ArchiveTreeView.Selected.Selected := false;
+  UpdatingSelection := false;
+  ArchiveTreeViewSelectionChanged(ArchiveTreeView);
+  AllowRecursiveSelect := true;
 end;
 
 procedure TMainForm.tbDiffClick ( Sender: TObject ) ;
@@ -830,6 +856,44 @@ begin
       if Components[x] is TMenuItem then
          if TMenuItem(Components[x]).Tag = ARCHIVEMENU_TAG
             then TMenuItem(Components[x]).Enabled := true;
+end;
+
+procedure TMainForm.InitialiseInterface;
+begin
+  pmiSelectFilter.Caption := rsMenuSelectByFilter;
+  miToggleSelect.Caption := rsMenuToggleSelect;
+  pmiToggleSelect.Caption := rsMenuToggleSelect;
+  miShowToolbar.Caption := rsMenuShowToolbar;
+  miOpenRecent.Caption := rsMenuOpenRecent;
+  miHelpDar.Caption := rsMenuDarDocumentation;
+  tbDiff.Hint := rsHintCompareArchiveFile;
+  tbOpen.Hint := rsHintOpenAnArchive;
+  tbCreate.Hint := rsHintCreateANewArchive;
+  tbIsolate.Hint := rsHintIsolateCatalogue;
+  MenuHelp.Caption := rsMenuHelp;
+  miIsolate.Caption := rsMenuIsolateCatalogue;
+  miOperationlogs.Caption := rsMenuOperationLogs;
+  miHelpAbout.Caption := rsMenuHelp;
+  miArchiveInformation.Caption := rsMenuInformation;
+  //miHideMessages: TMenuItem;
+  MenuSettings.Caption := rsMenuOptions;
+  //MessageHideButton: TBitBtn;
+  //MessageLabel: TLabel;
+  MenuFile.Caption := rsMenuFile;
+  MenuArchive.Caption := rsMenuArchive;
+  miRestoreSelected.Caption := rsMenuRestoreSelected;
+  miRestoreAll.Caption := rsMenuRestoreAll;
+  pmiRestoreSelected.Caption := rsMenuRestoreSelected;
+  pmiRestoreAll.Caption := rsMenuRestoreAll;
+  miExit.Caption := rsMenuExit;
+  miFileNew.Caption := rsMenuNew;
+  miFileOpen.Caption := rsMenuOpen;
+  FilenameHdr.Caption := rsColFileName;
+  DateHdr.Caption := rsColDate;
+  SizeHdr.Caption := rsColSize;
+  UserHdr.Caption := rsColUser;
+  GroupHdr.Caption := rsColGroup;
+  StatusHdr.Caption := rsColStatus;
 end;
 
 
