@@ -93,6 +93,7 @@ object MainForm: TMainForm
     ClientHeight = 48
     ClientWidth = 893
     TabOrder = 1
+    OnClick = ToolbarPanelClick
     object tbOpen: TBitBtn
       Left = 1
       Height = 46
@@ -970,6 +971,12 @@ object MainForm: TMainForm
       Caption = 'Toggle Selected'
       Enabled = False
       OnClick = pmiToggleSelectClick
+    end
+    object pmiSelectFilter: TMenuItem
+      Tag = 1
+      Caption = 'Select by Filter'
+      Enabled = False
+      OnClick = pmiSelectFilterClick
     end
   end
   object IconList: TImageList

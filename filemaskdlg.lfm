@@ -12,9 +12,9 @@ object FileMaskDialog: TFileMaskDialog
   OnShow = FormShow
   object FileMaskLabel: TLabel
     Left = 34
-    Height = 17
+    Height = 20
     Top = 24
-    Width = 70
+    Width = 58
     Caption = 'File mask'
     FocusControl = FileMask
     ParentColor = False
@@ -47,7 +47,7 @@ object FileMaskDialog: TFileMaskDialog
     Left = 34
     Height = 23
     Top = 45
-    Width = 176
+    Width = 216
     TabOrder = 0
     Text = 'FileMask'
   end

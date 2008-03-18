@@ -56,6 +56,7 @@ rsCptRestoreSelected = 'Restore selected files';
 // Dialog titles etc.
 rsOpenExisting = 'Open existing archive';
 rsFilterDARArchives = 'DAR archives';
+rsFCptSelectbyFilter = 'Select using filters...';
 
 
 implementation

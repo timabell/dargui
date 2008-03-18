@@ -1,0 +1,103 @@
+object SelectFilterForm: TSelectFilterForm
+  Left = 645
+  Height = 299
+  Top = 398
+  Width = 400
+  HorzScrollBar.Page = 399
+  VertScrollBar.Page = 298
+  ActiveControl = OKButton
+  Caption = 'SelectFilterForm'
+  ClientHeight = 299
+  ClientWidth = 400
+  OnClose = FormClose
+  OnCreate = FormCreate
+  Position = poOwnerFormCenter
+  object OKCancelPanel: TPanel
+    Height = 66
+    Top = 233
+    Width = 400
+    Align = alBottom
+    ClientHeight = 66
+    ClientWidth = 400
+    TabOrder = 0
+    object OKButton: TBitBtn
+      Left = 96
+      Height = 30
+      Top = 14
+      Width = 90
+      Caption = '&OK'
+      Default = True
+      Kind = bkOK
+      NumGlyphs = 0
+      OnClick = OKButtonClick
+      TabOrder = 0
+    end
+    object CancelButton: TBitBtn
+      Left = 232
+      Height = 30
+      Top = 14
+      Width = 90
+      Cancel = True
+      Caption = 'Cancel'
+      Kind = bkCancel
+      ModalResult = 2
+      NumGlyphs = 0
+      TabOrder = 1
+    end
+  end
+  object MainPanel: TPanel
+    Height = 233
+    Width = 400
+    Align = alClient
+    ClientHeight = 233
+    ClientWidth = 400
+    TabOrder = 1
+    object FilterList: TListBox
+      Left = 8
+      Height = 152
+      Top = 32
+      Width = 200
+      TabOrder = 0
+      TopIndex = -1
+    end
+    object AddFilterButton: TButton
+      Left = 256
+      Height = 30
+      Top = 32
+      Width = 95
+      Caption = 'Add'
+      OnClick = AddFilterButtonClick
+      TabOrder = 1
+    end
+    object DelFilterButton: TButton
+      Left = 256
+      Height = 30
+      Top = 72
+      Width = 95
+      Caption = 'Remove'
+      Enabled = False
+      OnClick = DelFilterButtonClick
+      TabOrder = 2
+    end
+    object ClearFiltersButton: TButton
+      Left = 256
+      Height = 30
+      Top = 154
+      Width = 95
+      Caption = 'Clear'
+      Enabled = False
+      OnClick = ClearFiltersButtonClick
+      TabOrder = 3
+    end
+    object FileNamesOnlyCheck: TCheckBox
+      Left = 16
+      Height = 21
+      Top = 200
+      Width = 198
+      Caption = 'Apply filter only to filenames'
+      Checked = True
+      State = cbChecked
+      TabOrder = 4
+    end
+  end
+end

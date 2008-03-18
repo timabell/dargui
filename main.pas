@@ -6,7 +6,7 @@ interface
 
 uses
   Classes, SysUtils, LResources, Forms, Controls, Graphics, Dialogs, DarIntf,
-  Menus, ComCtrls, ExtCtrls, Buttons, StdCtrls, Process, LCLType, historymenu;
+  Menus, ComCtrls, ExtCtrls, Buttons, StdCtrls, Process, LCLType, historymenu, regexpr;
 
 type
 
@@ -16,6 +16,7 @@ type
     IconList: TImageList;
     MenuBreak3: TMenuItem;
     MenuBreak4: TMenuItem;
+    pmiSelectFilter: TMenuItem;
     miToggleSelect: TMenuItem;
     PopupBreak1: TMenuItem;
     pmiToggleSelect: TMenuItem;
@@ -77,6 +78,7 @@ type
     procedure ArchiveTreeViewSelectionChanged(Sender: TObject);
     procedure FormClose(Sender: TObject; var CloseAction: TCloseAction);
     procedure RecentMenuClick ( Sender: TObject ) ;
+    procedure ToolbarPanelClick ( Sender: TObject ) ;
     procedure miArchiveInformationClick(Sender: TObject);
     procedure miExitClick ( Sender: TObject ) ;
     procedure MessageHideButtonClick(Sender: TObject);
@@ -91,6 +93,7 @@ type
     procedure miOperationlogsClick ( Sender: TObject ) ;
     procedure miRestoreAllClick(Sender: TObject);
     procedure miShowToolbarClick ( Sender: TObject ) ;
+    procedure pmiSelectFilterClick ( Sender: TObject ) ;
     procedure pmiToggleSelectClick ( Sender: TObject ) ;
     procedure tbDiffClick ( Sender: TObject ) ;
     procedure pmiRestoreSelectedClick(Sender: TObject);
@@ -125,7 +128,8 @@ const
 
 implementation
 
-uses dgStrConst, selectrestore, archive, archiveinfo, About, oplog, isolate, diff, prefs;
+uses dgStrConst, selectrestore, archive, archiveinfo, About, oplog, isolate, diff, prefs,
+   selectfilter;
 
 { TMainForm }
 
@@ -410,6 +414,11 @@ begin
                then if OpenArchive(OpenDialog.FileName,ArchiveTreeView) = 0
                     then EnableArchiveMenus;
           end;
+end;
+
+procedure TMainForm.ToolbarPanelClick ( Sender: TObject ) ;
+begin
+
 end;
 
 procedure TMainForm.miArchiveInformationClick(Sender: TObject);
@@ -713,6 +722,17 @@ begin
   if miShowToolbar.Checked
      then Preferences.WriteString(rsCfgUserPrefs,rsCfgShowToolbar,'1')
      else Preferences.WriteString(rsCfgUserPrefs,rsCfgShowToolbar,'0');
+end;
+
+procedure TMainForm.pmiSelectFilterClick ( Sender: TObject ) ;
+var
+  SelectFilterForm: TSelectFilterForm;
+begin
+  SelectFilterForm := TSelectFilterForm.Create(Self);
+  SelectFilterForm.FileView := ArchiveTreeView;
+  SelectFilterForm.Caption := rsFCptSelectbyFilter;
+  SelectFilterForm.ShowModal;
+  SelectFilterForm.Free;
 end;
 
 procedure TMainForm.pmiToggleSelectClick ( Sender: TObject ) ;

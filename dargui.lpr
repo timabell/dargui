@@ -29,15 +29,15 @@ uses
   Forms
   { add your units here }, main, darintf, selectrestore, archive, filemaskdlg,
   ProcessLine, ArchiveInfo, FileOverwrite, About, oplog, isolate, diff, prefs,
-  historymenu, dgStrConst;
+  historymenu, dgStrConst, selectfilter;
 
 begin
   Application.Title:='DarGUI';
   Application.Initialize;
-  Application.CreateForm(TMainForm, MainForm);
+  Application.CreateForm ( TMainForm, MainForm ) ;
   Application.CreateForm ( TArchiveForm, ArchiveForm ) ;
   Application.CreateForm ( TFileMaskDialog, FileMaskDialog ) ;
-  Application.CreateForm(TInformationForm, InformationForm);
+  Application.CreateForm ( TInformationForm, InformationForm ) ;
   Application.CreateForm ( TOpLogForm, OpLogForm ) ;
   Application.Run;
 end.

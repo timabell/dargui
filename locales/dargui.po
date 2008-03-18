@@ -310,3 +310,47 @@ msgstr ""
 msgid "Toggle Selected"
 msgstr ""
 
+#: TSELECTFILTERFORM.CAPTION
+msgid "SelectFilterForm"
+msgstr ""
+
+#: TSELECTFILTERFORM.OKBUTTON.CAPTION
+msgid "&OK"
+msgstr ""
+
+#: TSELECTFILTERFORM.CANCELBUTTON.CAPTION
+msgid "Cancel"
+msgstr ""
+
+#: TSELECTFILTERFORM.ADDFILTERBUTTON.CAPTION
+msgid "Add"
+msgstr ""
+
+#: TSELECTFILTERFORM.DELFILTERBUTTON.CAPTION
+msgid "Remove"
+msgstr ""
+
+#: TFILEMASKDIALOG.CAPTION
+msgid "Add file"
+msgstr ""
+
+#: TFILEMASKDIALOG.FILEMASKLABEL.CAPTION
+msgid "File mask"
+msgstr ""
+
+#: TFILEMASKDIALOG.FILEMASK.TEXT
+msgid "FileMask"
+msgstr ""
+
+#: TMAINFORM.PMISELECTFILTER.CAPTION
+msgid "Select by Filter"
+msgstr ""
+
+#: TSELECTFILTERFORM.CLEARFILTERSBUTTON.CAPTION
+msgid "Clear"
+msgstr ""
+
+#: TSELECTFILTERFORM.FILENAMESONLYCHECK.CAPTION
+msgid "Apply filter only to filenames"
+msgstr ""
+
