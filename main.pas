@@ -6,7 +6,8 @@ interface
 
 uses
   Classes, SysUtils, LResources, Forms, Controls, Graphics, Dialogs, DarIntf,
-  Menus, ComCtrls, ExtCtrls, Buttons, StdCtrls, Process, LCLType, historymenu, regexpr;
+  Menus, ComCtrls, ExtCtrls, Buttons, StdCtrls, Process, LCLType, historymenu, regexpr,
+  selectfilter;
 
 type
 
@@ -115,6 +116,7 @@ type
 
 var
   MainForm: TMainForm;
+  SelectFilterForm: TSelectFilterForm;
   CurrentArchive: string;
   DarInfo: TDarInfo;
   SelectedNodes: integer;
@@ -137,8 +139,7 @@ const
 
 implementation
 
-uses dgStrConst, selectrestore, archive, archiveinfo, About, oplog, isolate, diff, prefs,
-   selectfilter;
+uses dgStrConst, selectrestore, archive, archiveinfo, About, oplog, isolate, diff, prefs;
 
 { TMainForm }
 
@@ -156,6 +157,9 @@ begin
   LevelColors[3] := clBlack;
   LevelColors[4] := clBlack;
   InitialiseInterface;
+  SelectFilterForm := TSelectFilterForm.Create(Self);
+  SelectFilterForm.FileView := ArchiveTreeView;
+  SelectFilterForm.Caption := rsFCptSelectbyFilter;
   AllowRecursiveSelect := true;
   UserHome := SysUtils.GetEnvironmentVariable('HOME');
   if FileExists(UserHome + '/.config')
@@ -768,12 +772,7 @@ begin
 end;
 
 procedure TMainForm.pmiSelectFilterClick ( Sender: TObject ) ;
-var
-  SelectFilterForm: TSelectFilterForm;
 begin
-  SelectFilterForm := TSelectFilterForm.Create(Self);
-  SelectFilterForm.FileView := ArchiveTreeView;
-  SelectFilterForm.Caption := rsFCptSelectbyFilter;
   if SelectFilterForm.ShowModal = mrOK then
      begin
        StatusBar.Panels [ SELECT_STATUSBAR ] .Text := rsMessBUSY;
@@ -785,7 +784,6 @@ begin
        ArchiveTreeViewSelectionChanged(ArchiveTreeView);
        AllowRecursiveSelect := true;
      end;
-  SelectFilterForm.Free;
 end;
 
 procedure TMainForm.pmiToggleSelectClick ( Sender: TObject ) ;

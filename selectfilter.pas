@@ -47,6 +47,10 @@ const
   ttAtStart = 0;
   ttWithin  = 1;
   ttAtEnd   = 2;
+  
+var
+  SelectFilterForm: TSelectFilterForm;
+
 
 
 implementation
@@ -103,6 +107,8 @@ begin
 end;
 
 procedure TSelectFilterForm.ApplyFilters ;
+// TODO: this selects files matching ANY filter
+// need to address possibility of selecting files matching ALL filters only
 var
   x: Integer;
   searchstring: string;

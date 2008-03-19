@@ -91,9 +91,9 @@ object SelectFilterForm: TSelectFilterForm
     end
     object FileNamesOnlyCheck: TCheckBox
       Left = 16
-      Height = 21
+      Height = 28
       Top = 200
-      Width = 198
+      Width = 228
       Caption = 'Apply filter only to filenames'
       Checked = True
       State = cbChecked

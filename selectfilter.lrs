@@ -24,7 +24,7 @@ LazarusResources.Add('TSelectFilterForm','FORMDATA',[
   +'DelFilterButtonClick'#8'TabOrder'#2#2#0#0#7'TButton'#18'ClearFiltersButton'
   +#4'Left'#3#0#1#6'Height'#2#30#3'Top'#3#154#0#5'Width'#2'_'#7'Caption'#6#5'Cl'
   +'ear'#7'Enabled'#8#7'OnClick'#7#23'ClearFiltersButtonClick'#8'TabOrder'#2#3#0
-  +#0#9'TCheckBox'#18'FileNamesOnlyCheck'#4'Left'#2#16#6'Height'#2#21#3'Top'#3
-  +#200#0#5'Width'#3#198#0#7'Caption'#6#30'Apply filter only to filenames'#7'Ch'
+  +#0#9'TCheckBox'#18'FileNamesOnlyCheck'#4'Left'#2#16#6'Height'#2#28#3'Top'#3
+  +#200#0#5'Width'#3#228#0#7'Caption'#6#30'Apply filter only to filenames'#7'Ch'
   +'ecked'#9#5'State'#7#9'cbChecked'#8'TabOrder'#2#4#0#0#0#0
 ]);
