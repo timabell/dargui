@@ -38,6 +38,8 @@ type
     function MatchesAnyFilter(aString: string): Boolean;
     function RegexpMatches(Filter, SearchText: string) : Boolean;
     function MakeRegExp( Filter: string ) : TRegExp;
+    procedure InitialiseInterface;
+    procedure SetFileMaskPosition;
   public
     { public declarations }
     FileView: TTreeview;
@@ -53,11 +55,9 @@ const
 var
   SelectFilterForm: TSelectFilterForm;
 
-
-
 implementation
 
-uses filemaskdlg, darintf, synregexpr, prefs;
+uses dgStrConst, filemaskdlg, darintf, synregexpr, prefs;
 
 { TSelectFilterForm }
 
@@ -67,9 +67,11 @@ var
   recentfilters: string;
   x: Integer;
 begin
-  recentfilters:= Preferences.ReadString('User Preferences','RecentFilters','') ;
+  recentfilters:= Preferences.ReadString(CfgUserPrefs,'RecentFilters','') ;
   FileMaskDialog.PopulateFilterList(recentfilters);
+  FileMaskDialog.Caption := rsCptAddFilter;
   FileMaskDialog.FileMask.Text := '';
+  SetFileMaskPosition;
   if FileMaskDialog.ShowModal = mrOk  then
      begin
        newfilter := Trim(FileMaskDialog.FileMask.Text);
@@ -83,7 +85,7 @@ begin
           then recentfilters := FileMaskDialog.FileMask.Items[0];
        for x := 1 to FileMaskDialog.FileMask.Items.Count-1 do
            recentfilters := recentfilters + ';' + FileMaskDialog.FileMask.Items[x];
-       Preferences.WriteString('User Preferences','RecentFilters', recentfilters);
+       Preferences.WriteString(CfgUserPrefs,'RecentFilters', recentfilters);
      end;
 end;
 
@@ -214,6 +216,23 @@ begin
   if Filter[Length(Filter)] <> '*'
      then re_AddChar('$');
   Result := reg_exp;
+end;
+
+procedure TSelectFilterForm.InitialiseInterface;
+begin
+AddFilterButton.Caption := rsButtonAdd;
+CancelButton.Caption := rsButtonCancel;
+MatchAllCheck.Caption := rsMatchAllFilters;
+FileNamesOnlyCheck.Caption := rsApplyFiltersToFilena;
+DelFilterButton.Caption := rsButtonRemove;
+ClearFiltersButton.Caption := rsButtonClear;
+OKButton.Caption := rsButtonOK;
+end;
+
+procedure TSelectFilterForm.SetFileMaskPosition;
+begin
+  FileMaskDialog.Top := Top + ((Height - FileMaskDialog.Height) div 2);
+  FileMaskDialog.Left := Left + ((Width - FileMaskDialog.Width) div 2);
 end;
 
 initialization

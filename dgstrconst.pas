@@ -54,7 +54,14 @@ rsOpenExisting = 'Open existing archive';
 rsFilterDARArchives = 'DAR archives';
 rsFCptSelectbyFilter = 'Select using filters...';
 
-// Mainform Interface
+//Common Interface
+rsButtonAdd = 'Add';
+rsButtonCancel = 'Cancel';
+rsButtonRemove = 'Remove';
+rsButtonClear = 'Clear';
+rsButtonOK = 'OK';
+
+// Mainform
 rsMenuSelectByFilter = 'Select by Filter';
 rsMenuToggleSelect = 'Toggle Selection';
 rsMenuShowToolbar = 'Show Toolbar';
@@ -88,12 +95,15 @@ rsColUser = 'User';
 rsColGroup = 'Group';
 rsColStatus = 'Status';
 
+//SelectFilterForm
+rsMatchAllFilters = 'Match all filters';
+rsApplyFiltersToFilena = 'Apply filters to filenames only';
+rsCptAddFilter = 'Add filter';
+
 // Messages
 rsMessBUSY = 'BUSY...';
 rsErrUnableToFindArchive = 'Unable to find archive';
 rsErrUnableToOpenArchive = 'Unable to open archive';
-
-
 
 implementation
 
