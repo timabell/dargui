@@ -30,7 +30,7 @@ type
 
 implementation
 
-uses dgStrConst;
+uses dgStrConst, darintf;
 
 { TRecentFiles }
 
@@ -59,8 +59,8 @@ begin
                 end;
              if Assigned(fIniFile) then
                 begin
-                  if fIniFile.ReadString(rsCfgRecentFiles, rsCfgRecentX + IntToStr(x),'') <> ''
-                     then fIniFile.DeleteKey(rsCfgRecentFiles, rsCfgRecentX + IntToStr(x));
+                  if fIniFile.ReadString(CfgRecentFiles, CfgRecentX + IntToStr(x),'') <> ''
+                     then fIniFile.DeleteKey(CfgRecentFiles, CfgRecentX + IntToStr(x));
                 end;
             end;
 end;
@@ -116,20 +116,20 @@ begin
               begin
                 TMenuItem(fItems[x]).Caption := TMenuItem(fItems[x-1]).Caption;
                 if Assigned(fIniFile) then
-                   fIniFile.WriteString(rsCfgRecentFiles, rsCfgRecentX + IntToStr(x),TMenuItem(fItems[x-1]).Caption);
+                   fIniFile.WriteString(CfgRecentFiles, CfgRecentX + IntToStr(x),TMenuItem(fItems[x-1]).Caption);
               end;
           Caption := aCaption;
          end
      else
          begin
            mi.Caption := aCaption;
-           //This should happen when reading from the IniFile so we don't write back again
+           //This should happen when reading from the IniFile so we don't want to write back again
            //if Assigned(fIniFile) then
                 //fIniFile.WriteString('Recent Files', 'Recent'+IntToStr(fItems.Count-1),aCaption);
          end;
      end;
   if Assigned(fIniFile) then
-                fIniFile.WriteString(rsCfgRecentFiles, rsCfgRecentX + '0',Caption);
+                fIniFile.WriteString(CfgRecentFiles, CfgRecentX + '0',Caption);
 end;
 
 end.

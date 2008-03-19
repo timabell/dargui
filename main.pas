@@ -174,14 +174,14 @@ begin
   Preferences := TSettingsFile.Create(PrefFileName);
   RecentList.IniFile := Preferences;
   x := 0;
-  RecentFile := Preferences.ReadString ( rsCfgRecentFiles, rsCfgRecentX + IntToStr(x) , '' ) ;
+  RecentFile := Preferences.ReadString ( CfgRecentFiles, CfgRecentX + IntToStr(x) , '' ) ;
   While RecentFile <> '' do
         begin
           RecentList.AddFile(RecentFile, false);
           Inc(x);
-          RecentFile := Preferences.ReadString(rsCfgRecentFiles,rsCfgRecentX + IntToStr(x),'');
+          RecentFile := Preferences.ReadString(CfgRecentFiles,CfgRecentX + IntToStr(x),'');
         end;
-  miShowToolbar.Checked := Preferences.ReadString ( rsCfgUserPrefs, rsCfgShowToolbar, '1' ) = '1';
+  miShowToolbar.Checked := Preferences.ReadString ( CfgUserPrefs, CfgShowToolbar, '1' ) = '1';
   ToolbarPanel.Visible := miShowToolbar.Checked;
   Caption := Caption + #32 + APP_VERSION;
   case CheckSupportingApps of
@@ -768,8 +768,8 @@ begin
   miShowToolbar.Checked := not miShowToolbar.Checked;
   ToolbarPanel.Visible := miShowToolbar.Checked;
   if miShowToolbar.Checked
-     then Preferences.WriteString(rsCfgUserPrefs,rsCfgShowToolbar,'1')
-     else Preferences.WriteString(rsCfgUserPrefs,rsCfgShowToolbar,'0');
+     then Preferences.WriteString(CfgUserPrefs,CfgShowToolbar,'1')
+     else Preferences.WriteString(CfgUserPrefs,CfgShowToolbar,'0');
 end;
 
 procedure TMainForm.pmiSelectFilterClick ( Sender: TObject ) ;

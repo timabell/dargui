@@ -51,6 +51,14 @@ const
    
    DAR_DOCPAGE = 'http://dar.linux.free.fr/doc/index.html';
    
+// Config file
+   CfgUserPrefs = 'User Preferences';
+   CfgRecentFiles = 'Recent Files';
+   CfgRecentX = 'Recent';
+   CfgShowToolbar = 'ShowToolbar';
+
+
+   
 
 type
   TFileData = class

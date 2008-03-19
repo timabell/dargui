@@ -8,12 +8,6 @@ uses
   Classes, SysUtils;
 
 resourcestring
-// Config file
-rsCfgShowToolbar = 'ShowToolbar';
-rsCfgUserPrefs = 'User Preferences';
-rsCfgRecentFiles = 'Recent Files';
-rsCfgRecentX = 'Recent';
-
 // Errors
 rsErrDarNotFound = 'Unable to locate dar executable: nothing will work!';
 rsErrRestoreAborted = 'Operation aborted: Restore selected files';
