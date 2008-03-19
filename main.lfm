@@ -982,6 +982,27 @@ object MainForm: TMainForm
       Enabled = False
       OnClick = pmiSelectFilterClick
     end
+    object pmiShowAllSelected: TMenuItem
+      Tag = 1
+      Caption = 'Show Selected'
+      Enabled = False
+      OnClick = pmiShowAllSelectedClick
+    end
+    object PopupBreak2: TMenuItem
+      Caption = '-'
+    end
+    object pmiShowAll: TMenuItem
+      Tag = 1
+      Caption = 'Show All'
+      Enabled = False
+      OnClick = pmiShowAllClick
+    end
+    object pmiHideAll: TMenuItem
+      Tag = 1
+      Caption = 'Hide All'
+      Enabled = False
+      OnClick = pmiHideAllClick
+    end
   end
   object IconList: TImageList
     left = 744

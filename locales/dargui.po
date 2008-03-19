@@ -354,3 +354,19 @@ msgstr ""
 msgid "Apply filter only to filenames"
 msgstr ""
 
+#: TMAINFORM.MISHOWALLSELECTED.CAPTION
+msgid "New Item6"
+msgstr ""
+
+#: TMAINFORM.PMISHOWALLSELECTED.CAPTION
+msgid "Show Selected"
+msgstr ""
+
+#: TMAINFORM.PMISHOWALL.CAPTION
+msgid "Show All"
+msgstr ""
+
+#: TMAINFORM.PMIHIDEALL.CAPTION
+msgid "Hide All"
+msgstr ""
+

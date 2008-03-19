@@ -16,6 +16,10 @@ type
     IconList: TImageList;
     MenuBreak3: TMenuItem;
     MenuBreak4: TMenuItem;
+    PopupBreak2: TMenuItem;
+    pmiShowAll: TMenuItem;
+    pmiHideAll: TMenuItem;
+    pmiShowAllSelected: TMenuItem;
     pmiSelectFilter: TMenuItem;
     miToggleSelect: TMenuItem;
     PopupBreak1: TMenuItem;
@@ -92,6 +96,9 @@ type
     procedure miIsolateClick ( Sender: TObject ) ;
     procedure miOperationlogsClick ( Sender: TObject ) ;
     procedure miRestoreAllClick(Sender: TObject);
+    procedure pmiHideAllClick ( Sender: TObject ) ;
+    procedure pmiShowAllClick ( Sender: TObject ) ;
+    procedure pmiShowAllSelectedClick ( Sender: TObject ) ;
     procedure miShowToolbarClick ( Sender: TObject ) ;
     procedure pmiSelectFilterClick ( Sender: TObject ) ;
     procedure pmiToggleSelectClick ( Sender: TObject ) ;
@@ -730,6 +737,25 @@ begin
   RestoreForm.Free;
 end;
 
+procedure TMainForm.pmiHideAllClick ( Sender: TObject ) ;
+begin
+  ArchiveTreeView.Items[0].Collapse(true);
+end;
+
+procedure TMainForm.pmiShowAllClick ( Sender: TObject ) ;
+begin
+  ArchiveTreeView.Items[0].Expand(true);
+end;
+
+procedure TMainForm.pmiShowAllSelectedClick ( Sender: TObject ) ;
+var
+  x: Integer;
+begin
+  for x := 1 to ArchiveTreeView.Items.Count-1 do
+      if ArchiveTreeView.Items[x].MultiSelected
+         then ArchiveTreeView.Items[x].ExpandParents;
+end;
+
 procedure TMainForm.miShowToolbarClick ( Sender: TObject ) ;
 begin
   miShowToolbar.Checked := not miShowToolbar.Checked;
@@ -892,6 +918,9 @@ begin
   miRestoreAll.Caption := rsMenuRestoreAll;
   pmiRestoreSelected.Caption := rsMenuRestoreSelected;
   pmiRestoreAll.Caption := rsMenuRestoreAll;
+  pmiShowAllSelected.Caption := rsMenuShowSelected;
+  pmiShowAll.Caption := rsMenuShowAll;
+  pmiHideAll.Caption := rsMenuHideAll;
   miExit.Caption := rsMenuExit;
   miFileNew.Caption := rsMenuNew;
   miFileOpen.Caption := rsMenuOpen;
