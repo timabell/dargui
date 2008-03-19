@@ -423,16 +423,18 @@ var
 begin
   fn := TMenuItem(Sender).Caption + '.1.dar';
   if FileExists(fn) then
-       if DarInfo.version<>'-' then  //TODO disable open menus if dar is absent
-          begin
-            StatusBar.Panels[SELECT_STATUSBAR].Text := rsMessBUSY;
-            Application.ProcessMessages;
-            OpenDialog.FileName := fn;
-            if OpenArchive(OpenDialog.FileName,ArchiveTreeView) = 0
-                    then EnableArchiveMenus;
-            StatusBar.Panels[SELECT_STATUSBAR].Text := '';
-          end
-          else MessageDlg ( rsErrUnableToFindArchive, mtError, [ mbOk ] , 0 ) ;
+       begin
+         if DarInfo.version<>'-' then  //TODO disable open menus if dar is absent
+            begin
+              StatusBar.Panels[SELECT_STATUSBAR].Text := rsMessBUSY;
+              Application.ProcessMessages;
+              OpenDialog.FileName := fn;
+              if OpenArchive(OpenDialog.FileName,ArchiveTreeView) = 0
+                      then EnableArchiveMenus;
+              StatusBar.Panels[SELECT_STATUSBAR].Text := '';
+            end;
+       end
+       else MessageDlg ( rsErrUnableToFindArchive, mtError, [ mbOk ] , 0 ) ;
 end;
 
 procedure TMainForm.ToolbarPanelClick ( Sender: TObject ) ;
