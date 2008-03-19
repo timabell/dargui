@@ -908,7 +908,7 @@ begin
   MenuHelp.Caption := rsMenuHelp;
   miIsolate.Caption := rsMenuIsolateCatalogue;
   miOperationlogs.Caption := rsMenuOperationLogs;
-  miHelpAbout.Caption := rsMenuHelp;
+  miHelpAbout.Caption := rsMenuHelpAbout;
   miArchiveInformation.Caption := rsMenuInformation;
   //miHideMessages: TMenuItem;
   MenuSettings.Caption := rsMenuOptions;

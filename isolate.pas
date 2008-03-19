@@ -54,6 +54,9 @@ end;
 
 procedure TIsolateForm.ArchiveButtonClick ( Sender: TObject ) ;
 begin
+  if FileExists(ArchiveBox.Text)
+     then OpenDialog.InitialDir := ExtractFilePath( ArchiveBox.Text )
+     else OpenDialog.InitialDir := SysUtils.GetEnvironmentVariable('HOME');
   if OpenDialog.Execute then
      begin
        ArchiveBox.Text := TrimToBase(OpenDialog.FileName);
@@ -63,6 +66,9 @@ end;
 
 procedure TIsolateForm.CatalogueButtonClick ( Sender: TObject ) ;
 begin
+  if CatalogueBox.Text <> ''
+     then SaveDialog.InitialDir := ExtractFilePath( CatalogueBox.Text )
+     else SaveDialog.InitialDir := SysUtils.GetEnvironmentVariable('HOME');
   if SaveDialog.Execute
      then CatalogueBox.Text := TrimToBase(SaveDialog.FileName);
 end;

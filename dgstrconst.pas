@@ -70,6 +70,7 @@ rsHintOpenAnArchive = 'Open an archive';
 rsHintCreateANewArchive = 'Create a new archive';
 rsHintIsolateCatalogue = 'Isolate catalogue from archive';
 rsMenuHelp = 'Help';
+rsMenuHelpAbout = 'About DarGUI';
 rsMenuIsolateCatalogue = 'Isolate Catalogue';
 rsMenuOperationLogs = 'Operation Logs';
 rsMenuInformation = 'Information';
