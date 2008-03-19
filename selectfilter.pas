@@ -114,6 +114,7 @@ end;
 procedure TSelectFilterForm.FormCreate ( Sender: TObject ) ;
 begin
   RegExpList := TStringList.Create;
+  InitialiseInterface;
 end;
 
 procedure TSelectFilterForm.FormDestroy ( Sender: TObject ) ;

@@ -100,6 +100,9 @@ rsMatchAllFilters = 'Match all filters';
 rsApplyFiltersToFilena = 'Apply filters to filenames only';
 rsCptAddFilter = 'Add filter';
 
+// Filemaskdialog
+rsFileMask = 'File mask';
+
 // Messages
 rsMessBUSY = 'BUSY...';
 rsErrUnableToFindArchive = 'Unable to find archive';

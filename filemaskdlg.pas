@@ -18,9 +18,11 @@ type
     CancelButton: TBitBtn;
     FileMaskLabel: TLabel;
     procedure FileMaskExit(Sender: TObject);
+    procedure FormCreate ( Sender: TObject ) ;
     procedure FormShow ( Sender: TObject ) ;
   private
     { private declarations }
+    procedure InitialiseInterface;
   public
     { public declarations }
     procedure PopulateFilterList( FilterString: string );
@@ -31,11 +33,20 @@ var
 
 implementation
 
+uses dgStrConst;
+
 { TFileMaskDialog }
 
 procedure TFileMaskDialog.FormShow ( Sender: TObject ) ;
 begin
   FileMask.SetFocus;
+end;
+
+procedure TFileMaskDialog.InitialiseInterface;
+begin
+  OKButton.Caption := rsButtonOK;
+  CancelButton.Caption := rsButtonCancel;
+  FileMaskLabel.Caption := rsFileMask;
 end;
 
 procedure TFileMaskDialog.PopulateFilterList(FilterString: string);
@@ -71,6 +82,11 @@ begin
   FileMask.Items.Insert(0,FileMask.Text);
   if FileMask.Items.Count > FileMask.DropDownCount
      then FileMask.Items.Delete(FileMask.Items.Count-1);
+end;
+
+procedure TFileMaskDialog.FormCreate ( Sender: TObject ) ;
+begin
+  InitialiseInterface;
 end;
 
 initialization

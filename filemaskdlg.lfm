@@ -9,6 +9,7 @@ object FileMaskDialog: TFileMaskDialog
   Caption = 'Add file'
   ClientHeight = 148
   ClientWidth = 278
+  OnCreate = FormCreate
   OnShow = FormShow
   object FileMaskLabel: TLabel
     Left = 34
