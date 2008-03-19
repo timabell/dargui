@@ -1,20 +1,22 @@
 object SelectFilterForm: TSelectFilterForm
-  Left = 645
-  Height = 299
-  Top = 398
+  Left = 618
+  Height = 329
+  Top = 326
   Width = 400
   HorzScrollBar.Page = 399
-  VertScrollBar.Page = 298
+  VertScrollBar.Page = 328
   ActiveControl = OKButton
+  BorderIcons = [biSystemMenu, biMinimize]
+  BorderStyle = bsToolWindow
   Caption = 'SelectFilterForm'
-  ClientHeight = 299
+  ClientHeight = 329
   ClientWidth = 400
   OnCreate = FormCreate
   OnDestroy = FormDestroy
   Position = poOwnerFormCenter
   object OKCancelPanel: TPanel
     Height = 66
-    Top = 233
+    Top = 263
     Width = 400
     Align = alBottom
     ClientHeight = 66
@@ -33,7 +35,7 @@ object SelectFilterForm: TSelectFilterForm
       TabOrder = 0
     end
     object CancelButton: TBitBtn
-      Left = 232
+      Left = 216
       Height = 30
       Top = 14
       Width = 90
@@ -46,10 +48,10 @@ object SelectFilterForm: TSelectFilterForm
     end
   end
   object MainPanel: TPanel
-    Height = 233
+    Height = 263
     Width = 400
     Align = alClient
-    ClientHeight = 233
+    ClientHeight = 263
     ClientWidth = 400
     TabOrder = 1
     object FilterList: TListBox
@@ -91,12 +93,20 @@ object SelectFilterForm: TSelectFilterForm
     end
     object FileNamesOnlyCheck: TCheckBox
       Left = 16
-      Height = 28
-      Top = 200
-      Width = 228
-      Caption = 'Apply filter only to filenames'
+      Height = 21
+      Top = 232
+      Width = 198
+      Caption = 'Apply filter to filenames only'
       Checked = True
       State = cbChecked
+      TabOrder = 5
+    end
+    object MatchAllCheck: TCheckBox
+      Left = 16
+      Height = 21
+      Top = 200
+      Width = 113
+      Caption = 'MatchAllCheck'
       TabOrder = 4
     end
   end

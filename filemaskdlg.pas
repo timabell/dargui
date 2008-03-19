@@ -64,6 +64,7 @@ procedure TFileMaskDialog.FileMaskExit(Sender: TObject);
 var
   i: Integer;
 begin
+  if Filemask.Text = '' then exit;
   i := FileMask.Items.IndexOf(FileMask.Text);
   if i > -1
          then FileMask.Items.Delete(i);

@@ -18,6 +18,7 @@ type
   TSelectFilterForm = class ( TForm )
     AddFilterButton: TButton;
     CancelButton: TBitBtn;
+    MatchAllCheck: TCheckBox;
     FileNamesOnlyCheck: TCheckBox;
     DelFilterButton: TButton;
     ClearFiltersButton: TButton;
@@ -31,6 +32,7 @@ type
     procedure DelFilterButtonClick ( Sender: TObject ) ;
     procedure FormCreate ( Sender: TObject ) ;
     procedure FormDestroy ( Sender: TObject ) ;
+    function MatchesAllFilters ( aString: string ) : Boolean;
   private
     { private declarations }
     function MatchesAnyFilter(aString: string): Boolean;
@@ -118,8 +120,6 @@ begin
 end;
 
 procedure TSelectFilterForm.ApplyFilters ;
-// TODO: this selects files matching ANY filter
-// need to address possibility of selecting files matching ALL filters only
 var
   x: Integer;
   searchstring: string;
@@ -132,8 +132,9 @@ begin
                if not FileNamesOnlyCheck.Checked
                      then searchstring := TFileData(FileView.Items[x].Data).item[SEGFILEPATH]
                                              + searchstring;
-               FileView.Items[x].MultiSelected :=
-                   MatchesAnyFilter(searchstring);
+               if MatchAllCheck.Checked
+                  then FileView.Items[x].MultiSelected := MatchesAllFilters(searchstring)
+               else FileView.Items[x].MultiSelected := MatchesAnyFilter(searchstring);
              end;
 end;
 
@@ -149,6 +150,20 @@ begin
            exit;
          end;
 end;
+
+function TSelectFilterForm.MatchesAllFilters ( aString: string ) : Boolean;
+var
+  x: Integer;
+begin
+  Result := true;
+  for x := 0 to RegExpList.Count-1 do
+      if not RegexpMatches(RegExpList.Strings[x], aString) then
+         begin
+           Result := false;
+           exit;
+         end;
+end;
+
 
 function TSelectFilterForm.RegexpMatches ( Filter, SearchText: string
   ) : Boolean;

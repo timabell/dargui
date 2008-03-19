@@ -5,15 +5,16 @@ object FileMaskDialog: TFileMaskDialog
   Width = 278
   HorzScrollBar.Page = 277
   VertScrollBar.Page = 147
+  ActiveControl = OKButton
   Caption = 'Add file'
   ClientHeight = 148
   ClientWidth = 278
   OnShow = FormShow
   object FileMaskLabel: TLabel
     Left = 34
-    Height = 17
+    Height = 20
     Top = 24
-    Width = 70
+    Width = 58
     Caption = 'File mask'
     ParentColor = False
   end

@@ -418,3 +418,11 @@ msgstr ""
 msgid "Check Integrity"
 msgstr ""
 
+#: TSELECTFILTERFORM.FILENAMESONLYCHECK.CAPTION
+msgid "Apply filter to filenames only"
+msgstr ""
+
+#: TSELECTFILTERFORM.MATCHALLCHECK.CAPTION
+msgid "MatchAllCheck"
+msgstr ""
+
