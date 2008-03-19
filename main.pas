@@ -428,7 +428,7 @@ begin
   fn := TMenuItem(Sender).Caption + '.1.dar';
   if FileExists(fn) then
        begin
-         if DarInfo.version<>'-' then  //TODO disable open menus if dar is absent
+         if DarInfo.version<>'-' then  //TODO: disable open menus if dar is absent
             begin
               StatusBar.Panels[SELECT_STATUSBAR].Text := rsMessBUSY;
               Application.ProcessMessages;
@@ -439,6 +439,7 @@ begin
             end;
        end
        else MessageDlg ( rsErrUnableToFindArchive, mtError, [ mbOk ] , 0 ) ;
+       //TODO: if archive not found it should be removed from menu
 end;
 
 procedure TMainForm.ToolbarPanelClick ( Sender: TObject ) ;
