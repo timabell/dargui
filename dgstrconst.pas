@@ -90,6 +90,8 @@ rsColStatus = 'Status';
 
 // Messages
 rsMessBUSY = 'BUSY...';
+rsErrUnableToFindArchive = 'Unable to find archive';
+rsErrUnableToOpenArchive = 'Unable to open archive';
 
 
 

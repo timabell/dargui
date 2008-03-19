@@ -416,12 +416,16 @@ var
 begin
   fn := TMenuItem(Sender).Caption + '.1.dar';
   if FileExists(fn) then
+       if DarInfo.version<>'-' then  //TODO disable open menus if dar is absent
           begin
+            StatusBar.Panels[SELECT_STATUSBAR].Text := rsMessBUSY;
+            Application.ProcessMessages;
             OpenDialog.FileName := fn;
-            if DarInfo.version<>'-'
-               then if OpenArchive(OpenDialog.FileName,ArchiveTreeView) = 0
+            if OpenArchive(OpenDialog.FileName,ArchiveTreeView) = 0
                     then EnableArchiveMenus;
-          end;
+            StatusBar.Panels[SELECT_STATUSBAR].Text := '';
+          end
+          else MessageDlg ( rsErrUnableToFindArchive, mtError, [ mbOk ] , 0 ) ;
 end;
 
 procedure TMainForm.ToolbarPanelClick ( Sender: TObject ) ;
@@ -608,14 +612,17 @@ begin
   OpenDialog.Filter := rsFilterDARArchives + '|*.*.dar';
   if OpenDialog.Execute then
      begin
+       StatusBar.Panels[SELECT_STATUSBAR].Text := rsMessBUSY;
+       Application.ProcessMessages;
        fn := OpenDialog.FileName;
        if OpenArchive(fn, ArchiveTreeView) = 0 then
         begin
           EnableArchiveMenus;
           CurrentArchive := fn;
           RecentList.AddFile(fn);
-          //Preferences.WriteString('Recent files','Recent0',fn);
-        end;
+        end
+        else MessageDlg ( rsErrUnableToOpenArchive, mtError, [ mbOK ] , 0 ) ;
+      StatusBar.Panels[SELECT_STATUSBAR].Text := '';
      end;
 
 end;
