@@ -14,6 +14,10 @@ type
   { TMainForm }
 
   TMainForm = class(TForm)
+    miSelectFilter: TMenuItem;
+    miShowSelect: TMenuItem;
+    miTestArchive: TMenuItem;
+    tbTest: TBitBtn;
     IconList: TImageList;
     MenuBreak3: TMenuItem;
     MenuBreak4: TMenuItem;
@@ -84,7 +88,6 @@ type
     procedure FormCreate(Sender: TObject);
     procedure FormClose(Sender: TObject; var CloseAction: TCloseAction);
     procedure RecentMenuClick ( Sender: TObject ) ;
-    procedure ToolbarPanelClick ( Sender: TObject ) ;
     procedure miArchiveInformationClick(Sender: TObject);
     procedure miExitClick ( Sender: TObject ) ;
     procedure MessageHideButtonClick(Sender: TObject);
@@ -107,6 +110,7 @@ type
     procedure pmiRestoreSelectedClick(Sender: TObject);
     procedure EnableArchiveMenus;
     procedure InitialiseInterface;
+    procedure tbTestClick ( Sender: TObject ) ;
   private
     LevelColors: array[0..4] of TColor;
     { private declarations }
@@ -433,18 +437,16 @@ begin
               StatusBar.Panels[SELECT_STATUSBAR].Text := rsMessBUSY;
               Application.ProcessMessages;
               OpenDialog.FileName := fn;
-              if OpenArchive(OpenDialog.FileName,ArchiveTreeView) = 0
-                      then EnableArchiveMenus;
+              if OpenArchive(OpenDialog.FileName,ArchiveTreeView) = 0 then
+                  begin
+                    EnableArchiveMenus;
+                    CurrentArchive := TrimToBase(OpenDialog.FileName);
+                  end;
               StatusBar.Panels[SELECT_STATUSBAR].Text := '';
             end;
        end
        else MessageDlg ( rsErrUnableToFindArchive, mtError, [ mbOk ] , 0 ) ;
        //TODO: if archive not found it should be removed from menu
-end;
-
-procedure TMainForm.ToolbarPanelClick ( Sender: TObject ) ;
-begin
-
 end;
 
 procedure TMainForm.miArchiveInformationClick(Sender: TObject);
@@ -819,6 +821,13 @@ begin
   end;
 end;
 
+procedure TMainForm.tbTestClick ( Sender: TObject ) ;
+begin
+  if FileExists(CurrentArchive + '.1.dar')
+     then RunDarCommand(DAR_EXECUTABLE + ' -t ' + CurrentArchive + ' -v',
+                        rsCptDarGUICheckingArchive,
+                        Left+100, Top+150);
+end;
 
 procedure TMainForm.pmiRestoreSelectedClick(Sender: TObject);
 var
@@ -886,6 +895,7 @@ procedure TMainForm.EnableArchiveMenus;
 var
   x: Integer;
 begin
+  tbTest.Enabled := true;
   for x := 0 to ComponentCount-1 do
       if Components[x] is TMenuItem then
          if TMenuItem(Components[x]).Tag = ARCHIVEMENU_TAG
@@ -906,9 +916,12 @@ begin
   tbIsolate.Hint := rsHintIsolateCatalogue;
   MenuHelp.Caption := rsMenuHelp;
   miIsolate.Caption := rsMenuIsolateCatalogue;
+  miTestArchive.Caption := rsMenuCheckIntegrity;
   miOperationlogs.Caption := rsMenuOperationLogs;
   miHelpAbout.Caption := rsMenuHelpAbout;
   miArchiveInformation.Caption := rsMenuInformation;
+  miShowSelect.Caption := rsMenuShowSelected;
+  miSelectFilter.Caption := rsMenuSelectByFilter;
   //miHideMessages: TMenuItem;
   MenuSettings.Caption := rsMenuOptions;
   //MessageHideButton: TBitBtn;

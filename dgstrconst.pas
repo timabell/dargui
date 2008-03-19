@@ -47,6 +47,7 @@ rsCptIsolating = 'DarGUI: Isolating catalogue...';
 rsCptRestoreNodes = 'Restore %s nodes...';
 rsCptRestoringFiles = 'restoring files...';
 rsCptRestoreSelected = 'Restore selected files';
+rsCptDarGUICheckingArchive = 'DarGUI: checking archive integrity...';
 
 // Dialog titles etc.
 rsOpenExisting = 'Open existing archive';
@@ -67,6 +68,7 @@ rsMenuHelp = 'Help';
 rsMenuHelpAbout = 'About DarGUI';
 rsMenuIsolateCatalogue = 'Isolate Catalogue';
 rsMenuOperationLogs = 'Operation Logs';
+rsMenuCheckIntegrity = 'Check Integrity';
 rsMenuInformation = 'Information';
 rsMenuOptions = 'Options';
 rsMenuFile = 'File';
