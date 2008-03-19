@@ -623,20 +623,20 @@ var
   fn: String;
 begin
   OpenDialog.Title := rsOpenExisting;
-  OpenDialog.Filter := rsFilterDARArchives + '|*.*.dar';
+  OpenDialog.Filter := rsFilterDARArchives + '|*.1.dar';
   if OpenDialog.Execute then
      begin
-       StatusBar.Panels[SELECT_STATUSBAR].Text := rsMessBUSY;
+       StatusBar.Panels[SELECT_STATUSBAR].Text := #32 + rsMessBUSY;
        Application.ProcessMessages;
        fn := OpenDialog.FileName;
        if OpenArchive(fn, ArchiveTreeView) = 0 then
-        begin
-          EnableArchiveMenus;
-          CurrentArchive := fn;
-          RecentList.AddFile(fn);
-        end
-        else MessageDlg ( rsErrUnableToOpenArchive, mtError, [ mbOK ] , 0 ) ;
-      StatusBar.Panels[SELECT_STATUSBAR].Text := '';
+          begin
+            EnableArchiveMenus;
+            CurrentArchive := fn;
+            RecentList.AddFile(fn);
+          end
+       else MessageDlg ( rsErrUnableToOpenArchive, mtError, [ mbOK ] , 0 ) ;
+       StatusBar.Panels[SELECT_STATUSBAR].Text := '';
      end;
 
 end;
