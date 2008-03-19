@@ -5,18 +5,16 @@ object FileMaskDialog: TFileMaskDialog
   Width = 278
   HorzScrollBar.Page = 277
   VertScrollBar.Page = 147
-  ActiveControl = FileMask
   Caption = 'Add file'
   ClientHeight = 148
   ClientWidth = 278
   OnShow = FormShow
   object FileMaskLabel: TLabel
     Left = 34
-    Height = 20
+    Height = 17
     Top = 24
-    Width = 58
+    Width = 70
     Caption = 'File mask'
-    FocusControl = FileMask
     ParentColor = False
   end
   object OKButton: TBitBtn
@@ -43,12 +41,14 @@ object FileMaskDialog: TFileMaskDialog
     NumGlyphs = 0
     TabOrder = 2
   end
-  object FileMask: TEdit
+  object FileMask: TComboBox
     Left = 34
-    Height = 23
+    Height = 25
     Top = 45
-    Width = 216
+    Width = 214
+    AutoCompleteText = [cbactEndOfLineComplete, cbactSearchAscending]
+    MaxLength = 65535
+    OnExit = FileMaskExit
     TabOrder = 0
-    Text = 'FileMask'
   end
 end

@@ -13,10 +13,11 @@ type
   { TFileMaskDialog }
 
   TFileMaskDialog = class ( TForm )
+    FileMask: TComboBox;
     OKButton: TBitBtn;
     CancelButton: TBitBtn;
-    FileMask: TEdit;
     FileMaskLabel: TLabel;
+    procedure FileMaskExit(Sender: TObject);
     procedure FormShow ( Sender: TObject ) ;
   private
     { private declarations }
@@ -34,6 +35,18 @@ implementation
 procedure TFileMaskDialog.FormShow ( Sender: TObject ) ;
 begin
   FileMask.SetFocus;
+end;
+
+procedure TFileMaskDialog.FileMaskExit(Sender: TObject);
+var
+  i: Integer;
+begin
+  i := FileMask.Items.IndexOf(FileMask.Text);
+  if i > -1
+         then FileMask.Items.Delete(i);
+  FileMask.Items.Insert(0,FileMask.Text);
+  if FileMask.Items.Count > FileMask.DropDownCount
+     then FileMask.Items.Delete(FileMask.Items.Count-1);
 end;
 
 initialization
