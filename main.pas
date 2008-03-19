@@ -741,14 +741,14 @@ begin
   SelectFilterForm.Caption := rsFCptSelectbyFilter;
   if SelectFilterForm.ShowModal = mrOK then
      begin
-       //StatusBar.Panels [ SELECT_STATUSBAR ] .Text := rsMessBUSY;
-       //Application.ProcessMessages;
-       //AllowRecursiveSelect := false;
-       //UpdatingSelection := true;
-       //SelectFilterForm.SelectByFilter;
-       //UpdatingSelection := false;
-       //ArchiveTreeViewSelectionChanged(ArchiveTreeView);
-       //AllowRecursiveSelect := true;
+       StatusBar.Panels [ SELECT_STATUSBAR ] .Text := rsMessBUSY;
+       Application.ProcessMessages;
+       AllowRecursiveSelect := false;
+       UpdatingSelection := true;
+       SelectFilterForm.ApplyFilters;
+       UpdatingSelection := false;
+       ArchiveTreeViewSelectionChanged(ArchiveTreeView);
+       AllowRecursiveSelect := true;
      end;
   SelectFilterForm.Free;
 end;

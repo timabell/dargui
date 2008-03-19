@@ -9,8 +9,8 @@ object SelectFilterForm: TSelectFilterForm
   Caption = 'SelectFilterForm'
   ClientHeight = 299
   ClientWidth = 400
-  OnClose = FormClose
   OnCreate = FormCreate
+  OnDestroy = FormDestroy
   Position = poOwnerFormCenter
   object OKCancelPanel: TPanel
     Height = 66
@@ -28,8 +28,8 @@ object SelectFilterForm: TSelectFilterForm
       Caption = '&OK'
       Default = True
       Kind = bkOK
+      ModalResult = 1
       NumGlyphs = 0
-      OnClick = OKButtonClick
       TabOrder = 0
     end
     object CancelButton: TBitBtn

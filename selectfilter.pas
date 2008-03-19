@@ -29,19 +29,18 @@ type
     procedure AddFilterButtonClick ( Sender: TObject ) ;
     procedure ClearFiltersButtonClick ( Sender: TObject ) ;
     procedure DelFilterButtonClick ( Sender: TObject ) ;
-    procedure FormClose ( Sender: TObject; var CloseAction: TCloseAction ) ;
     procedure FormCreate ( Sender: TObject ) ;
-    procedure OKButtonClick ( Sender: TObject ) ;
+    procedure FormDestroy ( Sender: TObject ) ;
   private
     { private declarations }
-  public
-    { public declarations }
-    FileView: TTreeview;
-    procedure SelectByFilter;
     function MatchesAnyFilter(aString: string): Boolean;
     function RegexpMatches(Filter, SearchText: string) : Boolean;
     function MakeRegExp( Filter: string ) : TRegExp;
-  end; 
+  public
+    { public declarations }
+    FileView: TTreeview;
+    procedure ApplyFilters;
+  end;
 
 
 const
@@ -93,46 +92,32 @@ begin
      end;
 end;
 
-procedure TSelectFilterForm.FormClose ( Sender: TObject;
-  var CloseAction: TCloseAction ) ;
-begin
-  RegExpList.Free;
-end;
-
 procedure TSelectFilterForm.FormCreate ( Sender: TObject ) ;
 begin
   RegExpList := TStringList.Create;
 end;
 
-procedure TSelectFilterForm.OKButtonClick ( Sender: TObject ) ;
-var
-  x: Integer;
+procedure TSelectFilterForm.FormDestroy ( Sender: TObject ) ;
 begin
-  for x := 0 to FileView.Items.Count-1 do
-      FileView.Items[x].MultiSelected :=
-           MatchesAnyFilter(TFileData(FileView.Items[x].Data).item[SEGFILEPATH]
-                             + TFileData(FileView.Items[x].Data).item[SEGFILENAME]);
-  ModalResult := mrOk;
+  RegExpList.Free;
 end;
 
-procedure TSelectFilterForm.SelectByFilter;
+procedure TSelectFilterForm.ApplyFilters ;
 var
   x: Integer;
-  fd: TFileData;
   searchstring: string;
 begin
-  if FilterList.Count < 1 then exit;
-  if FileView.Items.Count > 0
-     then for x := 0 to FileView.Items.Count do
-        if not FileView.Items[x].HasChildren then
-          begin
-            fd := TFileData(FileView.Items[x].Data);
-            searchstring := fd.item[SEGFILENAME];
-            if not FileNamesOnlyCheck.Checked
-               then searchstring := fd.item[SEGFILEPATH] + searchstring;
-            FileView.Items[x].MultiSelected := MatchesAnyFilter( searchstring );
-            FileView.Items[x].Selected := FileView.Items[x].MultiSelected;
-          end;
+  if RegExpList.Count < 1 then exit;
+      for x := 0 to FileView.Items.Count-1 do
+         if not FileView.Items[x].HasChildren then  // avoid searching on directory nodes
+             begin
+               searchstring := TFileData(FileView.Items[x].Data).item[SEGFILENAME];
+               if not FileNamesOnlyCheck.Checked
+                     then searchstring := TFileData(FileView.Items[x].Data).item[SEGFILEPATH]
+                                             + searchstring;
+               FileView.Items[x].MultiSelected :=
+                   MatchesAnyFilter(searchstring);
+             end;
 end;
 
 function TSelectFilterForm.MatchesAnyFilter ( aString: string ) : Boolean;
