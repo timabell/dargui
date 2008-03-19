@@ -23,6 +23,7 @@ type
     { private declarations }
   public
     { public declarations }
+    procedure PopulateFilterList( FilterString: string );
   end; 
 
 var
@@ -36,6 +37,28 @@ procedure TFileMaskDialog.FormShow ( Sender: TObject ) ;
 begin
   FileMask.SetFocus;
 end;
+
+procedure TFileMaskDialog.PopulateFilterList(FilterString: string);
+var
+  a,
+  b: integer;
+begin
+  FileMask.Items.Clear;
+  if Length(FilterString) < 1 then exit;
+  a := 1;
+  b := a;
+  while b < Length(FilterString) do
+        begin
+          if FilterString[b] = ';' then
+             begin
+               FileMask.Items.Add(Copy(FilterString, a, b-a));
+               a := b+1;
+             end;
+          Inc(b);
+        end;
+  FileMask.Items.Add(Copy(FilterString, a, b-a+1));
+end;
+
 
 procedure TFileMaskDialog.FileMaskExit(Sender: TObject);
 var

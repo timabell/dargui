@@ -55,14 +55,19 @@ var
 
 implementation
 
-uses filemaskdlg, darintf, synregexpr;
+uses filemaskdlg, darintf, synregexpr, prefs;
 
 { TSelectFilterForm }
 
 procedure TSelectFilterForm.AddFilterButtonClick ( Sender: TObject ) ;
 var
   newfilter: string;
+  recentfilters: string;
+  x: Integer;
 begin
+  recentfilters:= Preferences.ReadString('User Preferences','RecentFilters','') ;
+  FileMaskDialog.PopulateFilterList(recentfilters);
+  FileMaskDialog.FileMask.Text := '';
   if FileMaskDialog.ShowModal = mrOk  then
      begin
        newfilter := Trim(FileMaskDialog.FileMask.Text);
@@ -71,6 +76,12 @@ begin
        DelFilterButton.Enabled := true;
        ClearFiltersButton.Enabled := true;
        FilterList.ItemIndex := FilterList.Count-1;
+       recentfilters:= '';
+       if FileMaskDialog.FileMask.Items.Count > 0
+          then recentfilters := FileMaskDialog.FileMask.Items[0];
+       for x := 1 to FileMaskDialog.FileMask.Items.Count-1 do
+           recentfilters := recentfilters + ';' + FileMaskDialog.FileMask.Items[x];
+       Preferences.WriteString('User Preferences','RecentFilters', recentfilters);
      end;
 end;
 
