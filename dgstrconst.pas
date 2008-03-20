@@ -100,13 +100,22 @@ rsMatchAllFilters = 'Match all filters';
 rsApplyFiltersToFilena = 'Apply filters to filenames only';
 rsCptAddFilter = 'Add filter';
 
+
 // Filemaskdialog
 rsFileMask = 'File mask';
+
+// ExtractSelected
+rsRestoreFilesTo = 'Restore files to';
+rsIgnoreDirectories = 'Ignore directories';
+rsOverwriteExistingFil = 'Overwrite existing files';
+
 
 // Messages
 rsMessBUSY = 'BUSY...';
 rsErrUnableToFindArchive = 'Unable to find archive';
 rsErrUnableToOpenArchive = 'Unable to open archive';
+rsConfirmBeforeOverwri = 'Confirm before overwriting';
+rsDoNotOverwriteFiles = 'Do not overwrite files';
 
 implementation
 
