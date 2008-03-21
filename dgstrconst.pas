@@ -121,6 +121,8 @@ rsFileMask = 'File mask';
 rsRestoreFilesTo = 'Restore files to';
 rsIgnoreDirectories = 'Ignore directories';
 rsOverwriteExistingFil = 'Overwrite existing files';
+rsMessDirectoryNotFound = 'Destination directory not found';
+rsMessInvalidDestinationDir = 'Invalid destination directory';
 
 
 // Messages

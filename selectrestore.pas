@@ -66,7 +66,18 @@ end;
 
 procedure TExtractSelectedForm.OkButtonClick(Sender: TObject);
 begin
-  ModalResult := mrOk;
+  if RestoreDirectoryEdit.Text <> ''
+     then
+     begin
+       if FileExists(RestoreDirectoryEdit.Text)
+          then ModalResult := mrOk
+          else ShowMessage ( rsMessDirectoryNotFound ) ;
+      end
+      else
+      begin
+        ShowMessage ( rsMessInvalidDestinationDir ) ;
+        RestoreDirectoryEdit.SetFocus;
+      end;
 end;
 
 procedure TExtractSelectedForm.FormDestroy ( Sender: TObject ) ;
