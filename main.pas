@@ -737,7 +737,7 @@ begin
              1: ;
              2: daroptions := daroptions + ' --no-overwrite';
              end;
-        CommandLine := (DAR_EXECUTABLE + ' -R "' + RestoreForm.RestoreDirectoryEdit.Text + '" -x "' + CurrentArchive + '" ' + daroptions);
+        CommandLine := (DAR_EXECUTABLE + ' -x "' + CurrentArchive + '"  -R "' + RestoreForm.RestoreDirectoryEdit.Text + '"' + daroptions);
         RunDarCommand ( CommandLine, rsCptRestoringFiles, Left + 100, Top + 150
           ) ;
         OpLogForm.AddCommand(CommandLine);
