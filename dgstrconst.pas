@@ -104,6 +104,7 @@ rsCptAddFilter = 'Add filter';
 // Filemaskdialog
 rsFileMask = 'File mask';
 
+
 // ExtractSelected
 rsRestoreFilesTo = 'Restore files to';
 rsIgnoreDirectories = 'Ignore directories';
@@ -116,6 +117,7 @@ rsErrUnableToFindArchive = 'Unable to find archive';
 rsErrUnableToOpenArchive = 'Unable to open archive';
 rsConfirmBeforeOverwri = 'Confirm before overwriting';
 rsDoNotOverwriteFiles = 'Do not overwrite files';
+rsCptAddFileMask = 'Add file mask';
 
 implementation
 

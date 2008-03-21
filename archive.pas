@@ -15,9 +15,9 @@ type
   { TArchiveForm }
 
   TArchiveForm = class ( TForm )
-    AddCompressMaskButton: TButton;
-    AddExcludeFileMaskButton: TButton;
-    AddIncludeFileMaskButton: TButton;
+    CompressMasks: TButton;
+    ExcludeFileMasks: TButton;
+    IncludeFileMasks: TButton;
     BatchFileButton: TButton;
     BatchFile: TEdit;
     PauseCheck: TCheckBox;
@@ -80,7 +80,7 @@ type
     NoteBookPanel: TPanel;
     SaveDialog: TSaveDialog;
     SelectDirectoryDialog: TSelectDirectoryDialog;
-    procedure AddCompressMaskButtonClick ( Sender: TObject ) ;
+    procedure CompressMasksClick ( Sender: TObject ) ;
     procedure AddIncludeDirButtonClick ( Sender: TObject ) ;
     procedure AddIncludeFileButtonClick ( Sender: TObject ) ;
     procedure ArchiveDirButtonClick ( Sender: TObject ) ;
@@ -112,7 +112,7 @@ var
 
 implementation
 
-uses darintf, filemaskdlg;
+uses dgStrConst, darintf, filemaskdlg, prefs;
 
 { TArchiveForm }
 
@@ -193,29 +193,42 @@ begin
       end;
 end;
 
-procedure TArchiveForm.AddCompressMaskButtonClick ( Sender: TObject ) ;
+procedure TArchiveForm.CompressMasksClick ( Sender: TObject ) ;
+var
+  recentmasks: String;
+  newmask: string;
 begin
-  SetFileMaskPosition;
-  FileMaskDialog.FileMask.Text := '';
+  recentmasks := Preferences.ReadString(CfgUserPrefs,TButton(Sender).Name,'') ;
+  FileMaskDialog.PopulateFilterList(recentmasks);
+  FileMaskDialog.Caption := rsCptAddFileMask;
+  FileMaskDialog.SetPosition(Self);
   if FileMaskDialog.ShowModal = mrOk then
      if FileMaskDialog.FileMask.Text <> '' then
-      case TComponent(Sender).Tag of
-          0: begin
-               NoCompressList.Items.Add(FileMaskDialog.FileMask.Text);
-               NoCompressList.ItemIndex := NoCompressList.Items.Count-1;
-               DelCompressMaskButton.Enabled := true;
-             end;
-          1: begin
-               IncludeFiles.Items.Add(FileMaskDialog.FileMask.Text);
-               IncludeFiles.ItemIndex := IncludeFiles.Items.Count-1;
-               DelIncludeFileButton.Enabled := true;
-             end;
-          2: begin
-               ExcludeFiles.Items.Add(FileMaskDialog.FileMask.Text);
-               ExcludeFiles.ItemIndex := ExcludeFiles.Items.Count-1;
-               DelExcludeFileButton.Enabled := true;
-             end;
-          end;
+       begin
+        newmask := Trim(FileMaskDialog.FileMask.Text);
+        case TComponent(Sender).Tag of
+            0: if NoCompressList.Items.IndexOf(newmask) < 0 then
+               begin
+                 NoCompressList.Items.Add(newmask);
+                 NoCompressList.ItemIndex := NoCompressList.Items.Count-1;
+                 DelCompressMaskButton.Enabled := true;
+               end;
+            1: if IncludeFiles.Items.IndexOf(newmask) < 0 then
+               begin
+                 IncludeFiles.Items.Add(newmask);
+                 IncludeFiles.ItemIndex := IncludeFiles.Items.Count-1;
+                 DelIncludeFileButton.Enabled := true;
+               end;
+            2: if ExcludeFiles.Items.IndexOf(newmask) < 0 then
+               begin
+                 ExcludeFiles.Items.Add(newmask);
+                 ExcludeFiles.ItemIndex := ExcludeFiles.Items.Count-1;
+                 DelExcludeFileButton.Enabled := true;
+               end;
+         end;  //case
+         if FileMaskDialog.Masks <> ''
+          then Preferences.WriteString(CfgUserPrefs,TButton(Sender).Name, FileMaskDialog.Masks);
+       end;
 end;
 
 procedure TArchiveForm.AddIncludeFileButtonClick ( Sender: TObject ) ;

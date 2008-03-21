@@ -65,13 +65,11 @@ procedure TSelectFilterForm.AddFilterButtonClick ( Sender: TObject ) ;
 var
   newfilter: string;
   recentfilters: string;
-  x: Integer;
 begin
   recentfilters:= Preferences.ReadString(CfgUserPrefs,'RecentFilters','') ;
   FileMaskDialog.PopulateFilterList(recentfilters);
   FileMaskDialog.Caption := rsCptAddFilter;
-  FileMaskDialog.FileMask.Text := '';
-  SetFileMaskPosition;
+  FileMaskDialog.SetPosition(Self);
   if FileMaskDialog.ShowModal = mrOk  then
      begin
        newfilter := Trim(FileMaskDialog.FileMask.Text);
@@ -80,12 +78,8 @@ begin
        DelFilterButton.Enabled := true;
        ClearFiltersButton.Enabled := true;
        FilterList.ItemIndex := FilterList.Count-1;
-       recentfilters:= '';
-       if FileMaskDialog.FileMask.Items.Count > 0
-          then recentfilters := FileMaskDialog.FileMask.Items[0];
-       for x := 1 to FileMaskDialog.FileMask.Items.Count-1 do
-           recentfilters := recentfilters + ';' + FileMaskDialog.FileMask.Items[x];
-       Preferences.WriteString(CfgUserPrefs,'RecentFilters', recentfilters);
+       if FileMaskDialog.Masks <> ''
+          then Preferences.WriteString(CfgUserPrefs,'RecentFilters', FileMaskDialog.Masks);
      end;
 end;
 

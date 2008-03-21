@@ -29,6 +29,7 @@ object FileMaskDialog: TFileMaskDialog
     Kind = bkOK
     ModalResult = 1
     NumGlyphs = 0
+    OnClick = OKButtonClick
     TabOrder = 1
   end
   object CancelButton: TBitBtn

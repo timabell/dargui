@@ -152,37 +152,37 @@ object ArchiveForm: TArchiveForm
       TabOrder = 0
       object ArchivePage: TPage
         Caption = 'Archive'
-        ClientWidth = 612
-        ClientHeight = 350
+        ClientWidth = 610
+        ClientHeight = 351
         object Label1: TLabel
           Left = 19
-          Height = 17
+          Height = 20
           Top = 12
-          Width = 140
+          Width = 120
           Caption = 'Archive base name'
           ParentColor = False
         end
         object Label2: TLabel
           Left = 19
-          Height = 17
+          Height = 20
           Top = 132
-          Width = 104
+          Width = 91
           Caption = 'Base directory'
           ParentColor = False
         end
         object Label3: TLabel
           Left = 19
-          Height = 17
+          Height = 20
           Top = 68
-          Width = 111
+          Width = 95
           Caption = 'Save archive in'
           ParentColor = False
         end
         object Label8: TLabel
           Left = 19
-          Height = 17
+          Height = 20
           Top = 200
-          Width = 68
+          Width = 59
           Caption = 'Batch file'
           ParentColor = False
         end
@@ -229,9 +229,9 @@ object ArchiveForm: TArchiveForm
         end
         object SaveScriptCheckBox: TCheckBox
           Left = 19
-          Height = 24
+          Height = 21
           Top = 264
-          Width = 126
+          Width = 111
           Caption = 'Save script as'
           OnClick = SaveScriptCheckBoxClick
           TabOrder = 7
@@ -277,21 +277,21 @@ object ArchiveForm: TArchiveForm
       end
       object DirectoriesPage: TPage
         Caption = 'Directories'
-        ClientWidth = 612
-        ClientHeight = 350
+        ClientWidth = 610
+        ClientHeight = 351
         object Label4: TLabel
           Left = 19
-          Height = 17
+          Height = 20
           Top = 18
-          Width = 134
+          Width = 121
           Caption = 'Include directories:'
           ParentColor = False
         end
         object Label5: TLabel
           Left = 19
-          Height = 17
+          Height = 20
           Top = 196
-          Width = 140
+          Width = 124
           Caption = 'Exclude directories:'
           ParentColor = False
         end
@@ -354,21 +354,21 @@ object ArchiveForm: TArchiveForm
       end
       object FilesPage: TPage
         Caption = 'Files'
-        ClientWidth = 612
-        ClientHeight = 350
+        ClientWidth = 610
+        ClientHeight = 351
         object Label6: TLabel
           Left = 19
-          Height = 17
+          Height = 20
           Top = 18
-          Width = 89
+          Width = 79
           Caption = 'Include files:'
           ParentColor = False
         end
         object Label7: TLabel
           Left = 19
-          Height = 17
+          Height = 20
           Top = 196
-          Width = 95
+          Width = 82
           Caption = 'Exclude files:'
           ParentColor = False
         end
@@ -428,45 +428,45 @@ object ArchiveForm: TArchiveForm
           OnClick = AddIncludeFileButtonClick
           TabOrder = 1
         end
-        object AddIncludeFileMaskButton: TButton
+        object IncludeFileMasks: TButton
           Tag = 1
           Left = 502
           Height = 30
           Top = 80
           Width = 95
           Caption = 'Add mask'
-          OnClick = AddCompressMaskButtonClick
+          OnClick = CompressMasksClick
           TabOrder = 2
         end
-        object AddExcludeFileMaskButton: TButton
+        object ExcludeFileMasks: TButton
           Tag = 2
           Left = 502
           Height = 30
           Top = 256
           Width = 95
           Caption = 'Add mask'
-          OnClick = AddCompressMaskButtonClick
+          OnClick = CompressMasksClick
           TabOrder = 6
         end
       end
       object CompressionPage: TPage
         Caption = 'Compression'
-        ClientWidth = 612
-        ClientHeight = 350
+        ClientWidth = 610
+        ClientHeight = 351
         object CompressionExceptions: TGroupBox
           Left = 301
           Height = 329
           Top = 10
           Width = 288
           Caption = ' Do not compress ... '
-          ClientHeight = 308
-          ClientWidth = 284
+          ClientHeight = 313
+          ClientWidth = 282
           TabOrder = 0
           object Label9: TLabel
             Left = 21
-            Height = 17
+            Height = 20
             Top = 240
-            Width = 235
+            Width = 202
             Caption = 'Lower size limit for compression:'
             FocusControl = CompressionLwrLimit
             ParentColor = False
@@ -486,13 +486,13 @@ object ArchiveForm: TArchiveForm
             )
             TabOrder = 0
           end
-          object AddCompressMaskButton: TButton
+          object CompressMasks: TButton
             Left = 165
             Height = 30
             Top = 24
             Width = 90
             Caption = 'Add'
-            OnClick = AddCompressMaskButtonClick
+            OnClick = CompressMasksClick
             TabOrder = 1
           end
           object DelCompressMaskButton: TButton
@@ -536,14 +536,14 @@ object ArchiveForm: TArchiveForm
           Top = 11
           Width = 257
           Caption = ' Compression type '
-          ClientHeight = 308
-          ClientWidth = 253
+          ClientHeight = 313
+          ClientWidth = 251
           TabOrder = 1
           object CompLvlLabel: TLabel
             Left = 62
-            Height = 17
+            Height = 20
             Top = 102
-            Width = 133
+            Width = 114
             Caption = 'Compression level'
             Enabled = False
             FocusControl = CompressionLevel
@@ -551,18 +551,18 @@ object ArchiveForm: TArchiveForm
           end
           object GZipCheck: TCheckBox
             Left = 26
-            Height = 24
+            Height = 21
             Top = 29
-            Width = 180
+            Width = 158
             Caption = 'use gzip compression'
             OnClick = ZipCheckChange
             TabOrder = 0
           end
           object Bzip2Check: TCheckBox
             Left = 26
-            Height = 24
+            Height = 21
             Top = 67
-            Width = 189
+            Width = 166
             Caption = 'use bzip2 compression'
             OnClick = ZipCheckChange
             TabOrder = 1
@@ -582,8 +582,8 @@ object ArchiveForm: TArchiveForm
       end
       object OptionsPage: TPage
         Caption = 'Options'
-        ClientWidth = 612
-        ClientHeight = 350
+        ClientWidth = 610
+        ClientHeight = 351
         object SliceMbLabel: TLabel
           Left = 413
           Height = 17
