@@ -841,6 +841,7 @@ var
   CommandLine: String;
 
 begin
+  if SelectedNodes = 0 then exit;
   SelectedNodes := 0;
   MessageMemo.Clear;
   batch := TStringList.Create;

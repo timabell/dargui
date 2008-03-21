@@ -1,14 +1,18 @@
 object ExtractSelectedForm: TExtractSelectedForm
-  Left = 384
+  Left = 468
   Height = 245
-  Top = 147
-  Width = 617
-  HorzScrollBar.Page = 616
+  Top = 308
+  Width = 600
+  HorzScrollBar.Page = 599
   VertScrollBar.Page = 244
   ActiveControl = OkButton
   Caption = 'ExtractSelectedForm'
   ClientHeight = 245
-  ClientWidth = 617
+  ClientWidth = 600
+  Constraints.MaxHeight = 245
+  Constraints.MaxWidth = 600
+  Constraints.MinHeight = 245
+  Constraints.MinWidth = 600
   Icon.Data = {
     36040000424D3604000000000000360000002800000010000000100000000100
     2000000000000004000064000000640000000000000000000000000000000000
@@ -47,12 +51,13 @@ object ExtractSelectedForm: TExtractSelectedForm
   }
   OnCreate = FormCreate
   OnDestroy = FormDestroy
+  Position = poOwnerFormCenter
   object ButtonPanel: TPanel
     Height = 245
-    Width = 617
+    Width = 600
     Align = alClient
     ClientHeight = 245
-    ClientWidth = 617
+    ClientWidth = 600
     TabOrder = 0
     object RestoreFilesLabel: TLabel
       Left = 13
@@ -115,7 +120,7 @@ object ExtractSelectedForm: TExtractSelectedForm
       Left = 13
       Height = 97
       Top = 72
-      Width = 313
+      Width = 355
       AutoFill = True
       Caption = ' Existing files '
       ChildSizing.LeftRightSpacing = 6
@@ -127,7 +132,7 @@ object ExtractSelectedForm: TExtractSelectedForm
       ChildSizing.Layout = cclLeftToRightThenTopToBottom
       ChildSizing.ControlsPerLine = 1
       ClientHeight = 72
-      ClientWidth = 309
+      ClientWidth = 351
       ItemIndex = 2
       Items.Strings = (
         'Overwrite existing files'
