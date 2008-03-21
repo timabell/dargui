@@ -67,7 +67,7 @@ end;
 
 procedure TOpLogForm.OpListSelectionChange ( Sender: TObject; User: boolean ) ;
 begin
-  if LogList.Count > 0 then
+  if LogList.Count > Oplist.ItemIndex then
      begin
       ContentMemo.Lines.LoadFromFile(LogList.Strings[OpList.ItemIndex]);
       ContentMemo.Lines.Delete(0);
@@ -129,7 +129,7 @@ procedure TOpLogForm.AddCommand ( Cmd: string ) ;
 begin
   OpList.Items.Add(Cmd);
   OpList.ItemIndex := OpList.Count - 1;
-  OpListSelectionChange(nil, false);
+  //OpListSelectionChange(nil, false);
 end;
 
 initialization
