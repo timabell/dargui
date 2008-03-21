@@ -4,7 +4,7 @@ object MainForm: TMainForm
   Top = 1
   Width = 893
   HorzScrollBar.Page = 892
-  VertScrollBar.Page = 583
+  VertScrollBar.Page = 604
   ActiveControl = ArchiveTreeView
   Caption = 'DarGUI'
   ClientHeight = 584
@@ -103,7 +103,7 @@ object MainForm: TMainForm
   OnCreate = FormCreate
   object StatusBar: TStatusBar
     Height = 17
-    Top = 567
+    Top = 588
     Width = 893
     Panels = <    
       item
@@ -118,7 +118,7 @@ object MainForm: TMainForm
     SimplePanel = False
   end
   object ArchiveTreeView: TTreeView
-    Height = 289
+    Height = 310
     Top = 73
     Width = 893
     Align = alClient
@@ -873,6 +873,7 @@ object MainForm: TMainForm
       NumGlyphs = 0
       OnClick = tbTestClick
       TabOrder = 4
+      Visible = False
     end
   end
   object HeaderPanel: TPanel
@@ -986,7 +987,7 @@ object MainForm: TMainForm
   end
   object MessagePanel: TPanel
     Height = 200
-    Top = 367
+    Top = 388
     Width = 893
     Align = alBottom
     Caption = 'MessagePanel'
@@ -1037,7 +1038,7 @@ object MainForm: TMainForm
   object MessageBoxSplitter: TSplitter
     Cursor = crVSplit
     Height = 5
-    Top = 362
+    Top = 383
     Width = 893
     Align = alBottom
     Beveled = True
@@ -1091,6 +1092,7 @@ object MainForm: TMainForm
         Tag = 1
         Caption = 'Check Integrity'
         Enabled = False
+        Visible = False
         OnClick = tbTestClick
       end
       object MenuBreak4: TMenuItem
