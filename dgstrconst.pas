@@ -95,6 +95,16 @@ rsColUser = 'User';
 rsColGroup = 'Group';
 rsColStatus = 'Status';
 
+//ArchiveForm
+rsDirectoriesAreExcluded = 'These directories are already selected to be '
+  +'excluded from the archive. %sDo you really want to include them?';
+rsDirectoriesAreIncluded = 'These directories are already selected to be '
+  +'included in the archive.%sDo you really want to exclude them?';
+rsFilesAlreadyExcluded = 'These files are already selected to be excluded '
+  +'from the archive.%sDo you really want to include them?';
+rsFilesAlreadyIncluded = 'These files are already selected to be included in '
+  +'the archive.%sDo you really want to exclude them?';
+
 //SelectFilterForm
 rsMatchAllFilters = 'Match all filters';
 rsApplyFiltersToFilena = 'Apply filters to filenames only';

@@ -1,0 +1,98 @@
+object FileConflictForm: TFileConflictForm
+  Left = 394
+  Height = 331
+  Top = 386
+  Width = 607
+  HorzScrollBar.Page = 606
+  VertScrollBar.Page = 330
+  ActiveControl = OverwriteAllButton
+  Caption = 'FileConflictForm'
+  ClientHeight = 331
+  ClientWidth = 607
+  Position = poDefault
+  object InstructionPanel: TPanel
+    Height = 66
+    Width = 607
+    Align = alTop
+    ClientHeight = 66
+    ClientWidth = 607
+    TabOrder = 0
+    object InstructionLabel: TLabel
+      Left = 8
+      Height = 43
+      Top = 8
+      Width = 585
+      AutoSize = False
+      Caption = 'WARNING: The files listed below will be overwritten if you continue. '#10'Please confirm which files should be overwritten.'
+      ParentColor = False
+      WordWrap = True
+    end
+  end
+  object ButtonPanel: TPanel
+    Height = 59
+    Top = 272
+    Width = 607
+    Align = alBottom
+    ClientHeight = 59
+    ClientWidth = 607
+    TabOrder = 1
+    object OverwriteAllButton: TBitBtn
+      Left = 224
+      Height = 30
+      Top = 13
+      Width = 80
+      Caption = '&Yes'
+      Default = True
+      Kind = bkYes
+      ModalResult = 6
+      NumGlyphs = 0
+      TabOrder = 0
+    end
+    object OverwriteNoneButton: TBitBtn
+      Left = 320
+      Height = 30
+      Top = 13
+      Width = 80
+      Cancel = True
+      Caption = '&No'
+      Kind = bkNo
+      ModalResult = 7
+      NumGlyphs = 0
+      TabOrder = 1
+    end
+  end
+  object FileListPanel: TPanel
+    Height = 206
+    Top = 66
+    Width = 607
+    Align = alClient
+    AutoSize = True
+    BevelOuter = bvNone
+    Caption = 'FileListPanel'
+    ClientHeight = 206
+    ClientWidth = 607
+    TabOrder = 2
+    object MainPanel: TPanel
+      Height = 206
+      Width = 607
+      Align = alClient
+      Caption = 'MainPanel'
+      ClientHeight = 206
+      ClientWidth = 607
+      TabOrder = 0
+      object FileListBox: TListBox
+        Left = 6
+        Height = 194
+        Top = 6
+        Width = 587
+        Align = alClient
+        BorderSpacing.Right = 8
+        BorderSpacing.Around = 5
+        Sorted = True
+        TabOrder = 0
+        TabStop = False
+        TopIndex = -1
+      end
+    end
+  end
+end

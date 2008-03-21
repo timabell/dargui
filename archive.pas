@@ -82,7 +82,7 @@ type
     SelectDirectoryDialog: TSelectDirectoryDialog;
     procedure CompressMasksClick ( Sender: TObject ) ;
     procedure AddIncludeDirButtonClick ( Sender: TObject ) ;
-    procedure AddIncludeFileButtonClick ( Sender: TObject ) ;
+    procedure AddFileButtonClick ( Sender: TObject ) ;
     procedure ArchiveDirButtonClick ( Sender: TObject ) ;
     procedure BaseDirButtonClick ( Sender: TObject ) ;
     procedure BatchFileButtonClick ( Sender: TObject ) ;
@@ -102,7 +102,7 @@ type
     { private declarations }
     function CheckParameters: Boolean;
     function IsInBaseDirectory(aDir: string): Boolean;
-    procedure SetFileMaskPosition;
+    procedure ResolveConflicts( Sender, RefList: TObject; ConflictMessage: string );
   public
     { public declarations }
   end; 
@@ -112,7 +112,7 @@ var
 
 implementation
 
-uses dgStrConst, darintf, filemaskdlg, prefs;
+uses dgStrConst, darintf, filemaskdlg, prefs, fileconflict;
 
 { TArchiveForm }
 
@@ -179,17 +179,64 @@ end;
 procedure TArchiveForm.AddIncludeDirButtonClick ( Sender: TObject ) ;
 var
   LB: TListBox;
+  ConflictList: TListBox;
+  ConflictMessage: string;
   DelBn: TButton;
+  x: Integer;
 begin
+  SelectDirectoryDialog.Options := SelectDirectoryDialog.Options+[ofAllowMultiSelect];
   if SelectDirectoryDialog.Execute then
-    if IsInBaseDirectory(SelectDirectoryDialog.FileName) then
+    //if IsInBaseDirectory(SelectDirectoryDialog.FileName) then
       begin
-      case TButton(Sender).Tag of
-           0: begin LB := IncludeDirectories; DelBn := DelIncludeDirButton; end;
-           1: begin LB := ExcludeDirectories; DelBn := DelExcludeDirButton; end;
+        case TButton(Sender).Tag of
+             0: begin LB := IncludeDirectories;
+                      ConflictList := ExcludeDirectories;
+                      DelBn := DelIncludeDirButton;
+                      ConflictMessage := Format ( rsDirectoriesAreExcluded, [ #10 ] ) ;
+                      end;
+             1: begin LB := ExcludeDirectories;
+                      ConflictList := IncludeDirectories;
+                      ConflictMessage := Format ( rsDirectoriesAreIncluded, [ #10 ] ) ;
+                      DelBn := DelExcludeDirButton;
+                      end;
+             end;
+        ResolveConflicts(LB, ConflictList, ConflictMessage );
+        for x := 0 to SelectDirectoryDialog.Files.Count -1 do
+            if LB.Items.IndexOf(SelectDirectoryDialog.Files[x]) < 0
+               then LB.Items.Add(SelectDirectoryDialog.Files[x]);
+        DelBn.Enabled := true;
+      end;
+end;
+
+procedure TArchiveForm.AddFileButtonClick ( Sender: TObject ) ;
+var
+  LB: TListBox;
+  DelBn: TButton;
+  ConflictList: TListBox;
+  ConflictMessage: string;
+  x: Integer;
+begin
+  OpenDialog.Options := OpenDialog.Options+[ofAllowMultiSelect];
+  if OpenDialog.Execute then
+//    if IsInBaseDirectory(OpenDialog.FileName) then
+      begin
+        case TButton(Sender).Tag of
+           0: begin LB := IncludeFiles;
+                    ConflictList := ExcludeFiles;
+                    ConflictMessage := Format ( rsFilesAlreadyExcluded, [ #10 ] ) ;
+                    DelBn := DelIncludeFileButton;
+                    end;
+           1: begin LB := ExcludeFiles;
+                    ConflictList := IncludeFiles;
+                    ConflictMessage := Format ( rsFilesAlreadyIncluded, [ #10 ] ) ;
+                    DelBn := DelExcludeFileButton;
+                    end;
            end;
-      LB.Items.Add(SelectDirectoryDialog.FileName);
-      DelBn.Enabled := true;
+        ResolveConflicts(LB, ConflictList, ConflictMessage );
+        for x := 0 to OpenDialog.Files.Count -1 do
+            if LB.Items.IndexOf(OpenDialog.Files[x]) < 0
+               then LB.Items.Add(OpenDialog.Files[x]);
+        DelBn.Enabled := true;
       end;
 end;
 
@@ -231,25 +278,9 @@ begin
        end;
 end;
 
-procedure TArchiveForm.AddIncludeFileButtonClick ( Sender: TObject ) ;
-var
-  LB: TListBox;
-  DelBn: TButton;
-begin
-  if OpenDialog.Execute then
-    if IsInBaseDirectory(OpenDialog.FileName) then
-      begin
-      case TButton(Sender).Tag of
-           0: begin LB := IncludeFiles; DelBn := DelIncludeFileButton; end;
-           1: begin LB := ExcludeFiles; DelBn := DelExcludeFileButton; end;
-           end;
-      LB.Items.Add(OpenDialog.FileName);
-      DelBn.Enabled := true;
-      end;
-end;
-
 procedure TArchiveForm.ArchiveDirButtonClick ( Sender: TObject ) ;
 begin
+  SelectDirectoryDialog.Options := SelectDirectoryDialog.Options-[ofAllowMultiSelect];
   SelectDirectoryDialog.InitialDir := ArchiveDirectory.Text;
   if SelectDirectoryDialog.Execute
      then ArchiveDirectory.Text := SelectDirectoryDialog.FileName;
@@ -257,6 +288,7 @@ end;
 
 procedure TArchiveForm.BaseDirButtonClick ( Sender: TObject ) ;
 begin
+  SelectDirectoryDialog.Options := SelectDirectoryDialog.Options-[ofAllowMultiSelect];
   SelectDirectoryDialog.InitialDir := BaseDirectory.Text;
   if SelectDirectoryDialog.Execute
      then BaseDirectory.Text := SelectDirectoryDialog.FileName;
@@ -346,10 +378,38 @@ begin
      end;
 end;
 
-procedure TArchiveForm.SetFileMaskPosition;
+procedure TArchiveForm.ResolveConflicts ( Sender, RefList: TObject;
+  ConflictMessage: string ) ;
+var
+  LB: TListBox;
+  RB : TListBox;
+  x: Integer;
+  Dialog: TOpenDialog;
 begin
-  FileMaskDialog.Top := Top + ((Height - FileMaskDialog.Height) div 2);
-  FileMaskDialog.Left := Left + ((Width - FileMaskDialog.Width) div 2);
+  if not (Sender is TListBox) then exit;
+  FileConflictForm := TFileConflictForm.Create(Self);
+  FileConflictForm.InstructionLabel.Caption := ConflictMessage;
+  LB := TListBox(Sender);
+  RB := TlistBox(RefList);
+  if LB.Tag = 0 then Dialog := SelectDirectoryDialog
+     else Dialog := OpenDialog;
+  for x := 0 to Dialog.Files.Count-1 do
+      if RB.Items.IndexOf(Dialog.Files[x]) > -1
+         then FileConflictForm.FileListBox.Items.Add(Dialog.Files[x]);
+  if FileConflictForm.FileListBox.Items.Count > 0 then
+       if FileConflictForm.ShowModal = mrNo then
+          begin
+            for x := Dialog.Files.Count-1 downto 0 do
+              if FileConflictForm.FileListBox.Items.IndexOf(Dialog.Files[x]) > -1
+                 then Dialog.Files.Delete(x);
+          end
+       else
+          begin
+            for x := RB.Items.Count-1 downto 0 do
+              if FileConflictForm.FileListBox.Items.IndexOf(RB.Items[x]) > -1
+                 then RB.Items.Delete(x);
+          end;
+  FileConflictForm.Free;
 end;
 
 
