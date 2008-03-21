@@ -104,6 +104,8 @@ rsFilesAlreadyExcluded = 'These files are already selected to be excluded '
   +'from the archive.%sDo you really want to include them?';
 rsFilesAlreadyIncluded = 'These files are already selected to be included in '
   +'the archive.%sDo you really want to exclude them?';
+rsCptResolveConflict = 'Resolve conflict';
+rsOverwriteExistingArc = 'Overwrite existing archive?';
 
 //SelectFilterForm
 rsMatchAllFilters = 'Match all filters';
@@ -122,12 +124,14 @@ rsOverwriteExistingFil = 'Overwrite existing files';
 
 
 // Messages
-rsMessBUSY = 'BUSY...';
+rsMessBUSY = ' BUSY...';
 rsErrUnableToFindArchive = 'Unable to find archive';
 rsErrUnableToOpenArchive = 'Unable to open archive';
 rsConfirmBeforeOverwri = 'Confirm before overwriting';
 rsDoNotOverwriteFiles = 'Do not overwrite files';
 rsCptAddFileMask = 'Add file mask';
+rsYes = 'Yes';
+rsNo = 'No';
 
 implementation
 
