@@ -57,9 +57,13 @@ rsFCptSelectbyFilter = 'Select using filters...';
 //Common Interface
 rsButtonAdd = 'Add';
 rsButtonCancel = 'Cancel';
+rsSourceArchive = 'Source archive';
+rsSaveCatalogueAs = 'Save catalogue as';
+rsButtonBrowse = 'Browse';
 rsButtonRemove = 'Remove';
 rsButtonClear = 'Clear';
 rsButtonOK = 'OK';
+rsCptIsolateArchiveCatalo = 'Isolate archive catalogue';
 
 // Mainform
 rsMenuSelectByFilter = 'Select by Filter';
@@ -134,6 +138,9 @@ rsDoNotOverwriteFiles = 'Do not overwrite files';
 rsCptAddFileMask = 'Add file mask';
 rsYes = 'Yes';
 rsNo = 'No';
+rsMessInvalidArchiveName = 'Invalid archive name';
+rsMessInvalidCatalogueName = 'Invalid catalogue name';
+rsMessUnableToFindArchive = 'Unable to find archive ''%s''';
 
 implementation
 

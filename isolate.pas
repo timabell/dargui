@@ -25,6 +25,7 @@ type
     SaveDialog: TSaveDialog;
     procedure ArchiveButtonClick ( Sender: TObject ) ;
     procedure CatalogueButtonClick ( Sender: TObject ) ;
+    procedure FormCreate ( Sender: TObject ) ;
     procedure OKButtonClick ( Sender: TObject ) ;
     procedure OnEditBoxExit ( Sender: TObject ) ;
   private
@@ -36,7 +37,7 @@ type
 
 implementation
 
-uses darintf;
+uses dgStrConst, darintf;
 
 { TIsolateForm }
 
@@ -73,15 +74,39 @@ begin
      then CatalogueBox.Text := TrimToBase(SaveDialog.FileName);
 end;
 
+procedure TIsolateForm.FormCreate ( Sender: TObject ) ;
+begin
+  Caption := rsCptIsolateArchiveCatalo;
+  OKButton.Caption := rsButtonOK;
+  CancelButton.Caption := rsButtonCancel;
+  ArchiveBox.EditLabel.Caption := rsSourceArchive;
+  CatalogueBox.EditLabel.Caption := rsSaveCatalogueAs;
+  ArchiveButton.Caption := rsButtonBrowse;
+  CatalogueButton.Caption := rsButtonBrowse;
+end;
+
 procedure TIsolateForm.OKButtonClick ( Sender: TObject ) ;
 var
   fn: String;
 begin
+  if ArchiveBox.Text = '' then
+     begin
+       ShowMessage ( rsMessInvalidArchiveName ) ;
+       ArchiveBox.SetFocus;
+       exit;
+     end;
+  if (CatalogueBox.Text = '')
+     or (not FileExists(ExtractFilePath(CatalogueBox.Text))) then
+     begin
+       ShowMessage ( rsMessInvalidCatalogueName ) ;
+       CatalogueBox.SetFocus;
+       exit;
+     end;
   fn := ArchiveBox.Text + '.1.dar';
   if FileExists(fn)
      then ModalResult := mrOk
      else begin
-      if MessageDlg('Error', 'Unable to find archive ''' + fn + '''',
+      if MessageDlg ( 'Error', Format ( rsMessUnableToFindArchive, [ fn ] ) ,
                            mtError, mbOKCancel, 0) = mrOK
            then ArchiveBox.SetFocus
            else ModalResult := mrCancel;

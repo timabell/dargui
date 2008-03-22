@@ -11,6 +11,7 @@ object IsolateForm: TIsolateForm
   Caption = 'Isolate archive catalogue'
   ClientHeight = 247
   ClientWidth = 479
+  OnCreate = FormCreate
   Position = poOwnerFormCenter
   object MainPanel: TPanel
     Height = 181
@@ -25,9 +26,9 @@ object IsolateForm: TIsolateForm
       Top = 48
       Width = 335
       EditLabel.Left = 17
-      EditLabel.Height = 17
+      EditLabel.Height = 20
       EditLabel.Top = 28
-      EditLabel.Width = 54
+      EditLabel.Width = 46
       EditLabel.Caption = 'Archive'
       EditLabel.ParentColor = False
       ParentColor = False
@@ -40,9 +41,9 @@ object IsolateForm: TIsolateForm
       Top = 104
       Width = 335
       EditLabel.Left = 17
-      EditLabel.Height = 17
+      EditLabel.Height = 20
       EditLabel.Top = 84
-      EditLabel.Width = 135
+      EditLabel.Width = 117
       EditLabel.Caption = 'Save catalogue as'
       EditLabel.ParentColor = False
       ParentColor = False
@@ -51,8 +52,8 @@ object IsolateForm: TIsolateForm
     end
     object ArchiveButton: TButton
       Left = 368
-      Height = 25
-      Top = 48
+      Height = 30
+      Top = 45
       Width = 90
       Caption = 'Browse'
       OnClick = ArchiveButtonClick
@@ -60,8 +61,8 @@ object IsolateForm: TIsolateForm
     end
     object CatalogueButton: TButton
       Left = 368
-      Height = 25
-      Top = 104
+      Height = 30
+      Top = 101
       Width = 90
       Caption = 'Browse'
       OnClick = CatalogueButtonClick
@@ -102,12 +103,14 @@ object IsolateForm: TIsolateForm
     end
   end
   object OpenDialog: TOpenDialog
+    Title = 'Open existing file'
     Filter = 'DAR archives|*.*.dar'
     Options = [ofFileMustExist, ofEnableSizing, ofViewDetail]
     left = 408
     top = 8
   end
   object SaveDialog: TSaveDialog
+    Title = 'Save file as'
     Options = [ofNoTestFileCreate, ofEnableSizing]
     left = 440
     top = 8
