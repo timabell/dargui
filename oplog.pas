@@ -14,7 +14,7 @@ type
 
   TOpLogForm = class ( TForm )
     CloseButton: TBitBtn;
-    Label1: TLabel;
+    CommandLabel: TLabel;
     miExecuteCommand: TMenuItem;
     miCopyCommand: TMenuItem;
     OpList: TListBox;
@@ -45,12 +45,14 @@ var
 
 implementation
 
-uses darintf;
+uses dgStrConst, darintf;
 
 { TOpLogForm }
 
 procedure TOpLogForm.FormCreate ( Sender: TObject ) ;
 begin
+  CommandLabel.Caption := rsCommands;
+  CloseButton.Caption := rsButtonClose;
   LogList := TStringList.Create;
   RefreshOpList;
 end;
@@ -63,6 +65,7 @@ end;
 procedure TOpLogForm.FormResize(Sender: TObject);
 begin
   CloseButton.Left := ButtonPanel.Width - CloseButton.Width - 10;
+  Splitter1.Refresh;
 end;
 
 procedure TOpLogForm.OpListSelectionChange ( Sender: TObject; User: boolean ) ;
@@ -86,7 +89,8 @@ end;
 
 procedure TOpLogForm.miExecuteCommandClick ( Sender: TObject ) ;
 begin
-  RunDarCommand(OpList.Items[Oplist.ItemIndex], 'Repeating action...', Left+100, Top+150);
+  RunDarCommand(OpList.Items[Oplist.ItemIndex], rsCptRepeatingAction, Left+100,
+    Top+150);
 end;
 
 procedure TOpLogForm.RefreshOpList;
@@ -108,7 +112,7 @@ var
           Reset(fileHandle);
           ReadLn(fileHandle, topLine);
           CloseFile(fileHandle);
-          if Pos('dar ',topLine) = 1 then
+          if Pos(DAR_EXECUTABLE,topLine) = 1 then
              begin
                OpList.Items.Add(topLine);
                LogList.Add(fn);

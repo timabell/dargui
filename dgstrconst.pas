@@ -63,6 +63,9 @@ rsButtonBrowse = 'Browse';
 rsButtonRemove = 'Remove';
 rsButtonClear = 'Clear';
 rsButtonOK = 'OK';
+rsButtonClose = 'Close';
+
+//IsloateForm
 rsCptIsolateArchiveCatalo = 'Isolate archive catalogue';
 
 // Mainform
@@ -119,6 +122,10 @@ rsCptAddFilter = 'Add filter';
 
 // Filemaskdialog
 rsFileMask = 'File mask';
+
+//OpLogForm
+rsCommands = 'Commands';
+rsCptRepeatingAction = 'Repeating action...';
 
 
 // ExtractSelected
