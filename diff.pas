@@ -11,10 +11,12 @@ uses
 type
 
   { TDiffForm }
+  
+  //TODO: Draw icons alongside results when TListBox.OnDrawItem is implemented in Lazarus
 
   TDiffForm = class ( TForm )
     CloseButton: TBitBtn;
-    Label1: TLabel;
+    ResultsLabel: TLabel;
     ReportLabel: TLabel;
     ResultListBox: TListBox;
     OKButton: TBitBtn;
@@ -32,6 +34,7 @@ type
     ResultPanel: TPanel;
     procedure BrowseArchiveClick ( Sender: TObject ) ;
     procedure BrowseDirectoryClick ( Sender: TObject ) ;
+    procedure FormCreate ( Sender: TObject ) ;
     procedure FormResize ( Sender: TObject ) ;
     procedure OKButtonClick ( Sender: TObject ) ;
   private
@@ -44,25 +47,43 @@ type
 
 implementation
 
-uses darintf;
+uses dgStrConst, darintf;
 
 { TDiffForm }
 
 procedure TDiffForm.BrowseArchiveClick ( Sender: TObject ) ;
 begin
+  if DirectoryExists( ExtractFilePath( ArchiveBox.Text ) )
+     then OpenDialog.InitialDir := ExtractFilePath( ArchiveBox.Text )
+     else OpenDialog.InitialDir := SysUtils.GetEnvironmentVariable('HOME');
   if OpenDialog.Execute
      then ArchiveBox.Text := TrimToBase(OpenDialog.FileName);
 end;
 
 procedure TDiffForm.BrowseDirectoryClick ( Sender: TObject ) ;
 begin
-  SelectDirectoryDialog.InitialDir := BaseDirBox.Text;
+  if DirectoryExists( BaseDirBox.Text )
+     then SelectDirectoryDialog.InitialDir :=  BaseDirBox.Text
+     else SelectDirectoryDialog.InitialDir := SysUtils.GetEnvironmentVariable('HOME');
   if SelectDirectoryDialog.Execute
      then BaseDirBox.Text := SelectDirectoryDialog.FileName;
 end;
 
+procedure TDiffForm.FormCreate ( Sender: TObject ) ;
+begin
+  Caption := rsHintCompareArchiveFile;
+  ArchiveBox.EditLabel.Caption := rsArchive;
+  BaseDirBox.EditLabel.Caption := rsBaseDirectory;
+  BrowseArchive.Caption := rsButtonBrowse;
+  BrowseDirectory.Caption := rsButtonBrowse;
+end;
+
 procedure TDiffForm.FormResize ( Sender: TObject ) ;
 begin
+  ArchiveBox.Width := Width-170;
+  BrowseArchive.Left := Width-130;
+  BaseDirBox.Width := Width-170;
+  BrowseDirectory.Left := Width-130;
   ResultListBox.Height := ResultPanel.Height-70;
   CloseButton.Left := (ResultPanel.Width - CloseButton.Width) div 2;
   OKButton.Left := (DialogButtonPanel.Width div 2) - OKButton.Width - 20;
@@ -79,22 +100,28 @@ var
   InodeCount: LongInt;
   DiffCount: LongInt;
 begin
+  if ArchiveBox.Text = '' then
+     begin
+       ShowMessage(rsMessInvalidArchiveName);
+       ArchiveBox.SetFocus;
+       exit;
+     end;
   if not FileExists(ArchiveBox.Text + '.1.dar')
      then begin
-       ShowMessage('Unable to find ' + ArchiveBox.Text + '.1.dar');
+       ShowMessage ( Format ( rsMessUnableToFind1Dar, [ ArchiveBox.Text ] ) ) ;
        ArchiveBox.SetFocus;
        exit;
      end;
   if not FileExists(BaseDirBox.Text)
      then begin
-       ShowMessage('Error: ' + BaseDirBox.Text + ' not found');
+       ShowMessage ( Format ( rsErrErrorNotFound, [ BaseDirBox.Text ] ) ) ;
        BaseDirBox.SetFocus;
        exit;
      end;
   LogFile := GetNextFileName(TEMP_DIRECTORY + LOGFILE_BASE);
   if VerboseCheck.Checked then verboseflag := ' -v';
   Cmd :=  DAR_EXECUTABLE + ' -d ' + ArchiveBox.Text + ' -R ' + BaseDirBox.Text + verboseflag;
-  if RunDarCommand(Cmd, 'comparing files...', Left+100, Top+150) = 0
+  if RunDarCommand ( Cmd, rsCptComparingFiles, Left + 100, Top + 150 ) = 0
      then begin
        ResultListBox.Items.LoadFromFile(LogFile);
        if Pos(DAR_EXECUTABLE, ResultListBox.Items[0]) = 1
@@ -116,7 +143,9 @@ begin
               InodeCount := StrToInt(Copy(aLine, 1, Pos(#32, aLine)-1));
               aLine :=  Trim(ResultListBox.Items[x+1]);
               DiffCount := StrToInt(Copy(aLine, 1, Pos(#32, aLine)-1));
-              ReportLabel.Caption := IntToStr(InodeCount) + ' inodes checked : ' + IntToStr(DiffCount) + ' differences found';
+              ReportLabel.Caption := Format ( rsInodesCheckedDiffere, [
+                IntToStr ( InodeCount ) , IntToStr ( DiffCount ) ] ) ;
+              if DiffCount > InodeCount then InodeCount := DiffCount;
               if verboseflag = ' -v' then
                 for x := ResultListBox.Count-1 downto InodeCount do
                     ResultListBox.Items.Delete(x)
@@ -126,18 +155,18 @@ begin
             except
               Showmessage('diff.pas line 103 : Error when converting ' + aLine);
             end
-            else ReportLabel.Caption := 'No statistics available - operation aborted?';
+            else ReportLabel.Caption := rsMessNoStatisticsAvailabl;
           end;
-
        DialogPanel.Visible := false;
        DialogButtonPanel.Visible := false;
        ResultPanel.Visible := true;
        ResultButtonPanel.Visible := true;
+       Constraints.MaxHeight := 0;
+       Constraints.MinHeight := 0;
        FormResize(nil);
      end;
-
-  
 end;
+
 
 initialization
   {$I diff.lrs}

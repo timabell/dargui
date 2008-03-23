@@ -60,6 +60,11 @@ rsButtonCancel = 'Cancel';
 rsSourceArchive = 'Source archive';
 rsSaveCatalogueAs = 'Save catalogue as';
 rsButtonBrowse = 'Browse';
+rsMessUnableToFind1Dar = 'Unable to find %s.1.dar';
+rsErrErrorNotFound = 'Error: %s not found';
+rsCptComparingFiles = 'comparing files...';
+rsInodesCheckedDiffere = '%s inodes checked : %s differences found';
+rsMessNoStatisticsAvailabl = 'No statistics available - operation aborted?';
 rsButtonRemove = 'Remove';
 rsButtonClear = 'Clear';
 rsButtonOK = 'OK';
@@ -135,6 +140,9 @@ rsOverwriteExistingFil = 'Overwrite existing files';
 rsMessDirectoryNotFound = 'Destination directory not found';
 rsMessInvalidDestinationDir = 'Invalid destination directory';
 
+//DiffForm
+rsArchive = 'Archive';
+rsBaseDirectory = 'Base directory';
 
 // Messages
 rsMessBUSY = ' BUSY...';
