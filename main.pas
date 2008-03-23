@@ -442,6 +442,7 @@ begin
                   begin
                     EnableArchiveMenus;
                     CurrentArchive := TrimToBase(OpenDialog.FileName);
+                    RecentList.AddFile(fn);
                   end;
               StatusBar.Panels[SELECT_STATUSBAR].Text := '';
             end;

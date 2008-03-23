@@ -83,10 +83,13 @@ begin
   inherited Destroy;
 end;
 
+//TRecentFiles.AddFile should be called from the event assigned to OnClick
+//to ensure that most recently used items are moved to the top
 procedure TRecentFiles.AddFile(aCaption: string; AddToTop: Boolean = true);
 var
   mi: TMenuItem;
   x: integer;
+  Itemindex: LongInt;
   
   function ExistsInMenu(fn: string): integer;
   var
@@ -101,35 +104,54 @@ var
            end;
   end;
 begin
-  if Caption = '-'
-     then Caption := aCaption
-     else if ExistsInMenu(aCaption) < 0 then
+  aCaption := TrimToBase(aCaption);
+  if Caption = '-' then     // we have an empty menu: use the root entry
      begin
-      mi := TMenuItem.Create(Owner);
-      mi.OnClick := Self.OnClick;
-      TMenuItem(Parent).Add(mi);
-      fItems.Add(mi);
-      DeleteOldFiles;
-      if AddToTop then
-         begin
-          for x := fItems.Count-1 downto 1 do
-              begin
-                TMenuItem(fItems[x]).Caption := TMenuItem(fItems[x-1]).Caption;
-                if Assigned(fIniFile) then
-                   fIniFile.WriteString(CfgRecentFiles, CfgRecentX + IntToStr(x),TMenuItem(fItems[x-1]).Caption);
-              end;
-          Caption := aCaption;
-         end
-     else
-         begin
-           mi.Caption := aCaption;
-           //This should happen when reading from the IniFile so we don't want to write back again
-           //if Assigned(fIniFile) then
-                //fIniFile.WriteString('Recent Files', 'Recent'+IntToStr(fItems.Count-1),aCaption);
-         end;
+       Caption := aCaption;
      end;
-  if Assigned(fIniFile) then
-                fIniFile.WriteString(CfgRecentFiles, CfgRecentX + '0',Caption);
+  Itemindex := ExistsInMenu(aCaption);
+  if Itemindex < 0 then  // new addition to menu
+     begin
+        mi := TMenuItem.Create(Owner);
+        mi.OnClick := Self.OnClick;
+        if AddToTop then
+           begin
+            mi.Caption := Caption;
+            TMenuItem(Parent).Insert( 1, mi );
+            fItems.Insert( 1, mi );
+            Caption := aCaption;
+           end
+        else
+           begin
+             mi.Caption := aCaption;
+             TMenuItem(Parent).Add(mi);
+             fItems.Add(mi);
+           end;
+        DeleteOldFiles;
+     end
+  else
+  if ItemIndex > 0 then
+    begin  //move the most recently used to the top
+          mi := TMenuItem.Create(Owner);
+          mi.OnClick := Self.OnClick;
+          mi.Caption := Caption;
+          Caption := aCaption;
+          fItems.Delete(ItemIndex);
+          TMenuItem(Parent).Delete(Itemindex);
+          TMenuItem(Parent).Insert(1, mi);
+          fItems.Insert(1, mi);
+         end;
+  if AddToTop then
+   // we add to bottom when reading from the IniFile so we don't want to write back again
+      if Assigned(fIniFile) then
+         begin
+           fIniFile.WriteString(CfgRecentFiles, CfgRecentX + '0',Caption);
+           for x := 1 to fItems.Count-1 do
+                begin
+                  if Assigned(fIniFile) then
+                     fIniFile.WriteString(CfgRecentFiles, CfgRecentX + IntToStr(x),TMenuItem(fItems[x]).Caption);
+                end;
+         end;
 end;
 
 end.
