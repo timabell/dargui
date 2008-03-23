@@ -12,10 +12,9 @@ type
 
   { TDiffForm }
   
-  //TODO: Draw icons alongside results when TListBox.OnDrawItem is implemented in Lazarus
-
   TDiffForm = class ( TForm )
     CloseButton: TBitBtn;
+    ImageList1: TImageList;
     ResultsLabel: TLabel;
     ReportLabel: TLabel;
     ResultListBox: TListBox;
@@ -37,6 +36,8 @@ type
     procedure FormCreate ( Sender: TObject ) ;
     procedure FormResize ( Sender: TObject ) ;
     procedure OKButtonClick ( Sender: TObject ) ;
+    procedure ResultListBoxDrawItem ( Control: TWinControl; Index: Integer;
+      ARect: TRect; State: TOwnerDrawState ) ;
   private
     { private declarations }
   public
@@ -76,6 +77,7 @@ begin
   BaseDirBox.EditLabel.Caption := rsBaseDirectory;
   BrowseArchive.Caption := rsButtonBrowse;
   BrowseDirectory.Caption := rsButtonBrowse;
+   ResultListBox.Style := lbOwnerDrawFixed;
 end;
 
 procedure TDiffForm.FormResize ( Sender: TObject ) ;
@@ -165,6 +167,40 @@ begin
        Constraints.MinHeight := 0;
        FormResize(nil);
      end;
+end;
+
+procedure TDiffForm.ResultListBoxDrawItem ( Control: TWinControl;
+  Index: Integer; ARect: TRect; State: TOwnerDrawState ) ;
+var
+  Glyph:TBitmap;
+  aFile: string;
+  
+  function DiffState: Integer;
+  begin
+    if Pos('OK',aFile) = 1 then
+       begin
+         Result := 0;
+        end;
+    if Pos('DIFF',aFile) = 1 then
+       begin
+       if Pos(': file not present', aFile) > 0
+          then Result := 2
+          else Result := 1;
+       end;
+    aFile := Copy(aFile, 5, 512);
+  end;
+  
+begin
+  Glyph := TBitmap.Create;
+  with TListBox(Control) do
+    begin
+      aFile := Items[Index];
+      ImageList1.GetBitmap(DiffState, Glyph);
+      Canvas.FillRect(ARect);
+      Canvas.Draw(2, ARect.Top+2, Glyph);
+      Canvas.TextRect(ARect, ARect.Left+2 + Glyph.Width, ARect.Top+2, aFile);
+    end;
+  Glyph.Free;
 end;
 
 
