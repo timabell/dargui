@@ -593,13 +593,13 @@ procedure TMainForm.ArchiveTreeViewCompare ( Sender: TObject; Node1,
  {Inline function returns true if Node is a File}
   function IsAFile(  Node : TTreeNode  ) : boolean;
   begin
-     Result := (Pos('-----', TFileData(Node.Data).item[SEGSTATUS]) < 1);
+     Result := not TFileData(Node.Data).folder;
   end;
 
      {Inline function returns true if Node is a Folder}
   function IsAFolder(  Node : TTreeNode  ) : boolean;
   begin
-     Result := (Pos('-----', TFileData(Node.Data).item[SEGSTATUS]) > 0);
+     Result := TFileData(Node.Data).folder;
   end;
 
 

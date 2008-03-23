@@ -451,8 +451,9 @@ begin
                     item[n] := CurrentFile[n];
                 folder := false;
               end;
-         if Pos('[-----]', CurrentFile[SEGSTATUS]) > 0 then
-         // this doesn't work correctly with isolated catalogues
+         if (Pos('[-----]', CurrentFile[SEGSTATUS]) > 0)
+            and (CurrentFile[SEGSIZE] = '0') then
+         // empty files still get marked as folders in isolated catalogues
             begin
               parentnode := currentnode;
               TFileData(currentnode.Data).folder := true;
