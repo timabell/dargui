@@ -367,6 +367,7 @@ begin
           OpenArchive(CurrentArchive, ArchiveTreeView);
           EnableArchiveMenus;
           OpenDialog.FileName := CurrentArchive;
+          RecentList.AddFile(CurrentArchive);
           //OpLogForm.AddCommand(Command);
           OpLogForm.RefreshOpList;
         end;
