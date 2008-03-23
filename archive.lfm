@@ -115,7 +115,7 @@ object ArchiveForm: TArchiveForm
     ClientWidth = 637
     TabOrder = 0
     object OKButton: TBitBtn
-      Left = 216
+      Left = 208
       Height = 30
       Top = 21
       Width = 90
@@ -127,7 +127,7 @@ object ArchiveForm: TArchiveForm
       TabOrder = 0
     end
     object CancelButton: TBitBtn
-      Left = 352
+      Left = 336
       Height = 30
       Top = 21
       Width = 90
@@ -158,7 +158,7 @@ object ArchiveForm: TArchiveForm
         Caption = 'Archive'
         ClientWidth = 610
         ClientHeight = 351
-        object Label1: TLabel
+        object ArchiveBaseLabel: TLabel
           Left = 19
           Height = 20
           Top = 12
@@ -166,7 +166,7 @@ object ArchiveForm: TArchiveForm
           Caption = 'Archive base name'
           ParentColor = False
         end
-        object Label2: TLabel
+        object BaseDirLabel: TLabel
           Left = 19
           Height = 20
           Top = 132
@@ -174,7 +174,7 @@ object ArchiveForm: TArchiveForm
           Caption = 'Base directory'
           ParentColor = False
         end
-        object Label3: TLabel
+        object SaveArchiveInLabel: TLabel
           Left = 19
           Height = 20
           Top = 68
@@ -182,7 +182,7 @@ object ArchiveForm: TArchiveForm
           Caption = 'Save archive in'
           ParentColor = False
         end
-        object Label8: TLabel
+        object BatchLabel: TLabel
           Left = 19
           Height = 20
           Top = 200
@@ -283,7 +283,7 @@ object ArchiveForm: TArchiveForm
         Caption = 'Directories'
         ClientWidth = 610
         ClientHeight = 351
-        object Label4: TLabel
+        object IncludeDirLabel: TLabel
           Left = 19
           Height = 20
           Top = 18
@@ -291,7 +291,7 @@ object ArchiveForm: TArchiveForm
           Caption = 'Include directories:'
           ParentColor = False
         end
-        object Label5: TLabel
+        object ExcludeDirLabel: TLabel
           Left = 19
           Height = 20
           Top = 196
@@ -360,7 +360,7 @@ object ArchiveForm: TArchiveForm
         Caption = 'Files'
         ClientWidth = 610
         ClientHeight = 351
-        object Label6: TLabel
+        object IncludeFilesLabel: TLabel
           Left = 19
           Height = 20
           Top = 18
@@ -368,7 +368,7 @@ object ArchiveForm: TArchiveForm
           Caption = 'Include files:'
           ParentColor = False
         end
-        object Label7: TLabel
+        object ExcludeFilesLabel: TLabel
           Left = 19
           Height = 20
           Top = 196
@@ -465,10 +465,10 @@ object ArchiveForm: TArchiveForm
           Top = 10
           Width = 288
           Caption = ' Do not compress ... '
-          ClientHeight = 311
+          ClientHeight = 313
           ClientWidth = 282
           TabOrder = 0
-          object Label9: TLabel
+          object CompSizeLabel: TLabel
             Left = 21
             Height = 20
             Top = 240
@@ -491,7 +491,6 @@ object ArchiveForm: TArchiveForm
               '*.png'
             )
             TabOrder = 0
-            TopIndex = -1
           end
           object CompressMasks: TButton
             Left = 165
@@ -543,7 +542,7 @@ object ArchiveForm: TArchiveForm
           Top = 11
           Width = 257
           Caption = ' Compression type '
-          ClientHeight = 311
+          ClientHeight = 313
           ClientWidth = 251
           TabOrder = 1
           object CompLvlLabel: TLabel

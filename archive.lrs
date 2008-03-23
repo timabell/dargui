@@ -56,9 +56,9 @@ LazarusResources.Add('TArchiveForm','FORMDATA',[
   +'Position'#7#16'poMainFormCenter'#0#6'TPanel'#13'OKCancelPanel'#6'Height'#2
   +'B'#3'Top'#3#154#1#5'Width'#3'}'#2#5'Align'#7#8'alBottom'#12'ClientHeight'#2
   +'B'#11'ClientWidth'#3'}'#2#8'TabOrder'#2#0#0#7'TBitBtn'#8'OKButton'#4'Left'#3
-  +#216#0#6'Height'#2#30#3'Top'#2#21#5'Width'#2'Z'#7'Caption'#6#3'&OK'#7'Defaul'
+  +#208#0#6'Height'#2#30#3'Top'#2#21#5'Width'#2'Z'#7'Caption'#6#3'&OK'#7'Defaul'
   +'t'#9#4'Kind'#7#4'bkOK'#9'NumGlyphs'#2#0#7'OnClick'#7#13'OKButtonClick'#8'Ta'
-  +'bOrder'#2#0#0#0#7'TBitBtn'#12'CancelButton'#4'Left'#3'`'#1#6'Height'#2#30#3
+  +'bOrder'#2#0#0#0#7'TBitBtn'#12'CancelButton'#4'Left'#3'P'#1#6'Height'#2#30#3
   +'Top'#2#21#5'Width'#2'Z'#6'Cancel'#9#7'Caption'#6#6'Cancel'#4'Kind'#7#8'bkCa'
   +'ncel'#11'ModalResult'#2#2#9'NumGlyphs'#2#0#8'TabOrder'#2#1#0#0#0#6'TPanel'
   +#13'NoteBookPanel'#6'Height'#3#154#1#5'Width'#3'}'#2#5'Align'#7#8'alClient'#7
@@ -66,60 +66,61 @@ LazarusResources.Add('TArchiveForm','FORMDATA',[
   +#8'TabOrder'#2#1#0#9'TNotebook'#15'ArchiveNotebook'#4'Left'#2#8#6'Height'#3
   +#128#1#3'Top'#2#16#5'Width'#3'h'#2#9'PageIndex'#2#0#8'TabOrder'#2#0#0#5'TPag'
   ,'e'#11'ArchivePage'#7'Caption'#6#7'Archive'#11'ClientWidth'#3'b'#2#12'Client'
-  +'Height'#3'_'#1#0#6'TLabel'#6'Label1'#4'Left'#2#19#6'Height'#2#20#3'Top'#2#12
-  +#5'Width'#2'x'#7'Caption'#6#17'Archive base name'#11'ParentColor'#8#0#0#6'TL'
-  +'abel'#6'Label2'#4'Left'#2#19#6'Height'#2#20#3'Top'#3#132#0#5'Width'#2'['#7
-  +'Caption'#6#14'Base directory'#11'ParentColor'#8#0#0#6'TLabel'#6'Label3'#4'L'
-  +'eft'#2#19#6'Height'#2#20#3'Top'#2'D'#5'Width'#2'_'#7'Caption'#6#15'Save arc'
-  +'hive in'#11'ParentColor'#8#0#0#6'TLabel'#6'Label8'#4'Left'#2#19#6'Height'#2
-  +#20#3'Top'#3#200#0#5'Width'#2';'#7'Caption'#6#10'Batch file'#11'ParentColor'
-  +#8#0#0#5'TEdit'#16'ArchiveDirectory'#4'Left'#2#19#6'Height'#2#23#3'Top'#2'T'
-  +#5'Width'#3'^'#1#8'TabOrder'#2#1#4'Text'#6#16'ArchiveDirectory'#0#0#7'TButto'
-  +'n'#16'ArchiveDirButton'#4'Left'#3#133#1#6'Height'#2#30#3'Top'#2'Q'#5'Width'
-  +#2'Z'#7'Caption'#6#6'Browse'#7'OnClick'#7#21'ArchiveDirButtonClick'#8'TabOrd'
-  +'er'#2#2#0#0#5'TEdit'#13'BaseDirectory'#4'Left'#2#19#6'Height'#2#23#3'Top'#3
-  +#148#0#5'Width'#3'^'#1#8'TabOrder'#2#3#4'Text'#6#5'Edit1'#0#0#7'TButton'#13
-  +'BaseDirButton'#4'Left'#3#133#1#6'Height'#2#30#3'Top'#3#145#0#5'Width'#2'Z'#7
-  +'Caption'#6#6'Browse'#7'OnClick'#7#18'BaseDirButtonClick'#8'TabOrder'#2#4#0#0
-  +#5'TEdit'#11'ArchiveName'#4'Left'#2#19#6'Height'#2#24#3'Top'#2#28#5'Width'#3
-  +#222#0#8'TabOrder'#2#0#0#0#9'TCheckBox'#18'SaveScriptCheckBox'#4'Left'#2#19#6
-  +'Height'#2#21#3'Top'#3#8#1#5'Width'#2'o'#7'Caption'#6#14'Save script as'#7'O'
-  +'nClick'#7#23'SaveScriptCheckBoxClick'#8'TabOrder'#2#7#7'Visible'#8#0#0#5'TE'
-  +'dit'#17'ScriptFilenameBox'#4'Left'#2#19#6'Height'#2#23#3'Top'#3'"'#1#5'Widt'
-  +'h'#3'^'#1#7'Enabled'#8#8'TabOrder'#2#8#7'Visible'#8#0#0#7'TButton'#16'Scrip'
-  +'tFileButton'#4'Left'#3#133#1#6'Height'#2#30#3'Top'#3#31#1#5'Width'#2'Z'#7'C'
-  +'aption'#6#6'Browse'#7'Enabled'#8#7'OnClick'#7#21'ScriptFileButtonClick'#8'T'
-  +'abOrder'#2#9#7'Visible'#8#0#0#7'TButton'#15'BatchFileButton'#4'Left'#3#133#1
-  +#6'Height'#2#30#3'Top'#3#213#0#5'Width'#2'Z'#7'Caption'#6#6'Browse'#7'OnClic'
-  +'k'#7#20'BatchFileButtonClick'#8'TabOrder'#2#6#0#0#5'TEdit'#9'BatchFile'#4'L'
-  +'eft'#2#19#6'Height'#2#23#3'Top'#3#216#0#5'Width'#3'^'#1#8'TabOrder'#2#5#4'T'
-  +'ext'#6#5'Edit1'#0#0#0#5'TPage'#15'DirectoriesPage'#7'Caption'#6#11'Director'
-  +'ies'#11'ClientWidth'#3'b'#2#12'ClientHeight'#3'_'#1#0#6'TLabel'#6'Label4'#4
-  +'Left'#2#19#6'Height'#2#20#3'Top'#2#18#5'Width'#2'y'#7'Caption'#6#20'Include'
-  +' directories:'#11'ParentColor'#8#0#0#6'TLabel'#6'Label5'#4'Left'#2#19#6'Hei'
-  +'ght'#2#20#3'Top'#3#196#0#5'Width'#2'|'#7'Caption'#6#20'Exclude directories:'
-  +#11'ParentColor'#8#0#0#8'TListBox'#18'IncludeDirectories'#4'Left'#2#19#6'Hei'
-  +'ght'#2'x'#3'Top'#2'*'#5'Width'#3#227#1#8'TabOrder'#2#0#8'TopIndex'#2#255#0#0
-  +#7'TButton'#19'AddIncludeDirButton'#4'Left'#3#254#1#6'Height'#2#30#3'Top'#2
-  +'*'#5'Width'#2'Z'#7'Caption'#6#3'Add'#7'OnClick'#7#24'AddIncludeDirButtonCli'
-  +'ck'#8'TabOrder'#2#1#0#0#7'TButton'#19'DelIncludeDirButton'#4'Left'#3#254#1#6
-  +'Height'#2#30#3'Top'#2'P'#5'Width'#2'Z'#7'Caption'#6#6'Remove'#7'Enabled'#8#7
-  +'OnClick'#7#24'DelIncludeDirButtonClick'#8'TabOrder'#2#2#0#0#8'TListBox'#18
-  +'ExcludeDirectories'#4'Left'#2#19#6'Height'#2'x'#3'Top'#3#218#0#5'Width'#3
-  +#227#1#8'TabOrder'#2#3#8'TopIndex'#2#255#0#0#7'TButton'#19'AddExcludeDirButt'
-  +'on'#3'Tag'#2#1#4'Left'#3#254#1#6'Height'#2#30#3'Top'#3#218#0#5'Width'#2'Z'#7
-  +'Caption'#6#3'Add'#7'OnClick'#7#24'AddIncludeDirButtonClick'#8'TabOrder'#2#4
-  +#0#0#7'TButton'#19'DelExcludeDirButton'#3'Tag'#2#1#4'Left'#3#254#1#6'Height'
-  +#2#30#3'Top'#3#0#1#5'Width'#2'Z'#7'Caption'#6#6'Remove'#7'Enabled'#8#7'OnCli'
-  +'ck'#7#24'DelIncludeDirButtonClick'#8'TabOrder'#2#5#0#0#0#5'TPage'#9'FilesPa'
-  +'ge'#7'Caption'#6#5'Files'#11'ClientWidth'#3'b'#2#12'ClientHeight'#3'_'#1#0#6
-  +'TLabel'#6'Label6'#4'Left'#2#19#6'Height'#2#20#3'Top'#2#18#5'Width'#2'O'#7'C'
-  +'aption'#6#14'Include files:'#11'ParentColor'#8#0#0#6'TLabel'#6'Label7'#4'Le'
-  +'ft'#2#19#6'Height'#2#20#3'Top'#3#196#0#5'Width'#2'R'#7'Caption'#6#14'Exclud'
-  +'e files:'#11'ParentColor'#8#0#0#8'TListBox'#12'IncludeFiles'#3'Tag'#2#1#4'L'
-  +'eft'#2#19#6'Height'#2'x'#3'Top'#2'*'#5'Width'#3#211#1#8'TabOrder'#2#0#8'Top'
-  +'Index'#2#255#0#0#8'TListBox'#12'ExcludeFiles'#3'Tag'#2#1#4'Left'#2#19#6'Hei'
-  +'ght'#2'x'#3'Top'#3#218#0#5'Width'#3#211#1#8'TabOrder'#2#4#8'TopIndex'#2#255
+  +'Height'#3'_'#1#0#6'TLabel'#16'ArchiveBaseLabel'#4'Left'#2#19#6'Height'#2#20
+  +#3'Top'#2#12#5'Width'#2'x'#7'Caption'#6#17'Archive base name'#11'ParentColor'
+  +#8#0#0#6'TLabel'#12'BaseDirLabel'#4'Left'#2#19#6'Height'#2#20#3'Top'#3#132#0
+  +#5'Width'#2'['#7'Caption'#6#14'Base directory'#11'ParentColor'#8#0#0#6'TLabe'
+  +'l'#18'SaveArchiveInLabel'#4'Left'#2#19#6'Height'#2#20#3'Top'#2'D'#5'Width'#2
+  +'_'#7'Caption'#6#15'Save archive in'#11'ParentColor'#8#0#0#6'TLabel'#10'Batc'
+  +'hLabel'#4'Left'#2#19#6'Height'#2#20#3'Top'#3#200#0#5'Width'#2';'#7'Caption'
+  +#6#10'Batch file'#11'ParentColor'#8#0#0#5'TEdit'#16'ArchiveDirectory'#4'Left'
+  +#2#19#6'Height'#2#23#3'Top'#2'T'#5'Width'#3'^'#1#8'TabOrder'#2#1#4'Text'#6#16
+  +'ArchiveDirectory'#0#0#7'TButton'#16'ArchiveDirButton'#4'Left'#3#133#1#6'Hei'
+  +'ght'#2#30#3'Top'#2'Q'#5'Width'#2'Z'#7'Caption'#6#6'Browse'#7'OnClick'#7#21
+  +'ArchiveDirButtonClick'#8'TabOrder'#2#2#0#0#5'TEdit'#13'BaseDirectory'#4'Lef'
+  +'t'#2#19#6'Height'#2#23#3'Top'#3#148#0#5'Width'#3'^'#1#8'TabOrder'#2#3#4'Tex'
+  +'t'#6#5'Edit1'#0#0#7'TButton'#13'BaseDirButton'#4'Left'#3#133#1#6'Height'#2
+  +#30#3'Top'#3#145#0#5'Width'#2'Z'#7'Caption'#6#6'Browse'#7'OnClick'#7#18'Base'
+  +'DirButtonClick'#8'TabOrder'#2#4#0#0#5'TEdit'#11'ArchiveName'#4'Left'#2#19#6
+  +'Height'#2#24#3'Top'#2#28#5'Width'#3#222#0#8'TabOrder'#2#0#0#0#9'TCheckBox'
+  +#18'SaveScriptCheckBox'#4'Left'#2#19#6'Height'#2#21#3'Top'#3#8#1#5'Width'#2
+  +'o'#7'Caption'#6#14'Save script as'#7'OnClick'#7#23'SaveScriptCheckBoxClick'
+  +#8'TabOrder'#2#7#7'Visible'#8#0#0#5'TEdit'#17'ScriptFilenameBox'#4'Left'#2#19
+  +#6'Height'#2#23#3'Top'#3'"'#1#5'Width'#3'^'#1#7'Enabled'#8#8'TabOrder'#2#8#7
+  +'Visible'#8#0#0#7'TButton'#16'ScriptFileButton'#4'Left'#3#133#1#6'Height'#2
+  +#30#3'Top'#3#31#1#5'Width'#2'Z'#7'Caption'#6#6'Browse'#7'Enabled'#8#7'OnClic'
+  +'k'#7#21'ScriptFileButtonClick'#8'TabOrder'#2#9#7'Visible'#8#0#0#7'TButton'
+  +#15'BatchFileButton'#4'Left'#3#133#1#6'Height'#2#30#3'Top'#3#213#0#5'Width'#2
+  +'Z'#7'Caption'#6#6'Browse'#7'OnClick'#7#20'BatchFileButtonClick'#8'TabOrder'
+  +#2#6#0#0#5'TEdit'#9'BatchFile'#4'Left'#2#19#6'Height'#2#23#3'Top'#3#216#0#5
+  +'Width'#3'^'#1#8'TabOrder'#2#5#4'Text'#6#5'Edit1'#0#0#0#5'TPage'#15'Director'
+  +'iesPage'#7'Caption'#6#11'Directories'#11'ClientWidth'#3'b'#2#12'ClientHeigh'
+  +'t'#3'_'#1#0#6'TLabel'#15'IncludeDirLabel'#4'Left'#2#19#6'Height'#2#20#3'Top'
+  +#2#18#5'Width'#2'y'#7'Caption'#6#20'Include directories:'#11'ParentColor'#8#0
+  +#0#6'TLabel'#15'ExcludeDirLabel'#4'Left'#2#19#6'Height'#2#20#3'Top'#3#196#0#5
+  +'Width'#2'|'#7'Caption'#6#20'Exclude directories:'#11'ParentColor'#8#0#0#8'T'
+  +'ListBox'#18'IncludeDirectories'#4'Left'#2#19#6'Height'#2'x'#3'Top'#2'*'#5'W'
+  +'idth'#3#227#1#8'TabOrder'#2#0#8'TopIndex'#2#255#0#0#7'TButton'#19'AddInclud'
+  +'eDirButton'#4'Left'#3#254#1#6'Height'#2#30#3'Top'#2'*'#5'Width'#2'Z'#7'Capt'
+  +'ion'#6#3'Add'#7'OnClick'#7#24'AddIncludeDirButtonClick'#8'TabOrder'#2#1#0#0
+  +#7'TButton'#19'DelIncludeDirButton'#4'Left'#3#254#1#6'Height'#2#30#3'Top'#2
+  +'P'#5'Width'#2'Z'#7'Caption'#6#6'Remove'#7'Enabled'#8#7'OnClick'#7#24'DelInc'
+  +'ludeDirButtonClick'#8'TabOrder'#2#2#0#0#8'TListBox'#18'ExcludeDirectories'#4
+  +'Left'#2#19#6'Height'#2'x'#3'Top'#3#218#0#5'Width'#3#227#1#8'TabOrder'#2#3#8
+  +'TopIndex'#2#255#0#0#7'TButton'#19'AddExcludeDirButton'#3'Tag'#2#1#4'Left'#3
+  +#254#1#6'Height'#2#30#3'Top'#3#218#0#5'Width'#2'Z'#7'Caption'#6#3'Add'#7'OnC'
+  +'lick'#7#24'AddIncludeDirButtonClick'#8'TabOrder'#2#4#0#0#7'TButton'#19'DelE'
+  +'xcludeDirButton'#3'Tag'#2#1#4'Left'#3#254#1#6'Height'#2#30#3'Top'#3#0#1#5'W'
+  +'idth'#2'Z'#7'Caption'#6#6'Remove'#7'Enabled'#8#7'OnClick'#7#24'DelIncludeDi'
+  +'rButtonClick'#8'TabOrder'#2#5#0#0#0#5'TPage'#9'FilesPage'#7'Caption'#6#5'Fi'
+  +'les'#11'ClientWidth'#3'b'#2#12'ClientHeight'#3'_'#1#0#6'TLabel'#17'IncludeF'
+  +'ilesLabel'#4'Left'#2#19#6'Height'#2#20#3'Top'#2#18#5'Width'#2'O'#7'Caption'
+  +#6#14'Include files:'#11'ParentColor'#8#0#0#6'TLabel'#17'ExcludeFilesLabel'#4
+  +'Left'#2#19#6'Height'#2#20#3'Top'#3#196#0#5'Width'#2'R'#7'Caption'#6#14'Excl'
+  +'ude files:'#11'ParentColor'#8#0#0#8'TListBox'#12'IncludeFiles'#3'Tag'#2#1#4
+  +'Left'#2#19#6'Height'#2'x'#3'Top'#2'*'#5'Width'#3#211#1#8'TabOrder'#2#0#8'To'
+  +'pIndex'#2#255#0#0#8'TListBox'#12'ExcludeFiles'#3'Tag'#2#1#4'Left'#2#19#6'He'
+  +'ight'#2'x'#3'Top'#3#218#0#5'Width'#3#211#1#8'TabOrder'#2#4#8'TopIndex'#2#255
   +#0#0#7'TButton'#20'DelExcludeFileButton'#3'Tag'#2#1#4'Left'#3#246#1#6'Height'
   +#2#30#3'Top'#3'8'#1#5'Width'#2'_'#7'Caption'#6#6'Remove'#7'Enabled'#8#7'OnCl'
   +'ick'#7#25'DelExcludeFileButtonClick'#8'TabOrder'#2#7#0#0#7'TButton'#20'AddE'
@@ -128,8 +129,8 @@ LazarusResources.Add('TArchiveForm','FORMDATA',[
   +'TabOrder'#2#5#0#0#7'TButton'#20'DelIncludeFileButton'#4'Left'#3#246#1#6'Hei'
   +'ght'#2#30#3'Top'#3#136#0#5'Width'#2'_'#7'Caption'#6#6'Remove'#7'Enabled'#8#7
   +'OnClick'#7#25'DelIncludeFileButtonClick'#8'TabOrder'#2#3#0#0#7'TButton'#20
-  +'AddIncludeFileButton'#4'Left'#3#246#1#6'Height'#2#30#3'Top'#2'*'#5'Width'#2
-  ,'_'#7'Caption'#6#8'Add file'#7'OnClick'#7#18'AddFileButtonClick'#8'TabOrder'
+  ,'AddIncludeFileButton'#4'Left'#3#246#1#6'Height'#2#30#3'Top'#2'*'#5'Width'#2
+  +'_'#7'Caption'#6#8'Add file'#7'OnClick'#7#18'AddFileButtonClick'#8'TabOrder'
   +#2#1#0#0#7'TButton'#16'IncludeFileMasks'#3'Tag'#2#1#4'Left'#3#246#1#6'Height'
   +#2#30#3'Top'#2'P'#5'Width'#2'_'#7'Caption'#6#8'Add mask'#7'OnClick'#7#18'Com'
   +'pressMasksClick'#8'TabOrder'#2#2#0#0#7'TButton'#16'ExcludeFileMasks'#3'Tag'
@@ -138,58 +139,58 @@ LazarusResources.Add('TArchiveForm','FORMDATA',[
   +#15'CompressionPage'#7'Caption'#6#11'Compression'#11'ClientWidth'#3'b'#2#12
   +'ClientHeight'#3'_'#1#0#9'TGroupBox'#21'CompressionExceptions'#4'Left'#3'-'#1
   +#6'Height'#3'I'#1#3'Top'#2#10#5'Width'#3' '#1#7'Caption'#6#21' Do not compre'
-  +'ss ... '#12'ClientHeight'#3'7'#1#11'ClientWidth'#3#26#1#8'TabOrder'#2#0#0#6
-  +'TLabel'#6'Label9'#4'Left'#2#21#6'Height'#2#20#3'Top'#3#240#0#5'Width'#3#202
-  +#0#7'Caption'#6'!Lower size limit for compression:'#12'FocusControl'#7#19'Co'
-  +'mpressionLwrLimit'#11'ParentColor'#8#0#0#8'TListBox'#14'NoCompressList'#4'L'
-  +'eft'#2#13#6'Height'#3#192#0#3'Top'#2#24#5'Width'#3#139#0#13'Items.Strings'#1
-  +#6#5'*.zip'#6#5'*.jpg'#6#5'*.bz2'#6#4'*.gz'#6#5'*.gif'#6#5'*.png'#0#8'TabOrd'
-  +'er'#2#0#8'TopIndex'#2#255#0#0#7'TButton'#13'CompressMasks'#4'Left'#3#165#0#6
-  +'Height'#2#30#3'Top'#2#24#5'Width'#2'Z'#7'Caption'#6#3'Add'#7'OnClick'#7#18
-  +'CompressMasksClick'#8'TabOrder'#2#1#0#0#7'TButton'#21'DelCompressMaskButton'
-  +#4'Left'#3#165#0#6'Height'#2#30#3'Top'#2';'#5'Width'#2'Z'#7'Caption'#6#6'Rem'
-  +'ove'#7'OnClick'#7#26'DelCompressMaskButtonClick'#8'TabOrder'#2#2#0#0#5'TEdi'
-  +'t'#19'CompressionLwrLimit'#4'Left'#2#27#6'Height'#2#23#3'Top'#3#11#1#5'Widt'
-  +'h'#2'r'#6'OnExit'#7#23'CompressionLwrLimitExit'#8'TabOrder'#2#3#4'Text'#6#3
-  +'100'#0#0#9'TComboBox'#17'CompLwrLimitCombo'#4'Left'#3#149#0#6'Height'#2#25#3
-  +'Top'#3#9#1#5'Width'#2'd'#16'AutoCompleteText'#11#22'cbactEndOfLineComplete'
-  +#20'cbactSearchAscending'#0#9'ItemIndex'#2#0#13'Items.Strings'#1#6#5'bytes'#6
-  +#9'kilobytes'#6#9'Megabytes'#0#9'MaxLength'#2#0#8'TabOrder'#2#4#4'Text'#6#5
-  +'bytes'#0#0#0#9'TGroupBox'#16'CompressionTypes'#4'Left'#2#12#6'Height'#3'I'#1
-  +#3'Top'#2#11#5'Width'#3#1#1#7'Caption'#6#18' Compression type '#12'ClientHei'
-  +'ght'#3'7'#1#11'ClientWidth'#3#251#0#8'TabOrder'#2#1#0#6'TLabel'#12'CompLvlL'
-  +'abel'#4'Left'#2'>'#6'Height'#2#20#3'Top'#2'f'#5'Width'#2'r'#7'Caption'#6#17
-  +'Compression level'#7'Enabled'#8#12'FocusControl'#7#16'CompressionLevel'#11
-  +'ParentColor'#8#0#0#9'TCheckBox'#9'GZipCheck'#4'Left'#2#26#6'Height'#2#21#3
-  +'Top'#2#29#5'Width'#3#158#0#7'Caption'#6#20'use gzip compression'#7'OnClick'
-  +#7#14'ZipCheckChange'#8'TabOrder'#2#0#0#0#9'TCheckBox'#10'Bzip2Check'#4'Left'
-  +#2#26#6'Height'#2#21#3'Top'#2'C'#5'Width'#3#166#0#7'Caption'#6#21'use bzip2 '
-  +'compression'#7'OnClick'#7#14'ZipCheckChange'#8'TabOrder'#2#1#0#0#5'TEdit'#16
-  +'CompressionLevel'#4'Left'#2'>'#6'Height'#2#23#3'Top'#2'z'#5'Width'#2'P'#7'E'
-  +'nabled'#8#9'MaxLength'#2#1#6'OnExit'#7#20'CompressionLevelExit'#8'TabOrder'
-  +#2#2#4'Text'#6#1'9'#0#0#0#0#5'TPage'#11'OptionsPage'#7'Caption'#6#7'Options'
-  +#11'ClientWidth'#3'b'#2#12'ClientHeight'#3'_'#1#0#6'TLabel'#12'SliceMbLabel'
-  +#4'Left'#3#157#1#6'Height'#2#17#3'Top'#3#170#0#5'Width'#2#23#7'Caption'#6#2
-  +'Mb'#7'Enabled'#8#11'ParentColor'#8#0#0#6'TLabel'#14'SliceSizeLabel'#4'Left'
-  +#3#205#0#6'Height'#2#17#3'Top'#3#165#0#5'Width'#2'D'#7'Caption'#6#10'Slice s'
-  +'ize'#7'Enabled'#8#11'ParentColor'#8#0#0#9'TCheckBox'#15'ReadConfigCheck'#4
-  +'Left'#2'!'#6'Height'#2#24#3'Top'#2'*'#5'Width'#3'4'#1#7'Caption'#6'''Attemp'
-  +'t to read DAR configuration files'#7'Checked'#9#5'State'#7#9'cbChecked'#8'T'
-  +'abOrder'#2#0#0#0#9'TCheckBox'#11'DryRunCheck'#4'Left'#2'!'#6'Height'#2#24#3
-  +'Top'#3#248#0#5'Width'#2'v'#7'Caption'#6#13'Test run only'#8'TabOrder'#2#5#0
-  +#0#9'TCheckBox'#13'EmptyDirCheck'#4'Left'#2'!'#6'Height'#2#24#3'Top'#2'z'#5
-  +'Width'#3#166#0#7'Caption'#6#20'Preserve directories'#8'TabOrder'#2#1#0#0#9
-  +'TCheckBox'#11'SlicesCheck'#4'Left'#2'!'#6'Height'#2#24#3'Top'#3#162#0#5'Wid'
-  +'th'#2'a'#7'Caption'#6#10'Use slices'#7'OnClick'#7#16'SlicesCheckClick'#8'Ta'
-  +'bOrder'#2#2#0#0#5'TEdit'#9'SliceSize'#4'Left'#3':'#1#6'Height'#2#23#3'Top'#3
-  +#162#0#5'Width'#2'P'#7'Enabled'#8#6'OnExit'#7#23'CompressionLwrLimitExit'#8
-  +'TabOrder'#2#3#4'Text'#6#3'695'#0#0#9'TCheckBox'#10'PauseCheck'#4'Left'#2'}'
-  +#6'Height'#2#24#3'Top'#3#203#0#5'Width'#3#181#0#7'Caption'#6#20'Pause betwee'
-  +'n slices'#7'Enabled'#8#8'TabOrder'#2#4#0#0#0#0#0#22'TSelectDirectoryDialog'
-  +#21'SelectDirectoryDialog'#5'Title'#6#16'Select Directory'#7'Options'#11#15
-  +'ofFileMustExist'#14'ofEnableSizing'#12'ofViewDetail'#0#4'left'#3'P'#2#3'top'
-  +#3#144#0#0#0#11'TSaveDialog'#10'SaveDialog'#5'Title'#6#12'Save file as'#4'le'
-  +'ft'#3'P'#2#3'top'#2'@'#0#0#11'TOpenDialog'#10'OpenDialog'#5'Title'#6#11'Sel'
-  +'ect file'#7'Options'#11#15'ofPathMustExist'#15'ofFileMustExist'#14'ofEnable'
-  +'Sizing'#12'ofViewDetail'#0#4'left'#3'P'#2#3'top'#2'h'#0#0#0
+  +'ss ... '#12'ClientHeight'#3'9'#1#11'ClientWidth'#3#26#1#8'TabOrder'#2#0#0#6
+  +'TLabel'#13'CompSizeLabel'#4'Left'#2#21#6'Height'#2#20#3'Top'#3#240#0#5'Widt'
+  +'h'#3#202#0#7'Caption'#6'!Lower size limit for compression:'#12'FocusControl'
+  +#7#19'CompressionLwrLimit'#11'ParentColor'#8#0#0#8'TListBox'#14'NoCompressLi'
+  +'st'#4'Left'#2#13#6'Height'#3#192#0#3'Top'#2#24#5'Width'#3#139#0#13'Items.St'
+  +'rings'#1#6#5'*.zip'#6#5'*.jpg'#6#5'*.bz2'#6#4'*.gz'#6#5'*.gif'#6#5'*.png'#0
+  +#8'TabOrder'#2#0#0#0#7'TButton'#13'CompressMasks'#4'Left'#3#165#0#6'Height'#2
+  +#30#3'Top'#2#24#5'Width'#2'Z'#7'Caption'#6#3'Add'#7'OnClick'#7#18'CompressMa'
+  +'sksClick'#8'TabOrder'#2#1#0#0#7'TButton'#21'DelCompressMaskButton'#4'Left'#3
+  +#165#0#6'Height'#2#30#3'Top'#2';'#5'Width'#2'Z'#7'Caption'#6#6'Remove'#7'OnC'
+  +'lick'#7#26'DelCompressMaskButtonClick'#8'TabOrder'#2#2#0#0#5'TEdit'#19'Comp'
+  +'ressionLwrLimit'#4'Left'#2#27#6'Height'#2#23#3'Top'#3#11#1#5'Width'#2'r'#6
+  +'OnExit'#7#23'CompressionLwrLimitExit'#8'TabOrder'#2#3#4'Text'#6#3'100'#0#0#9
+  +'TComboBox'#17'CompLwrLimitCombo'#4'Left'#3#149#0#6'Height'#2#25#3'Top'#3#9#1
+  +#5'Width'#2'd'#16'AutoCompleteText'#11#22'cbactEndOfLineComplete'#20'cbactSe'
+  +'archAscending'#0#9'ItemIndex'#2#0#13'Items.Strings'#1#6#5'bytes'#6#9'kiloby'
+  +'tes'#6#9'Megabytes'#0#9'MaxLength'#2#0#8'TabOrder'#2#4#4'Text'#6#5'bytes'#0
+  +#0#0#9'TGroupBox'#16'CompressionTypes'#4'Left'#2#12#6'Height'#3'I'#1#3'Top'#2
+  +#11#5'Width'#3#1#1#7'Caption'#6#18' Compression type '#12'ClientHeight'#3'9'
+  +#1#11'ClientWidth'#3#251#0#8'TabOrder'#2#1#0#6'TLabel'#12'CompLvlLabel'#4'Le'
+  +'ft'#2'>'#6'Height'#2#20#3'Top'#2'f'#5'Width'#2'r'#7'Caption'#6#17'Compressi'
+  +'on level'#7'Enabled'#8#12'FocusControl'#7#16'CompressionLevel'#11'ParentCol'
+  +'or'#8#0#0#9'TCheckBox'#9'GZipCheck'#4'Left'#2#26#6'Height'#2#21#3'Top'#2#29
+  +#5'Width'#3#158#0#7'Caption'#6#20'use gzip compression'#7'OnClick'#7#14'ZipC'
+  +'heckChange'#8'TabOrder'#2#0#0#0#9'TCheckBox'#10'Bzip2Check'#4'Left'#2#26#6
+  +'Height'#2#21#3'Top'#2'C'#5'Width'#3#166#0#7'Caption'#6#21'use bzip2 compres'
+  +'sion'#7'OnClick'#7#14'ZipCheckChange'#8'TabOrder'#2#1#0#0#5'TEdit'#16'Compr'
+  +'essionLevel'#4'Left'#2'>'#6'Height'#2#23#3'Top'#2'z'#5'Width'#2'P'#7'Enable'
+  +'d'#8#9'MaxLength'#2#1#6'OnExit'#7#20'CompressionLevelExit'#8'TabOrder'#2#2#4
+  +'Text'#6#1'9'#0#0#0#0#5'TPage'#11'OptionsPage'#7'Caption'#6#7'Options'#11'Cl'
+  +'ientWidth'#3'b'#2#12'ClientHeight'#3'_'#1#0#6'TLabel'#12'SliceMbLabel'#4'Le'
+  +'ft'#3#157#1#6'Height'#2#17#3'Top'#3#170#0#5'Width'#2#23#7'Caption'#6#2'Mb'#7
+  +'Enabled'#8#11'ParentColor'#8#0#0#6'TLabel'#14'SliceSizeLabel'#4'Left'#3#205
+  +#0#6'Height'#2#17#3'Top'#3#165#0#5'Width'#2'D'#7'Caption'#6#10'Slice size'#7
+  +'Enabled'#8#11'ParentColor'#8#0#0#9'TCheckBox'#15'ReadConfigCheck'#4'Left'#2
+  +'!'#6'Height'#2#24#3'Top'#2'*'#5'Width'#3'4'#1#7'Caption'#6'''Attempt to rea'
+  +'d DAR configuration files'#7'Checked'#9#5'State'#7#9'cbChecked'#8'TabOrder'
+  +#2#0#0#0#9'TCheckBox'#11'DryRunCheck'#4'Left'#2'!'#6'Height'#2#24#3'Top'#3
+  +#248#0#5'Width'#2'v'#7'Caption'#6#13'Test run only'#8'TabOrder'#2#5#0#0#9'TC'
+  +'heckBox'#13'EmptyDirCheck'#4'Left'#2'!'#6'Height'#2#24#3'Top'#2'z'#5'Width'
+  +#3#166#0#7'Caption'#6#20'Preserve directories'#8'TabOrder'#2#1#0#0#9'TCheckB'
+  +'ox'#11'SlicesCheck'#4'Left'#2'!'#6'Height'#2#24#3'Top'#3#162#0#5'Width'#2'a'
+  +#7'Caption'#6#10'Use slices'#7'OnClick'#7#16'SlicesCheckClick'#8'TabOrder'#2
+  +#2#0#0#5'TEdit'#9'SliceSize'#4'Left'#3':'#1#6'Height'#2#23#3'Top'#3#162#0#5
+  +'Width'#2'P'#7'Enabled'#8#6'OnExit'#7#23'CompressionLwrLimitExit'#8'TabOrder'
+  +#2#3#4'Text'#6#3'695'#0#0#9'TCheckBox'#10'PauseCheck'#4'Left'#2'}'#6'Height'
+  +#2#24#3'Top'#3#203#0#5'Width'#3#181#0#7'Caption'#6#20'Pause between slices'#7
+  +'Enabled'#8#8'TabOrder'#2#4#0#0#0#0#0#22'TSelectDirectoryDialog'#21'SelectDi'
+  +'rectoryDialog'#5'Title'#6#16'Select Directory'#7'Options'#11#15'ofFileMustE'
+  +'xist'#14'ofEnableSizing'#12'ofViewDetail'#0#4'left'#3'P'#2#3'top'#3#144#0#0
+  +#0#11'TSaveDialog'#10'SaveDialog'#5'Title'#6#12'Save file as'#4'left'#3'P'#2
+  +#3'top'#2'@'#0#0#11'TOpenDialog'#10'OpenDialog'#5'Title'#6#11'Select file'#7
+  +'Options'#11#15'ofPathMustExist'#15'ofFileMustExist'#14'ofEnableSizing'#12'o'
+  +'fViewDetail'#0#4'left'#3'P'#2#3'top'#2'h'#0#0#0
 ]);

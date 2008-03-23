@@ -21,7 +21,7 @@ type
     BatchFileButton: TButton;
     BatchFile: TEdit;
     PauseCheck: TCheckBox;
-    Label8: TLabel;
+    BatchLabel: TLabel;
     ScriptFileButton: TButton;
     ScriptFilenameBox: TEdit;
     SaveScriptCheckBox: TCheckBox;
@@ -50,7 +50,7 @@ type
     CompressionTypes: TGroupBox;
     GZipCheck: TCheckBox;
     CompLvlLabel: TLabel;
-    Label9: TLabel;
+    CompSizeLabel: TLabel;
     NoCompressList: TListBox;
     ReadConfigCheck: TCheckBox;
     DelIncludeDirButton: TButton;
@@ -59,13 +59,13 @@ type
     DelExcludeFileButton: TButton;
     AddExcludeFileButton: TButton;
     DelIncludeFileButton: TButton;
-    Label1: TLabel;
-    Label2: TLabel;
-    Label3: TLabel;
-    Label4: TLabel;
-    Label5: TLabel;
-    Label6: TLabel;
-    Label7: TLabel;
+    ArchiveBaseLabel: TLabel;
+    BaseDirLabel: TLabel;
+    SaveArchiveInLabel: TLabel;
+    IncludeDirLabel: TLabel;
+    ExcludeDirLabel: TLabel;
+    IncludeFilesLabel: TLabel;
+    ExcludeFilesLabel: TLabel;
     IncludeDirectories: TListBox;
     ExcludeDirectories: TListBox;
     IncludeFiles: TListBox;
@@ -98,6 +98,7 @@ type
     procedure ScriptFileButtonClick ( Sender: TObject ) ;
     procedure SlicesCheckClick ( Sender: TObject ) ;
     procedure ZipCheckChange ( Sender: TObject ) ;
+    procedure InitialiseInterface;
   private
     { private declarations }
     function CheckParameters: Boolean;
@@ -143,6 +144,7 @@ begin
   SelectDirectoryDialog.InitialDir := SysUtils.GetEnvironmentVariable('HOME');
   OpenDialog.InitialDir := SysUtils.GetEnvironmentVariable('HOME');
   SaveDialog.InitialDir := SysUtils.GetEnvironmentVariable('HOME');
+  InitialiseInterface;
 end;
 
 procedure TArchiveForm.SaveScriptCheckBoxClick ( Sender: TObject ) ;
@@ -175,6 +177,56 @@ begin
   CompLvlLabel.Enabled := CompressionLevel.Enabled;
 end;
 
+procedure TArchiveForm.InitialiseInterface;
+begin
+  Caption := rsNewArchive;
+  CompressMasks.Caption := rsButtonAdd;
+  ExcludeFileMasks.Caption := rsButtonAddMask;
+  IncludeFileMasks.Caption := rsButtonAddMask;
+  BatchFileButton.Caption := rsButtonBrowse;
+  PauseCheck.Caption := rsPauseBetweenSlices;
+  BatchLabel.Caption :=   rsBatchFile;
+  ScriptFileButton.Caption := rsButtonBrowse;
+  SaveScriptCheckBox.Caption := rsSaveScriptAs;
+  OKButton.Caption := rsButtonOK;
+  CancelButton.Caption := rsButtonCancel;
+  ArchiveDirButton.Caption := rsButtonBrowse;
+  AddIncludeFileButton.Caption := rsButtonAddFile;
+  BaseDirButton.Caption := rsButtonBrowse;
+  AddIncludeDirButton.Caption := rsButtonAdd;
+  Bzip2Check.Caption := rsUseBzip2Compression;
+  SliceSizeLabel.Caption := rsSliceSize;
+  SliceMbLabel.Caption := rsMb;
+  SlicesCheck.Caption := rsUseSlices;
+  DelCompressMaskButton.Caption := rsButtonRemove;
+  EmptyDirCheck.Caption := rsPreserveDirectories;
+  DryRunCheck.Caption := rsTestRunOnly;
+  CompressionPage.Caption := rsCompression;
+  CompressionExceptions.Caption := rsDoNotCompress;
+  CompressionTypes.Caption := rsCompressionType;
+  GZipCheck.Caption := rsUseGzipCompression;
+  CompLvlLabel.Caption := rsCompressionLevel;
+  CompSizeLabel.Caption := rsLowerSizeLimitForCom;
+  ReadConfigCheck.Caption := rsAttemptToReadDARConf;
+  DelIncludeDirButton.Caption := rsButtonRemove;
+  AddExcludeDirButton.Caption := rsButtonAdd;
+  DelExcludeDirButton.Caption := rsButtonRemove;
+  DelExcludeFileButton.Caption := rsButtonRemove;
+  AddExcludeFileButton.Caption := rsButtonAddFile;
+  DelIncludeFileButton.Caption := rsButtonRemove;
+  ArchiveBaseLabel.Caption := rsArchiveBaseName;
+  BaseDirLabel.Caption := rsBaseDirectory;
+  SaveArchiveInLabel.Caption := rsSaveArchiveIn;
+  IncludeDirLabel.Caption := rsIncludeDirectories;
+  ExcludeDirLabel.Caption := rsExcludeDirectories;
+  IncludeFilesLabel.Caption := rsIncludeFiles;
+  ExcludeFilesLabel.Caption := rsExcludeFiles;
+  ArchivePage.Caption := rsArchive;
+  OpenDialog.Title := rsSelectFile;
+  OptionsPage.Caption := rsOptions;
+  DirectoriesPage.Caption := rsDirectories;
+  FilesPage.Caption := rsFiles;
+end;
 
 procedure TArchiveForm.AddIncludeDirButtonClick ( Sender: TObject ) ;
 var
@@ -305,7 +357,7 @@ procedure TArchiveForm.CompressionLevelExit ( Sender: TObject ) ;
 begin
   if not isInteger(CompressionLevel.Text) then
      begin
-     ShowMessage('Compression level must be between 0 and 9');
+     ShowMessage ( rsErrCompressionLevelMust ) ;
      CompressionLevel.Text := '9';
      CompressionLevel.SetFocus;
      end;
@@ -316,7 +368,7 @@ begin
   if (not isInteger(TEdit(Sender).Text))
   or (TEdit(Sender).Text='') then
      begin
-     ShowMessage('Invalid number for file size');
+     ShowMessage ( rsErrInvalidFileSize ) ;
      TEdit(Sender).SetFocus;
      end;
 end;
@@ -338,12 +390,13 @@ begin
      ModalResult := mrOk;
      if FileExists(ArchiveDirectory.Text
                             + ArchiveName.Text + '.1.dar')
-        then if MessageDlg('Overwrite existing archive?', mtWarning,[mbYes,mbNo],0) = mrNo
+        then if MessageDlg ( rsOverwriteExistingArc, mtWarning, [ mbYes, mbNo
+          ] , 0 ) = mrNo
              then ModalResult := mrCancel
              else DeleteFilesByMask(ArchiveDirectory.Text
                             + ArchiveName.Text + '.*.dar');
      end
-     else ShowMessage('Please check the parameters');
+     else ShowMessage('Please check all input');
 end;
 
 procedure TArchiveForm.DelExcludeFileButtonClick ( Sender: TObject ) ;
@@ -388,6 +441,7 @@ var
 begin
   if not (Sender is TListBox) then exit;
   FileConflictForm := TFileConflictForm.Create(Self);
+  FileConflictForm.Caption := rsCptResolveConflict;
   FileConflictForm.InstructionLabel.Caption := ConflictMessage;
   LB := TListBox(Sender);
   RB := TlistBox(RefList);
