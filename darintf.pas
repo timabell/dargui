@@ -58,8 +58,6 @@ const
    CfgShowToolbar = 'ShowToolbar';
 
 
-   
-
 type
   TFileData = class
     item : array[SEGSTATUS .. SEGFILEPATH] of string;
@@ -94,15 +92,10 @@ type
   function TrimToBase(fn: string): string;
   
   procedure GetDefaultBrowser(var Browser, Params: string);
-  
-  
+
 var
   TerminalCommand: string;
   RunscriptPath: String;
-
-  
-
-
 
 implementation
 
@@ -187,12 +180,11 @@ begin
       info.version := '-';
       end;  //try
     finally
-    Result := info;
-    Proc.Free;
-    Output.Free;
+      Result := info;
+      Proc.Free;
+      Output.Free;
     end;
 end;
-
 
 
 function CheckSupportingApps: integer;
@@ -218,12 +210,12 @@ begin
   Result := -1;
   if FileExists('/tmp/dar_exit') then
       begin
-      Assign(fout, '/tmp/dar_exit');
-      Reset(fout);
-      ReadLn(fout,s);
-      Result := StrToInt(s);
-      Close(fout);
-      Erase(fout);
+        Assign(fout, '/tmp/dar_exit');
+        Reset(fout);
+        ReadLn(fout,s);
+        Result := StrToInt(s);
+        Close(fout);
+        Erase(fout);
       end;
 end;
 
@@ -237,10 +229,10 @@ begin
       Dec(x);
   NumAsString := Copy(fn, x+1, 8);
   try
-   Result := StrToInt(NumAsString);
-   except
-   Result := -1;
-   end
+    Result := StrToInt(NumAsString);
+    except
+    Result := -1;
+  end;
 end;
 
 function GetNextFileName( FileBase: string): string;
@@ -250,19 +242,19 @@ var
  HighNum: integer;
  LogfileMask: String;
  ThisNum: LongInt;
- begin
+begin
   HighNum := 1;
   LogfileMask := FileBase + '*';
   try
-  if FindFirst (LogfileMask, faAnyFile - faDirectory, Rec) = 0 then
-   repeat
-      fn := Rec.Name;
-      ThisNum := LogNumber(fn);
-      if ThisNum >= HighNum
-              then HighNum := ThisNum+1;
-   until FindNext(Rec) <> 0;
-  finally
-   FindClose(Rec) ;
+    if FindFirst (LogfileMask, faAnyFile - faDirectory, Rec) = 0 then
+     repeat
+        fn := Rec.Name;
+        ThisNum := LogNumber(fn);
+        if ThisNum >= HighNum
+                then HighNum := ThisNum+1;
+     until FindNext(Rec) <> 0;
+    finally
+    FindClose(Rec) ;
   end;
   Result :=  FileBase + IntToStr(HighNum);
 end;
@@ -354,8 +346,8 @@ var
          Dec(y);
       if y > 0 then
          begin
-         CurrentFile[SEGFILEPATH] := Copy(CurrentFile[SEGFILENAME],1,y);
-         Delete(CurrentFile[SEGFILENAME],1,y);
+           CurrentFile[SEGFILEPATH] := Copy(CurrentFile[SEGFILENAME],1,y);
+           Delete(CurrentFile[SEGFILENAME],1,y);
          end
          else CurrentFile[SEGFILEPATH] := '';
    end;
@@ -368,8 +360,8 @@ var
    begin
      if (parentNode = rootNode) or (dir = '') then
         begin
-        Result := rootnode;
-        exit;
+          Result := rootnode;
+          exit;
         end;
      dir := DirectorySeparator + dir;
      y := length(dir) - 1; // allow for final '/'
@@ -417,13 +409,13 @@ begin
   M.SetSize(BytesRead + READ_BYTES);
   // try reading it
   n := Proc.Output.Read((M.Memory + BytesRead)^, READ_BYTES);
-  if n > 0
-  then begin
+  if n > 0 then
+     begin
        Inc(BytesRead, n);
-       Write('.');
-       end;
+//       Write('.');
+     end;
   until n <= 0;
-  if BytesRead > 0 then WriteLn;
+//  if BytesRead > 0 then WriteLn;
   M.SetSize(BytesRead);
 
   Output.LoadFromStream(M);
@@ -436,38 +428,36 @@ begin
       begin
       if x = 1 then
          begin
-         SetSegments(Output.Strings[x]);
+           SetSegments(Output.Strings[x]);
          end
          else
          begin
-         ParseCurrentFile(Output.Strings[x]);
-         currentnode :=  TTreeView(TV).Items.AddChild(GetParentDirectoryNode(Currentfile[SEGFILEPATH]), CurrentFile[SEGFILENAME]);
-         currentnode.Data := TFileData.Create;
-         if currentnode.Level < 2
-            then currentnode.Parent.Expand(false);
-         with TFileData(currentnode.data) do
+           ParseCurrentFile(Output.Strings[x]);
+           currentnode :=  TTreeView(TV).Items.AddChild(GetParentDirectoryNode(Currentfile[SEGFILEPATH]), CurrentFile[SEGFILENAME]);
+           currentnode.Data := TFileData.Create;
+           if currentnode.Level < 2
+              then currentnode.Parent.Expand(false);
+           with TFileData(currentnode.data) do
               begin
                 for n := SEGSTATUS to SEGFILEPATH do
                     item[n] := CurrentFile[n];
                 folder := false;
               end;
-         if (Pos('[-----]', CurrentFile[SEGSTATUS]) > 0)
-            and (CurrentFile[SEGSIZE] = '0') then
+           if (Pos('[-----]', CurrentFile[SEGSTATUS]) > 0)
+              and (CurrentFile[SEGSIZE] = '0') then
          // empty files still get marked as folders in isolated catalogues
-            begin
-              parentnode := currentnode;
-              TFileData(currentnode.Data).folder := true;
-            end;
+              begin
+                parentnode := currentnode;
+                TFileData(currentnode.Data).folder := true;
+              end;
          end;
       end;
-      TV.AlphaSort;
+  TV.AlphaSort;
   Result := Proc.ExitStatus;
   M.Free;
   Proc.Free;
   Output.Free;
 end;
-
-
 
 
 // ************** RunDarCommand ***************** //
@@ -496,8 +486,6 @@ begin
     Result := GetDarExit;
   end;
 end;
-
-
 
 // function PosFrom was taken from synautil.pas [ synapse.ararat.cz ]
 function PosFrom(const SubStr, Value: String; From: integer): integer;
