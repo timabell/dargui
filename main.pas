@@ -133,7 +133,7 @@ var
 
   
 const
-  APP_VERSION = '0.2.1';
+  APP_VERSION = '0.3.0';
   SVN_REVISION = '';
 
   ARCHIVEMENU_TAG = 1; //used for enabling menuitems after loading archive
@@ -483,81 +483,89 @@ end;
 procedure TMainForm.ArchiveTreeViewAdvancedCustomDrawItem(
   Sender: TCustomTreeView; Node: TTreeNode; State: TCustomDrawState;
   Stage: TCustomDrawStage; var PaintImages, DefaultDraw: Boolean);
+const
+  CELL_RIGHT_MARGIN = 5;
+  STATUSRIGHTMARGIN = 20;
 var
   FullRect, DisplayRect : TRect;
   TextStyle: TTextstyle;
   FolderGraphic: TBitmap;
+  x: Integer;
+  DisplayStr: string;
  
-     function TrimText(aText: string; aCol, leftMargin: integer): string;
+     function TrimText(var aText: string; aCol, leftMargin: integer): integer;
      var
        a,
        maxWidth,
        textWidth,
        dotWidth: integer;
-     const
-       CELL_RIGHT_MARGIN = 2;
+       RightAlign: Boolean;
+       b: Integer;
      begin
-       Result := aText;
+       Result := 0;
+       RightAlign := false;
        case aCol of
-               SEGSTATUS      : maxWidth := StatusHdr.Width-CELL_RIGHT_MARGIN -leftMargin;
+               SEGSTATUS      : maxWidth := StatusHdr.Width-CELL_RIGHT_MARGIN - STATUSRIGHTMARGIN;
                SEGPERMISSIONS : ;  // not displayed at present
-               SEGUSER        : maxWidth := UserHdr.Width-CELL_RIGHT_MARGIN -leftMargin;
-               SEGGROUP       : maxWidth := GroupHdr.Width-CELL_RIGHT_MARGIN -leftMargin;
-               SEGSIZE        : maxWidth := SizeHdr.Width-CELL_RIGHT_MARGIN -leftMargin;
-               SEGDATE        : maxWidth := DateHdr.Width-CELL_RIGHT_MARGIN -leftMargin;
-               SEGFILENAME    : maxWidth := FilenameHdr.Width -CELL_RIGHT_MARGIN -leftMargin;
+               SEGUSER        : maxWidth := UserHdr.Width-CELL_RIGHT_MARGIN;
+               SEGGROUP       : maxWidth := GroupHdr.Width-CELL_RIGHT_MARGIN;
+               SEGSIZE        : maxWidth := SizeHdr.Width-CELL_RIGHT_MARGIN;
+               SEGDATE        : maxWidth := DateHdr.Width-CELL_RIGHT_MARGIN ;
+               SEGFILENAME    : maxWidth := FilenameHdr.Width -CELL_RIGHT_MARGIN - leftmargin;
                end;
-       a := Length(aText);
+       if aCol < SEGFILENAME then RightAlign := true;
+       a := 1;
+       b := Length(aText);
        textWidth := Canvas.TextWidth(aText);
        dotWidth := Canvas.TextWidth('...');
        if textWidth > maxWidth then
           begin
-             while ((textWidth + dotWidth) > maxWidth) and (a > 0) do
+             while ((textWidth + dotWidth) > maxWidth) and (b > a) do
                    begin
-                   Dec(a);
-                   textWidth := Canvas.TextWidth(Copy(aText, 1, a));
+                   if RightAlign then Inc(a) else Dec(b);
+                   textWidth := Canvas.TextWidth(Copy(aText, a, b));
                    end;
+          if RightAlign then aText := '...' + Copy(aText, a, b)
+             else aText := Copy(aText, a, b) + '...';
+          Result := 1;
           end;
-       if a < LEngth(aText)
-          then Result :=  Copy(aText, 1, a) + '...';
+     end;
+     
+     procedure WriteColumn( tvCol: integer; tvRect: TRect; aString: string );
+     var
+       Header: TPanel;
+       ColX: Integer;
+       TrimmedStr: string;
+     begin
+       tvRect.Top := tvRect.Top + 1;
+       case tvCol of
+            SEGSTATUS      : Header := StatusHdr;
+            SEGPERMISSIONS : exit; // not implemented
+            SEGUSER        : Header := UserHdr;
+            SEGGROUP       : Header := GroupHdr;
+            SEGSIZE        : Header := SizeHdr;
+            SEGDATE        : Header := DateHdr;
+       end;
+       ColX := Header.Left;
+       TrimText(aString, tvCol, tvRect.Left);
+       if tvCol < SEGFILENAME
+              then ColX := Header.Left + Header.Width - Sender.Canvas.TextWidth(aString) -CELL_RIGHT_MARGIN;                                                                                             ;
+       if tvCol = SEGSTATUS then ColX := ColX-STATUSRIGHTMARGIN; //this is a hack to allow for the scrollbar
+       Sender.Canvas.TextOut( ColX, tvRect.Top, aString );
      end;
 
 begin
-      Fullrect := Node.DisplayRect(false);
-      Displayrect := Node.DisplayRect(true);
-      Displayrect.Right := FullRect.Right;
-      with Sender.Canvas do
-        Case Node.Level of
-        0: begin
-             if Node.MultiSelected then
-                Font.Color := clWhite
-             else
-                Font.Color := LevelColors[Node.Level];
-             Font.Size:=9;
-           end;
-        1: begin
-             if Node.MultiSelected then
-                Font.Color := clWhite
-             else
-                Font.Color := LevelColors[Node.Level];
-             Font.Size:=9;
-           end;
-        2: begin
-             if Node.MultiSelected then
-                Font.Color := clWhite
-             else
-                Font.Color := LevelColors[Node.Level];
-             Font.Size:=9;
-           end;
-        else begin
-             if Node.MultiSelected then
-                Font.Color := clWhite
-             else
-                Font.Color := LevelColors[Node.Level];
-             Font.Size:=9;
-           end;
-        end;//Case
-  if stage = cdPostPaint then DefaultDraw := false;
+  Fullrect := Node.DisplayRect(false);
+  Displayrect := Node.DisplayRect(true);
+  Displayrect.Right := FullRect.Right;
+  with Sender.Canvas do
+       begin
+         if Node.MultiSelected then
+            Font.Color := clWhite
+         else
+            Font.Color := clBlack;
+         Font.Size:=9;
+        end;
   Sender.Canvas.FillRect(Displayrect);
   if Node.Data <> nil then
      begin
@@ -566,22 +574,21 @@ begin
            FolderGraphic := TBitmap.Create;
            IconList.GetBitmap(FOLDERICON, FolderGraphic);
            Sender.Canvas.Draw(Displayrect.Left, DisplayRect.Top, FolderGraphic);
+           DisplayStr := TFileData(Node.Data).item[SEGFILENAME];
+           TrimText(DisplayStr, SEGFILENAME, Displayrect.Left + FolderGraphic.Width);
            Sender.Canvas.TextOut(Displayrect.Left + FolderGraphic.Width, DisplayRect.Top+1,
-                TrimText(TFileData(Node.Data).item[SEGFILENAME], SEGFILENAME, Displayrect.Left + FolderGraphic.Width));
+                DisplayStr);
+           FolderGraphic.Free;
          end
-         else Sender.Canvas.TextOut(Displayrect.Left,DisplayRect.Top+1,
-                TrimText(TFileData(Node.Data).item[SEGFILENAME], SEGFILENAME,Displayrect.Left));
-      Sender.Canvas.TextOut(DateHdr.Left,DisplayRect.Top+1,
-                TrimText(TFileData(Node.Data).item[SEGDATE], SEGDATE, 0));
-      Sender.Canvas.TextOut(SizeHdr.Left,DisplayRect.Top+1,
-                TrimText(TFileData(Node.Data).item[SEGSIZE], SEGSIZE, 0));
-      Sender.Canvas.TextOut(UserHdr.Left,DisplayRect.Top+1,
-                TrimText(TFileData(Node.Data).item[SEGUSER], SEGUSER, 0));
-      Sender.Canvas.TextOut(GroupHdr.Left,DisplayRect.Top+1,
-                TrimText(TFileData(Node.Data).item[SEGGROUP], SEGGROUP, 0));
-      Sender.Canvas.TextOut(StatusHdr.Left,DisplayRect.Top+1,
-                TrimText(TFileData(Node.Data).item[SEGSTATUS], SEGSTATUS, 0));
-      if TFileData(Node.Data).folder then FolderGraphic.Free;
+      else
+         begin
+           DisplayStr := TFileData(Node.Data).item[SEGFILENAME];
+           TrimText(DisplayStr, SEGFILENAME, Displayrect.Left);
+           Sender.Canvas.TextOut(Displayrect.Left,DisplayRect.Top+1,
+                DisplayStr);
+         end;
+      for x := SEGSTATUS to SEGDATE do
+            WriteColumn( x, DisplayRect, TFileData(Node.Data).item[x]);
      end;
 end;
 
@@ -762,9 +769,7 @@ procedure TMainForm.pmiShowAllSelectedClick ( Sender: TObject ) ;
 var
   x: Integer;
 begin
-  for x := 1 to ArchiveTreeView.Items.Count-1 do
-      if ArchiveTreeView.Items[x].MultiSelected
-         then ArchiveTreeView.Items[x].ExpandParents;
+  ArchiveTreeView.MakeSelectionVisible;
 end;
 
 procedure TMainForm.miShowToolbarClick ( Sender: TObject ) ;
