@@ -5,7 +5,9 @@ unit dgStrConst;
 interface
 
 uses
-  Classes, SysUtils;
+  Classes, SysUtils, gettext, translations, darintf;
+  
+procedure SetupLanguage;
 
 resourcestring
 // Errors
@@ -181,6 +183,20 @@ rsMessInvalidCatalogueName = 'Invalid catalogue name';
 rsMessUnableToFindArchive = 'Unable to find archive ''%s''';
 
 implementation
+
+procedure SetupLanguage;
+var
+  Lang: string;
+  FallbackLang: string;
+  PODirectory: string;
+begin
+  PODirectory := TOOLDIR + 'locales/';
+  if DirectoryExists(PODirectory) then
+     begin
+      GetLanguageIDs(Lang, FallbackLang); // in unit gettext
+      TranslateUnitResourceStrings('dgStrConst', PODirectory + 'dargui.%s.po', Lang, FallbackLang);
+     end;
+end;
 
 end.
 

@@ -33,6 +33,7 @@ uses
 
 begin
   Application.Title:='DarGUI';
+  SetupLanguage;
   Application.Initialize;
   Application.CreateForm ( TMainForm, MainForm ) ;
   Application.CreateForm ( TArchiveForm, ArchiveForm ) ;
