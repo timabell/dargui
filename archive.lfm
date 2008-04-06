@@ -302,7 +302,7 @@ object ArchiveForm: TArchiveForm
         object IncludeDirectories: TListBox
           Left = 19
           Height = 120
-          Top = 42
+          Top = 40
           Width = 483
           TabOrder = 0
           TopIndex = -1
@@ -380,8 +380,8 @@ object ArchiveForm: TArchiveForm
           Tag = 1
           Left = 19
           Height = 120
-          Top = 42
-          Width = 467
+          Top = 40
+          Width = 440
           TabOrder = 0
           TopIndex = -1
         end
@@ -390,16 +390,16 @@ object ArchiveForm: TArchiveForm
           Left = 19
           Height = 120
           Top = 218
-          Width = 467
+          Width = 440
           TabOrder = 4
           TopIndex = -1
         end
         object DelExcludeFileButton: TButton
           Tag = 1
-          Left = 502
+          Left = 480
           Height = 30
           Top = 312
-          Width = 95
+          Width = 120
           Caption = 'Remove'
           Enabled = False
           OnClick = DelExcludeFileButtonClick
@@ -407,49 +407,49 @@ object ArchiveForm: TArchiveForm
         end
         object AddExcludeFileButton: TButton
           Tag = 1
-          Left = 502
+          Left = 480
           Height = 30
           Top = 218
-          Width = 95
+          Width = 120
           Caption = 'Add file'
           OnClick = AddFileButtonClick
           TabOrder = 5
         end
         object DelIncludeFileButton: TButton
-          Left = 502
+          Left = 480
           Height = 30
           Top = 136
-          Width = 95
+          Width = 120
           Caption = 'Remove'
           Enabled = False
           OnClick = DelIncludeFileButtonClick
           TabOrder = 3
         end
         object AddIncludeFileButton: TButton
-          Left = 502
+          Left = 480
           Height = 30
           Top = 42
-          Width = 95
+          Width = 120
           Caption = 'Add file'
           OnClick = AddFileButtonClick
           TabOrder = 1
         end
         object IncludeFileMasks: TButton
           Tag = 1
-          Left = 502
+          Left = 480
           Height = 30
           Top = 80
-          Width = 95
+          Width = 120
           Caption = 'Add mask'
           OnClick = CompressMasksClick
           TabOrder = 2
         end
         object ExcludeFileMasks: TButton
           Tag = 2
-          Left = 502
+          Left = 480
           Height = 30
           Top = 256
-          Width = 95
+          Width = 120
           Caption = 'Add mask'
           OnClick = CompressMasksClick
           TabOrder = 6
@@ -465,7 +465,7 @@ object ArchiveForm: TArchiveForm
           Top = 10
           Width = 288
           Caption = ' Do not compress ... '
-          ClientHeight = 313
+          ClientHeight = 311
           ClientWidth = 282
           TabOrder = 0
           object CompSizeLabel: TLabel
@@ -491,6 +491,7 @@ object ArchiveForm: TArchiveForm
               '*.png'
             )
             TabOrder = 0
+            TopIndex = -1
           end
           object CompressMasks: TButton
             Left = 165
@@ -542,7 +543,7 @@ object ArchiveForm: TArchiveForm
           Top = 11
           Width = 257
           Caption = ' Compression type '
-          ClientHeight = 313
+          ClientHeight = 311
           ClientWidth = 251
           TabOrder = 1
           object CompLvlLabel: TLabel
