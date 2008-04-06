@@ -6,7 +6,7 @@ interface
 
 uses
   Classes, SysUtils, LResources, Forms, Controls, Graphics, Dialogs, DarIntf,
-  Menus, ComCtrls, ExtCtrls, Buttons, StdCtrls, Process, LCLType, historymenu, regexpr,
+  Menus, ComCtrls, ExtCtrls, Buttons, StdCtrls, Process, LCLType, historymenu,
   selectfilter;
 
 type

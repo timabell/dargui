@@ -30,7 +30,7 @@ type
 
 implementation
 
-uses dgStrConst, darintf;
+uses darintf;
 
 { TRecentFiles }
 
