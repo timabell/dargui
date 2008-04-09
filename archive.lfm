@@ -228,38 +228,8 @@ object ArchiveForm: TArchiveForm
           Left = 19
           Height = 24
           Top = 28
-          Width = 222
+          Width = 282
           TabOrder = 0
-        end
-        object SaveScriptCheckBox: TCheckBox
-          Left = 19
-          Height = 21
-          Top = 264
-          Width = 111
-          Caption = 'Save script as'
-          OnClick = SaveScriptCheckBoxClick
-          TabOrder = 7
-          Visible = False
-        end
-        object ScriptFilenameBox: TEdit
-          Left = 19
-          Height = 23
-          Top = 290
-          Width = 350
-          Enabled = False
-          TabOrder = 8
-          Visible = False
-        end
-        object ScriptFileButton: TButton
-          Left = 389
-          Height = 30
-          Top = 287
-          Width = 90
-          Caption = 'Browse'
-          Enabled = False
-          OnClick = ScriptFileButtonClick
-          TabOrder = 9
-          Visible = False
         end
         object BatchFileButton: TButton
           Left = 389
@@ -277,6 +247,48 @@ object ArchiveForm: TArchiveForm
           Width = 350
           TabOrder = 5
           Text = 'Edit1'
+        end
+        object DiffFileCheck: TCheckBox
+          Left = 19
+          Height = 21
+          Top = 258
+          Width = 141
+          Caption = 'Differential backup'
+          OnChange = DiffFileCheckChange
+          TabOrder = 7
+        end
+        object DiffReference: TLabeledEdit
+          Left = 45
+          Height = 23
+          Top = 309
+          Width = 324
+          EditLabel.Left = 45
+          EditLabel.Height = 20
+          EditLabel.Top = 286
+          EditLabel.Width = 113
+          EditLabel.Caption = 'Reference archive'
+          EditLabel.ParentColor = False
+          Enabled = False
+          ParentColor = False
+          TabOrder = 8
+        end
+        object DiffRefButton: TButton
+          Left = 389
+          Height = 30
+          Top = 306
+          Width = 90
+          Caption = 'Browse'
+          Enabled = False
+          OnClick = DiffRefButtonClick
+          TabOrder = 9
+        end
+        object TimestampCheck: TCheckBox
+          Left = 325
+          Height = 21
+          Top = 28
+          Width = 129
+          Caption = 'TimestampCheck'
+          TabOrder = 10
         end
       end
       object DirectoriesPage: TPage
@@ -593,27 +605,27 @@ object ArchiveForm: TArchiveForm
         ClientHeight = 351
         object SliceMbLabel: TLabel
           Left = 413
-          Height = 17
-          Top = 170
-          Width = 23
+          Height = 20
+          Top = 131
+          Width = 19
           Caption = 'Mb'
           Enabled = False
           ParentColor = False
         end
         object SliceSizeLabel: TLabel
           Left = 205
-          Height = 17
-          Top = 165
-          Width = 68
+          Height = 20
+          Top = 131
+          Width = 57
           Caption = 'Slice size'
           Enabled = False
           ParentColor = False
         end
         object ReadConfigCheck: TCheckBox
           Left = 33
-          Height = 24
+          Height = 21
           Top = 42
-          Width = 308
+          Width = 268
           Caption = 'Attempt to read DAR configuration files'
           Checked = True
           State = cbChecked
@@ -621,25 +633,25 @@ object ArchiveForm: TArchiveForm
         end
         object DryRunCheck: TCheckBox
           Left = 33
-          Height = 24
-          Top = 248
-          Width = 118
+          Height = 21
+          Top = 210
+          Width = 102
           Caption = 'Test run only'
           TabOrder = 5
         end
         object EmptyDirCheck: TCheckBox
           Left = 33
-          Height = 24
-          Top = 122
-          Width = 166
+          Height = 21
+          Top = 82
+          Width = 149
           Caption = 'Preserve directories'
           TabOrder = 1
         end
         object SlicesCheck: TCheckBox
           Left = 33
-          Height = 24
-          Top = 162
-          Width = 97
+          Height = 21
+          Top = 128
+          Width = 86
           Caption = 'Use slices'
           OnClick = SlicesCheckClick
           TabOrder = 2
@@ -647,7 +659,7 @@ object ArchiveForm: TArchiveForm
         object SliceSize: TEdit
           Left = 314
           Height = 23
-          Top = 162
+          Top = 128
           Width = 80
           Enabled = False
           OnExit = CompressionLwrLimitExit
@@ -656,12 +668,195 @@ object ArchiveForm: TArchiveForm
         end
         object PauseCheck: TCheckBox
           Left = 125
-          Height = 24
-          Top = 203
-          Width = 181
+          Height = 21
+          Top = 169
+          Width = 158
           Caption = 'Pause between slices'
           Enabled = False
           TabOrder = 4
+        end
+        object SaveScriptCheckBox: TCheckBox
+          Left = 33
+          Height = 21
+          Top = 258
+          Width = 111
+          Caption = 'Save script as'
+          OnClick = SaveScriptCheckBoxClick
+          TabOrder = 6
+        end
+        object ScriptFilenameBox: TEdit
+          Left = 61
+          Height = 23
+          Top = 289
+          Width = 350
+          Enabled = False
+          TabOrder = 7
+        end
+        object ScriptFileButton: TButton
+          Left = 431
+          Height = 30
+          Top = 286
+          Width = 90
+          Caption = 'Browse'
+          Enabled = False
+          OnClick = ScriptFileButtonClick
+          TabOrder = 8
+        end
+      end
+      object SchedulePage: TPage
+        Caption = 'Scheduling'
+        ClientWidth = 610
+        ClientHeight = 351
+        object NowRadioButton: TRadioButton
+          Left = 35
+          Height = 21
+          Top = 27
+          Width = 192
+          Caption = 'Create archive immediately'
+          Checked = True
+          State = cbChecked
+          TabOrder = 0
+        end
+        object RunOnceRadioButton: TRadioButton
+          Left = 35
+          Height = 21
+          Top = 58
+          Width = 127
+          Caption = 'Run once only at'
+          TabOrder = 1
+        end
+        object RepeatRadioButton: TRadioButton
+          Left = 35
+          Height = 21
+          Top = 196
+          Width = 124
+          Caption = 'Run regularily at'
+          TabOrder = 2
+        end
+        object RunOnceDateEdit: TDateEdit
+          Left = 349
+          Height = 23
+          Top = 91
+          Width = 152
+          CalendarDisplaySettings = [dsShowHeadings, dsShowDayNames]
+          OKCaption = 'OK'
+          CancelCaption = 'Cancel'
+          ReadOnly = False
+          ButtonWidth = 23
+          Glyph.Data = {
+            2F0200002F2A2058504D202A2F0A7374617469632063686172202A63616C656E
+            6461725B5D203D207B0A2F2A20636F6C756D6E7320726F777320636F6C6F7273
+            2063686172732D7065722D706978656C202A2F0A223134203132203137203122
+            2C0A2220206320626C61636B222C0A222E20632023383030303030222C0A2258
+            20632023303038303030222C0A226F20632023383038303030222C0A224F2063
+            206E617679222C0A222B20632023383030303830222C0A224020632023303038
+            303830222C0A222320632023383038303830222C0A2224206320234330433043
+            30222C0A2225206320726564222C0A2226206320677265656E222C0A222A2063
+            2079656C6C6F77222C0A223D206320626C7565222C0A222D2063206D6167656E
+            7461222C0A223B2063206379616E222C0A223A20632067726179313030222C0A
+            223E2063204E6F6E65222C0A2F2A20706978656C73202A2F0A223E3E20202020
+            2020202020203E3E222C0A223E3E3A24242424242424243A4F23222C0A223E3E
+            3A3A3A3A3A3A3A3A3A3A4F23222C0A223E3E3A3A203A3A202020203A4F23222C
+            0A223E3E3A20203A3A203A3A3A3A4F23222C0A223E3E3A3A203A3A202020243A
+            4F23222C0A223E3E3A3A203A3A3A3A3A203A4F23222C0A223E3E3A3A203A3A24
+            3A24203A4F23222C0A223E3E3A2020203A202020243A4F23222C0A223E3E3A3A
+            3A3A3A3A3A3A3A3A4F23222C0A223E3E20204F204F4F204F20204F23222C0A22
+            3E3E3E2323232323232323232323220A7D3B0A
+          }
+          NumGlyphs = 1
+          Enabled = False
+          TabOrder = 3
+        end
+        object RunOnceHourBox: TComboBox
+          Left = 104
+          Height = 25
+          Top = 89
+          Width = 60
+          AutoCompleteText = [cbactEndOfLineComplete, cbactSearchAscending]
+          Enabled = False
+          ItemIndex = 0
+          Items.Strings = (
+            ''
+          )
+          TabOrder = 4
+        end
+        object RunOnceMinuteBox: TComboBox
+          Left = 197
+          Height = 25
+          Top = 89
+          Width = 77
+          AutoCompleteText = [cbactEndOfLineComplete, cbactSearchAscending]
+          Enabled = False
+          ItemIndex = 0
+          Items.Strings = (
+            ''
+          )
+          TabOrder = 5
+        end
+        object RepeatHourBox: TComboBox
+          Left = 104
+          Height = 25
+          Top = 242
+          Width = 60
+          AutoCompleteText = [cbactEndOfLineComplete, cbactSearchAscending]
+          Enabled = False
+          ItemIndex = 0
+          Items.Strings = (
+            ''
+          )
+          TabOrder = 6
+        end
+        object RepeatMinuteBox: TComboBox
+          Left = 197
+          Height = 25
+          Top = 242
+          Width = 77
+          AutoCompleteText = [cbactEndOfLineComplete, cbactSearchAscending]
+          Enabled = False
+          ItemIndex = 0
+          Items.Strings = (
+            ''
+          )
+          TabOrder = 7
+        end
+        object RepeatWeekDayBox: TComboBox
+          Left = 312
+          Height = 25
+          Top = 242
+          Width = 85
+          AutoCompleteText = [cbactEndOfLineComplete, cbactSearchAscending]
+          Enabled = False
+          ItemIndex = 0
+          Items.Strings = (
+            ''
+          )
+          TabOrder = 8
+        end
+        object RepeatMonthDayBox: TComboBox
+          Left = 429
+          Height = 25
+          Top = 242
+          Width = 76
+          AutoCompleteText = [cbactEndOfLineComplete, cbactSearchAscending]
+          Enabled = False
+          ItemIndex = 0
+          Items.Strings = (
+            ''
+          )
+          TabOrder = 9
+        end
+        object RepeatMonthBox: TComboBox
+          Left = 524
+          Height = 25
+          Top = 242
+          Width = 76
+          AutoCompleteText = [cbactEndOfLineComplete, cbactSearchAscending]
+          Enabled = False
+          ItemIndex = 0
+          Items.Strings = (
+            ''
+          )
+          TabOrder = 10
         end
       end
     end

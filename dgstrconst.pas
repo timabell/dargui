@@ -52,6 +52,7 @@ rsCptDarGUICheckingArchive = 'DarGUI: checking archive integrity...';
 // Dialog titles etc.
 rsOpenExisting = 'Open existing archive';
 rsFilterDARArchives = 'DAR archives';
+rsSelectReferenceArch = 'Select reference archive';
 rsFCptSelectbyFilter = 'Select using filters...';
 
 //Common Interface
@@ -145,6 +146,9 @@ rsSelectFile = 'Select file';
 rsOptions = 'Options';
 rsDirectories = 'Directories';
 rsFiles = 'Files';
+rsIncludeTimeInName = 'Add timestamp to name';
+rsDifferentialBackup = 'Differential backup';
+rsReferenceArchive = 'Reference archive';
 
 //SelectFilterForm
 rsMatchAllFilters = 'Match all filters';

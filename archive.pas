@@ -8,23 +8,35 @@ interface
 
 uses
   Classes, SysUtils, LResources, Forms, Controls, Graphics, Dialogs, ExtCtrls,
-  Buttons, StdCtrls;
+  Buttons, StdCtrls, Calendar, EditBtn;
 
 type
 
   { TArchiveForm }
 
   TArchiveForm = class ( TForm )
+    RepeatMonthBox: TComboBox;
+    RepeatMonthDayBox: TComboBox;
+    RepeatWeekDayBox: TComboBox;
+    RepeatHourBox: TComboBox;
+    RunOnceMinuteBox: TComboBox;
+    RunOnceHourBox: TComboBox;
+    RunOnceDateEdit: TDateEdit;
+    RepeatMinuteBox: TComboBox;
+    TimestampCheck: TCheckBox;
+    DiffRefButton: TButton;
+    DiffFileCheck: TCheckBox;
     CompressMasks: TButton;
     ExcludeFileMasks: TButton;
     IncludeFileMasks: TButton;
     BatchFileButton: TButton;
     BatchFile: TEdit;
+    DiffReference: TLabeledEdit;
+    RepeatRadioButton: TRadioButton;
+    RunOnceRadioButton: TRadioButton;
+    SchedulePage: TPage;
     PauseCheck: TCheckBox;
     BatchLabel: TLabel;
-    ScriptFileButton: TButton;
-    ScriptFilenameBox: TEdit;
-    SaveScriptCheckBox: TCheckBox;
     OKButton: TBitBtn;
     CancelButton: TBitBtn;
     ArchiveDirButton: TButton;
@@ -35,6 +47,10 @@ type
     ArchiveName: TEdit;
     AddIncludeDirButton: TButton;
     Bzip2Check: TCheckBox;
+    NowRadioButton: TRadioButton;
+    SaveScriptCheckBox: TCheckBox;
+    ScriptFileButton: TButton;
+    ScriptFilenameBox: TEdit;
     SliceSize: TEdit;
     SliceSizeLabel: TLabel;
     SliceMbLabel: TLabel;
@@ -89,6 +105,8 @@ type
     procedure CompressionLevelExit ( Sender: TObject ) ;
     procedure CompressionLwrLimitExit ( Sender: TObject ) ;
     procedure DelCompressMaskButtonClick ( Sender: TObject ) ;
+    procedure DiffFileCheckChange ( Sender: TObject ) ;
+    procedure DiffRefButtonClick ( Sender: TObject ) ;
     procedure OKButtonClick ( Sender: TObject ) ;
     procedure DelExcludeFileButtonClick ( Sender: TObject ) ;
     procedure DelIncludeDirButtonClick ( Sender: TObject ) ;
@@ -138,12 +156,30 @@ begin
 end;
 
 procedure TArchiveForm.FormCreate ( Sender: TObject ) ;
+var
+  x: Integer;
 begin
   ArchiveDirectory.Text := SysUtils.GetEnvironmentVariable('HOME');
   BaseDirectory.Text := SysUtils.GetEnvironmentVariable('HOME');
   SelectDirectoryDialog.InitialDir := SysUtils.GetEnvironmentVariable('HOME');
   OpenDialog.InitialDir := SysUtils.GetEnvironmentVariable('HOME');
   SaveDialog.InitialDir := SysUtils.GetEnvironmentVariable('HOME');
+  for x := 0 to 23 do
+      begin
+        RunOnceHourBox.Items.Add(IntToStr(x));
+        RepeatHourBox.Items.Add(IntToStr(x));
+      end;
+  for x := 0 to 59 do
+      begin
+        RunOnceMinuteBox.Items.Add(IntToStr(x));
+        RepeatMinuteBox.Items.Add(IntToStr(x));
+      end;
+  for x := 1 to 31 do
+      RepeatMonthDayBox.Items.Add(IntToStr(x));
+  for x := 1 to 7 do
+      RepeatWeekDayBox.Items.Add(IntToStr(x));
+  for x := 1 to 12 do
+      RepeatMonthBox.Items.Add(IntToStr(x));
   InitialiseInterface;
 end;
 
@@ -226,6 +262,10 @@ begin
   OptionsPage.Caption := rsOptions;
   DirectoriesPage.Caption := rsDirectories;
   FilesPage.Caption := rsFiles;
+  TimestampCheck.Caption := rsIncludeTimeInName;
+  DiffFileCheck.Caption := rsDifferentialBackup;
+  DiffReference.EditLabel.Caption := rsReferenceArchive;
+  DiffRefButton.Caption := rsButtonBrowse;
 end;
 
 procedure TArchiveForm.AddIncludeDirButtonClick ( Sender: TObject ) ;
@@ -381,6 +421,21 @@ begin
      NoCompressList.Items.Delete(NoCompressList.ItemIndex);
      DelCompressMaskButton.Enabled := NoCompressList.Count > 0;
      end;
+end;
+
+procedure TArchiveForm.DiffFileCheckChange ( Sender: TObject ) ;
+begin
+  DiffReference.Enabled := DiffFileCheck.Checked;
+  DiffRefButton.Enabled := DiffFileCheck.Checked;
+end;
+
+procedure TArchiveForm.DiffRefButtonClick ( Sender: TObject ) ;
+begin
+  OpenDialog.Filter := rsFilterDARArchives + '|*.1.dar';
+  OpenDialog.FileName := DiffReference.Text;
+  OpenDialog.Title := rsSelectReferenceArch;
+  if OpenDialog.Execute
+     then DiffReference.Text := OpenDialog.FileName;
 end;
 
 procedure TArchiveForm.OKButtonClick ( Sender: TObject ) ;
