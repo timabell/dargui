@@ -9,7 +9,33 @@ uses
   
 procedure SetupLanguage;
 
+var
+  MonthNames: array[1..12] of string;
+  WeekdayNames: array[1..7] of string;
+
 resourcestring
+//Time
+rsJan = 'Jan';
+rsFeb = 'Feb';
+rsMar = 'Mar';
+rsApr = 'Apr';
+rsMay = 'May';
+rsJun = 'Jun';
+rsJul = 'Jul';
+rsAug = 'Aug';
+rsSep = 'Sep';
+rsOct = 'Oct';
+rsNov = 'Nov';
+rsDec = 'Dec';
+
+rsMon = 'Mon';
+rsTue = 'Tue';
+rsWed = 'Wed';
+rsThu = 'Thu';
+rsFri = 'Fri';
+rsSat = 'Sat';
+rsSun = 'Sun';
+
 // Errors
 rsErrDarNotFound = 'Unable to locate dar executable: nothing will work!';
 rsErrRestoreAborted = 'Operation aborted: Restore selected files';
@@ -58,6 +84,7 @@ rsFCptSelectbyFilter = 'Select using filters...';
 //Common Interface
 rsButtonAdd = 'Add';
 rsNewArchive = 'New archive';
+rsErrDateCannotBeInPast = 'Date cannot be in the past';
 rsButtonCancel = 'Cancel';
 rsSourceArchive = 'Source archive';
 rsSaveCatalogueAs = 'Save catalogue as';
@@ -106,6 +133,12 @@ rsMenuNew = 'New';
 rsMenuOpen = 'Open';
 rsMenuShowSelected = 'Show Selected';
 rsColDate = 'Date';
+rsHour = 'Hour';
+rsMinutes = 'Minutes';
+rsDayOfWeek = 'Day of week';
+rsDayInMonth = 'Day';
+rsMonth = 'Month';
+rsCptSelectDate = 'Select date';
 rsColSize = 'Size';
 rsColUser = 'User';
 rsColGroup = 'Group';
@@ -119,6 +152,8 @@ rsFilesAlreadyExcluded = 'These files are already selected to be excluded from t
 rsFilesAlreadyIncluded = 'These files are already selected to be included in the archive.%sDo you really want to exclude them?';
 rsCptResolveConflict = 'Resolve conflict';
 rsOverwriteExistingArc = 'Overwrite existing archive?';
+rsErrInvalidArchiveName = 'Invalid archive name';
+rsErrInvalidDirectory = 'Invalid directory';
 rsErrCompressionLevelMust = 'Compression level must be between 0 and 9';
 rsErrInvalidFileSize = 'Invalid number for file size';
 rsUseBzip2Compression = 'use bzip2 compression';
@@ -200,6 +235,25 @@ begin
       GetLanguageIDs(Lang, FallbackLang); // in unit gettext
       TranslateUnitResourceStrings('dgStrConst', PODirectory + 'dargui.%s.po', Lang, FallbackLang);
      end;
+  WeekdayNames[1] := rsMon;
+  WeekdayNames[2] := rsTue;
+  WeekdayNames[3] := rsWed;
+  WeekdayNames[4] := rsThu;
+  WeekdayNames[5] := rsFri;
+  WeekdayNames[6] := rsSat;
+  WeekdayNames[7] := rsSun;
+  MonthNames[1] := rsJan;
+  MonthNames[2] := rsFeb;
+  MonthNames[3] := rsMar;
+  MonthNames[4] := rsApr;
+  MonthNames[5] := rsMay;
+  MonthNames[6] := rsJun;
+  MonthNames[7] := rsJul;
+  MonthNames[8] := rsAug;
+  MonthNames[9] := rsSep;
+  MonthNames[10] := rsOct;
+  MonthNames[11] := rsNov;
+  MonthNames[12] := rsDec;
 end;
 
 end.

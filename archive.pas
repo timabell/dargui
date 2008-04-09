@@ -15,14 +15,24 @@ type
   { TArchiveForm }
 
   TArchiveForm = class ( TForm )
+    RepeatMonthLabel: TLabel;
+    RepeatMonthDayLabel: TLabel;
+    RepeatWeekDayLabel: TLabel;
+    RunOncePanel: TPanel;
+    RepeatPanel: TPanel;
+    RepeatHourBox: TComboBox;
+    RepeatMinuteBox: TComboBox;
     RepeatMonthBox: TComboBox;
     RepeatMonthDayBox: TComboBox;
     RepeatWeekDayBox: TComboBox;
-    RepeatHourBox: TComboBox;
-    RunOnceMinuteBox: TComboBox;
-    RunOnceHourBox: TComboBox;
     RunOnceDateEdit: TDateEdit;
-    RepeatMinuteBox: TComboBox;
+    RunOnceDateLabel: TLabel;
+    RunOnceHourBox: TComboBox;
+    RunOnceHourLabel: TLabel;
+    RepeatHourLabel: TLabel;
+    RunOnceMinuteBox: TComboBox;
+    RunOnceMinuteLabel: TLabel;
+    RepeatMinuteLabel: TLabel;
     TimestampCheck: TCheckBox;
     DiffRefButton: TButton;
     DiffFileCheck: TCheckBox;
@@ -96,6 +106,7 @@ type
     NoteBookPanel: TPanel;
     SaveDialog: TSaveDialog;
     SelectDirectoryDialog: TSelectDirectoryDialog;
+    procedure ArchiveNameExit ( Sender: TObject ) ;
     procedure CompressMasksClick ( Sender: TObject ) ;
     procedure AddIncludeDirButtonClick ( Sender: TObject ) ;
     procedure AddFileButtonClick ( Sender: TObject ) ;
@@ -112,7 +123,10 @@ type
     procedure DelIncludeDirButtonClick ( Sender: TObject ) ;
     procedure DelIncludeFileButtonClick ( Sender: TObject ) ;
     procedure FormCreate ( Sender: TObject ) ;
+    procedure RunOnceDateEditAcceptDate ( Sender: TObject;
+      var ADate: TDateTime; var AcceptDate: Boolean ) ;
     procedure SaveScriptCheckBoxClick ( Sender: TObject ) ;
+    procedure ScheduleRadioChange ( Sender: TObject ) ;
     procedure ScriptFileButtonClick ( Sender: TObject ) ;
     procedure SlicesCheckClick ( Sender: TObject ) ;
     procedure ZipCheckChange ( Sender: TObject ) ;
@@ -177,16 +191,41 @@ begin
   for x := 1 to 31 do
       RepeatMonthDayBox.Items.Add(IntToStr(x));
   for x := 1 to 7 do
-      RepeatWeekDayBox.Items.Add(IntToStr(x));
+      RepeatWeekDayBox.Items.Add(WeekdayNames[x]);
   for x := 1 to 12 do
-      RepeatMonthBox.Items.Add(IntToStr(x));
+      RepeatMonthBox.Items.Add(MonthNames[x]);
   InitialiseInterface;
+end;
+
+procedure TArchiveForm.RunOnceDateEditAcceptDate ( Sender: TObject;
+  var ADate: TDateTime; var AcceptDate: Boolean ) ;
+begin
+  if ADate < Now then
+     begin
+       ShowMessage ( rsErrDateCannotBeInPast ) ;
+       AcceptDate := false;
+       RunOnceDateEdit.Date := Now;
+     end;
 end;
 
 procedure TArchiveForm.SaveScriptCheckBoxClick ( Sender: TObject ) ;
 begin
   ScriptFilenameBox.Enabled := SaveScriptCheckBox.Checked;
   ScriptFileButton.Enabled := SaveScriptCheckBox.Checked;
+end;
+
+procedure TArchiveForm.ScheduleRadioChange ( Sender: TObject ) ;
+    procedure EnablePanel( Panel: TPanel; Setting: Boolean );
+    var
+      x: Integer;
+    begin
+      with Panel as TPanel do
+             for x := 0 to Panel.ControlCount-1 do
+                 TWinControl(Panel.Controls[x]).Enabled := Setting;
+    end;
+begin
+  EnablePanel(RunOncePanel, RunOnceRadioButton.Checked);
+  EnablePanel(RepeatPanel, RepeatRadioButton.Checked);
 end;
 
 procedure TArchiveForm.ScriptFileButtonClick ( Sender: TObject ) ;
@@ -266,6 +305,17 @@ begin
   DiffFileCheck.Caption := rsDifferentialBackup;
   DiffReference.EditLabel.Caption := rsReferenceArchive;
   DiffRefButton.Caption := rsButtonBrowse;
+  RunOnceDateLabel.Caption := rsColDate;
+  RunOnceHourLabel.Caption := rsHour;
+  RunOnceMinuteLabel.Caption := rsMinutes;
+  RepeatHourLabel.Caption := rsHour;
+  RepeatMinuteLabel.Caption := rsMinutes;
+  RepeatWeekDayLabel.Caption := rsDayOfWeek;
+  RepeatMonthDayLabel.Caption := rsDayInMonth;
+  RepeatMonthLabel.Caption := rsMonth;
+  RunOnceDateEdit.DialogTitle := rsCptSelectDate;
+  RunOnceDateEdit.CancelCaption := rsButtonCancel;
+  RunOnceDateEdit.OKCaption := rsButtonOK;
 end;
 
 procedure TArchiveForm.AddIncludeDirButtonClick ( Sender: TObject ) ;
@@ -370,6 +420,17 @@ begin
        end;
 end;
 
+procedure TArchiveForm.ArchiveNameExit ( Sender: TObject ) ;
+var
+  Archname: string;
+  x: Integer;
+begin
+  Archname := TEdit(Sender).Text;
+  for x := 1 to Length(Archname) do
+      if Archname[x]=#32 then Archname[x] := '_';
+  TEdit(Sender).Text := Archname;
+end;
+
 procedure TArchiveForm.ArchiveDirButtonClick ( Sender: TObject ) ;
 begin
   SelectDirectoryDialog.Options := SelectDirectoryDialog.Options-[ofAllowMultiSelect];
@@ -443,15 +504,15 @@ begin
   if CheckParameters then
      begin
      ModalResult := mrOk;
-     if FileExists(ArchiveDirectory.Text
-                            + ArchiveName.Text + '.1.dar')
-        then if MessageDlg ( rsOverwriteExistingArc, mtWarning, [ mbYes, mbNo
-          ] , 0 ) = mrNo
-             then ModalResult := mrCancel
-             else DeleteFilesByMask(ArchiveDirectory.Text
-                            + ArchiveName.Text + '.*.dar');
-     end
-     else ShowMessage('Please check all input');
+     if not TimestampCheck.Checked
+         then if FileExists(ArchiveDirectory.Text
+                                + ArchiveName.Text + '.1.dar')
+            then if MessageDlg ( rsOverwriteExistingArc, mtWarning, [ mbYes, mbNo
+              ] , 0 ) = mrNo
+                 then ModalResult := mrCancel
+                 else DeleteFilesByMask(ArchiveDirectory.Text
+                                + ArchiveName.Text + '.*.dar');
+     end;
 end;
 
 procedure TArchiveForm.DelExcludeFileButtonClick ( Sender: TObject ) ;
@@ -463,16 +524,42 @@ begin
 end;
 
 function TArchiveForm.CheckParameters: Boolean;
+var
+  x: Integer;
 begin
   Result := true;
-  if ArchiveName.Text = '' then Result := false;
+  if ArchiveName.Text = '' then
+     begin
+       ShowMessage ( rsErrInvalidArchiveName ) ;
+       ArchiveName.SetFocus;
+       Result := false;
+       exit;
+     end;
   if ArchiveDirectory.Text[Length(ArchiveDirectory.Text)] <> DirectorySeparator
      then ArchiveDirectory.Text := ArchiveDirectory.Text + DirectorySeparator;
   if BaseDirectory.Text[Length(BaseDirectory.Text)] <> DirectorySeparator
      then BaseDirectory.Text := BaseDirectory.Text + DirectorySeparator;
-  if not FileExists(ArchiveDirectory.Text) then Result := false;
-  if not FileExists(BaseDirectory.Text)  then Result := false;
+  if not FileExists(ArchiveDirectory.Text) then
+     begin
+       ShowMessage ( rsErrInvalidDirectory ) ;
+       ArchiveDirectory.SetFocus;
+       Result := false;
+       exit;
+     end;
+  if not FileExists(BaseDirectory.Text)  then
+     begin
+       ShowMessage ( rsErrInvalidDirectory ) ;
+       BaseDirectory.SetFocus;
+       Result := false;
+       exit;
+     end;
   if CompLwrLimitCombo.ItemIndex< 0 then CompLwrLimitCombo.ItemIndex := 0;
+  for x := 0 to IncludeDirectories.Count-1 do
+      if IncludeDirectories.Items[x] = BaseDirectory.Text
+         then IncludeDirectories.Items.Delete(x);
+    for x := 0 to ExcludeDirectories.Count-1 do
+      if ExcludeDirectories.Items[x] = BaseDirectory.Text
+         then ExcludeDirectories.Items.Delete(x);
 end;
 
 function TArchiveForm.IsInBaseDirectory(aDir: string): Boolean;

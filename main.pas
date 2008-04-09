@@ -231,6 +231,7 @@ var
   DarOptions: string;
   Command: string;
   x: integer;
+  archivename: String;
 
   procedure AddCompressionOptions;
   var
@@ -272,7 +273,10 @@ begin
   if ArchiveForm.ShowModal = mrOk then
      try
      Enabled := false;
-     DarOptions := ' -X "' + ArchiveForm.ArchiveName.Text + '.*.dar"';
+     archivename := ArchiveForm.ArchiveName.Text;
+     if ArchiveForm.TimestampCheck.Checked
+        then archivename := archivename + FormatDateTime('_yyyymmddhhnn', Now);
+     DarOptions := ' -X ' + ArchiveName + '.*.dar';
      BatchFile := TStringList.Create;
      BatchFile.Add ( rsDARBatchFile ) ;
      BatchFile.Add('-R "' + ArchiveForm.BaseDirectory.Text + '"' + #10);
@@ -344,9 +348,8 @@ begin
              BatchFile.Add ( rsPauseBetween + #10 + '--pause ' + #10 ) ;
         end;
 
-
      Command := DAR_EXECUTABLE + ' -c "' + ArchiveForm.ArchiveDirectory.Text
-                            + ArchiveForm.ArchiveName.Text + '"'
+                            + archivename + '"'
                             + ' -B "' + ArchiveForm.BatchFile.Text + '"'
                             + ' -v'
                             //+ ' -e' // for debugging
@@ -363,7 +366,7 @@ begin
        = 0 then
         begin
           CurrentArchive := ArchiveForm.ArchiveDirectory.Text
-                            + ArchiveForm.ArchiveName.Text;
+                            + archivename;
           OpenArchive(CurrentArchive, ArchiveTreeView);
           EnableArchiveMenus;
           OpenDialog.FileName := CurrentArchive;

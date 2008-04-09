@@ -229,6 +229,7 @@ object ArchiveForm: TArchiveForm
           Height = 24
           Top = 28
           Width = 282
+          OnExit = ArchiveNameExit
           TabOrder = 0
         end
         object BatchFileButton: TButton
@@ -714,6 +715,7 @@ object ArchiveForm: TArchiveForm
           Width = 192
           Caption = 'Create archive immediately'
           Checked = True
+          OnChange = ScheduleRadioChange
           State = cbChecked
           TabOrder = 0
         end
@@ -723,140 +725,242 @@ object ArchiveForm: TArchiveForm
           Top = 58
           Width = 127
           Caption = 'Run once only at'
+          OnChange = ScheduleRadioChange
           TabOrder = 1
         end
         object RepeatRadioButton: TRadioButton
           Left = 35
           Height = 21
-          Top = 196
+          Top = 162
           Width = 124
           Caption = 'Run regularily at'
+          OnChange = ScheduleRadioChange
           TabOrder = 2
         end
-        object RunOnceDateEdit: TDateEdit
-          Left = 349
-          Height = 23
-          Top = 91
-          Width = 152
-          CalendarDisplaySettings = [dsShowHeadings, dsShowDayNames]
-          OKCaption = 'OK'
-          CancelCaption = 'Cancel'
-          ReadOnly = False
-          ButtonWidth = 23
-          Glyph.Data = {
-            2F0200002F2A2058504D202A2F0A7374617469632063686172202A63616C656E
-            6461725B5D203D207B0A2F2A20636F6C756D6E7320726F777320636F6C6F7273
-            2063686172732D7065722D706978656C202A2F0A223134203132203137203122
-            2C0A2220206320626C61636B222C0A222E20632023383030303030222C0A2258
-            20632023303038303030222C0A226F20632023383038303030222C0A224F2063
-            206E617679222C0A222B20632023383030303830222C0A224020632023303038
-            303830222C0A222320632023383038303830222C0A2224206320234330433043
-            30222C0A2225206320726564222C0A2226206320677265656E222C0A222A2063
-            2079656C6C6F77222C0A223D206320626C7565222C0A222D2063206D6167656E
-            7461222C0A223B2063206379616E222C0A223A20632067726179313030222C0A
-            223E2063204E6F6E65222C0A2F2A20706978656C73202A2F0A223E3E20202020
-            2020202020203E3E222C0A223E3E3A24242424242424243A4F23222C0A223E3E
-            3A3A3A3A3A3A3A3A3A3A4F23222C0A223E3E3A3A203A3A202020203A4F23222C
-            0A223E3E3A20203A3A203A3A3A3A4F23222C0A223E3E3A3A203A3A202020243A
-            4F23222C0A223E3E3A3A203A3A3A3A3A203A4F23222C0A223E3E3A3A203A3A24
-            3A24203A4F23222C0A223E3E3A2020203A202020243A4F23222C0A223E3E3A3A
-            3A3A3A3A3A3A3A3A4F23222C0A223E3E20204F204F4F204F20204F23222C0A22
-            3E3E3E2323232323232323232323220A7D3B0A
-          }
-          NumGlyphs = 1
-          Enabled = False
+        object RunOncePanel: TPanel
+          Left = 4
+          Height = 81
+          Top = 81
+          Width = 602
+          BevelOuter = bvNone
+          ClientHeight = 81
+          ClientWidth = 602
           TabOrder = 3
+          object RunOnceHourLabel: TLabel
+            Left = 65
+            Height = 20
+            Top = 12
+            Width = 119
+            Caption = 'RunOnceHourLabel'
+            Enabled = False
+            ParentColor = False
+          end
+          object RunOnceMinuteLabel: TLabel
+            Left = 158
+            Height = 20
+            Top = 12
+            Width = 131
+            Caption = 'RunOnceMinuteLabel'
+            Enabled = False
+            ParentColor = False
+          end
+          object RunOnceDateLabel: TLabel
+            Left = 273
+            Height = 20
+            Top = 12
+            Width = 119
+            Caption = 'RunOnceDateLabel'
+            Enabled = False
+            ParentColor = False
+          end
+          object RunOnceDateEdit: TDateEdit
+            Left = 273
+            Height = 23
+            Top = 35
+            Width = 112
+            CalendarDisplaySettings = [dsShowHeadings, dsShowDayNames]
+            OnAcceptDate = RunOnceDateEditAcceptDate
+            OKCaption = 'OK'
+            CancelCaption = 'Cancel'
+            ReadOnly = False
+            ButtonWidth = 23
+            Glyph.Data = {
+              2F0200002F2A2058504D202A2F0A7374617469632063686172202A63616C656E
+              6461725B5D203D207B0A2F2A20636F6C756D6E7320726F777320636F6C6F7273
+              2063686172732D7065722D706978656C202A2F0A223134203132203137203122
+              2C0A2220206320626C61636B222C0A222E20632023383030303030222C0A2258
+              20632023303038303030222C0A226F20632023383038303030222C0A224F2063
+              206E617679222C0A222B20632023383030303830222C0A224020632023303038
+              303830222C0A222320632023383038303830222C0A2224206320234330433043
+              30222C0A2225206320726564222C0A2226206320677265656E222C0A222A2063
+              2079656C6C6F77222C0A223D206320626C7565222C0A222D2063206D6167656E
+              7461222C0A223B2063206379616E222C0A223A20632067726179313030222C0A
+              223E2063204E6F6E65222C0A2F2A20706978656C73202A2F0A223E3E20202020
+              2020202020203E3E222C0A223E3E3A24242424242424243A4F23222C0A223E3E
+              3A3A3A3A3A3A3A3A3A3A4F23222C0A223E3E3A3A203A3A202020203A4F23222C
+              0A223E3E3A20203A3A203A3A3A3A4F23222C0A223E3E3A3A203A3A202020243A
+              4F23222C0A223E3E3A3A203A3A3A3A3A203A4F23222C0A223E3E3A3A203A3A24
+              3A24203A4F23222C0A223E3E3A2020203A202020243A4F23222C0A223E3E3A3A
+              3A3A3A3A3A3A3A3A4F23222C0A223E3E20204F204F4F204F20204F23222C0A22
+              3E3E3E2323232323232323232323220A7D3B0A
+            }
+            NumGlyphs = 1
+            Enabled = False
+            TabOrder = 0
+          end
+          object RunOnceHourBox: TComboBox
+            Left = 65
+            Height = 25
+            Top = 33
+            Width = 70
+            AutoCompleteText = [cbactEndOfLineComplete, cbactSearchAscending]
+            Enabled = False
+            ItemIndex = 0
+            Items.Strings = (
+              ''
+            )
+            MaxLength = 0
+            TabOrder = 1
+          end
+          object RunOnceMinuteBox: TComboBox
+            Left = 158
+            Height = 25
+            Top = 33
+            Width = 70
+            AutoCompleteText = [cbactEndOfLineComplete, cbactSearchAscending]
+            Enabled = False
+            ItemIndex = 0
+            Items.Strings = (
+              ''
+            )
+            MaxLength = 0
+            TabOrder = 2
+          end
         end
-        object RunOnceHourBox: TComboBox
-          Left = 104
-          Height = 25
-          Top = 89
-          Width = 60
-          AutoCompleteText = [cbactEndOfLineComplete, cbactSearchAscending]
-          Enabled = False
-          ItemIndex = 0
-          Items.Strings = (
-            ''
-          )
+        object RepeatPanel: TPanel
+          Left = 10
+          Height = 75
+          Top = 186
+          Width = 596
+          BevelOuter = bvNone
+          ClientHeight = 75
+          ClientWidth = 596
           TabOrder = 4
-        end
-        object RunOnceMinuteBox: TComboBox
-          Left = 197
-          Height = 25
-          Top = 89
-          Width = 77
-          AutoCompleteText = [cbactEndOfLineComplete, cbactSearchAscending]
-          Enabled = False
-          ItemIndex = 0
-          Items.Strings = (
-            ''
-          )
-          TabOrder = 5
-        end
-        object RepeatHourBox: TComboBox
-          Left = 104
-          Height = 25
-          Top = 242
-          Width = 60
-          AutoCompleteText = [cbactEndOfLineComplete, cbactSearchAscending]
-          Enabled = False
-          ItemIndex = 0
-          Items.Strings = (
-            ''
-          )
-          TabOrder = 6
-        end
-        object RepeatMinuteBox: TComboBox
-          Left = 197
-          Height = 25
-          Top = 242
-          Width = 77
-          AutoCompleteText = [cbactEndOfLineComplete, cbactSearchAscending]
-          Enabled = False
-          ItemIndex = 0
-          Items.Strings = (
-            ''
-          )
-          TabOrder = 7
-        end
-        object RepeatWeekDayBox: TComboBox
-          Left = 312
-          Height = 25
-          Top = 242
-          Width = 85
-          AutoCompleteText = [cbactEndOfLineComplete, cbactSearchAscending]
-          Enabled = False
-          ItemIndex = 0
-          Items.Strings = (
-            ''
-          )
-          TabOrder = 8
-        end
-        object RepeatMonthDayBox: TComboBox
-          Left = 429
-          Height = 25
-          Top = 242
-          Width = 76
-          AutoCompleteText = [cbactEndOfLineComplete, cbactSearchAscending]
-          Enabled = False
-          ItemIndex = 0
-          Items.Strings = (
-            ''
-          )
-          TabOrder = 9
-        end
-        object RepeatMonthBox: TComboBox
-          Left = 524
-          Height = 25
-          Top = 242
-          Width = 76
-          AutoCompleteText = [cbactEndOfLineComplete, cbactSearchAscending]
-          Enabled = False
-          ItemIndex = 0
-          Items.Strings = (
-            ''
-          )
-          TabOrder = 10
+          object RepeatHourLabel: TLabel
+            Left = 65
+            Height = 20
+            Top = 12
+            Width = 119
+            Caption = 'RunOnceHourLabel'
+            Enabled = False
+            ParentColor = False
+          end
+          object RepeatMinuteLabel: TLabel
+            Left = 158
+            Height = 20
+            Top = 12
+            Width = 120
+            Caption = 'RepeatMinuteLabel'
+            Enabled = False
+            ParentColor = False
+          end
+          object RepeatWeekDayLabel: TLabel
+            Left = 243
+            Height = 20
+            Top = 12
+            Width = 134
+            Caption = 'RepeatWeekDayLabel'
+            Enabled = False
+            ParentColor = False
+          end
+          object RepeatMonthDayLabel: TLabel
+            Left = 371
+            Height = 20
+            Top = 12
+            Width = 140
+            Caption = 'RepeatMonthDayLabel'
+            Enabled = False
+            ParentColor = False
+          end
+          object RepeatMonthLabel: TLabel
+            Left = 467
+            Height = 20
+            Top = 12
+            Width = 117
+            Caption = 'RepeatMonthLabel'
+            Enabled = False
+            ParentColor = False
+          end
+          object RepeatHourBox: TComboBox
+            Left = 59
+            Height = 25
+            Top = 32
+            Width = 70
+            AutoCompleteText = [cbactEndOfLineComplete, cbactSearchAscending]
+            Enabled = False
+            ItemIndex = 0
+            Items.Strings = (
+              ''
+            )
+            MaxLength = 0
+            TabOrder = 0
+          end
+          object RepeatMinuteBox: TComboBox
+            Left = 152
+            Height = 25
+            Top = 32
+            Width = 70
+            AutoCompleteText = [cbactEndOfLineComplete, cbactSearchAscending]
+            Enabled = False
+            ItemIndex = 0
+            Items.Strings = (
+              ''
+            )
+            MaxLength = 0
+            TabOrder = 1
+          end
+          object RepeatWeekDayBox: TComboBox
+            Left = 243
+            Height = 25
+            Top = 32
+            Width = 100
+            AutoCompleteText = [cbactEndOfLineComplete, cbactSearchAscending]
+            Enabled = False
+            ItemIndex = 0
+            Items.Strings = (
+              ''
+            )
+            MaxLength = 0
+            TabOrder = 2
+          end
+          object RepeatMonthDayBox: TComboBox
+            Left = 371
+            Height = 25
+            Top = 32
+            Width = 70
+            AutoCompleteText = [cbactEndOfLineComplete, cbactSearchAscending]
+            Enabled = False
+            ItemIndex = 0
+            Items.Strings = (
+              ''
+            )
+            MaxLength = 0
+            TabOrder = 3
+          end
+          object RepeatMonthBox: TComboBox
+            Left = 467
+            Height = 25
+            Top = 32
+            Width = 100
+            AutoCompleteText = [cbactEndOfLineComplete, cbactSearchAscending]
+            Enabled = False
+            ItemIndex = 0
+            Items.Strings = (
+              ''
+            )
+            MaxLength = 0
+            TabOrder = 4
+          end
         end
       end
     end
