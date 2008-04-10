@@ -40,7 +40,7 @@ type
     ExcludeFileMasks: TButton;
     IncludeFileMasks: TButton;
     BatchFileButton: TButton;
-    BatchFile: TEdit;
+    BatchFileBox: TEdit;
     DiffReference: TLabeledEdit;
     RepeatRadioButton: TRadioButton;
     RunOnceRadioButton: TRadioButton;
@@ -118,6 +118,7 @@ type
     procedure DelCompressMaskButtonClick ( Sender: TObject ) ;
     procedure DiffFileCheckChange ( Sender: TObject ) ;
     procedure DiffRefButtonClick ( Sender: TObject ) ;
+    procedure FormDestroy ( Sender: TObject ) ;
     procedure OKButtonClick ( Sender: TObject ) ;
     procedure DelExcludeFileButtonClick ( Sender: TObject ) ;
     procedure DelIncludeDirButtonClick ( Sender: TObject ) ;
@@ -138,7 +139,10 @@ type
     procedure ResolveConflicts( Sender, RefList: TObject; ConflictMessage: string );
   public
     { public declarations }
-  end; 
+    function CreateBatchfile: Boolean;
+    BatchFile: TStringList;
+    ArchiveBaseName: string;
+  end;
 
 var
   ArchiveForm: TArchiveForm;
@@ -194,6 +198,7 @@ begin
       RepeatWeekDayBox.Items.Add(WeekdayNames[x]);
   for x := 1 to 12 do
       RepeatMonthBox.Items.Add(MonthNames[x]);
+  BatchFile := TStringList.Create;
   InitialiseInterface;
 end;
 
@@ -449,9 +454,9 @@ end;
 
 procedure TArchiveForm.BatchFileButtonClick ( Sender: TObject ) ;
 begin
-  SaveDialog.FileName := BatchFile.Text;
+  SaveDialog.FileName := BatchFileBox.Text;
   if SaveDialog.Execute
-     then BatchFile.Text := SaveDialog.FileName;
+     then BatchFileBox.Text := SaveDialog.FileName;
 end;
 
 procedure TArchiveForm.CompressionLevelExit ( Sender: TObject ) ;
@@ -497,6 +502,11 @@ begin
   OpenDialog.Title := rsSelectReferenceArch;
   if OpenDialog.Execute
      then DiffReference.Text := OpenDialog.FileName;
+end;
+
+procedure TArchiveForm.FormDestroy ( Sender: TObject ) ;
+begin
+  BatchFile.Free;
 end;
 
 procedure TArchiveForm.OKButtonClick ( Sender: TObject ) ;
@@ -614,6 +624,121 @@ begin
                  then RB.Items.Delete(x);
           end;
   FileConflictForm.Free;
+end;
+
+function TArchiveForm.CreateBatchfile : Boolean;
+var
+  x: integer;
+
+  procedure AddCompressionOptions;
+  var
+    x: integer;
+    B: string[1];
+  begin
+  B := '';
+  if ArchiveForm.NoCompressList.Count > 0 then
+    begin
+    BatchFile.Add('');
+    BatchFile.Add ( rsNotCompressThese ) ;
+    for x := 0 to NoCompressList.Count-1 do
+        BatchFile.Add('-Z ' + NoCompressList.Items[x]);
+    end;
+  if CompLwrLimitCombo.ItemIndex > -1
+     then B := CompLwrLimitCombo.Items[CompLwrLimitCombo.ItemIndex][1];
+  if not ((CompressionLwrLimit.Text = '100') and (B = 'b')) then
+     begin
+       BatchFile.Add(#10 + rsNotCompressSmaller);
+       BatchFile.Add('-m ' + CompressionLwrLimit.Text + B);
+     end;
+  end;
+
+  function RemoveBaseDirectory(aFilePath: string): string;
+  begin
+    if Pos(BaseDirectory.Text, aFilePath) = 1 then
+       begin
+       Result := Copy(aFilePath, Length(BaseDirectory.Text)+1, READ_BYTES);
+       end
+       else
+       begin
+       Result := aFilePath;
+       end;
+  end;
+
+begin
+     ArchiveBaseName := ArchiveName.Text;
+     if TimestampCheck.Checked
+        then ArchiveBaseName := ArchiveBaseName + FormatDateTime('_yyyymmddhhnn', Now);
+     BatchFile.Clear;
+     BatchFile.Add ( rsDARBatchFile ) ;
+     BatchFile.Add('-R "' + BaseDirectory.Text + '"' + #10);
+     if DryRunCheck.Checked then
+        begin
+          BatchFile .Add ( rsDryRun ) ;
+          BatchFile .Add('--empty' + #10);
+        end;
+     if IncludeDirectories.Count > 0 then
+        begin
+        BatchFile .Add('');
+        BatchFile .Add ( rsIncDirectories ) ;
+        for x := 0 to IncludeDirectories.Count-1 do
+            BatchFile.Add('-g "' + RemoveBaseDirectory(IncludeDirectories.Items[x]) + '"');
+        end;
+     if IncludeFiles.Count > 0 then
+        begin
+        BatchFile.Add('');
+        BatchFile.Add ( rsIncFiles ) ;
+        for x := 0 to IncludeFiles.Count-1 do
+            BatchFile.Add('-I "' + RemoveBaseDirectory(IncludeFiles.Items[x]) + '"');
+        end;
+     if ExcludeDirectories.Count > 0 then
+        begin
+        BatchFile.Add('');
+        BatchFile.Add ( rsExclDirectories ) ;
+        for x := 0 to ExcludeDirectories.Count-1 do
+            BatchFile.Add('-P "' + RemoveBaseDirectory(ExcludeDirectories.Items[x]) + '"');
+        end;
+     if ExcludeFiles.Count > 0 then
+        begin
+        BatchFile.Add('');
+        BatchFile.Add ( rsExclFiles ) ;
+        for x := 0 to ExcludeFiles.Count-1 do
+            BatchFile.Add('-X "' + RemoveBaseDirectory(ExcludeFiles.Items[x]) + '"');
+        end;
+     if GZipCheck.Checked
+        then begin
+             BatchFile.Add('');
+             BatchFile.Add ( rsUseGzipCompr ) ;
+             BatchFile.Add('--gzip=' + CompressionLevel.Text);
+             AddCompressionOptions;
+             end
+     else if Bzip2Check.Checked
+        then begin
+             BatchFile.Add('');
+             BatchFile.Add ( rsUseBzip2Comp ) ;
+             BatchFile.Add('--bzip2=' + CompressionLevel.Text);
+             AddCompressionOptions;
+             end;
+     if not ReadConfigCheck.Checked then
+        begin
+          BatchFile.Add ( rsNotReadDARcfg + #10 + '-N' + #10 ) ;
+        end;
+     if EmptyDirCheck.Checked then
+        begin
+          BatchFile.Add ( rsPreserveDirs + #10 + '-D' + #10 ) ;
+        end;
+     if SlicesCheck.Checked then
+        begin
+        //TODO: move this check to CheckParameters
+          try
+            StrToInt(ArchiveForm.SliceSize.Text);
+          except
+            SliceSize.Text := '650';
+          end;
+          BatchFile.Add ( rsCreateSlices  + #10 + '--slice ' +
+            SliceSize.Text + 'M' + #10 ) ;
+          if PauseCheck.Checked then
+             BatchFile.Add ( rsPauseBetween + #10 + '--pause ' + #10 ) ;
+        end;
 end;
 
 

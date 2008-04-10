@@ -105,6 +105,7 @@ object ArchiveForm: TArchiveForm
     74227D3B0A
   }
   OnCreate = FormCreate
+  OnDestroy = FormDestroy
   Position = poMainFormCenter
   object OKCancelPanel: TPanel
     Height = 66
@@ -241,7 +242,7 @@ object ArchiveForm: TArchiveForm
           OnClick = BatchFileButtonClick
           TabOrder = 6
         end
-        object BatchFile: TEdit
+        object BatchFileBox: TEdit
           Left = 19
           Height = 23
           Top = 216

@@ -227,142 +227,31 @@ end;
 
 procedure TMainForm.miFileNewClick ( Sender: TObject ) ;
 var
-  BatchFile: TStringList;
   DarOptions: string;
   Command: string;
   x: integer;
-  archivename: String;
   referencearchive: String;
-
-  procedure AddCompressionOptions;
-  var
-    x: integer;
-    B: string[1];
-  begin
-  B := '';
-  if ArchiveForm.NoCompressList.Count > 0 then
-    begin
-    BatchFile.Add('');
-    BatchFile.Add ( rsNotCompressThese ) ;
-    for x := 0 to ArchiveForm.NoCompressList.Count-1 do
-        BatchFile.Add('-Z ' + ArchiveForm.NoCompressList.Items[x]);
-    end;
-  if ArchiveForm.CompLwrLimitCombo.ItemIndex > -1
-     then B := ArchiveForm.CompLwrLimitCombo.Items[ArchiveForm.CompLwrLimitCombo.ItemIndex][1];
-  if not ((ArchiveForm.CompressionLwrLimit.Text = '100') and (B = 'b')) then
-     begin
-       BatchFile.Add(#10 + rsNotCompressSmaller);
-       BatchFile.Add('-m ' + ArchiveForm.CompressionLwrLimit.Text + B);
-     end;
-  end;
   
-  function RemoveBaseDirectory(aFilePath: string): string;
+  procedure CreateNewArchive;
   begin
-    if Pos(ArchiveForm.BaseDirectory.Text, aFilePath) = 1 then
-       begin
-       Result := Copy(aFilePath, Length(ArchiveForm.BaseDirectory.Text)+1, READ_BYTES);
-       end
-       else
-       begin
-       //ShowMessage('Error: Base Directory not in ' + aFilePath);
-       Result := aFilePath;
-       end;
-  end;
-  
-begin
-  ArchiveForm.BatchFile.Text := GetNextFileName(TEMP_DIRECTORY + BATCHFILE_BASE);
-  if ArchiveForm.ShowModal = mrOk then
      try
      Enabled := false;
-     archivename := ArchiveForm.ArchiveName.Text;
-     if ArchiveForm.TimestampCheck.Checked
-        then archivename := archivename + FormatDateTime('_yyyymmddhhnn', Now);
-     DarOptions := ' -X ' + ArchiveName + '.*.dar';
-     BatchFile := TStringList.Create;
-     BatchFile.Add ( rsDARBatchFile ) ;
-     BatchFile.Add('-R "' + ArchiveForm.BaseDirectory.Text + '"' + #10);
-     if ArchiveForm.DryRunCheck.Checked then
-        begin
-          BatchFile.Add ( rsDryRun ) ;
-          BatchFile.Add('--empty' + #10);
-        end;
-     if ArchiveForm.IncludeDirectories.Count > 0 then
-        begin
-        BatchFile.Add('');
-        BatchFile.Add ( rsIncDirectories ) ;
-        for x := 0 to ArchiveForm.IncludeDirectories.Count-1 do
-            BatchFile.Add('-g "' + RemoveBaseDirectory(ArchiveForm.IncludeDirectories.Items[x]) + '"');
-        end;
-     if ArchiveForm.IncludeFiles.Count > 0 then
-        begin
-        BatchFile.Add('');
-        BatchFile.Add ( rsIncFiles ) ;
-        for x := 0 to ArchiveForm.IncludeFiles.Count-1 do
-            BatchFile.Add('-I "' + RemoveBaseDirectory(ArchiveForm.IncludeFiles.Items[x]) + '"');
-        end;
-     if ArchiveForm.ExcludeDirectories.Count > 0 then
-        begin
-        BatchFile.Add('');
-        BatchFile.Add ( rsExclDirectories ) ;
-        for x := 0 to ArchiveForm.ExcludeDirectories.Count-1 do
-            BatchFile.Add('-P "' + RemoveBaseDirectory(ArchiveForm.ExcludeDirectories.Items[x]) + '"');
-        end;
-     if ArchiveForm.ExcludeFiles.Count > 0 then
-        begin
-        BatchFile.Add('');
-        BatchFile.Add ( rsExclFiles ) ;
-        for x := 0 to ArchiveForm.ExcludeFiles.Count-1 do
-            BatchFile.Add('-X "' + RemoveBaseDirectory(ArchiveForm.ExcludeFiles.Items[x]) + '"');
-        end;
-     if ArchiveForm.GZipCheck.Checked
-        then begin
-             BatchFile.Add('');
-             BatchFile.Add ( rsUseGzipCompr ) ;
-             BatchFile.Add('--gzip=' + ArchiveForm.CompressionLevel.Text);
-             AddCompressionOptions;
-             end
-     else if ArchiveForm.Bzip2Check.Checked
-        then begin
-             BatchFile.Add('');
-             BatchFile.Add ( rsUseBzip2Comp ) ;
-             BatchFile.Add('--bzip2=' + ArchiveForm.CompressionLevel.Text);
-             AddCompressionOptions;
-             end;
-     if not ArchiveForm.ReadConfigCheck.Checked then
-        begin
-          BatchFile.Add ( rsNotReadDARcfg + #10 + '-N' + #10 ) ;
-        end;
-     if ArchiveForm.EmptyDirCheck.Checked then
-        begin
-          BatchFile.Add ( rsPreserveDirs + #10 + '-D' + #10 ) ;
-        end;
-     if ArchiveForm.SlicesCheck.Checked then
-        begin
-          try
-            StrToInt(ArchiveForm.SliceSize.Text);
-          except
-            ArchiveForm.SliceSize.Text := '650';
-          end;
-          BatchFile.Add ( rsCreateSlices  + #10 + '--slice ' +
-            ArchiveForm.SliceSize.Text + 'M' + #10 ) ;
-          if ArchiveForm.PauseCheck.Checked then
-             BatchFile.Add ( rsPauseBetween + #10 + '--pause ' + #10 ) ;
-        end;
+     ArchiveForm.CreateBatchfile;
      referencearchive := '';
      if ArchiveForm.DiffFileCheck.Checked
         then referencearchive := ' -A ' + TrimToBase( ArchiveForm.DiffReference.Text );
-
+     DarOptions := ' -X ' + ArchiveForm.ArchiveBaseName + '.*.dar';
      Command := DAR_EXECUTABLE + ' -c "' + ArchiveForm.ArchiveDirectory.Text
-                            + archivename + '"'
+                            + ArchiveForm.ArchiveBaseName + '"'
                             + referencearchive
-                            + ' -B "' + ArchiveForm.BatchFile.Text + '"'
+                            + ' -B "' + ArchiveForm.BatchFileBox.Text + '"'
                             + ' -v'
                             //+ ' -e' // for debugging
                             + DarOptions
                             {+ ' -Q'};
-                            
-     BatchFile.Insert(1, '# ' + Command);
-     BatchFile.SaveToFile(ArchiveForm.BatchFile.Text);
+
+     ArchiveForm.BatchFile.Insert(1, '# ' + Command);
+     ArchiveForm.BatchFile.SaveToFile(ArchiveForm.BatchFileBox.Text);
 
      MessageMemo.Lines.Add(#32 + StringOfChar('-',45));
      MessageMemo.Lines.Add('Creating archive: ' + ArchiveForm.ArchiveName.Text);
@@ -371,7 +260,7 @@ begin
        = 0 then
         begin
           CurrentArchive := ArchiveForm.ArchiveDirectory.Text
-                            + archivename;
+                            + ArchiveForm.ArchiveBaseName;
           OpenArchive(CurrentArchive, ArchiveTreeView);
           EnableArchiveMenus;
           OpenDialog.FileName := CurrentArchive;
@@ -383,9 +272,14 @@ begin
         then if ArchiveForm.ScriptFilenameBox.Text <> ''
              then WriteArchiveScript(ArchiveForm.ScriptFilenameBox.Text);
      finally
-     BatchFile.Free;
      Enabled := true;
      end;
+  end;
+  
+begin
+  ArchiveForm.BatchFileBox.Text := GetNextFileName(TEMP_DIRECTORY + BATCHFILE_BASE);
+  if ArchiveForm.ShowModal = mrOk then
+     CreateNewArchive;
 end;
 
 procedure TMainForm.ArchiveTreeViewDeletion(Sender: TObject; Node: TTreeNode);
