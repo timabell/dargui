@@ -1,0 +1,483 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+
+  
+
+
+  
+  <title>Introduction: Features</title>
+  <link rel="stylesheet" href="kde-default.css" type="text/css">
+
+
+  
+  <meta name="keywords" content="dargui, backup, archive, slice, disk">
+
+
+  
+  <link rel="home" href="introduction.html" title="template">
+
+
+  
+  <link rel="up" href="index.html" title="DarGUI Documentation Index">
+
+
+  
+  <link rel="previous" href="#.html" title="template">
+
+
+  
+  <link rel="next" href="#.html" title="template">
+</head>
+
+
+<body style="color: black; background-color: white;" alink="#0000ff" link="#0000ff" vlink="#840084">
+
+
+<br>
+
+
+<table class="header" width="100%">
+
+
+  <tbody>
+
+
+    <tr>
+
+
+      <td class="navLeft" align="left" width="33%"><a accesskey="p" href="index.html">Prev</a></td>
+
+
+      <td class="navCenter" align="center" width="34%">
+      </td>
+
+
+      <td class="navRight" align="right" width="33%">
+      <a accesskey="n" href="features.html">Next</a></td>
+
+
+    </tr>
+
+
+  
+  </tbody>
+</table>
+
+
+<div class="chapter">
+<div class="titlepage">
+<div>
+<h2 class="title"><a name="introduction"></a>Chapter
+1. Introduction</h2>
+
+
+</div>
+
+
+</div>
+
+
+<div class="sect1">
+<div class="titlepage">
+<div>
+<h2 class="title" style="clear: both;"><a name="overview"></a>Features</h2>
+
+
+</div>
+
+
+</div>
+
+
+<p>Dar is an extremely versatile and powerful tool
+and&nbsp;DarGUI is not planned to be a means of&nbsp;accessing
+all its features. Instead, DarGUI is intended to simplify the most common tasks
+of making backup&nbsp;archives and restoring files from these and
+to provide a small number of additional features. DarGUI version 0.3.1
+provides the following features:</p>
+
+
+<div class="itemizedlist">
+<ul type="disc">
+
+
+  <li>
+    
+    <p><a name="feature-encryption"></a><a href="features.html#desc-filters">Filters</a></p>
+
+
+  </li>
+
+
+  <li>
+    
+    <p><a name="feature-diff-backup"></a><a href="features.html#desc-diff-backup">Differential backup</a></p>
+
+
+  </li>
+
+
+  <li>
+    
+    <p><a name="feature-slices"></a><a href="features.html#desc-slices">Slices</a></p>
+
+
+  </li>
+
+
+  <li>
+    
+    <p><a name="feature-compression"></a><a href="features.html#desc-compression">Compression</a></p>
+
+
+  </li>
+
+
+  <li>
+    
+    <p><a name="feature-selective-compression"></a><a href="features.html#desc-selective-compression">Selective
+compression</a></p>
+
+
+  </li>
+
+
+  <li>
+    
+    <p><a name="feature-direct-access"></a><a href="features.html#desc-direct-access">Direct access</a></p>
+
+
+  </li>
+
+
+  <li>
+    
+    <p><a name="feature-testing"></a><a href="features.html#desc-testing">Archive testing</a></p>
+
+
+  </li>
+
+
+  <li>
+    
+    <p><a name="feature-isolation"></a><a href="features.html#desc-isolation">Isolation</a></p>
+
+
+  </li>
+
+
+  <li>
+    
+    <p><a name="feature-restore-individual"></a><a href="features.html#desc-restore-individual">Restore
+individual files</a></p>
+
+
+  </li>
+
+
+  <li>
+    
+    <p><a name="feature-flat"></a><a href="features.html#desc-flat">Flat restoration</a></p>
+
+
+  </li>
+
+
+  <li>
+    
+    <p><a href="features.html#desc-substitution">Timestamp
+archive names</a></p>
+
+
+  </li>
+
+
+  <li>
+    
+    <p><a name="dar-commands"></a><a href="features.html#desc-dar-commands">Equivalent DAR
+commands</a></p>
+
+
+  </li>
+
+
+</ul>
+
+
+</div>
+
+
+<p>Many of these descriptions are&nbsp;copied from Denis
+Corbin's FEATURES document.</p>
+
+
+<div class="variablelist">
+<dl>
+
+
+  <dt><a name="desc-encryption"></a><span class="term">Filters</span></dt>
+
+
+  <dd>
+    
+    <p>DarGUI is able to backup everything from a single file to
+an entire filesystem. Additionally a mechanism of filters enables the
+inclusion or exclusion of individual&nbsp;files or directories
+while backing up or restoring a directory tree. Similarly, a secondary
+filter mechanism permits to exclude some branches of a directory tree,
+or to only include some branches. <a href="features.html" title="Features">(back to top)</a></p>
+
+
+  </dd>
+
+
+  <dt><a name="desc-diff-backup"></a><span class="term">Differential backup</span></dt>
+
+
+  <dd>
+    
+    <p>When making a backup with DarGUI, you have the option of
+making a full backup or a differential backup. A full backup, as
+expected, makes a backup of all files as specified on the command line
+(with or without filters). Instead, a differential backup, (over filter
+mechanism), saves only files that have changed since a given reference
+backup. Additionally, files that existed in the reference backup and
+which do not exist anymore at the time of the differential backup are
+recorded in the backup. At recovery time, (unless you deactivate it),
+restoring a differential backup will update changed files and new
+files, but also remove files that have been recorded as deleted. Note
+that the reference backup can be a full backup or another differential
+backup. This way you can make a first full backup, then many
+differential backup, each taking as reference the last backup made.
+    <a href="features.html" title="Features">(back
+to top)</a></p>
+
+
+  </dd>
+
+
+  <dt><a name="desc-slices"></a><span class="term">Slices</span></dt>
+
+
+  <dd>
+    
+    <p>DarGUI can split an archive over several removable media
+whatever their number is and whatever their size is. Thus DarGUI is
+able to save over old floppy disk, CD-R, DVD-R, CD-RW, DVD-RW, Zip,
+Jazz, etc... KDar is not concerned by un/mounting a removable medium,
+instead it is independent of hardware. Given the size, it will split
+the archive in several files (called SLICES), eventually pausing before
+creating the next one, allowing this way, the user to (un)mount a
+medium, burn the file on CD-R, send it by email. KDar can also backup
+data to one slice whatever its size is. Additionally, the size of the
+first slice can be specified separately, if for example you want first
+to fulfill a partially filled disk before starting using empty ones.
+Last, at restoration time, KDar will just pause and prompt the user
+asking a slice only if it is missing.
+    <a href="features.html" title="Features">(back
+to top)</a></p>
+
+
+  </dd>
+
+
+  <dt><a name="desc-compression"></a><span class="term">Compression</span></dt>
+
+
+  <dd>
+    
+    <p>KDar can use compression. Actually only the gzip and bzip2
+algorithms are implemented, but some room has been made for any other
+compression algorithm. Note that, compression is made before slices are
+created, which means that using compression with slices will not make
+slices smaller, but will probably make less slices in the backup.
+    <a href="features.html" title="Features">(back
+to top)</a></p>
+
+
+  </dd>
+
+
+  <dt><a name="desc-selective-compression"></a><span class="term">Selective compression</span></dt>
+
+
+  <dd>
+    
+    <p>KDar can be given a special filter that determines which
+files will be compressed or not. This way you can speed up the backup
+operation by not trying to compress *.mp3, *.mpg, *.zip, *.gz and other
+already compressed files. Moreover another mechanism allows you to say
+that files under a given size (whatever their name is), will not be
+compressed.
+    <a href="features.html" title="Features">(back
+to top)</a></p>
+
+
+  </dd>
+
+
+  <dt><a name="desc-direct-access"></a><span class="term">Direct access</span></dt>
+
+
+  <dd>
+    
+    <p>Even using compression KDar does not have to read the
+entire backup to extract one file. This way if you just want to restore
+one file from a huge backup, the process will be much faster than using
+tar.
+KDar first reads the catalog (i.e. the contents of the backup),
+then it goes directly to the location of the saved file(s) you want to
+restore and proceed to restoration. In particular using slices KDar
+will ask only for the slice(s) containing the file(s) to restore.
+    <a href="features.html" title="Features">(back
+to top)</a></p>
+
+
+  </dd>
+
+
+  <dt><a name="desc-hard-links"></a><span class="term">Archive testing</span></dt>
+
+
+  <dd>
+    
+    <p>thanks to CRC (cyclic redundancy checks), Dar is able to
+detect data corruption in the archive. If data corruption occurs in a
+file it will not be possible to restore it but the remaining files will
+be restoredothers even when compression is used.
+    <a href="features.html" title="Features">(back
+to top)</a></p>
+
+
+  </dd>
+
+
+  <dt><a name="desc-isolation"></a><span class="term">Isolation</span></dt>
+
+
+  <dd>
+    
+    <p>The catalog (i.e.: the contents of an archive), can be
+extracted (this operation is called isolation) to a small file. This
+catalog can in turn be used as reference for making a differential
+archive. There is no more need to provide an archive to be able to
+create a differential backup over it. Just its catalog is necessary.
+    <a href="features.html" title="Features">(back
+to top)</a></p>
+
+
+  </dd>
+
+
+  <dt><a name="desc-config"></a><span class="term">Restore individual files</span></dt>
+
+
+  <dd>
+    
+    <p>You can restore any combination of individual files and
+directories by selecting them in the tree-view display. DarGUI's
+selection tools make it possible to select all files with a particular
+suffix or named in a particular way, for example all files ending in
+.html can be easily selected for restoration.
+    <a href="features.html" title="Features">(back
+to top)</a></p>
+
+
+  </dd>
+
+
+  <dt><a name="desc-flat"></a><span class="term">Flat restoration</span></dt>
+
+
+  <dd>
+    
+    <p>It is possible to restore any file without restoring the
+directories and subdirectories it was in at the time of the backup. If
+this option is enabled, all files will be restored in the root
+directory whatever their real position is.
+    <a href="features.html" title="Features">(back
+to top)</a></p>
+
+
+  </dd>
+
+
+  <dt><a name="desc-nodump"></a><span class="term">Pause between slices</span></dt>
+
+
+  <dd>
+    
+    <p>Dar can be instructed to pause once a slice has
+been written. This feature can be used to enable writing to CD between slices, for
+example.
+    <a href="features.html" title="Features">(back
+to top)</a></p>
+
+
+  </dd>
+
+
+  <dt><a name="desc-substitution"></a><span class="term">Timestamp archive names</span></dt>
+
+
+  <dd>
+    
+    <p> DarGUI can automatically include the date and time of creation in the name of a DAR archive.
+    <a href="features.html" title="Features">(back
+to top)</a></p>
+
+
+  </dd>
+
+
+</dl>
+
+</div>
+
+</div>
+
+<table class="bottom-nav" width="100%">
+
+  <tbody>
+
+    <tr>
+
+      <td class="navLeft" align="left" valign="top" width="33%"></td>
+
+      <td class="navCenter" align="center" valign="top" width="34%"><a href="index.html">Home</a></td>
+
+
+      <td class="navRight" align="right" valign="top" width="33%"><a href="features.html">Next</a></td>
+
+
+    </tr>
+
+
+    <tr>
+
+
+      <td class="navLeft" align="left" width="33%">template
+      </td>
+
+
+      <td class="navCenter" align="center" width="34%"><a href="index.html">Up</a></td>
+
+
+      <td class="navRight" align="right" width="33%">
+template</td>
+
+
+    </tr>
+
+
+  
+  </tbody>
+</table>
+
+
+</div>
+
+
+</body>
+</html>
