@@ -154,6 +154,7 @@ rsCptResolveConflict = 'Resolve conflict';
 rsOverwriteExistingArc = 'Overwrite existing archive?';
 rsErrInvalidArchiveName = 'Invalid archive name';
 rsErrInvalidDirectory = 'Invalid directory';
+rsErrRefArchiveNotFound = 'Reference archive not found';
 rsErrCompressionLevelMust = 'Compression level must be between 0 and 9';
 rsErrInvalidFileSize = 'Invalid number for file size';
 rsUseBzip2Compression = 'use bzip2 compression';

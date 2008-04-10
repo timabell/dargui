@@ -1,5 +1,3 @@
-{ This is an automatically generated lazarus resource file }
-
 LazarusResources.Add('TArchiveForm','FORMDATA',[
   'TPF0'#12'TArchiveForm'#11'ArchiveForm'#4'Left'#3#197#1#6'Height'#3#220#1#3'T'
   +'op'#3'&'#1#5'Width'#3'}'#2#18'HorzScrollBar.Page'#3'|'#2#18'VertScrollBar.P'

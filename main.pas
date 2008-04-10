@@ -232,6 +232,7 @@ var
   Command: string;
   x: integer;
   archivename: String;
+  referencearchive: String;
 
   procedure AddCompressionOptions;
   var
@@ -347,9 +348,13 @@ begin
           if ArchiveForm.PauseCheck.Checked then
              BatchFile.Add ( rsPauseBetween + #10 + '--pause ' + #10 ) ;
         end;
+     referencearchive := '';
+     if ArchiveForm.DiffFileCheck.Checked
+        then referencearchive := ' -A ' + TrimToBase( ArchiveForm.DiffReference.Text );
 
      Command := DAR_EXECUTABLE + ' -c "' + ArchiveForm.ArchiveDirectory.Text
                             + archivename + '"'
+                            + referencearchive
                             + ' -B "' + ArchiveForm.BatchFile.Text + '"'
                             + ' -v'
                             //+ ' -e' // for debugging

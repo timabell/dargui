@@ -553,6 +553,14 @@ begin
        Result := false;
        exit;
      end;
+  if DiffFileCheck.Checked
+     then if not FileExists(DiffReference.Text) then
+           begin
+             ShowMessage ( rsErrRefArchiveNotFound ) ;
+             DiffReference.SetFocus;
+             Result := false;
+             exit;
+           end;
   if CompLwrLimitCombo.ItemIndex< 0 then CompLwrLimitCombo.ItemIndex := 0;
   for x := 0 to IncludeDirectories.Count-1 do
       if IncludeDirectories.Items[x] = BaseDirectory.Text
