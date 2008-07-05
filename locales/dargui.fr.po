@@ -1,0 +1,590 @@
+# translation of dargui.po to French
+# Header entry was created by KBabel!
+#
+#: dgstrconst:rserrdarnotfound
+# Malcolm Poole <mgpoole@users.sourceforge.net>, 2008.
+msgid ""
+msgstr ""
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Mime-Version: 1.0"
+"Last-Translator: Malcolm Poole <mgpoole@users.sourceforge.net>\n"
+"PO-Revision-Date: 2008-04-05 21:05+0100\n"
+"Project-Id-Version: dargui\n"
+"Language-Team: French\n"
+"X-Generator: KBabel 1.11.4\n"
+"MIME-Version: 1.0\n"
+
+#: dgstrconst:rserrdarnotfound
+msgid "Unable to locate dar executable: nothing will work!"
+msgstr "Impossible de localiser l'executable dar : rien de fonctionnera!"
+
+#: dgstrconst:rserrrestoreaborted
+msgid "Operation aborted: Restore selected files"
+msgstr "Opération annulée: Restauration des fichiers sélectionnés"
+
+#: dgstrconst:rserrnofilesselected
+msgid "Error: no files were selected"
+msgstr "Erreur: aucun fichier sélectionné"
+
+#: dgstrconst:rserrnoxterm
+msgid "Unable to find xterm: some features disabled"
+msgstr "xterm non trouvé: des options sont désactivés"
+
+#: dgstrconst:rserrnobash
+msgid "Unable to find bash: some features disabled"
+msgstr "bash non trouvé:  des options sont désactivés"
+
+#: dgstrconst:rserrnoxtermbash
+msgid "Unable to find xterm or bash: some features disabled"
+msgstr "xterm ou bash non trouvés: des options sont désactivés"
+
+#: dgstrconst:rsnotcompressthese
+msgid "# Do not compress these files"
+msgstr "# Ne pas compresser ces fichiers"
+
+#: dgstrconst:rsnotcompresssmaller
+msgid "# Do not compress files smaller than this"
+msgstr "# Ne pas compresser les fichiers plus petit que ça"
+
+#: dgstrconst:rsdarbatchfile
+msgid "# DAR batch file written by DarGUI"
+msgstr "# Fichier script DAR écrit par DarGUI"
+
+#: dgstrconst:rsdryrun
+#, fuzzy
+msgid "# Dry run: this archive will not be written to file unless the next option is removed"
+msgstr "# Phase Test: cette archive ne sera pas enregistrée tant que l'option suivante est inactive"
+
+#: dgstrconst:rsincdirectories
+msgid "# Directories to include in archive"
+msgstr "# Répertoires à inclure dans l'archive"
+
+#: dgstrconst:rsincfiles
+msgid "# Files to include in archive"
+msgstr "# Fichiers à inclure dans l'archive"
+
+#: dgstrconst:rsexcldirectories
+msgid "# Directories to exclude from archive"
+msgstr "# Répertoires à exclure de l'archive"
+
+#: dgstrconst:rsexclfiles
+msgid "# Files to exclude from archive"
+msgstr "# Fichiers à exclure de l'archive"
+
+#: dgstrconst:rsusegzipcompr
+msgid "# Use gzip compression"
+msgstr "# Utiliser la compression gzip"
+
+#: dgstrconst:rsusebzip2comp
+msgid "# Use bzip2 compression"
+msgstr "# Utiliser la compression bzip2"
+
+#: dgstrconst:rsnotreaddarcfg
+msgid "# Do not read DAR configuration files (~/.darrc or /etc/darrc)"
+msgstr "# Ne pas lire les fichiers de configuration de DAR (~/.darrc or /etc/darrc)"
+
+#: dgstrconst:rspreservedirs
+msgid "# Preserve ignored directory names"
+msgstr "# Préserve les noms de répertoire ignorés"
+
+#: dgstrconst:rscreateslices
+msgid "# Create slices of size in Mb"
+msgstr "# Cration de segments de taille en Mb""
+
+#: dgstrconst:rspausebetween
+msgid "# Pause between slices"
+msgstr "# Pause entre les segments"
+
+#: dgstrconst:rsfilestorestore
+msgid "# Files to restore"
+msgstr "# Fichiers à restaurer"
+
+#: dgstrconst:rscptcreatingarchive
+msgid "creating archive..."
+msgstr "création de l'archive..."
+
+#: dgstrconst:rsstatusnodeselect
+msgid " %s node(s) selected"
+msgstr " %s noeud(s) sélectionné(s)"
+
+#: dgstrconst:rsinformationf
+msgid "Information for archive: %s"
+msgstr "Information de l'archive: %s"
+
+#: dgstrconst:rsinfoformlocation
+msgid "Location: %s"
+msgstr "Localisation: %s"
+
+#: dgstrconst:rsaboutnodar
+msgid "* No DAR executable found! *"
+msgstr "L'executable DAR n'a pas été trouvé!"
+
+#: dgstrconst:rsaboutdarversion
+msgid "Using DAR version %s"
+msgstr "Utilisation de DAR version %s"
+
+#: dgstrconst:rscptisolating
+msgid "DarGUI: Isolating catalogue..."
+msgstr "DarGUI: Séparation du catalogue..."
+
+#: dgstrconst:rscptrestorenodes
+msgid "Restore %s nodes..."
+msgstr "Restaurer %s les noeuds... "
+
+#: dgstrconst:rscptrestoringfiles
+msgid "restoring files..."
+msgstr "restauration de fichiers..."
+
+#: dgstrconst:rscptrestoreselected
+msgid "Restore selected files"
+msgstr "Restaurer les fichiers sélectionnés"
+
+#: dgstrconst:rscptdarguicheckingarchive
+msgid "DarGUI: checking archive integrity..."
+msgstr "DarGUI: contrôle de l'intégrité de l'archive..."
+
+#: dgstrconst:rsopenexisting
+msgid "Open existing archive"
+msgstr "Ouvrir une archive existante"
+
+#: dgstrconst:rsfilterdararchives
+msgid "DAR archives"
+msgstr "Archives DAR"
+
+#: dgstrconst:rsfcptselectbyfilter
+msgid "Select using filters..."
+msgstr "Sélection avec filtres..."
+
+#: dgstrconst:rsbuttonadd
+msgid "Add"
+msgstr "Ajouter"
+
+#: dgstrconst:rsnewarchive
+msgid "New archive"
+msgstr "Nouvelle archive"
+
+#: dgstrconst:rsbuttoncancel
+msgid "Cancel"
+msgstr "Annuler"
+
+#: dgstrconst:rssourcearchive
+msgid "Source archive"
+msgstr "Archive source"
+
+#: dgstrconst:rssavecatalogueas
+msgid "Save catalogue as"
+msgstr "Enregistrer le catalogue sous"
+
+#: dgstrconst:rsbuttonbrowse
+msgid "Browse"
+msgstr "Parcourir..."
+
+#: dgstrconst:rsbuttonaddfile
+msgid "Add file"
+msgstr "Ajouter un fichier"
+
+#: dgstrconst:rsmessunabletofind1dar
+msgid "Unable to find %s.1.dar"
+msgstr "%s.1.dar non trouvé"
+
+#: dgstrconst:rserrerrornotfound
+msgid "Error: %s not found"
+msgstr "Erreur: %s non trouvé"
+
+#: dgstrconst:rscptcomparingfiles
+msgid "comparing files..."
+msgstr "Comparaison des fichiers..."
+
+#: dgstrconst:rsinodescheckeddiffere
+msgid "%s inodes checked : %s differences found"
+msgstr "%s contrôle des inodes : %s des différences ont été trouvées"
+
+#: dgstrconst:rsmessnostatisticsavailabl
+msgid "No statistics available - operation aborted?"
+msgstr "Pas de statistique disponible - annuler l'opération?"
+
+#: dgstrconst:rsbuttonremove
+msgid "Remove"
+msgstr "Retirer"
+
+#: dgstrconst:rsarchivebasename
+msgid "Archive base name"
+msgstr "Nom de base de l'Archive"
+
+#: dgstrconst:rsbuttonclear
+msgid "Clear"
+msgstr "Effacer"
+
+#: dgstrconst:rsbuttonok
+msgid "OK"
+msgstr "OK"
+
+#: dgstrconst:rsbuttonclose
+msgid "Close"
+msgstr "Fermer"
+
+#: dgstrconst:rscptisolatearchivecatalo
+msgid "Isolate archive catalogue"
+msgstr "Isoler le catalogue de l'archive"
+
+#: dgstrconst:rsmenuselectbyfilter
+msgid "Select by Filter"
+msgstr "Sélectionner par Filtre"
+
+#: dgstrconst:rsmenutoggleselect
+msgid "Toggle Selection"
+msgstr "Inverser la sélection"
+
+#: dgstrconst:rsmenushowtoolbar
+msgid "Show Toolbar"
+msgstr "Afficher la barre d'outils"
+
+#: dgstrconst:rsmenuopenrecent
+msgid "Open Recent..."
+msgstr "Fichiers récents... "
+
+#: dgstrconst:rsmenudardocumentation
+msgid "Dar Documentation"
+msgstr "Documentation Dar"
+
+#: dgstrconst:rshintcomparearchivefile
+msgid "Compare archive and filesystem"
+msgstr "Comparer l'archive à un répertoire"
+
+#: dgstrconst:rshintopenanarchive
+msgid "Open an archive"
+msgstr "Ouvrir une archive"
+
+#: dgstrconst:rshintcreateanewarchive
+msgid "Create a new archive"
+msgstr "Créer une nouvelle archive"
+
+#: dgstrconst:rshintisolatecatalogue
+msgid "Isolate catalogue from archive"
+msgstr "Isoler le catalogue de l'archive"
+
+#: dgstrconst:rsmenuhelp
+msgid "Help"
+msgstr "Aide"
+
+#: dgstrconst:rsmenuhelpabout
+msgid "About DarGUI"
+msgstr "A propos de DARGUI"
+
+#: dgstrconst:rsmenuisolatecatalogue
+msgid "Isolate Catalogue"
+msgstr "Isoler le Catalogue"
+
+#: dgstrconst:rsmenuoperationlogs
+msgid "Operation Logs"
+msgstr "Journal des Opérations"
+
+#: dgstrconst:rsmenucheckintegrity
+msgid "Check Integrity"
+msgstr "Contrôler l'intégrité"
+
+#: dgstrconst:rsmenuinformation
+msgid "Information"
+msgstr "Informations"
+
+#: dgstrconst:rsmenuoptions
+msgid "Options"
+msgstr "Options"
+
+#: dgstrconst:rsmenufile
+msgid "File"
+msgstr "Fichier"
+
+#: dgstrconst:rscolfilename
+msgid "File"
+msgstr "Fichier"
+
+#: dgstrconst:rsmenuarchive
+msgid "Archive"
+msgstr "Archive"
+
+#: dgstrconst:rsmenurestoreselected
+msgid "Restore Selected"
+msgstr "Restorer la Sélection"
+
+#: dgstrconst:rsmenurestoreall
+msgid "Restore All"
+msgstr "Restorer Tout"
+
+#: dgstrconst:rsmenuexit
+msgid "Exit"
+msgstr "Quitter"
+
+#: dgstrconst:rsmenuhideall
+msgid "Hide All"
+msgstr "Cacher tous"
+
+#: dgstrconst:rsmenushowall
+msgid "Show All"
+msgstr "Afficher Tout"
+
+#: dgstrconst:rsmenunew
+msgid "New"
+msgstr "Nouveau"
+
+#: dgstrconst:rsmenuopen
+msgid "Open"
+msgstr "Ouvrir"
+
+#: dgstrconst:rsmenushowselected
+msgid "Show Selected"
+msgstr "Afficher la Sélection"
+
+#: dgstrconst:rscoldate
+msgid "Date"
+msgstr "Date"
+
+#: dgstrconst:rscolsize
+msgid "Size"
+msgstr "Taille"
+
+#: dgstrconst:rscoluser
+msgid "User"
+msgstr "Utilisateur"
+
+#: dgstrconst:rscolgroup
+msgid "Group"
+msgstr "Groupe"
+
+#: dgstrconst:rscolstatus
+msgid "Status"
+msgstr "Etat"
+
+#: dgstrconst:rsdirectoriesareexcluded
+msgid "These directories are already selected to be excluded from the archive. %sDo you really want to include them?"
+msgstr "Ces répertoires ont déjà été sélectionnés pour être exclus de l'archive.%s Voulez-vous vraiment les y inclure?"
+
+#: dgstrconst:rsbuttonaddmask
+msgid "Add mask"
+msgstr "Ajouter masque"
+
+#: dgstrconst:rsdirectoriesareincluded
+msgid "These directories are already selected to be included in the archive.%sDo you really want to exclude them?"
+msgstr "Ces répertoires ont déjà été sélectionnés pour être inclus dans l'archive.%s Voulez-vous vraiment les y exclure?"
+
+#: dgstrconst:rsfilesalreadyexcluded
+msgid "These files are already selected to be excluded from the archive.%sDo you really want to include them?"
+msgstr "Ces fichiers ont déjà été sélectionnés pour être exclus de l'archive.%s Voulez-vous vraiment les y inclure?"
+
+#: dgstrconst:rsfilesalreadyincluded
+msgid "These files are already selected to be included in the archive.%sDo you really want to exclude them?"
+msgstr "Ces fichiers ont déjà été sélectionnés pour être inclus dans l'archive.%s Voulez-vous vraiment les y exclure?"
+
+#: dgstrconst:rscptresolveconflict
+msgid "Resolve conflict"
+msgstr "Resoudre les conflits"
+
+#: dgstrconst:rsoverwriteexistingarc
+msgid "Overwrite existing archive?"
+msgstr "Ecraser l'archive existante?"
+
+#: dgstrconst:rserrcompressionlevelmust
+msgid "Compression level must be between 0 and 9"
+msgstr "Le niveau de compression doit être entre 0 et 9"
+
+#: dgstrconst:rserrinvalidfilesize
+msgid "Invalid number for file size"
+msgstr "Nombre invalide pour la taille du fichier"
+
+#: dgstrconst:rsusebzip2compression
+msgid "use bzip2 compression"
+msgstr "utilisation de la compression bzip2"
+
+#: dgstrconst:rsslicesize
+msgid "Slice size"
+msgstr "Taille des segments"
+
+#: dgstrconst:rsmb
+msgid "Mb"
+msgstr "Mb"
+
+#: dgstrconst:rsuseslices
+msgid "Use slices"
+msgstr "Utilier la segmentation"
+
+#: dgstrconst:rssavescriptas
+msgid "Save script as"
+msgstr "Sauver le script sous"
+
+#: dgstrconst:rspausebetweenslices
+msgid "Pause between slices"
+msgstr "Pause entre les segments"
+
+#: dgstrconst:rsbatchfile
+msgid "Batch file"
+msgstr "Fichier script"
+
+#: dgstrconst:rspreservedirectories
+msgid "Preserve directories"
+msgstr "Preserver les répertoires"
+
+#: dgstrconst:rstestrunonly
+msgid "Test run only"
+msgstr "Test de marche uniquement"
+
+#: dgstrconst:rscompression
+msgid "Compression"
+msgstr "Compression"
+
+#: dgstrconst:rsdonotcompress
+msgid " Do not compress ... "
+msgstr "Ne pas compresser..."
+
+#: dgstrconst:rscompressiontype
+msgid " Compression type "
+msgstr "Type de Compression"
+
+#: dgstrconst:rsusegzipcompression
+msgid "use gzip compression"
+msgstr "Utiliser la compression gzip"
+
+#: dgstrconst:rscompressionlevel
+msgid "Compression level"
+msgstr "Niveau de Compression"
+
+#: dgstrconst:rslowersizelimitforcom
+msgid "Lower size limit for compression:"
+msgstr "Taille limite basse pour la compression:"
+
+#: dgstrconst:rsattempttoreaddarconf
+msgid "Attempt to read DAR configuration files"
+msgstr "Tentative de lecture des fichiers de configuration de DAR"
+
+#: dgstrconst:rssavearchivein
+msgid "Save archive in"
+msgstr "Enregistrer l'archive sous"
+
+#: dgstrconst:rsincludedirectories
+msgid "Include directories:"
+msgstr "Inclure les répertoires:"
+
+#: dgstrconst:rsexcludedirectories
+msgid "Exclude directories"
+msgstr "Exclure les répertoires:"
+
+#: dgstrconst:rsincludefiles
+msgid "Include files:"
+msgstr "Inclure les fichiers"
+
+#: dgstrconst:rsexcludefiles
+msgid "Exclude files:"
+msgstr "Exclure les fichiers:"
+
+#: dgstrconst:rsselectfile
+msgid "Select file"
+msgstr "Choisir un fichier"
+
+#: dgstrconst:rsoptions
+msgid "Options"
+msgstr "Options"
+
+#: dgstrconst:rsdirectories
+msgid "Directories"
+msgstr "Répertoires"
+
+#: dgstrconst:rsfiles
+msgid "Files"
+msgstr "Fichiers"
+
+#: dgstrconst:rsmatchallfilters
+msgid "Match all filters"
+msgstr "Grouper tous les filtres"
+
+#: dgstrconst:rsapplyfilterstofilena
+msgid "Apply filters to filenames only"
+msgstr "Appliquer des filtres aux noms de fichiers seulement"
+
+#: dgstrconst:rscptaddfilter
+msgid "Add filter"
+msgstr "Ajouter un filtre"
+
+#: dgstrconst:rsfilemask
+msgid "File mask"
+msgstr "Masque fichier"
+
+#: dgstrconst:rscommands
+msgid "Commands"
+msgstr "Commandes"
+
+#: dgstrconst:rscptrepeatingaction
+msgid "Repeating action..."
+msgstr "Action répétée..."
+
+#: dgstrconst:rsrestorefilesto
+msgid "Restore files to"
+msgstr "Restaurer fichiers à"
+
+#: dgstrconst:rsignoredirectories
+msgid "Ignore directories"
+msgstr "Ignorer les répertoires"
+
+#: dgstrconst:rsoverwriteexistingfil
+msgid "Overwrite existing files"
+msgstr "Ecraser les fichiers existants"
+
+#: dgstrconst:rsmessdirectorynotfound
+msgid "Destination directory not found"
+msgstr "Répertoire de destination non trouvé"
+
+#: dgstrconst:rsmessinvaliddestinationdir
+msgid "Invalid destination directory"
+msgstr "Répertoire de destination invalide"
+
+#: dgstrconst:rsarchive
+msgid "Archive"
+msgstr "Archive"
+
+#: dgstrconst:rsbasedirectory
+msgid "Base directory"
+msgstr "Répertoire de base"
+
+#: dgstrconst:rsmessbusy
+msgid " BUSY..."
+msgstr " TRAVAILLANT..."
+
+#: dgstrconst:rserrunabletofindarchive
+msgid "Unable to find archive"
+msgstr "Impossible de trouver l'archive"
+
+#: dgstrconst:rserrunabletoopenarchive
+msgid "Unable to open archive"
+msgstr "Impossible d'ouvrir l'archive"
+
+#: dgstrconst:rsconfirmbeforeoverwri
+msgid "Confirm before overwriting"
+msgstr "Confirmer avant écrasement"
+
+#: dgstrconst:rsdonotoverwritefiles
+msgid "Do not overwrite files"
+msgstr "Ne pas écraser les fichiers"
+
+#: dgstrconst:rscptaddfilemask
+msgid "Add file mask"
+msgstr "Ajouter un masque fichier"
+
+#: dgstrconst:rsyes
+msgid "Yes"
+msgstr "Oui"
+
+#: dgstrconst:rsno
+msgid "No"
+msgstr "Non"
+
+#: dgstrconst:rsmessinvalidarchivename
+msgid "Invalid archive name"
+msgstr "Nom d'archive invalide"
+
+#: dgstrconst:rsmessinvalidcataloguename
+msgid "Invalid catalogue name"
+msgstr "Nom de catalogue invalide"
+
+#: dgstrconst:rsmessunabletofindarchive
+msgid "Unable to find archive '%s'"
+msgstr "Impossible de trouver l'archivre '%s'"
+
