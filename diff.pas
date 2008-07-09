@@ -38,6 +38,7 @@ type
     procedure OKButtonClick ( Sender: TObject ) ;
     procedure ResultListBoxDrawItem ( Control: TWinControl; Index: Integer;
       ARect: TRect; State: TOwnerDrawState ) ;
+    procedure InitialiseInterface;
   private
     { private declarations }
   public
@@ -72,12 +73,8 @@ end;
 
 procedure TDiffForm.FormCreate ( Sender: TObject ) ;
 begin
-  Caption := rsHintCompareArchiveFile;
-  ArchiveBox.EditLabel.Caption := rsArchive;
-  BaseDirBox.EditLabel.Caption := rsBaseDirectory;
-  BrowseArchive.Caption := rsButtonBrowse;
-  BrowseDirectory.Caption := rsButtonBrowse;
-   ResultListBox.Style := lbOwnerDrawFixed;
+  InitialiseInterface;
+  ResultListBox.Style := lbOwnerDrawFixed;
 end;
 
 procedure TDiffForm.FormResize ( Sender: TObject ) ;
@@ -201,6 +198,21 @@ begin
       Canvas.TextRect(ARect, ARect.Left+2 + Glyph.Width, ARect.Top+2, aFile);
     end;
   Glyph.Free;
+end;
+
+procedure TDiffForm.InitialiseInterface;
+begin
+  Self.Caption := rsHintCompareArchiveFile;
+  OpenDialog.Title := rsSelectFile;
+  ResultsLabel.Caption := rsResults;
+  CloseButton.Caption := rsButtonClose;
+  OKButton.Caption := rsButtonOK;
+  CancelButton.Caption := rsButtonCancel;
+  BrowseArchive.Caption := rsButtonBrowse;
+  BrowseDirectory.Caption := rsButtonBrowse;
+  VerboseCheck.Caption := rsVerboseOutput;
+  BaseDirBox.EditLabel.Caption := rsBaseDirectory;
+  ArchiveBox.EditLabel.Caption := rsArchive;
 end;
 
 

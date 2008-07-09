@@ -99,6 +99,7 @@ rsButtonRemove = 'Remove';
 rsArchiveBaseName = 'Archive base name';
 rsButtonClear = 'Clear';
 rsButtonOK = 'OK';
+rsCreateArchiveImmedia = 'Create archive immediately';
 rsButtonClose = 'Close';
 
 //IsloateForm
@@ -116,6 +117,12 @@ rsHintCreateANewArchive = 'Create a new archive';
 rsHintIsolateCatalogue = 'Isolate catalogue from archive';
 rsMenuHelp = 'Help';
 rsMenuHelpAbout = 'About DarGUI';
+rsVersionNumber = 'Version number: %s';
+rsSVNRevision = 'SVN Revision: %s';
+rsAuthor = 'Author: %s';
+rsLicenceGPL = 'Licence: GPL';
+rsDarGUIHasBeenDevelop = 'DarGUI has been developed using Freepascal and the '
+  +'Lazarus IDE';
 rsMenuIsolateCatalogue = 'Isolate Catalogue';
 rsMenuOperationLogs = 'Operation Logs';
 rsMenuCheckIntegrity = 'Check Integrity';
@@ -182,6 +189,7 @@ rsSelectFile = 'Select file';
 rsOptions = 'Options';
 rsDirectories = 'Directories';
 rsFiles = 'Files';
+rsScheduling = 'Scheduling';
 rsIncludeTimeInName = 'Add timestamp to name';
 rsDifferentialBackup = 'Differential backup';
 rsReferenceArchive = 'Reference archive';
@@ -202,12 +210,15 @@ rsCptRepeatingAction = 'Repeating action...';
 rsRestoreFilesTo = 'Restore files to';
 rsIgnoreDirectories = 'Ignore directories';
 rsOverwriteExistingFil = 'Overwrite existing files';
+rsExistingFiles = 'Existing files';
 rsMessDirectoryNotFound = 'Destination directory not found';
 rsMessInvalidDestinationDir = 'Invalid destination directory';
 
 //DiffForm
 rsArchive = 'Archive';
 rsBaseDirectory = 'Base directory';
+rsResults = 'Results';
+rsVerboseOutput = 'Verbose output';
 
 // Messages
 rsMessBUSY = ' BUSY...';

@@ -14,15 +14,16 @@ type
 
   TAboutForm = class ( TForm )
     Bevel1: TBevel;
-    BitBtn1: TBitBtn;
+    OKButton: TBitBtn;
     Image1: TImage;
     VersionLabel: TLabel;
     SVNLabel: TLabel;
-    Label3: TLabel;
-    Label4: TLabel;
-    Label5: TLabel;
+    GPLLabel: TLabel;
+    AuthorLabel: TLabel;
+    DevInfoLabel: TLabel;
     DarVersionLabel: TLabel;
     HotLabel1: TLabel;
+    procedure FormCreate ( Sender: TObject ) ;
     procedure HotLabel1Click ( Sender: TObject ) ;
   private
     { private declarations }
@@ -35,7 +36,7 @@ implementation
 
 { TAboutForm }
 
-uses Process, darintf;
+uses Process, darintf, dgStrConst;
 
 
 
@@ -55,6 +56,17 @@ begin
        Proc.CommandLine := B + #32 + TLabel(Sender).Caption;
        Proc.Execute;
      end;
+end;
+
+procedure TAboutForm.FormCreate ( Sender: TObject ) ;
+begin
+  Caption := rsMenuHelpAbout;
+  VersionLabel.Caption := rsVersionNumber;
+  SVNLabel.Caption := rsSVNRevision;
+  AuthorLabel.Caption := Format ( rsAuthor, [ 'Malcolm Poole' ] ) ;
+  GPLLabel.Caption := rsLicenceGPL;
+  DevInfoLabel.Caption := rsDarGUIHasBeenDevelop;
+  OKButton.Caption := rsButtonOK;
 end;
 
 initialization

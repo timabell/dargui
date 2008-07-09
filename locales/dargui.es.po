@@ -1,4 +1,4 @@
-# translation of dargui.es.po to French
+# translation of dargui.pot to Spanish
 # Header entry was created by KBabel!
 #
 # Malcolm Poole <mgpoole@users.sourceforge.net>, 2008.
@@ -13,6 +13,82 @@ msgstr ""
 "X-Generator: KBabel 1.11.4\n"
 "MIME-Version: 1.0\n"
 "Last-Translator: Malcolm Poole <mgpoole@users.sourceforge.net>\n"
+
+#: dgstrconst:rsjan
+msgid "Jan"
+msgstr "ene"
+
+#: dgstrconst:rsfeb
+msgid "Feb"
+msgstr "feb"
+
+#: dgstrconst:rsmar
+msgid "Mar"
+msgstr "mar"
+
+#: dgstrconst:rsapr
+msgid "Apr"
+msgstr "abr"
+
+#: dgstrconst:rsmay
+msgid "May"
+msgstr "may"
+
+#: dgstrconst:rsjun
+msgid "Jun"
+msgstr "jun"
+
+#: dgstrconst:rsjul
+msgid "Jul"
+msgstr "jul"
+
+#: dgstrconst:rsaug
+msgid "Aug"
+msgstr "ago"
+
+#: dgstrconst:rssep
+msgid "Sep"
+msgstr "sep"
+
+#: dgstrconst:rsoct
+msgid "Oct"
+msgstr "oct"
+
+#: dgstrconst:rsnov
+msgid "Nov"
+msgstr "nov"
+
+#: dgstrconst:rsdec
+msgid "Dec"
+msgstr "dic"
+
+#: dgstrconst:rsmon
+msgid "Mon"
+msgstr "lun"
+
+#: dgstrconst:rstue
+msgid "Tue"
+msgstr "mar"
+
+#: dgstrconst:rswed
+msgid "Wed"
+msgstr "mie"
+
+#: dgstrconst:rsthu
+msgid "Thu"
+msgstr "jue"
+
+#: dgstrconst:rsfri
+msgid "Fri"
+msgstr "vie"
+
+#: dgstrconst:rssat
+msgid "Sat"
+msgstr "sáb"
+
+#: dgstrconst:rssun
+msgid "Sun"
+msgstr "dom"
 
 #: dgstrconst:rserrdarnotfound
 msgid "Unable to locate dar executable: nothing will work!"
@@ -150,6 +226,10 @@ msgstr "Abrir archivo existiendo"
 msgid "DAR archives"
 msgstr "Ficheros DAR"
 
+#: dgstrconst:rsselectreferencearch
+msgid "Select reference archive"
+msgstr "Seleccionar archivo de referencia"
+
 #: dgstrconst:rsfcptselectbyfilter
 msgid "Select using filters..."
 msgstr "Seleccionar mediante filtros..."
@@ -161,6 +241,10 @@ msgstr "Añadir"
 #: dgstrconst:rsnewarchive
 msgid "New archive"
 msgstr "Copia nueva"
+
+#: dgstrconst:rserrdatecannotbeinpast
+msgid "Date cannot be in the past"
+msgstr "La fecha debe estar en el futuro"
 
 #: dgstrconst:rsbuttoncancel
 msgid "Cancel"
@@ -218,6 +302,10 @@ msgstr "Limpiar"
 msgid "OK"
 msgstr "Aceptar"
 
+#: dgstrconst:rscreatearchiveimmedia
+msgid "Create archive immediately"
+msgstr ""
+
 #: dgstrconst:rsbuttonclose
 msgid "Close"
 msgstr "Cerrar"
@@ -269,6 +357,26 @@ msgstr "Ayuda"
 #: dgstrconst:rsmenuhelpabout
 msgid "About DarGUI"
 msgstr "Acerca de DarGUI"
+
+#: dgstrconst:rsversionnumber
+msgid "Version number: %s"
+msgstr ""
+
+#: dgstrconst:rssvnrevision
+msgid "SVN Revision: %s"
+msgstr ""
+
+#: dgstrconst:rsauthor
+msgid "Author: %s"
+msgstr ""
+
+#: dgstrconst:rslicencegpl
+msgid "Licence: GPL"
+msgstr ""
+
+#: dgstrconst:rsdarguihasbeendevelop
+msgid "DarGUI has been developed using Freepascal and the Lazarus IDE"
+msgstr ""
 
 #: dgstrconst:rsmenuisolatecatalogue
 msgid "Isolate Catalogue"
@@ -338,6 +446,30 @@ msgstr "Ver Selección"
 msgid "Date"
 msgstr "Fecha"
 
+#: dgstrconst:rshour
+msgid "Hour"
+msgstr "Hora"
+
+#: dgstrconst:rsminutes
+msgid "Minutes"
+msgstr "Minutos"
+
+#: dgstrconst:rsdayofweek
+msgid "Day of week"
+msgstr "Día de la semana"
+
+#: dgstrconst:rsdayinmonth
+msgid "Day"
+msgstr "Día"
+
+#: dgstrconst:rsmonth
+msgid "Month"
+msgstr "Mes"
+
+#: dgstrconst:rscptselectdate
+msgid "Select date"
+msgstr "Seleccionar fecha"
+
 #: dgstrconst:rscolsize
 msgid "Size"
 msgstr "Tamaño"
@@ -381,6 +513,18 @@ msgstr "Resolver conflicto"
 #: dgstrconst:rsoverwriteexistingarc
 msgid "Overwrite existing archive?"
 msgstr "¿Sobreescribir copia existiendo?"
+
+#: dgstrconst:rserrinvalidarchivename
+msgid "Invalid archive name"
+msgstr "Nombre de archivo inválido"
+
+#: dgstrconst:rserrinvaliddirectory
+msgid "Invalid directory"
+msgstr "Directorio inválido"
+
+#: dgstrconst:rserrrefarchivenotfound
+msgid "Reference archive not found"
+msgstr "No se ha localizado el archivo de referencia"
 
 #: dgstrconst:rserrcompressionlevelmust
 msgid "Compression level must be between 0 and 9"
@@ -490,6 +634,22 @@ msgstr "Directorios"
 msgid "Files"
 msgstr "Ficheros"
 
+#: dgstrconst:rsscheduling
+msgid "Scheduling"
+msgstr ""
+
+#: dgstrconst:rsincludetimeinname
+msgid "Add timestamp to name"
+msgstr ""
+
+#: dgstrconst:rsdifferentialbackup
+msgid "Differential backup"
+msgstr ""
+
+#: dgstrconst:rsreferencearchive
+msgid "Reference archive"
+msgstr ""
+
 #: dgstrconst:rsmatchallfilters
 msgid "Match all filters"
 msgstr "Aplicar todos los filtros"
@@ -526,6 +686,10 @@ msgstr "Ignorar directorios"
 msgid "Overwrite existing files"
 msgstr "Sobreescribir ficheros existiendos"
 
+#: dgstrconst:rsexistingfiles
+msgid "Existing files"
+msgstr ""
+
 #: dgstrconst:rsmessdirectorynotfound
 msgid "Destination directory not found"
 msgstr "Directorio de destino no encontrado"
@@ -541,6 +705,14 @@ msgstr "Copia"
 #: dgstrconst:rsbasedirectory
 msgid "Base directory"
 msgstr "Directorio raíz"
+
+#: dgstrconst:rsresults
+msgid "Results"
+msgstr "Resultado"
+
+#: dgstrconst:rsverboseoutput
+msgid "Verbose output"
+msgstr ""
 
 #: dgstrconst:rsmessbusy
 msgid "BUSY..."

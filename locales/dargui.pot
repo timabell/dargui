@@ -1,3 +1,79 @@
+#: dgstrconst:rsjan
+msgid "Jan"
+msgstr ""
+
+#: dgstrconst:rsfeb
+msgid "Feb"
+msgstr ""
+
+#: dgstrconst:rsmar
+msgid "Mar"
+msgstr ""
+
+#: dgstrconst:rsapr
+msgid "Apr"
+msgstr ""
+
+#: dgstrconst:rsmay
+msgid "May"
+msgstr ""
+
+#: dgstrconst:rsjun
+msgid "Jun"
+msgstr ""
+
+#: dgstrconst:rsjul
+msgid "Jul"
+msgstr ""
+
+#: dgstrconst:rsaug
+msgid "Aug"
+msgstr ""
+
+#: dgstrconst:rssep
+msgid "Sep"
+msgstr ""
+
+#: dgstrconst:rsoct
+msgid "Oct"
+msgstr ""
+
+#: dgstrconst:rsnov
+msgid "Nov"
+msgstr ""
+
+#: dgstrconst:rsdec
+msgid "Dec"
+msgstr ""
+
+#: dgstrconst:rsmon
+msgid "Mon"
+msgstr ""
+
+#: dgstrconst:rstue
+msgid "Tue"
+msgstr ""
+
+#: dgstrconst:rswed
+msgid "Wed"
+msgstr ""
+
+#: dgstrconst:rsthu
+msgid "Thu"
+msgstr ""
+
+#: dgstrconst:rsfri
+msgid "Fri"
+msgstr ""
+
+#: dgstrconst:rssat
+msgid "Sat"
+msgstr ""
+
+#: dgstrconst:rssun
+msgid "Sun"
+msgstr ""
+
 #: dgstrconst:rserrdarnotfound
 msgid "Unable to locate dar executable: nothing will work!"
 msgstr ""
@@ -134,6 +210,10 @@ msgstr ""
 msgid "DAR archives"
 msgstr ""
 
+#: dgstrconst:rsselectreferencearch
+msgid "Select reference archive"
+msgstr ""
+
 #: dgstrconst:rsfcptselectbyfilter
 msgid "Select using filters..."
 msgstr ""
@@ -144,6 +224,10 @@ msgstr ""
 
 #: dgstrconst:rsnewarchive
 msgid "New archive"
+msgstr ""
+
+#: dgstrconst:rserrdatecannotbeinpast
+msgid "Date cannot be in the past"
 msgstr ""
 
 #: dgstrconst:rsbuttoncancel
@@ -202,6 +286,10 @@ msgstr ""
 msgid "OK"
 msgstr ""
 
+#: dgstrconst:rscreatearchiveimmedia
+msgid "Create archive immediately"
+msgstr ""
+
 #: dgstrconst:rsbuttonclose
 msgid "Close"
 msgstr ""
@@ -252,6 +340,26 @@ msgstr ""
 
 #: dgstrconst:rsmenuhelpabout
 msgid "About DarGUI"
+msgstr ""
+
+#: dgstrconst:rsversionnumber
+msgid "Version number: %s"
+msgstr ""
+
+#: dgstrconst:rssvnrevision
+msgid "SVN Revision: %s"
+msgstr ""
+
+#: dgstrconst:rsauthor
+msgid "Author: %s"
+msgstr ""
+
+#: dgstrconst:rslicencegpl
+msgid "Licence: GPL"
+msgstr ""
+
+#: dgstrconst:rsdarguihasbeendevelop
+msgid "DarGUI has been developed using Freepascal and the Lazarus IDE"
 msgstr ""
 
 #: dgstrconst:rsmenuisolatecatalogue
@@ -322,6 +430,30 @@ msgstr ""
 msgid "Date"
 msgstr ""
 
+#: dgstrconst:rshour
+msgid "Hour"
+msgstr ""
+
+#: dgstrconst:rsminutes
+msgid "Minutes"
+msgstr ""
+
+#: dgstrconst:rsdayofweek
+msgid "Day of week"
+msgstr ""
+
+#: dgstrconst:rsdayinmonth
+msgid "Day"
+msgstr ""
+
+#: dgstrconst:rsmonth
+msgid "Month"
+msgstr ""
+
+#: dgstrconst:rscptselectdate
+msgid "Select date"
+msgstr ""
+
 #: dgstrconst:rscolsize
 msgid "Size"
 msgstr ""
@@ -364,6 +496,18 @@ msgstr ""
 
 #: dgstrconst:rsoverwriteexistingarc
 msgid "Overwrite existing archive?"
+msgstr ""
+
+#: dgstrconst:rserrinvalidarchivename
+msgid "Invalid archive name"
+msgstr ""
+
+#: dgstrconst:rserrinvaliddirectory
+msgid "Invalid directory"
+msgstr ""
+
+#: dgstrconst:rserrrefarchivenotfound
+msgid "Reference archive not found"
 msgstr ""
 
 #: dgstrconst:rserrcompressionlevelmust
@@ -474,6 +618,22 @@ msgstr ""
 msgid "Files"
 msgstr ""
 
+#: dgstrconst:rsscheduling
+msgid "Scheduling"
+msgstr ""
+
+#: dgstrconst:rsincludetimeinname
+msgid "Add timestamp to name"
+msgstr ""
+
+#: dgstrconst:rsdifferentialbackup
+msgid "Differential backup"
+msgstr ""
+
+#: dgstrconst:rsreferencearchive
+msgid "Reference archive"
+msgstr ""
+
 #: dgstrconst:rsmatchallfilters
 msgid "Match all filters"
 msgstr ""
@@ -510,6 +670,10 @@ msgstr ""
 msgid "Overwrite existing files"
 msgstr ""
 
+#: dgstrconst:rsexistingfiles
+msgid "Existing files"
+msgstr ""
+
 #: dgstrconst:rsmessdirectorynotfound
 msgid "Destination directory not found"
 msgstr ""
@@ -524,6 +688,14 @@ msgstr ""
 
 #: dgstrconst:rsbasedirectory
 msgid "Base directory"
+msgstr ""
+
+#: dgstrconst:rsresults
+msgid "Results"
+msgstr ""
+
+#: dgstrconst:rsverboseoutput
+msgid "Verbose output"
 msgstr ""
 
 #: dgstrconst:rsmessbusy

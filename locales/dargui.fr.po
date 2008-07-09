@@ -1,23 +1,98 @@
-# translation of dargui.po to French
+# translation of dargui.pot to French
 # Header entry was created by KBabel!
 #
-#: dgstrconst:rserrdarnotfound
 # Malcolm Poole <mgpoole@users.sourceforge.net>, 2008.
 msgid ""
 msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Mime-Version: 1.0"
-"Last-Translator: Malcolm Poole <mgpoole@users.sourceforge.net>\n"
+"Last-Translator: Gwénaël TRELLU<mgpoole@users.sourceforge.net>\n"
 "PO-Revision-Date: 2008-04-05 21:05+0100\n"
 "Project-Id-Version: dargui\n"
 "Language-Team: French\n"
 "X-Generator: KBabel 1.11.4\n"
 "MIME-Version: 1.0\n"
 
+#: dgstrconst:rsjan
+msgid "Jan"
+msgstr "Jan"
+
+#: dgstrconst:rsfeb
+msgid "Feb"
+msgstr "Fév"
+
+#: dgstrconst:rsmar
+msgid "Mar"
+msgstr "Mar"
+
+#: dgstrconst:rsapr
+msgid "Apr"
+msgstr "Avr"
+
+#: dgstrconst:rsmay
+msgid "May"
+msgstr "Mai"
+
+#: dgstrconst:rsjun
+msgid "Jun"
+msgstr "Jui"
+
+#: dgstrconst:rsjul
+msgid "Jul"
+msgstr "Jul"
+
+#: dgstrconst:rsaug
+msgid "Aug"
+msgstr "Aou"
+
+#: dgstrconst:rssep
+msgid "Sep"
+msgstr "Sep"
+
+#: dgstrconst:rsoct
+msgid "Oct"
+msgstr "Oct"
+
+#: dgstrconst:rsnov
+msgid "Nov"
+msgstr "Nov"
+
+#: dgstrconst:rsdec
+msgid "Dec"
+msgstr "Dec"
+
+#: dgstrconst:rsmon
+msgid "Mon"
+msgstr "Lun"
+
+#: dgstrconst:rstue
+msgid "Tue"
+msgstr "Mar"
+
+#: dgstrconst:rswed
+msgid "Wed"
+msgstr "Mer"
+
+#: dgstrconst:rsthu
+msgid "Thu"
+msgstr "Jeu"
+
+#: dgstrconst:rsfri
+msgid "Fri"
+msgstr "Ven"
+
+#: dgstrconst:rssat
+msgid "Sat"
+msgstr "Sam"
+
+#: dgstrconst:rssun
+msgid "Sun"
+msgstr "Dim"
+
 #: dgstrconst:rserrdarnotfound
 msgid "Unable to locate dar executable: nothing will work!"
-msgstr "Impossible de localiser l'executable dar : rien de fonctionnera!"
+msgstr "Impossible de localiser l'executable dar : rien ne fonctionnera!"
 
 #: dgstrconst:rserrrestoreaborted
 msgid "Operation aborted: Restore selected files"
@@ -29,15 +104,15 @@ msgstr "Erreur: aucun fichier sélectionné"
 
 #: dgstrconst:rserrnoxterm
 msgid "Unable to find xterm: some features disabled"
-msgstr "xterm non trouvé: des options sont désactivés"
+msgstr "xterm non trouvé: des options sont désactivées"
 
 #: dgstrconst:rserrnobash
 msgid "Unable to find bash: some features disabled"
-msgstr "bash non trouvé:  des options sont désactivés"
+msgstr "bash non trouvé: des options sont désactivées"
 
 #: dgstrconst:rserrnoxtermbash
 msgid "Unable to find xterm or bash: some features disabled"
-msgstr "xterm ou bash non trouvés: des options sont désactivés"
+msgstr "xterm ou bash non trouvés: des options sont désactivées"
 
 #: dgstrconst:rsnotcompressthese
 msgid "# Do not compress these files"
@@ -52,7 +127,6 @@ msgid "# DAR batch file written by DarGUI"
 msgstr "# Fichier script DAR écrit par DarGUI"
 
 #: dgstrconst:rsdryrun
-#, fuzzy
 msgid "# Dry run: this archive will not be written to file unless the next option is removed"
 msgstr "# Phase Test: cette archive ne sera pas enregistrée tant que l'option suivante est inactive"
 
@@ -86,11 +160,11 @@ msgstr "# Ne pas lire les fichiers de configuration de DAR (~/.darrc or /etc/dar
 
 #: dgstrconst:rspreservedirs
 msgid "# Preserve ignored directory names"
-msgstr "# Préserve les noms de répertoire ignorés"
+msgstr "# Préserver les noms des répertoires ignorés"
 
 #: dgstrconst:rscreateslices
 msgid "# Create slices of size in Mb"
-msgstr "# Cration de segments de taille en Mb""
+msgstr "# Création de segments de taille en Mb"
 
 #: dgstrconst:rspausebetween
 msgid "# Pause between slices"
@@ -130,7 +204,7 @@ msgstr "DarGUI: Séparation du catalogue..."
 
 #: dgstrconst:rscptrestorenodes
 msgid "Restore %s nodes..."
-msgstr "Restaurer %s les noeuds... "
+msgstr "Restaurer %s noeuds... "
 
 #: dgstrconst:rscptrestoringfiles
 msgid "restoring files..."
@@ -152,6 +226,10 @@ msgstr "Ouvrir une archive existante"
 msgid "DAR archives"
 msgstr "Archives DAR"
 
+#: dgstrconst:rsselectreferencearch
+msgid "Select reference archive"
+msgstr "Sélection de l'archive de référence"
+
 #: dgstrconst:rsfcptselectbyfilter
 msgid "Select using filters..."
 msgstr "Sélection avec filtres..."
@@ -163,6 +241,10 @@ msgstr "Ajouter"
 #: dgstrconst:rsnewarchive
 msgid "New archive"
 msgstr "Nouvelle archive"
+
+#: dgstrconst:rserrdatecannotbeinpast
+msgid "Date cannot be in the past"
+msgstr "La date ne peut pas être antérieure"
 
 #: dgstrconst:rsbuttoncancel
 msgid "Cancel"
@@ -220,6 +302,10 @@ msgstr "Effacer"
 msgid "OK"
 msgstr "OK"
 
+#: dgstrconst:rscreatearchiveimmedia
+msgid "Create archive immediately"
+msgstr "Créer l'archive immédiatement"
+
 #: dgstrconst:rsbuttonclose
 msgid "Close"
 msgstr "Fermer"
@@ -271,6 +357,26 @@ msgstr "Aide"
 #: dgstrconst:rsmenuhelpabout
 msgid "About DarGUI"
 msgstr "A propos de DARGUI"
+
+#: dgstrconst:rsversionnumber
+msgid "Version number: %s"
+msgstr "Numéro de version: %s"
+
+#: dgstrconst:rssvnrevision
+msgid "SVN Revision: %s"
+msgstr "Révision: %s"
+
+#: dgstrconst:rsauthor
+msgid "Author: %s"
+msgstr "Auteur: %s"
+
+#: dgstrconst:rslicencegpl
+msgid "Licence: GPL"
+msgstr "Licence : GPL"
+
+#: dgstrconst:rsdarguihasbeendevelop
+msgid "DarGUI has been developed using Freepascal and the Lazarus IDE"
+msgstr "DarGUI a été développé avec l'interface Lazarus et compilée sous Freepascal"
 
 #: dgstrconst:rsmenuisolatecatalogue
 msgid "Isolate Catalogue"
@@ -340,6 +446,30 @@ msgstr "Afficher la Sélection"
 msgid "Date"
 msgstr "Date"
 
+#: dgstrconst:rshour
+msgid "Hour"
+msgstr "Heure"
+
+#: dgstrconst:rsminutes
+msgid "Minutes"
+msgstr "Minutes"
+
+#: dgstrconst:rsdayofweek
+msgid "Day of week"
+msgstr "Jour de la semaine"
+
+#: dgstrconst:rsdayinmonth
+msgid "Day"
+msgstr "Jour"
+
+#: dgstrconst:rsmonth
+msgid "Month"
+msgstr "Mois"
+
+#: dgstrconst:rscptselectdate
+msgid "Select date"
+msgstr "Sélection date"
+
 #: dgstrconst:rscolsize
 msgid "Size"
 msgstr "Taille"
@@ -384,6 +514,18 @@ msgstr "Resoudre les conflits"
 msgid "Overwrite existing archive?"
 msgstr "Ecraser l'archive existante?"
 
+#: dgstrconst:rserrinvalidarchivename
+msgid "Invalid archive name"
+msgstr "Nom d'archive invalide"
+
+#: dgstrconst:rserrinvaliddirectory
+msgid "Invalid directory"
+msgstr "Répertoire invalide"
+
+#: dgstrconst:rserrrefarchivenotfound
+msgid "Reference archive not found"
+msgstr "Archive de référence non trouvée"
+
 #: dgstrconst:rserrcompressionlevelmust
 msgid "Compression level must be between 0 and 9"
 msgstr "Le niveau de compression doit être entre 0 et 9"
@@ -394,11 +536,11 @@ msgstr "Nombre invalide pour la taille du fichier"
 
 #: dgstrconst:rsusebzip2compression
 msgid "use bzip2 compression"
-msgstr "utilisation de la compression bzip2"
+msgstr "Utiliser la compression bzip2"
 
 #: dgstrconst:rsslicesize
 msgid "Slice size"
-msgstr "Taille des segments"
+msgstr "Taille Segment"
 
 #: dgstrconst:rsmb
 msgid "Mb"
@@ -406,7 +548,7 @@ msgstr "Mb"
 
 #: dgstrconst:rsuseslices
 msgid "Use slices"
-msgstr "Utilier la segmentation"
+msgstr "Utiliser la segmentation"
 
 #: dgstrconst:rssavescriptas
 msgid "Save script as"
@@ -470,7 +612,7 @@ msgstr "Exclure les répertoires:"
 
 #: dgstrconst:rsincludefiles
 msgid "Include files:"
-msgstr "Inclure les fichiers"
+msgstr "Inclure les fichiers:"
 
 #: dgstrconst:rsexcludefiles
 msgid "Exclude files:"
@@ -492,13 +634,29 @@ msgstr "Répertoires"
 msgid "Files"
 msgstr "Fichiers"
 
+#: dgstrconst:rsscheduling
+msgid "Scheduling"
+msgstr "Programmation"
+
+#: dgstrconst:rsincludetimeinname
+msgid "Add timestamp to name"
+msgstr "Estampiller le nom"
+
+#: dgstrconst:rsdifferentialbackup
+msgid "Differential backup"
+msgstr "Sauvegarde différentielle"
+
+#: dgstrconst:rsreferencearchive
+msgid "Reference archive"
+msgstr "Archive de référence"
+
 #: dgstrconst:rsmatchallfilters
 msgid "Match all filters"
 msgstr "Grouper tous les filtres"
 
 #: dgstrconst:rsapplyfilterstofilena
 msgid "Apply filters to filenames only"
-msgstr "Appliquer des filtres aux noms de fichiers seulement"
+msgstr "Appliquer les filtres aux noms des fichiers uniquement"
 
 #: dgstrconst:rscptaddfilter
 msgid "Add filter"
@@ -518,7 +676,7 @@ msgstr "Action répétée..."
 
 #: dgstrconst:rsrestorefilesto
 msgid "Restore files to"
-msgstr "Restaurer fichiers à"
+msgstr "Restaurer les fichiers dans"
 
 #: dgstrconst:rsignoredirectories
 msgid "Ignore directories"
@@ -527,6 +685,10 @@ msgstr "Ignorer les répertoires"
 #: dgstrconst:rsoverwriteexistingfil
 msgid "Overwrite existing files"
 msgstr "Ecraser les fichiers existants"
+
+#: dgstrconst:rsexistingfiles
+msgid "Existing files"
+msgstr "Fichiers existants"
 
 #: dgstrconst:rsmessdirectorynotfound
 msgid "Destination directory not found"
@@ -544,9 +706,17 @@ msgstr "Archive"
 msgid "Base directory"
 msgstr "Répertoire de base"
 
+#: dgstrconst:rsresults
+msgid "Results"
+msgstr "Résultats"
+
+#: dgstrconst:rsverboseoutput
+msgid "Verbose output"
+msgstr "Processus détaillé"
+
 #: dgstrconst:rsmessbusy
 msgid " BUSY..."
-msgstr " TRAVAILLANT..."
+msgstr " PROCESSUS EN COURS..."
 
 #: dgstrconst:rserrunabletofindarchive
 msgid "Unable to find archive"
@@ -586,5 +756,5 @@ msgstr "Nom de catalogue invalide"
 
 #: dgstrconst:rsmessunabletofindarchive
 msgid "Unable to find archive '%s'"
-msgstr "Impossible de trouver l'archivre '%s'"
+msgstr "Impossible de trouver l'archive '%s'"
 

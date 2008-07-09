@@ -6,9 +6,10 @@ object DiffForm: TDiffForm
   HorzScrollBar.Page = 594
   VertScrollBar.Page = 289
   ActiveControl = OKButton
-  Caption = 'Compare archive and filesystem'
+  Caption = 'DiffForm'
   ClientHeight = 290
   ClientWidth = 595
+  OnCreate = FormCreate
   OnResize = FormResize
   Position = poOwnerFormCenter
   object DialogPanel: TPanel
