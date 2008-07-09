@@ -28,7 +28,7 @@ uses
   Interfaces, // this includes the LCL widgetset
   Forms
   { add your units here }, main, darintf, selectrestore, archive, filemaskdlg,
-  ProcessLine, ArchiveInfo, FileConflict, About, oplog, isolate, diff, prefs,
+  ProcessLine, ArchiveInfo, About, oplog, isolate, diff, prefs,
   historymenu, dgStrConst, selectfilter;
 
 begin
