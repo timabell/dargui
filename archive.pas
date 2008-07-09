@@ -140,6 +140,7 @@ type
   public
     { public declarations }
     function CreateBatchfile: Boolean;
+    function CreateScript: Boolean;
     BatchFile: TStringList;
     ArchiveBaseName: string;
   end;
@@ -306,6 +307,7 @@ begin
   OptionsPage.Caption := rsOptions;
   DirectoriesPage.Caption := rsDirectories;
   FilesPage.Caption := rsFiles;
+  SchedulePage.Caption := rsScheduling;
   TimestampCheck.Caption := rsIncludeTimeInName;
   DiffFileCheck.Caption := rsDifferentialBackup;
   DiffReference.EditLabel.Caption := rsReferenceArchive;
@@ -321,6 +323,7 @@ begin
   RunOnceDateEdit.DialogTitle := rsCptSelectDate;
   RunOnceDateEdit.CancelCaption := rsButtonCancel;
   RunOnceDateEdit.OKCaption := rsButtonOK;
+  NowRadioButton.Caption := rsCreateArchiveImmedia;
 end;
 
 procedure TArchiveForm.AddIncludeDirButtonClick ( Sender: TObject ) ;
@@ -510,9 +513,20 @@ begin
 end;
 
 procedure TArchiveForm.OKButtonClick ( Sender: TObject ) ;
+var
+  isScript: Boolean;
 begin
   if CheckParameters then
      begin
+     isScript := SaveScriptCheckBox.Checked or (not NowRadioButton.Checked);
+     ArchiveBaseName := ArchiveName.Text;
+     if TimestampCheck.Checked then
+        begin
+          if isScript
+             then ArchiveBaseName := ArchiveBaseName + '`date +_%Y%m%d%H%M`'
+          else ArchiveBaseName := ArchiveBaseName + FormatDateTime('_yyyymmddhhnn', Now);
+        end;
+
      ModalResult := mrOk;
      if not TimestampCheck.Checked
          then if FileExists(ArchiveDirectory.Text
@@ -665,9 +679,6 @@ var
   end;
 
 begin
-     ArchiveBaseName := ArchiveName.Text;
-     if TimestampCheck.Checked
-        then ArchiveBaseName := ArchiveBaseName + FormatDateTime('_yyyymmddhhnn', Now);
      BatchFile.Clear;
      BatchFile.Add ( rsDARBatchFile ) ;
      BatchFile.Add('-R "' + BaseDirectory.Text + '"' + #10);
@@ -739,6 +750,23 @@ begin
           if PauseCheck.Checked then
              BatchFile.Add ( rsPauseBetween + #10 + '--pause ' + #10 ) ;
         end;
+end;
+
+function TArchiveForm.CreateScript: Boolean;
+var
+  script: Textfile;
+begin
+  if CreateBatchfile then
+     begin
+       AssignFile(script, ScriptFilenameBox.Text);
+          try
+            Rewrite(script);
+            
+          finally
+
+          end;
+       
+     end;
 end;
 
 

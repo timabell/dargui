@@ -151,7 +151,7 @@ object ArchiveForm: TArchiveForm
     object ArchiveNotebook: TNotebook
       Left = 8
       Height = 384
-      Top = 16
+      Top = 24
       Width = 616
       PageIndex = 0
       TabOrder = 0
@@ -685,6 +685,7 @@ object ArchiveForm: TArchiveForm
           Caption = 'Save script as'
           OnClick = SaveScriptCheckBoxClick
           TabOrder = 6
+          Visible = False
         end
         object ScriptFilenameBox: TEdit
           Left = 61
@@ -693,6 +694,7 @@ object ArchiveForm: TArchiveForm
           Width = 350
           Enabled = False
           TabOrder = 7
+          Visible = False
         end
         object ScriptFileButton: TButton
           Left = 431
@@ -703,6 +705,7 @@ object ArchiveForm: TArchiveForm
           Enabled = False
           OnClick = ScriptFileButtonClick
           TabOrder = 8
+          Visible = False
         end
       end
       object SchedulePage: TPage
@@ -713,8 +716,8 @@ object ArchiveForm: TArchiveForm
           Left = 35
           Height = 21
           Top = 27
-          Width = 192
-          Caption = 'Create archive immediately'
+          Width = 126
+          Caption = 'NowRadioButton'
           Checked = True
           OnChange = ScheduleRadioChange
           State = cbChecked
@@ -728,6 +731,7 @@ object ArchiveForm: TArchiveForm
           Caption = 'Run once only at'
           OnChange = ScheduleRadioChange
           TabOrder = 1
+          Visible = False
         end
         object RepeatRadioButton: TRadioButton
           Left = 35
@@ -737,6 +741,7 @@ object ArchiveForm: TArchiveForm
           Caption = 'Run regularily at'
           OnChange = ScheduleRadioChange
           TabOrder = 2
+          Visible = False
         end
         object RunOncePanel: TPanel
           Left = 4
@@ -747,6 +752,7 @@ object ArchiveForm: TArchiveForm
           ClientHeight = 81
           ClientWidth = 602
           TabOrder = 3
+          Visible = False
           object RunOnceHourLabel: TLabel
             Left = 65
             Height = 20
@@ -847,6 +853,7 @@ object ArchiveForm: TArchiveForm
           ClientHeight = 75
           ClientWidth = 596
           TabOrder = 4
+          Visible = False
           object RepeatHourLabel: TLabel
             Left = 65
             Height = 20

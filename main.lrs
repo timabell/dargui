@@ -1,9 +1,9 @@
 { This is an automatically generated lazarus resource file }
 
 LazarusResources.Add('TMainForm','FORMDATA',[
-  'TPF0'#9'TMainForm'#8'MainForm'#4'Left'#2#1#6'Height'#3']'#2#3'Top'#2#1#5'Wid'
-  +'th'#3'}'#3#18'HorzScrollBar.Page'#3'|'#3#18'VertScrollBar.Page'#3'G'#2#13'A'
-  +'ctiveControl'#7#15'ArchiveTreeView'#7'Caption'#6#6'DarGUI'#12'ClientHeight'
+  'TPF0'#9'TMainForm'#8'MainForm'#4'Left'#2#6#6'Height'#3']'#2#3'Top'#2'/'#5'Wi'
+  +'dth'#3'}'#3#18'HorzScrollBar.Page'#3'|'#3#18'VertScrollBar.Page'#3'G'#2#13
+  +'ActiveControl'#7#15'ArchiveTreeView'#7'Caption'#6#6'DarGUI'#12'ClientHeight'
   +#3'H'#2#11'ClientWidth'#3'}'#3#9'Icon.Data'#10#197#10#0#0#193#10#0#0'/* XPM '
   +'*/'#10'static char *graphic[] = {'#10'"16 16 133 2",'#10'".. c None",'#10'"'
   +'., c #727CAF",'#10'".- c #A5AED5",'#10'".* c #ACB7E0",'#10'".a c #9DABE2",'

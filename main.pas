@@ -133,7 +133,7 @@ var
 
   
 const
-  APP_VERSION = '0.3.0';
+  APP_VERSION = '0.4.0';
   SVN_REVISION = '';
 
   ARCHIVEMENU_TAG = 1; //used for enabling menuitems after loading archive
@@ -255,6 +255,7 @@ var
 
      MessageMemo.Lines.Add(#32 + StringOfChar('-',45));
      MessageMemo.Lines.Add('Creating archive: ' + ArchiveForm.ArchiveName.Text);
+     writeln('Creating archive: ' + ArchiveForm.ArchiveName.Text);
 
      if RunDarCommand ( Command, rsCptCreatingArchive, Left + 100, Top + 150 )
        = 0 then
@@ -276,10 +277,17 @@ var
      end;
   end;
   
+  procedure CreateNewScript;
+  begin
+    ArchiveForm.CreateScript;
+  end;
+  
 begin
   ArchiveForm.BatchFileBox.Text := GetNextFileName(TEMP_DIRECTORY + BATCHFILE_BASE);
   if ArchiveForm.ShowModal = mrOk then
-     CreateNewArchive;
+     if ArchiveForm.SaveScriptCheckBox.Checked
+        then CreateNewScript
+     else CreateNewArchive;
 end;
 
 procedure TMainForm.ArchiveTreeViewDeletion(Sender: TObject; Node: TTreeNode);
@@ -568,8 +576,8 @@ begin
      then AboutForm.DarVersionLabel.Caption := rsAboutNoDAR
      else AboutForm.DarVersionLabel.Caption := Format ( rsAboutDARVersion, [
        DarInfo.version ] ) ;
-  Aboutform.VersionLabel.Caption := Aboutform.VersionLabel.Caption + APP_VERSION;
-  Aboutform.SVNLabel.Caption := Aboutform.SVNLabel.Caption + SVN_REVISION;
+  Aboutform.VersionLabel.Caption := Format (rsVersionNumber, [ APP_VERSION ] );
+  Aboutform.SVNLabel.Caption := Format ( rsSVNRevision, [ SVN_REVISION ] );
   AboutForm.ShowModal;
   Aboutform.Free;
 end;
