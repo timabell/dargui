@@ -34,14 +34,14 @@
     </RunParams>
     <RequiredPackages Count="2">
       <Item1>
-        <PackageName Value="LCL"/>
-      </Item1>
-      <Item2>
         <PackageName Value="FCL"/>
         <MinVersion Major="1" Valid="True"/>
+      </Item1>
+      <Item2>
+        <PackageName Value="LCL"/>
       </Item2>
     </RequiredPackages>
-    <Units Count="14">
+    <Units Count="16">
       <Unit0>
         <Filename Value="dargui.lpr"/>
         <IsPartOfProject Value="True"/>
@@ -93,43 +93,59 @@
         <UnitName Value="ArchiveInfo"/>
       </Unit7>
       <Unit8>
-        <Filename Value="fileoverwrite.pas"/>
-        <ComponentName Value="OverwriteFilesForm"/>
-        <HasResources Value="True"/>
-        <IsPartOfProject Value="True"/>
-        <ResourceFilename Value="fileoverwrite.lrs"/>
-        <UnitName Value="FileOverwrite"/>
-      </Unit8>
-      <Unit9>
         <Filename Value="about.pas"/>
         <ComponentName Value="AboutForm"/>
         <HasResources Value="True"/>
         <IsPartOfProject Value="True"/>
         <ResourceFilename Value="about.lrs"/>
         <UnitName Value="About"/>
-      </Unit9>
-      <Unit10>
+      </Unit8>
+      <Unit9>
         <Filename Value="prefs.pas"/>
         <IsPartOfProject Value="True"/>
         <UnitName Value="prefs"/>
-      </Unit10>
-      <Unit11>
+      </Unit9>
+      <Unit10>
         <Filename Value="historymenu.pas"/>
         <IsPartOfProject Value="True"/>
         <UnitName Value="historymenu"/>
-      </Unit11>
-      <Unit12>
+      </Unit10>
+      <Unit11>
         <Filename Value="dgstrconst.pas"/>
         <IsPartOfProject Value="True"/>
         <UnitName Value="dgStrConst"/>
-      </Unit12>
-      <Unit13>
+      </Unit11>
+      <Unit12>
         <Filename Value="selectfilter.pas"/>
         <ComponentName Value="SelectFilterForm"/>
         <IsPartOfProject Value="True"/>
         <ResourceFilename Value="selectfilter.lrs"/>
         <UnitName Value="selectfilter"/>
+      </Unit12>
+      <Unit13>
+        <Filename Value="oplog.pas"/>
+        <ComponentName Value="OpLogForm"/>
+        <HasResources Value="True"/>
+        <IsPartOfProject Value="True"/>
+        <ResourceFilename Value="oplog.lrs"/>
+        <UnitName Value="oplog"/>
       </Unit13>
+      <Unit14>
+        <Filename Value="diff.pas"/>
+        <ComponentName Value="DiffForm"/>
+        <HasResources Value="True"/>
+        <IsPartOfProject Value="True"/>
+        <ResourceFilename Value="diff.lrs"/>
+        <UnitName Value="diff"/>
+      </Unit14>
+      <Unit15>
+        <Filename Value="isolate.pas"/>
+        <ComponentName Value="IsolateForm"/>
+        <HasResources Value="True"/>
+        <IsPartOfProject Value="True"/>
+        <ResourceFilename Value="isolate.lrs"/>
+        <UnitName Value="isolate"/>
+      </Unit15>
     </Units>
   </ProjectOptions>
   <CompilerOptions>
@@ -138,22 +154,31 @@
       <Libraries Value="/home/usr/X11R6/lib/"/>
       <OtherUnitFiles Value="/usr/lib/lazarus/components/pasdoc/source/component/;$(LazarusDir)/components/synedit/"/>
       <UnitOutputDirectory Value="/home/malcolm/lazarus/dargui/compiled"/>
+      <LCLWidgetType Value="gtk2"/>
     </SearchPaths>
     <CodeGeneration>
+      <Generate Value="Smaller"/>
       <Optimizations>
-        <OptimizationLevel Value="0"/>
+        <OptimizationLevel Value="2"/>
       </Optimizations>
     </CodeGeneration>
     <Linking>
       <Debugging>
-        <GenerateDebugInfo Value="True"/>
+        <UseLineInfoUnit Value="False"/>
+        <StripSymbols Value="True"/>
       </Debugging>
+      <LinkSmart Value="True"/>
     </Linking>
     <Other>
       <Verbosity>
         <ShoLineNum Value="True"/>
       </Verbosity>
+      <WriteFPCLogo Value="False"/>
       <CompilerPath Value="$(CompPath)"/>
+      <ExecuteBefore>
+        <Command Value="rstconv -i compiled/dgstrconst.rst -o locales/dargui.pot"/>
+        <CompileReasons Build="False" Run="False"/>
+      </ExecuteBefore>
     </Other>
   </CompilerOptions>
 </CONFIG>
