@@ -58,6 +58,7 @@ begin
   RestoreFilesLabel.Caption:=rsRestoreFilesTo;
   OkButton.Caption := rsButtonOK;
   CancelButton.Caption := rsButtonCancel;
+  OverwriteOptions.Caption := rsExistingFiles;
   OverwriteOptions.Items[0] := rsOverwriteExistingFil;
   OverwriteOptions.Items[1] := rsConfirmBeforeOverwri;
   OverwriteOptions.Items[2] := rsDoNotOverwriteFiles;

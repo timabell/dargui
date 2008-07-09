@@ -1,7 +1,7 @@
 object ExtractSelectedForm: TExtractSelectedForm
-  Left = 468
+  Left = 571
   Height = 245
-  Top = 308
+  Top = 110
   Width = 600
   HorzScrollBar.Page = 599
   VertScrollBar.Page = 244
@@ -61,9 +61,9 @@ object ExtractSelectedForm: TExtractSelectedForm
     TabOrder = 0
     object RestoreFilesLabel: TLabel
       Left = 13
-      Height = 17
+      Height = 20
       Top = 13
-      Width = 109
+      Width = 95
       Caption = 'Restore files to'
       ParentColor = False
     end
@@ -110,9 +110,9 @@ object ExtractSelectedForm: TExtractSelectedForm
     end
     object FlatRestoreCheckBox: TCheckBox
       Left = 403
-      Height = 28
+      Height = 21
       Top = 30
-      Width = 153
+      Width = 134
       Caption = 'Ignore directories'
       TabOrder = 1
     end
@@ -131,8 +131,8 @@ object ExtractSelectedForm: TExtractSelectedForm
       ChildSizing.ShrinkVertical = crsScaleChilds
       ChildSizing.Layout = cclLeftToRightThenTopToBottom
       ChildSizing.ControlsPerLine = 1
-      ClientHeight = 72
-      ClientWidth = 351
+      ClientHeight = 81
+      ClientWidth = 349
       ItemIndex = 2
       Items.Strings = (
         'Overwrite existing files'
