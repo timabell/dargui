@@ -99,6 +99,8 @@ var
 
 implementation
 
+uses processline;
+
 // ************** GetDarVersion ***************** //
 
 function GetDarVersion : TDarInfo;
@@ -286,17 +288,15 @@ end;
 // ************** OpenArchive ***************** //
 function OpenArchive(var fn: string; TV : TTreeview): integer;
 var
-  Proc : TProcess;
-  Output: TStringList;
-  M: TMemoryStream;
-  x,
-  n: LongInt;
-  BytesRead: LongInt;
+  Proc : TProcessLineTalk;
   rootnode: TTreeNode;
   currentnode : TTreeNode;
   parentnode: TTreeNode;
   DataCoords : array[SEGSTATUS .. SEGFILENAME] of TdgSegment;
   CurrentFile : array[SEGSTATUS .. SEGFILEPATH] of string;
+  outputline: String;
+  nodecount: LongInt;
+  n: Integer;
 
    procedure SetSegments(colheading: string);
    var
@@ -374,89 +374,72 @@ var
      Result := parentNode;
    end;
 
+   function GetInodeCount:integer;
+   var
+     p: integer;
+   begin
+     Result := -1;
+     Proc := TProcessLineTalk.Create(nil);
+     Proc.CommandLine := 'dar -l ' + fn + ' -v';
+     try
+       Proc.Execute;
+       outputline := Proc.ReadLine;
+       while Pos('total number of inode', outputline) < 1 do
+             outputline := Proc.ReadLine;
+       p := Pos(':',outputline);
+       Result := StrToInt(Copy(outputline, p+2, MaxInt));
+     finally
+       Proc.Terminate(0);
+       Proc.Free;
+     end;
+   end;
 
 begin
   TV.Items.Clear;
   Result := -1;
   fn := TrimToBase(fn);
-  Proc := TProcess.Create(nil);
-  Output := TStringList.Create;
-  M := TMemoryStream.Create;
-  BytesRead := 0;
-  Proc.CommandLine := 'dar -l ' + fn;
-  Proc.Options := [poUsePipes];
-  Proc.Execute;
-  While Proc.Running do
-        begin
-        M.SetSize(BytesRead + READ_BYTES);
-
-        // try reading it
-        n := Proc.Output.Read((M.Memory + BytesRead)^, READ_BYTES);
-        if n > 0
-        then begin
-             Inc(BytesRead, n);
-             Write('.')
-             end
-        else begin
-             // no data, wait 100 ms
-             Sleep(100);
-             end;
-        //TODO: detect if dar is paused and waiting for input, then kill process and report problem
-        end;
-  // read last part
-  repeat
-  // make sure we have room
-  M.SetSize(BytesRead + READ_BYTES);
-  // try reading it
-  n := Proc.Output.Read((M.Memory + BytesRead)^, READ_BYTES);
-  if n > 0 then
-     begin
-       Inc(BytesRead, n);
-//       Write('.');
-     end;
-  until n <= 0;
-//  if BytesRead > 0 then WriteLn;
-  M.SetSize(BytesRead);
-
-  Output.LoadFromStream(M);
-
   rootnode := TTreeview(TV).Items.AddFirst(nil, ExtractFileName(fn));
   rootnode.Data := TFileData.Create;
   TFileData(rootnode.Data).item[SEGFILENAME] := rootnode.Text;
   parentnode := rootnode;
-  for x := 1 to Output.Count-1 do
-      begin
-      if x = 1 then
-         begin
-           SetSegments(Output.Strings[x]);
-         end
-         else
-         begin
-           ParseCurrentFile(Output.Strings[x]);
-           currentnode :=  TTreeView(TV).Items.AddChild(GetParentDirectoryNode(Currentfile[SEGFILEPATH]), CurrentFile[SEGFILENAME]);
-           currentnode.Data := TFileData.Create;
-           if currentnode.Level < 2
-              then currentnode.Parent.Expand(false);
-           with TFileData(currentnode.data) do
-              begin
-                for n := SEGSTATUS to SEGFILEPATH do
-                    item[n] := CurrentFile[n];
-                folder := false;
-              end;
-           if (Pos('[-----]', CurrentFile[SEGSTATUS]) > 0)
-              and (CurrentFile[SEGSIZE] = '0') then
-         // empty files still get marked as folders in isolated catalogues
-              begin
-                parentnode := currentnode;
-                TFileData(currentnode.Data).folder := true;
-              end;
-         end;
-      end;
+  nodecount := GetInodeCount;
+  writeln(IntToStr(nodecount));
+  Proc := TProcessLineTalk.Create(nil);
+  Proc.CommandLine := 'dar -l ' + fn;
+  Proc.Execute;
+  While Proc.Running do
+        begin
+        outputline := Proc.ReadLine;
+        if outputline<>'' then
+            begin
+            if outputline[1]='[' then
+               if not (Pos('[data', outputline)=1) then
+                  begin
+                     ParseCurrentFile(outputline);
+                     currentnode :=  TTreeView(TV).Items.AddChild(GetParentDirectoryNode(Currentfile[SEGFILEPATH]), CurrentFile[SEGFILENAME]);
+                     currentnode.Data := TFileData.Create;
+                     if currentnode.Level < 2
+                        then currentnode.Parent.Expand(false);
+                     with TFileData(currentnode.data) do
+                        begin
+                          for n := SEGSTATUS to SEGFILEPATH do
+                              item[n] := CurrentFile[n];
+                          folder := false;
+                        end;
+                     if (Pos('[-----]', CurrentFile[SEGSTATUS]) > 0)
+                        and (CurrentFile[SEGSIZE] = '0') then
+                        begin // NB: empty files still get marked as folders in isolated catalogues
+                          parentnode := currentnode;
+                          TFileData(currentnode.Data).folder := true;
+                        end;
+                     //Application.ProcessMessages;
+                  end;
+            if Pos('----', outputline) = 1 then SetSegments(outputline);
+            end;
+        end;
   TV.AlphaSort;
   Result := Proc.ExitStatus;
-  M.Free;
   Proc.Free;
-  Output.Free;
 end;
 
 
@@ -544,6 +527,7 @@ Var
    aName:string;
    filePath: string;
 Begin
+ Result := 0;
  filePath:= ExtractFilePath(FileMask);
  if FindFirst(FileMask, faArchive, SearchRec)
         = 0 then
@@ -552,6 +536,7 @@ Begin
           aName := filePath + DirectorySeparator + SearchRec.Name;
           Assign(UFile, aName);
           Erase (UFile);
+          Result := Result + 1;
        until FindNext(SearchRec) <> 0;
        FindClose(SearchRec);
      end;
