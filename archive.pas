@@ -15,6 +15,7 @@ type
   { TArchiveForm }
 
   TArchiveForm = class ( TForm )
+    OpenCreatedArchiveCheck: TCheckBox;
     RepeatMonthLabel: TLabel;
     RepeatMonthDayLabel: TLabel;
     RepeatWeekDayLabel: TLabel;

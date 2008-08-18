@@ -257,8 +257,8 @@ var
      MessageMemo.Lines.Add('Creating archive: ' + ArchiveForm.ArchiveName.Text);
      writeln('Creating archive: ' + ArchiveForm.ArchiveName.Text);
 
-     if RunDarCommand ( Command, rsCptCreatingArchive, Left + 100, Top + 150 )
-       = 0 then
+     if (RunDarCommand ( Command, rsCptCreatingArchive, Left + 100, Top + 150 )
+       = 0 ) and (ArchiveForm.OpenCreatedArchiveCheck.Checked) then
         begin
           CurrentArchive := ArchiveForm.ArchiveDirectory.Text
                             + ArchiveForm.ArchiveBaseName;

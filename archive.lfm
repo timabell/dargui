@@ -608,7 +608,7 @@ object ArchiveForm: TArchiveForm
         object SliceMbLabel: TLabel
           Left = 413
           Height = 20
-          Top = 131
+          Top = 107
           Width = 19
           Caption = 'Mb'
           Enabled = False
@@ -617,7 +617,7 @@ object ArchiveForm: TArchiveForm
         object SliceSizeLabel: TLabel
           Left = 205
           Height = 20
-          Top = 131
+          Top = 107
           Width = 57
           Caption = 'Slice size'
           Enabled = False
@@ -626,7 +626,7 @@ object ArchiveForm: TArchiveForm
         object ReadConfigCheck: TCheckBox
           Left = 33
           Height = 21
-          Top = 42
+          Top = 18
           Width = 268
           Caption = 'Attempt to read DAR configuration files'
           Checked = True
@@ -636,7 +636,7 @@ object ArchiveForm: TArchiveForm
         object DryRunCheck: TCheckBox
           Left = 33
           Height = 21
-          Top = 210
+          Top = 186
           Width = 102
           Caption = 'Test run only'
           TabOrder = 5
@@ -644,7 +644,7 @@ object ArchiveForm: TArchiveForm
         object EmptyDirCheck: TCheckBox
           Left = 33
           Height = 21
-          Top = 82
+          Top = 58
           Width = 149
           Caption = 'Preserve directories'
           TabOrder = 1
@@ -652,7 +652,7 @@ object ArchiveForm: TArchiveForm
         object SlicesCheck: TCheckBox
           Left = 33
           Height = 21
-          Top = 128
+          Top = 104
           Width = 86
           Caption = 'Use slices'
           OnClick = SlicesCheckClick
@@ -661,7 +661,7 @@ object ArchiveForm: TArchiveForm
         object SliceSize: TEdit
           Left = 314
           Height = 23
-          Top = 128
+          Top = 104
           Width = 80
           Enabled = False
           OnExit = CompressionLwrLimitExit
@@ -671,7 +671,7 @@ object ArchiveForm: TArchiveForm
         object PauseCheck: TCheckBox
           Left = 125
           Height = 21
-          Top = 169
+          Top = 145
           Width = 158
           Caption = 'Pause between slices'
           Enabled = False
@@ -680,7 +680,7 @@ object ArchiveForm: TArchiveForm
         object SaveScriptCheckBox: TCheckBox
           Left = 33
           Height = 21
-          Top = 258
+          Top = 274
           Width = 111
           Caption = 'Save script as'
           OnClick = SaveScriptCheckBoxClick
@@ -690,7 +690,7 @@ object ArchiveForm: TArchiveForm
         object ScriptFilenameBox: TEdit
           Left = 61
           Height = 23
-          Top = 289
+          Top = 305
           Width = 350
           Enabled = False
           TabOrder = 7
@@ -699,13 +699,23 @@ object ArchiveForm: TArchiveForm
         object ScriptFileButton: TButton
           Left = 431
           Height = 30
-          Top = 286
+          Top = 302
           Width = 90
           Caption = 'Browse'
           Enabled = False
           OnClick = ScriptFileButtonClick
           TabOrder = 8
           Visible = False
+        end
+        object OpenCreatedArchiveCheck: TCheckBox
+          Left = 33
+          Height = 21
+          Top = 226
+          Width = 204
+          Caption = 'Open archive when complete'
+          Checked = True
+          State = cbChecked
+          TabOrder = 9
         end
       end
       object SchedulePage: TPage
