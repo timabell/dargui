@@ -100,6 +100,7 @@ rsArchiveBaseName = 'Archive base name';
 rsButtonClear = 'Clear';
 rsButtonOK = 'OK';
 rsCreateArchiveImmedia = 'Create archive immediately';
+rsOpenArchiveWhenCompl = 'Open archive when created';
 rsButtonClose = 'Close';
 
 //IsloateForm

@@ -711,8 +711,8 @@ object ArchiveForm: TArchiveForm
           Left = 33
           Height = 21
           Top = 226
-          Width = 204
-          Caption = 'Open archive when complete'
+          Width = 189
+          Caption = 'OpenCreatedArchiveCheck'
           Checked = True
           State = cbChecked
           TabOrder = 9

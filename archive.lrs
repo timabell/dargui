@@ -199,83 +199,82 @@ LazarusResources.Add('TArchiveForm','FORMDATA',[
   +'ptFileButton'#4'Left'#3#175#1#6'Height'#2#30#3'Top'#3'.'#1#5'Width'#2'Z'#7
   +'Caption'#6#6'Browse'#7'Enabled'#8#7'OnClick'#7#21'ScriptFileButtonClick'#8
   +'TabOrder'#2#8#7'Visible'#8#0#0#9'TCheckBox'#23'OpenCreatedArchiveCheck'#4'L'
-  +'eft'#2'!'#6'Height'#2#21#3'Top'#3#226#0#5'Width'#3#204#0#7'Caption'#6#26'Op'
-  +'en archive when complete'#7'Checked'#9#5'State'#7#9'cbChecked'#8'TabOrder'#2
-  +#9#0#0#0#5'TPage'#12'SchedulePage'#7'Caption'#6#10'Scheduling'#11'ClientWidt'
-  +'h'#3'b'#2#12'ClientHeight'#3'_'#1#0#12'TRadioButton'#14'NowRadioButton'#4'L'
-  +'eft'#2'#'#6'Height'#2#21#3'Top'#2#27#5'Width'#2'~'#7'Caption'#6#14'NowRadio'
-  +'Button'#7'Checked'#9#8'OnChange'#7#19'ScheduleRadioChange'#5'State'#7#9'cbC'
-  +'hecked'#8'TabOrder'#2#0#0#0#12'TRadioButton'#18'RunOnceRadioButton'#4'Left'
-  +#2'#'#6'Height'#2#21#3'Top'#2':'#5'Width'#2''#7'Caption'#6#16'Run once only'
-  +' at'#8'OnChange'#7#19'ScheduleRadioChange'#8'TabOrder'#2#1#7'Visible'#8#0#0
-  +#12'TRadioButton'#17'RepeatRadioButton'#4'Left'#2'#'#6'Height'#2#21#3'Top'#3
-  +#162#0#5'Width'#2'|'#7'Caption'#6#17'Run regularily at'#8'OnChange'#7#19'Sch'
-  +'eduleRadioChange'#8'TabOrder'#2#2#7'Visible'#8#0#0#6'TPanel'#12'RunOncePane'
-  +'l'#4'Left'#2#4#6'Height'#2'Q'#3'Top'#2'Q'#5'Width'#3'Z'#2#10'BevelOuter'#7#6
-  +'bvNone'#12'ClientHeight'#2'Q'#11'ClientWidth'#3'Z'#2#8'TabOrder'#2#3#7'Visi'
-  +'ble'#8#0#6'TLabel'#16'RunOnceHourLabel'#4'Left'#2'A'#6'Height'#2#20#3'Top'#2
-  +#12#5'Width'#2'w'#7'Caption'#6#16'RunOnceHourLabel'#7'Enabled'#8#11'ParentCo'
-  +'lor'#8#0#0#6'TLabel'#18'RunOnceMinuteLabel'#4'Left'#3#158#0#6'Height'#2#20#3
-  +'Top'#2#12#5'Width'#3#131#0#7'Caption'#6#18'RunOnceMinuteLabel'#7'Enabled'#8
-  +#11'ParentColor'#8#0#0#6'TLabel'#16'RunOnceDateLabel'#4'Left'#3#17#1#6'Heigh'
-  +'t'#2#20#3'Top'#2#12#5'Width'#2'w'#7'Caption'#6#16'RunOnceDateLabel'#7'Enabl'
-  +'ed'#8#11'ParentColor'#8#0#0#9'TDateEdit'#15'RunOnceDateEdit'#4'Left'#3#17#1
-  +#6'Height'#2#23#3'Top'#2'#'#5'Width'#2'p'#23'CalendarDisplaySettings'#11#14
-  +'dsShowHeadings'#14'dsShowDayNames'#0#12'OnAcceptDate'#7#25'RunOnceDateEditA'
-  +'cceptDate'#9'OKCaption'#6#2'OK'#13'CancelCaption'#6#6'Cancel'#8'ReadOnly'#8
-  +#11'ButtonWidth'#2#23#10'Glyph.Data'#10'3'#2#0#0'/'#2#0#0'/* XPM */'#10'stat'
-  +'ic char *calendar[] = {'#10'/* columns rows colors chars-per-pixel */'#10'"'
-  +'14 12 17 1",'#10'"  c black",'#10'". c #800000",'#10'"X c #008000",'#10'"o '
-  +'c #808000",'#10'"O c navy",'#10'"+ c #800080",'#10'"@ c #008080",'#10'"# c '
-  +'#808080",'#10'"$ c #C0C0C0",'#10'"% c red",'#10'"& c green",'#10'"* c yello'
-  +'w",'#10'"= c blue",'#10'"- c magenta",'#10'"; c cyan",'#10'": c gray100",'
-  +#10'"> c None",'#10'/* pixels */'#10'">>          >>",'#10'">>:$$$$$$$$:O#",'
-  +#10'">>::::::::::O#",'#10'">>:: ::    :O#",'#10'">>:  :: ::::O#",'#10'">>:: '
-  +'::   $:O#",'#10'">>:: ::::: :O#",'#10'">>:: ::$:$ :O#",'#10'">>:   :   $:O#'
-  +'",'#10'">>::::::::::O#",'#10'">>  O OO O  O#",'#10'">>>###########"'#10'};'
-  +#10#9'NumGlyphs'#2#1#7'Enabled'#8#8'TabOrder'#2#0#0#0#9'TComboBox'#14'RunOnc'
-  +'eHourBox'#4'Left'#2'A'#6'Height'#2#25#3'Top'#2'!'#5'Width'#2'F'#16'AutoComp'
-  +'leteText'#11#22'cbactEndOfLineComplete'#20'cbactSearchAscending'#0#7'Enable'
-  +'d'#8#9'ItemIndex'#2#0#13'Items.Strings'#1#6#0#0#9'MaxLength'#2#0#8'TabOrder'
-  +#2#1#0#0#9'TComboBox'#16'RunOnceMinuteBox'#4'Left'#3#158#0#6'Height'#2#25#3
-  +'Top'#2'!'#5'Width'#2'F'#16'AutoCompleteText'#11#22'cbactEndOfLineComplete'
-  +#20'cbactSearchAscending'#0#7'Enabled'#8#9'ItemIndex'#2#0#13'Items.Strings'#1
-  +#6#0#0#9'MaxLength'#2#0#8'TabOrder'#2#2#0#0#0#6'TPanel'#11'RepeatPanel'#4'Le'
-  +'ft'#2#10#6'Height'#2'K'#3'Top'#3#186#0#5'Width'#3'T'#2#10'BevelOuter'#7#6'b'
-  +'vNone'#12'ClientHeight'#2'K'#11'ClientWidth'#3'T'#2#8'TabOrder'#2#4#7'Visib'
-  +'le'#8#0#6'TLabel'#15'RepeatHourLabel'#4'Left'#2'A'#6'Height'#2#20#3'Top'#2
-  +#12#5'Width'#2'w'#7'Caption'#6#16'RunOnceHourLabel'#7'Enabled'#8#11'ParentCo'
-  +'lor'#8#0#0#6'TLabel'#17'RepeatMinuteLabel'#4'Left'#3#158#0#6'Height'#2#20#3
-  +'Top'#2#12#5'Width'#2'x'#7'Caption'#6#17'RepeatMinuteLabel'#7'Enabled'#8#11
-  +'ParentColor'#8#0#0#6'TLabel'#18'RepeatWeekDayLabel'#4'Left'#3#243#0#6'Heigh'
-  +'t'#2#20#3'Top'#2#12#5'Width'#3#134#0#7'Caption'#6#18'RepeatWeekDayLabel'#7
-  +'Enabled'#8#11'ParentColor'#8#0#0#6'TLabel'#19'RepeatMonthDayLabel'#4'Left'#3
-  +'s'#1#6'Height'#2#20#3'Top'#2#12#5'Width'#3#140#0#7'Caption'#6#19'RepeatMont'
-  +'hDayLabel'#7'Enabled'#8#11'ParentColor'#8#0#0#6'TLabel'#16'RepeatMonthLabel'
-  +#4'Left'#3#211#1#6'Height'#2#20#3'Top'#2#12#5'Width'#2'u'#7'Caption'#6#16'Re'
-  +'peatMonthLabel'#7'Enabled'#8#11'ParentColor'#8#0#0#9'TComboBox'#13'RepeatHo'
-  +'urBox'#4'Left'#2';'#6'Height'#2#25#3'Top'#2' '#5'Width'#2'F'#16'AutoComplet'
-  +'eText'#11#22'cbactEndOfLineComplete'#20'cbactSearchAscending'#0#7'Enabled'#8
-  +#9'ItemIndex'#2#0#13'Items.Strings'#1#6#0#0#9'MaxLength'#2#0#8'TabOrder'#2#0
-  ,#0#0#9'TComboBox'#15'RepeatMinuteBox'#4'Left'#3#152#0#6'Height'#2#25#3'Top'#2
-  +' '#5'Width'#2'F'#16'AutoCompleteText'#11#22'cbactEndOfLineComplete'#20'cbac'
-  +'tSearchAscending'#0#7'Enabled'#8#9'ItemIndex'#2#0#13'Items.Strings'#1#6#0#0
-  +#9'MaxLength'#2#0#8'TabOrder'#2#1#0#0#9'TComboBox'#16'RepeatWeekDayBox'#4'Le'
-  +'ft'#3#243#0#6'Height'#2#25#3'Top'#2' '#5'Width'#2'd'#16'AutoCompleteText'#11
-  +#22'cbactEndOfLineComplete'#20'cbactSearchAscending'#0#7'Enabled'#8#9'ItemIn'
-  +'dex'#2#0#13'Items.Strings'#1#6#0#0#9'MaxLength'#2#0#8'TabOrder'#2#2#0#0#9'T'
-  +'ComboBox'#17'RepeatMonthDayBox'#4'Left'#3's'#1#6'Height'#2#25#3'Top'#2' '#5
+  +'eft'#2'!'#6'Height'#2#21#3'Top'#3#226#0#5'Width'#3#189#0#7'Caption'#6#23'Op'
+  +'enCreatedArchiveCheck'#7'Checked'#9#5'State'#7#9'cbChecked'#8'TabOrder'#2#9
+  +#0#0#0#5'TPage'#12'SchedulePage'#7'Caption'#6#10'Scheduling'#11'ClientWidth'
+  +#3'b'#2#12'ClientHeight'#3'_'#1#0#12'TRadioButton'#14'NowRadioButton'#4'Left'
+  +#2'#'#6'Height'#2#21#3'Top'#2#27#5'Width'#2'~'#7'Caption'#6#14'NowRadioButto'
+  +'n'#7'Checked'#9#8'OnChange'#7#19'ScheduleRadioChange'#5'State'#7#9'cbChecke'
+  +'d'#8'TabOrder'#2#0#0#0#12'TRadioButton'#18'RunOnceRadioButton'#4'Left'#2'#'
+  +#6'Height'#2#21#3'Top'#2':'#5'Width'#2''#7'Caption'#6#16'Run once only at'#8
+  +'OnChange'#7#19'ScheduleRadioChange'#8'TabOrder'#2#1#7'Visible'#8#0#0#12'TRa'
+  +'dioButton'#17'RepeatRadioButton'#4'Left'#2'#'#6'Height'#2#21#3'Top'#3#162#0
+  +#5'Width'#2'|'#7'Caption'#6#17'Run regularily at'#8'OnChange'#7#19'ScheduleR'
+  +'adioChange'#8'TabOrder'#2#2#7'Visible'#8#0#0#6'TPanel'#12'RunOncePanel'#4'L'
+  +'eft'#2#4#6'Height'#2'Q'#3'Top'#2'Q'#5'Width'#3'Z'#2#10'BevelOuter'#7#6'bvNo'
+  +'ne'#12'ClientHeight'#2'Q'#11'ClientWidth'#3'Z'#2#8'TabOrder'#2#3#7'Visible'
+  +#8#0#6'TLabel'#16'RunOnceHourLabel'#4'Left'#2'A'#6'Height'#2#20#3'Top'#2#12#5
+  +'Width'#2'w'#7'Caption'#6#16'RunOnceHourLabel'#7'Enabled'#8#11'ParentColor'#8
+  +#0#0#6'TLabel'#18'RunOnceMinuteLabel'#4'Left'#3#158#0#6'Height'#2#20#3'Top'#2
+  +#12#5'Width'#3#131#0#7'Caption'#6#18'RunOnceMinuteLabel'#7'Enabled'#8#11'Par'
+  +'entColor'#8#0#0#6'TLabel'#16'RunOnceDateLabel'#4'Left'#3#17#1#6'Height'#2#20
+  +#3'Top'#2#12#5'Width'#2'w'#7'Caption'#6#16'RunOnceDateLabel'#7'Enabled'#8#11
+  +'ParentColor'#8#0#0#9'TDateEdit'#15'RunOnceDateEdit'#4'Left'#3#17#1#6'Height'
+  +#2#23#3'Top'#2'#'#5'Width'#2'p'#23'CalendarDisplaySettings'#11#14'dsShowHead'
+  +'ings'#14'dsShowDayNames'#0#12'OnAcceptDate'#7#25'RunOnceDateEditAcceptDate'
+  +#9'OKCaption'#6#2'OK'#13'CancelCaption'#6#6'Cancel'#8'ReadOnly'#8#11'ButtonW'
+  +'idth'#2#23#10'Glyph.Data'#10'3'#2#0#0'/'#2#0#0'/* XPM */'#10'static char *c'
+  +'alendar[] = {'#10'/* columns rows colors chars-per-pixel */'#10'"14 12 17 1'
+  +'",'#10'"  c black",'#10'". c #800000",'#10'"X c #008000",'#10'"o c #808000"'
+  +','#10'"O c navy",'#10'"+ c #800080",'#10'"@ c #008080",'#10'"# c #808080",'
+  +#10'"$ c #C0C0C0",'#10'"% c red",'#10'"& c green",'#10'"* c yellow",'#10'"= '
+  +'c blue",'#10'"- c magenta",'#10'"; c cyan",'#10'": c gray100",'#10'"> c Non'
+  +'e",'#10'/* pixels */'#10'">>          >>",'#10'">>:$$$$$$$$:O#",'#10'">>:::'
+  +':::::::O#",'#10'">>:: ::    :O#",'#10'">>:  :: ::::O#",'#10'">>:: ::   $:O#'
+  +'",'#10'">>:: ::::: :O#",'#10'">>:: ::$:$ :O#",'#10'">>:   :   $:O#",'#10'">'
+  +'>::::::::::O#",'#10'">>  O OO O  O#",'#10'">>>###########"'#10'};'#10#9'Num'
+  +'Glyphs'#2#1#7'Enabled'#8#8'TabOrder'#2#0#0#0#9'TComboBox'#14'RunOnceHourBox'
+  +#4'Left'#2'A'#6'Height'#2#25#3'Top'#2'!'#5'Width'#2'F'#16'AutoCompleteText'
+  +#11#22'cbactEndOfLineComplete'#20'cbactSearchAscending'#0#7'Enabled'#8#9'Ite'
+  +'mIndex'#2#0#13'Items.Strings'#1#6#0#0#9'MaxLength'#2#0#8'TabOrder'#2#1#0#0#9
+  +'TComboBox'#16'RunOnceMinuteBox'#4'Left'#3#158#0#6'Height'#2#25#3'Top'#2'!'#5
   +'Width'#2'F'#16'AutoCompleteText'#11#22'cbactEndOfLineComplete'#20'cbactSear'
   +'chAscending'#0#7'Enabled'#8#9'ItemIndex'#2#0#13'Items.Strings'#1#6#0#0#9'Ma'
-  +'xLength'#2#0#8'TabOrder'#2#3#0#0#9'TComboBox'#14'RepeatMonthBox'#4'Left'#3
-  +#211#1#6'Height'#2#25#3'Top'#2' '#5'Width'#2'd'#16'AutoCompleteText'#11#22'c'
-  +'bactEndOfLineComplete'#20'cbactSearchAscending'#0#7'Enabled'#8#9'ItemIndex'
-  +#2#0#13'Items.Strings'#1#6#0#0#9'MaxLength'#2#0#8'TabOrder'#2#4#0#0#0#0#0#0
-  +#22'TSelectDirectoryDialog'#21'SelectDirectoryDialog'#5'Title'#6#16'Select D'
-  +'irectory'#7'Options'#11#15'ofFileMustExist'#14'ofEnableSizing'#12'ofViewDet'
-  +'ail'#0#4'left'#3'P'#2#3'top'#3#144#0#0#0#11'TSaveDialog'#10'SaveDialog'#5'T'
-  +'itle'#6#12'Save file as'#4'left'#3'P'#2#3'top'#2'@'#0#0#11'TOpenDialog'#10
-  +'OpenDialog'#5'Title'#6#11'Select file'#7'Options'#11#15'ofPathMustExist'#15
-  +'ofFileMustExist'#14'ofEnableSizing'#12'ofViewDetail'#0#4'left'#3'P'#2#3'top'
-  +#2'h'#0#0#0
+  +'xLength'#2#0#8'TabOrder'#2#2#0#0#0#6'TPanel'#11'RepeatPanel'#4'Left'#2#10#6
+  +'Height'#2'K'#3'Top'#3#186#0#5'Width'#3'T'#2#10'BevelOuter'#7#6'bvNone'#12'C'
+  +'lientHeight'#2'K'#11'ClientWidth'#3'T'#2#8'TabOrder'#2#4#7'Visible'#8#0#6'T'
+  +'Label'#15'RepeatHourLabel'#4'Left'#2'A'#6'Height'#2#20#3'Top'#2#12#5'Width'
+  +#2'w'#7'Caption'#6#16'RunOnceHourLabel'#7'Enabled'#8#11'ParentColor'#8#0#0#6
+  +'TLabel'#17'RepeatMinuteLabel'#4'Left'#3#158#0#6'Height'#2#20#3'Top'#2#12#5
+  +'Width'#2'x'#7'Caption'#6#17'RepeatMinuteLabel'#7'Enabled'#8#11'ParentColor'
+  +#8#0#0#6'TLabel'#18'RepeatWeekDayLabel'#4'Left'#3#243#0#6'Height'#2#20#3'Top'
+  +#2#12#5'Width'#3#134#0#7'Caption'#6#18'RepeatWeekDayLabel'#7'Enabled'#8#11'P'
+  +'arentColor'#8#0#0#6'TLabel'#19'RepeatMonthDayLabel'#4'Left'#3's'#1#6'Height'
+  +#2#20#3'Top'#2#12#5'Width'#3#140#0#7'Caption'#6#19'RepeatMonthDayLabel'#7'En'
+  +'abled'#8#11'ParentColor'#8#0#0#6'TLabel'#16'RepeatMonthLabel'#4'Left'#3#211
+  +#1#6'Height'#2#20#3'Top'#2#12#5'Width'#2'u'#7'Caption'#6#16'RepeatMonthLabel'
+  +#7'Enabled'#8#11'ParentColor'#8#0#0#9'TComboBox'#13'RepeatHourBox'#4'Left'#2
+  +';'#6'Height'#2#25#3'Top'#2' '#5'Width'#2'F'#16'AutoCompleteText'#11#22'cbac'
+  +'tEndOfLineComplete'#20'cbactSearchAscending'#0#7'Enabled'#8#9'ItemIndex'#2#0
+  +#13'Items.Strings'#1#6#0#0#9'MaxLength'#2#0#8'TabOrder'#2#0#0#0#9'TComboBox'
+  ,#15'RepeatMinuteBox'#4'Left'#3#152#0#6'Height'#2#25#3'Top'#2' '#5'Width'#2'F'
+  +#16'AutoCompleteText'#11#22'cbactEndOfLineComplete'#20'cbactSearchAscending'
+  +#0#7'Enabled'#8#9'ItemIndex'#2#0#13'Items.Strings'#1#6#0#0#9'MaxLength'#2#0#8
+  +'TabOrder'#2#1#0#0#9'TComboBox'#16'RepeatWeekDayBox'#4'Left'#3#243#0#6'Heigh'
+  +'t'#2#25#3'Top'#2' '#5'Width'#2'd'#16'AutoCompleteText'#11#22'cbactEndOfLine'
+  +'Complete'#20'cbactSearchAscending'#0#7'Enabled'#8#9'ItemIndex'#2#0#13'Items'
+  +'.Strings'#1#6#0#0#9'MaxLength'#2#0#8'TabOrder'#2#2#0#0#9'TComboBox'#17'Repe'
+  +'atMonthDayBox'#4'Left'#3's'#1#6'Height'#2#25#3'Top'#2' '#5'Width'#2'F'#16'A'
+  +'utoCompleteText'#11#22'cbactEndOfLineComplete'#20'cbactSearchAscending'#0#7
+  +'Enabled'#8#9'ItemIndex'#2#0#13'Items.Strings'#1#6#0#0#9'MaxLength'#2#0#8'Ta'
+  +'bOrder'#2#3#0#0#9'TComboBox'#14'RepeatMonthBox'#4'Left'#3#211#1#6'Height'#2
+  +#25#3'Top'#2' '#5'Width'#2'd'#16'AutoCompleteText'#11#22'cbactEndOfLineCompl'
+  +'ete'#20'cbactSearchAscending'#0#7'Enabled'#8#9'ItemIndex'#2#0#13'Items.Stri'
+  +'ngs'#1#6#0#0#9'MaxLength'#2#0#8'TabOrder'#2#4#0#0#0#0#0#0#22'TSelectDirecto'
+  +'ryDialog'#21'SelectDirectoryDialog'#5'Title'#6#16'Select Directory'#7'Optio'
+  +'ns'#11#15'ofFileMustExist'#14'ofEnableSizing'#12'ofViewDetail'#0#4'left'#3
+  +'P'#2#3'top'#3#144#0#0#0#11'TSaveDialog'#10'SaveDialog'#5'Title'#6#12'Save f'
+  +'ile as'#4'left'#3'P'#2#3'top'#2'@'#0#0#11'TOpenDialog'#10'OpenDialog'#5'Tit'
+  +'le'#6#11'Select file'#7'Options'#11#15'ofPathMustExist'#15'ofFileMustExist'
+  +#14'ofEnableSizing'#12'ofViewDetail'#0#4'left'#3'P'#2#3'top'#2'h'#0#0#0
 ]);

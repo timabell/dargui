@@ -325,6 +325,7 @@ begin
   RunOnceDateEdit.CancelCaption := rsButtonCancel;
   RunOnceDateEdit.OKCaption := rsButtonOK;
   NowRadioButton.Caption := rsCreateArchiveImmedia;
+  OpenCreatedArchiveCheck.Caption := rsOpenArchiveWhenCompl;
 end;
 
 procedure TArchiveForm.AddIncludeDirButtonClick ( Sender: TObject ) ;
