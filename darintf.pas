@@ -297,6 +297,9 @@ var
   outputline: String;
   nodecount: LongInt;
   n: Integer;
+  nodesloaded: Integer;
+  progressinterval: Integer;
+  completed: LongInt;
 
    procedure SetSegments(colheading: string);
    var
@@ -374,23 +377,24 @@ var
      Result := parentNode;
    end;
 
-   function GetInodeCount:integer;
+   function GetInodeCount:integer; // this leaves a zombie process
    var
      p: integer;
+     InodeCountProc: TProcessLineTalk;
    begin
      Result := -1;
-     Proc := TProcessLineTalk.Create(nil);
-     Proc.CommandLine := 'dar -l ' + fn + ' -v';
+     InodeCountProc := TProcessLineTalk.Create(Application);
+     InodeCountProc.CommandLine := 'dar -l ' + fn + ' -v';
      try
-       Proc.Execute;
-       outputline := Proc.ReadLine;
+       InodeCountProc.Execute;
+       outputline := InodeCountProc.ReadLine;
        while Pos('total number of inode', outputline) < 1 do
-             outputline := Proc.ReadLine;
+             outputline := InodeCountProc.ReadLine;
        p := Pos(':',outputline);
        Result := StrToInt(Copy(outputline, p+2, MaxInt));
      finally
-       Proc.Terminate(0);
-       Proc.Free;
+       InodeCountProc.Terminate(0);
+       InodeCountProc.FreeOnRelease;
      end;
    end;
 
@@ -402,11 +406,15 @@ begin
   rootnode.Data := TFileData.Create;
   TFileData(rootnode.Data).item[SEGFILENAME] := rootnode.Text;
   parentnode := rootnode;
-  nodecount := GetInodeCount;
+  //nodecount := GetInodeCount;
+  nodesloaded := 0;
+  progressinterval := 0;
   writeln(IntToStr(nodecount));
-  Proc := TProcessLineTalk.Create(nil);
+  Proc := TProcessLineTalk.Create(Application);
   Proc.CommandLine := 'dar -l ' + fn;
   Proc.Execute;
+  TTreeView(TV).Visible := false;
+  Application.ProcessMessages;
   While Proc.Running do
         begin
         outputline := Proc.ReadLine;
@@ -415,6 +423,8 @@ begin
             if outputline[1]='[' then
                if not (Pos('[data', outputline)=1) then
                   begin
+                     Inc(nodesloaded);
+                     Inc(progressinterval);
                      ParseCurrentFile(outputline);
                      currentnode :=  TTreeView(TV).Items.AddChild(GetParentDirectoryNode(Currentfile[SEGFILEPATH]), CurrentFile[SEGFILENAME]);
                      currentnode.Data := TFileData.Create;
@@ -432,14 +442,21 @@ begin
                           parentnode := currentnode;
                           TFileData(currentnode.Data).folder := true;
                         end;
+                     completed := (nodesloaded*90) div nodecount;
+                     if progressinterval=(nodecount div 20) then    //can be used for calling a progress monitor callback
+                          begin
+                            write(completed, '% complete', #13);
+                            progressinterval := 0;
+                          end;
                      //Application.ProcessMessages;
                   end;
             if Pos('----', outputline) = 1 then SetSegments(outputline);
             end;
         end;
   TV.AlphaSort;
+  TTreeView(TV).Visible := true;
   Result := Proc.ExitStatus;
-  Proc.Free;
+  Proc.FreeOnRelease;
 end;
 
 
