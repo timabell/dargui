@@ -304,7 +304,11 @@ msgstr "Aceptar"
 
 #: dgstrconst:rscreatearchiveimmedia
 msgid "Create archive immediately"
-msgstr ""
+msgstr "Hacer la copia de seguridad ahora"
+
+#: dgstrconst:rsopenarchivewhencompl
+msgid "Open archive when created"
+msgstr "Abrir archivo después de crearlo"
 
 #: dgstrconst:rsbuttonclose
 msgid "Close"
@@ -360,23 +364,23 @@ msgstr "Acerca de DarGUI"
 
 #: dgstrconst:rsversionnumber
 msgid "Version number: %s"
-msgstr ""
+msgstr "Versión %s"
 
 #: dgstrconst:rssvnrevision
 msgid "SVN Revision: %s"
-msgstr ""
+msgstr "Revisión SVN: %s"
 
 #: dgstrconst:rsauthor
 msgid "Author: %s"
-msgstr ""
+msgstr "Autor: %s"
 
 #: dgstrconst:rslicencegpl
 msgid "Licence: GPL"
-msgstr ""
+msgstr "Licencia: GPL"
 
 #: dgstrconst:rsdarguihasbeendevelop
 msgid "DarGUI has been developed using Freepascal and the Lazarus IDE"
-msgstr ""
+msgstr "DarGUI fue desarrollado empleando Freepascal y el IDE Lazarus"
 
 #: dgstrconst:rsmenuisolatecatalogue
 msgid "Isolate Catalogue"
@@ -636,19 +640,19 @@ msgstr "Ficheros"
 
 #: dgstrconst:rsscheduling
 msgid "Scheduling"
-msgstr ""
+msgstr "Ejecución"
 
 #: dgstrconst:rsincludetimeinname
 msgid "Add timestamp to name"
-msgstr ""
+msgstr "Anadir fecha y hora en el nombre"
 
 #: dgstrconst:rsdifferentialbackup
 msgid "Differential backup"
-msgstr ""
+msgstr "Copia diferencial"
 
 #: dgstrconst:rsreferencearchive
 msgid "Reference archive"
-msgstr ""
+msgstr "Copia de referencia"
 
 #: dgstrconst:rsmatchallfilters
 msgid "Match all filters"
@@ -688,7 +692,7 @@ msgstr "Sobreescribir ficheros existiendos"
 
 #: dgstrconst:rsexistingfiles
 msgid "Existing files"
-msgstr ""
+msgstr "Ficheros existiendos"
 
 #: dgstrconst:rsmessdirectorynotfound
 msgid "Destination directory not found"
@@ -712,7 +716,7 @@ msgstr "Resultado"
 
 #: dgstrconst:rsverboseoutput
 msgid "Verbose output"
-msgstr ""
+msgstr "Ver detalles de operación"
 
 #: dgstrconst:rsmessbusy
 msgid "BUSY..."

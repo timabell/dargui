@@ -290,6 +290,10 @@ msgstr ""
 msgid "Create archive immediately"
 msgstr ""
 
+#: dgstrconst:rsopenarchivewhencompl
+msgid "Open archive when created"
+msgstr ""
+
 #: dgstrconst:rsbuttonclose
 msgid "Close"
 msgstr ""
