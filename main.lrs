@@ -1,8 +1,8 @@
 { This is an automatically generated lazarus resource file }
 
 LazarusResources.Add('TMainForm','FORMDATA',[
-  'TPF0'#9'TMainForm'#8'MainForm'#4'Left'#2#6#6'Height'#3']'#2#3'Top'#2'/'#5'Wi'
-  +'dth'#3'}'#3#18'HorzScrollBar.Page'#3'|'#3#18'VertScrollBar.Page'#3'G'#2#13
+  'TPF0'#9'TMainForm'#8'MainForm'#4'Left'#2#12#6'Height'#3']'#2#3'Top'#2'D'#5'W'
+  +'idth'#3'}'#3#18'HorzScrollBar.Page'#3'|'#3#18'VertScrollBar.Page'#3'G'#2#13
   +'ActiveControl'#7#15'ArchiveTreeView'#7'Caption'#6#6'DarGUI'#12'ClientHeight'
   +#3'H'#2#11'ClientWidth'#3'}'#3#9'Icon.Data'#10#197#10#0#0#193#10#0#0'/* XPM '
   +'*/'#10'static char *graphic[] = {'#10'"16 16 133 2",'#10'".. c None",'#10'"'
@@ -953,8 +953,8 @@ LazarusResources.Add('TMainForm','FORMDATA',[
   +#2#5#3'Top'#3'j'#1#5'Width'#3'}'#3#5'Align'#7#8'alBottom'#7'Beveled'#9#11'Re'
   +'sizeStyle'#7#6'rsNone'#7'Visible'#8#12'ResizeAnchor'#7#8'akBottom'#0#0#9'TM'
   +'ainMenu'#8'MainMenu'#4'left'#3#16#3#3'top'#2#8#0#9'TMenuItem'#8'MenuFile'#7
-  +'Caption'#6#4'File'#0#9'TMenuItem'#10'miFileOpen'#7'Caption'#6#4'Open'#7'OnC'
-  +'lick'#7#15'miFileOpenClick'#0#0#9'TMenuItem'#12'miOpenRecent'#7'Caption'#6
+  +'Caption'#6#5'&File'#0#9'TMenuItem'#10'miFileOpen'#7'Caption'#6#4'Open'#7'On'
+  +'Click'#7#15'miFileOpenClick'#0#0#9'TMenuItem'#12'miOpenRecent'#7'Caption'#6
   +#15'Open recent ...'#0#0#9'TMenuItem'#9'miFileNew'#7'Caption'#6#3'New'#7'OnC'
   +'lick'#7#14'miFileNewClick'#0#0#9'TMenuItem'#10'MenuBreak1'#7'Caption'#6#1'-'
   +#0#0#9'TMenuItem'#6'miExit'#7'Caption'#6#4'Exit'#7'OnClick'#7#11'miExitClick'

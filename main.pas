@@ -249,7 +249,8 @@ var
                             //+ ' -e' // for debugging
                             + DarOptions
                             {+ ' -Q'};
-
+     if ArchiveForm.EncryptArchiveCheck.Checked
+        then Command := Command + ' -K :';
      ArchiveForm.BatchFile.Insert(1, '# ' + Command);
      ArchiveForm.BatchFile.SaveToFile(ArchiveForm.BatchFileBox.Text);
 

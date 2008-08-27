@@ -1,7 +1,7 @@
 object MainForm: TMainForm
-  Left = 6
+  Left = 12
   Height = 605
-  Top = 47
+  Top = 68
   Width = 893
   HorzScrollBar.Page = 892
   VertScrollBar.Page = 583
@@ -1049,7 +1049,7 @@ object MainForm: TMainForm
     left = 784
     top = 8
     object MenuFile: TMenuItem
-      Caption = 'File'
+      Caption = '&File'
       object miFileOpen: TMenuItem
         Caption = 'Open'
         OnClick = miFileOpenClick
