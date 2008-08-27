@@ -5,7 +5,7 @@ unit darintf;
 interface
 
 uses
-  Classes, SysUtils, Process, Comctrls, StdCtrls, FileUtil, Forms;
+  Classes, SysUtils, Process, Comctrls, StdCtrls, FileUtil, Forms, password, controls;
   
 type
   TDarInfo = record
@@ -87,6 +87,7 @@ type
   function isInteger(aString: string): Boolean;
   function DeleteFilesByMask(FileMask: string): integer;
   function GetArchiveInformation (fn: TFilename; Memo: TMemo): integer;
+  function ArchiveIsEncrypted( fn: TFilename ): Boolean;
   
   procedure WriteArchiveScript(fn: TFilename);
   function TrimToBase(fn: string): string;
@@ -300,6 +301,8 @@ var
   nodesloaded: Integer;
   progressinterval: Integer;
   completed: LongInt;
+  EncryptedArchive: Boolean;
+  pw: String;
 
    procedure SetSegments(colheading: string);
    var
@@ -327,6 +330,17 @@ var
      x, y, s, e : integer;
    begin
      fileinfo := fileinfo + #13;
+     if Pos('[     REMOVED',fileinfo)=1 then   // file flagged as removed
+        begin
+          CurrentFile[SEGSTATUS] := Copy(fileinfo,
+                                  DataCoords[SEGSTATUS].StartChar,
+                                  DataCoords[SEGSTATUS].EndChar - DataCoords[SEGSTATUS].StartChar);
+          for x := 1 to SEGDATE do
+              CurrentFile[x] := '';
+          CurrentFile[SEGFILENAME] := Copy(fileinfo, Length(CurrentFile[SEGSTATUS])+1, MaxInt);
+        end
+     else
+        begin                                   // file still exists
      for x := 0 to SEGPERMISSIONS do
          begin
            CurrentFile[x] := Copy(fileinfo,
@@ -344,7 +358,9 @@ var
            CurrentFile[x] := Copy(fileinfo, s, e - s);
            s := e + 1;
          end;
+        end;
      y := Length(CurrentFile[SEGFILENAME]);
+     if y > 0 then
       while (CurrentFile[SEGFILENAME][y] <> DirectorySeparator) and (y > 0) do
          Dec(y);
       if y > 0 then
@@ -377,45 +393,64 @@ var
      Result := parentNode;
    end;
 
-   function GetInodeCount:integer; // this leaves a zombie process
+   function GetInodeCount( key: string ):integer;
    var
-     p: integer;
-     InodeCountProc: TProcessLineTalk;
+     Proc : TProcess;
+     Output: TStringList;
+     p: Integer;
    begin
      Result := -1;
-     InodeCountProc := TProcessLineTalk.Create(Application);
-     InodeCountProc.CommandLine := 'dar -l ' + fn + ' -v';
+     Proc := TProcess.Create(Application);
+     Output := TStringList.Create;
+     Proc.CommandLine :=  'dar -l ' + fn + ' -v' + key + ' -Q';
+     Proc.Options := Proc.Options  + [poWaitOnExit, poUsePipes];
      try
-       InodeCountProc.Execute;
-       outputline := InodeCountProc.ReadLine;
-       while Pos('total number of inode', outputline) < 1 do
-             outputline := InodeCountProc.ReadLine;
-       p := Pos(':',outputline);
-       Result := StrToInt(Copy(outputline, p+2, MaxInt));
+        Proc.Execute;
+        Output.LoadFromStream(Proc.Output);
+        p := 0;
+        outputline := Output.Strings[p];
+         while (Pos('total number of inode', outputline) < 1) and (p < Output.Count) do
+             begin
+               outputline := Output.Strings[p];
+               Inc(p);
+             end;
+         if p < Output.Count then  //try to avoid provoking an exception
+           try
+             p := Pos(':',outputline);
+             Result := StrToInt(Copy(outputline, p+2, MaxInt));
+           except
+             Result := -1;
+           end;
      finally
-       InodeCountProc.Terminate(0);
-       InodeCountProc.FreeOnRelease;
+       Proc.Free;
+       Output.Free;
      end;
    end;
 
 begin
   TV.Items.Clear;
   Result := -1;
+  pw := '';
   fn := TrimToBase(fn);
+  EncryptedArchive := ArchiveIsEncrypted(fn);
+  if EncryptedArchive then
+     if PasswordDlg.Execute( fn ) = mrOK
+        then pw := ' -K :'+PasswordDlg.Password;
+  if ArchiveIsEncrypted(fn) then writeln('encrypted') else writeln('not encrypted');
   rootnode := TTreeview(TV).Items.AddFirst(nil, ExtractFileName(fn));
   rootnode.Data := TFileData.Create;
   TFileData(rootnode.Data).item[SEGFILENAME] := rootnode.Text;
   parentnode := rootnode;
-  //nodecount := GetInodeCount;
   nodesloaded := 0;
+  nodecount := GetInodeCount(pw);
   progressinterval := 0;
-  writeln(IntToStr(nodecount));
-  Proc := TProcessLineTalk.Create(Application);
-  Proc.CommandLine := 'dar -l ' + fn;
+  outputline := '';
+  Proc := TProcessLineTalk.Create(nil);
+  Proc.CommandLine := 'dar -l ' + fn + pw + ' -Q';
   Proc.Execute;
   TTreeView(TV).Visible := false;
   Application.ProcessMessages;
-  While Proc.Running do
+  While Proc.Running and (nodesloaded < nodecount) do  // but what if dar aborts before completing listing?
         begin
         outputline := Proc.ReadLine;
         if outputline<>'' then
@@ -455,8 +490,9 @@ begin
         end;
   TV.AlphaSort;
   TTreeView(TV).Visible := true;
+  TTreeView(TV).Items[0].Selected := true;
   Result := Proc.ExitStatus;
-  Proc.FreeOnRelease;
+  Proc.Free;
 end;
 
 
@@ -631,6 +667,30 @@ end;
 
 
 
+function ArchiveIsEncrypted ( fn: TFilename ) : Boolean;
+var
+  Proc : TProcess;
+  Output: TStringList;
+  p: Integer;
+begin
+  Result := false;
+  Proc := TProcess.Create(Application);
+  Output := TStringList.Create;
+  Proc.CommandLine :=  DAR_EXECUTABLE + ' -l ' + fn + ' -v -Q';
+  Proc.Options := Proc.Options  + [poWaitOnExit, poUsePipes];
+  try
+    Proc.Execute;
+    Output.LoadFromStream(Proc.Output);
+    for p := 0 to Output.Count-1 do
+        begin
+          if Pos('no encryption cipher has been given', Output.Strings[p]) > 0
+               then Result := true;
+        end;
+  finally
+    Proc.Free;
+    Output.Free;
+  end;
+end;
 
 //TODO: implement this procedure WriteArchiveScript(fn: TFilename);
 procedure WriteArchiveScript(fn: TFilename);

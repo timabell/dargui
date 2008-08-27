@@ -29,7 +29,7 @@ uses
   Forms
   { add your units here }, main, darintf, selectrestore, archive, filemaskdlg,
   ProcessLine, ArchiveInfo, About, oplog, isolate, diff, prefs,
-  historymenu, dgStrConst, selectfilter;
+  historymenu, dgStrConst, selectfilter, password;
 
 begin
   Application.Title:='DarGUI';
@@ -40,6 +40,7 @@ begin
   Application.CreateForm ( TFileMaskDialog, FileMaskDialog ) ;
   Application.CreateForm ( TInformationForm, InformationForm ) ;
   Application.CreateForm ( TOpLogForm, OpLogForm ) ;
+  Application.CreateForm ( TPasswordDlg, PasswordDlg ) ;
   Application.Run;
 end.
 
