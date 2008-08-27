@@ -101,6 +101,7 @@ rsButtonClear = 'Clear';
 rsButtonOK = 'OK';
 rsCreateArchiveImmedia = 'Create archive immediately';
 rsOpenArchiveWhenCompl = 'Open archive when created';
+rsEncryptArchive = 'Encrypt archive using blowfish';
 rsButtonClose = 'Close';
 
 //IsloateForm

@@ -15,6 +15,7 @@ type
   { TArchiveForm }
 
   TArchiveForm = class ( TForm )
+    EncryptArchiveCheck: TCheckBox;
     OpenCreatedArchiveCheck: TCheckBox;
     RepeatMonthLabel: TLabel;
     RepeatMonthDayLabel: TLabel;
@@ -326,6 +327,7 @@ begin
   RunOnceDateEdit.OKCaption := rsButtonOK;
   NowRadioButton.Caption := rsCreateArchiveImmedia;
   OpenCreatedArchiveCheck.Caption := rsOpenArchiveWhenCompl;
+  EncryptArchiveCheck.Caption := rsEncryptArchive;
 end;
 
 procedure TArchiveForm.AddIncludeDirButtonClick ( Sender: TObject ) ;

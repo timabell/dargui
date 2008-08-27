@@ -1,7 +1,7 @@
 object ArchiveForm: TArchiveForm
-  Left = 453
+  Left = 439
   Height = 476
-  Top = 294
+  Top = 293
   Width = 637
   HorzScrollBar.Page = 636
   VertScrollBar.Page = 475
@@ -606,28 +606,28 @@ object ArchiveForm: TArchiveForm
         ClientWidth = 610
         ClientHeight = 351
         object SliceMbLabel: TLabel
-          Left = 413
+          Left = 405
           Height = 20
-          Top = 107
-          Width = 19
+          Top = 91
+          Width = 20
           Caption = 'Mb'
           Enabled = False
           ParentColor = False
         end
         object SliceSizeLabel: TLabel
-          Left = 205
+          Left = 197
           Height = 20
-          Top = 107
-          Width = 57
+          Top = 91
+          Width = 60
           Caption = 'Slice size'
           Enabled = False
           ParentColor = False
         end
         object ReadConfigCheck: TCheckBox
           Left = 33
-          Height = 21
+          Height = 20
           Top = 18
-          Width = 268
+          Width = 272
           Caption = 'Attempt to read DAR configuration files'
           Checked = True
           State = cbChecked
@@ -635,33 +635,33 @@ object ArchiveForm: TArchiveForm
         end
         object DryRunCheck: TCheckBox
           Left = 33
-          Height = 21
-          Top = 186
+          Height = 20
+          Top = 190
           Width = 102
           Caption = 'Test run only'
           TabOrder = 5
         end
         object EmptyDirCheck: TCheckBox
           Left = 33
-          Height = 21
-          Top = 58
+          Height = 20
+          Top = 53
           Width = 149
           Caption = 'Preserve directories'
           TabOrder = 1
         end
         object SlicesCheck: TCheckBox
           Left = 33
-          Height = 21
-          Top = 104
+          Height = 20
+          Top = 88
           Width = 86
           Caption = 'Use slices'
           OnClick = SlicesCheckClick
           TabOrder = 2
         end
         object SliceSize: TEdit
-          Left = 314
+          Left = 306
           Height = 23
-          Top = 104
+          Top = 88
           Width = 80
           Enabled = False
           OnExit = CompressionLwrLimitExit
@@ -670,18 +670,18 @@ object ArchiveForm: TArchiveForm
         end
         object PauseCheck: TCheckBox
           Left = 125
-          Height = 21
-          Top = 145
-          Width = 158
+          Height = 20
+          Top = 120
+          Width = 157
           Caption = 'Pause between slices'
           Enabled = False
           TabOrder = 4
         end
         object SaveScriptCheckBox: TCheckBox
           Left = 33
-          Height = 21
-          Top = 274
-          Width = 111
+          Height = 20
+          Top = 260
+          Width = 112
           Caption = 'Save script as'
           OnClick = SaveScriptCheckBoxClick
           TabOrder = 6
@@ -690,32 +690,40 @@ object ArchiveForm: TArchiveForm
         object ScriptFilenameBox: TEdit
           Left = 61
           Height = 23
-          Top = 305
+          Top = 293
           Width = 350
           Enabled = False
-          TabOrder = 7
+          TabOrder = 8
           Visible = False
         end
         object ScriptFileButton: TButton
           Left = 431
           Height = 30
-          Top = 302
+          Top = 290
           Width = 90
           Caption = 'Browse'
           Enabled = False
           OnClick = ScriptFileButtonClick
-          TabOrder = 8
+          TabOrder = 9
           Visible = False
         end
         object OpenCreatedArchiveCheck: TCheckBox
           Left = 33
-          Height = 21
-          Top = 226
-          Width = 189
+          Height = 20
+          Top = 225
+          Width = 193
           Caption = 'OpenCreatedArchiveCheck'
           Checked = True
           State = cbChecked
-          TabOrder = 9
+          TabOrder = 7
+        end
+        object EncryptArchiveCheck: TCheckBox
+          Left = 33
+          Height = 20
+          Top = 155
+          Width = 156
+          Caption = 'EncryptArchiveCheck'
+          TabOrder = 10
         end
       end
       object SchedulePage: TPage
@@ -724,9 +732,9 @@ object ArchiveForm: TArchiveForm
         ClientHeight = 351
         object NowRadioButton: TRadioButton
           Left = 35
-          Height = 21
+          Height = 19
           Top = 27
-          Width = 126
+          Width = 125
           Caption = 'NowRadioButton'
           Checked = True
           OnChange = ScheduleRadioChange
@@ -735,9 +743,9 @@ object ArchiveForm: TArchiveForm
         end
         object RunOnceRadioButton: TRadioButton
           Left = 35
-          Height = 21
+          Height = 19
           Top = 58
-          Width = 127
+          Width = 125
           Caption = 'Run once only at'
           OnChange = ScheduleRadioChange
           TabOrder = 1
@@ -745,9 +753,9 @@ object ArchiveForm: TArchiveForm
         end
         object RepeatRadioButton: TRadioButton
           Left = 35
-          Height = 21
+          Height = 19
           Top = 162
-          Width = 124
+          Width = 122
           Caption = 'Run regularily at'
           OnChange = ScheduleRadioChange
           TabOrder = 2
@@ -767,7 +775,7 @@ object ArchiveForm: TArchiveForm
             Left = 65
             Height = 20
             Top = 12
-            Width = 119
+            Width = 122
             Caption = 'RunOnceHourLabel'
             Enabled = False
             ParentColor = False
@@ -776,7 +784,7 @@ object ArchiveForm: TArchiveForm
             Left = 158
             Height = 20
             Top = 12
-            Width = 131
+            Width = 134
             Caption = 'RunOnceMinuteLabel'
             Enabled = False
             ParentColor = False
@@ -785,7 +793,7 @@ object ArchiveForm: TArchiveForm
             Left = 273
             Height = 20
             Top = 12
-            Width = 119
+            Width = 122
             Caption = 'RunOnceDateLabel'
             Enabled = False
             ParentColor = False
@@ -868,7 +876,7 @@ object ArchiveForm: TArchiveForm
             Left = 65
             Height = 20
             Top = 12
-            Width = 119
+            Width = 122
             Caption = 'RunOnceHourLabel'
             Enabled = False
             ParentColor = False
@@ -877,7 +885,7 @@ object ArchiveForm: TArchiveForm
             Left = 158
             Height = 20
             Top = 12
-            Width = 120
+            Width = 122
             Caption = 'RepeatMinuteLabel'
             Enabled = False
             ParentColor = False
@@ -886,7 +894,7 @@ object ArchiveForm: TArchiveForm
             Left = 243
             Height = 20
             Top = 12
-            Width = 134
+            Width = 137
             Caption = 'RepeatWeekDayLabel'
             Enabled = False
             ParentColor = False
@@ -895,7 +903,7 @@ object ArchiveForm: TArchiveForm
             Left = 371
             Height = 20
             Top = 12
-            Width = 140
+            Width = 144
             Caption = 'RepeatMonthDayLabel'
             Enabled = False
             ParentColor = False
@@ -904,7 +912,7 @@ object ArchiveForm: TArchiveForm
             Left = 467
             Height = 20
             Top = 12
-            Width = 117
+            Width = 119
             Caption = 'RepeatMonthLabel'
             Enabled = False
             ParentColor = False
