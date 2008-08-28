@@ -361,9 +361,9 @@ var
         end;
      y := Length(CurrentFile[SEGFILENAME]);
      if y > 0 then
-      while (CurrentFile[SEGFILENAME][y] <> DirectorySeparator) and (y > 0) do
+      while (CurrentFile[SEGFILENAME][y] <> DirectorySeparator) and (y > 1) do
          Dec(y);
-      if y > 0 then
+      if CurrentFile[SEGFILENAME][y] = DirectorySeparator then
          begin
            CurrentFile[SEGFILEPATH] := Copy(CurrentFile[SEGFILENAME],1,y);
            Delete(CurrentFile[SEGFILENAME],1,y);
@@ -435,7 +435,7 @@ begin
   EncryptedArchive := ArchiveIsEncrypted(fn);
   if EncryptedArchive then
      if PasswordDlg.Execute( fn ) = mrOK
-        then pw := ' -K :'+PasswordDlg.Password;
+        then pw := ' -K :' + PasswordDlg.Password;
   if ArchiveIsEncrypted(fn) then writeln('encrypted') else writeln('not encrypted');
   rootnode := TTreeview(TV).Items.AddFirst(nil, ExtractFileName(fn));
   rootnode.Data := TFileData.Create;
@@ -450,8 +450,9 @@ begin
   Proc.Execute;
   TTreeView(TV).Visible := false;
   Application.ProcessMessages;
-  While Proc.Running and (nodesloaded < nodecount) do  // but what if dar aborts before completing listing?
+  While (nodesloaded < nodecount) do
         begin
+        if Proc.ExitStatus <> 0 then raise Exception.Create('Dar exited with error code ' + IntToStr(Proc.ExitStatus));
         outputline := Proc.ReadLine;
         if outputline<>'' then
             begin
