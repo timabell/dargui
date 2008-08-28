@@ -417,50 +417,53 @@ begin
   Proc.Execute;
   TTreeView(TV).Visible := false;
   Application.ProcessMessages;
-  While (nodesloaded < nodecount) do
-        begin
-        if Proc.ExitStatus <> 0 then raise Exception.Create('Dar exited with error code ' + IntToStr(Proc.ExitStatus));
-        outputline := Proc.ReadLine;
-        if outputline<>'' then
-            begin
-            if outputline[1]='[' then
-               if not (Pos('[data', outputline)=1) then
-                  begin
-                     Inc(nodesloaded);
-                     Inc(progressinterval);
-                     ParseCurrentFile(outputline);
-                     currentnode :=  TTreeView(TV).Items.AddChild(GetParentDirectoryNode(Currentfile[SEGFILEPATH]), CurrentFile[SEGFILENAME]);
-                     currentnode.Data := TFileData.Create;
-                     if currentnode.Level < 2
-                        then currentnode.Parent.Expand(false);
-                     with TFileData(currentnode.data) do
-                        begin
-                          for n := SEGSTATUS to SEGFILEPATH do
-                              item[n] := CurrentFile[n];
-                          folder := false;
-                        end;
-                     if (Pos('[-----]', CurrentFile[SEGSTATUS]) > 0)
-                        and (CurrentFile[SEGSIZE] = '0') then
-                        begin // NB: empty files still get marked as folders in isolated catalogues
-                          parentnode := currentnode;
-                          TFileData(currentnode.Data).folder := true;
-                        end;
-                     completed := (nodesloaded*90) div nodecount;
-                     if progressinterval=(nodecount div 20) then    //can be used for calling a progress monitor callback
+  try
+    While (nodesloaded < nodecount) do
+          begin
+          if Proc.ExitStatus <> 0 then raise Exception.Create('Dar exited with error code ' + IntToStr(Proc.ExitStatus));
+          outputline := Proc.ReadLine;
+          if outputline<>'' then
+              begin
+              if outputline[1]='[' then
+                 if not (Pos('[data', outputline)=1) then
+                    begin
+                       Inc(nodesloaded);
+                       Inc(progressinterval);
+                       ParseCurrentFile(outputline);
+                       currentnode :=  TTreeView(TV).Items.AddChild(GetParentDirectoryNode(Currentfile[SEGFILEPATH]), CurrentFile[SEGFILENAME]);
+                       currentnode.Data := TFileData.Create;
+                       if currentnode.Level < 2
+                          then currentnode.Parent.Expand(false);
+                       with TFileData(currentnode.data) do
                           begin
-                            write(completed, '% complete', #13);
-                            progressinterval := 0;
+                            for n := SEGSTATUS to SEGFILEPATH do
+                                item[n] := CurrentFile[n];
+                            folder := false;
                           end;
-                     //Application.ProcessMessages;
-                  end;
-            if Pos('----', outputline) = 1 then SetSegments(outputline);
-            end;
-        end;
-  TV.AlphaSort;
-  TTreeView(TV).Visible := true;
-  TTreeView(TV).Items[0].Selected := true;
-  Result := Proc.ExitStatus;
-  Proc.Free;
+                       if (Pos('[-----]', CurrentFile[SEGSTATUS]) > 0)
+                          and (CurrentFile[SEGSIZE] = '0') then
+                          begin // NB: empty files still get marked as folders in isolated catalogues
+                            parentnode := currentnode;
+                            TFileData(currentnode.Data).folder := true;
+                          end;
+                       completed := (nodesloaded*90) div nodecount;
+                       if progressinterval=(nodecount div 20) then    //can be used for calling a progress monitor callback
+                            begin
+                              write(completed, '% complete', #13);
+                              progressinterval := 0;
+                            end;
+                       //Application.ProcessMessages;
+                    end;
+              if Pos('----', outputline) = 1 then SetSegments(outputline);
+              end;
+          end;
+    TV.AlphaSort;
+    TTreeView(TV).Visible := true;
+    TTreeView(TV).Items[0].Selected := true;
+  finally
+    Result := Proc.ExitStatus;
+    Proc.Free;
+  end;  // try .. finally
 end;
 
 
