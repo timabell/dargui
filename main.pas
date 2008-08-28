@@ -108,7 +108,7 @@ type
     procedure pmiToggleSelectClick ( Sender: TObject ) ;
     procedure tbDiffClick ( Sender: TObject ) ;
     procedure pmiRestoreSelectedClick(Sender: TObject);
-    procedure EnableArchiveMenus;
+    procedure EnableArchiveMenus( flag: Boolean );
     procedure InitialiseInterface;
     procedure tbTestClick ( Sender: TObject ) ;
   private
@@ -133,7 +133,7 @@ var
 
   
 const
-  APP_VERSION = '0.4.0';
+  APP_VERSION = '0.4.1';
   SVN_REVISION = '';
 
   ARCHIVEMENU_TAG = 1; //used for enabling menuitems after loading archive
@@ -221,7 +221,7 @@ begin
             OpenDialog.FileName := ParamStr(1);
             if DarInfo.version<>'-'
                then if OpenArchive(OpenDialog.FileName,ArchiveTreeView) = 0
-                    then EnableArchiveMenus;
+                    then EnableArchiveMenus(true);
           end;
 end;
 
@@ -263,14 +263,20 @@ var
         begin
           CurrentArchive := ArchiveForm.ArchiveDirectory.Text
                             + ArchiveForm.ArchiveBaseName;
-          OpenArchive(CurrentArchive, ArchiveTreeView);
-          EnableArchiveMenus;
-          OpenDialog.FileName := CurrentArchive;
-          RecentList.AddFile(CurrentArchive);
-          //OpLogForm.AddCommand(Command);
+          if OpenArchive(CurrentArchive, ArchiveTreeView) = 0 then
+             begin
+               EnableArchiveMenus(true);
+               OpenDialog.FileName := CurrentArchive;
+               RecentList.AddFile(CurrentArchive);
+             end
+          else
+             begin
+               EnableArchiveMenus(false);
+               CurrentArchive := '';
+             end;
           OpLogForm.RefreshOpList;
         end;
-     if ArchiveForm.SaveScriptCheckBox.Checked
+      if ArchiveForm.SaveScriptCheckBox.Checked
         then if ArchiveForm.ScriptFilenameBox.Text <> ''
              then WriteArchiveScript(ArchiveForm.ScriptFilenameBox.Text);
      finally
@@ -351,9 +357,14 @@ begin
               OpenDialog.FileName := fn;
               if OpenArchive(OpenDialog.FileName,ArchiveTreeView) = 0 then
                   begin
-                    EnableArchiveMenus;
+                    EnableArchiveMenus(true);
                     CurrentArchive := TrimToBase(OpenDialog.FileName);
                     RecentList.AddFile(fn);
+                  end
+                  else
+                  begin
+                    EnableArchiveMenus(false);
+                    CurrentArchive := '';
                   end;
               StatusBar.Panels[SELECT_STATUSBAR].Text := '';
             end;
@@ -553,11 +564,16 @@ begin
        fn := OpenDialog.FileName;
        if OpenArchive(fn, ArchiveTreeView) = 0 then
           begin
-            EnableArchiveMenus;
+            EnableArchiveMenus(true);
             CurrentArchive := fn;
             RecentList.AddFile(fn);
           end
-       else MessageDlg ( rsErrUnableToOpenArchive, mtError, [ mbOK ] , 0 ) ;
+       else
+          begin
+            MessageDlg ( rsErrUnableToOpenArchive, mtError, [ mbOK ] , 0 ) ;
+            EnableArchiveMenus(false);
+            CurrentArchive := '';
+          end;
        StatusBar.Panels[SELECT_STATUSBAR].Text := '';
      end;
 
@@ -810,15 +826,15 @@ begin
   Enabled := True;
 end;
 
-procedure TMainForm.EnableArchiveMenus;
+procedure TMainForm.EnableArchiveMenus( flag: Boolean );
 var
   x: Integer;
 begin
-  tbTest.Enabled := true;
+  tbTest.Enabled := flag;
   for x := 0 to ComponentCount-1 do
       if Components[x] is TMenuItem then
          if TMenuItem(Components[x]).Tag = ARCHIVEMENU_TAG
-            then TMenuItem(Components[x]).Enabled := true;
+            then TMenuItem(Components[x]).Enabled := flag;
 end;
 
 procedure TMainForm.InitialiseInterface;
@@ -833,6 +849,7 @@ begin
   tbOpen.Hint := rsHintOpenAnArchive;
   tbCreate.Hint := rsHintCreateANewArchive;
   tbIsolate.Hint := rsHintIsolateCatalogue;
+  tbTest.Hint := rsCheckArchiveForErrors;
   MenuHelp.Caption := rsMenuHelp;
   miIsolate.Caption := rsMenuIsolateCatalogue;
   miTestArchive.Caption := rsMenuCheckIntegrity;

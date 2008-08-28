@@ -872,6 +872,8 @@ object MainForm: TMainForm
       }
       NumGlyphs = 0
       OnClick = tbTestClick
+      ParentShowHint = False
+      ShowHint = True
       TabOrder = 4
     end
   end

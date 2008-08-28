@@ -120,6 +120,7 @@ rsHintCompareArchiveFile = 'Compare archive and filesystem';
 rsHintOpenAnArchive = 'Open an archive';
 rsHintCreateANewArchive = 'Create a new archive';
 rsHintIsolateCatalogue = 'Isolate catalogue from archive';
+rsCheckArchiveForErrors = 'Check the archive for errors';
 rsMenuHelp = 'Help';
 rsMenuHelpAbout = 'About DarGUI';
 rsVersionNumber = 'Version number: %s';

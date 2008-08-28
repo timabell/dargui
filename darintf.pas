@@ -402,7 +402,8 @@ begin
   EncryptedArchive := ArchiveIsEncrypted(fn);
   if EncryptedArchive then
      if PasswordDlg.Execute( fn ) = mrOK
-        then pw := ' -K :' + PasswordDlg.Password;
+        then pw := ' -K :' + PasswordDlg.Password
+        else exit;
   if ArchiveIsEncrypted(fn) then writeln('encrypted') else writeln('not encrypted');
   rootnode := TTreeview(TV).Items.AddFirst(nil, ExtractFileName(fn));
   rootnode.Data := TFileData.Create;
@@ -648,7 +649,7 @@ begin
   Proc := TProcess.Create(Application);
   Output := TStringList.Create;
   Proc.CommandLine :=  DAR_EXECUTABLE + ' -l ' + fn + ' -v -Q';
-  Proc.Options := Proc.Options  + [poWaitOnExit, poUsePipes];
+  Proc.Options := Proc.Options  + [poWaitOnExit, poUsePipes, poStderrToOutPut];
   try
     Proc.Execute;
     Output.LoadFromStream(Proc.Output);
