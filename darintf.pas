@@ -88,6 +88,7 @@ type
   function DeleteFilesByMask(FileMask: string): integer;
   function GetArchiveInformation (fn: TFilename; Memo: TMemo): integer;
   function ArchiveIsEncrypted( fn: TFilename ): Boolean;
+  function GetInodeCount( archivename, key: string ):integer;
   
   procedure WriteArchiveScript(fn: TFilename);
   function TrimToBase(fn: string): string;
@@ -393,40 +394,6 @@ var
      Result := parentNode;
    end;
 
-   function GetInodeCount( key: string ):integer;
-   var
-     Proc : TProcess;
-     Output: TStringList;
-     p: Integer;
-   begin
-     Result := -1;
-     Proc := TProcess.Create(Application);
-     Output := TStringList.Create;
-     Proc.CommandLine :=  'dar -l ' + fn + ' -v' + key + ' -Q';
-     Proc.Options := Proc.Options  + [poWaitOnExit, poUsePipes];
-     try
-        Proc.Execute;
-        Output.LoadFromStream(Proc.Output);
-        p := 0;
-        outputline := Output.Strings[p];
-         while (Pos('total number of inode', outputline) < 1) and (p < Output.Count) do
-             begin
-               outputline := Output.Strings[p];
-               Inc(p);
-             end;
-         if p < Output.Count then  //try to avoid provoking an exception
-           try
-             p := Pos(':',outputline);
-             Result := StrToInt(Copy(outputline, p+2, MaxInt));
-           except
-             Result := -1;
-           end;
-     finally
-       Proc.Free;
-       Output.Free;
-     end;
-   end;
-
 begin
   TV.Items.Clear;
   Result := -1;
@@ -442,7 +409,7 @@ begin
   TFileData(rootnode.Data).item[SEGFILENAME] := rootnode.Text;
   parentnode := rootnode;
   nodesloaded := 0;
-  nodecount := GetInodeCount(pw);
+  nodecount := GetInodeCount(fn, pw);
   progressinterval := 0;
   outputline := '';
   Proc := TProcessLineTalk.Create(nil);
@@ -699,6 +666,40 @@ begin
 
 end;
 
+function GetInodeCount( archivename, key: string ):integer;
+var
+ Proc : TProcess;
+ Output: TStringList;
+ p: Integer;
+ outputline: string;
+begin
+ Result := -1;
+ Proc := TProcess.Create(Application);
+ Output := TStringList.Create;
+ Proc.CommandLine :=  'dar -l ' + archivename + ' -v' + key + ' -Q';
+ Proc.Options := Proc.Options  + [poWaitOnExit, poUsePipes];
+ try
+    Proc.Execute;
+    Output.LoadFromStream(Proc.Output);
+    p := 0;
+    outputline := Output.Strings[p];
+     while (Pos('total number of inode', outputline) < 1) and (p < Output.Count) do
+         begin
+           outputline := Output.Strings[p];
+           Inc(p);
+         end;
+     if p < Output.Count then  //try to avoid provoking an exception
+       try
+         p := Pos(':',outputline);
+         Result := StrToInt(Copy(outputline, p+2, MaxInt));
+       except
+         Result := -1;
+       end;
+ finally
+   Proc.Free;
+   Output.Free;
+ end;
+end;
 
 
 

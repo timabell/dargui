@@ -14,10 +14,12 @@ type
 
   TPasswordDlg = class ( TForm )
     CancelButton: TBitBtn;
+    NoMatchLabel: TLabel;
     PasswordEdit: TEdit;
     OKButton: TBitBtn;
     PasswordLabel: TLabel;
     procedure FormCreate ( Sender: TObject ) ;
+    procedure FormShow ( Sender: TObject ) ;
     function GetPassword: string;
     procedure OKButtonClick ( Sender: TObject ) ;
   private
@@ -36,7 +38,7 @@ var
 
 implementation
 
-uses dgStrConst;
+uses dgStrConst, darintf;
 
 { TPasswordDlg }
 
@@ -44,8 +46,14 @@ procedure TPasswordDlg.FormCreate ( Sender: TObject ) ;
 begin
   OKButton.Caption := rsButtonOK;
   CancelButton.Caption := rsButtonCancel;
-  Caption := 'Enter Password';
-  PasswordLabel.Caption := 'This file is encrypted. ' + #10 + 'Enter the correct password for this archive.';
+  Caption := rsEnterPassword;
+  NoMatchLabel.Caption := rsIncorrectPasswordEnt;
+end;
+
+procedure TPasswordDlg.FormShow ( Sender: TObject ) ;
+begin
+    PasswordLabel.Caption := Format ( rsTheFileIsEncryptedEn, [ ExtractFileName
+      ( ArchiveName ) , #10 ] ) ;
 end;
 
 function TPasswordDlg.GetPassword: string;
@@ -56,12 +64,18 @@ end;
 procedure TPasswordDlg.OKButtonClick ( Sender: TObject ) ;
 begin
   if IsValidPassword(PasswordEdit.Text)
-     then ModalResult := mrOK;
+     then ModalResult := mrOK
+     else begin
+            NoMatchLabel.Visible := false;
+            Application.ProcessMessages;
+            Sleep(300);
+            NoMatchLabel.Visible := true;
+          end;
 end;
 
 function TPasswordDlg.IsValidPassword ( pw: string ) : Boolean;
 begin
-  Result := false;
+  Result := GetInodeCount(ArchiveName, ' -K :' + pw) > -1;
 end;
 
 function TPasswordDlg.Execute( anArchive: string ): TModalResult;
@@ -75,6 +89,7 @@ end;
 procedure TPasswordDlg.Clear;
 begin
   PasswordEdit.Text := '';
+  NoMatchLabel.Visible := false;
 end;
 
 initialization
