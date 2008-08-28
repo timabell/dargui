@@ -636,15 +636,15 @@ begin
   if Find('iexplore.exe',Browser) then exit;
 end;
 
-
-
 function ArchiveIsEncrypted ( fn: TFilename ) : Boolean;
 var
   Proc : TProcess;
   Output: TStringList;
   p: Integer;
+  teststr: String;
 begin
   Result := false;
+  teststr := 'The archive ' + ExtractFileName(fn) + ' is encrypted';
   Proc := TProcess.Create(Application);
   Output := TStringList.Create;
   Proc.CommandLine :=  DAR_EXECUTABLE + ' -l ' + fn + ' -v -Q';
@@ -652,11 +652,7 @@ begin
   try
     Proc.Execute;
     Output.LoadFromStream(Proc.Output);
-    for p := 0 to Output.Count-1 do
-        begin
-          if Pos('no encryption cipher has been given', Output.Strings[p]) > 0
-               then Result := true;
-        end;
+    Result := Pos(teststr, Output.Text) > 0;
   finally
     Proc.Free;
     Output.Free;
