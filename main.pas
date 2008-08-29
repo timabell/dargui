@@ -113,6 +113,7 @@ type
     procedure tbTestClick ( Sender: TObject ) ;
   private
     LevelColors: array[0..4] of TColor;
+    CurrentPass: string;
     { private declarations }
   public
     { public declarations }
@@ -157,6 +158,7 @@ var
 begin
   //set default colors for Treeview levels
   //at some point it will be possible for the user to change these
+  CurrentPass := '';
   LevelColors[0] := clBlack;
   LevelColors[1] := clBlack;
   LevelColors[2] := clBlack;
@@ -222,7 +224,7 @@ begin
           begin
             OpenDialog.FileName := ParamStr(1);
             if DarInfo.version<>'-'
-               then if OpenArchive(OpenDialog.FileName,ArchiveTreeView) = 0
+               then if OpenArchive(OpenDialog.FileName,ArchiveTreeView, '') = 0  //need to check for encryption
                     then EnableArchiveMenus(true);
           end;
 end;
@@ -274,7 +276,7 @@ var
         begin
           CurrentArchive := ArchiveForm.ArchiveDirectory.Text
                             + ArchiveForm.ArchiveBaseName;
-          if OpenArchive(CurrentArchive, ArchiveTreeView) = 0 then
+          if OpenArchive(CurrentArchive, ArchiveTreeView, '') = 0 then //need to check for encryption
              begin
                EnableArchiveMenus(true);
                OpenDialog.FileName := CurrentArchive;
@@ -362,25 +364,28 @@ var
 begin
   fn := TMenuItem(Sender).Caption + '.1.dar';
   if FileExists(fn) then
-       begin
-         if DarInfo.version<>'-' then  //TODO: disable open menus if dar is absent
-            begin
-              StatusBar.Panels[SELECT_STATUSBAR].Text := rsMessBUSY;
-              Application.ProcessMessages;
-              OpenDialog.FileName := fn;
-              if OpenArchive(OpenDialog.FileName,ArchiveTreeView) = 0 then
-                  begin
-                    EnableArchiveMenus(true);
-                    CurrentArchive := TrimToBase(OpenDialog.FileName);
-                    RecentList.AddFile(fn);
-                  end
-                  else
-                  begin
-                    EnableArchiveMenus(false);
-                    CurrentArchive := '';
-                  end;
-              StatusBar.Panels[SELECT_STATUSBAR].Text := '';
-            end;
+     begin
+       if ValidateArchive(fn, CurrentPass) then
+         begin
+           if DarInfo.version<>'-' then  //TODO: disable open menus if dar is absent
+              begin
+                StatusBar.Panels[SELECT_STATUSBAR].Text := rsMessBUSY;
+                Application.ProcessMessages;
+                OpenDialog.FileName := fn;
+                if OpenArchive(OpenDialog.FileName,ArchiveTreeView, CurrentPass) = 0 then
+                    begin
+                      EnableArchiveMenus(true);
+                      CurrentArchive := TrimToBase(OpenDialog.FileName);
+                      RecentList.AddFile(fn);
+                    end
+                    else
+                    begin
+                      EnableArchiveMenus(false);
+                      CurrentArchive := '';
+                    end;
+                StatusBar.Panels[SELECT_STATUSBAR].Text := '';
+              end;
+         end;
        end
        else MessageDlg ( rsErrUnableToFindArchive, mtError, [ mbOk ] , 0 ) ;
        //TODO: if archive not found it should be removed from menu
@@ -388,8 +393,9 @@ end;
 
 procedure TMainForm.miArchiveInformationClick(Sender: TObject);
 begin
-  if GetArchiveInformation(ExtractFilePath(OpenDialog.FileName)
-                            + ArchiveTreeView.TopItem.Text,InformationForm.InformationMemo) = 0
+  if GetArchiveInformation(ExtractFilePath(OpenDialog.FileName) + ArchiveTreeView.TopItem.Text,
+                            InformationForm.InformationMemo,
+                            CurrentPass ) = 0
       then
       begin
         InformationForm.Caption := Format ( rsInformationF, [
@@ -567,15 +573,19 @@ end;
 procedure TMainForm.miFileOpenClick(Sender: TObject);
 var
   fn: String;
+  pw: String;
 begin
+  pw := '';
   OpenDialog.Title := rsOpenExisting;
   OpenDialog.Filter := rsFilterDARArchives + '|*.1.dar';
   if OpenDialog.Execute then
      begin
        StatusBar.Panels[SELECT_STATUSBAR].Text := #32 + rsMessBUSY;
        Application.ProcessMessages;
-       fn := OpenDialog.FileName;
-       if OpenArchive(fn, ArchiveTreeView) = 0 then
+       fn := TrimToBase( OpenDialog.FileName );
+       if not ValidateArchive(fn, CurrentPass)
+          then exit else
+       if OpenArchive(fn, ArchiveTreeView, CurrentPass) = 0 then
           begin
             EnableArchiveMenus(true);
             CurrentArchive := fn;

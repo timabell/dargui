@@ -5,7 +5,7 @@ unit darintf;
 interface
 
 uses
-  Classes, SysUtils, Process, Comctrls, StdCtrls, FileUtil, Forms, password, controls;
+  Classes, SysUtils, Process, Comctrls, StdCtrls, FileUtil, Forms, controls;
   
 type
   TDarInfo = record
@@ -80,15 +80,16 @@ type
   function GetNextFileName( FileBase: string): string;
   procedure GetTerminalCommand(var Terminal: string);
   function GetRunscriptPath: string;
-  function OpenArchive(var fn: string; TV: TTreeview): integer;
+  function OpenArchive(var fn: string; TV: TTreeview; pw: string): integer;
   function RunDarCommand ( Cmd, Title: string; x, y :integer ) : integer;
   function PosFrom(const SubStr, Value: String; From: integer): integer;
   function SelectChildren(Node: TTreeNode): integer;
   function isInteger(aString: string): Boolean;
   function DeleteFilesByMask(FileMask: string): integer;
-  function GetArchiveInformation (fn: TFilename; Memo: TMemo): integer;
+  function GetArchiveInformation (fn: TFilename; Memo: TMemo; pw:string): integer;
   function ArchiveIsEncrypted( fn: TFilename ): Boolean;
   function GetInodeCount( archivename, key: string ):integer;
+  function ValidateArchive( var archivename: string; var pw: string ): Boolean;
   
   procedure WriteArchiveScript(fn: TFilename);
   function TrimToBase(fn: string): string;
@@ -102,7 +103,7 @@ var
 
 implementation
 
-uses processline;
+uses processline, password;
 
 // ************** GetDarVersion ***************** //
 
@@ -289,7 +290,7 @@ begin
 end;
 
 // ************** OpenArchive ***************** //
-function OpenArchive(var fn: string; TV : TTreeview): integer;
+function OpenArchive(var fn: string; TV : TTreeview; pw: string): integer;
 var
   Proc : TProcessLineTalk;
   rootnode: TTreeNode;
@@ -304,7 +305,6 @@ var
   progressinterval: Integer;
   completed: LongInt;
   EncryptedArchive: Boolean;
-  pw: String;
 
    procedure SetSegments(colheading: string);
    var
@@ -398,14 +398,7 @@ var
 begin
   TV.Items.Clear;
   Result := -1;
-  pw := '';
   fn := TrimToBase(fn);
-  EncryptedArchive := ArchiveIsEncrypted(fn);
-  if EncryptedArchive then
-     if PasswordDlg.Execute( fn ) = mrOK
-        then pw := ' -K :' + PasswordDlg.Password
-        else exit;
-  if ArchiveIsEncrypted(fn) then writeln('encrypted') else writeln('not encrypted');
   rootnode := TTreeview(TV).Items.AddFirst(nil, ExtractFileName(fn));
   rootnode.Data := TFileData.Create;
   TFileData(rootnode.Data).item[SEGFILENAME] := rootnode.Text;
@@ -568,14 +561,14 @@ Begin
      end;
 End;
 
-function GetArchiveInformation(fn: TFilename; Memo: TMemo): integer;
+function GetArchiveInformation(fn: TFilename; Memo: TMemo; pw: string): integer;
 var
   Proc: TProcess;
   x: Integer;
 begin
   Result := -1;
   Proc := TProcess.Create(nil);
-  Proc.CommandLine := 'dar -l' + fn + ' -v -Q';
+  Proc.CommandLine := 'dar -l' + fn + pw +' -v -Q';
   Proc.Options := Proc.Options  + [poWaitOnExit, poUsePipes, poStderrToOutPut];
       try
       Proc.Execute;
@@ -587,9 +580,10 @@ begin
             else if Pos('aborting', AnsiLowerCase(Memo.Lines[x])) = 1
                then Memo.Lines.Delete(x)
             else if Pos('extracting', AnsiLowerCase(Memo.Lines[x])) = 1
+               then Memo.Lines.Delete(x)
+            else if Pos('has been encrypted', Memo.Lines[x]) > 0
                then Memo.Lines.Delete(x);
           end;
-      
       Result := 0;
       finally
       Proc.Free;
@@ -682,6 +676,17 @@ begin
   end;
 end;
 
+function ValidateArchive( var archivename: string; var pw: string ): Boolean;
+begin
+  result := true;
+  pw := '';
+  archivename := TrimToBase( archivename );
+  if ArchiveIsEncrypted(archivename) then
+   if PasswordDlg.Execute( archivename ) = mrOK
+      then pw := ' -K :' + PasswordDlg.Password
+      else Result := false;
+end;
+
 //TODO: implement this procedure WriteArchiveScript(fn: TFilename);
 procedure WriteArchiveScript(fn: TFilename);
 begin
@@ -699,7 +704,7 @@ begin
  Proc := TProcess.Create(Application);
  Output := TStringList.Create;
  Proc.CommandLine :=  'dar -l ' + archivename + ' -v' + key + ' -Q';
- Proc.Options := Proc.Options  + [poWaitOnExit, poUsePipes];
+ Proc.Options := Proc.Options  + [poWaitOnExit, poUsePipes, poStderrToOutPut];
  try
     Proc.Execute;
     Output.LoadFromStream(Proc.Output);
