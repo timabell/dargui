@@ -94,6 +94,7 @@ type
   function TrimToBase(fn: string): string;
   
   procedure GetDefaultBrowser(var Browser, Params: string);
+  function SetBytes( bytes: Int64 ): string;
 
 var
   TerminalCommand: string;
@@ -635,6 +636,27 @@ begin
   if Find('netscape',Browser) then exit;
   if Find('opera',Browser) then exit;
   if Find('iexplore.exe',Browser) then exit;
+end;
+
+// adapted from code found at http://www.freevbcode.com/ShowCode.asp?ID=1971
+function SetBytes(bytes: Int64): string;
+begin
+  if bytes < 0 then
+     begin
+       Result := '';
+       exit;
+     end;
+  try
+    if bytes >= 1073741824
+       then Result := FormatFloat('#0.00 GB', (bytes / 1024 / 1024 / 1024))
+    else if bytes >= 1048576
+         then Result := FormatFloat('#0.00 MB', (bytes / 1024 / 1024))
+    else if bytes >= 1024
+         then Result := FormatFloat('#0 KB', (bytes / 1024))
+    else Result := IntToStr(bytes) + ' B';
+  except
+    Result := '';
+  end;
 end;
 
 function ArchiveIsEncrypted ( fn: TFilename ) : Boolean;
