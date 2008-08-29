@@ -139,6 +139,8 @@ const
   ARCHIVEMENU_TAG = 1; //used for enabling menuitems after loading archive
   SELECT_STATUSBAR = 0;   //index of panel which displays number of selected nodes
   FOLDERICON = 0;  //index of folder icon in IconList
+  
+  DARGUI_INFO_FILE = '.dargui-info-file';
 
 
 implementation
@@ -233,6 +235,9 @@ var
   referencearchive: String;
   
   procedure CreateNewArchive;
+  var
+    InfoFile: TSettingsFile;
+    infofilename: String;
   begin
      try
      Enabled := false;
@@ -246,12 +251,18 @@ var
                             + referencearchive
                             + ' -B "' + ArchiveForm.BatchFileBox.Text + '"'
                             + ' -v'
-                            //+ ' -e' // for debugging
-                            + DarOptions
-                            {+ ' -Q'};
+                            + DarOptions;
      if ArchiveForm.EncryptArchiveCheck.Checked
         then Command := Command + ' -K :';
      ArchiveForm.BatchFile.Insert(1, '# ' + Command);
+     if UseInfoFile then
+        begin
+          infofilename := ArchiveForm.BaseDirectory.Text + DirectorySeparator + DARGUI_INFO_FILE;
+          InfoFile := TSettingsFile.Create(infofilename);
+          InfoFile.WriteString('Archive information', 'Basedirectory', ArchiveForm.BaseDirectory.Text );
+          InfoFile.Free;
+          ArchiveForm.BatchFile.Insert(2, '-I ' + DARGUI_INFO_FILE);
+        end;
      ArchiveForm.BatchFile.SaveToFile(ArchiveForm.BatchFileBox.Text);
 
      MessageMemo.Lines.Add(#32 + StringOfChar('-',45));
@@ -281,6 +292,8 @@ var
              then WriteArchiveScript(ArchiveForm.ScriptFilenameBox.Text);
      finally
      Enabled := true;
+     if FileExists(infofilename)
+        then DeleteFile(infofilename);
      end;
   end;
   
