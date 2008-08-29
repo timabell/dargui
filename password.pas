@@ -68,6 +68,7 @@ begin
      else begin
             NoMatchLabel.Visible := false;
             PasswordEdit.Text := '';
+            PasswordEdit.SetFocus;
             Application.ProcessMessages;
             Sleep(300);
             NoMatchLabel.Visible := true;
