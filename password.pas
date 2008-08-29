@@ -67,6 +67,7 @@ begin
      then ModalResult := mrOK
      else begin
             NoMatchLabel.Visible := false;
+            PasswordEdit.Text := '';
             Application.ProcessMessages;
             Sleep(300);
             NoMatchLabel.Visible := true;
