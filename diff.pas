@@ -120,10 +120,14 @@ begin
   LogFile := GetNextFileName(TEMP_DIRECTORY + LOGFILE_BASE);
   if VerboseCheck.Checked then verboseflag := ' -v';
   Cmd :=  DAR_EXECUTABLE + ' -d ' + ArchiveBox.Text + ' -R ' + BaseDirBox.Text + verboseflag;
+  if ArchiveIsEncrypted(ArchiveBox.Text)
+     then Cmd := Cmd + ' -K :';
   if RunDarCommand ( Cmd, rsCptComparingFiles, Left + 100, Top + 150 ) = 0
      then begin
        ResultListBox.Items.LoadFromFile(LogFile);
        if Pos(DAR_EXECUTABLE, ResultListBox.Items[0]) = 1
+          then ResultListBox.Items.Delete(0);
+       if Pos('Warning,', ResultListBox.Items[0]) = 1
           then ResultListBox.Items.Delete(0);
        if Pos('Extracting contents ', ResultListBox.Items[0]) = 1
           then ResultListBox.Items.Delete(0);
@@ -174,6 +178,7 @@ var
   
   function DiffState: Integer;
   begin
+    result := -1;
     if Pos('OK',aFile) = 1 then
        begin
          Result := 0;
@@ -188,16 +193,20 @@ var
   end;
   
 begin
+  if (Index < 0)
+  or (Index >= TListBox(Control).Count)
+     then exit;
   Glyph := TBitmap.Create;
   with TListBox(Control) do
-    begin
+    try
       aFile := Items[Index];
       ImageList1.GetBitmap(DiffState, Glyph);
       Canvas.FillRect(ARect);
       Canvas.Draw(2, ARect.Top+2, Glyph);
       Canvas.TextRect(ARect, ARect.Left+2 + Glyph.Width, ARect.Top+2, aFile);
+    finally
+      Glyph.Free;
     end;
-  Glyph.Free;
 end;
 
 procedure TDiffForm.InitialiseInterface;
