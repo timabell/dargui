@@ -721,7 +721,12 @@ procedure TMainForm.pmiShowAllSelectedClick ( Sender: TObject ) ;
 var
   x: Integer;
 begin
-  ArchiveTreeView.MakeSelectionVisible;
+  for x := ArchiveTreeView.Items.Count-1 downto 1 do
+      begin
+        if ArchiveTreeView.Items[x].MultiSelected
+           then if not ArchiveTreeView.Items[x].IsVisible
+                then ArchiveTreeView.Items[x].MakeVisible;
+      end;
 end;
 
 procedure TMainForm.miShowToolbarClick ( Sender: TObject ) ;
