@@ -50,14 +50,14 @@ LazarusResources.Add('TInformationForm','FORMDATA',[
   +'K#L#M#N#O#P.8.8.8.8#Q",'#10'"QtQtQtQtQtQt#R#S#T#U#V.8.8.8.8#Q",'#10'"QtQtQt'
   +'QtQtQt#W#X#Y#Z#0.8.8.8.8#Q",'#10'"QtQtQtQtQtQt#W#x#x#x#0.8.8.8.8#1",'#10'"Q'
   +'tQtQtQtQtQt#2#3#4#x#0.8#5#6#7#8",'#10'"QtQtQtQtQtQtQt#9a.a#aaabacQtQtQt"};'
-  +#10#0#6'TPanel'#11'ButtonPanel'#6'Height'#2'2'#3'Top'#3#229#0#5'Width'#3#253
-  +#1#5'Align'#7#8'alBottom'#12'ClientHeight'#2'2'#11'ClientWidth'#3#253#1#8'Ta'
-  +'bOrder'#2#0#0#7'TBitBtn'#8'OkButton'#4'Left'#3#208#0#6'Height'#2#30#3'Top'#2
-  +#11#5'Width'#2'Z'#7'Caption'#6#3'&OK'#7'Default'#9#4'Kind'#7#4'bkOK'#11'Moda'
-  +'lResult'#2#1#9'NumGlyphs'#2#0#8'TabOrder'#2#0#0#0#0#6'TPanel'#9'MemoPanel'#6
-  +'Height'#3#229#0#5'Width'#3#253#1#5'Align'#7#8'alClient'#12'ClientHeight'#3
-  +#229#0#11'ClientWidth'#3#253#1#8'TabOrder'#2#1#0#5'TMemo'#15'InformationMemo'
-  +#4'Left'#2#6#6'Height'#3#217#0#3'Top'#2#6#5'Width'#3#241#1#5'Align'#7#8'alCl'
-  +'ient'#20'BorderSpacing.Around'#2#5#25'BorderSpacing.InnerBorder'#2#5#8'TabO'
-  +'rder'#2#0#0#0#0#0
+  +#10#8'Position'#7#16'poMainFormCenter'#0#6'TPanel'#11'ButtonPanel'#6'Height'
+  +#2'2'#3'Top'#3#229#0#5'Width'#3#253#1#5'Align'#7#8'alBottom'#12'ClientHeight'
+  +#2'2'#11'ClientWidth'#3#253#1#8'TabOrder'#2#0#0#7'TBitBtn'#8'OkButton'#4'Lef'
+  +'t'#3#208#0#6'Height'#2#30#3'Top'#2#11#5'Width'#2'Z'#7'Caption'#6#3'&OK'#7'D'
+  +'efault'#9#4'Kind'#7#4'bkOK'#11'ModalResult'#2#1#9'NumGlyphs'#2#0#8'TabOrder'
+  +#2#0#0#0#0#6'TPanel'#9'MemoPanel'#6'Height'#3#229#0#5'Width'#3#253#1#5'Align'
+  +#7#8'alClient'#12'ClientHeight'#3#229#0#11'ClientWidth'#3#253#1#8'TabOrder'#2
+  +#1#0#5'TMemo'#15'InformationMemo'#4'Left'#2#6#6'Height'#3#217#0#3'Top'#2#6#5
+  +'Width'#3#241#1#5'Align'#7#8'alClient'#20'BorderSpacing.Around'#2#5#25'Borde'
+  +'rSpacing.InnerBorder'#2#5#8'TabOrder'#2#0#0#0#0#0
 ]);
