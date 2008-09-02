@@ -87,10 +87,10 @@ object OpLogForm: TOpLogForm
     ClientWidth = 717
     TabOrder = 1
     object CloseButton: TBitBtn
-      Left = 632
+      Left = 605
       Height = 30
       Top = 12
-      Width = 75
+      Width = 100
       Caption = '&Close'
       Kind = bkClose
       NumGlyphs = 0
