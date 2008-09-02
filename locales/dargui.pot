@@ -234,6 +234,18 @@ msgstr ""
 msgid "Cancel"
 msgstr ""
 
+#: dgstrconst:rsenterpassword
+msgid "Enter Password"
+msgstr ""
+
+#: dgstrconst:rsincorrectpasswordent
+msgid "Incorrect password entered"
+msgstr ""
+
+#: dgstrconst:rsthefileisencrypteden
+msgid "The file %s is encrypted. %sEnter the correct password for this archive."
+msgstr ""
+
 #: dgstrconst:rssourcearchive
 msgid "Source archive"
 msgstr ""
@@ -294,6 +306,10 @@ msgstr ""
 msgid "Open archive when created"
 msgstr ""
 
+#: dgstrconst:rsencryptarchive
+msgid "Encrypt archive using blowfish"
+msgstr ""
+
 #: dgstrconst:rsbuttonclose
 msgid "Close"
 msgstr ""
@@ -336,6 +352,10 @@ msgstr ""
 
 #: dgstrconst:rshintisolatecatalogue
 msgid "Isolate catalogue from archive"
+msgstr ""
+
+#: dgstrconst:rscheckarchiveforerrors
+msgid "Check the archive for errors"
 msgstr ""
 
 #: dgstrconst:rsmenuhelp

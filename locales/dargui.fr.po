@@ -250,6 +250,18 @@ msgstr "La date ne peut pas être antérieure"
 msgid "Cancel"
 msgstr "Annuler"
 
+#: dgstrconst:rsenterpassword
+msgid "Enter Password"
+msgstr "Entrez le Mot de Passe"
+
+#: dgstrconst:rsincorrectpasswordent
+msgid "Incorrect password entered"
+msgstr "Mot de Passe saisi incorrect"
+
+#: dgstrconst:rsthefileisencrypteden
+msgid "The file %s is encrypted. %sEnter the correct password for this archive."
+msgstr "Le fichier %s est crypté. %sEntrez le bon mot de passe pour cette archive."
+
 #: dgstrconst:rssourcearchive
 msgid "Source archive"
 msgstr "Archive source"
@@ -310,6 +322,10 @@ msgstr "Créer l'archive immédiatement"
 msgid "Open archive when created"
 msgstr "Ouvrir l'archive après la création"
 
+#: dgstrconst:rsencryptarchive
+msgid "Encrypt archive using blowfish"
+msgstr "Cryptage Blowfish de l'archive"
+
 #: dgstrconst:rsbuttonclose
 msgid "Close"
 msgstr "Fermer"
@@ -353,6 +369,10 @@ msgstr "Créer une nouvelle archive"
 #: dgstrconst:rshintisolatecatalogue
 msgid "Isolate catalogue from archive"
 msgstr "Isoler le catalogue de l'archive"
+
+#: dgstrconst:rscheckarchiveforerrors
+msgid "Check the archive for errors"
+msgstr "Contrôle de l'intégrité de l'archive"
 
 #: dgstrconst:rsmenuhelp
 msgid "Help"
@@ -552,7 +572,7 @@ msgstr "Mb"
 
 #: dgstrconst:rsuseslices
 msgid "Use slices"
-msgstr "Utiliser la segmentation"
+msgstr "Segmenter"
 
 #: dgstrconst:rssavescriptas
 msgid "Save script as"
@@ -608,19 +628,19 @@ msgstr "Enregistrer l'archive sous"
 
 #: dgstrconst:rsincludedirectories
 msgid "Include directories:"
-msgstr "Inclure les répertoires:"
+msgstr "Inclure les répertoires :"
 
 #: dgstrconst:rsexcludedirectories
 msgid "Exclude directories"
-msgstr "Exclure les répertoires:"
+msgstr "Exclure les répertoires :"
 
 #: dgstrconst:rsincludefiles
 msgid "Include files:"
-msgstr "Inclure les fichiers:"
+msgstr "Inclure les fichiers :"
 
 #: dgstrconst:rsexcludefiles
 msgid "Exclude files:"
-msgstr "Exclure les fichiers:"
+msgstr "Exclure les fichiers :"
 
 #: dgstrconst:rsselectfile
 msgid "Select file"

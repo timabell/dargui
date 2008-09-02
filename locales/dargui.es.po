@@ -127,7 +127,7 @@ msgid "# DAR batch file written by DarGUI"
 msgstr "# Fichero de parámetros DAR, escrito por DarGUI"
 
 #: dgstrconst:rsdryrun
-msgid "# Dry run: ths archive will not be written to file unless the next option is removed"
+msgid "# Dry run: this archive will not be written to file unless the next option is removed"
 msgstr "# Ensayo: la copia de seguridad no será creada sin quitar este parámetro "
 
 #: dgstrconst:rsincdirectories
@@ -250,6 +250,18 @@ msgstr "La fecha debe estar en el futuro"
 msgid "Cancel"
 msgstr "Cancelar"
 
+#: dgstrconst:rsenterpassword
+msgid "Enter Password"
+msgstr "Entrar contraseña"
+
+#: dgstrconst:rsincorrectpasswordent
+msgid "Incorrect password entered"
+msgstr "Contraseña incorrecta"
+
+#: dgstrconst:rsthefileisencrypteden
+msgid "The file %s is encrypted. %sEnter the correct password for this archive."
+msgstr "El archivo %s está cifrada. %sEntrar la contraseña que corresponde."
+
 #: dgstrconst:rssourcearchive
 msgid "Source archive"
 msgstr "Copia origen"
@@ -310,6 +322,10 @@ msgstr "Hacer la copia de seguridad ahora"
 msgid "Open archive when created"
 msgstr "Abrir archivo después de crearlo"
 
+#: dgstrconst:rsencryptarchive
+msgid "Encrypt archive using blowfish"
+msgstr "Cifrar el archivo con Blowfish"
+
 #: dgstrconst:rsbuttonclose
 msgid "Close"
 msgstr "Cerrar"
@@ -353,6 +369,10 @@ msgstr "Realizar una nueva copia de seguridad"
 #: dgstrconst:rshintisolatecatalogue
 msgid "Isolate catalogue from archive"
 msgstr "Extraer el catálogo de una copia de seguridad"
+
+#: dgstrconst:rscheckarchiveforerrors
+msgid "Check the archive for errors"
+msgstr "Verificar la integridad de los ficheros en el archivo"
 
 #: dgstrconst:rsmenuhelp
 msgid "Help"
