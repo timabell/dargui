@@ -134,7 +134,7 @@ var
 
   
 const
-  APP_VERSION = '0.4.1';
+  APP_VERSION = '0.4.1-test3';
   SVN_REVISION = '';
 
   ARCHIVEMENU_TAG = 1; //used for enabling menuitems after loading archive
@@ -393,15 +393,15 @@ end;
 
 procedure TMainForm.miArchiveInformationClick(Sender: TObject);
 begin
-  if GetArchiveInformation(ExtractFilePath(OpenDialog.FileName) + ArchiveTreeView.TopItem.Text,
+  if GetArchiveInformation(ExtractFilePath(OpenDialog.FileName) + ExtractFileName( CurrentArchive ),
                             InformationForm.InformationMemo,
                             CurrentPass ) = 0
       then
       begin
         InformationForm.Caption := Format ( rsInformationF, [
-          ArchiveTreeView.TopItem.Text ] ) ;
+          ExtractFileName( CurrentArchive ) ] ) ;
         InformationForm.InformationMemo.Lines.Insert ( 0, Format (
-          rsInfoFormLocation, [ OpenDialog.FileName ] ) ) ;
+          rsInfoFormLocation, [ CurrentArchive ] ) ) ;
         InformationForm.InformationMemo.Lines.Insert(1, StringOfChar('-',45));
         InformationForm.ShowModal;
       end;
