@@ -332,7 +332,8 @@ var
      x, y, s, e : integer;
    begin
      fileinfo := fileinfo + #13;
-     if Pos('[     REMOVED',fileinfo)=1 then   // file flagged as removed
+     if (Pos('[     REMOVED',fileinfo)=1)
+        or (Pos('[     SUPPRIME', fileinfo)=1) then   // file flagged as removed
         begin
           CurrentFile[SEGSTATUS] := Copy(fileinfo,
                                   DataCoords[SEGSTATUS].StartChar,
@@ -441,12 +442,12 @@ begin
                             parentnode := currentnode;
                             TFileData(currentnode.Data).folder := true;
                           end;
-                       completed := (nodesloaded*90) div nodecount;
+                       {completed := (nodesloaded*90) div nodecount;
                        if progressinterval=(nodecount div 20) then    //can be used for calling a progress monitor callback
                             begin
                               write(completed, '% complete', #13);
                               progressinterval := 0;
-                            end;
+                            end;   }
                        //Application.ProcessMessages;
                     end;
               if Pos('----', outputline) = 1 then SetSegments(outputline);
@@ -699,20 +700,24 @@ var
  Output: TStringList;
  p: Integer;
  outputline: string;
+ coloncount: Integer;
 begin
  Result := -1;
+ coloncount := 0;
  Proc := TProcess.Create(Application);
  Output := TStringList.Create;
  Proc.CommandLine :=  'dar -l ' + archivename + ' -v' + key + ' -Q';
- Proc.Options := Proc.Options  + [poWaitOnExit, poUsePipes, poStderrToOutPut];
+ Proc.Options := Proc.Options  + [poWaitOnExit, poUsePipes];
  try
     Proc.Execute;
     Output.LoadFromStream(Proc.Output);
     p := 0;
     outputline := Output.Strings[p];
-     while (Pos('total number of inode', outputline) < 1) and (p < Output.Count) do
+     while (coloncount < 7) and (p < Output.Count) do
          begin
            outputline := Output.Strings[p];
+           if Pos(':', outputline) > 0
+              then Inc(coloncount) ;
            Inc(p);
          end;
      if p < Output.Count then  //try to avoid provoking an exception
@@ -723,6 +728,8 @@ begin
          Result := -1;
        end;
  finally
+   if Result=-1
+      then writeln('Unable to extract node count - dumping output of dar -l -v:' + #10 + Output.Text);
    Proc.Free;
    Output.Free;
  end;
