@@ -103,7 +103,7 @@ var
 
 implementation
 
-uses processline, password;
+uses processline, password, darstrings;
 
 // ************** GetDarVersion ***************** //
 
@@ -136,9 +136,9 @@ function GetDarVersion : TDarInfo;
      Result := StrToInt(src);
    end;
 
-   function GetBoolean(src: string) : Boolean;
+   function GetBoolean(src: string; startpoint: integer) : Boolean;
    begin
-     Result := Pos(': YES', src) > 0;
+     Result := PosDarString(dsYES, src) >= startpoint;
    end;
    
 var
@@ -146,8 +146,10 @@ var
   Output: TStringList;
   x : integer;
   info : TDarInfo;
+  DarInEnglish: Boolean;
 begin
   info.version := '';
+  DarInEnglish := false;
   Result := info;
   Proc := TProcess.Create(Application);
   Output := TStringList.Create;
@@ -158,27 +160,37 @@ begin
       Proc.Execute;
       Output.LoadFromStream(Proc.Output);
       for x := 0 to Output.Count -1 do
+          if PosDarString(dsLongoptions, Output.Strings[x]) > 0
+             then DarInEnglish := true;
+      if DarInEnglish then writeln('DAR using English language');
+      if not DarInEnglish
+         then begin
+               if OpenDarTranslationInterface
+                    then SetDarStrings
+                    else writeln('Unable to translate DAR output: please report this as a bug');
+              end;
+      for x := 0 to Output.Count -1 do
           begin
           if Pos('dar version',Output.Strings[x]) > 0
              then info.version := GetVersion(Output.Strings[x])
-          else if Pos('long options', Output.Strings[x]) > 0
-                  then info.Longopts := GetBoolean(Output.Strings[x])
-          else if Pos('libz comp', Output.Strings[x]) > 0
-                  then info.Libz := GetBoolean(Output.Strings[x])
-          else if Pos('libbz2', Output.Strings[x]) > 0
-                  then info.Libbz2 := GetBoolean(Output.Strings[x])
-          else if Pos('new blowfish', Output.Strings[x]) > 0
-                  then info.Blowfish := GetBoolean(Output.Strings[x])
+          else if PosDarString(dsLongoptions, Output.Strings[x]) > 0
+                  then info.Longopts := GetBoolean(Output.Strings[x], LengthDarString(dsLongoptions))
+          else if PosDarString(dsLibzComp, Output.Strings[x]) > 0
+                  then info.Libz := GetBoolean(Output.Strings[x], LengthDarString(dsLibzComp))
+          else if PosDarString(dsLibbz2Comp, Output.Strings[x]) > 0
+                  then info.Libbz2 := GetBoolean(Output.Strings[x], LengthDarString(dsLibbz2Comp))
+          else if PosDarString(dsNewBlowfish, Output.Strings[x]) > 0
+                  then info.Blowfish := GetBoolean(Output.Strings[x], LengthDarString(dsNewBlowfish))
           else if Pos('extended attrib', Output.Strings[x]) > 0
-                  then info.Extended := GetBoolean(Output.Strings[x] )
+                  then info.Extended := GetBoolean(Output.Strings[x], 1 )
           else if Pos('large files', Output.Strings[x]) > 0
-                  then info.Largefiles := GetBoolean(Output.Strings[x])
+                  then info.Largefiles := GetBoolean(Output.Strings[x], 1)
           else if Pos('nodump', Output.Strings[x]) > 0
-                  then info.Nodump := GetBoolean(Output.Strings[x])
+                  then info.Nodump := GetBoolean(Output.Strings[x], 1)
           else if Pos('thread safe', Output.Strings[x]) > 0
-                  then info.Threadsafe := GetBoolean(Output.Strings[x])
+                  then info.Threadsafe := GetBoolean(Output.Strings[x], 1)
           else if Pos('special alloc', Output.Strings[x]) > 0
-                  then info.SpAlloc := GetBoolean(Output.Strings[x])
+                  then info.SpAlloc := GetBoolean(Output.Strings[x], 1)
           else if Pos('integer size', Output.Strings[x]) > 0
                   then info.IntSize := GetIntSize(Output.Strings[x]);
           end;
