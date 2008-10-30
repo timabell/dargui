@@ -23,6 +23,8 @@ resourcestring
   dsLibbz2Comp    = '   Libbz2 compression (bzip2) : %s\n';
   dsNewBlowfish   = '   New Blowfish implementation: %s\n';
   
+  dsInodeCount    = 'total number of inode : %s\n';   // NOT VERSION CHECKED
+  
 function OpenDarTranslationInterface: Boolean;
 procedure CloseDarTranslationInterface;
 

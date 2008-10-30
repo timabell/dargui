@@ -492,6 +492,7 @@ begin
                              + '" '
                              + ' -e ' + RunscriptPath + RUNSCRIPT + #32  + Cmd
                              + ';' + Logfile;
+    Cmd := Proc.CommandLine; //for debugging
     Proc.Options := Proc.Options + [poStderrToOutPut];
     Proc.Execute;
     While Proc.Running do
@@ -713,6 +714,22 @@ var
  p: Integer;
  outputline: string;
  coloncount: Integer;
+ 
+ function FindInodeLine: string;
+ var
+   ln: integer;
+ begin
+   ln := 0;
+   Result := Output.Strings[ln];
+     while (ln < Output.Count) do
+         begin
+           Result := Output.Strings[ln];
+           if PosDarString((dsInodeCount), Result) > 0
+              then exit ;
+           Inc(ln);
+         end;
+ end;
+ 
 begin
  Result := -1;
  coloncount := 0;
@@ -723,18 +740,10 @@ begin
  try
     Proc.Execute;
     Output.LoadFromStream(Proc.Output);
-    p := 0;
-    outputline := Output.Strings[p];
-     while (coloncount < 7) and (p < Output.Count) do
-         begin
-           outputline := Output.Strings[p];
-           if Pos(':', outputline) > 0
-              then Inc(coloncount) ;
-           Inc(p);
-         end;
-     if p < Output.Count then  //try to avoid provoking an exception
+    outputline := FindInodeLine;
+    p := Pos(':',outputline);
+    if p > 0 then  //try to avoid provoking an exception
        try
-         p := Pos(':',outputline);
          Result := StrToInt(Copy(outputline, p+2, MaxInt));
        except
          Result := -1;
