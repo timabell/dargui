@@ -1,4 +1,4 @@
 *.bak
 *.lps
 compiled
-dist
+package
