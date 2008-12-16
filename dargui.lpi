@@ -198,6 +198,7 @@
     <Linking>
       <Debugging>
         <GenerateDebugInfo Value="True"/>
+        <GenerateDebugDBX Value="True"/>
       </Debugging>
     </Linking>
     <Other>

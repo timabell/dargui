@@ -1,3 +1,4 @@
 *.bak
 *.lps
 compiled
+dist

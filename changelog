@@ -1,0 +1,35 @@
+2008-09-16 DarGUI 0.4.1
+	* Fixed bug preventing loading of differential backups containing REMOVED entries
+	* Fixed bug where scrollbars not initially visible
+	* Menu option Show Selected now works as expected
+	* Added support for Blowfish encryption
+
+2008-08-20 DarGUI 0.4.0
+	* Open archive routine rewritten to give greatly improved loading of large archives
+	* Differential backup now possible
+	* Can include timestamp in archive name
+	* Improved error messages when creating archives
+	* Translated to French by Gwen Trellu
+	* Compare Archive and Filesystem window can now be translated
+	* Spaces in archive names are now replaced by underscores _
+	* Changed start command in KDE menu entry
+	* Added option to avoid loading filelist of newly created archives
+
+2008-04-06 DarGUI 0.3.0
+	* Improvements to display of files in archive
+	* Select files in archive using filters
+	* Improved checking of user input
+	* Open recent archives added
+	* Spanish translation added
+	* Some minor improvements to interface
+
+2008-03-09 DarGUI 0.2.0
+	* files in archive are now listed alphabetically
+	* improved handling of operation logs
+	* fixed a memory leak related to allocating names for batch files
+	* added dar function for isolating catalogue from archive
+	* added dar function for comparing archive contents with filesystem
+	* added README files to binary and source tarballs
+
+2008-02-13 DarGUI 0.1.0
+	* First version released (0.1.0) 
