@@ -15,3 +15,5 @@ gzip -c docs/man/dargui.1 > package/usr/share/man/man1/dargui.1.gz
 echo '2.0' > package/debian-binary
 #you need to have the project compiled into folder 'compiled' for this bit to work.
 cp compiled/dargui package/usr/bin/
+dpkg -b package dargui.deb
+mv dargui.deb package/
