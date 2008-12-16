@@ -1,51 +1,18 @@
 <?xml version="1.0"?>
 <CONFIG>
-  <ProjectOptions>
+  <ProjectSession>
     <PathDelim Value="/"/>
     <Version Value="6"/>
-    <General>
-      <Flags>
-        <AlwaysBuild Value="False"/>
-      </Flags>
-      <SessionStorage Value="InProjectDir"/>
-      <MainUnit Value="0"/>
-      <IconPath Value="./"/>
-      <TargetFileExt Value=""/>
-      <Title Value="DarGUI"/>
-      <UseAppBundle Value="False"/>
-    </General>
-    <i18n>
-      <EnableI18N Value="True"/>
-      <OutDir Value="locales"/>
-    </i18n>
-    <VersionInfo>
-      <ProjectVersion Value=""/>
-    </VersionInfo>
-    <PublishOptions>
-      <Version Value="2"/>
-      <IncludeFileFilter Value="*.(pas|pp|inc|lfm|lpr|lrs|lpi|lpk|sh|xml)"/>
-      <ExcludeFileFilter Value="*.(bak|ppu|ppw|o|so);*~;backup"/>
-    </PublishOptions>
-    <RunParams>
-      <local>
-        <FormatVersion Value="1"/>
-        <LaunchingApplication PathPlusParams="/usr/X11R6/bin/xterm -T 'Lazarus Run Output' -e $(LazarusDir)/tools/runwait.sh $(TargetCmdLine)"/>
-      </local>
-    </RunParams>
-    <RequiredPackages Count="2">
-      <Item1>
-        <PackageName Value="LCL"/>
-      </Item1>
-      <Item2>
-        <PackageName Value="FCL"/>
-        <MinVersion Major="1" Valid="True"/>
-      </Item2>
-    </RequiredPackages>
-    <Units Count="16">
+    <Units Count="17">
       <Unit0>
         <Filename Value="dargui.lpr"/>
         <IsPartOfProject Value="True"/>
         <UnitName Value="dargui"/>
+        <CursorPos X="62" Y="32"/>
+        <TopLine Value="1"/>
+        <EditorIndex Value="1"/>
+        <UsageCount Value="21"/>
+        <Loaded Value="True"/>
       </Unit0>
       <Unit1>
         <Filename Value="main.pas"/>
@@ -53,11 +20,13 @@
         <IsPartOfProject Value="True"/>
         <ResourceFilename Value="main.lrs"/>
         <UnitName Value="main"/>
+        <UsageCount Value="21"/>
       </Unit1>
       <Unit2>
         <Filename Value="darintf.pas"/>
         <IsPartOfProject Value="True"/>
         <UnitName Value="darintf"/>
+        <UsageCount Value="21"/>
       </Unit2>
       <Unit3>
         <Filename Value="selectrestore.pas"/>
@@ -65,6 +34,7 @@
         <IsPartOfProject Value="True"/>
         <ResourceFilename Value="selectrestore.lrs"/>
         <UnitName Value="selectrestore"/>
+        <UsageCount Value="21"/>
       </Unit3>
       <Unit4>
         <Filename Value="archive.pas"/>
@@ -72,6 +42,7 @@
         <IsPartOfProject Value="True"/>
         <ResourceFilename Value="archive.lrs"/>
         <UnitName Value="archive"/>
+        <UsageCount Value="21"/>
       </Unit4>
       <Unit5>
         <Filename Value="filemaskdlg.pas"/>
@@ -79,11 +50,13 @@
         <IsPartOfProject Value="True"/>
         <ResourceFilename Value="filemaskdlg.lrs"/>
         <UnitName Value="filemaskdlg"/>
+        <UsageCount Value="21"/>
       </Unit5>
       <Unit6>
         <Filename Value="processline.pas"/>
         <IsPartOfProject Value="True"/>
         <UnitName Value="ProcessLine"/>
+        <UsageCount Value="21"/>
       </Unit6>
       <Unit7>
         <Filename Value="archiveinfo.pas"/>
@@ -91,6 +64,7 @@
         <IsPartOfProject Value="True"/>
         <ResourceFilename Value="archiveinfo.lrs"/>
         <UnitName Value="ArchiveInfo"/>
+        <UsageCount Value="21"/>
       </Unit7>
       <Unit8>
         <Filename Value="about.pas"/>
@@ -99,21 +73,25 @@
         <IsPartOfProject Value="True"/>
         <ResourceFilename Value="about.lrs"/>
         <UnitName Value="About"/>
+        <UsageCount Value="21"/>
       </Unit8>
       <Unit9>
         <Filename Value="prefs.pas"/>
         <IsPartOfProject Value="True"/>
         <UnitName Value="prefs"/>
+        <UsageCount Value="21"/>
       </Unit9>
       <Unit10>
         <Filename Value="historymenu.pas"/>
         <IsPartOfProject Value="True"/>
         <UnitName Value="historymenu"/>
+        <UsageCount Value="21"/>
       </Unit10>
       <Unit11>
         <Filename Value="dgstrconst.pas"/>
         <IsPartOfProject Value="True"/>
         <UnitName Value="dgStrConst"/>
+        <UsageCount Value="21"/>
       </Unit11>
       <Unit12>
         <Filename Value="selectfilter.pas"/>
@@ -121,6 +99,7 @@
         <IsPartOfProject Value="True"/>
         <ResourceFilename Value="selectfilter.lrs"/>
         <UnitName Value="selectfilter"/>
+        <UsageCount Value="21"/>
       </Unit12>
       <Unit13>
         <Filename Value="oplog.pas"/>
@@ -129,6 +108,7 @@
         <IsPartOfProject Value="True"/>
         <ResourceFilename Value="oplog.lrs"/>
         <UnitName Value="oplog"/>
+        <UsageCount Value="21"/>
       </Unit13>
       <Unit14>
         <Filename Value="diff.pas"/>
@@ -137,6 +117,7 @@
         <IsPartOfProject Value="True"/>
         <ResourceFilename Value="diff.lrs"/>
         <UnitName Value="diff"/>
+        <UsageCount Value="21"/>
       </Unit14>
       <Unit15>
         <Filename Value="isolate.pas"/>
@@ -145,39 +126,28 @@
         <IsPartOfProject Value="True"/>
         <ResourceFilename Value="isolate.lrs"/>
         <UnitName Value="isolate"/>
+        <CursorPos X="1" Y="1"/>
+        <TopLine Value="62"/>
+        <UsageCount Value="21"/>
       </Unit15>
+      <Unit16>
+        <Filename Value="/usr/lib/lazarus/lcl/interfaces/gtk2/interfaces.pas"/>
+        <UnitName Value="Interfaces"/>
+        <CursorPos X="1" Y="1"/>
+        <TopLine Value="1"/>
+        <EditorIndex Value="0"/>
+        <UsageCount Value="10"/>
+        <Loaded Value="True"/>
+      </Unit16>
     </Units>
-  </ProjectOptions>
-  <CompilerOptions>
-    <Version Value="5"/>
-    <SearchPaths>
-      <OtherUnitFiles Value="$(LazarusDir)/components/synedit/"/>
-      <UnitOutputDirectory Value="/home/tim/install/dargui/dargui.git/compiled"/>
-      <LCLWidgetType Value="gtk"/>
-    </SearchPaths>
-    <CodeGeneration>
-      <Generate Value="Smaller"/>
-      <Optimizations>
-        <OptimizationLevel Value="2"/>
-      </Optimizations>
-    </CodeGeneration>
-    <Linking>
-      <Debugging>
-        <UseLineInfoUnit Value="False"/>
-        <StripSymbols Value="True"/>
-      </Debugging>
-      <LinkSmart Value="True"/>
-    </Linking>
-    <Other>
-      <Verbosity>
-        <ShoLineNum Value="True"/>
-      </Verbosity>
-      <WriteFPCLogo Value="False"/>
-      <CompilerPath Value="$(CompPath)"/>
-      <ExecuteBefore>
-        <Command Value="rstconv -i compiled/dgstrconst.rst -o locales/dargui.pot"/>
-        <CompileReasons Build="False" Run="False"/>
-      </ExecuteBefore>
-    </Other>
-  </CompilerOptions>
+    <General>
+      <ActiveEditorIndexAtStart Value="1"/>
+    </General>
+    <JumpHistory Count="1" HistoryIndex="0">
+      <Position1>
+        <Filename Value="dargui.lpr"/>
+        <Caret Line="8" Column="58" TopLine="1"/>
+      </Position1>
+    </JumpHistory>
+  </ProjectSession>
 </CONFIG>
