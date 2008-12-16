@@ -37,11 +37,11 @@
     </RunParams>
     <RequiredPackages Count="2">
       <Item1>
-        <PackageName Value="LCL"/>
-      </Item1>
-      <Item2>
         <PackageName Value="FCL"/>
         <MinVersion Major="1" Valid="True"/>
+      </Item1>
+      <Item2>
+        <PackageName Value="LCL"/>
       </Item2>
     </RequiredPackages>
     <Units Count="20">
@@ -175,7 +175,7 @@
       <Libraries Value="/home/usr/X11R6/lib/"/>
       <OtherUnitFiles Value="$(LazarusDir)/components/synedit/"/>
       <UnitOutputDirectory Value="/home/tim/install/dargui/dargui.git/compiled"/>
-      <LCLWidgetType Value="gtk"/>
+      <LCLWidgetType Value="gtk2"/>
     </SearchPaths>
     <Parsing>
       <SyntaxOptions>
