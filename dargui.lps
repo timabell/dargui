@@ -8,10 +8,10 @@
         <Filename Value="dargui.lpr"/>
         <IsPartOfProject Value="True"/>
         <UnitName Value="dargui"/>
-        <CursorPos X="62" Y="32"/>
+        <CursorPos X="123" Y="30"/>
         <TopLine Value="1"/>
         <EditorIndex Value="1"/>
-        <UsageCount Value="21"/>
+        <UsageCount Value="22"/>
         <Loaded Value="True"/>
       </Unit0>
       <Unit1>
@@ -20,13 +20,13 @@
         <IsPartOfProject Value="True"/>
         <ResourceFilename Value="main.lrs"/>
         <UnitName Value="main"/>
-        <UsageCount Value="21"/>
+        <UsageCount Value="22"/>
       </Unit1>
       <Unit2>
         <Filename Value="darintf.pas"/>
         <IsPartOfProject Value="True"/>
         <UnitName Value="darintf"/>
-        <UsageCount Value="21"/>
+        <UsageCount Value="22"/>
       </Unit2>
       <Unit3>
         <Filename Value="selectrestore.pas"/>
@@ -34,7 +34,7 @@
         <IsPartOfProject Value="True"/>
         <ResourceFilename Value="selectrestore.lrs"/>
         <UnitName Value="selectrestore"/>
-        <UsageCount Value="21"/>
+        <UsageCount Value="22"/>
       </Unit3>
       <Unit4>
         <Filename Value="archive.pas"/>
@@ -42,7 +42,7 @@
         <IsPartOfProject Value="True"/>
         <ResourceFilename Value="archive.lrs"/>
         <UnitName Value="archive"/>
-        <UsageCount Value="21"/>
+        <UsageCount Value="22"/>
       </Unit4>
       <Unit5>
         <Filename Value="filemaskdlg.pas"/>
@@ -50,13 +50,13 @@
         <IsPartOfProject Value="True"/>
         <ResourceFilename Value="filemaskdlg.lrs"/>
         <UnitName Value="filemaskdlg"/>
-        <UsageCount Value="21"/>
+        <UsageCount Value="22"/>
       </Unit5>
       <Unit6>
         <Filename Value="processline.pas"/>
         <IsPartOfProject Value="True"/>
         <UnitName Value="ProcessLine"/>
-        <UsageCount Value="21"/>
+        <UsageCount Value="22"/>
       </Unit6>
       <Unit7>
         <Filename Value="archiveinfo.pas"/>
@@ -64,7 +64,7 @@
         <IsPartOfProject Value="True"/>
         <ResourceFilename Value="archiveinfo.lrs"/>
         <UnitName Value="ArchiveInfo"/>
-        <UsageCount Value="21"/>
+        <UsageCount Value="22"/>
       </Unit7>
       <Unit8>
         <Filename Value="about.pas"/>
@@ -73,25 +73,25 @@
         <IsPartOfProject Value="True"/>
         <ResourceFilename Value="about.lrs"/>
         <UnitName Value="About"/>
-        <UsageCount Value="21"/>
+        <UsageCount Value="22"/>
       </Unit8>
       <Unit9>
         <Filename Value="prefs.pas"/>
         <IsPartOfProject Value="True"/>
         <UnitName Value="prefs"/>
-        <UsageCount Value="21"/>
+        <UsageCount Value="22"/>
       </Unit9>
       <Unit10>
         <Filename Value="historymenu.pas"/>
         <IsPartOfProject Value="True"/>
         <UnitName Value="historymenu"/>
-        <UsageCount Value="21"/>
+        <UsageCount Value="22"/>
       </Unit10>
       <Unit11>
         <Filename Value="dgstrconst.pas"/>
         <IsPartOfProject Value="True"/>
         <UnitName Value="dgStrConst"/>
-        <UsageCount Value="21"/>
+        <UsageCount Value="22"/>
       </Unit11>
       <Unit12>
         <Filename Value="selectfilter.pas"/>
@@ -99,7 +99,7 @@
         <IsPartOfProject Value="True"/>
         <ResourceFilename Value="selectfilter.lrs"/>
         <UnitName Value="selectfilter"/>
-        <UsageCount Value="21"/>
+        <UsageCount Value="22"/>
       </Unit12>
       <Unit13>
         <Filename Value="oplog.pas"/>
@@ -108,7 +108,7 @@
         <IsPartOfProject Value="True"/>
         <ResourceFilename Value="oplog.lrs"/>
         <UnitName Value="oplog"/>
-        <UsageCount Value="21"/>
+        <UsageCount Value="22"/>
       </Unit13>
       <Unit14>
         <Filename Value="diff.pas"/>
@@ -117,7 +117,7 @@
         <IsPartOfProject Value="True"/>
         <ResourceFilename Value="diff.lrs"/>
         <UnitName Value="diff"/>
-        <UsageCount Value="21"/>
+        <UsageCount Value="22"/>
       </Unit14>
       <Unit15>
         <Filename Value="isolate.pas"/>
@@ -128,7 +128,7 @@
         <UnitName Value="isolate"/>
         <CursorPos X="1" Y="1"/>
         <TopLine Value="62"/>
-        <UsageCount Value="21"/>
+        <UsageCount Value="22"/>
       </Unit15>
       <Unit16>
         <Filename Value="/usr/lib/lazarus/lcl/interfaces/gtk2/interfaces.pas"/>
@@ -136,18 +136,13 @@
         <CursorPos X="1" Y="1"/>
         <TopLine Value="1"/>
         <EditorIndex Value="0"/>
-        <UsageCount Value="10"/>
+        <UsageCount Value="11"/>
         <Loaded Value="True"/>
       </Unit16>
     </Units>
     <General>
       <ActiveEditorIndexAtStart Value="1"/>
     </General>
-    <JumpHistory Count="1" HistoryIndex="0">
-      <Position1>
-        <Filename Value="dargui.lpr"/>
-        <Caret Line="8" Column="58" TopLine="1"/>
-      </Position1>
-    </JumpHistory>
+    <JumpHistory Count="0" HistoryIndex="-1"/>
   </ProjectSession>
 </CONFIG>
