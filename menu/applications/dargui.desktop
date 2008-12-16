@@ -1,0 +1,22 @@
+[Desktop Entry]
+Categories=GTK;GNOME;Utility;
+Comment[en_GB]=Dar archive manager
+Comment[en_US]=Dar archive manager
+Encoding=UTF-8
+Exec=dargui
+GenericName=Dar archive manager
+GenericName[en_GB]=Dar archive manager
+GenericName[en_US]=Dar archive manager
+Icon=dargui.png
+MimeType=
+Name=DarGUI
+Name[en_GB]=DarGUI
+Name[en_US]=DarGUI
+Path=
+StartupNotify=true
+Terminal=false
+TerminalOptions=
+Type=Application
+X-DCOP-ServiceType=
+X-KDE-SubstituteUID=false
+X-KDE-Username=

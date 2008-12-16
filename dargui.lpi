@@ -168,8 +168,8 @@
     </CodeGeneration>
     <Linking>
       <Debugging>
-        <UseLineInfoUnit Value="False"/>
-        <StripSymbols Value="True"/>
+        <GenerateDebugInfo Value="True"/>
+        <GenerateDebugDBX Value="True"/>
       </Debugging>
       <LinkSmart Value="True"/>
     </Linking>

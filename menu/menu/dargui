@@ -1,0 +1,9 @@
+?package(dargui): \
+  needs="X11" \
+  section="Apps/Tools"\
+  hints="KDE"\
+  title="DarGUI" \
+  command="cd /usr/bin; dargui" \
+  icon="/usr/share/pixmaps/dargui.png" \
+  icon32x32="/usr/share/pixmaps/dargui16.xpm" \
+  icon16x16="/usr/share/pixmaps/dargui16.xpm"
