@@ -15,6 +15,7 @@ type
   { TArchiveForm }
 
   TArchiveForm = class ( TForm )
+    ScriptButton: TBitBtn;
     EncryptArchiveCheck: TCheckBox;
     OpenCreatedArchiveCheck: TCheckBox;
     RepeatMonthLabel: TLabel;
@@ -35,6 +36,8 @@ type
     RunOnceMinuteBox: TComboBox;
     RunOnceMinuteLabel: TLabel;
     RepeatMinuteLabel: TLabel;
+    SaveButton: TSpeedButton;
+    LoadButton: TSpeedButton;
     TimestampCheck: TCheckBox;
     DiffRefButton: TButton;
     DiffFileCheck: TCheckBox;
@@ -121,6 +124,7 @@ type
     procedure DiffFileCheckChange ( Sender: TObject ) ;
     procedure DiffRefButtonClick ( Sender: TObject ) ;
     procedure FormDestroy ( Sender: TObject ) ;
+    procedure LoadButtonClick ( Sender: TObject ) ;
     procedure OKButtonClick ( Sender: TObject ) ;
     procedure DelExcludeFileButtonClick ( Sender: TObject ) ;
     procedure DelIncludeDirButtonClick ( Sender: TObject ) ;
@@ -128,6 +132,7 @@ type
     procedure FormCreate ( Sender: TObject ) ;
     procedure RunOnceDateEditAcceptDate ( Sender: TObject;
       var ADate: TDateTime; var AcceptDate: Boolean ) ;
+    procedure SaveButtonClick ( Sender: TObject ) ;
     procedure SaveScriptCheckBoxClick ( Sender: TObject ) ;
     procedure ScheduleRadioChange ( Sender: TObject ) ;
     procedure ScriptFileButtonClick ( Sender: TObject ) ;
@@ -136,6 +141,7 @@ type
     procedure InitialiseInterface;
   private
     { private declarations }
+    BackupNotes: string;
     function CheckParameters: Boolean;
     function IsInBaseDirectory(aDir: string): Boolean;
     procedure ResolveConflicts( Sender, RefList: TObject; ConflictMessage: string );
@@ -152,7 +158,7 @@ var
 
 implementation
 
-uses dgStrConst, darintf, filemaskdlg, prefs, fileconflict;
+uses main, dgStrConst, darintf, filemaskdlg, prefs, fileconflict, backupsavedlg;
 
 { TArchiveForm }
 
@@ -213,6 +219,99 @@ begin
        ShowMessage ( rsErrDateCannotBeInPast ) ;
        AcceptDate := false;
        RunOnceDateEdit.Date := Now;
+     end;
+end;
+
+procedure TArchiveForm.SaveButtonClick ( Sender: TObject ) ;
+var
+  SaveDlg: TCreateSaveDialog;
+  SaveContent: TFileStream;
+  datasize: smallint;
+  datatype: TControlType;
+  dataname: string;
+  datatext: string;
+  x: Integer;
+  y: Integer;
+begin
+  SaveDlg := TCreateSaveDialog.Create(nil);
+  if SaveDlg <> nil then
+     try
+       if SaveDlg.ShowModal = mrOK then
+          begin
+            SaveContent := TFileStream.Create(SaveDlg.FilenameEdit.Text, fmCreate);
+            datatext := 'DarGUI' + SVN_REVISION + #32;
+            SaveContent.Write(datatext[1], Length(datatext));
+            datatext := SaveDlg.NotesMemo.Text;
+            datasize := Length(datatext);
+            SaveContent.Write(datasize, SizeOf(datasize));
+            SaveContent.Write(datatext[1], datasize);
+            for x := 0 to ComponentCount-1 do
+                begin
+                  datatype := ctNone;
+                  if Components[x] is TEdit then
+                     if TEdit(Components[x]) <> BatchFileBox then
+                       begin
+                         datatype := ctEdit;
+                         dataname := TEdit(Components[x]).Name;
+                         datatext := TEdit(Components[x]).Text;
+                       end;
+                  if Components[x] is TComboBox then
+                     begin
+                       datatype := ctCombobox;
+                       dataname := TComboBox(Components[x]).Name;
+                       datatext := IntToStr(TComboBox(Components[x]).ItemIndex);
+                     end;
+                  if Components[x] is TCheckBox then
+                     begin
+                       datatype := ctCheckbox;
+                       dataname := TCheckBox(Components[x]).Name;
+                       if TCheckBox(Components[x]).Checked
+                          then datatext := '1'
+                          else datatext := '0';
+                     end;
+                  if Components[x] is TRadioButton then
+                     begin
+                       datatype := ctRadiobutton;
+                       dataname := TRadioButton(Components[x]).Name;
+                       if TRadioButton(Components[x]).Checked
+                          then datatext := '1'
+                          else datatext := '0';
+                     end;
+                  if Components[x] is TDateEdit then
+                     begin
+                       datatype := ctDateEdit;
+                       dataname := TDateEdit(Components[x]).Name;
+                       datatext := FloatToStr(TDateEdit(Components[x]).Date);
+                     end;
+                  if Components[x] is TListBox then
+                     begin
+                       datatype := ctListBox;
+                       dataname := TListBox(Components[x]).Name;
+                       datatext := IntToStr(TListBox(Components[x]).Count);
+                    end;
+                  if datatype <> ctNone then
+                     begin
+                       SaveContent.Write(datatype, Sizeof(datatype));
+                       datasize := Length(dataname);
+                       SaveContent.Write(datasize, SizeOf(datasize));
+                       SaveContent.Write(dataname[1], datasize);
+                       datasize := Length(datatext);
+                       SaveContent.Write(datasize, SizeOf(datasize));
+                       SaveContent.Write(datatext[1], datasize);
+                       if datatype=ctListBox then
+                          for y := 0 to TListBox(Components[x]).Count-1 do
+                              begin
+                                datatext := TListBox(Components[x]).Items[y];
+                                datasize := Length(datatext);
+                                SaveContent.Write(datasize, SizeOf(datasize));
+                                SaveContent.Write(datatext[1], datasize);
+                              end;
+                     end;
+              end;
+            SaveContent.Free;
+          end;
+     finally
+       SaveDlg.Free;
      end;
 end;
 
@@ -516,6 +615,98 @@ begin
   BatchFile.Free;
 end;
 
+procedure TArchiveForm.LoadButtonClick ( Sender: TObject ) ;
+var
+  SavedSettings: TFileStream;
+  datasize: smallint;
+  datatype: TControlType;
+  dataname: string;
+  datatext: string;
+  x: Integer;
+  bytesread: LongInt;
+  p: Integer;
+  controlindex: LongInt;
+  
+  function GetComponentByName( cn: string ): integer;
+  var
+    c: integer;
+  begin
+    Result := -1;
+    for c := 0 to ComponentCount-1 do
+        if Components[c] is TWinControl then
+           if TWinControl(Components[c]).Name = cn
+              then Result := c;
+  end;
+  
+  function GetDataChunk: string;
+  var
+    datalength: smallint;
+    databuffer: string;
+  begin
+   Result := '';
+   SavedSettings.Read(datalength, SizeOf(datalength));
+   SetLength(databuffer, datalength);
+   SavedSettings.Read(databuffer[1], datalength);
+   Result := databuffer;
+  end;
+
+begin
+  if OpenDialog.Execute then
+     begin
+       bytesread := 0;
+       SavedSettings := TFileStream.Create(OpenDialog.FileName, fmOpenRead);
+       SetLength(datatext, 6);
+       bytesread := bytesread + SavedSettings.Read(datatext[1], 6);
+       if datatext = 'DarGUI' then
+          try
+            p := 1;
+            SetLength(datatext, p);
+            bytesread := bytesread + SavedSettings.Read(datatext[p], 1);
+            while (datatext[p] <> #32) and (bytesread < SavedSettings.Size) do
+                  begin
+                    Inc(p);
+                    SetLength(datatext, p);
+                    bytesread := bytesread + SavedSettings.Read(datatext[p], 1);
+                  end;
+            if TryStrToInt(Trim(datatext), p) then
+               begin
+                 SavedSettings.Read(datasize,SizeOf(datasize));
+                 if datasize > 0 then
+                    begin
+                      SetLength(BackupNotes, datasize);
+                      SavedSettings.Read(BackupNotes[1], datasize);
+                    end;
+                 while SavedSettings.Position < SavedSettings.Size do
+                   begin
+                     SavedSettings.Read(datatype, Sizeof(datatype));
+                     dataname := GetDataChunk;
+                     datatext := GetDataChunk;
+                     controlindex := GetComponentByName(dataname);
+                     if controlindex > -1 then
+                        case datatype of
+                             ctEdit:        TEdit(Components[controlindex]).Text := datatext;
+                             ctCombobox:    TComboBox(Components[controlindex]).ItemIndex := StrToInt(datatext);
+                             ctDateEdit:    TDateEdit(Components[controlindex]).Date := StrToFloat(datatext);
+                             ctRadiobutton: TRadioButton(Components[controlindex]).Checked := datatext = '1';
+                             ctCheckbox:    TCheckBox(Components[controlindex]).Checked := datatext = '1';
+                             ctListBox:     begin
+                                              p := StrToInt(datatext);
+                                              TListBox(Components[controlindex]).Clear;
+                                              for x := 1 to p do
+                                                  begin
+                                                   datatext := GetDataChunk;
+                                                   TListBox(Components[controlindex]).Items.Add(datatext);
+                                                  end;
+                                            end;
+                             end;
+                   end;
+               end;
+          finally
+            SavedSettings.Free;
+          end;
+     end;
+end;
+
 procedure TArchiveForm.OKButtonClick ( Sender: TObject ) ;
 var
   isScript: Boolean;
@@ -609,6 +800,9 @@ begin
      end;
 end;
 
+
+// 2008-12-23
+// TODO: does not weed out included files from excluded directories
 procedure TArchiveForm.ResolveConflicts ( Sender, RefList: TObject;
   ConflictMessage: string ) ;
 var

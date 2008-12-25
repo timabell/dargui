@@ -1,0 +1,87 @@
+object CreateSaveDialog: TCreateSaveDialog
+  Left = 518
+  Height = 293
+  Top = 298
+  Width = 592
+  HorzScrollBar.Page = 591
+  VertScrollBar.Page = 292
+  Caption = 'CreateSaveDialog'
+  ClientHeight = 293
+  ClientWidth = 592
+  object FilenameLabel: TLabel
+    Left = 35
+    Height = 20
+    Top = 18
+    Width = 155
+    Caption = 'Save backup settings as'
+    ParentColor = False
+  end
+  object NotesLabel: TLabel
+    Left = 35
+    Height = 20
+    Top = 85
+    Width = 38
+    Caption = 'Notes'
+    ParentColor = False
+  end
+  object FilenameEdit: TEdit
+    Left = 35
+    Height = 23
+    Top = 41
+    Width = 445
+    TabOrder = 0
+  end
+  object BrowseButton: TButton
+    Left = 488
+    Height = 25
+    Top = 41
+    Width = 30
+    Caption = '...'
+    TabOrder = 1
+  end
+  object NotesMemo: TMemo
+    Left = 35
+    Height = 90
+    Top = 112
+    Width = 445
+    TabOrder = 2
+  end
+  object DialogButtonPanel: TPanel
+    Height = 50
+    Top = 243
+    Width = 592
+    Align = alBottom
+    ClientHeight = 50
+    ClientWidth = 592
+    TabOrder = 3
+    object OKButton: TBitBtn
+      Left = 193
+      Height = 30
+      Top = 11
+      Width = 90
+      Caption = '&OK'
+      Default = True
+      Kind = bkOK
+      ModalResult = 1
+      NumGlyphs = 0
+      TabOrder = 0
+    end
+    object CancelButton: TBitBtn
+      Left = 312
+      Height = 30
+      Top = 11
+      Width = 90
+      Cancel = True
+      Caption = 'Cancel'
+      Kind = bkCancel
+      ModalResult = 2
+      NumGlyphs = 0
+      TabOrder = 1
+    end
+  end
+  object SaveDialog1: TSaveDialog
+    Title = 'Save file as'
+    left = 553
+    top = 19
+  end
+end

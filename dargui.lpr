@@ -17,7 +17,7 @@
   to the Free Software Foundation, Inc., 59 Temple Place - Suite 330, Boston,
   MA 02111-1307, USA.
 }
-program dargui;
+program createsavedlg;
 
 {$mode objfpc}{$H+}
 
@@ -29,7 +29,7 @@ uses
   Forms
   { add your units here }, main, darintf, selectrestore, archive, filemaskdlg,
   ProcessLine, ArchiveInfo, About, oplog, isolate, diff, prefs,
-  historymenu, dgStrConst, selectfilter, password, darstrings;
+  historymenu, dgStrConst, selectfilter, password, darstrings, backupsavedlg;
 
 begin
   Application.Title:='DarGUI';
@@ -41,6 +41,7 @@ begin
   Application.CreateForm ( TInformationForm, InformationForm ) ;
   Application.CreateForm ( TOpLogForm, OpLogForm ) ;
   Application.CreateForm ( TPasswordDlg, PasswordDlg ) ;
+  Application.CreateForm ( TCreateSaveDialog, CreateSaveDialog ) ;
   Application.Run;
 end.
 
