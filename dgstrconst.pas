@@ -252,6 +252,7 @@ begin
      begin
       GetLanguageIDs(Lang, FallbackLang); // in unit gettext
       TranslateUnitResourceStrings('dgStrConst', PODirectory + 'dargui.%s.po', Lang, FallbackLang);
+      TranslateUnitResourceStrings('LCLStrConsts', PODirectory + 'lclstrconsts.%s.po', Lang, FallbackLang);
      end;
   WeekdayNames[1] := rsMon;
   WeekdayNames[2] := rsTue;
