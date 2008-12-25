@@ -72,6 +72,8 @@ type
     //User          : string;
     end;
 
+type
+  TControlType = (ctNone, ctEdit, ctCombobox, ctRadiobutton, ctCheckbox, ctDateEdit, ctListBox);
 
   function GetDarVersion : TDarInfo;
   function CheckSupportingApps : integer;
@@ -421,7 +423,7 @@ begin
   progressinterval := 0;
   outputline := '';
   Proc := TProcessLineTalk.Create(nil);
-  Proc.CommandLine := 'dar -l ' + fn + pw + ' -Q';
+  Proc.CommandLine := 'dar -l "' + fn + '"' + pw + ' -Q';
   Proc.Execute;
   TTreeView(TV).Visible := false;
   Application.ProcessMessages;
@@ -714,7 +716,7 @@ var
  p: Integer;
  outputline: string;
  coloncount: Integer;
- 
+
  function FindInodeLine: string;
  var
    ln: integer;
@@ -735,7 +737,7 @@ begin
  coloncount := 0;
  Proc := TProcess.Create(Application);
  Output := TStringList.Create;
- Proc.CommandLine :=  'dar -l ' + archivename + ' -v' + key + ' -Q';
+ Proc.CommandLine :=  'dar -l "' + archivename + '" -v' + key + ' -Q';
  Proc.Options := Proc.Options  + [poWaitOnExit, poUsePipes];
  try
     Proc.Execute;
