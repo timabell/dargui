@@ -584,7 +584,7 @@ var
 begin
   Result := -1;
   Proc := TProcess.Create(nil);
-  Proc.CommandLine := 'dar -l "' + fn + '" ' + pw +' -v -Q';
+  Proc.CommandLine := 'dar -l "' + fn + '" ' + pw + ' -v -Q';
   Proc.Options := Proc.Options  + [poWaitOnExit, poUsePipes, poStderrToOutPut];
       try
       Proc.Execute;

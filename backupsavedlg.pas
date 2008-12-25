@@ -21,7 +21,7 @@ type
     NotesLabel: TLabel;
     NotesMemo: TMemo;
     OKButton: TBitBtn;
-    SaveDialog1: TSaveDialog;
+    SaveDialog: TSaveDialog;
     procedure BrowseButtonClick ( Sender: TObject ) ;
   private
     { private declarations }
@@ -38,8 +38,9 @@ implementation
 
 procedure TCreateSaveDialog.BrowseButtonClick ( Sender: TObject ) ;
 begin
-  if SaveDialog1.Execute
-     then FilenameEdit.Text := SaveDialog1.FileName;
+  SaveDialog.FileName := FilenameEdit.Text;
+  if SaveDialog.Execute
+     then FilenameEdit.Text := SaveDialog.FileName;
 end;
 
 initialization

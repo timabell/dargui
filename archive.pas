@@ -142,6 +142,8 @@ type
   private
     { private declarations }
     BackupNotes: string;
+    BackupFilename: string;
+    LastBackupTime: TDateTime;
     function CheckParameters: Boolean;
     function IsInBaseDirectory(aDir: string): Boolean;
     procedure ResolveConflicts( Sender, RefList: TObject; ConflictMessage: string );
@@ -234,6 +236,8 @@ var
   y: Integer;
 begin
   SaveDlg := TCreateSaveDialog.Create(nil);
+  SaveDlg.NotesMemo.Text := BackupNotes;
+  SaveDlg.FilenameEdit.Text := BackupFilename;
   if SaveDlg <> nil then
      try
        if SaveDlg.ShowModal = mrOK then
@@ -241,6 +245,7 @@ begin
             SaveContent := TFileStream.Create(SaveDlg.FilenameEdit.Text, fmCreate);
             datatext := 'DarGUI' + SVN_REVISION + #32;
             SaveContent.Write(datatext[1], Length(datatext));
+            SaveContent.Write(LastBackupTime, SizeOf(LastBackupTime));
             datatext := SaveDlg.NotesMemo.Text;
             datasize := Length(datatext);
             SaveContent.Write(datasize, SizeOf(datasize));
@@ -651,6 +656,8 @@ var
   end;
 
 begin
+  OpenDialog.Filter := 'DarGUI files|*.dargui|All files|*';
+  OpenDialog.FilterIndex := 0;
   if OpenDialog.Execute then
      begin
        bytesread := 0;
@@ -670,6 +677,7 @@ begin
                   end;
             if TryStrToInt(Trim(datatext), p) then
                begin
+                 SavedSettings.Read(LastBackupTime, SizeOf(LastBackupTime));
                  SavedSettings.Read(datasize,SizeOf(datasize));
                  if datasize > 0 then
                     begin
@@ -703,6 +711,7 @@ begin
                end;
           finally
             SavedSettings.Free;
+            BackupFilename := OpenDialog.FileName;
           end;
      end;
 end;

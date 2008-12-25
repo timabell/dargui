@@ -81,8 +81,11 @@ object CreateSaveDialog: TCreateSaveDialog
       TabOrder = 1
     end
   end
-  object SaveDialog1: TSaveDialog
-    Title = 'Save file as'
+  object SaveDialog: TSaveDialog
+    Title = 'Save backup settings as'
+    DefaultExt = '.dargui'
+    Filter = 'DarGUI files|*.dargui|All files|*'
+    Options = [ofOverwritePrompt, ofEnableSizing, ofViewDetail]
     left = 553
     top = 19
   end
