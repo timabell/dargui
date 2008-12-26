@@ -8,10 +8,14 @@ Logfile=${p#*;}
 echo $CommandLine
 echo $CommandLine > $Logfile
 
-$CommandLine | /usr/share/dargui/darlogger $Logfile
-  
+#$CommandLine | /usr/share/dargui/darlogger $Logfile
+
+chmod +x /tmp/dargui/darcommand.sh
+/tmp/dargui/darcommand.sh  | /usr/share/dargui/darlogger $Logfile
+rm /tmp/dargui/darcommand.sh
+
 DarStatus=$?
-  
+
 echo $? > /tmp/dar_exit
 
 echo "--------------------------------------------------"
@@ -22,5 +26,6 @@ read anyinput
 exit $DarStatus
 
 # end.
+
 
 

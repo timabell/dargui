@@ -105,7 +105,7 @@ var
 
 implementation
 
-uses processline, password, darstrings;
+uses baseunix, processline, password, darstrings;
 
 // ************** GetDarVersion ***************** //
 
@@ -482,11 +482,16 @@ end;
 function RunDarCommand ( Cmd, Title: string; x, y :integer ) : integer;
 var
   Proc: TProcess;
+  commandfile: TFileStream;
   LogFile: string;
 begin
   Result := -1;
   LogFile := GetNextFileName(TEMP_DIRECTORY + LOGFILE_BASE);
   Proc := TProcess.Create(Application);
+  commandfile := TFileStream.Create('/tmp/dargui/darcommand.sh', fmCreate);
+  commandfile.Write(Cmd[1], Length(Cmd));
+  commandfile.Free;
+//  FpChmod('/tmp/dargui/darcommand.sh', &777);
   try
     Proc.CommandLine := TerminalCommand
                              +  ' -geometry 100x15+' + IntToStr(x) + '+' + IntToStr(y)
@@ -730,6 +735,7 @@ var
               then exit ;
            Inc(ln);
          end;
+
  end;
  
 begin
