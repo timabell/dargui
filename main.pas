@@ -134,8 +134,12 @@ var
 
   
 const
-  APP_VERSION = '0.4.1-test3';
-  SVN_REVISION = '';
+  APP_VERSION = '0.5.0-test1';
+  {$I revision.inc}
+  {revision.inc is a dynamically produced file containing the number of the most recent SVN revision
+   the include directive can be commented out and the following line uncommented, replacing the number 0 with the
+   appropriate revision number}
+  //SVN_REVISION = '0';
 
   ARCHIVEMENU_TAG = 1; //used for enabling menuitems after loading archive
   SELECT_STATUSBAR = 0;   //index of panel which displays number of selected nodes
@@ -146,7 +150,7 @@ const
 
 implementation
 
-uses dgStrConst, selectrestore, archive, archiveinfo, About, oplog, isolate, diff, prefs;
+uses baseunix, dgStrConst, selectrestore, archive, archiveinfo, About, oplog, isolate, diff, prefs;
 
 { TMainForm }
 
@@ -300,8 +304,55 @@ var
   end;
   
   procedure CreateNewScript;
+  var
+    InfoFile: TSettingsFile;
+    infofilename: String;
+    Scriptfile: TStringlist;
+    c: Integer;
   begin
-    ArchiveForm.CreateScript;
+     Scriptfile := TStringList.Create;
+     try
+     Enabled := false;
+     ArchiveForm.CreateBatchfile;
+     referencearchive := '';
+     if ArchiveForm.DiffFileCheck.Checked
+        then referencearchive := ' -A ' + TrimToBase( ArchiveForm.DiffReference.Text );
+     DarOptions := ' -X ' + ArchiveForm.ArchiveBaseName + '.*.dar';
+     Command := DAR_EXECUTABLE + ' -c "' + ArchiveForm.ArchiveDirectory.Text
+                            + ArchiveForm.ArchiveBaseName + '"'
+                            + referencearchive
+                            + ' -B "/tmp/dargui.temp"'
+                            + ' -v'
+                            + DarOptions;
+     if ArchiveForm.EncryptArchiveCheck.Checked
+        then Command := Command + ' -K :';
+//     ArchiveForm.BatchFile.Insert(1, '# ' + Command);
+//     if UseInfoFile then
+//        begin
+//          infofilename := ArchiveForm.BaseDirectory.Text + DirectorySeparator + DARGUI_INFO_FILE;
+//          InfoFile := TSettingsFile.Create(infofilename);
+//          InfoFile.WriteString('Archive information', 'Basedirectory', ArchiveForm.BaseDirectory.Text );
+//          InfoFile.Free;
+//          ArchiveForm.BatchFile.Insert(2, '-I ' + DARGUI_INFO_FILE);
+//        end;
+//     ArchiveForm.BatchFile.SaveToFile(ArchiveForm.BatchFileBox.Text);
+Scriptfile.Add('touch /tmp/dargui.temp');
+for c := 0 to ArchiveForm.BatchFile.Count-1 do
+    Scriptfile.Add('echo ''' + ArchiveForm.BatchFile[c] + ''' >> /tmp/dargui.temp');
+  Scriptfile.Add(Command);
+  Scriptfile.Add('rm /tmp/dargui.temp');
+      if ArchiveForm.SaveScriptCheckBox.Checked
+        then if ArchiveForm.ScriptFilenameBox.Text <> ''
+             then
+             begin
+               Scriptfile.SaveToFile(ArchiveForm.ScriptFilenameBox.Text);
+               FpChmod(ArchiveForm.ScriptFilenameBox.Text, &777);
+             end;
+     finally
+     Enabled := true;
+     if FileExists(infofilename)
+        then DeleteFile(infofilename);
+     end;
   end;
   
 begin

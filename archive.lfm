@@ -709,7 +709,7 @@ object ArchiveForm: TArchiveForm
           Left = 405
           Height = 20
           Top = 91
-          Width = 20
+          Width = 19
           Caption = 'Mb'
           Enabled = False
           ParentColor = False
@@ -718,16 +718,16 @@ object ArchiveForm: TArchiveForm
           Left = 197
           Height = 20
           Top = 91
-          Width = 60
+          Width = 57
           Caption = 'Slice size'
           Enabled = False
           ParentColor = False
         end
         object ReadConfigCheck: TCheckBox
           Left = 33
-          Height = 20
+          Height = 21
           Top = 18
-          Width = 272
+          Width = 268
           Caption = 'Attempt to read DAR configuration files'
           Checked = True
           State = cbChecked
@@ -735,7 +735,7 @@ object ArchiveForm: TArchiveForm
         end
         object DryRunCheck: TCheckBox
           Left = 33
-          Height = 20
+          Height = 21
           Top = 190
           Width = 102
           Caption = 'Test run only'
@@ -743,7 +743,7 @@ object ArchiveForm: TArchiveForm
         end
         object EmptyDirCheck: TCheckBox
           Left = 33
-          Height = 20
+          Height = 21
           Top = 53
           Width = 149
           Caption = 'Preserve directories'
@@ -751,7 +751,7 @@ object ArchiveForm: TArchiveForm
         end
         object SlicesCheck: TCheckBox
           Left = 33
-          Height = 20
+          Height = 21
           Top = 88
           Width = 86
           Caption = 'Use slices'
@@ -770,22 +770,21 @@ object ArchiveForm: TArchiveForm
         end
         object PauseCheck: TCheckBox
           Left = 125
-          Height = 20
+          Height = 21
           Top = 120
-          Width = 157
+          Width = 158
           Caption = 'Pause between slices'
           Enabled = False
           TabOrder = 4
         end
         object SaveScriptCheckBox: TCheckBox
           Left = 33
-          Height = 20
+          Height = 21
           Top = 260
-          Width = 112
+          Width = 111
           Caption = 'Save script as'
           OnClick = SaveScriptCheckBoxClick
           TabOrder = 6
-          Visible = False
         end
         object ScriptFilenameBox: TEdit
           Left = 61
@@ -794,7 +793,6 @@ object ArchiveForm: TArchiveForm
           Width = 350
           Enabled = False
           TabOrder = 8
-          Visible = False
         end
         object ScriptFileButton: TButton
           Left = 431
@@ -805,13 +803,12 @@ object ArchiveForm: TArchiveForm
           Enabled = False
           OnClick = ScriptFileButtonClick
           TabOrder = 9
-          Visible = False
         end
         object OpenCreatedArchiveCheck: TCheckBox
           Left = 33
-          Height = 20
+          Height = 21
           Top = 225
-          Width = 193
+          Width = 189
           Caption = 'OpenCreatedArchiveCheck'
           Checked = True
           State = cbChecked
@@ -819,9 +816,9 @@ object ArchiveForm: TArchiveForm
         end
         object EncryptArchiveCheck: TCheckBox
           Left = 33
-          Height = 20
+          Height = 21
           Top = 155
-          Width = 156
+          Width = 153
           Caption = 'EncryptArchiveCheck'
           TabOrder = 10
         end
