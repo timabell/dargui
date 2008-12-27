@@ -303,12 +303,13 @@ var
      end;
   end;
   
-  procedure CreateNewScript;
+  procedure CreateScript;
   var
     InfoFile: TSettingsFile;
     infofilename: String;
     Scriptfile: TStringlist;
     c: Integer;
+    Proc: TProcess;
   begin
      Scriptfile := TStringList.Create;
      try
@@ -326,7 +327,6 @@ var
                             + DarOptions;
      if ArchiveForm.EncryptArchiveCheck.Checked
         then Command := Command + ' -K :';
-//     ArchiveForm.BatchFile.Insert(1, '# ' + Command);
 //     if UseInfoFile then
 //        begin
 //          infofilename := ArchiveForm.BaseDirectory.Text + DirectorySeparator + DARGUI_INFO_FILE;
@@ -347,6 +347,16 @@ for c := 0 to ArchiveForm.BatchFile.Count-1 do
              begin
                Scriptfile.SaveToFile(ArchiveForm.ScriptFilenameBox.Text);
                FpChmod(ArchiveForm.ScriptFilenameBox.Text, &777);
+               if MessageDlg('A Dar backup script has been saved to ' + #10
+                                + ArchiveForm.ScriptFilenameBox.Text + #10#10
+                                + 'Do you want to execute the script now?', mtInformation, [mbYes, mbNo], 0) = mrYes
+               then
+                   begin
+                     Proc := TProcess.Create(Application);
+                     Proc.CommandLine := TerminalCommand + ' -e '  + RunscriptPath + 'runscript.sh "' + ArchiveForm.ScriptFilenameBox.Text + '"';
+                     Proc.Execute;
+                     Proc.Free;
+                   end;
              end;
      finally
      Enabled := true;
@@ -355,11 +365,27 @@ for c := 0 to ArchiveForm.BatchFile.Count-1 do
      end;
   end;
   
+  Procedure CreateAtScript;
+  begin
+
+  end;
+  
+  procedure CreateCronScript;
+  begin
+
+  end;
+  
 begin
   ArchiveForm.BatchFileBox.Text := GetNextFileName(TEMP_DIRECTORY + BATCHFILE_BASE);
   if ArchiveForm.ShowModal = mrOk then
      if ArchiveForm.SaveScriptCheckBox.Checked
-        then CreateNewScript
+        then CreateScript
+     else
+     if ArchiveForm.RunOnceRadioButton.Checked
+        then CreateAtScript
+     else
+     if ArchiveForm.RepeatRadioButton.Checked
+        then CreateCronScript
      else CreateNewArchive;
 end;
 
