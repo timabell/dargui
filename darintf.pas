@@ -84,6 +84,7 @@ type
   function GetRunscriptPath: string;
   function OpenArchive(var fn: string; TV: TTreeview; pw: string): integer;
   function RunDarCommand ( Cmd, Title: string; x, y :integer ) : integer;
+  function ShellCommand ( Cmd: string; var processoutput: string ) : integer;
   function PosFrom(const SubStr, Value: String; From: integer): integer;
   function SelectChildren(Node: TTreeNode): integer;
   function isInteger(aString: string): Boolean;
@@ -92,6 +93,7 @@ type
   function ArchiveIsEncrypted( fn: TFilename ): Boolean;
   function GetInodeCount( archivename, key: string ):integer;
   function ValidateArchive( var archivename: string; var pw: string ): Boolean;
+  function CreateUniqueFileName(sPath: string): string;
   
   procedure WriteArchiveScript(fn: TFilename);
   function TrimToBase(fn: string): string;
@@ -510,6 +512,28 @@ begin
   end;
 end;
 
+function ShellCommand ( Cmd: string; var processoutput: string ) : integer;
+var
+  Shell: TProcess;
+  bytes: LongWord;
+begin
+  Result := -1;
+  processoutput := '';
+  Shell := TProcess.Create(Application);
+  if Shell <> nil then
+     try
+       Shell.CommandLine := Cmd;
+       Shell.Options := Shell.Options + [poWaitOnExit, poUsePipes, poStderrToOutPut];
+       Shell.Execute;
+       bytes := Shell.Output.NumBytesAvailable;
+       SetLength(processoutput, bytes);
+       Shell.Output.Read(processoutput[1], bytes);
+     finally
+       Result := Shell.ExitStatus;
+       Shell.Free;
+     end;
+end;
+
 // function PosFrom was taken from synautil.pas [ synapse.ararat.cz ]
 function PosFrom(const SubStr, Value: String; From: integer): integer;
 var
@@ -712,6 +736,24 @@ end;
 procedure WriteArchiveScript(fn: TFilename);
 begin
 
+end;
+
+
+// from http://www.delphifaq.net/how-to-get-a-unique-file-name/
+function CreateUniqueFileName(sPath: string): string;
+var
+  chTemp: Char;
+begin
+  repeat
+    Randomize;
+    repeat
+      chTemp := Chr(Random(43) + 47);
+      if Length(Result) = 8 then
+        Result := Result + '.'
+      else if chTemp in ['0'..'9', 'A'..'Z'] then
+        Result := Result + chTemp;
+    until Length(Result) = 12;
+  until not FileExists(sPath + Result);
 end;
 
 function GetInodeCount( archivename, key: string ):integer;

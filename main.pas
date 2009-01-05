@@ -129,6 +129,8 @@ var
   AllowRecursiveSelect: Boolean;
   UserHome: string;
   SettingsDir: string;
+  AtScriptDir: string;
+  CronScriptDir: string;
   RecentList : TRecentFiles;
   
 
@@ -179,6 +181,12 @@ begin
      else SettingsDir := UserHome + '/.dargui/';
   if not FileExists(SettingsDir)
      then mkdir(SettingsDir);
+  AtScriptDir := SettingsDir + 'atscripts/';
+  if not FileExists(AtScriptDir)
+     then mkdir(AtScriptDir);
+  CronScriptDir := SettingsDir + 'cronscripts/';
+  if not FileExists(CronScriptDir)
+     then mkdir(CronScriptDir);
   PrefFileName := SettingsDir + 'darguirc';
   RecentList := TRecentFiles.Create(Self);
   RecentList.OnClick := @RecentMenuClick;
@@ -303,7 +311,7 @@ var
      end;
   end;
   
-  procedure CreateScript;
+  function WriteScript( scriptfilename: string ): Boolean;
   var
     InfoFile: TSettingsFile;
     infofilename: String;
@@ -311,6 +319,7 @@ var
     c: Integer;
     Proc: TProcess;
   begin
+     Result := false;
      Scriptfile := TStringList.Create;
      try
      Enabled := false;
@@ -336,57 +345,136 @@ var
 //          ArchiveForm.BatchFile.Insert(2, '-I ' + DARGUI_INFO_FILE);
 //        end;
 //     ArchiveForm.BatchFile.SaveToFile(ArchiveForm.BatchFileBox.Text);
-Scriptfile.Add('touch /tmp/dargui.temp');
-for c := 0 to ArchiveForm.BatchFile.Count-1 do
-    Scriptfile.Add('echo ''' + ArchiveForm.BatchFile[c] + ''' >> /tmp/dargui.temp');
-  Scriptfile.Add(Command);
-  Scriptfile.Add('rm /tmp/dargui.temp');
-      if ArchiveForm.SaveScriptCheckBox.Checked
-        then if ArchiveForm.ScriptFilenameBox.Text <> ''
-             then
-             begin
-               Scriptfile.SaveToFile(ArchiveForm.ScriptFilenameBox.Text);
-               FpChmod(ArchiveForm.ScriptFilenameBox.Text, &777);
-               if MessageDlg('A Dar backup script has been saved to ' + #10
-                                + ArchiveForm.ScriptFilenameBox.Text + #10#10
-                                + 'Do you want to execute the script now?', mtInformation, [mbYes, mbNo], 0) = mrYes
-               then
-                   begin
-                     Proc := TProcess.Create(Application);
-                     Proc.CommandLine := TerminalCommand + ' -e '  + RunscriptPath + 'runscript.sh "' + ArchiveForm.ScriptFilenameBox.Text + '"';
-                     Proc.Execute;
-                     Proc.Free;
-                   end;
-             end;
+      Scriptfile.Add('#!/bin/bash');
+      Scriptfile.Add('touch /tmp/dargui.temp');
+      for c := 0 to ArchiveForm.BatchFile.Count-1 do
+          Scriptfile.Add('echo ''' + ArchiveForm.BatchFile[c] + ''' >> /tmp/dargui.temp');
+      Scriptfile.Add('echo ------------- >> ' + SettingsDir + 'dargui.log');
+      Scriptfile.Add('echo `date` ' + Command + ' >> ' + SettingsDir + 'dargui.log');
+      Scriptfile.Add(Command + ' -Q >> ' + SettingsDir + 'dargui.log');
+      Scriptfile.Add('rm /tmp/dargui.temp');
+      Scriptfile.SaveToFile(scriptfilename);
+      FpChmod(scriptfilename, S_IRWXU);
+      Result := true;
      finally
-     Enabled := true;
-     if FileExists(infofilename)
-        then DeleteFile(infofilename);
+       Scriptfile.Free;
      end;
   end;
   
-  Procedure CreateAtScript;
+  procedure CreateScript;
+  var
+    InfoFile: TSettingsFile;
+    infofilename: String;
+    Scriptfile: TStringlist;
+    c: Integer;
+    Proc: TProcess;
   begin
-
+      if ArchiveForm.ScriptFilenameBox.Text <> ''
+           then if WriteScript(ArchiveForm.ScriptFilenameBox.Text)
+              then
+              begin
+                if MessageDlg('A Dar backup script has been saved to ' + #10
+                                        + ArchiveForm.ScriptFilenameBox.Text + #10#10
+                                        + 'Do you want to execute the script now?', mtInformation, [mbYes, mbNo], 0) = mrYes
+                 then  begin
+                         Proc := TProcess.Create(Application);
+                         Proc.CommandLine := TerminalCommand + ' -e '  + RunscriptPath + 'runscript.sh "' + ArchiveForm.ScriptFilenameBox.Text + '"';
+                         Proc.Execute;
+                         Proc.Free;
+                       end;
+               end
+                else
+                ShowMessage('Error writing script');
+  end;
+  
+  Procedure CreateAtScript;
+  var
+    script: string;
+    atcommand: string;
+    atresponse:string;
+    p: LongInt;
+    q: Integer;
+  begin
+    script := AtScriptDir + CreateUniqueFileName(AtScriptDir);
+    if WriteScript(script) then
+       begin
+         if Length(ArchiveForm.RunOnceMinuteBox.Text) < 2 then
+            ArchiveForm.RunOnceMinuteBox.Text := '0' + ArchiveForm.RunOnceMinuteBox.Text;
+         atcommand := 'at -f '
+                      + script + #32
+                      + ArchiveForm.RunOnceHourBox.Text + ':' + ArchiveForm.RunOnceMinuteBox.Text + #32
+                      + FormatDateTime('mmddyy',ArchiveForm.RunOnceDateEdit.Date);
+         if ShellCommand(atcommand, atresponse)=0 then
+            begin
+              p := Pos('job ', atresponse);
+              if p > 0 then
+                 begin
+                   q := p+5;
+                   while atresponse[q]<>#32 do
+                         inc(q);
+                   ShellCommand('mv ' + script + #32 + script + '.' + Copy(atresponse, p+4, q-p-4), atcommand);
+                   ShowMessage('DAR script will be executed at '
+                               + ArchiveForm.RunOnceHourBox.Text + ':' + ArchiveForm.RunOnceMinuteBox.Text
+                               + ' on ' + DateToStr(ArchiveForm.RunOnceDateEdit.Date));
+                 end
+              else
+                 ShowMessage('Unable to schedule script execution.' + #10 + 'Error when executing at: ' + #10 + atresponse);
+            end;
+       end;
   end;
   
   procedure CreateCronScript;
+  var
+    counter: Integer;
+    script: String;
+    processresponse: string;
+    CronList: TStringList;
   begin
-
+    counter := 0;
+    while FileExists(CronScriptDir + ArchiveForm.ArchiveBaseName + '.' + IntToStr(counter) + '.sh') do
+          Inc(counter);
+    script := CronScriptDir + ArchiveForm.ArchiveBaseName + '.' + IntToStr(counter) + '.sh';
+    if WriteScript(script) then
+       try
+         CronList := TStringList.Create;
+         if ShellCommand('crontab -l', processresponse) = 0 then
+            begin
+              CronList.Text := processresponse;
+              CronList.Add(ArchiveForm.RepeatMinuteBox.Text + #32
+                            + ArchiveForm.RepeatHourBox.Text + #32
+                            + ArchiveForm.RepeatMonthDayBox.Text + #32
+                            + ArchiveForm.RepeatMonthBox.Text + #32
+                            + ArchiveForm.RepeatWeekDayBox.Text + #32
+                            + script);
+              script := '/tmp/' + CreateUniqueFileName('/tmp/');
+              CronList.SaveToFile(script);
+              if ShellCommand('crontab ' + script, processresponse) = 0 then
+                 ShowMessage('Script successfully scheduled for execution')
+              else ShowMessage(processresponse);
+              ShellCommand('rm -f ' + script, processresponse);
+            end;
+       finally
+         if CronList <> nil
+            then CronList.Free;
+       end;
   end;
   
 begin
   ArchiveForm.BatchFileBox.Text := GetNextFileName(TEMP_DIRECTORY + BATCHFILE_BASE);
-  if ArchiveForm.ShowModal = mrOk then
-     if ArchiveForm.SaveScriptCheckBox.Checked
-        then CreateScript
-     else
-     if ArchiveForm.RunOnceRadioButton.Checked
-        then CreateAtScript
-     else
-     if ArchiveForm.RepeatRadioButton.Checked
-        then CreateCronScript
-     else CreateNewArchive;
+  try
+    if ArchiveForm.ShowModal = mrOk then
+       if ArchiveForm.RunOnceRadioButton.Checked
+          then CreateAtScript
+       else
+       if ArchiveForm.RepeatRadioButton.Checked
+          then CreateCronScript
+       else
+       if ArchiveForm.SaveScriptCheckBox.Checked
+          then CreateScript
+       else CreateNewArchive;
+  finally
+    Enabled := true;
+  end;
 end;
 
 procedure TMainForm.ArchiveTreeViewDeletion(Sender: TObject; Node: TTreeNode);

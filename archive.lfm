@@ -206,11 +206,11 @@ object ArchiveForm: TArchiveForm
       OnClick = LoadButtonClick
     end
     object OKButton: TBitBtn
-      Left = 208
+      Left = 392
       Height = 30
       Top = 21
-      Width = 146
-      Caption = 'Create archive'
+      Width = 106
+      Caption = 'Ok'
       Default = True
       Kind = bkOK
       NumGlyphs = 0
@@ -218,26 +218,16 @@ object ArchiveForm: TArchiveForm
       TabOrder = 0
     end
     object CancelButton: TBitBtn
-      Left = 528
+      Left = 512
       Height = 30
       Top = 21
-      Width = 90
+      Width = 106
       Cancel = True
       Caption = 'Cancel'
       Kind = bkCancel
       ModalResult = 2
       NumGlyphs = 0
       TabOrder = 1
-    end
-    object ScriptButton: TBitBtn
-      Left = 392
-      Height = 30
-      Top = 22
-      Width = 112
-      Caption = 'Create script'
-      NumGlyphs = 0
-      TabOrder = 2
-      Visible = False
     end
   end
   object NoteBookPanel: TPanel
@@ -829,9 +819,9 @@ object ArchiveForm: TArchiveForm
         ClientHeight = 351
         object NowRadioButton: TRadioButton
           Left = 35
-          Height = 19
+          Height = 21
           Top = 27
-          Width = 125
+          Width = 126
           Caption = 'NowRadioButton'
           Checked = True
           OnChange = ScheduleRadioChange
@@ -840,23 +830,21 @@ object ArchiveForm: TArchiveForm
         end
         object RunOnceRadioButton: TRadioButton
           Left = 35
-          Height = 19
+          Height = 21
           Top = 58
-          Width = 125
+          Width = 127
           Caption = 'Run once only at'
           OnChange = ScheduleRadioChange
           TabOrder = 1
-          Visible = False
         end
         object RepeatRadioButton: TRadioButton
           Left = 35
-          Height = 19
+          Height = 21
           Top = 162
-          Width = 122
+          Width = 124
           Caption = 'Run regularily at'
           OnChange = ScheduleRadioChange
           TabOrder = 2
-          Visible = False
         end
         object RunOncePanel: TPanel
           Left = 4
@@ -867,12 +855,11 @@ object ArchiveForm: TArchiveForm
           ClientHeight = 81
           ClientWidth = 602
           TabOrder = 3
-          Visible = False
           object RunOnceHourLabel: TLabel
             Left = 65
             Height = 20
             Top = 12
-            Width = 122
+            Width = 119
             Caption = 'RunOnceHourLabel'
             Enabled = False
             ParentColor = False
@@ -881,7 +868,7 @@ object ArchiveForm: TArchiveForm
             Left = 158
             Height = 20
             Top = 12
-            Width = 134
+            Width = 131
             Caption = 'RunOnceMinuteLabel'
             Enabled = False
             ParentColor = False
@@ -890,7 +877,7 @@ object ArchiveForm: TArchiveForm
             Left = 273
             Height = 20
             Top = 12
-            Width = 122
+            Width = 119
             Caption = 'RunOnceDateLabel'
             Enabled = False
             ParentColor = False
@@ -968,12 +955,11 @@ object ArchiveForm: TArchiveForm
           ClientHeight = 75
           ClientWidth = 596
           TabOrder = 4
-          Visible = False
           object RepeatHourLabel: TLabel
             Left = 65
             Height = 20
             Top = 12
-            Width = 122
+            Width = 119
             Caption = 'RunOnceHourLabel'
             Enabled = False
             ParentColor = False
@@ -982,7 +968,7 @@ object ArchiveForm: TArchiveForm
             Left = 158
             Height = 20
             Top = 12
-            Width = 122
+            Width = 120
             Caption = 'RepeatMinuteLabel'
             Enabled = False
             ParentColor = False
@@ -991,7 +977,7 @@ object ArchiveForm: TArchiveForm
             Left = 243
             Height = 20
             Top = 12
-            Width = 137
+            Width = 134
             Caption = 'RepeatWeekDayLabel'
             Enabled = False
             ParentColor = False
@@ -1000,7 +986,7 @@ object ArchiveForm: TArchiveForm
             Left = 371
             Height = 20
             Top = 12
-            Width = 144
+            Width = 140
             Caption = 'RepeatMonthDayLabel'
             Enabled = False
             ParentColor = False
@@ -1009,7 +995,7 @@ object ArchiveForm: TArchiveForm
             Left = 467
             Height = 20
             Top = 12
-            Width = 119
+            Width = 117
             Caption = 'RepeatMonthLabel'
             Enabled = False
             ParentColor = False
@@ -1021,9 +1007,8 @@ object ArchiveForm: TArchiveForm
             Width = 70
             AutoCompleteText = [cbactEndOfLineComplete, cbactSearchAscending]
             Enabled = False
-            ItemIndex = 0
             Items.Strings = (
-              ''
+              '*'
             )
             MaxLength = 0
             TabOrder = 0
@@ -1035,9 +1020,8 @@ object ArchiveForm: TArchiveForm
             Width = 70
             AutoCompleteText = [cbactEndOfLineComplete, cbactSearchAscending]
             Enabled = False
-            ItemIndex = 0
             Items.Strings = (
-              ''
+              '*'
             )
             MaxLength = 0
             TabOrder = 1
@@ -1049,9 +1033,8 @@ object ArchiveForm: TArchiveForm
             Width = 100
             AutoCompleteText = [cbactEndOfLineComplete, cbactSearchAscending]
             Enabled = False
-            ItemIndex = 0
             Items.Strings = (
-              ''
+              '*'
             )
             MaxLength = 0
             TabOrder = 2
@@ -1063,9 +1046,8 @@ object ArchiveForm: TArchiveForm
             Width = 70
             AutoCompleteText = [cbactEndOfLineComplete, cbactSearchAscending]
             Enabled = False
-            ItemIndex = 0
             Items.Strings = (
-              ''
+              '*'
             )
             MaxLength = 0
             TabOrder = 3
@@ -1077,9 +1059,8 @@ object ArchiveForm: TArchiveForm
             Width = 100
             AutoCompleteText = [cbactEndOfLineComplete, cbactSearchAscending]
             Enabled = False
-            ItemIndex = 0
             Items.Strings = (
-              ''
+              '*'
             )
             MaxLength = 0
             TabOrder = 4

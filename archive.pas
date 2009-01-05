@@ -15,7 +15,6 @@ type
   { TArchiveForm }
 
   TArchiveForm = class ( TForm )
-    ScriptButton: TBitBtn;
     EncryptArchiveCheck: TCheckBox;
     OpenCreatedArchiveCheck: TCheckBox;
     RepeatMonthLabel: TLabel;
