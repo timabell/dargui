@@ -150,6 +150,7 @@ type
     { public declarations }
     function CreateBatchfile: Boolean;
     function CreateScript: Boolean;
+    function GetUniqueScriptName(aDir: string): string;
     BatchFile: TStringList;
     ArchiveBaseName: string;
   end;
@@ -808,6 +809,22 @@ begin
      end;
 end;
 
+function TArchiveForm.GetUniqueScriptName ( aDir: string ) : string;
+var
+  counter: Integer;
+  script: String;
+begin
+    Result := '';
+    counter := 1;
+    script := aDir + ArchiveForm.ArchiveBaseName + '.sh';
+    if FileExists(script) then
+       begin
+         while FileExists(script + '.' + IntToStr(counter)) do
+              Inc(counter);
+           script := script + '.' + IntToStr(counter);
+         end;
+    Result := script;
+end;
 
 // 2008-12-23
 // TODO: does not weed out included files from excluded directories

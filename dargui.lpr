@@ -29,7 +29,8 @@ uses
   Forms
   { add your units here }, main, darintf, selectrestore, archive, filemaskdlg,
   ProcessLine, ArchiveInfo, About, oplog, isolate, diff, prefs,
-  historymenu, dgStrConst, selectfilter, password, darstrings, backupsavedlg;
+  historymenu, dgStrConst, selectfilter, password, darstrings, backupsavedlg,
+  schedman;
 
 begin
   Application.Title:='DarGUI';

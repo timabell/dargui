@@ -1128,6 +1128,13 @@ object MainForm: TMainForm
         OnClick = miArchiveInformationClick
       end
     end
+    object MenuScheduling: TMenuItem
+      Caption = 'MenuScheduling'
+      object miSchedManager: TMenuItem
+        Caption = 'miSchedMan'
+        OnClick = miSchedManagerClick
+      end
+    end
     object MenuSettings: TMenuItem
       Caption = 'Options'
       object miHideMessages: TMenuItem

@@ -132,6 +132,7 @@ rsDarGUIHasBeenDevelop = 'DarGUI has been developed using Freepascal and the '
 rsMenuIsolateCatalogue = 'Isolate Catalogue';
 rsMenuOperationLogs = 'Operation Logs';
 rsMenuCheckIntegrity = 'Check Integrity';
+rsMenuScheduleManager = 'Schedule Manager';
 rsMenuInformation = 'Information';
 rsMenuOptions = 'Options';
 rsMenuFile = 'File';
@@ -238,6 +239,7 @@ rsNo = 'No';
 rsMessInvalidArchiveName = 'Invalid archive name';
 rsMessInvalidCatalogueName = 'Invalid catalogue name';
 rsMessUnableToFindArchive = 'Unable to find archive ''%s''';
+rsCptScheduledBackups = 'Scheduled backups';
 
 implementation
 

@@ -14,6 +14,8 @@ type
   { TMainForm }
 
   TMainForm = class(TForm)
+    MenuScheduling: TMenuItem;
+    miSchedManager: TMenuItem;
     miSelectFilter: TMenuItem;
     miShowSelect: TMenuItem;
     miTestArchive: TMenuItem;
@@ -100,6 +102,7 @@ type
     procedure miIsolateClick ( Sender: TObject ) ;
     procedure miOperationlogsClick ( Sender: TObject ) ;
     procedure miRestoreAllClick(Sender: TObject);
+    procedure miSchedManagerClick ( Sender: TObject ) ;
     procedure pmiHideAllClick ( Sender: TObject ) ;
     procedure pmiShowAllClick ( Sender: TObject ) ;
     procedure pmiShowAllSelectedClick ( Sender: TObject ) ;
@@ -152,7 +155,7 @@ const
 
 implementation
 
-uses baseunix, dgStrConst, selectrestore, archive, archiveinfo, About, oplog, isolate, diff, prefs;
+uses baseunix, dgStrConst, selectrestore, archive, archiveinfo, About, oplog, isolate, diff, prefs, schedman;
 
 { TMainForm }
 
@@ -313,11 +316,8 @@ var
   
   function WriteScript( scriptfilename: string ): Boolean;
   var
-    InfoFile: TSettingsFile;
-    infofilename: String;
     Scriptfile: TStringlist;
     c: Integer;
-    Proc: TProcess;
   begin
      Result := false;
      Scriptfile := TStringList.Create;
@@ -334,7 +334,7 @@ var
                             + ' -B "/tmp/dargui.temp"'
                             + ' -v'
                             + DarOptions;
-     if ArchiveForm.EncryptArchiveCheck.Checked
+     if ArchiveForm.EncryptArchiveCheck.Checked     //TODO: remove this?
         then Command := Command + ' -K :';
 //     if UseInfoFile then
 //        begin
@@ -363,10 +363,6 @@ var
   
   procedure CreateScript;
   var
-    InfoFile: TSettingsFile;
-    infofilename: String;
-    Scriptfile: TStringlist;
-    c: Integer;
     Proc: TProcess;
   begin
       if ArchiveForm.ScriptFilenameBox.Text <> ''
@@ -395,7 +391,7 @@ var
     p: LongInt;
     q: Integer;
   begin
-    script := AtScriptDir + CreateUniqueFileName(AtScriptDir);
+    script := AtScriptDir + ArchiveForm.ArchiveBaseName + '.sh';
     if WriteScript(script) then
        begin
          if Length(ArchiveForm.RunOnceMinuteBox.Text) < 2 then
@@ -425,15 +421,11 @@ var
   
   procedure CreateCronScript;
   var
-    counter: Integer;
     script: String;
     processresponse: string;
     CronList: TStringList;
   begin
-    counter := 0;
-    while FileExists(CronScriptDir + ArchiveForm.ArchiveBaseName + '.' + IntToStr(counter) + '.sh') do
-          Inc(counter);
-    script := CronScriptDir + ArchiveForm.ArchiveBaseName + '.' + IntToStr(counter) + '.sh';
+    script := ArchiveForm.GetUniqueScriptName(CronScriptDir);
     if WriteScript(script) then
        try
          CronList := TStringList.Create;
@@ -872,6 +864,19 @@ begin
   RestoreForm.Free;
 end;
 
+procedure TMainForm.miSchedManagerClick ( Sender: TObject ) ;
+var
+  SchedForm: TScheduleManagerForm;
+begin
+  SchedForm := TScheduleManagerForm.Create(Application);
+  if SchedForm <> nil then
+     try
+       SchedForm.ShowModal;
+     finally
+       SchedForm.Free;
+     end;
+end;
+
 procedure TMainForm.pmiHideAllClick ( Sender: TObject ) ;
 begin
   ArchiveTreeView.Items[0].Collapse(true);
@@ -1054,6 +1059,8 @@ begin
   tbTest.Hint := rsCheckArchiveForErrors;
   MenuHelp.Caption := rsMenuHelp;
   miIsolate.Caption := rsMenuIsolateCatalogue;
+  MenuScheduling.Caption := rsScheduling;
+  miSchedManager.Caption := rsMenuScheduleManager;
   miTestArchive.Caption := rsMenuCheckIntegrity;
   miOperationlogs.Caption := rsMenuOperationLogs;
   miHelpAbout.Caption := rsMenuHelpAbout;

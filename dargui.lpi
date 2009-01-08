@@ -19,6 +19,10 @@
       <OutDir Value="locales"/>
     </i18n>
     <VersionInfo>
+      <UseVersionInfo Value="True"/>
+      <AutoIncrementBuild Value="True"/>
+      <CurrentMajorRevNr Value="4"/>
+      <CurrentBuildNr Value="100"/>
       <ProjectVersion Value=""/>
     </VersionInfo>
     <PublishOptions>
@@ -41,11 +45,11 @@
         <PackageName Value="LCL"/>
       </Item2>
     </RequiredPackages>
-    <Units Count="16">
+    <Units Count="20">
       <Unit0>
         <Filename Value="dargui.lpr"/>
         <IsPartOfProject Value="True"/>
-        <UnitName Value="dargui"/>
+        <UnitName Value="createsavedlg"/>
       </Unit0>
       <Unit1>
         <Filename Value="main.pas"/>
@@ -146,28 +150,54 @@
         <ResourceFilename Value="isolate.lrs"/>
         <UnitName Value="isolate"/>
       </Unit15>
+      <Unit16>
+        <Filename Value="password.pas"/>
+        <ComponentName Value="PasswordDlg"/>
+        <IsPartOfProject Value="True"/>
+        <ResourceFilename Value="password.lrs"/>
+        <UnitName Value="password"/>
+      </Unit16>
+      <Unit17>
+        <Filename Value="darstrings.pas"/>
+        <IsPartOfProject Value="True"/>
+        <UnitName Value="darstrings"/>
+      </Unit17>
+      <Unit18>
+        <Filename Value="backupsavedlg.pas"/>
+        <ComponentName Value="CreateSaveDialog"/>
+        <IsPartOfProject Value="True"/>
+        <ResourceFilename Value="backupsavedlg.lrs"/>
+        <UnitName Value="backupsavedlg"/>
+      </Unit18>
+      <Unit19>
+        <Filename Value="schedman.pas"/>
+        <ComponentName Value="ScheduleManagerForm"/>
+        <IsPartOfProject Value="True"/>
+        <ResourceFilename Value="schedman.lrs"/>
+        <UnitName Value="schedman"/>
+      </Unit19>
     </Units>
   </ProjectOptions>
   <CompilerOptions>
     <Version Value="5"/>
     <SearchPaths>
       <Libraries Value="/home/usr/X11R6/lib/"/>
-      <OtherUnitFiles Value="/usr/lib/lazarus/components/pasdoc/source/component/;$(LazarusDir)/components/synedit/"/>
       <UnitOutputDirectory Value="/home/malcolm/lazarus/dargui/compiled"/>
       <LCLWidgetType Value="gtk2"/>
     </SearchPaths>
+    <Parsing>
+      <SyntaxOptions>
+        <CStyleOperator Value="False"/>
+        <AllowLabel Value="False"/>
+      </SyntaxOptions>
+    </Parsing>
     <CodeGeneration>
-      <Generate Value="Smaller"/>
-      <Optimizations>
-        <OptimizationLevel Value="2"/>
-      </Optimizations>
+      <SmartLinkUnit Value="True"/>
     </CodeGeneration>
     <Linking>
       <Debugging>
-        <UseLineInfoUnit Value="False"/>
-        <StripSymbols Value="True"/>
+        <GenerateDebugInfo Value="True"/>
       </Debugging>
-      <LinkSmart Value="True"/>
     </Linking>
     <Other>
       <Verbosity>
@@ -179,6 +209,10 @@
         <Command Value="rstconv -i compiled/dgstrconst.rst -o locales/dargui.pot"/>
         <CompileReasons Build="False" Run="False"/>
       </ExecuteBefore>
+      <ExecuteAfter>
+        <Command Value="/usr/share/lazarus/tools/svn2revisioninc ~/lazarus/dargui -o /home/malcolm/lazarus/dargui/revision.inc"/>
+        <CompileReasons Build="False" Run="False"/>
+      </ExecuteAfter>
     </Other>
   </CompilerOptions>
 </CONFIG>
