@@ -133,6 +133,7 @@ type
       var ADate: TDateTime; var AcceptDate: Boolean ) ;
     procedure SaveButtonClick ( Sender: TObject ) ;
     procedure SaveScriptCheckBoxClick ( Sender: TObject ) ;
+    procedure ScheduleBoxExit ( Sender: TObject ) ;
     procedure ScheduleRadioChange ( Sender: TObject ) ;
     procedure ScriptFileButtonClick ( Sender: TObject ) ;
     procedure SlicesCheckClick ( Sender: TObject ) ;
@@ -198,17 +199,25 @@ begin
         RunOnceHourBox.Items.Add(IntToStr(x));
         RepeatHourBox.Items.Add(IntToStr(x));
       end;
+  RunOnceHourBox.ItemIndex := 0;
+  RepeatHourBox.ItemIndex := 0;
   for x := 0 to 59 do
       begin
         RunOnceMinuteBox.Items.Add(IntToStr(x));
         RepeatMinuteBox.Items.Add(IntToStr(x));
       end;
+  RunOnceHourBox.ItemIndex := 0;
+  RunOnceMinuteBox.ItemIndex := 0;
+  RunOnceDateEdit.Date := Date;
   for x := 1 to 31 do
       RepeatMonthDayBox.Items.Add(IntToStr(x));
+  RepeatMonthDayBox.ItemIndex := 0;
   for x := 1 to 7 do
       RepeatWeekDayBox.Items.Add(WeekdayNames[x]);
+  RepeatWeekDayBox.ItemIndex := 0;
   for x := 1 to 12 do
       RepeatMonthBox.Items.Add(MonthNames[x]);
+  RepeatMonthBox.ItemIndex := 0;
   BatchFile := TStringList.Create;
   InitialiseInterface;
 end;
@@ -216,7 +225,7 @@ end;
 procedure TArchiveForm.RunOnceDateEditAcceptDate ( Sender: TObject;
   var ADate: TDateTime; var AcceptDate: Boolean ) ;
 begin
-  if ADate < Now then
+  if ADate < Date then
      begin
        ShowMessage ( rsErrDateCannotBeInPast ) ;
        AcceptDate := false;
@@ -324,6 +333,19 @@ procedure TArchiveForm.SaveScriptCheckBoxClick ( Sender: TObject ) ;
 begin
   ScriptFilenameBox.Enabled := SaveScriptCheckBox.Checked;
   ScriptFileButton.Enabled := SaveScriptCheckBox.Checked;
+end;
+
+procedure TArchiveForm.ScheduleBoxExit ( Sender: TObject ) ;
+begin
+  with Sender as TComboBox do
+       begin
+         if TComboBox(Sender).Items.IndexOf(TComboBox(Sender).Text) > -1
+            then TComboBox(Sender).ItemIndex := TComboBox(Sender).Items.IndexOf(TComboBox(Sender).Text)
+         else begin
+                ShowMessage('Incorrect entry');
+                TComboBox(Sender).SetFocus;
+              end;
+       end;
 end;
 
 procedure TArchiveForm.ScheduleRadioChange ( Sender: TObject ) ;
@@ -722,24 +744,15 @@ var
 begin
   if CheckParameters then
      begin
-     isScript := SaveScriptCheckBox.Checked or (not NowRadioButton.Checked);
-     ArchiveBaseName := ArchiveName.Text;
-     if TimestampCheck.Checked then
-        begin
-          if isScript
-             then ArchiveBaseName := ArchiveBaseName + '`date +_%Y%m%d%H%M`'
-          else ArchiveBaseName := ArchiveBaseName + FormatDateTime('_yyyymmddhhnn', Now);
-        end;
-
-     ModalResult := mrOk;
-     if not TimestampCheck.Checked
-         then if FileExists(ArchiveDirectory.Text
-                                + ArchiveName.Text + '.1.dar')
-            then if MessageDlg ( rsOverwriteExistingArc, mtWarning, [ mbYes, mbNo
-              ] , 0 ) = mrNo
-                 then ModalResult := mrCancel
-                 else DeleteFilesByMask(ArchiveDirectory.Text
-                                + ArchiveName.Text + '.*.dar');
+       isScript := SaveScriptCheckBox.Checked or (not NowRadioButton.Checked);
+       ArchiveBaseName := ArchiveName.Text;
+       if TimestampCheck.Checked then
+          begin
+            if isScript
+               then ArchiveBaseName := ArchiveBaseName + '`date +_%Y%m%d%H%M`'
+            else ArchiveBaseName := ArchiveBaseName + FormatDateTime('_yyyymmddhhnn', Now);
+          end;
+       ModalResult := mrOk;
      end;
 end;
 
@@ -759,6 +772,7 @@ begin
   if ArchiveName.Text = '' then
      begin
        ShowMessage ( rsErrInvalidArchiveName ) ;
+       ArchiveNotebook.PageIndex := 0;
        ArchiveName.SetFocus;
        Result := false;
        exit;
@@ -770,6 +784,7 @@ begin
   if not FileExists(ArchiveDirectory.Text) then
      begin
        ShowMessage ( rsErrInvalidDirectory ) ;
+       ArchiveNotebook.PageIndex := 0;
        ArchiveDirectory.SetFocus;
        Result := false;
        exit;
@@ -777,14 +792,31 @@ begin
   if not FileExists(BaseDirectory.Text)  then
      begin
        ShowMessage ( rsErrInvalidDirectory ) ;
+       ArchiveNotebook.PageIndex := 0;
        BaseDirectory.SetFocus;
        Result := false;
        exit;
      end;
+  if not (TimestampCheck.Checked or RepeatRadioButton.Checked) then
+    begin
+     if FileExists(ArchiveDirectory.Text
+                          + ArchiveName.Text + '.1.dar')
+        then if MessageDlg ( rsOverwriteExistingArc, mtWarning, [ mbYes, mbNo
+          ] , 0 ) = mrNo
+             then begin
+                    Result := false;
+                    ArchiveNotebook.PageIndex := 0;
+                    ArchiveName.SetFocus;
+                    exit;
+                  end
+             else DeleteFilesByMask(ArchiveDirectory.Text
+                            + ArchiveName.Text + '.*.dar');
+    end;
   if DiffFileCheck.Checked
      then if not FileExists(DiffReference.Text) then
            begin
              ShowMessage ( rsErrRefArchiveNotFound ) ;
+             ArchiveNotebook.PageIndex := 0;
              DiffReference.SetFocus;
              Result := false;
              exit;
@@ -796,6 +828,19 @@ begin
     for x := 0 to ExcludeDirectories.Count-1 do
       if ExcludeDirectories.Items[x] = BaseDirectory.Text
          then ExcludeDirectories.Items.Delete(x);
+  if RepeatRadioButton.Checked then
+     begin
+       if RepeatMinuteBox.ItemIndex < 1 then
+          if MessageDlg('The backup script will run every minute on the days selected'#10
+                         + 'Are you sure that you want to do this?', mtWarning, mbYesNo, 0) = mrNo
+          then begin
+                 ArchiveNotebook.PageIndex := 5;
+                 RepeatMinuteBox.SetFocus;
+                 Result := false;
+                 exit;
+               end;
+       TimestampCheck.Checked := true;     //  All cronjobs are timestamped
+     end;
 end;
 
 function TArchiveForm.IsInBaseDirectory(aDir: string): Boolean;
