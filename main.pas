@@ -318,23 +318,27 @@ var
   var
     Scriptfile: TStringlist;
     c: Integer;
+    archivename: String;
   begin
      Result := false;
      Scriptfile := TStringList.Create;
      try
      Enabled := false;
      ArchiveForm.CreateBatchfile;
+     archivename := ArchiveForm.ArchiveBaseName;
+     if ArchiveForm.RepeatRadioButton.Checked
+        then archivename := archivename + '`date +_%Y%m%d%H%M`';  // All cron jobs are timestamped to avoid duplicate filenames
      referencearchive := '';
      if ArchiveForm.DiffFileCheck.Checked
         then referencearchive := ' -A ' + TrimToBase( ArchiveForm.DiffReference.Text );
      DarOptions := ' -X ' + ArchiveForm.ArchiveBaseName + '.*.dar';
      Command := DAR_EXECUTABLE + ' -c "' + ArchiveForm.ArchiveDirectory.Text
-                            + ArchiveForm.ArchiveBaseName + '"'
+                            + archivename + '"'
                             + referencearchive
                             + ' -B "/tmp/dargui.temp"'
                             + ' -v'
                             + DarOptions;
-     if ArchiveForm.EncryptArchiveCheck.Checked     //TODO: remove this?
+     if ArchiveForm.EncryptArchiveCheck.Checked     //TODO: implement request for password
         then Command := Command + ' -K :';
 //     if UseInfoFile then
 //        begin

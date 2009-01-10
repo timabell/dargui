@@ -767,8 +767,19 @@ end;
 function TArchiveForm.CheckParameters: Boolean;
 var
   x: Integer;
-begin
+begin        //TODO: check that script is not to be created within base directory
   Result := true;
+  if not NowRadioButton.Checked then
+     if EncryptArchiveCheck.Checked then
+         if MessageDlg('You have chosen to encrypt this scheduled backup.'#10
+                       + 'The password for the encrypted archive will be included in the backup script.'#10
+                       + 'Are you sure that you want to do this?', mtConfirmation, mbYesNo, 0) = mrNo
+                then begin
+                       ArchiveNotebook.PageIndex := 4;
+                       EncryptArchiveCheck.SetFocus;
+                       Result := false;
+                       exit;
+                     end;
   if ArchiveName.Text = '' then
      begin
        ShowMessage ( rsErrInvalidArchiveName ) ;
@@ -830,16 +841,31 @@ begin
          then ExcludeDirectories.Items.Delete(x);
   if RepeatRadioButton.Checked then
      begin
-       if RepeatMinuteBox.ItemIndex < 1 then
-          if MessageDlg('The backup script will run every minute on the days selected'#10
-                         + 'Are you sure that you want to do this?', mtWarning, mbYesNo, 0) = mrNo
-          then begin
-                 ArchiveNotebook.PageIndex := 5;
-                 RepeatMinuteBox.SetFocus;
-                 Result := false;
-                 exit;
-               end;
-       TimestampCheck.Checked := true;     //  All cronjobs are timestamped
+       if (RepeatMinuteBox.ItemIndex < 1)
+           and (RepeatHourBox.ItemIndex < 1)
+           and (RepeatMonthBox.ItemIndex < 1)
+           and (RepeatMonthDayBox.ItemIndex < 1)
+           and (RepeatWeekDayBox.ItemIndex < 1) then
+              begin
+                if MessageDlg('The backup script will run every minute of every day'#10
+                               + 'Are you sure that you want to do this?', mtWarning, mbYesNo, 0) = mrNo
+                then begin
+                       ArchiveNotebook.PageIndex := 5;
+                       RepeatMinuteBox.SetFocus;
+                       Result := false;
+                       exit;
+                     end;
+               end
+          else
+               if RepeatMinuteBox.ItemIndex < 1 then
+                  if MessageDlg('The backup script will run every minute on the days selected'#10
+                                 + 'Are you sure that you want to do this?', mtWarning, mbYesNo, 0) = mrNo
+                  then begin
+                         ArchiveNotebook.PageIndex := 5;
+                         RepeatMinuteBox.SetFocus;
+                         Result := false;
+                         exit;
+                       end;
      end;
 end;
 
