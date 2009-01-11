@@ -223,7 +223,7 @@ var
 begin
   CronTab.Free;
   AtQ.Free;
-  for x := 1 to ScheduleList.RowCount-1 do
+  for x := ScheduleList.RowCount-1 downto 1 do
       DeleteLine(x);
 end;
 
