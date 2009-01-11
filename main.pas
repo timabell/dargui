@@ -291,16 +291,19 @@ var
         begin
           CurrentArchive := ArchiveForm.ArchiveDirectory.Text
                             + ArchiveForm.ArchiveBaseName;
-          if OpenArchive(CurrentArchive, ArchiveTreeView, '') = 0 then //need to check for encryption
+          if ValidateArchive(CurrentArchive, CurrentPass) then
              begin
-               EnableArchiveMenus(true);
-               OpenDialog.FileName := CurrentArchive;
-               RecentList.AddFile(CurrentArchive);
-             end
-          else
-             begin
-               EnableArchiveMenus(false);
-               CurrentArchive := '';
+                if OpenArchive(CurrentArchive, ArchiveTreeView, CurrentPass) = 0 then //need to check for encryption
+                   begin
+                     EnableArchiveMenus(true);
+                     OpenDialog.FileName := CurrentArchive;
+                     RecentList.AddFile(CurrentArchive);
+                   end
+                else
+                   begin
+                     EnableArchiveMenus(false);
+                     CurrentArchive := '';
+                   end;
              end;
           OpLogForm.RefreshOpList;
         end;

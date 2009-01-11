@@ -17,6 +17,8 @@ type
   TArchiveForm = class ( TForm )
     EncryptArchiveCheck: TCheckBox;
     OpenCreatedArchiveCheck: TCheckBox;
+    IncludeDirsRadioButton: TRadioButton;
+    ExcludeDirsRadioButton: TRadioButton;
     RepeatMonthLabel: TLabel;
     RepeatMonthDayLabel: TLabel;
     RepeatWeekDayLabel: TLabel;
@@ -84,20 +86,15 @@ type
     NoCompressList: TListBox;
     ReadConfigCheck: TCheckBox;
     DelIncludeDirButton: TButton;
-    AddExcludeDirButton: TButton;
-    DelExcludeDirButton: TButton;
     DelExcludeFileButton: TButton;
     AddExcludeFileButton: TButton;
     DelIncludeFileButton: TButton;
     ArchiveBaseLabel: TLabel;
     BaseDirLabel: TLabel;
     SaveArchiveInLabel: TLabel;
-    IncludeDirLabel: TLabel;
-    ExcludeDirLabel: TLabel;
     IncludeFilesLabel: TLabel;
     ExcludeFilesLabel: TLabel;
     IncludeDirectories: TListBox;
-    ExcludeDirectories: TListBox;
     IncludeFiles: TListBox;
     ExcludeFiles: TListBox;
     ArchiveNotebook: TNotebook;
@@ -109,6 +106,8 @@ type
     OKCancelPanel: TPanel;
     NoteBookPanel: TPanel;
     SaveDialog: TSaveDialog;
+    IncludeDirList: TStringList;
+    ExcludeDirList: TStringList;
     SelectDirectoryDialog: TSelectDirectoryDialog;
     procedure ArchiveNameExit ( Sender: TObject ) ;
     procedure CompressMasksClick ( Sender: TObject ) ;
@@ -122,6 +121,7 @@ type
     procedure DelCompressMaskButtonClick ( Sender: TObject ) ;
     procedure DiffFileCheckChange ( Sender: TObject ) ;
     procedure DiffRefButtonClick ( Sender: TObject ) ;
+    procedure DirectoryRBChange ( Sender: TObject ) ;
     procedure FormDestroy ( Sender: TObject ) ;
     procedure LoadButtonClick ( Sender: TObject ) ;
     procedure OKButtonClick ( Sender: TObject ) ;
@@ -169,10 +169,7 @@ procedure TArchiveForm.DelIncludeDirButtonClick ( Sender: TObject ) ;
 var
   LB: TListBox;
 begin
-  case TButton(Sender).Tag of
-       0: LB := IncludeDirectories;
-       1: LB := ExcludeDirectories;
-       end;
+  LB := IncludeDirectories;
   if LB.Count > 0 then
      LB.Items.Delete(LB.ItemIndex);
   TButton(Sender).Enabled := LB.Count > 0;
@@ -194,6 +191,8 @@ begin
   SelectDirectoryDialog.InitialDir := SysUtils.GetEnvironmentVariable('HOME');
   OpenDialog.InitialDir := SysUtils.GetEnvironmentVariable('HOME');
   SaveDialog.InitialDir := SysUtils.GetEnvironmentVariable('HOME');
+  IncludeDirList := TStringList.Create;
+  ExcludeDirList := TStringList.Create;
   for x := 0 to 23 do
       begin
         RunOnceHourBox.Items.Add(IntToStr(x));
@@ -418,16 +417,14 @@ begin
   CompSizeLabel.Caption := rsLowerSizeLimitForCom;
   ReadConfigCheck.Caption := rsAttemptToReadDARConf;
   DelIncludeDirButton.Caption := rsButtonRemove;
-  AddExcludeDirButton.Caption := rsButtonAdd;
-  DelExcludeDirButton.Caption := rsButtonRemove;
   DelExcludeFileButton.Caption := rsButtonRemove;
   AddExcludeFileButton.Caption := rsButtonAddFile;
   DelIncludeFileButton.Caption := rsButtonRemove;
   ArchiveBaseLabel.Caption := rsArchiveBaseName;
   BaseDirLabel.Caption := rsBaseDirectory;
   SaveArchiveInLabel.Caption := rsSaveArchiveIn;
-  IncludeDirLabel.Caption := rsIncludeDirectories;
-  ExcludeDirLabel.Caption := rsExcludeDirectories;
+  IncludeDirsRadioButton.Caption := rsIncludeDirectories;
+  ExcludeDirsRadioButton.Caption := rsExcludeDirectories;
   IncludeFilesLabel.Caption := rsIncludeFiles;
   ExcludeFilesLabel.Caption := rsExcludeFiles;
   ArchivePage.Caption := rsArchive;
@@ -465,22 +462,13 @@ var
   x: Integer;
 begin
   SelectDirectoryDialog.Options := SelectDirectoryDialog.Options+[ofAllowMultiSelect];
+  if Pos(BaseDirectory.Text, SelectDirectoryDialog.InitialDir) <> 1 then
+     SelectDirectoryDialog.InitialDir := BaseDirectory.Text;
   if SelectDirectoryDialog.Execute then
     //if IsInBaseDirectory(SelectDirectoryDialog.FileName) then
       begin
-        case TButton(Sender).Tag of
-             0: begin LB := IncludeDirectories;
-                      ConflictList := ExcludeDirectories;
-                      DelBn := DelIncludeDirButton;
-                      ConflictMessage := Format ( rsDirectoriesAreExcluded, [ #10 ] ) ;
-                      end;
-             1: begin LB := ExcludeDirectories;
-                      ConflictList := IncludeDirectories;
-                      ConflictMessage := Format ( rsDirectoriesAreIncluded, [ #10 ] ) ;
-                      DelBn := DelExcludeDirButton;
-                      end;
-             end;
-        ResolveConflicts(LB, ConflictList, ConflictMessage );
+        LB := IncludeDirectories;
+        DelBn := DelIncludeDirButton;
         for x := 0 to SelectDirectoryDialog.Files.Count -1 do
             if LB.Items.IndexOf(SelectDirectoryDialog.Files[x]) < 0
                then LB.Items.Add(SelectDirectoryDialog.Files[x]);
@@ -495,10 +483,12 @@ var
   ConflictList: TListBox;
   ConflictMessage: string;
   x: Integer;
+  fn: String;
 begin
   OpenDialog.Options := OpenDialog.Options+[ofAllowMultiSelect];
+  if Pos(BaseDirectory.Text, OpenDialog.InitialDir) <> 1 then
+     OpenDialog.InitialDir := BaseDirectory.Text;
   if OpenDialog.Execute then
-//    if IsInBaseDirectory(OpenDialog.FileName) then
       begin
         case TButton(Sender).Tag of
            0: begin LB := IncludeFiles;
@@ -514,8 +504,11 @@ begin
            end;
         ResolveConflicts(LB, ConflictList, ConflictMessage );
         for x := 0 to OpenDialog.Files.Count -1 do
-            if LB.Items.IndexOf(OpenDialog.Files[x]) < 0
-               then LB.Items.Add(OpenDialog.Files[x]);
+            begin
+              fn := ExtractFileName( OpenDialog.Files[x] );
+              if LB.Items.IndexOf( fn ) < 0
+                  then LB.Items.Add( fn );
+            end;
         DelBn.Enabled := true;
       end;
 end;
@@ -637,9 +630,26 @@ begin
      then DiffReference.Text := OpenDialog.FileName;
 end;
 
+procedure TArchiveForm.DirectoryRBChange ( Sender: TObject ) ;
+begin
+ if TRadioButton(Sender).Checked then
+    begin
+      ExcludeDirList.Assign(IncludeDirectories.Items);
+      IncludeDirectories.Items.Assign(IncludeDirList);
+    end
+ else
+    begin
+      IncludeDirList.Assign(IncludeDirectories.Items);
+      IncludeDirectories.Items.Assign(ExcludeDirList);
+    end;
+ DelIncludeDirButton.Enabled := IncludeDirectories.Count>0;
+end;
+
 procedure TArchiveForm.FormDestroy ( Sender: TObject ) ;
 begin
   BatchFile.Free;
+  IncludeDirList.Free;
+  ExcludeDirList.Free;
 end;
 
 procedure TArchiveForm.LoadButtonClick ( Sender: TObject ) ;
@@ -736,6 +746,7 @@ begin
             BackupFilename := OpenDialog.FileName;
           end;
      end;
+  OpenDialog.Filter := 'All files|*';
 end;
 
 procedure TArchiveForm.OKButtonClick ( Sender: TObject ) ;
@@ -836,9 +847,6 @@ begin        //TODO: check that script is not to be created within base director
   for x := 0 to IncludeDirectories.Count-1 do
       if IncludeDirectories.Items[x] = BaseDirectory.Text
          then IncludeDirectories.Items.Delete(x);
-    for x := 0 to ExcludeDirectories.Count-1 do
-      if ExcludeDirectories.Items[x] = BaseDirectory.Text
-         then ExcludeDirectories.Items.Delete(x);
   if RepeatRadioButton.Checked then
      begin
        if (RepeatMinuteBox.ItemIndex < 1)
@@ -897,15 +905,13 @@ begin
     Result := script;
 end;
 
-// 2008-12-23
-// TODO: does not weed out included files from excluded directories
+//TODO: simplify this code - now only needs to compare IncludeFiles and ExcludeFiles
 procedure TArchiveForm.ResolveConflicts ( Sender, RefList: TObject;
   ConflictMessage: string ) ;
 var
   LB: TListBox;
   RB : TListBox;
   x: Integer;
-  Dialog: TOpenDialog;
 begin
   if not (Sender is TListBox) then exit;
   FileConflictForm := TFileConflictForm.Create(Self);
@@ -913,17 +919,15 @@ begin
   FileConflictForm.InstructionLabel.Caption := ConflictMessage;
   LB := TListBox(Sender);
   RB := TlistBox(RefList);
-  if LB.Tag = 0 then Dialog := SelectDirectoryDialog
-     else Dialog := OpenDialog;
-  for x := 0 to Dialog.Files.Count-1 do
-      if RB.Items.IndexOf(Dialog.Files[x]) > -1
-         then FileConflictForm.FileListBox.Items.Add(Dialog.Files[x]);
+  for x := 0 to OpenDialog.Files.Count-1 do
+      if RB.Items.IndexOf( ExtractFileName( OpenDialog.Files[x] ) ) > -1
+         then FileConflictForm.FileListBox.Items.Add( ExtractFileName( OpenDialog.Files[x] ) );
   if FileConflictForm.FileListBox.Items.Count > 0 then
        if FileConflictForm.ShowModal = mrNo then
           begin
-            for x := Dialog.Files.Count-1 downto 0 do
-              if FileConflictForm.FileListBox.Items.IndexOf(Dialog.Files[x]) > -1
-                 then Dialog.Files.Delete(x);
+            for x := OpenDialog.Files.Count-1 downto 0 do
+              if FileConflictForm.FileListBox.Items.IndexOf(ExtractFileName( OpenDialog.Files[x] )) > -1
+                 then OpenDialog.Files.Delete(x);
           end
        else
           begin
@@ -983,45 +987,48 @@ begin
         end;
      if IncludeDirectories.Count > 0 then
         begin
-        BatchFile .Add('');
-        BatchFile .Add ( rsIncDirectories ) ;
-        for x := 0 to IncludeDirectories.Count-1 do
-            BatchFile.Add('-g "' + RemoveBaseDirectory(IncludeDirectories.Items[x]) + '"');
-        end;
+          if IncludeDirsRadioButton.Checked then
+              begin
+                BatchFile .Add('');
+                BatchFile .Add ( rsIncDirectories ) ;
+                for x := 0 to IncludeDirectories.Count-1 do
+                    BatchFile.Add('-g "' + RemoveBaseDirectory(IncludeDirectories.Items[x]) + '"');
+              end
+          else
+              begin
+                BatchFile.Add('');
+                BatchFile.Add ( rsExclDirectories ) ;
+                for x := 0 to IncludeDirectories.Count-1 do
+                    BatchFile.Add('-P "' + RemoveBaseDirectory(IncludeDirectories.Items[x]) + '"');
+              end;
+         end;
      if IncludeFiles.Count > 0 then
         begin
-        BatchFile.Add('');
-        BatchFile.Add ( rsIncFiles ) ;
-        for x := 0 to IncludeFiles.Count-1 do
-            BatchFile.Add('-I "' + RemoveBaseDirectory(IncludeFiles.Items[x]) + '"');
-        end;
-     if ExcludeDirectories.Count > 0 then
-        begin
-        BatchFile.Add('');
-        BatchFile.Add ( rsExclDirectories ) ;
-        for x := 0 to ExcludeDirectories.Count-1 do
-            BatchFile.Add('-P "' + RemoveBaseDirectory(ExcludeDirectories.Items[x]) + '"');
+          BatchFile.Add('');
+          BatchFile.Add ( rsIncFiles ) ;
+          for x := 0 to IncludeFiles.Count-1 do
+              BatchFile.Add('-I "' + RemoveBaseDirectory(IncludeFiles.Items[x]) + '"');
         end;
      if ExcludeFiles.Count > 0 then
         begin
-        BatchFile.Add('');
-        BatchFile.Add ( rsExclFiles ) ;
-        for x := 0 to ExcludeFiles.Count-1 do
-            BatchFile.Add('-X "' + RemoveBaseDirectory(ExcludeFiles.Items[x]) + '"');
+          BatchFile.Add('');
+          BatchFile.Add ( rsExclFiles ) ;
+          for x := 0 to ExcludeFiles.Count-1 do
+              BatchFile.Add('-X "' + RemoveBaseDirectory(ExcludeFiles.Items[x]) + '"');
         end;
      if GZipCheck.Checked
         then begin
-             BatchFile.Add('');
-             BatchFile.Add ( rsUseGzipCompr ) ;
-             BatchFile.Add('--gzip=' + CompressionLevel.Text);
-             AddCompressionOptions;
+               BatchFile.Add('');
+               BatchFile.Add ( rsUseGzipCompr ) ;
+               BatchFile.Add('--gzip=' + CompressionLevel.Text);
+               AddCompressionOptions;
              end
      else if Bzip2Check.Checked
         then begin
-             BatchFile.Add('');
-             BatchFile.Add ( rsUseBzip2Comp ) ;
-             BatchFile.Add('--bzip2=' + CompressionLevel.Text);
-             AddCompressionOptions;
+               BatchFile.Add('');
+               BatchFile.Add ( rsUseBzip2Comp ) ;
+               BatchFile.Add('--bzip2=' + CompressionLevel.Text);
+               AddCompressionOptions;
              end;
      if not ReadConfigCheck.Checked then
         begin

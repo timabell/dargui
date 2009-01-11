@@ -243,7 +243,7 @@ object ArchiveForm: TArchiveForm
       Height = 384
       Top = 32
       Width = 616
-      PageIndex = 0
+      PageIndex = 2
       TabOrder = 0
       object ArchivePage: TPage
         Caption = 'Archive'
@@ -387,26 +387,10 @@ object ArchiveForm: TArchiveForm
         Caption = 'Directories'
         ClientWidth = 610
         ClientHeight = 351
-        object IncludeDirLabel: TLabel
-          Left = 19
-          Height = 20
-          Top = 18
-          Width = 121
-          Caption = 'Include directories:'
-          ParentColor = False
-        end
-        object ExcludeDirLabel: TLabel
-          Left = 19
-          Height = 20
-          Top = 196
-          Width = 124
-          Caption = 'Exclude directories:'
-          ParentColor = False
-        end
         object IncludeDirectories: TListBox
           Left = 19
-          Height = 120
-          Top = 40
+          Height = 264
+          Top = 58
           Width = 483
           TabOrder = 0
           TopIndex = -1
@@ -414,7 +398,7 @@ object ArchiveForm: TArchiveForm
         object AddIncludeDirButton: TButton
           Left = 510
           Height = 30
-          Top = 42
+          Top = 58
           Width = 90
           Caption = 'Add'
           OnClick = AddIncludeDirButtonClick
@@ -423,41 +407,31 @@ object ArchiveForm: TArchiveForm
         object DelIncludeDirButton: TButton
           Left = 510
           Height = 30
-          Top = 80
+          Top = 96
           Width = 90
           Caption = 'Remove'
           Enabled = False
           OnClick = DelIncludeDirButtonClick
           TabOrder = 2
         end
-        object ExcludeDirectories: TListBox
+        object IncludeDirsRadioButton: TRadioButton
           Left = 19
-          Height = 120
-          Top = 218
-          Width = 483
+          Height = 21
+          Top = 2
+          Width = 169
+          Caption = 'IncludeDirsRadioButton'
+          Checked = True
+          OnChange = DirectoryRBChange
+          State = cbChecked
           TabOrder = 3
-          TopIndex = -1
         end
-        object AddExcludeDirButton: TButton
-          Tag = 1
-          Left = 510
-          Height = 30
-          Top = 218
-          Width = 90
-          Caption = 'Add'
-          OnClick = AddIncludeDirButtonClick
+        object ExcludeDirsRadioButton: TRadioButton
+          Left = 19
+          Height = 21
+          Top = 26
+          Width = 172
+          Caption = 'ExcludeDirsRadioButton'
           TabOrder = 4
-        end
-        object DelExcludeDirButton: TButton
-          Tag = 1
-          Left = 510
-          Height = 30
-          Top = 256
-          Width = 90
-          Caption = 'Remove'
-          Enabled = False
-          OnClick = DelIncludeDirButtonClick
-          TabOrder = 5
         end
       end
       object FilesPage: TPage
