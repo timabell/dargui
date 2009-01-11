@@ -76,8 +76,17 @@ begin
 end;
 
 function TPasswordDlg.IsValidPassword ( pw: string ) : Boolean;
+var
+  x: Integer;
 begin
-  Result := GetInodeCount(ArchiveName, ' -K :' + pw) > -1;
+  if Length(ArchiveName) > 0 then
+     Result := GetInodeCount(ArchiveName, ' -K :' + pw) > -1
+  else begin
+         Result := true;
+         for x := 1 to Length(pw) do
+             if pw[x] in [#0..#32,':'] then Result := false;
+         if Length(pw) = 0 then Result := false;
+       end;
 end;
 
 function TPasswordDlg.Execute( anArchive: string ): TModalResult;

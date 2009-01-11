@@ -155,7 +155,7 @@ const
 
 implementation
 
-uses baseunix, dgStrConst, selectrestore, archive, archiveinfo, About, oplog, isolate, diff, prefs, schedman;
+uses baseunix, dgStrConst, selectrestore, archive, archiveinfo, About, oplog, isolate, diff, prefs, schedman, password;
 
 { TMainForm }
 
@@ -342,7 +342,8 @@ var
                             + ' -v'
                             + DarOptions;
      if ArchiveForm.EncryptArchiveCheck.Checked     //TODO: implement request for password
-        then Command := Command + ' -K :';
+        then
+        if PasswordDlg.Execute('') = mrOk then Command := Command + ' -K :' + PasswordDlg.Password;
 //     if UseInfoFile then
 //        begin
 //          infofilename := ArchiveForm.BaseDirectory.Text + DirectorySeparator + DARGUI_INFO_FILE;
