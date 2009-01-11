@@ -1,19 +1,19 @@
 object ArchiveForm: TArchiveForm
   Left = 439
-  Height = 476
+  Height = 490
   Top = 293
   Width = 637
   HorzScrollBar.Page = 636
-  VertScrollBar.Page = 475
+  VertScrollBar.Page = 489
   ActiveControl = ArchiveName
   BorderIcons = [biSystemMenu]
   BorderStyle = bsDialog
   Caption = 'New Archive'
-  ClientHeight = 476
+  ClientHeight = 490
   ClientWidth = 637
-  Constraints.MaxHeight = 476
+  Constraints.MaxHeight = 490
   Constraints.MaxWidth = 637
-  Constraints.MinHeight = 476
+  Constraints.MinHeight = 490
   Constraints.MinWidth = 637
   Icon.Data = {
     C10A00002F2A2058504D202A2F0A7374617469632063686172202A6461726775
@@ -109,7 +109,7 @@ object ArchiveForm: TArchiveForm
   Position = poMainFormCenter
   object OKCancelPanel: TPanel
     Height = 66
-    Top = 410
+    Top = 424
     Width = 637
     Align = alBottom
     ClientHeight = 66
@@ -231,19 +231,19 @@ object ArchiveForm: TArchiveForm
     end
   end
   object NoteBookPanel: TPanel
-    Height = 410
+    Height = 424
     Width = 637
     Align = alClient
     Caption = 'NoteBookPanel'
-    ClientHeight = 410
+    ClientHeight = 424
     ClientWidth = 637
     TabOrder = 1
     object ArchiveNotebook: TNotebook
-      Left = 2
+      Left = 8
       Height = 384
-      Top = 32
+      Top = 25
       Width = 616
-      PageIndex = 2
+      PageIndex = 0
       TabOrder = 0
       object ArchivePage: TPage
         Caption = 'Archive'
@@ -543,7 +543,7 @@ object ArchiveForm: TArchiveForm
           Top = 10
           Width = 288
           Caption = ' Do not compress ... '
-          ClientHeight = 311
+          ClientHeight = 313
           ClientWidth = 282
           TabOrder = 0
           object CompSizeLabel: TLabel
@@ -569,7 +569,6 @@ object ArchiveForm: TArchiveForm
               '*.png'
             )
             TabOrder = 0
-            TopIndex = -1
           end
           object CompressMasks: TButton
             Left = 165
@@ -621,7 +620,7 @@ object ArchiveForm: TArchiveForm
           Top = 11
           Width = 257
           Caption = ' Compression type '
-          ClientHeight = 311
+          ClientHeight = 313
           ClientWidth = 251
           TabOrder = 1
           object CompLvlLabel: TLabel

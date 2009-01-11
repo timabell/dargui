@@ -167,19 +167,32 @@ uses main, dgStrConst, darintf, filemaskdlg, prefs, fileconflict, backupsavedlg;
 
 procedure TArchiveForm.DelIncludeDirButtonClick ( Sender: TObject ) ;
 var
-  LB: TListBox;
+  ix: LongInt;
 begin
-  LB := IncludeDirectories;
-  if LB.Count > 0 then
-     LB.Items.Delete(LB.ItemIndex);
-  TButton(Sender).Enabled := LB.Count > 0;
+  ix := IncludeDirectories.ItemIndex;
+  if IncludeDirectories.Count > 0 then
+     IncludeDirectories.Items.Delete(IncludeDirectories.ItemIndex);
+  TButton(Sender).Enabled := IncludeDirectories.Count > 0;
+  if IncludeDirectories.Count > 0 then
+     begin
+       if ix > 0 then Dec(ix);
+       IncludeDirectories.ItemIndex := ix;
+     end;
 end;
 
 procedure TArchiveForm.DelIncludeFileButtonClick ( Sender: TObject ) ;
+var
+  ix: LongInt;
 begin
+  ix := IncludeFiles.ItemIndex;
   if IncludeFiles.Count > 0 then
      IncludeFiles.Items.Delete(IncludeFiles.ItemIndex);
   DelIncludeFileButton.Enabled := IncludeFiles.Count > 0;
+  if IncludeFiles.Count > 0 then
+       begin
+         if ix > 0 then Dec(ix);
+         IncludeFiles.ItemIndex := ix;
+       end;
 end;
 
 procedure TArchiveForm.FormCreate ( Sender: TObject ) ;
@@ -606,12 +619,20 @@ begin
 end;
 
 procedure TArchiveForm.DelCompressMaskButtonClick ( Sender: TObject ) ;
+var
+  ix: LongInt;
 begin
+  ix := NoCompressList.ItemIndex;
   if NoCompressList.Count > 0  then
-     if NoCompressList.ItemIndex > -1 then
+     if ix > -1 then
      begin
      NoCompressList.Items.Delete(NoCompressList.ItemIndex);
      DelCompressMaskButton.Enabled := NoCompressList.Count > 0;
+     if NoCompressList.Count> 0 then
+        begin
+          if ix > 0 then Dec(ix);
+          NoCompressList.ItemIndex := ix;
+        end;
      end;
 end;
 
@@ -744,6 +765,10 @@ begin
           finally
             SavedSettings.Free;
             BackupFilename := OpenDialog.FileName;
+            DelIncludeDirButton.Enabled := IncludeDirectories.Count > 0;
+            DelIncludeFileButton.Enabled := IncludeFiles.Count > 0;
+            DelExcludeFileButton.Enabled := ExcludeFiles.Count > 0;
+            DelCompressMaskButton.Enabled := NoCompressList.Count > 0;
           end;
      end;
   OpenDialog.Filter := 'All files|*';
@@ -768,11 +793,19 @@ begin
 end;
 
 procedure TArchiveForm.DelExcludeFileButtonClick ( Sender: TObject ) ;
+var
+  ix: LongInt;
 begin
+  ix := ExcludeFiles.ItemIndex;
   if ExcludeFiles.Count > 0 then
      if ExcludeFiles.ItemIndex > -1 then
         ExcludeFiles.Items.Delete(ExcludeFiles.ItemIndex);
   DelExcludeFileButton.Enabled := ExcludeFiles.Count > 0;
+  if ExcludeFiles.Count > 0 then
+     begin
+       if ix > 0 then Dec(ix);
+       ExcludeFiles.ItemIndex := ix;
+     end;
 end;
 
 function TArchiveForm.CheckParameters: Boolean;
