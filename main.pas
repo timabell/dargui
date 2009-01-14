@@ -333,7 +333,7 @@ var
         then archivename := archivename + '`date +_%Y%m%d%H%M`';  // All cron jobs are timestamped to avoid duplicate filenames
      referencearchive := '';
      if ArchiveForm.DiffFileCheck.Checked
-        then referencearchive := ' -A ' + TrimToBase( ArchiveForm.DiffReference.Text );
+        then referencearchive := ' -A "' + TrimToBase( ArchiveForm.DiffReference.Text ) + '" ';
      DarOptions := ' -X ' + ArchiveForm.ArchiveBaseName + '.*.dar';
      Command := DAR_EXECUTABLE + ' -c "' + ArchiveForm.ArchiveDirectory.Text
                             + archivename + '"'
@@ -341,9 +341,11 @@ var
                             + ' -B "/tmp/dargui.temp"'
                             + ' -v'
                             + DarOptions;
-     if ArchiveForm.EncryptArchiveCheck.Checked     //TODO: implement request for password
+     if ArchiveForm.EncryptArchiveCheck.Checked
         then
-        if PasswordDlg.Execute('') = mrOk then Command := Command + ' -K :' + PasswordDlg.Password;
+        if PasswordDlg.Execute('') = mrOk
+           then Command := Command + ' -K :' + PasswordDlg.Password
+        else ShowMessage('Archive will not be encrypted');
 //     if UseInfoFile then
 //        begin
 //          infofilename := ArchiveForm.BaseDirectory.Text + DirectorySeparator + DARGUI_INFO_FILE;
