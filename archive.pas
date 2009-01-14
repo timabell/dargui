@@ -15,6 +15,7 @@ type
   { TArchiveForm }
 
   TArchiveForm = class ( TForm )
+    EmptyDirCheck: TCheckBox;
     EncryptArchiveCheck: TCheckBox;
     OpenCreatedArchiveCheck: TCheckBox;
     IncludeDirsRadioButton: TRadioButton;
@@ -75,7 +76,6 @@ type
     CompressionLevel: TEdit;
     DelCompressMaskButton: TButton;
     CompressionLwrLimit: TEdit;
-    EmptyDirCheck: TCheckBox;
     DryRunCheck: TCheckBox;
     CompressionPage: TPage;
     CompressionExceptions: TGroupBox;
@@ -141,6 +141,7 @@ type
     procedure InitialiseInterface;
   private
     { private declarations }
+    LoadingSettings: Boolean;
     BackupNotes: string;
     BackupFilename: string;
     LastBackupTime: TDateTime;
@@ -231,6 +232,7 @@ begin
       RepeatMonthBox.Items.Add(MonthNames[x]);
   RepeatMonthBox.ItemIndex := 0;
   BatchFile := TStringList.Create;
+  LoadingSettings := false;
   InitialiseInterface;
 end;
 
@@ -653,6 +655,7 @@ end;
 
 procedure TArchiveForm.DirectoryRBChange ( Sender: TObject ) ;
 begin
+ if LoadingSettings then exit;
  if TRadioButton(Sender).Checked then
     begin
       ExcludeDirList.Assign(IncludeDirectories.Items);
@@ -719,6 +722,7 @@ begin
        bytesread := bytesread + SavedSettings.Read(datatext[1], 6);
        if datatext = 'DarGUI' then
           try
+            LoadingSettings := true;
             p := 1;
             SetLength(datatext, p);
             bytesread := bytesread + SavedSettings.Read(datatext[p], 1);
@@ -769,6 +773,7 @@ begin
             DelIncludeFileButton.Enabled := IncludeFiles.Count > 0;
             DelExcludeFileButton.Enabled := ExcludeFiles.Count > 0;
             DelCompressMaskButton.Enabled := NoCompressList.Count > 0;
+            LoadingSettings := false;
           end;
      end;
   OpenDialog.Filter := 'All files|*';
