@@ -1,5 +1,5 @@
 object DiffForm: TDiffForm
-  Left = 460
+  Left = 419
   Height = 290
   Top = 254
   Width = 595
@@ -25,9 +25,9 @@ object DiffForm: TDiffForm
       Top = 35
       Width = 425
       EditLabel.Left = 15
-      EditLabel.Height = 20
+      EditLabel.Height = 14
       EditLabel.Top = 15
-      EditLabel.Width = 46
+      EditLabel.Width = 43
       EditLabel.Caption = 'Archive'
       EditLabel.ParentColor = False
       ParentColor = False
@@ -39,9 +39,9 @@ object DiffForm: TDiffForm
       Top = 104
       Width = 425
       EditLabel.Left = 15
-      EditLabel.Height = 20
+      EditLabel.Height = 14
       EditLabel.Top = 84
-      EditLabel.Width = 92
+      EditLabel.Width = 87
       EditLabel.Caption = 'Base Directory'
       EditLabel.ParentColor = False
       ParentColor = False
@@ -67,9 +67,9 @@ object DiffForm: TDiffForm
     end
     object VerboseCheck: TCheckBox
       Left = 15
-      Height = 21
+      Height = 23
       Top = 144
-      Width = 124
+      Width = 116
       Caption = ' Verbose output'
       Checked = True
       State = cbChecked

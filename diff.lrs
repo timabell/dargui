@@ -1,5 +1,7 @@
+{ This is an automatically generated lazarus resource file }
+
 LazarusResources.Add('TDiffForm','FORMDATA',[
-  'TPF0'#9'TDiffForm'#8'DiffForm'#4'Left'#3#204#1#6'Height'#3'"'#1#3'Top'#3#254
+  'TPF0'#9'TDiffForm'#8'DiffForm'#4'Left'#3#163#1#6'Height'#3'"'#1#3'Top'#3#254
   +#0#5'Width'#3'S'#2#18'HorzScrollBar.Page'#3'R'#2#18'VertScrollBar.Page'#3'!'
   +#1#13'ActiveControl'#7#8'OKButton'#7'Caption'#6#8'DiffForm'#12'ClientHeight'
   +#3'"'#1#11'ClientWidth'#3'S'#2#8'OnCreate'#7#10'FormCreate'#8'OnResize'#7#10
@@ -7,18 +9,18 @@ LazarusResources.Add('TDiffForm','FORMDATA',[
   +#6'Height'#3#182#0#5'Width'#3'S'#2#5'Align'#7#8'alClient'#12'ClientHeight'#3
   +#182#0#11'ClientWidth'#3'S'#2#8'TabOrder'#2#2#0#12'TLabeledEdit'#10'ArchiveB'
   +'ox'#4'Left'#2#15#6'Height'#2#23#3'Top'#2'#'#5'Width'#3#169#1#14'EditLabel.L'
-  +'eft'#2#15#16'EditLabel.Height'#2#20#13'EditLabel.Top'#2#15#15'EditLabel.Wid'
-  +'th'#2'.'#17'EditLabel.Caption'#6#7'Archive'#21'EditLabel.ParentColor'#8#11
+  +'eft'#2#15#16'EditLabel.Height'#2#14#13'EditLabel.Top'#2#15#15'EditLabel.Wid'
+  +'th'#2'+'#17'EditLabel.Caption'#6#7'Archive'#21'EditLabel.ParentColor'#8#11
   +'ParentColor'#8#8'TabOrder'#2#0#0#0#12'TLabeledEdit'#10'BaseDirBox'#4'Left'#2
   +#15#6'Height'#2#23#3'Top'#2'h'#5'Width'#3#169#1#14'EditLabel.Left'#2#15#16'E'
-  +'ditLabel.Height'#2#20#13'EditLabel.Top'#2'T'#15'EditLabel.Width'#2'\'#17'Ed'
+  +'ditLabel.Height'#2#14#13'EditLabel.Top'#2'T'#15'EditLabel.Width'#2'W'#17'Ed'
   +'itLabel.Caption'#6#14'Base Directory'#21'EditLabel.ParentColor'#8#11'Parent'
   +'Color'#8#8'TabOrder'#2#2#0#0#7'TButton'#13'BrowseArchive'#4'Left'#3#209#1#6
   +'Height'#2#30#3'Top'#2'"'#5'Width'#2'Z'#7'Caption'#6#6'Browse'#7'OnClick'#7
   +#18'BrowseArchiveClick'#8'TabOrder'#2#1#0#0#7'TButton'#15'BrowseDirectory'#4
   +'Left'#3#209#1#6'Height'#2#30#3'Top'#2'h'#5'Width'#2'Z'#7'Caption'#6#6'Brows'
   +'e'#7'OnClick'#7#20'BrowseDirectoryClick'#8'TabOrder'#2#3#0#0#9'TCheckBox'#12
-  +'VerboseCheck'#4'Left'#2#15#6'Height'#2#21#3'Top'#3#144#0#5'Width'#2'|'#7'Ca'
+  +'VerboseCheck'#4'Left'#2#15#6'Height'#2#23#3'Top'#3#144#0#5'Width'#2't'#7'Ca'
   +'ption'#6#15' Verbose output'#7'Checked'#9#5'State'#7#9'cbChecked'#8'TabOrde'
   +'r'#2#4#0#0#0#6'TPanel'#11'ResultPanel'#6'Height'#3#182#0#5'Width'#3'S'#2#5
   +'Align'#7#8'alClient'#7'Caption'#6#11'ResultPanel'#12'ClientHeight'#3#182#0

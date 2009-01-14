@@ -1,7 +1,7 @@
 object ArchiveForm: TArchiveForm
-  Left = 439
+  Left = 377
   Height = 490
-  Top = 293
+  Top = 224
   Width = 637
   HorzScrollBar.Page = 636
   VertScrollBar.Page = 489
@@ -247,37 +247,37 @@ object ArchiveForm: TArchiveForm
       TabOrder = 0
       object ArchivePage: TPage
         Caption = 'Archive'
-        ClientWidth = 610
-        ClientHeight = 351
+        ClientWidth = 616
+        ClientHeight = 384
         object ArchiveBaseLabel: TLabel
           Left = 19
-          Height = 20
+          Height = 14
           Top = 12
-          Width = 120
+          Width = 111
           Caption = 'Archive base name'
           ParentColor = False
         end
         object BaseDirLabel: TLabel
           Left = 19
-          Height = 20
+          Height = 14
           Top = 132
-          Width = 91
+          Width = 85
           Caption = 'Base directory'
           ParentColor = False
         end
         object SaveArchiveInLabel: TLabel
           Left = 19
-          Height = 20
+          Height = 14
           Top = 68
-          Width = 95
+          Width = 87
           Caption = 'Save archive in'
           ParentColor = False
         end
         object BatchLabel: TLabel
           Left = 19
-          Height = 20
+          Height = 14
           Top = 200
-          Width = 59
+          Width = 55
           Caption = 'Batch file'
           ParentColor = False
         end
@@ -342,9 +342,9 @@ object ArchiveForm: TArchiveForm
         end
         object DiffFileCheck: TCheckBox
           Left = 19
-          Height = 21
+          Height = 23
           Top = 258
-          Width = 141
+          Width = 130
           Caption = 'Differential backup'
           OnChange = DiffFileCheckChange
           TabOrder = 7
@@ -355,9 +355,9 @@ object ArchiveForm: TArchiveForm
           Top = 309
           Width = 324
           EditLabel.Left = 45
-          EditLabel.Height = 20
+          EditLabel.Height = 14
           EditLabel.Top = 286
-          EditLabel.Width = 113
+          EditLabel.Width = 103
           EditLabel.Caption = 'Reference archive'
           EditLabel.ParentColor = False
           Enabled = False
@@ -376,17 +376,17 @@ object ArchiveForm: TArchiveForm
         end
         object TimestampCheck: TCheckBox
           Left = 325
-          Height = 21
+          Height = 23
           Top = 28
-          Width = 129
+          Width = 125
           Caption = 'TimestampCheck'
           TabOrder = 10
         end
       end
       object DirectoriesPage: TPage
         Caption = 'Directories'
-        ClientWidth = 610
-        ClientHeight = 351
+        ClientWidth = 616
+        ClientHeight = 384
         object IncludeDirectories: TListBox
           Left = 19
           Height = 264
@@ -436,8 +436,8 @@ object ArchiveForm: TArchiveForm
       end
       object FilesPage: TPage
         Caption = 'Files'
-        ClientWidth = 610
-        ClientHeight = 351
+        ClientWidth = 616
+        ClientHeight = 384
         object IncludeFilesLabel: TLabel
           Left = 19
           Height = 20
@@ -535,16 +535,16 @@ object ArchiveForm: TArchiveForm
       end
       object CompressionPage: TPage
         Caption = 'Compression'
-        ClientWidth = 610
-        ClientHeight = 351
+        ClientWidth = 616
+        ClientHeight = 384
         object CompressionExceptions: TGroupBox
           Left = 301
           Height = 329
           Top = 10
           Width = 288
           Caption = ' Do not compress ... '
-          ClientHeight = 313
-          ClientWidth = 282
+          ClientHeight = 329
+          ClientWidth = 288
           TabOrder = 0
           object CompSizeLabel: TLabel
             Left = 21
@@ -620,8 +620,8 @@ object ArchiveForm: TArchiveForm
           Top = 11
           Width = 257
           Caption = ' Compression type '
-          ClientHeight = 313
-          ClientWidth = 251
+          ClientHeight = 329
+          ClientWidth = 257
           TabOrder = 1
           object CompLvlLabel: TLabel
             Left = 62
@@ -666,8 +666,8 @@ object ArchiveForm: TArchiveForm
       end
       object OptionsPage: TPage
         Caption = 'Options'
-        ClientWidth = 610
-        ClientHeight = 351
+        ClientWidth = 616
+        ClientHeight = 384
         object SliceMbLabel: TLabel
           Left = 405
           Height = 20
@@ -788,8 +788,8 @@ object ArchiveForm: TArchiveForm
       end
       object SchedulePage: TPage
         Caption = 'Scheduling'
-        ClientWidth = 610
-        ClientHeight = 351
+        ClientWidth = 616
+        ClientHeight = 384
         object NowRadioButton: TRadioButton
           Left = 35
           Height = 21

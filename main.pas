@@ -329,7 +329,7 @@ var
      Enabled := false;
      ArchiveForm.CreateBatchfile;
      archivename := ArchiveForm.ArchiveBaseName;
-     if ArchiveForm.RepeatRadioButton.Checked
+     if ( ArchiveForm.RepeatRadioButton.Checked ) or ( ArchiveForm.TimestampCheck.Checked )
         then archivename := archivename + '`date +_%Y%m%d%H%M`';  // All cron jobs are timestamped to avoid duplicate filenames
      referencearchive := '';
      if ArchiveForm.DiffFileCheck.Checked
@@ -825,8 +825,8 @@ begin
        end;
     if IsolateForm.ShowModal = mrOK then
        begin
-         Cmd := DAR_EXECUTABLE + ' -C ' + IsolateForm.CatalogueBox.Text
-                       + ' -A ' + IsolateForm.ArchiveBox.Text + ' -v';
+         Cmd := DAR_EXECUTABLE + ' -C "' + IsolateForm.CatalogueBox.Text
+                       + '" -A "' + IsolateForm.ArchiveBox.Text + '" -v';
          if ArchiveIsEncrypted(IsolateForm.ArchiveBox.Text)
             then Cmd := Cmd + ' -J :';
          RunDarCommand ( Cmd, rsCptIsolating, Left + 100, Top + 150 ) ;
@@ -967,7 +967,7 @@ procedure TMainForm.tbTestClick ( Sender: TObject ) ;
 var
   Cmd: String;
 begin
-  Cmd := DAR_EXECUTABLE + ' -t ' + CurrentArchive + ' -v';
+  Cmd := DAR_EXECUTABLE + ' -t "' + CurrentArchive + '" -v';
   if FileExists(CurrentArchive + '.1.dar') then
      begin
        if ArchiveIsEncrypted(CurrentArchive)

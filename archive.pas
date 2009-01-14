@@ -782,12 +782,8 @@ begin
      begin
        isScript := SaveScriptCheckBox.Checked or (not NowRadioButton.Checked);
        ArchiveBaseName := ArchiveName.Text;
-       if TimestampCheck.Checked then
-          begin
-            if isScript
-               then ArchiveBaseName := ArchiveBaseName + '`date +_%Y%m%d%H%M`'
-            else ArchiveBaseName := ArchiveBaseName + FormatDateTime('_yyyymmddhhnn', Now);
-          end;
+       if ( TimestampCheck.Checked ) and ( not isScript ) // WriteScript in main.pas takes care of scripts
+          then ArchiveBaseName := ArchiveBaseName + FormatDateTime('_yyyymmddhhnn', Now);
        ModalResult := mrOk;
      end;
 end;
