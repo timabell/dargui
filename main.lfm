@@ -4,10 +4,10 @@ object MainForm: TMainForm
   Top = 68
   Width = 893
   HorzScrollBar.Page = 892
-  VertScrollBar.Page = 575
+  VertScrollBar.Page = 583
   ActiveControl = ArchiveTreeView
   Caption = 'DarGUI'
-  ClientHeight = 576
+  ClientHeight = 584
   ClientWidth = 893
   Icon.Data = {
     C10A00002F2A2058504D202A2F0A7374617469632063686172202A6772617068
@@ -102,8 +102,8 @@ object MainForm: TMainForm
   OnClose = FormClose
   OnCreate = FormCreate
   object StatusBar: TStatusBar
-    Height = 23
-    Top = 553
+    Height = 17
+    Top = 567
     Width = 893
     Panels = <    
       item
@@ -118,7 +118,7 @@ object MainForm: TMainForm
     SimplePanel = False
   end
   object ArchiveTreeView: TTreeView
-    Height = 275
+    Height = 289
     Top = 73
     Width = 893
     Align = alClient
@@ -988,7 +988,7 @@ object MainForm: TMainForm
   end
   object MessagePanel: TPanel
     Height = 200
-    Top = 353
+    Top = 367
     Width = 893
     Align = alBottom
     Caption = 'MessagePanel'
@@ -1039,7 +1039,7 @@ object MainForm: TMainForm
   object MessageBoxSplitter: TSplitter
     Cursor = crVSplit
     Height = 5
-    Top = 348
+    Top = 362
     Width = 893
     Align = alBottom
     Beveled = True
@@ -1088,6 +1088,10 @@ object MainForm: TMainForm
       object miIsolate: TMenuItem
         Caption = 'Isolate catalogue'
         OnClick = miIsolateClick
+      end
+      object miArchiveDiff: TMenuItem
+        Caption = 'Compare files'
+        OnClick = tbDiffClick
       end
       object miTestArchive: TMenuItem
         Tag = 1

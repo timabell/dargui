@@ -14,6 +14,7 @@ type
   { TMainForm }
 
   TMainForm = class(TForm)
+    miArchiveDiff: TMenuItem;
     MenuScheduling: TMenuItem;
     miSchedManager: TMenuItem;
     miSelectFilter: TMenuItem;
@@ -1075,6 +1076,7 @@ begin
   miOperationlogs.Caption := rsMenuOperationLogs;
   miHelpAbout.Caption := rsMenuHelpAbout;
   miArchiveInformation.Caption := rsMenuInformation;
+  miArchiveDiff.Caption := rsMenuCompareFiles;
   miShowSelect.Caption := rsMenuShowSelected;
   miSelectFilter.Caption := rsMenuSelectByFilter;
   //miHideMessages: TMenuItem;
