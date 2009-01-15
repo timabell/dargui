@@ -276,7 +276,7 @@ LazarusResources.Add('TArchiveForm','FORMDATA',[
   +'d'#8#9'MaxLength'#2#1#6'OnExit'#7#20'CompressionLevelExit'#8'TabOrder'#2#2#4
   +'Text'#6#1'9'#0#0#0#0#5'TPage'#11'OptionsPage'#7'Caption'#6#7'Options'#11'Cl'
   +'ientWidth'#3'b'#2#12'ClientHeight'#3'_'#1#0#6'TLabel'#12'SliceMbLabel'#4'Le'
-  +'ft'#3#149#1#6'Height'#2#20#3'Top'#2'['#5'Width'#2#19#7'Caption'#6#2'Mb'#7'E'
+  +'ft'#3#149#1#6'Height'#2#20#3'Top'#2'4'#5'Width'#2#19#7'Caption'#6#2'Mb'#7'E'
   +'nabled'#8#11'ParentColor'#8#0#0#6'TLabel'#14'SliceSizeLabel'#4'Left'#3#197#0
   +#6'Height'#2#20#3'Top'#2'4'#5'Width'#2'9'#7'Caption'#6#10'Slice size'#7'Enab'
   +'led'#8#11'ParentColor'#8#0#0#9'TCheckBox'#15'ReadConfigCheck'#4'Left'#2'!'#6

@@ -680,7 +680,7 @@ object ArchiveForm: TArchiveForm
         object SliceMbLabel: TLabel
           Left = 405
           Height = 20
-          Top = 91
+          Top = 52
           Width = 19
           Caption = 'Mb'
           Enabled = False

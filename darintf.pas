@@ -77,6 +77,7 @@ type
 
   function GetDarVersion : TDarInfo;
   function CheckSupportingApps : integer;
+  function ProcessRunning( processname: string ): boolean;
   function GetDarExit: integer;
   function LogNumber(fn: string): integer;
   function GetNextFileName( FileBase: string): string;
@@ -222,6 +223,28 @@ begin
                    SysUtils.GetEnvironmentVariable('PATH'),PathSeparator,[]) = ''
      then Returnvalue := Returnvalue + 2;
   Result := Returnvalue;
+end;
+
+// checks to see if processname is running. Requires checkprocess.sh
+function ProcessRunning ( processname: string ) : boolean;
+var
+  Proc: TProcess;
+  output: string;
+  b: LongWord;
+begin
+  Result := false;
+  Proc := TProcess.Create(Application);
+  Proc.CommandLine := TOOLDIR + '/checkprocess.sh ' + processname;
+  Proc.Options := Proc.Options + [poWaitOnExit, poUsePipes];
+  try
+    Proc.Execute;
+    b := Proc.Output.NumBytesAvailable;
+    SetLength(output, b);
+    Proc.Output.Read(output[1], b);
+    Result := Pos(processname, output) > 0;
+  finally
+    Proc.Free;
+  end;
 end;
 
 function GetDarExit: integer;
@@ -526,7 +549,6 @@ begin
        Shell.Options := Shell.Options + [poWaitOnExit, poUsePipes, poStderrToOutPut];
        Shell.Execute;
        bytes := Shell.Output.NumBytesAvailable;
-       SetLength(processoutput, bytes);
        Shell.Output.Read(processoutput[1], bytes);
      finally
        Result := Shell.ExitStatus;

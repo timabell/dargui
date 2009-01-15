@@ -199,6 +199,7 @@ end;
 procedure TArchiveForm.FormCreate ( Sender: TObject ) ;
 var
   x: Integer;
+  test: string;
 begin
   ArchiveDirectory.Text := SysUtils.GetEnvironmentVariable('HOME');
   BaseDirectory.Text := SysUtils.GetEnvironmentVariable('HOME');
@@ -233,6 +234,10 @@ begin
   RepeatMonthBox.ItemIndex := 0;
   BatchFile := TStringList.Create;
   LoadingSettings := false;
+  RunOnceRadioButton.Enabled := (ProcessRunning('atd'))
+     and (ShellCommand('atq -V', test) = 0);
+  RepeatRadioButton.Enabled :=  (ProcessRunning('cron'))
+     and (ShellCommand('crontab -l', test) = 0);
   InitialiseInterface;
 end;
 
