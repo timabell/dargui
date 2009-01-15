@@ -237,11 +237,16 @@ begin
   Proc.CommandLine := TOOLDIR + '/checkprocess.sh ' + processname;
   Proc.Options := Proc.Options + [poWaitOnExit, poUsePipes];
   try
-    Proc.Execute;
-    b := Proc.Output.NumBytesAvailable;
-    SetLength(output, b);
-    Proc.Output.Read(output[1], b);
-    Result := Pos(processname, output) > 0;
+    try
+      Proc.Execute;
+      b := Proc.Output.NumBytesAvailable;
+      SetLength(output, b);
+      Proc.Output.Read(output[1], b);
+      Result := Pos(processname, output) > 0;
+    except
+      writeln('Error when testing if ', processname, ' is running');
+      Result := false;
+    end;
   finally
     Proc.Free;
   end;
