@@ -1,0 +1,109 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+  <title>Chapter 2: Creating Archives - Main Options </title>
+
+
+  <link rel="stylesheet" href="kde-default.css" type="text/css">
+
+  <meta name="keywords" content="dargui, backup, archive, slice, disk">
+
+  <link rel="home" href="index.html" title="index">
+
+  <link rel="up" href="index.html" title="DarGUI Documentation Index">
+
+  <link rel="previous" href="using-dargui.html" title="templateprev">
+
+  <link rel="next" href="#.html" title="templatenext">
+
+</head>
+<body style="color: black; background-color: white;" alink="#0000ff" link="#0000ff" vlink="#840084">
+
+<br>
+
+<table class="header" width="100%">
+
+  <tbody>
+
+    <tr>
+
+      <td class="navLeft" align="left" width="33%"><a href="using-dargui.html">Prev</a></td>
+
+      <td class="navCenter" align="center" valign="top" width="34%"><a href="index.html">Home</a></td>
+
+      <td class="navRight" align="right" width="33%">
+      <a href="creating-archives2.html">Next</a></td>
+
+    </tr>
+
+  </tbody>
+</table>
+
+<div class="chapter">
+<div class="titlepage">
+<div>
+<h2 class="title"><a name="introduction"></a>Chapter
+2. Using DarGUI</h2>
+
+</div>
+
+</div>
+
+<div class="sect1">
+<div class="titlepage">
+<div>
+<h2 class="title" style="clear: both;"><a name="overview"></a>Creating archives: main options</h2>
+
+</div>
+
+</div>
+<p>To create a new archive select File->New. The "New Archive" window will appear.</p>
+<p><IMG src="images/newarchivetab1.png" alt="Screenshot of Archive tab" width="522" height="418" border="0"></p>
+<p>There are six tabs of options in the "New Archive" window but in most cases you will only use the first three, "Archive", "Directories" and "Files". The first of these, "Archive", is used to set the following options:
+<ul>
+<li><strong>Archive base name</strong> - Enter a suitable name for the archive, for example the name of the root directory of the backup or a name decribing the contents such as "Photographs" or "Letters". If you select the option "Add timestamp to name" then a suffix will be added to the name giving the time and date that the archive was created in the format yyyymmddhhmm.<br>Dar will automatically add a slice number and the suffix "dar" so your final archive will end up with a name like "Photographs.1.dar" or "Photographs_200901092010.1.dar".</li> 
+
+<li><strong>Save archive in</strong> - enter the directory in which you want to save the archive. For scheduled backups it is recommended that this directory is outside the root directory of the backup.</li>
+
+<li><strong>Base directory</strong> - enter the root directory of the backup. This is the which contains all the files and directories that you want to archive. The directories that you enter on the "Directories" tab must be in this directory. <br>
+For example, you may want to backup only the directories "/home/John/Documents/Letters" and "/home/John/Documents/Poems". You would enter "/home/John/Documents/" as your base directory.</li>
+
+<li><strong>Batch file</strong> - batch files are temporary files used by DarGUI when creating archives. As they are normally created in the /tmp directory they are lost when the system is shut down. You will only need to change this option if you want to keep the batch file, for example, if you want to use it as a basis from which to write your own backup script. </li>
+
+<li><strong>Differential backup</strong> A differential archive is an archive which stores the difference between the current state of the filesystem and the state of the filesystem when you last created a full backup. Performing a differential backup can take considerably less time than doing a full backup, and the resulting archive usually takes up much less space on your filesystem or storage media.<br>
+If you select this option you must also specify a <strong>Reference archive</strong> which is can be either a Dar archive or a Dar catalog. Dar will examine the files stored in the reference archive and compare them with the files on your system. It will only store them in the differential archive if they have been changed since the reference archive was created. </li>
+</ul></p>
+
+</div>
+
+</div>
+
+<table class="bottom-nav" width="100%">
+
+  <tbody>
+
+    <tr>
+
+      <td class="navLeft" align="left" valign="top" width="33%"><a href="using-dargui.html">Prev</a></td>
+
+      <td class="navCenter" align="center" valign="top" width="34%"><a href="index.html">Home</a></td>
+
+      <td class="navRight" align="right" valign="top" width="33%"><a href="creating-archives2.html">Next</a></td>
+
+    </tr>
+
+    <tr>
+
+      <td class="navLeft" align="left" width="33%">Using DarGUI </td>
+
+      <td class="navCenter" align="center" width="34%"><a href="index.html">Up</a></td>
+
+      <td class="navRight" align="right" width="33%">Directories</td>
+
+    </tr>
+
+  </tbody>
+</table>
+
+</body>
+</html>

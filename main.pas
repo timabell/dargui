@@ -14,6 +14,7 @@ type
   { TMainForm }
 
   TMainForm = class(TForm)
+    miHelpContents: TMenuItem;
     miArchiveDiff: TMenuItem;
     MenuScheduling: TMenuItem;
     miSchedManager: TMenuItem;
@@ -795,12 +796,15 @@ var
   Browser: string;
   brParams: string;
   Proc: TProcess;
+  HelpURL: String;
 begin
+  if Sender=miHelpDar then HelpURL := DAR_DOCPAGE
+  else if Sender= miHelpContents then HelpURL := DARGUI_HELP;
   GetDefaultBrowser(Browser, brParams);
   if Browser <> '' then
      begin
      Proc := TProcess.Create(Application);
-     Proc.CommandLine := Browser + #32 + DAR_DOCPAGE;
+     Proc.CommandLine := Browser + #32 + HelpURL;
      Proc.Execute;
      end;
 end;
@@ -1069,6 +1073,7 @@ begin
   tbIsolate.Hint := rsHintIsolateCatalogue;
   tbTest.Hint := rsCheckArchiveForErrors;
   MenuHelp.Caption := rsMenuHelp;
+  miHelpContents.Caption := rsMenuDarGUIHelp;
   miIsolate.Caption := rsMenuIsolateCatalogue;
   MenuScheduling.Caption := rsScheduling;
   miSchedManager.Caption := rsMenuScheduleManager;

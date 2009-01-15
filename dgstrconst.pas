@@ -130,6 +130,7 @@ rsLicenceGPL = 'Licence: GPL';
 rsDarGUIHasBeenDevelop = 'DarGUI has been developed using Freepascal and the '
   +'Lazarus IDE';
 rsMenuIsolateCatalogue = 'Isolate Catalogue';
+rsMenuDarGUIHelp = 'DarGUI Help';
 rsMenuOperationLogs = 'Operation Logs';
 rsMenuCheckIntegrity = 'Check Integrity';
 rsMenuScheduleManager = 'Schedule Manager';
@@ -146,6 +147,7 @@ rsMenuShowAll = 'Show All';
 rsMenuNew = 'New';
 rsMenuOpen = 'Open';
 rsMenuShowSelected = 'Show Selected';
+rsMenuCompareFiles = 'Compare files';
 rsColDate = 'Date';
 rsHour = 'Hour';
 rsMinutes = 'Minutes';

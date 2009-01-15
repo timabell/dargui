@@ -1,0 +1,111 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+  <title>Chapter2: Using DarGUI</title>
+
+
+  <link rel="stylesheet" href="kde-default.css" type="text/css">
+
+  <meta name="keywords" content="dargui, backup, archive, slice, disk">
+
+  <link rel="home" href="index.html" title="template">
+
+  <link rel="up" href="index.html" title="DarGUI Documentation Index">
+
+  <link rel="previous" href="limitations.html" title="templateprev">
+
+  <link rel="next" href="creating-archives1.html" title="templatenext">
+
+</head>
+<body style="color: black; background-color: white;" alink="#0000ff" link="#0000ff" vlink="#840084">
+
+<br>
+
+<table class="header" width="100%">
+
+  <tbody>
+
+    <tr>
+
+      <td class="navLeft" align="left" width="33%"><a href="limitations.html">Prev</a></td>
+
+      <td class="navCenter" align="center" valign="top" width="34%"><a href="index.html">Home</a></td>
+
+      <td class="navRight" align="right" width="33%">
+      <a href="creating-archives1.html">Next</a></td>
+
+    </tr>
+
+  </tbody>
+</table>
+
+<div class="chapter">
+<div class="titlepage">
+<div>
+<h2 class="title"><a name="introduction"></a>Chapter
+2. Using DarGUI</h2>
+
+</div>
+
+</div>
+
+<div class="sect1">
+<div class="titlepage">
+<div>
+<h2 class="title" style="clear: both;"><a name="overview"></a>Dar archives</h2>
+
+</div>
+
+</div>
+
+<p>DarGUI is a graphical user interface (GUI) for the Dar archiving utility.</p>
+
+<p>Dar uses and creates "disk archives", which are files that end with ".dar". One of the key features of Dar is that its archives can be created in parts, called "slices". The size of each slice can be set from a list of common media types such as "DVD", "CD-R", "Zip", or it can be customized to be any size. Each archive slice is denoted by a period and a number before the ".dar" extension, such as ".1.dar", ".2.dar", etc. Each archive has a different name, called the "basename", that briefly describes what the archive contains. So a full archive slice name consists of a "basename" followed by the slice number and the extension ".dar".</p>
+
+<p>For example, a full backup of your filesystem might have archive slices that look like "localhost-20090108-full.1.dar", "localhost-20090108-full.2.dar", and so-on, up to the number of slices in the archive.</p>
+
+<p>You can also ask DarGUI not to split the archive into individual slices. The resulting archive still follows the naming convention described above: its slice number is "1".</p>
+
+<p>To load, or "open", a disk archive, select File->Open.</p>
+
+<p>If you selected an archive with .*.dar on the end of the filename (i.e. test-archive.1.dar), DarGUI will automatically remove it for you. You can also type in the archive name without the slice number and extension. Recently-opened archives can be accessed quickly from File->Open Recent.</p>
+
+<p>A list of the files and directories in the root directory of the archive will be displayed in the main window. If the archive is encrypted you wil be asked to enter a password before it is opened.</p>
+
+<p>DarGUI's archives are simply DAR archives, so they are fully compatible with Denis Corbin's "dar" program. Dar is very useful in situations where you don't have access to X-Windows, for example after a disk crash where you need to boot from a rescue disk.</p>
+
+<p>If you do not yet have any archives, you can easily create one now, as described in the next section.</p>
+
+</div>
+
+</div>
+
+<table class="bottom-nav" width="100%">
+
+  <tbody>
+
+    <tr>
+
+      <td class="navLeft" align="left" valign="top" width="33%"><a href="limitations.html">Prev</a></td>
+
+      <td class="navCenter" align="center" valign="top" width="34%"><a href="index.html">Home</a></td>
+
+      <td class="navRight" align="right" valign="top" width="33%"><a href="creating-archives1.html">Next</a></td>
+
+    </tr>
+
+    <tr>
+
+      <td class="navLeft" align="left" width="33%">Limitations </td>
+
+      <td class="navCenter" align="center" width="34%"><a href="index.html">Up</a></td>
+
+      <td class="navRight" align="right" width="33%">Creating archives</td>
+
+    </tr>
+
+  </tbody>
+</table>
+
+</body>
+</html>

@@ -1160,6 +1160,10 @@ object MainForm: TMainForm
     end
     object MenuHelp: TMenuItem
       Caption = '&Help'
+      object miHelpContents: TMenuItem
+        Caption = 'DarGUI Help'
+        OnClick = miHelpDarClick
+      end
       object miHelpDar: TMenuItem
         Caption = 'Dar Documentation'
         OnClick = miHelpDarClick
