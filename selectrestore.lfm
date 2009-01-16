@@ -109,9 +109,9 @@ object ExtractSelectedForm: TExtractSelectedForm
       TabOrder = 0
     end
     object FlatRestoreCheckBox: TCheckBox
-      Left = 403
+      Left = 416
       Height = 21
-      Top = 30
+      Top = 88
       Width = 134
       Caption = 'Ignore directories'
       TabOrder = 1
@@ -140,6 +140,14 @@ object ExtractSelectedForm: TExtractSelectedForm
         'Do not overwrite existing files'
       )
       TabOrder = 2
+    end
+    object DryRunCheckBox: TCheckBox
+      Left = 416
+      Height = 21
+      Top = 130
+      Width = 126
+      Caption = 'DryRunCheckBox'
+      TabOrder = 5
     end
   end
 end

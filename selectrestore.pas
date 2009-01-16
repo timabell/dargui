@@ -14,6 +14,7 @@ type
 
   TExtractSelectedForm = class(TForm)
     Bevel1: TBevel;
+    DryRunCheckBox: TCheckBox;
     FlatRestoreCheckBox: TCheckBox;
     RestoreFilesLabel: TLabel;
     OkButton: TBitBtn;

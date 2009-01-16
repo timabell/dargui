@@ -1,3 +1,5 @@
+{ This is an automatically generated lazarus resource file }
+
 LazarusResources.Add('TExtractSelectedForm','FORMDATA',[
   'TPF0'#20'TExtractSelectedForm'#19'ExtractSelectedForm'#4'Left'#3';'#2#6'Heig'
   +'ht'#3#245#0#3'Top'#2'n'#5'Width'#3'X'#2#18'HorzScrollBar.Page'#3'W'#2#18'Ve'
@@ -62,7 +64,7 @@ LazarusResources.Add('TExtractSelectedForm','FORMDATA',[
   +#20'RestoreDirectoryEdit'#4'Left'#2#13#6'Height'#2#23#3'Top'#2#31#5'Width'#3
   +'H'#1#11'DialogTitle'#6#16'Restore files to'#11'ButtonWidth'#2#23#9'NumGlyph'
   +'s'#2#1#11'ParentColor'#8#8'TabOrder'#2#0#0#0#9'TCheckBox'#19'FlatRestoreChe'
-  +'ckBox'#4'Left'#3#147#1#6'Height'#2#21#3'Top'#2#30#5'Width'#3#134#0#7'Captio'
+  +'ckBox'#4'Left'#3#160#1#6'Height'#2#21#3'Top'#2'X'#5'Width'#3#134#0#7'Captio'
   ,'n'#6#18'Ignore directories'#8'TabOrder'#2#1#0#0#11'TRadioGroup'#16'Overwrit'
   +'eOptions'#4'Left'#2#13#6'Height'#2'a'#3'Top'#2'H'#5'Width'#3'c'#1#8'AutoFil'
   +'l'#9#7'Caption'#6#16' Existing files '#28'ChildSizing.LeftRightSpacing'#2#6
@@ -73,5 +75,7 @@ LazarusResources.Add('TExtractSelectedForm','FORMDATA',[
   +'lLeftToRightThenTopToBottom'#27'ChildSizing.ControlsPerLine'#2#1#12'ClientH'
   +'eight'#2'Q'#11'ClientWidth'#3']'#1#9'ItemIndex'#2#2#13'Items.Strings'#1#6#24
   +'Overwrite existing files'#6#26'Confirm before overwriting'#6#31'Do not over'
-  +'write existing files'#0#8'TabOrder'#2#2#0#0#0#0
+  +'write existing files'#0#8'TabOrder'#2#2#0#0#9'TCheckBox'#14'DryRunCheckBox'
+  +#4'Left'#3#160#1#6'Height'#2#21#3'Top'#3#130#0#5'Width'#2'~'#7'Caption'#6#14
+  +'DryRunCheckBox'#8'TabOrder'#2#5#0#0#0#0
 ]);
