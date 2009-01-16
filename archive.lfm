@@ -678,7 +678,7 @@ object ArchiveForm: TArchiveForm
         ClientWidth = 610
         ClientHeight = 351
         object SliceMbLabel: TLabel
-          Left = 405
+          Left = 509
           Height = 20
           Top = 52
           Width = 19
@@ -687,10 +687,12 @@ object ArchiveForm: TArchiveForm
           ParentColor = False
         end
         object SliceSizeLabel: TLabel
-          Left = 197
+          Left = 237
           Height = 20
           Top = 52
-          Width = 57
+          Width = 169
+          Alignment = taRightJustify
+          AutoSize = False
           Caption = 'Slice size'
           Enabled = False
           ParentColor = False
@@ -723,7 +725,7 @@ object ArchiveForm: TArchiveForm
           TabOrder = 1
         end
         object SliceSize: TEdit
-          Left = 306
+          Left = 418
           Height = 23
           Top = 49
           Width = 80
