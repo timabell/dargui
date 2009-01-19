@@ -106,6 +106,7 @@ rsCreateArchiveImmedia = 'Create archive immediately';
 rsOpenArchiveWhenCompl = 'Open archive when created';
 rsEncryptArchive = 'Encrypt archive using blowfish';
 rsButtonClose = 'Close';
+rsOptions2 = ' Options ';
 
 //IsloateForm
 rsCptIsolateArchiveCatalo = 'Isolate archive catalogue';

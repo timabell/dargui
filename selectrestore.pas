@@ -16,6 +16,7 @@ type
     Bevel1: TBevel;
     DryRunCheckBox: TCheckBox;
     FlatRestoreCheckBox: TCheckBox;
+    OptionsGroupBox: TGroupBox;
     RestoreFilesLabel: TLabel;
     OkButton: TBitBtn;
     CancelButton: TBitBtn;
@@ -63,6 +64,8 @@ begin
   OverwriteOptions.Items[0] := rsOverwriteExistingFil;
   OverwriteOptions.Items[1] := rsConfirmBeforeOverwri;
   OverwriteOptions.Items[2] := rsDoNotOverwriteFiles;
+  OptionsGroupBox.Caption := rsOptions2;
+  DryRunCheckBox.Caption := rsTestRunOnly;
 end;
 
 
