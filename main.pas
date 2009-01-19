@@ -772,8 +772,14 @@ begin
 end;
 
 procedure TMainForm.Splitter3ChangeBounds(Sender: TObject);
+var
+  x: Integer;
 begin
-  ArchiveTreeView.Paint;
+  ArchiveTreeView.Update;
+  for x := 0 to ComponentCount-1 do
+      if Components[x] is TPanel then
+         TPanel(Components[x]).Update;
+  Application.ProcessMessages;
 end;
 
 procedure TMainForm.miHelpAboutClick ( Sender: TObject ) ;
