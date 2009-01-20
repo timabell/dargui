@@ -85,7 +85,7 @@ end;
 
 procedure TSelectFilterForm.ClearFiltersButtonClick ( Sender: TObject ) ;
 begin
-  if MessageDlg('Remove all filters?', mtConfirmation, mbYesNo,0 ) = mrYes then
+  if MessageDlg(rsRemoveAllFilters, mtConfirmation, mbYesNo, 0 ) = mrYes then
      begin
        RegExpList.Clear;
        FilterList.Clear;

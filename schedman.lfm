@@ -3,8 +3,6 @@ object ScheduleManagerForm: TScheduleManagerForm
   Height = 323
   Top = 259
   Width = 563
-  HorzScrollBar.Page = 562
-  VertScrollBar.Page = 322
   ActiveControl = ScheduleList
   Caption = 'ScheduleManagerForm'
   ClientHeight = 323
@@ -15,6 +13,7 @@ object ScheduleManagerForm: TScheduleManagerForm
   OnDestroy = FormDestroy
   OnResize = FormResize
   Position = poMainFormCenter
+  LCLVersion = '0.9.27'
   object ScheduleList: TStringGrid
     Left = 32
     Height = 130
@@ -28,13 +27,10 @@ object ScheduleManagerForm: TScheduleManagerForm
       item
         Width = 200
       end>
-    FixedColor = clBtnFace
     FixedCols = 0
     Options = [goFixedVertLine, goFixedHorzLine, goVertLine, goHorzLine, goColSizing, goRowSelect, goSmoothScroll]
     RowCount = 1
-    ScrollBars = ssAutoBoth
     TabOrder = 0
-    TabStop = True
   end
   object CancelButton: TButton
     Left = 32

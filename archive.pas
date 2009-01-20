@@ -361,7 +361,7 @@ begin
          if TComboBox(Sender).Items.IndexOf(TComboBox(Sender).Text) > -1
             then TComboBox(Sender).ItemIndex := TComboBox(Sender).Items.IndexOf(TComboBox(Sender).Text)
          else begin
-                ShowMessage('Incorrect entry');
+                ShowMessage(rsInvalidInput);
                 TComboBox(Sender).SetFocus;
               end;
        end;

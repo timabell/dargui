@@ -165,10 +165,10 @@ begin
           DeleteFile(aScript.Fullname);
           Result := true;
         end
-    else ShowMessage('Error when deleting crontab entry: '#10 + shelloutput);
+    else ShowMessage(rsErrDeletingCron + #10 + shelloutput);
     DeleteFile('/tmp/crontab.dargui');
   except
-    ShowMessage('Error when deleting crontab entry');
+    ShowMessage(rsErrDeletingCron);
     Result := false;
   end;
 end;
@@ -187,7 +187,7 @@ begin
        end
     else ShowMessage('Error when executing atrm: '#10 + shelloutput);
   except
-    ShowMessage('Error when deleting scheduled backup');
+    ShowMessage(rsErrDeletingSched);
   end;
 end;
 
@@ -232,8 +232,8 @@ begin
   Caption := rsCptScheduledBackups;
   CancelButton.Caption := rsButtonRemove;
   CloseButton.Caption := rsButtonClose;
-  ScheduleList.Columns.Items[COL_SCRIPT_NAME].Title.Caption := 'Script';
-  ScheduleList.Columns.Items[COL_SCRIPT_TIME].Title.Caption := 'Time';
+  ScheduleList.Columns.Items[COL_SCRIPT_NAME].Title.Caption := rsScript;
+  ScheduleList.Columns.Items[COL_SCRIPT_TIME].Title.Caption := rsTime;
 end;
 
 initialization

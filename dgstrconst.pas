@@ -93,6 +93,7 @@ rsFCptSelectbyFilter = 'Select using filters...';
 //Common Interface
 rsButtonAdd = 'Add';
 rsNewArchive = 'New archive';
+rsInvalidInput = 'Invalid input';
 rsErrDateCannotBeInPast = 'Date cannot be in the past';
 rsButtonCancel = 'Cancel';
 rsEnterPassword = 'Enter Password';
@@ -115,6 +116,8 @@ rsCreateArchiveImmedia = 'Create archive immediately';
 rsOpenArchiveWhenCompl = 'Open archive when created';
 rsEncryptArchive = 'Encrypt archive using blowfish';
 rsButtonClose = 'Close';
+rsScript = 'Script';
+rsTime = 'Time';
 rsOptions2 = ' Options ';
 
 //IsloateForm
@@ -225,6 +228,7 @@ rsReferenceArchive = 'Reference archive';
 rsMatchAllFilters = 'Match all filters';
 rsApplyFiltersToFilena = 'Apply filters to filenames only';
 rsCptAddFilter = 'Add filter';
+rsRemoveAllFilters = 'Remove all filters?';
 
 // Filemaskdialog
 rsFileMask = 'File mask';
@@ -260,6 +264,8 @@ rsMessInvalidArchiveName = 'Invalid archive name';
 rsMessInvalidCatalogueName = 'Invalid catalogue name';
 rsMessUnableToFindArchive = 'Unable to find archive ''%s''';
 rsCptScheduledBackups = 'Scheduled backups';
+rsErrDeletingCron = 'Error when deleting crontab entry: %s%s';
+rsErrDeletingSched = 'Error when deleting scheduled backup';
 
 implementation
 

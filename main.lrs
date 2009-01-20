@@ -916,123 +916,123 @@ LazarusResources.Add('TMainForm','FORMDATA',[
   +'crVSplit'#6'Height'#2#5#3'Top'#3'j'#1#5'Width'#3'}'#3#5'Align'#7#8'alBottom'
   +#7'Beveled'#9#12'ResizeAnchor'#7#8'akBottom'#11'ResizeStyle'#7#6'rsNone'#7'V'
   +'isible'#8#0#0#10'TScrollBox'#17'FileViewScrollBox'#6'Height'#3':'#1#3'Top'#2
-  +'0'#5'Width'#3'}'#3#5'Align'#7#8'alClient'#8'TabOrder'#2#4#0#9'TTreeView'#15
-  +'ArchiveTreeView'#6'Height'#3#1#1#3'Top'#2#30#5'Width'#3'w'#3#5'Ctl3D'#9#17
-  +'DefaultItemHeight'#2#18#12'Font.CharSet'#2#4#11'Font.Height'#2#240#9'Font.N'
-  +'ame'#6#4'Sans'#13'HideSelection'#8#8'HotTrack'#9#10'ParentFont'#8#9'PopupMe'
-  +'nu'#7#12'TreeViewMenu'#8'ReadOnly'#9#9'RowSelect'#9#10'ScrollBars'#7#14'ssA'
-  +'utoVertical'#8'ShowRoot'#8#8'SortType'#7#6'stText'#8'TabOrder'#2#0#24'OnAdv'
-  +'ancedCustomDrawItem'#7'%ArchiveTreeViewAdvancedCustomDrawItem'#9'OnCompare'
-  +#7#22'ArchiveTreeViewCompare'#10'OnDeletion'#7#23'ArchiveTreeViewDeletion'#18
-  +'OnSelectionChanged'#7#31'ArchiveTreeViewSelectionChanged'#7'Options'#11#19
-  +'tvoAllowMultiselect'#11'tvoHotTrack'#21'tvoKeepCollapsedNodes'#11'tvoReadOn'
-  +'ly'#12'tvoRowSelect'#14'tvoShowButtons'#12'tvoShowLines'#11'tvoToolTips'#0
-  +#13'TreeLineColor'#7#9'clDefault'#0#0#14'THeaderControl'#13'FileHeaderBar'#6
-  +'Height'#2#30#5'Width'#3'w'#3#11'DragReorder'#9#8'Sections'#14#1#8'MinWidth'
-  +#3#150#0#4'Text'#6#6'  File'#5'Width'#3#250#0#7'Visible'#9#0#1#8'MinWidth'#2
-  +'2'#4'Text'#6#6'  Date'#5'Width'#3#200#0#7'Visible'#9#0#1#8'MinWidth'#2'2'#4
-  +'Text'#6#5' Size'#5'Width'#2'<'#7'Visible'#9#0#1#8'MinWidth'#2'2'#4'Text'#6#5
-  +' User'#5'Width'#2'd'#7'Visible'#9#0#1#8'MinWidth'#2'2'#4'Text'#6#6' Group'#5
-  +'Width'#2'd'#7'Visible'#9#0#1#8'MinWidth'#2'2'#4'Text'#6#7' Status'#5'Width'
-  +#3#150#0#7'Visible'#9#0#0#15'OnSectionResize'#7#22'HeaderBarSectionResize'#5
-  +'Align'#7#5'alTop'#0#0#0#9'TMainMenu'#8'MainMenu'#4'left'#3#16#3#3'top'#2#8#0
-  +#9'TMenuItem'#8'MenuFile'#7'Caption'#6#5'&File'#0#9'TMenuItem'#10'miFileOpen'
-  +#7'Caption'#6#4'Open'#7'OnClick'#7#15'miFileOpenClick'#0#0#9'TMenuItem'#12'm'
-  +'iOpenRecent'#7'Caption'#6#15'Open recent ...'#0#0#9'TMenuItem'#9'miFileNew'
-  +#7'Caption'#6#3'New'#7'OnClick'#7#14'miFileNewClick'#0#0#9'TMenuItem'#10'Men'
-  +'uBreak1'#7'Caption'#6#1'-'#0#0#9'TMenuItem'#6'miExit'#7'Caption'#6#4'Exit'#7
-  +'OnClick'#7#11'miExitClick'#0#0#0#9'TMenuItem'#11'MenuArchive'#7'Caption'#6#7
-  +'Archive'#0#9'TMenuItem'#17'miRestoreSelected'#3'Tag'#2#1#7'Caption'#6#16'Re'
-  +'store selected'#7'Enabled'#8#7'OnClick'#7#23'pmiRestoreSelectedClick'#0#0#9
-  +'TMenuItem'#12'miRestoreAll'#3'Tag'#2#1#7'Caption'#6#11'Restore all'#7'Enabl'
-  +'ed'#8#7'OnClick'#7#17'miRestoreAllClick'#0#0#9'TMenuItem'#9'miIsolate'#7'Ca'
-  +'ption'#6#17'Isolate catalogue'#7'OnClick'#7#14'miIsolateClick'#0#0#9'TMenuI'
-  +'tem'#13'miArchiveDiff'#7'Caption'#6#13'Compare files'#7'OnClick'#7#11'tbDif'
-  +'fClick'#0#0#9'TMenuItem'#13'miTestArchive'#3'Tag'#2#1#7'Caption'#6#15'Check'
-  +' Integrity'#7'Enabled'#8#7'Visible'#8#7'OnClick'#7#11'tbTestClick'#0#0#9'TM'
-  +'enuItem'#10'MenuBreak4'#7'Caption'#6#1'-'#0#0#9'TMenuItem'#14'miToggleSelec'
-  +'t'#3'Tag'#2#1#7'Caption'#6#15'Toggle Selected'#7'Enabled'#8#7'OnClick'#7#20
-  +'pmiToggleSelectClick'#0#0#9'TMenuItem'#14'miSelectFilter'#3'Tag'#2#1#7'Capt'
-  +'ion'#6#16'Select by Filter'#7'Enabled'#8#7'OnClick'#7#20'pmiSelectFilterCli'
-  +'ck'#0#0#9'TMenuItem'#12'miShowSelect'#3'Tag'#2#1#7'Caption'#6#13'Show Selec'
-  +'ted'#7'Enabled'#8#7'OnClick'#7#23'pmiShowAllSelectedClick'#0#0#9'TMenuItem'
-  +#10'MenuBreak2'#3'Tag'#2#1#7'Caption'#6#1'-'#0#0#9'TMenuItem'#20'miArchiveIn'
-  +'formation'#3'Tag'#2#1#7'Caption'#6#11'Information'#7'Enabled'#8#7'OnClick'#7
-  +#25'miArchiveInformationClick'#0#0#0#9'TMenuItem'#14'MenuScheduling'#7'Capti'
-  +'on'#6#14'MenuScheduling'#0#9'TMenuItem'#14'miSchedManager'#7'Caption'#6#10
-  +'miSchedMan'#7'OnClick'#7#19'miSchedManagerClick'#0#0#0#9'TMenuItem'#12'Menu'
-  ,'Settings'#7'Caption'#6#7'Options'#0#9'TMenuItem'#14'miHideMessages'#7'Capti'
-  +'on'#6#13'Hide messages'#7'Checked'#9#19'ShowAlwaysCheckable'#9#7'Visible'#8
-  +#7'OnClick'#7#19'miHideMessagesClick'#0#0#9'TMenuItem'#15'miOperationlogs'#7
-  +'Caption'#6#14'Operation logs'#7'OnClick'#7#20'miOperationlogsClick'#0#0#9'T'
-  +'MenuItem'#13'miShowToolbar'#7'Caption'#6#12'Show Toolbar'#7'Checked'#9#7'On'
-  +'Click'#7#18'miShowToolbarClick'#0#0#0#9'TMenuItem'#8'MenuHelp'#7'Caption'#6
-  +#5'&Help'#0#9'TMenuItem'#14'miHelpContents'#7'Caption'#6#11'DarGUI Help'#7'O'
-  +'nClick'#7#14'miHelpDarClick'#0#0#9'TMenuItem'#9'miHelpDar'#7'Caption'#6#17
-  +'Dar Documentation'#7'OnClick'#7#14'miHelpDarClick'#0#0#9'TMenuItem'#10'Menu'
-  +'Break3'#7'Caption'#6#1'-'#0#0#9'TMenuItem'#11'miHelpAbout'#7'Caption'#6#12
-  +'About DarGUI'#7'OnClick'#7#16'miHelpAboutClick'#0#0#0#0#11'TOpenDialog'#10
-  +'OpenDialog'#5'Title'#6#21'Open existing archive'#6'Filter'#6#18'DAR Archive'
-  +'s|*.dar'#11'FilterIndex'#2#0#4'left'#3'P'#3#3'top'#2#8#0#0#10'TPopupMenu'#12
-  +'TreeViewMenu'#4'left'#3'0'#3#3'top'#2#8#0#9'TMenuItem'#18'pmiRestoreSelecte'
-  +'d'#3'Tag'#2#1#7'Caption'#6#16'Restore Selected'#7'Enabled'#8#7'OnClick'#7#23
-  +'pmiRestoreSelectedClick'#0#0#9'TMenuItem'#13'pmiRestoreAll'#3'Tag'#2#1#7'Ca'
-  +'ption'#6#11'Restore All'#7'Enabled'#8#7'OnClick'#7#17'miRestoreAllClick'#0#0
-  +#9'TMenuItem'#11'PopupBreak1'#7'Caption'#6#1'-'#0#0#9'TMenuItem'#15'pmiToggl'
-  +'eSelect'#3'Tag'#2#1#7'Caption'#6#15'Toggle Selected'#7'Enabled'#8#7'OnClick'
-  +#7#20'pmiToggleSelectClick'#0#0#9'TMenuItem'#15'pmiSelectFilter'#3'Tag'#2#1#7
-  +'Caption'#6#16'Select by Filter'#7'Enabled'#8#7'OnClick'#7#20'pmiSelectFilte'
-  +'rClick'#0#0#9'TMenuItem'#18'pmiShowAllSelected'#3'Tag'#2#1#7'Caption'#6#13
-  +'Show Selected'#7'Enabled'#8#7'OnClick'#7#23'pmiShowAllSelectedClick'#0#0#9
-  +'TMenuItem'#11'PopupBreak2'#7'Caption'#6#1'-'#0#0#9'TMenuItem'#10'pmiShowAll'
-  +#3'Tag'#2#1#7'Caption'#6#8'Show All'#7'Enabled'#8#7'OnClick'#7#15'pmiShowAll'
-  +'Click'#0#0#9'TMenuItem'#10'pmiHideAll'#3'Tag'#2#1#7'Caption'#6#8'Hide All'#7
-  +'Enabled'#8#7'OnClick'#7#15'pmiHideAllClick'#0#0#0#10'TImageList'#8'IconList'
-  +#4'left'#3#232#2#3'top'#2#8#6'Bitmap'#10#14#4#0#0'Li'#1#0#0#0#16#0#0#0#16#0#0
-  +#0#216#211#238#0#216#211#238#0#240#233#193#0#240#233#193#0#0#0#0#0#0#0#0#0#0
-  +#0#0#0#0#0#0#0'y|{'#0'SWU'#0'SWU'#0'SWU'#0'SWU'#0'SWU'#0'}'#128''#0#1#137
-  +#239#0'y|{'#255'SWU'#255'SWU'#255'SWU'#255'SWU'#255'SWU'#255'}'#128''#255
-  +#229'b'#0#0'SWU'#0#178#195#193#0#181#197#195#0#181#197#195#0#181#197#195#0
-  +#172#186#185#0'SWU'#0#255#0#0#0'SWU'#255#178#195#193#255#181#197#195#255#181
-  +#197#195#255#181#197#195#255#172#186#185#255'SWU'#255'B'#196#0#0'SWU'#0#170
-  +#189#187#0#136#157#154#0#135#156#154#0#134#155#153#0#159#176#175#0'SWU'#0'SW'
-  +'U'#0'SWU'#255#170#189#187#255#136#157#154#255#135#156#154#255#134#155#153
-  +#255#159#176#175#255'SWU'#255'SWU'#255'SWU'#255'SWU'#255'SWU'#255'SWU'#255'S'
-  +'WU'#255'SWU'#255#134#138#136#255#147#164#162#0'SWU'#255#163#181#179#255'~'
-  +#146#143#255'~'#146#143#255'~'#145#143#255#129#148#146#255#154#170#169#255
-  +#147#164#162#255#149#164#163#255#150#165#163#255#150#165#163#255#150#165#163
-  +#255#150#165#163#255#145#159#157#255'SWU'#255'Y]['#0'SWU'#255#166#184#181#255
-  +'x'#138#136#255'x'#138#136#255'x'#138#136#255'x'#138#136#255'`hf'#255'Y]['
-  +#255'VZX'#255'VZX'#255'VZX'#255'VZX'#255'Y]['#255'lpn'#255'SWU'#255#192#204
-  +#203#0'SWU'#255'lpn'#255'VZX'#255'VZX'#255'VZX'#255'VZX'#255#174#188#187#255
-  +#192#204#203#255#204#217#216#255#202#215#214#255#199#212#210#255#198#211#209
-  +#255#196#209#208#255#129#137#135#255'SWU'#255#188#204#203#0'SWU'#255#202#215
-  +#214#255#202#215#214#255#202#215#214#255#202#215#214#255#202#215#214#255#202
-  +#215#214#255#188#204#203#255#164#186#185#255#164#186#185#255#164#186#185#255
-  +#164#186#185#255#164#186#185#255#196#209#208#255'SWU'#255#164#186#185#0'SWU'
-  +#255#201#214#213#255#164#186#185#255#164#186#185#255#164#186#185#255#164#186
-  +#185#255#164#186#185#255#164#186#185#255#164#186#185#255#164#186#185#255#164
-  +#186#185#255#164#186#185#255#164#186#185#255#196#209#208#255'SWU'#255#164#186
-  +#185#0'SWU'#255#204#216#215#255#164#186#185#255#164#186#185#255#164#186#185
-  +#255#164#186#185#255#164#186#185#255#164#186#185#255#164#186#185#255#164#186
-  +#185#255#164#186#185#255#164#186#185#255#164#186#185#255#191#205#204#255'SWU'
-  +#255#164#186#185#0'SWU'#255#193#207#206#255#164#186#185#255#164#186#185#255
+  +'0'#5'Width'#3'}'#3#5'Align'#7#8'alClient'#8'AutoSize'#9#8'TabOrder'#2#4#0#9
+  +'TTreeView'#15'ArchiveTreeView'#6'Height'#3#26#1#3'Top'#2#30#5'Width'#3'w'#3
+  +#5'Align'#7#8'alClient'#5'Ctl3D'#9#17'DefaultItemHeight'#2#18#12'Font.CharSe'
+  +'t'#2#4#11'Font.Height'#2#240#9'Font.Name'#6#4'Sans'#13'HideSelection'#8#8'H'
+  +'otTrack'#9#10'ParentFont'#8#9'PopupMenu'#7#12'TreeViewMenu'#8'ReadOnly'#9#9
+  +'RowSelect'#9#10'ScrollBars'#7#14'ssAutoVertical'#8'ShowRoot'#8#8'SortType'#7
+  +#6'stText'#8'TabOrder'#2#0#24'OnAdvancedCustomDrawItem'#7'%ArchiveTreeViewAd'
+  +'vancedCustomDrawItem'#9'OnCompare'#7#22'ArchiveTreeViewCompare'#10'OnDeleti'
+  +'on'#7#23'ArchiveTreeViewDeletion'#18'OnSelectionChanged'#7#31'ArchiveTreeVi'
+  +'ewSelectionChanged'#7'Options'#11#19'tvoAllowMultiselect'#11'tvoHotTrack'#21
+  +'tvoKeepCollapsedNodes'#11'tvoReadOnly'#12'tvoRowSelect'#14'tvoShowButtons'
+  +#12'tvoShowLines'#11'tvoToolTips'#0#13'TreeLineColor'#7#9'clDefault'#0#0#14
+  +'THeaderControl'#13'FileHeaderBar'#6'Height'#2#30#5'Width'#3'w'#3#8'Sections'
+  +#14#1#8'MinWidth'#3#150#0#4'Text'#6#6'  File'#5'Width'#3#250#0#7'Visible'#9#0
+  +#1#8'MinWidth'#2'2'#4'Text'#6#6'  Date'#5'Width'#3#200#0#7'Visible'#9#0#1#8
+  +'MinWidth'#2'2'#4'Text'#6#5' Size'#5'Width'#2'<'#7'Visible'#9#0#1#8'MinWidth'
+  +#2'2'#4'Text'#6#5' User'#5'Width'#2'd'#7'Visible'#9#0#1#8'MinWidth'#2'2'#4'T'
+  +'ext'#6#6' Group'#5'Width'#2'd'#7'Visible'#9#0#1#8'MinWidth'#2'2'#4'Text'#6#7
+  +' Status'#5'Width'#3#150#0#7'Visible'#9#0#0#15'OnSectionResize'#7#22'HeaderB'
+  +'arSectionResize'#5'Align'#7#5'alTop'#0#0#0#9'TMainMenu'#8'MainMenu'#4'left'
+  +#3#16#3#3'top'#2#8#0#9'TMenuItem'#8'MenuFile'#7'Caption'#6#5'&File'#0#9'TMen'
+  +'uItem'#10'miFileOpen'#7'Caption'#6#4'Open'#7'OnClick'#7#15'miFileOpenClick'
+  +#0#0#9'TMenuItem'#12'miOpenRecent'#7'Caption'#6#15'Open recent ...'#0#0#9'TM'
+  +'enuItem'#9'miFileNew'#7'Caption'#6#3'New'#7'OnClick'#7#14'miFileNewClick'#0
+  +#0#9'TMenuItem'#10'MenuBreak1'#7'Caption'#6#1'-'#0#0#9'TMenuItem'#6'miExit'#7
+  +'Caption'#6#4'Exit'#7'OnClick'#7#11'miExitClick'#0#0#0#9'TMenuItem'#11'MenuA'
+  +'rchive'#7'Caption'#6#7'Archive'#0#9'TMenuItem'#17'miRestoreSelected'#3'Tag'
+  +#2#1#7'Caption'#6#16'Restore selected'#7'Enabled'#8#7'OnClick'#7#23'pmiResto'
+  +'reSelectedClick'#0#0#9'TMenuItem'#12'miRestoreAll'#3'Tag'#2#1#7'Caption'#6
+  +#11'Restore all'#7'Enabled'#8#7'OnClick'#7#17'miRestoreAllClick'#0#0#9'TMenu'
+  +'Item'#9'miIsolate'#7'Caption'#6#17'Isolate catalogue'#7'OnClick'#7#14'miIso'
+  +'lateClick'#0#0#9'TMenuItem'#13'miArchiveDiff'#7'Caption'#6#13'Compare files'
+  +#7'OnClick'#7#11'tbDiffClick'#0#0#9'TMenuItem'#13'miTestArchive'#3'Tag'#2#1#7
+  +'Caption'#6#15'Check Integrity'#7'Enabled'#8#7'Visible'#8#7'OnClick'#7#11'tb'
+  +'TestClick'#0#0#9'TMenuItem'#10'MenuBreak4'#7'Caption'#6#1'-'#0#0#9'TMenuIte'
+  +'m'#14'miToggleSelect'#3'Tag'#2#1#7'Caption'#6#15'Toggle Selected'#7'Enabled'
+  +#8#7'OnClick'#7#20'pmiToggleSelectClick'#0#0#9'TMenuItem'#14'miSelectFilter'
+  +#3'Tag'#2#1#7'Caption'#6#16'Select by Filter'#7'Enabled'#8#7'OnClick'#7#20'p'
+  +'miSelectFilterClick'#0#0#9'TMenuItem'#12'miShowSelect'#3'Tag'#2#1#7'Caption'
+  +#6#13'Show Selected'#7'Enabled'#8#7'OnClick'#7#23'pmiShowAllSelectedClick'#0
+  +#0#9'TMenuItem'#10'MenuBreak2'#3'Tag'#2#1#7'Caption'#6#1'-'#0#0#9'TMenuItem'
+  +#20'miArchiveInformation'#3'Tag'#2#1#7'Caption'#6#11'Information'#7'Enabled'
+  +#8#7'OnClick'#7#25'miArchiveInformationClick'#0#0#0#9'TMenuItem'#14'MenuSche'
+  +'duling'#7'Caption'#6#14'MenuScheduling'#0#9'TMenuItem'#14'miSchedManager'#7
+  +'Caption'#6#10'miSchedMan'#7'OnClick'#7#19'miSchedManagerClick'#0#0#0#9'TMen'
+  ,'uItem'#12'MenuSettings'#7'Caption'#6#7'Options'#0#9'TMenuItem'#14'miHideMes'
+  +'sages'#7'Caption'#6#13'Hide messages'#7'Checked'#9#19'ShowAlwaysCheckable'#9
+  +#7'Visible'#8#7'OnClick'#7#19'miHideMessagesClick'#0#0#9'TMenuItem'#15'miOpe'
+  +'rationlogs'#7'Caption'#6#14'Operation logs'#7'OnClick'#7#20'miOperationlogs'
+  +'Click'#0#0#9'TMenuItem'#13'miShowToolbar'#7'Caption'#6#12'Show Toolbar'#7'C'
+  +'hecked'#9#7'OnClick'#7#18'miShowToolbarClick'#0#0#0#9'TMenuItem'#8'MenuHelp'
+  +#7'Caption'#6#5'&Help'#0#9'TMenuItem'#14'miHelpContents'#7'Caption'#6#11'Dar'
+  +'GUI Help'#7'OnClick'#7#14'miHelpDarClick'#0#0#9'TMenuItem'#9'miHelpDar'#7'C'
+  +'aption'#6#17'Dar Documentation'#7'OnClick'#7#14'miHelpDarClick'#0#0#9'TMenu'
+  +'Item'#10'MenuBreak3'#7'Caption'#6#1'-'#0#0#9'TMenuItem'#11'miHelpAbout'#7'C'
+  +'aption'#6#12'About DarGUI'#7'OnClick'#7#16'miHelpAboutClick'#0#0#0#0#11'TOp'
+  +'enDialog'#10'OpenDialog'#5'Title'#6#21'Open existing archive'#6'Filter'#6#18
+  +'DAR Archives|*.dar'#11'FilterIndex'#2#0#4'left'#3'P'#3#3'top'#2#8#0#0#10'TP'
+  +'opupMenu'#12'TreeViewMenu'#4'left'#3'0'#3#3'top'#2#8#0#9'TMenuItem'#18'pmiR'
+  +'estoreSelected'#3'Tag'#2#1#7'Caption'#6#16'Restore Selected'#7'Enabled'#8#7
+  +'OnClick'#7#23'pmiRestoreSelectedClick'#0#0#9'TMenuItem'#13'pmiRestoreAll'#3
+  +'Tag'#2#1#7'Caption'#6#11'Restore All'#7'Enabled'#8#7'OnClick'#7#17'miRestor'
+  +'eAllClick'#0#0#9'TMenuItem'#11'PopupBreak1'#7'Caption'#6#1'-'#0#0#9'TMenuIt'
+  +'em'#15'pmiToggleSelect'#3'Tag'#2#1#7'Caption'#6#15'Toggle Selected'#7'Enabl'
+  +'ed'#8#7'OnClick'#7#20'pmiToggleSelectClick'#0#0#9'TMenuItem'#15'pmiSelectFi'
+  +'lter'#3'Tag'#2#1#7'Caption'#6#16'Select by Filter'#7'Enabled'#8#7'OnClick'#7
+  +#20'pmiSelectFilterClick'#0#0#9'TMenuItem'#18'pmiShowAllSelected'#3'Tag'#2#1
+  +#7'Caption'#6#13'Show Selected'#7'Enabled'#8#7'OnClick'#7#23'pmiShowAllSelec'
+  +'tedClick'#0#0#9'TMenuItem'#11'PopupBreak2'#7'Caption'#6#1'-'#0#0#9'TMenuIte'
+  +'m'#10'pmiShowAll'#3'Tag'#2#1#7'Caption'#6#8'Show All'#7'Enabled'#8#7'OnClic'
+  +'k'#7#15'pmiShowAllClick'#0#0#9'TMenuItem'#10'pmiHideAll'#3'Tag'#2#1#7'Capti'
+  +'on'#6#8'Hide All'#7'Enabled'#8#7'OnClick'#7#15'pmiHideAllClick'#0#0#0#10'TI'
+  +'mageList'#8'IconList'#4'left'#3#232#2#3'top'#2#8#6'Bitmap'#10#14#4#0#0'Li'#1
+  +#0#0#0#16#0#0#0#16#0#0#0#216#211#238#0#216#211#238#0#240#233#193#0#240#233
+  +#193#0#0#0#0#0#0#0#0#0#0#0#0#0#0#0#0#0'y|{'#0'SWU'#0'SWU'#0'SWU'#0'SWU'#0'SW'
+  +'U'#0'}'#128''#0#1#137#239#0'y|{'#255'SWU'#255'SWU'#255'SWU'#255'SWU'#255'S'
+  +'WU'#255'}'#128''#255#229'b'#0#0'SWU'#0#178#195#193#0#181#197#195#0#181#197
+  +#195#0#181#197#195#0#172#186#185#0'SWU'#0#255#0#0#0'SWU'#255#178#195#193#255
+  +#181#197#195#255#181#197#195#255#181#197#195#255#172#186#185#255'SWU'#255'B'
+  +#196#0#0'SWU'#0#170#189#187#0#136#157#154#0#135#156#154#0#134#155#153#0#159
+  +#176#175#0'SWU'#0'SWU'#0'SWU'#255#170#189#187#255#136#157#154#255#135#156#154
+  +#255#134#155#153#255#159#176#175#255'SWU'#255'SWU'#255'SWU'#255'SWU'#255'SWU'
+  +#255'SWU'#255'SWU'#255'SWU'#255#134#138#136#255#147#164#162#0'SWU'#255#163
+  +#181#179#255'~'#146#143#255'~'#146#143#255'~'#145#143#255#129#148#146#255#154
+  +#170#169#255#147#164#162#255#149#164#163#255#150#165#163#255#150#165#163#255
+  +#150#165#163#255#150#165#163#255#145#159#157#255'SWU'#255'Y]['#0'SWU'#255#166
+  +#184#181#255'x'#138#136#255'x'#138#136#255'x'#138#136#255'x'#138#136#255'`hf'
+  +#255'Y]['#255'VZX'#255'VZX'#255'VZX'#255'VZX'#255'Y]['#255'lpn'#255'SWU'#255
+  +#192#204#203#0'SWU'#255'lpn'#255'VZX'#255'VZX'#255'VZX'#255'VZX'#255#174#188
+  +#187#255#192#204#203#255#204#217#216#255#202#215#214#255#199#212#210#255#198
+  +#211#209#255#196#209#208#255#129#137#135#255'SWU'#255#188#204#203#0'SWU'#255
+  +#202#215#214#255#202#215#214#255#202#215#214#255#202#215#214#255#202#215#214
+  +#255#202#215#214#255#188#204#203#255#164#186#185#255#164#186#185#255#164#186
+  +#185#255#164#186#185#255#164#186#185#255#196#209#208#255'SWU'#255#164#186#185
+  +#0'SWU'#255#201#214#213#255#164#186#185#255#164#186#185#255#164#186#185#255
   +#164#186#185#255#164#186#185#255#164#186#185#255#164#186#185#255#164#186#185
-  +#255#164#186#185#255#164#186#185#255#164#186#185#255#164#186#185#255#191#205
-  +#204#255'SWU'#255#164#186#185#0'SWU'#255#192#206#205#255#164#186#185#255#164
+  +#255#164#186#185#255#164#186#185#255#164#186#185#255#196#209#208#255'SWU'#255
+  +#164#186#185#0'SWU'#255#204#216#215#255#164#186#185#255#164#186#185#255#164
   +#186#185#255#164#186#185#255#164#186#185#255#164#186#185#255#164#186#185#255
-  +#164#186#185#255#164#186#185#255#164#186#185#255#164#186#185#255#164#186#185
-  +#255#191#205#204#255'SWU'#255#164#186#185#0'SWU'#255#191#206#205#255#164#186
+  +#164#186#185#255#164#186#185#255#164#186#185#255#164#186#185#255#191#205#204
+  +#255'SWU'#255#164#186#185#0'SWU'#255#193#207#206#255#164#186#185#255#164#186
   +#185#255#164#186#185#255#164#186#185#255#164#186#185#255#164#186#185#255#164
   +#186#185#255#164#186#185#255#164#186#185#255#164#186#185#255#164#186#185#255
-  ,#164#186#185#255#189#204#203#255'SWU'#255#164#186#185#0'SWU'#255#188#204#203
+  +#191#205#204#255'SWU'#255#164#186#185#0'SWU'#255#192#206#205#255#164#186#185
   +#255#164#186#185#255#164#186#185#255#164#186#185#255#164#186#185#255#164#186
   +#185#255#164#186#185#255#164#186#185#255#164#186#185#255#164#186#185#255#164
-  +#186#185#255#164#186#185#255#181#199#198#255'SWU'#255#182#199#198#0'SWU'#255
-  +#181#197#196#255#182#199#198#255#182#199#198#255#182#199#198#255#182#199#198
-  +#255#182#199#198#255#182#199#198#255#182#198#197#255#182#198#197#255#181#198
-  +#197#255#181#198#197#255#181#198#197#255#175#192#191#255'SWU'#255'SWU'#0#134
-  +#138#136#255'SWU'#255'SWU'#255'SWU'#255'SWU'#255'SWU'#255'SWU'#255'SWU'#255
-  +'SWU'#255'SWU'#255'SWU'#255'SWU'#255'SWU'#255'SWU'#255#134#138#136#255#205#2
-  +#9#0#0#0#0
+  +#186#185#255#191#205#204#255'SWU'#255#164#186#185#0'SWU'#255#191#206#205#255
+  +#164#186#185#255#164#186#185#255#164#186#185#255#164#186#185#255#164#186#185
+  +#255#164#186#185#255#164#186#185#255#164#186#185#255#164#186#185#255#164#186
+  ,#185#255#164#186#185#255#189#204#203#255'SWU'#255#164#186#185#0'SWU'#255#188
+  +#204#203#255#164#186#185#255#164#186#185#255#164#186#185#255#164#186#185#255
+  +#164#186#185#255#164#186#185#255#164#186#185#255#164#186#185#255#164#186#185
+  +#255#164#186#185#255#164#186#185#255#181#199#198#255'SWU'#255#182#199#198#0
+  +'SWU'#255#181#197#196#255#182#199#198#255#182#199#198#255#182#199#198#255#182
+  +#199#198#255#182#199#198#255#182#199#198#255#182#198#197#255#182#198#197#255
+  +#181#198#197#255#181#198#197#255#181#198#197#255#175#192#191#255'SWU'#255'SW'
+  +'U'#0#134#138#136#255'SWU'#255'SWU'#255'SWU'#255'SWU'#255'SWU'#255'SWU'#255
+  +'SWU'#255'SWU'#255'SWU'#255'SWU'#255'SWU'#255'SWU'#255'SWU'#255#134#138#136
+  +#255#205#2#9#0#0#0#0
 ]);
