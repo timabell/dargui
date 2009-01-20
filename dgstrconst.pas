@@ -14,6 +14,8 @@ var
   WeekdayNames: array[1..7] of string;
 
 resourcestring
+rsErrScriptNotSetUp = 'Unable to schedule script execution.%sError when '
+  +'executing at: %s%s';
 //Time
 rsJan = 'Jan';
 rsFeb = 'Feb';
@@ -43,6 +45,7 @@ rsErrNoFilesSelected = 'Error: no files were selected';
 rsErrNoXterm = 'Unable to find xterm: some features disabled';
 rsErrNoBash = 'Unable to find bash: some features disabled';
 rsErrNoXtermBash = 'Unable to find xterm or bash: some features disabled';
+rsErrWritingScript = 'Error writing script';
 
 
 // Batch File Comments
@@ -74,11 +77,17 @@ rsCptRestoreNodes = 'Restore %s nodes...';
 rsCptRestoringFiles = 'restoring files...';
 rsCptRestoreSelected = 'Restore selected files';
 rsCptDarGUICheckingArchive = 'DarGUI: checking archive integrity...';
+rsScriptExecuteTime = 'DAR script will be executed at %s:%s on %s';
+rsQueryExecuteScript = 'A Dar backup script has been saved to %s%s%sDo you '
+  +'want to execute the script now?';
+rsScriptSetUpOK = 'Script successfully scheduled for execution';
+
 
 // Dialog titles etc.
 rsOpenExisting = 'Open existing archive';
 rsFilterDARArchives = 'DAR archives';
 rsSelectReferenceArch = 'Select reference archive';
+rsFilterDarGUIFiles = 'DarGUI files';
 rsFCptSelectbyFilter = 'Select using filters...';
 
 //Common Interface
@@ -170,8 +179,16 @@ rsFilesAlreadyIncluded = 'These files are already selected to be included in the
 rsCptResolveConflict = 'Resolve conflict';
 rsOverwriteExistingArc = 'Overwrite existing archive?';
 rsErrInvalidArchiveName = 'Invalid archive name';
+rsPasswordWarning = 'You have chosen to encrypt this scheduled backup.%sThe '
+  +'password for the encrypted archive will be included in the backup script.%'
+  +'sAre you sure that you want to do this?';
+rsFilterAllFiles = 'All files';
 rsErrInvalidDirectory = 'Invalid directory';
 rsErrRefArchiveNotFound = 'Reference archive not found';
+rsScriptWarning1 = 'The backup script will run every minute on the days '
+  +'selected%sAre you sure that you want to do this?';
+rsScriptWarning2 = 'The backup script will run every minute of every day%sAre '
+  +'you sure that you want to do this?';
 rsErrCompressionLevelMust = 'Compression level must be between 0 and 9';
 rsErrInvalidFileSize = 'Invalid number for file size';
 rsUseBzip2Compression = 'use bzip2 compression';

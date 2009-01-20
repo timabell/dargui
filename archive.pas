@@ -717,7 +717,7 @@ var
   end;
 
 begin
-  OpenDialog.Filter := 'DarGUI files|*.dargui|All files|*';
+  OpenDialog.Filter := rsFilterDarGUIFiles + '|*.dargui|' + rsFilterAllFiles + '|*';
   OpenDialog.FilterIndex := 0;
   if OpenDialog.Execute then
      begin
@@ -781,7 +781,7 @@ begin
             LoadingSettings := false;
           end;
      end;
-  OpenDialog.Filter := 'All files|*';
+  OpenDialog.Filter := rsFilterAllFiles + '|*';
 end;
 
 procedure TArchiveForm.OKButtonClick ( Sender: TObject ) ;
@@ -821,9 +821,8 @@ begin        //TODO: check that script is not to be created within base director
   Result := true;
   if not NowRadioButton.Checked then
      if EncryptArchiveCheck.Checked then
-         if MessageDlg('You have chosen to encrypt this scheduled backup.'#10
-                       + 'The password for the encrypted archive will be included in the backup script.'#10
-                       + 'Are you sure that you want to do this?', mtConfirmation, mbYesNo, 0) = mrNo
+         if MessageDlg(Format(rsPasswordWarning, [#10, #10]), mtConfirmation,
+           mbYesNo, 0) = mrNo
                 then begin
                        ArchiveNotebook.PageIndex := 4;
                        EncryptArchiveCheck.SetFocus;
@@ -894,8 +893,8 @@ begin        //TODO: check that script is not to be created within base director
            and (RepeatMonthDayBox.ItemIndex < 1)
            and (RepeatWeekDayBox.ItemIndex < 1) then
               begin
-                if MessageDlg('The backup script will run every minute of every day'#10
-                               + 'Are you sure that you want to do this?', mtWarning, mbYesNo, 0) = mrNo
+                if MessageDlg(Format(rsScriptWarning2, [#10]), mtWarning,
+                  mbYesNo, 0) = mrNo
                 then begin
                        ArchiveNotebook.PageIndex := 5;
                        RepeatMinuteBox.SetFocus;
@@ -905,8 +904,8 @@ begin        //TODO: check that script is not to be created within base director
                end
           else
                if RepeatMinuteBox.ItemIndex < 1 then
-                  if MessageDlg('The backup script will run every minute on the days selected'#10
-                                 + 'Are you sure that you want to do this?', mtWarning, mbYesNo, 0) = mrNo
+                  if MessageDlg(Format(rsScriptWarning1, [#10]), mtWarning,
+                    mbYesNo, 0) = mrNo
                   then begin
                          ArchiveNotebook.PageIndex := 5;
                          RepeatMinuteBox.SetFocus;

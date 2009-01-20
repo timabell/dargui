@@ -381,9 +381,9 @@ var
            then if WriteScript(ArchiveForm.ScriptFilenameBox.Text)
               then
               begin
-                if MessageDlg('A Dar backup script has been saved to ' + #10
-                                        + ArchiveForm.ScriptFilenameBox.Text + #10#10
-                                        + 'Do you want to execute the script now?', mtInformation, [mbYes, mbNo], 0) = mrYes
+                if MessageDlg(Format(rsQueryExecuteScript, [#10,
+                  ArchiveForm.ScriptFilenameBox.Text, #10#10]), mtInformation, [
+                  mbYes, mbNo], 0) = mrYes
                  then  begin
                          Proc := TProcess.Create(Application);
                          Proc.CommandLine := TerminalCommand + ' -e '  + RunscriptPath + 'runscript.sh "' + ArchiveForm.ScriptFilenameBox.Text + '"';
@@ -392,7 +392,7 @@ var
                        end;
                end
                 else
-                ShowMessage('Error writing script');
+                ShowMessage(rsErrWritingScript);
   end;
   
   Procedure CreateAtScript;
@@ -421,12 +421,14 @@ var
                    while atresponse[q]<>#32 do
                          inc(q);
                    ShellCommand('mv ' + script + #32 + script + '.' + Copy(atresponse, p+4, q-p-4), atcommand);
-                   ShowMessage('DAR script will be executed at '
-                               + ArchiveForm.RunOnceHourBox.Text + ':' + ArchiveForm.RunOnceMinuteBox.Text
-                               + ' on ' + DateToStr(ArchiveForm.RunOnceDateEdit.Date));
+                   ShowMessage(Format(rsScriptExecuteTime, [
+                     ArchiveForm.RunOnceHourBox.Text,
+                     ArchiveForm.RunOnceMinuteBox.Text, DateToStr(
+                     ArchiveForm.RunOnceDateEdit.Date)]));
                  end
               else
-                 ShowMessage('Unable to schedule script execution.' + #10 + 'Error when executing at: ' + #10 + atresponse);
+                 ShowMessage(Format(rsErrScriptNotSetUp, [#10, #10, atresponse])
+                   );
             end;
        end;
   end;
@@ -453,7 +455,7 @@ var
               script := '/tmp/' + CreateUniqueFileName('/tmp/');
               CronList.SaveToFile(script);
               if ShellCommand('crontab ' + script, processresponse) = 0 then
-                 ShowMessage('Script successfully scheduled for execution')
+                 ShowMessage(rsScriptSetUpOK)
               else ShowMessage(processresponse);
               ShellCommand('rm -f ' + script, processresponse);
             end;
