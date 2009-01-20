@@ -40,6 +40,13 @@ const
    SEGDATE        = 5;
    SEGFILENAME    = 6;
    SEGFILEPATH    = 7;
+
+   HEADERNAME     = 0;
+   HEADERDATE     = 1;
+   HEADERSIZE     = 2;
+   HEADERUSER     = 3;
+   HEADERGROUP    = 4;
+   HEADERSTATUS   = 5;
    
    DAR_EXECUTABLE = 'dar';
    

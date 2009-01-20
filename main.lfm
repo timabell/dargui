@@ -3,7 +3,7 @@ object MainForm: TMainForm
   Height = 605
   Top = 68
   Width = 893
-  ActiveControl = ArchiveTreeView
+  ActiveControl = ToolbarPanel
   Caption = 'DarGUI'
   ClientHeight = 584
   ClientWidth = 893
@@ -66,40 +66,13 @@ object MainForm: TMainForm
       end>
     SimplePanel = False
   end
-  object ArchiveTreeView: TTreeView
-    Height = 289
-    Top = 73
-    Width = 893
-    Align = alClient
-    Ctl3D = True
-    DefaultItemHeight = 18
-    Font.CharSet = 4
-    Font.Height = -16
-    Font.Name = 'Sans'
-    HideSelection = False
-    HotTrack = True
-    ParentFont = False
-    PopupMenu = TreeViewMenu
-    ReadOnly = True
-    RowSelect = True
-    ScrollBars = ssAutoVertical
-    ShowRoot = False
-    SortType = stText
-    TabOrder = 0
-    OnAdvancedCustomDrawItem = ArchiveTreeViewAdvancedCustomDrawItem
-    OnCompare = ArchiveTreeViewCompare
-    OnDeletion = ArchiveTreeViewDeletion
-    OnSelectionChanged = ArchiveTreeViewSelectionChanged
-    Options = [tvoAllowMultiselect, tvoHotTrack, tvoKeepCollapsedNodes, tvoReadOnly, tvoRowSelect, tvoShowButtons, tvoShowLines, tvoToolTips]
-    TreeLineColor = clDefault
-  end
   object ToolbarPanel: TPanel
     Height = 48
     Width = 893
     Align = alTop
     ClientHeight = 48
     ClientWidth = 893
-    TabOrder = 1
+    TabOrder = 0
     object tbOpen: TBitBtn
       Left = 1
       Height = 46
@@ -827,115 +800,6 @@ object MainForm: TMainForm
       TabOrder = 4
     end
   end
-  object HeaderPanel: TPanel
-    Height = 25
-    Top = 48
-    Width = 893
-    Align = alTop
-    Caption = 'HeaderPanel'
-    ClientHeight = 25
-    ClientWidth = 893
-    TabOrder = 2
-    object FilenameHdr: TPanel
-      Left = 1
-      Height = 23
-      Top = 1
-      Width = 237
-      Align = alLeft
-      Caption = 'File'
-      Constraints.MinWidth = 180
-      TabOrder = 0
-    end
-    object DateHdr: TPanel
-      Left = 241
-      Height = 23
-      Top = 1
-      Width = 214
-      Align = alLeft
-      Caption = 'Date'
-      TabOrder = 1
-    end
-    object SizeHdr: TPanel
-      Left = 458
-      Height = 23
-      Top = 1
-      Width = 64
-      Align = alLeft
-      Caption = 'Size'
-      TabOrder = 2
-    end
-    object UserHdr: TPanel
-      Left = 524
-      Height = 23
-      Top = 1
-      Width = 87
-      Align = alLeft
-      Caption = 'User'
-      TabOrder = 3
-    end
-    object GroupHdr: TPanel
-      Left = 613
-      Height = 23
-      Top = 1
-      Width = 98
-      Align = alLeft
-      Caption = 'Group'
-      TabOrder = 4
-    end
-    object StatusHdr: TPanel
-      Left = 713
-      Height = 23
-      Top = 1
-      Width = 179
-      Align = alClient
-      Caption = 'Status'
-      TabOrder = 5
-    end
-    object Splitter1: TSplitter
-      Left = 238
-      Height = 23
-      Top = 1
-      Width = 3
-      Beveled = True
-      Constraints.MaxWidth = 3
-      Constraints.MinWidth = 3
-      OnChangeBounds = Splitter3ChangeBounds
-    end
-    object Splitter2: TSplitter
-      Left = 455
-      Height = 23
-      Top = 1
-      Width = 3
-      Beveled = True
-      Constraints.MaxWidth = 3
-      Constraints.MinWidth = 3
-      OnChangeBounds = Splitter3ChangeBounds
-    end
-    object Splitter3: TSplitter
-      Left = 522
-      Height = 23
-      Top = 1
-      Width = 2
-      Beveled = True
-      OnChangeBounds = Splitter3ChangeBounds
-    end
-    object Splitter4: TSplitter
-      Left = 611
-      Height = 23
-      Top = 1
-      Width = 2
-      Beveled = True
-      OnChangeBounds = Splitter3ChangeBounds
-    end
-    object Splitter5: TSplitter
-      Left = 711
-      Height = 23
-      Top = 1
-      Width = 2
-      Beveled = True
-      OnChangeBounds = Splitter3ChangeBounds
-    end
-  end
   object MessagePanel: TPanel
     Height = 200
     Top = 367
@@ -944,7 +808,7 @@ object MainForm: TMainForm
     Caption = 'MessagePanel'
     ClientHeight = 200
     ClientWidth = 893
-    TabOrder = 3
+    TabOrder = 1
     Visible = False
     object MessageClosePanel: TPanel
       Left = 1
@@ -996,6 +860,83 @@ object MainForm: TMainForm
     ResizeAnchor = akBottom
     ResizeStyle = rsNone
     Visible = False
+  end
+  object FileViewScrollBox: TScrollBox
+    Height = 314
+    Top = 48
+    Width = 893
+    Align = alClient
+    TabOrder = 4
+    object ArchiveTreeView: TTreeView
+      Height = 257
+      Top = 30
+      Width = 887
+      Ctl3D = True
+      DefaultItemHeight = 18
+      Font.CharSet = 4
+      Font.Height = -16
+      Font.Name = 'Sans'
+      HideSelection = False
+      HotTrack = True
+      ParentFont = False
+      PopupMenu = TreeViewMenu
+      ReadOnly = True
+      RowSelect = True
+      ScrollBars = ssAutoVertical
+      ShowRoot = False
+      SortType = stText
+      TabOrder = 0
+      OnAdvancedCustomDrawItem = ArchiveTreeViewAdvancedCustomDrawItem
+      OnCompare = ArchiveTreeViewCompare
+      OnDeletion = ArchiveTreeViewDeletion
+      OnSelectionChanged = ArchiveTreeViewSelectionChanged
+      Options = [tvoAllowMultiselect, tvoHotTrack, tvoKeepCollapsedNodes, tvoReadOnly, tvoRowSelect, tvoShowButtons, tvoShowLines, tvoToolTips]
+      TreeLineColor = clDefault
+    end
+    object FileHeaderBar: THeaderControl
+      Height = 30
+      Width = 887
+      DragReorder = True
+      Sections = <      
+        item
+          MinWidth = 150
+          Text = '  File'
+          Width = 250
+          Visible = True
+        end      
+        item
+          MinWidth = 50
+          Text = '  Date'
+          Width = 200
+          Visible = True
+        end      
+        item
+          MinWidth = 50
+          Text = ' Size'
+          Width = 60
+          Visible = True
+        end      
+        item
+          MinWidth = 50
+          Text = ' User'
+          Width = 100
+          Visible = True
+        end      
+        item
+          MinWidth = 50
+          Text = ' Group'
+          Width = 100
+          Visible = True
+        end      
+        item
+          MinWidth = 50
+          Text = ' Status'
+          Width = 150
+          Visible = True
+        end>
+      OnSectionResize = HeaderBarSectionResize
+      Align = alTop
+    end
   end
   object MainMenu: TMainMenu
     left = 784

@@ -14,6 +14,8 @@ type
   { TMainForm }
 
   TMainForm = class(TForm)
+    ArchiveTreeView: TTreeView;
+    FileHeaderBar: THeaderControl;
     miHelpContents: TMenuItem;
     miArchiveDiff: TMenuItem;
     MenuScheduling: TMenuItem;
@@ -21,6 +23,7 @@ type
     miSelectFilter: TMenuItem;
     miShowSelect: TMenuItem;
     miTestArchive: TMenuItem;
+    FileViewScrollBox: TScrollBox;
     tbTest: TBitBtn;
     IconList: TImageList;
     MenuBreak3: TMenuItem;
@@ -67,21 +70,8 @@ type
     miFileOpen: TMenuItem;
     OpenDialog: TOpenDialog;
     ToolbarPanel: TPanel;
-    HeaderPanel: TPanel;
-    FilenameHdr: TPanel;
-    DateHdr: TPanel;
     TreeViewMenu: TPopupMenu;
-    SizeHdr: TPanel;
-    Splitter1: TSplitter;
-    Splitter2: TSplitter;
-    Splitter3: TSplitter;
-    Splitter4: TSplitter;
-    Splitter5: TSplitter;
-    UserHdr: TPanel;
-    GroupHdr: TPanel;
-    StatusHdr: TPanel;
     StatusBar: TStatusBar;
-    ArchiveTreeView: TTreeView;
     procedure ArchiveTreeViewAdvancedCustomDrawItem(Sender: TCustomTreeView;
       Node: TTreeNode; State: TCustomDrawState; Stage: TCustomDrawStage;
       var PaintImages, DefaultDraw: Boolean);
@@ -91,13 +81,14 @@ type
     procedure ArchiveTreeViewSelectionChanged(Sender: TObject);
     procedure FormCreate(Sender: TObject);
     procedure FormClose(Sender: TObject; var CloseAction: TCloseAction);
+    procedure HeaderBarSectionResize(HeaderControl: TCustomHeaderControl;
+      Section: THeaderSection);
     procedure RecentMenuClick ( Sender: TObject ) ;
     procedure miArchiveInformationClick(Sender: TObject);
     procedure miExitClick ( Sender: TObject ) ;
     procedure MessageHideButtonClick(Sender: TObject);
     procedure miFileNewClick ( Sender: TObject ) ;
     procedure miFileOpenClick(Sender: TObject);
-    procedure Splitter3ChangeBounds(Sender: TObject);
     procedure miHelpAboutClick ( Sender: TObject ) ;
     procedure miHelpDarClick ( Sender: TObject ) ;
     procedure miHideMessagesClick(Sender: TObject);
@@ -529,6 +520,12 @@ begin
   Preferences.Free;
 end;
 
+procedure TMainForm.HeaderBarSectionResize(HeaderControl: TCustomHeaderControl;
+  Section: THeaderSection);
+begin
+  ArchiveTreeView.Update;
+end;
+
 procedure TMainForm.RecentMenuClick ( Sender: TObject ) ;
 var
   fn: string;
@@ -617,13 +614,19 @@ var
        Result := 0;
        RightAlign := false;
        case aCol of
-               SEGSTATUS      : maxWidth := StatusHdr.Width-CELL_RIGHT_MARGIN - STATUSRIGHTMARGIN;
+               SEGSTATUS      : maxwidth :=
+                                  FileHeaderBar.SectionFromOriginalIndex[HEADERSTATUS].Width;
                SEGPERMISSIONS : ;  // not displayed at present
-               SEGUSER        : maxWidth := UserHdr.Width-CELL_RIGHT_MARGIN;
-               SEGGROUP       : maxWidth := GroupHdr.Width-CELL_RIGHT_MARGIN;
-               SEGSIZE        : maxWidth := SizeHdr.Width-CELL_RIGHT_MARGIN;
-               SEGDATE        : maxWidth := DateHdr.Width-CELL_RIGHT_MARGIN ;
-               SEGFILENAME    : maxWidth := FilenameHdr.Width -CELL_RIGHT_MARGIN - leftmargin;
+               SEGUSER        : maxwidth :=
+                                 FileHeaderBar.SectionFromOriginalIndex[HEADERUSER].Width;
+               SEGGROUP       : maxwidth :=
+                                 FileHeaderBar.SectionFromOriginalIndex[HEADERGROUP].Width;
+               SEGSIZE        : maxwidth :=
+                                 FileHeaderBar.SectionFromOriginalIndex[HEADERSIZE].Width;
+               SEGDATE        : maxwidth :=
+                                 FileHeaderBar.SectionFromOriginalIndex[HEADERDATE].Width;
+               SEGFILENAME    : maxwidth :=
+                                 FileHeaderBar.SectionFromOriginalIndex[HEADERNAME].Width;
                end;
        if aCol < SEGFILENAME then RightAlign := true;
        a := 1;
@@ -645,23 +648,23 @@ var
      
      procedure WriteColumn( tvCol: integer; tvRect: TRect; aString: string );
      var
-       Header: TPanel;
+       Section: THeaderSection;
        ColX: Integer;
        TrimmedStr: string;
      begin
        tvRect.Top := tvRect.Top + 1;
        case tvCol of
-            SEGSTATUS      : Header := StatusHdr;
+            SEGSTATUS      : Section := FileHeaderBar.SectionFromOriginalIndex[HEADERSTATUS];
             SEGPERMISSIONS : exit; // not implemented
-            SEGUSER        : Header := UserHdr;
-            SEGGROUP       : Header := GroupHdr;
-            SEGSIZE        : Header := SizeHdr;
-            SEGDATE        : Header := DateHdr;
+            SEGUSER        : Section := FileHeaderBar.SectionFromOriginalIndex[HEADERUSER];
+            SEGGROUP       : Section := FileHeaderBar.SectionFromOriginalIndex[HEADERGROUP];
+            SEGSIZE        : Section := FileHeaderBar.SectionFromOriginalIndex[HEADERSIZE];
+            SEGDATE        : Section := FileHeaderBar.SectionFromOriginalIndex[HEADERDATE];
        end;
-       ColX := Header.Left;
+       ColX := Section.Left;
        TrimText(aString, tvCol, tvRect.Left);
        if tvCol < SEGFILENAME
-              then ColX := Header.Left + Header.Width - Sender.Canvas.TextWidth(aString) -CELL_RIGHT_MARGIN;                                                                                             ;
+              then ColX := Section.Left + Section.Width - Sender.Canvas.TextWidth(aString) -CELL_RIGHT_MARGIN;                                                                                             ;
        if tvCol = SEGSTATUS then ColX := ColX-STATUSRIGHTMARGIN; //this is a hack to allow for the scrollbar
        Sender.Canvas.TextOut( ColX, tvRect.Top, aString );
      end;
@@ -771,17 +774,6 @@ begin
        StatusBar.Panels[SELECT_STATUSBAR].Text := '';
      end;
 
-end;
-
-procedure TMainForm.Splitter3ChangeBounds(Sender: TObject);
-var
-  x: Integer;
-begin
-  ArchiveTreeView.Update;
-  for x := 0 to ComponentCount-1 do
-      if Components[x] is TPanel then
-         TPanel(Components[x]).Update;
-  Application.ProcessMessages;
 end;
 
 procedure TMainForm.miHelpAboutClick ( Sender: TObject ) ;
@@ -1109,12 +1101,12 @@ begin
   miExit.Caption := rsMenuExit;
   miFileNew.Caption := rsMenuNew;
   miFileOpen.Caption := rsMenuOpen;
-  FilenameHdr.Caption := rsColFileName;
-  DateHdr.Caption := rsColDate;
-  SizeHdr.Caption := rsColSize;
-  UserHdr.Caption := rsColUser;
-  GroupHdr.Caption := rsColGroup;
-  StatusHdr.Caption := rsColStatus;
+  FileHeaderBar.SectionFromOriginalIndex[HEADERNAME].Text := rsColFileName;
+  FileHeaderBar.SectionFromOriginalIndex[HEADERDATE].Text := rsColDate;
+  FileHeaderBar.SectionFromOriginalIndex[HEADERSIZE].Text := rsColSize;
+  FileHeaderBar.SectionFromOriginalIndex[HEADERUSER].Text := rsColUser;
+  FileHeaderBar.SectionFromOriginalIndex[HEADERGROUP].Text := rsColGroup;
+  FileHeaderBar.SectionFromOriginalIndex[HEADERSTATUS].Text := rsColStatus;
 end;
 
 
