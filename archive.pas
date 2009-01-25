@@ -460,17 +460,21 @@ begin
   RunOnceDateLabel.Caption := rsColDate;
   RunOnceHourLabel.Caption := rsHour;
   RunOnceMinuteLabel.Caption := rsMinutes;
+  RepeatRadioButton.Caption := rsRunRegularily;
   RepeatHourLabel.Caption := rsHour;
   RepeatMinuteLabel.Caption := rsMinutes;
   RepeatWeekDayLabel.Caption := rsDayOfWeek;
   RepeatMonthDayLabel.Caption := rsDayInMonth;
   RepeatMonthLabel.Caption := rsMonth;
+  RunOnceRadioButton.Caption := rsRunOnceOnly;
   RunOnceDateEdit.DialogTitle := rsCptSelectDate;
   RunOnceDateEdit.CancelCaption := rsButtonCancel;
   RunOnceDateEdit.OKCaption := rsButtonOK;
   NowRadioButton.Caption := rsCreateArchiveImmedia;
   OpenCreatedArchiveCheck.Caption := rsOpenArchiveWhenCompl;
   EncryptArchiveCheck.Caption := rsEncryptArchive;
+  SaveButton.Hint := rsSaveSettings;
+  LoadButton.Hint := rsLoadSettings;
 end;
 
 procedure TArchiveForm.AddIncludeDirButtonClick ( Sender: TObject ) ;

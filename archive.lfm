@@ -108,6 +108,8 @@ object ArchiveForm: TArchiveForm
       }
       NumGlyphs = 0
       OnClick = SaveButtonClick
+      ShowHint = True
+      ParentShowHint = False
     end
     object LoadButton: TSpeedButton
       Left = 16
@@ -153,6 +155,8 @@ object ArchiveForm: TArchiveForm
       }
       NumGlyphs = 0
       OnClick = LoadButtonClick
+      ShowHint = True
+      ParentShowHint = False
     end
     object OKButton: TBitBtn
       Left = 392

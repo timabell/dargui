@@ -3,15 +3,15 @@ object CreateSaveDialog: TCreateSaveDialog
   Height = 293
   Top = 298
   Width = 592
-  HorzScrollBar.Page = 591
-  VertScrollBar.Page = 292
   ActiveControl = FilenameEdit
   Caption = 'CreateSaveDialog'
   ClientHeight = 293
   ClientWidth = 592
+  OnCreate = FormCreate
+  LCLVersion = '0.9.27'
   object FilenameLabel: TLabel
     Left = 35
-    Height = 20
+    Height = 16
     Top = 18
     Width = 155
     Caption = 'Save backup settings as'
@@ -19,7 +19,7 @@ object CreateSaveDialog: TCreateSaveDialog
   end
   object NotesLabel: TLabel
     Left = 35
-    Height = 20
+    Height = 16
     Top = 85
     Width = 38
     Caption = 'Notes'
