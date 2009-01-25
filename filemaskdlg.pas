@@ -49,8 +49,13 @@ end;
 
 procedure TFileMaskDialog.OKButtonClick ( Sender: TObject ) ;
 begin
-  ModalResult := mrOk;
-  StoreMasks;
+  if Trim(FileMask.Text) = ''
+     then ModalResult := mrCancel
+     else
+        begin
+          ModalResult := mrOK;
+          StoreMasks;
+        end;
 end;
 
 procedure TFileMaskDialog.StoreMasks ;
@@ -63,7 +68,8 @@ begin
    if FileMask.Items.Count > 0
       then fMasks := FileMask.Items[0];
    for x := 1 to FileMask.Items.Count-1 do
-       fMasks := fMasks + ';' + FileMask.Items[x];
+       if FileMask.Items[x] <> ''
+          then fMasks := fMasks + ';' + FileMask.Items[x];
   end;
 end;
 
@@ -109,14 +115,19 @@ end;
 procedure TFileMaskDialog.FileMaskExit(Sender: TObject);
 var
   i: Integer;
+  mask: string;
 begin
-  if Filemask.Text = '' then exit;
-  i := FileMask.Items.IndexOf(FileMask.Text);
+  if FileMask.ItemIndex > -1 then
+     mask := FileMask.Items[FileMask.ItemIndex]
+  else mask := Trim(FileMask.Text);
+  if mask = '' then exit;
+  i := FileMask.Items.IndexOf(mask);
   if i > -1
-         then FileMask.Items.Delete(i);
-  FileMask.Items.Insert(0,FileMask.Text);
+     then FileMask.Items.Delete(i);
+  FileMask.Items.Insert(0, mask);
   if FileMask.Items.Count > FileMask.DropDownCount
      then FileMask.Items.Delete(FileMask.Items.Count-1);
+  FileMask.ItemIndex := 0;
   StoreMasks;
 end;
 

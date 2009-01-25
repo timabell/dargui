@@ -3,17 +3,16 @@ object FileMaskDialog: TFileMaskDialog
   Height = 148
   Top = 532
   Width = 278
-  HorzScrollBar.Page = 277
-  VertScrollBar.Page = 147
   ActiveControl = OKButton
   Caption = 'Add file'
   ClientHeight = 148
   ClientWidth = 278
   OnCreate = FormCreate
   OnShow = FormShow
+  LCLVersion = '0.9.27'
   object FileMaskLabel: TLabel
     Left = 34
-    Height = 20
+    Height = 16
     Top = 24
     Width = 58
     Caption = 'File mask'
@@ -27,7 +26,6 @@ object FileMaskDialog: TFileMaskDialog
     Caption = '&OK'
     Default = True
     Kind = bkOK
-    ModalResult = 1
     NumGlyphs = 0
     OnClick = OKButtonClick
     TabOrder = 1
@@ -46,10 +44,9 @@ object FileMaskDialog: TFileMaskDialog
   end
   object FileMask: TComboBox
     Left = 34
-    Height = 25
+    Height = 23
     Top = 45
     Width = 214
-    AutoCompleteText = [cbactEndOfLineComplete, cbactSearchAscending]
     MaxLength = 65535
     OnExit = FileMaskExit
     TabOrder = 0
