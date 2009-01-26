@@ -562,6 +562,7 @@ begin
        Shell.Options := Shell.Options + [poWaitOnExit, poUsePipes, poStderrToOutPut];
        Shell.Execute;
        bytes := Shell.Output.NumBytesAvailable;
+       SetLength(processoutput, bytes);
        Shell.Output.Read(processoutput[1], bytes);
      finally
        Result := Shell.ExitStatus;
