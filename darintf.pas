@@ -242,7 +242,7 @@ var
 begin
   Result := false;
   Proc := TProcess.Create(Application);
-  Proc.CommandLine := TOOLDIR + '/checkprocess.sh ' + processname;
+  Proc.CommandLine := TOOLDIR + '/checkprocess.sh " ' + processname + '"';
   Proc.Options := Proc.Options + [poWaitOnExit, poUsePipes];
   try
     try
@@ -250,9 +250,10 @@ begin
       b := Proc.Output.NumBytesAvailable;
       SetLength(output, b);
       Proc.Output.Read(output[1], b);
-      Result := Pos(processname, output) > 0;
+      processname := #32 + processname + #10;
+      Result := (Pos(processname, output) > 0);
     except
-      writeln('Error when testing if ', processname, ' is running');
+      writeln('Error when testing if ', Trim(processname), ' is running');
       Result := false;
     end;
   finally
