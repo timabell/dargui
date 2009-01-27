@@ -2,6 +2,8 @@ unit schedman;
 
 {$mode objfpc}{$H+}
 
+//TODO: icons used on this dialog to be attributed to "Deleket" http://deleket.deviantart.com/
+
 interface
 
 uses
@@ -22,6 +24,7 @@ type
   TScheduleManagerForm = class ( TForm )
     CloseButton: TBitBtn;
     CancelButton: TButton;
+    IconList: TImageList;
     ResultButtonPanel: TPanel;
     ScheduleList: TStringGrid;
     CronTab: TStringList;
@@ -32,6 +35,10 @@ type
     procedure FormDestroy ( Sender: TObject ) ;
     procedure FormResize ( Sender: TObject ) ;
     procedure InitialiseInterface;
+    procedure ScheduleListDrawCell(Sender: TObject; aCol, aRow: Integer;
+      aRect: TRect; aState: TGridDrawState);
+    procedure ScheduleListHeaderSized(Sender: TObject; IsColumn: Boolean;
+      Index: Integer);
   private
     procedure GetAtScripts;
     procedure GetCronScripts;
@@ -50,8 +57,9 @@ const
   SCRIPT_TYPE_AT   = 0;
   SCRIPT_TYPE_CRON = 1;
   
-  COL_SCRIPT_NAME   = 0;
-  COL_SCRIPT_TIME   = 1;
+  COL_SCRIPT_TYPE   = 0;
+  COL_SCRIPT_NAME   = 1;
+  COL_SCRIPT_TIME   = 2;
 
 implementation
 
@@ -63,6 +71,8 @@ procedure TScheduleManagerForm.FormResize ( Sender: TObject ) ;
 begin
   ScheduleList.Width := Width - 50;
   ScheduleList.Height := Height - 150;
+  ScheduleList.ColWidths[2] :=
+      ScheduleList.ClientWidth - ScheduleList.ColWidths[0] - ScheduleList.ColWidths[1];
   CancelButton.Top := ScheduleList.Top + ScheduleList.Height + 15;
   CloseButton.Left := (ResultButtonPanel.Width - CloseButton.Width) div 2;
 end;
@@ -99,6 +109,7 @@ begin
                           if outputline[q] = #32 then Inc(spacecount);
                           Dec(q);
                         end;
+                  ScheduleList.Cells[COL_SCRIPT_TYPE,ScheduleList.RowCount-1] := IntToStr(SCRIPT_TYPE_AT);
                   ScheduleList.Cells[COL_SCRIPT_TIME,ScheduleList.RowCount-1] := Copy(outputline, p, q-p+1);
                   ScriptInfo := TScriptInfo.Create;
                   ScriptInfo.Fullname := AtScriptDir + searchResult.Name;
@@ -133,6 +144,7 @@ begin
                         if Crontab.Strings[x][p] = #32 then Inc(counter);
                         Inc(p);
                       end;
+                ScheduleList.Cells[COL_SCRIPT_TYPE,ScheduleList.RowCount-1] := IntToStr(SCRIPT_TYPE_CRON);
                 ScheduleList.Cells[COL_SCRIPT_TIME,ScheduleList.RowCount-1] := Copy(Crontab.Strings[x], 1, p-1);
                 ScheduleList.Cells[COL_SCRIPT_NAME,ScheduleList.RowCount-1] := ExtractFileName( Copy(Crontab.Strings[x], p , MaxInt) );
                 ScriptInfo := TScriptInfo.Create;
@@ -232,8 +244,62 @@ begin
   Caption := rsCptScheduledBackups;
   CancelButton.Caption := rsButtonRemove;
   CloseButton.Caption := rsButtonClose;
+  ScheduleList.Columns.Items[COL_SCRIPT_TYPE].Title.Caption := ' ';
   ScheduleList.Columns.Items[COL_SCRIPT_NAME].Title.Caption := rsScript;
   ScheduleList.Columns.Items[COL_SCRIPT_TIME].Title.Caption := rsTime;
+end;
+
+procedure TScheduleManagerForm.ScheduleListDrawCell(Sender: TObject; aCol,
+  aRow: Integer; aRect: TRect; aState: TGridDrawState);
+var
+  Glyph: TBitmap;
+begin
+  Glyph := TBitmap.Create;
+  aRect.Right := ScheduleList.ClientWidth;
+  try
+  if aRow > 0 then
+     begin
+       if gdSelected in aState
+          then ScheduleList.Canvas.Brush.Color := clHighlight
+          else ScheduleList.Canvas.Brush.Color := clWindow;
+        ScheduleList.Canvas.FillRect(aRect);
+        if aCol > COL_SCRIPT_TYPE then ScheduleList.Canvas.TextRect(aRect, aRect.Left + 2, aRect.Top + 2, ScheduleList.Cells[aCol, aRow])
+        else case StrToInt(ScheduleList.Cells[COL_SCRIPT_TYPE, aRow]) of
+             SCRIPT_TYPE_AT : begin
+                                IconList.GetBitmap(SCRIPT_TYPE_AT, Glyph);
+                                ScheduleList.Canvas.Draw(aRect.Left + 2, aRect.Top + 2, Glyph) ;
+                              end;
+             SCRIPT_TYPE_CRON: begin
+                                 IconList.GetBitmap(SCRIPT_TYPE_CRON, Glyph);
+                                 ScheduleList.Canvas.Draw(aRect.Left + 2, aRect.Top + 2, Glyph);
+                               end;
+             end;
+        //should not be a fixed color but cannot work out which it should be
+        ScheduleList.Canvas.Pen.Color := clSilver;
+     end
+  else //  Header Row
+     begin
+       ScheduleList.Canvas.Brush.Color := ScheduleList.FixedColor;
+       ScheduleList.Canvas.FillRect(aRect);
+       if aCol = COL_SCRIPT_NAME
+            then ScheduleList.Canvas.TextRect(aRect, aRect.Left + 2, aRect.Top + 2, rsScript)
+       else if aCol = COL_SCRIPT_TIME
+            then ScheduleList.Canvas.TextRect(aRect, aRect.Left + 2, aRect.Top + 2, rsTime);
+       //should not be a fixed color but cannot work out which it should be
+       ScheduleList.Canvas.Pen.Color := clBlack;
+     end;
+  //This keeps it looking right when columns are being resized
+  ScheduleList.Canvas.Line(aRect.Left, aRect.Bottom-1, aRect.Right, aRect.Bottom-1);
+  finally
+  Glyph.Free;
+  end;
+end;
+
+procedure TScheduleManagerForm.ScheduleListHeaderSized(Sender: TObject;
+  IsColumn: Boolean; Index: Integer);
+begin
+    ScheduleList.ColWidths[2] :=
+      ScheduleList.ClientWidth - ScheduleList.ColWidths[0] - ScheduleList.ColWidths[1];
 end;
 
 initialization
