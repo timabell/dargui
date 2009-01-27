@@ -24,7 +24,7 @@ type
     miShowSelect: TMenuItem;
     miTestArchive: TMenuItem;
     FileViewScrollBox: TScrollBox;
-    tbTest: TBitBtn;
+    tbSchedMan: TBitBtn;
     IconList: TImageList;
     MenuBreak3: TMenuItem;
     MenuBreak4: TMenuItem;
@@ -69,6 +69,7 @@ type
     miFileNew: TMenuItem;
     miFileOpen: TMenuItem;
     OpenDialog: TOpenDialog;
+    tbTest: TBitBtn;
     ToolbarPanel: TPanel;
     TreeViewMenu: TPopupMenu;
     StatusBar: TStatusBar;
@@ -128,6 +129,9 @@ var
   AtScriptDir: string;
   CronScriptDir: string;
   RecentList : TRecentFiles;
+
+  HasATD: Boolean;
+  HasCron: Boolean;
   
 
   
@@ -157,6 +161,7 @@ var
   PrefFileName: string;
   RecentFile: string;
   x: integer;
+  test: string;
 begin
   //set default colors for Treeview levels
   //at some point it will be possible for the user to change these
@@ -205,6 +210,12 @@ begin
        2: ShowMessage ( rsErrNoBash ) ;
        3: ShowMessage ( rsErrNoXtermBash ) ;
        end;
+  HasATD := (ProcessRunning('atd'))
+     and (ShellCommand('atq -V', test) = 0);
+  HasCron :=  (ProcessRunning('cron'))
+     and (ShellCommand('crontab -l', test) = 0);
+  miSchedManager.Enabled := HasATD or HasCron;
+  tbSchedMan.Enabled := HasATD or HasCron;
   DarInfo := GetDarVersion;
   if DarInfo.version='-' then
      begin
@@ -1073,6 +1084,7 @@ begin
   tbCreate.Hint := rsHintCreateANewArchive;
   tbIsolate.Hint := rsHintIsolateCatalogue;
   tbTest.Hint := rsCheckArchiveForErrors;
+  tbSchedMan.Hint := rsSeeSchedBackups;
   MenuHelp.Caption := rsMenuHelp;
   miHelpContents.Caption := rsMenuDarGUIHelp;
   miIsolate.Caption := rsMenuIsolateCatalogue;

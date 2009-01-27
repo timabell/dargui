@@ -234,10 +234,8 @@ begin
   RepeatMonthBox.ItemIndex := 0;
   BatchFile := TStringList.Create;
   LoadingSettings := false;
-  RunOnceRadioButton.Enabled := (ProcessRunning('atd'))
-     and (ShellCommand('atq -V', test) = 0);
-  RepeatRadioButton.Enabled :=  (ProcessRunning('cron'))
-     and (ShellCommand('crontab -l', test) = 0);
+  RunOnceRadioButton.Enabled := HasATD;
+  RepeatRadioButton.Enabled :=  HasCron;
   InitialiseInterface;
 end;
 
