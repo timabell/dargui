@@ -140,6 +140,7 @@ rsHintCreateANewArchive = 'Create a new archive';
 rsHintIsolateCatalogue = 'Isolate catalogue from archive';
 rsCheckArchiveForErrors = 'Check the archive for errors';
 rsMenuHelp = 'Help';
+rsSeeSchedBackups = 'View list of scheduled backups';
 rsMenuHelpAbout = 'About DarGUI';
 rsVersionNumber = 'Version number: %s';
 rsSVNRevision = 'SVN Revision: %s';
