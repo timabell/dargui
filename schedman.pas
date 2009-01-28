@@ -209,14 +209,20 @@ begin
 end;
 
 procedure TScheduleManagerForm.CancelButtonClick ( Sender: TObject ) ;
+var
+  scriptname: string;
 begin
   //TODO: reload crontab and atq to reduce risk of deleting entries newly created by other apps
-  case TScriptInfo(ScheduleList.Objects[0, ScheduleList.Selection.Top]).ScriptType of
-       SCRIPT_TYPE_AT    : if DeleteAtScript( TScriptInfo(ScheduleList.Objects[0, ScheduleList.Selection.Top]) )
-                              then   DeleteLine(ScheduleList.Selection.Top);
-       SCRIPT_TYPE_CRON  : if DeleteCronScript( TScriptInfo(ScheduleList.Objects[0, ScheduleList.Selection.Top]) )
-                              then   DeleteLine(ScheduleList.Selection.Top);
-       end;
+  scriptname := ScheduleList.Cells[COL_SCRIPT_NAME, ScheduleList.Selection.Top];
+  if MessageDlg(rsConfirmCancel,
+                Format(rsCancelSchedScript, [#10, scriptname]),
+                mtConfirmation, mbYesNo, 0) = mrYes then
+        case TScriptInfo(ScheduleList.Objects[0, ScheduleList.Selection.Top]).ScriptType of
+             SCRIPT_TYPE_AT    : if DeleteAtScript( TScriptInfo(ScheduleList.Objects[0, ScheduleList.Selection.Top]) )
+                                    then   DeleteLine(ScheduleList.Selection.Top);
+             SCRIPT_TYPE_CRON  : if DeleteCronScript( TScriptInfo(ScheduleList.Objects[0, ScheduleList.Selection.Top]) )
+                                    then   DeleteLine(ScheduleList.Selection.Top);
+             end;
 end;
 
 procedure TScheduleManagerForm.FormCreate ( Sender: TObject ) ;

@@ -274,6 +274,8 @@ rsMessUnableToFindArchive = 'Unable to find archive ''%s''';
 rsCptScheduledBackups = 'Scheduled backups';
 rsErrDeletingCron = 'Error when deleting crontab entry: %s%s';
 rsErrDeletingSched = 'Error when deleting scheduled backup';
+rsConfirmCancel = 'Confirm cancellation';
+rsCancelSchedScript = 'Are you sure that you want to cancel scheduled script %s%s';
 
 implementation
 
