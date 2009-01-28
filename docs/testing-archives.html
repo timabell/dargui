@@ -1,0 +1,104 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+  <title>Testing archive integrity</title>
+
+
+  <link rel="stylesheet" href="kde-default.css" type="text/css">
+
+  <meta name="keywords" content="dargui, backup, archive, slice, disk">
+
+  <link rel="home" href="index.html" title="template">
+
+  <link rel="up" href="index.html" title="Restoring Archives">
+
+  <link rel="previous" href="viewing-archives.html" title="templateprev">
+
+  <link rel="next" href="testing-archives.html" title="templatenext">
+
+</head>
+<body style="color: black; background-color: white;" alink="#0000ff" link="#0000ff" vlink="#840084">
+
+<br>
+
+<table class="header" width="100%">
+
+  <tbody>
+
+    <tr>
+
+      <td class="navLeft" align="left" width="33%"><a href="comparing-files.html">Prev</a></td>
+
+      <td class="navCenter" align="center" valign="top" width="34%"><a href="index.html">Home</a></td>
+
+      <td class="navRight" align="right" width="33%">
+      <a href="backup-schedules.html">Next</a></td>
+
+    </tr>
+
+  </tbody>
+</table>
+
+<div class="chapter">
+<div class="titlepage">
+<div>
+<h2 class="title"><a name="introduction"></a>Chapter
+2. Using Dargui</h2>
+
+</div>
+
+</div>
+
+<div class="sect1">
+<div class="titlepage">
+<div>
+<h2 class="title" style="clear: both;"><a name="overview"></a>Testing archive integrity</h2>
+
+</div>
+
+</div>
+
+<p>A critical part of making backups is testing the integrity of the backup on the final storage medium. KDar uses cyclic redundancy checks, or CRCs, to check the integrity of an archive.</p>
+
+<p>To test the integrity of an archive, load the archive into DarGUI, then select Archive->Check integrity from the main menu to begin the check. This test is best performed by opening the archive directly from the storage medium on which it resides. It may take a while, but it is worth knowing that your data is intact. A terminal window will appear in which the output from Dar will be displayed.</p>
+
+<p>NOTE: the archive integrity test does not guarantee that you will be able to restore your data onto a new disk. For example, if you try to restore a file which has extended attributes onto a filesystem which does not support extended attributes, you will not be able to restore the extended attributes. Another example would be if you “upgraded” your CD-ROM drive, and it could not read the old CD-R's that you made two years ago.</p>
+
+<p>To maintain the highest probability of being able to recover from a catastrophic filesystem failure, perform a full restoration on another hard dive, partition, or storage device, to verify that you can perform complete restoration.</p>
+
+<p>Read the <A href="http://dar.sourceforge.net/doc/Good_Backup_Practice.html">Good Backup Practice Short Guide</A>  for a good background on making reliable backups.</p>
+
+
+</div>
+
+</div>
+
+<table class="bottom-nav" width="100%">
+
+  <tbody>
+
+    <tr>
+
+      <td class="navLeft" align="left" valign="top" width="33%"><a href="comparing-files.html">Prev</a></td>
+
+      <td class="navCenter" align="center" valign="top" width="34%"><a href="index.html">Home</a></td>
+
+      <td class="navRight" align="right" valign="top" width="33%"><a href="backup-schedules.html">Next</a></td>
+
+    </tr>
+
+    <tr>
+
+      <td class="navLeft" align="left" width="33%">Comparing archives with the filesystem</td>
+
+      <td class="navCenter" align="center" width="34%"><a href="index.html">Up</a></td>
+
+      <td class="navRight" align="right" width="33%">Viewing backup schedules</td>
+
+    </tr>
+
+  </tbody>
+</table>
+
+</body>
+</html>

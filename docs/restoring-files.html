@@ -32,7 +32,7 @@
       <td class="navCenter" align="center" valign="top" width="34%"><a href="index.html">Home</a></td>
 
       <td class="navRight" align="right" width="33%">
-      <a href="#.html">Next</a></td>
+      <a href="isolating-catalogs.html">Next</a></td>
 
     </tr>
 
@@ -58,13 +58,67 @@
 
 </div>
 
-<p>Individual files can be restored from the archive by selecting them, right-clicking with the mouse on the archive contents, and selecting "Restore selected". </p>
-
-<p>You can select multiple files for restoration this way by holding down the <strong>Ctrl</strong> key while left-clicking with the mouse. Groups of files or directories can be selected by holding down the <strong>Alt</strong> key while left-clicking with the mouse.</p>
+<p>Individual files can be selected for restoration by left-clicking on them with the mouse. You can select multiple files for restoration this way by holding down the <strong>Ctrl</strong> key while left-clicking on them. Groups of files or directories can be selected by holding down the <strong>Alt</strong> key while left-clicking.</p>
 
 <p>If an unexpanded directory is selected (ie: the directory contents are hidden) then all its contents will also be selected. However, if its contents are visible then only the directory itself will be selected, allowing you to choose which of its contents you want to restore.</p>
 
-<p>Files can also be selected using filters. To do this choose the "Select by Filter" option from the popup menu or the "Archive" menu.</p>
+<p>The number of nodes currently selected is shown in the status bar at the bottom of the DarGUI main window.</p>
+
+<hr>
+<div>
+<h2 class="title" style="clear: both;"><a name="selectionmenu"></a>File selection menu</h2>
+
+</div>
+<p>Right-clicking over the archive contents pops up a context menu which allows you to restore selected items or the entire archive.This menu has the following options:</p>
+<ul>
+<li><p><strong>Restore selected</strong> - restore all the files which have been selected.</p></li>
+
+<li><p><strong>Restore all</strong> - restore all files from the archive.</p></li>
+
+<li><p><strong>Toggle selected</strong> - reverse the current selection. All the files which are unselected at the moment will be selected and visa versa. A useful option if there are a few files that you want to exclude quickly.</p></li>
+
+<li><p><strong>Select by filter</strong> - <br>This enables you to select all files in the archive which match a filter or combination of filters. The following window will appear:<br>
+<IMG src="images/file-filter-dialog.png" width="333" height="290" align="middle" border="0">
+<br>Filters can be added or removed using the appropriate buttons. The "Clear" button will remove all filters.</p> 
+
+<ul>
+<li><p><strong>Match all filters</strong> - if this option is selected then a file will be selected <u>only</u> if it matches <u>all</u> the filters in the list. When "Match all filters" is not selected then a file will be selected if it matches any one of the filters. </p></li>
+
+<li><p><strong>Apply filters to filenames only</strong> - If this option is not selected then a file will be selected if the filter matches to its name or to its path.</p></li>
+</ul>
+</li>
+
+<li><p><strong>Show selected</strong> - files selected using "Select by filter" or "Toggle selected" are not shown automatically. Use this option to see all the currently selected files.</p></li>
+
+<li><p><strong>Show all</strong> - expand the display to show all the files in the archive.</p></li>
+
+<li><p><strong>Hide all</strong> - hide the contents of the archive.</p></li>
+
+</ul>
+<hr>
+<div>
+<h2 class="title" style="clear: both;"><a name="selectionmenu"></a>Restore files dialog</h2>
+
+</div>
+<IMG src="images/restore-files-dialog.png" width="493" height="222" align="middle" border="0">
+
+<ul>
+<li><p><strong>Restore files to</strong> - select the directory into which you want to extract the files.</p></li>
+
+<li><p><strong>Existing files </strong> - dar will do one of three things when it finds existing files of the same name:
+	<ul>
+	<li><strong>Overwrite existing files</strong> - existing files will be replaced by extracted files of the same name.</li>
+	<li><strong>Confirm before overwriting</strong> - dar will pause when it finds conflicting files and give you the option of overwriting the existing file or skipping the extraction of that file from the archive.</li>
+	<li><strong>Do not overwrite files</strong> - any files which already exist in the destination will not be extracted.</li>
+	</ul>
+</p>
+&nbsp;</li>
+
+<li><p><strong>Test run only</strong> - dar will display messages as if it was extracting the selected files but the files will not really be extracted.</p></li>
+
+<li><p><strong>Ignore directories</strong> - the directory structure of the archive will be ignored and all files will be extracted into the same directory.</p></li>
+
+</ul>
 
 </div>
 
@@ -80,7 +134,7 @@
 
       <td class="navCenter" align="center" valign="top" width="34%"><a href="index.html">Home</a></td>
 
-      <td class="navRight" align="right" valign="top" width="33%"><a href="#.html">Next</a></td>
+      <td class="navRight" align="right" valign="top" width="33%"><a href="isolating-catalogs.html">Next</a></td>
 
     </tr>
 
@@ -90,7 +144,7 @@
 
       <td class="navCenter" align="center" width="34%"><a href="index.html">Up</a></td>
 
-      <td class="navRight" align="right" width="33%">#</td>
+      <td class="navRight" align="right" width="33%">Isolating catalogs</td>
 
     </tr>
 
