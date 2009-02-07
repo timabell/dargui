@@ -95,12 +95,18 @@ DarGUI.</p><p>- Unimplemented features of Dar: While DarGUI attempts to
 provide access to the most common functionality of Dar, there are many
 other features which are not implemented. These include:</p><ul><li>Extended Attributes</li><li>include-from-file/exclude-from-file (-[ and -] ) options</li><li>Merging of archives</li><li>Execution of a script or command between slices</li><li>Support&nbsp;for the nodump option</li></ul>
 
+<p>- cannot open or create an archive if its name includes apostrophes, double quotes or other characters which have a special meaning in bash scripts. These are   <strong>&#124;  &amp; &#059; &#040; &#041; &#060; &#062; &#034; &#039;</strong>.  </p>
+
 <hr>
 <div>
 <h2 class="title"><a name="overview"></a>Bugs</h2>
 
 </div>
-<p>There are no known bugs at the time of writing. If you find a bug or something that is not working as you think it should, please contact the author, Malcolm Poole, at <A href="mailto:mgpoole@users.sourceforge.net">mgpoole@users.sourceforge.net</A>.</p>
+<p>At the time of writing we are aware of the following bugs, but others probably exist. If you find a bug or something that is not working as you think it should, please contact the author, Malcolm Poole, at <A href="mailto:mgpoole@users.sourceforge.net">mgpoole@users.sourceforge.net</A>.</p>
+<ol>
+<li><strong>Restore selected fails on filename with apostrophe</strong> (bug <A href="https://sourceforge.net/tracker2/?func=detail&aid=2473539&group_id=211843&atid=1019387">#2473539</A>)- this is actually a DAR bug, but <A href="faq.html#apostrophebug">a workaround exists</A> in DAR but not from within DarGUI. </li>
+
+</ol>
 
 
 </div>

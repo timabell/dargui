@@ -62,10 +62,14 @@
 <ul><li>DarGUI stores user data in a file named <em>dargui.rc</em>. If the folder <em>.config</em> already exists in your HOME directory when DarGUI is first run then you will find <em>dargui.rc</em> in <em>.config/dargui</em> in your home directory, otherwise it will be in a folder named <em>.dargui</em> in your home directory.</li></ul>
 </p>
 
-<p><A name="configfile"></A>3.2 This doesn't work! Why not?
+<p><A name="generalbug"></A>3.2 This doesn't work! Why not?
 <ul><li>If you find a bug please don't give up without letting us know about it, either by using the <A href="http://sourceforge.net/tracker/?group_id=211843&atid=1019387">sourceforge bug-tracker</A> or by emailing the author, Malcolm Poole at mgpoole@users.sourceforge.net. Do try to give us as much information about how the problem happened and what you were doing before it occurred.</li></ul>
 </p>
 
+<p><A name="apostrophebug"></A>3.3 How can I extract a file from the archive if there is an apostrophe in its name?
+<ul><li>If you do the restore using "Restore all" the file will be extracted with the rest of the archive. If you do not want to restore all the files in the archive, then filenames containing apostrophes must be restored using the command line:<br>
+dar -x "/path/to/archive/archivename" -R "/directory/to/restore/files/" -g "filename" -O </li></ul>
+</p>
 
 </div>
 
