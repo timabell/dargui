@@ -5,7 +5,7 @@ unit darintf;
 interface
 
 uses
-  Classes, SysUtils, Process, Comctrls, StdCtrls, FileUtil, Forms, controls;
+  Classes, SysUtils, Process, Comctrls, StdCtrls, FileUtil, Forms, controls, Dialogs;
   
 type
   TDarInfo = record
@@ -65,6 +65,9 @@ const
    CfgRecentX = 'Recent';
    CfgShowToolbar = 'ShowToolbar';
 
+// bash special chars which we can't handle in archive names or paths
+// we can already handle spaces so they're commented out
+const escapechars = ['|', '&', ';', '(', ')', '<', '>', '"', ''''{, ' '}];
 
 type
   TFileData = class
@@ -109,6 +112,8 @@ type
   
   procedure GetDefaultBrowser(var Browser, Params: string);
   function SetBytes( bytes: Int64 ): string;
+  function EscapeString(aString: string): string;
+  function ContainsSpecialChars( aString: string ): Boolean;
 
 var
   TerminalCommand: string;
@@ -116,7 +121,7 @@ var
 
 implementation
 
-uses baseunix, processline, password, darstrings;
+uses baseunix, processline, password, darstrings, dgStrConst;
 
 // ************** GetDarVersion ***************** //
 
@@ -761,6 +766,12 @@ end;
 function ValidateArchive( var archivename: string; var pw: string ): Boolean;
 begin
   result := true;
+  if ContainsSpecialChars(archivename) then
+     begin
+       Result := false;
+       ShowMessage(rsErrInvalidChars);
+       exit;
+     end;
   pw := '';
   archivename := TrimToBase( archivename );
   if ArchiveIsEncrypted(archivename) then
@@ -843,6 +854,28 @@ begin
  end;
 end;
 
+function EscapeString(aString: string): string;
+var
+  x: Integer;
+begin
+  for x := length(aString) downto 1 do
+      if aString[x] in escapechars
+         then aString := Copy(aString, 1, x-1) + '\' + Copy(aString, x, MaxInt);
+  Result := aString;
+end;
+
+function ContainsSpecialChars(aString: string): Boolean;
+var
+  x: Integer;
+begin
+  Result := false;
+  for x := 1 to Length( aString ) do
+      if aString[x] in escapechars then
+         begin
+           Result := true;
+           exit;
+         end;
+end;
 
 
 End.

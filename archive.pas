@@ -839,6 +839,15 @@ begin        //TODO: check that script is not to be created within base director
        Result := false;
        exit;
      end;
+  if ContainsSpecialChars(ArchiveName.Text)
+     or ContainsSpecialChars(ArchiveDirectory.Text) then
+     begin
+       ArchiveNotebook.PageIndex := 0;
+       ArchiveName.SetFocus;
+       ShowMessage(rsErrInvalidChars);
+       Result := false;
+       exit;
+     end;
   if ArchiveDirectory.Text[Length(ArchiveDirectory.Text)] <> DirectorySeparator
      then ArchiveDirectory.Text := ArchiveDirectory.Text + DirectorySeparator;
   if BaseDirectory.Text[Length(BaseDirectory.Text)] <> DirectorySeparator

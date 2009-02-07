@@ -124,6 +124,8 @@ rsButtonClose = 'Close';
 rsScript = 'Script';
 rsTime = 'Time';
 rsOptions2 = ' Options ';
+rsErrInvalidChars = 'Archive name or path contains invalid characters';
+
 
 //IsloateForm
 rsCptIsolateArchiveCatalo = 'Isolate archive catalogue';
