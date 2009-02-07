@@ -212,8 +212,9 @@ begin
        end;
   HasATD := (ProcessRunning('atd'))
      and (ShellCommand('atq -V', test) = 0);
-  HasCron :=  (ProcessRunning('cron'))
-     and (ShellCommand('crontab -l', test) = 0);
+  HasCron :=  ( ( (ProcessRunning('cron')  // Ubuntu
+              or (ProcessRunning('crond') ) ) ) // CentOS
+     and (ShellCommand('crontab -l', test) = 0) ) ;
   miSchedManager.Enabled := HasATD or HasCron;
   tbSchedMan.Enabled := HasATD or HasCron;
   DarInfo := GetDarVersion;
