@@ -141,11 +141,11 @@ begin
   s := Pos('%s', darstring);
   if s > 0
      then if s < Result
-        then Result := s;
+        then Result := s-1;
   n := Pos('\n', darstring);
   if n > 0
      then if n < Result
-          then Result := n;
+          then Result := n-1;
 end;
 
 Type
