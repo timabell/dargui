@@ -8,7 +8,7 @@ interface
 
 uses
   Classes, SysUtils, LResources, Forms, Controls, Graphics, Dialogs, ExtCtrls,
-  Buttons, StdCtrls, Calendar, EditBtn;
+  Buttons, StdCtrls, EditBtn;
 
 type
 
@@ -151,7 +151,6 @@ type
   public
     { public declarations }
     function CreateBatchfile: Boolean;
-    function CreateScript: Boolean;
     function GetUniqueScriptName(aDir: string): string;
     BatchFile: TStringList;
     ArchiveBaseName: string;
@@ -199,7 +198,6 @@ end;
 procedure TArchiveForm.FormCreate ( Sender: TObject ) ;
 var
   x: Integer;
-  test: string;
 begin
   ArchiveDirectory.Text := SysUtils.GetEnvironmentVariable('HOME');
   BaseDirectory.Text := SysUtils.GetEnvironmentVariable('HOME');
@@ -478,8 +476,6 @@ end;
 procedure TArchiveForm.AddIncludeDirButtonClick ( Sender: TObject ) ;
 var
   LB: TListBox;
-  ConflictList: TListBox;
-  ConflictMessage: string;
   DelBn: TButton;
   x: Integer;
 begin
@@ -958,7 +954,6 @@ end;
 procedure TArchiveForm.ResolveConflicts ( Sender, RefList: TObject;
   ConflictMessage: string ) ;
 var
-  LB: TListBox;
   RB : TListBox;
   x: Integer;
 begin
@@ -966,7 +961,6 @@ begin
   FileConflictForm := TFileConflictForm.Create(Self);
   FileConflictForm.Caption := rsCptResolveConflict;
   FileConflictForm.InstructionLabel.Caption := ConflictMessage;
-  LB := TListBox(Sender);
   RB := TlistBox(RefList);
   for x := 0 to OpenDialog.Files.Count-1 do
       if RB.Items.IndexOf( ExtractFileName( OpenDialog.Files[x] ) ) > -1
@@ -1102,22 +1096,6 @@ begin
         end;
 end;
 
-function TArchiveForm.CreateScript: Boolean;
-var
-  script: Textfile;
-begin
-  if CreateBatchfile then
-     begin
-       AssignFile(script, ScriptFilenameBox.Text);
-          try
-            Rewrite(script);
-            
-          finally
-
-          end;
-       
-     end;
-end;
 
 
 initialization

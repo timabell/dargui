@@ -136,12 +136,12 @@ var
 
   
 const
-  APP_VERSION = '0.5.0-test1';
-  {$I revision.inc}
+  APP_VERSION = '0.5.0';
+  //{$I revision.inc}
   {revision.inc is a dynamically produced file containing the number of the most recent SVN revision
    the include directive can be commented out and the following line uncommented, replacing the number 0 with the
    appropriate revision number}
-  //SVN_REVISION = '0';
+  SVN_REVISION = '261';
 
   ARCHIVEMENU_TAG = 1; //used for enabling menuitems after loading archive
   SELECT_STATUSBAR = 0;   //index of panel which displays number of selected nodes
@@ -166,6 +166,7 @@ begin
   //set default colors for Treeview levels
   //at some point it will be possible for the user to change these
   CurrentPass := '';
+  test := '';
   LevelColors[0] := clBlack;
   LevelColors[1] := clBlack;
   LevelColors[2] := clBlack;
@@ -253,7 +254,6 @@ procedure TMainForm.miFileNewClick ( Sender: TObject ) ;
 var
   DarOptions: string;
   Command: string;
-  x: integer;
   referencearchive: String;
   
   procedure CreateNewArchive;
@@ -298,7 +298,7 @@ var
                             + ArchiveForm.ArchiveBaseName;
           if ValidateArchive(CurrentArchive, CurrentPass) then
              begin
-                if OpenArchive(CurrentArchive, ArchiveTreeView, CurrentPass) = 0 then //need to check for encryption
+                if OpenArchive(CurrentArchive, ArchiveTreeView, CurrentPass) = 0 then
                    begin
                      EnableArchiveMenus(true);
                      OpenDialog.FileName := CurrentArchive;
@@ -406,6 +406,7 @@ var
     p: LongInt;
     q: Integer;
   begin
+    atresponse := '';
     script := AtScriptDir + ArchiveForm.ArchiveBaseName + '.sh';
     if WriteScript(script) then
        begin
@@ -442,6 +443,7 @@ var
     processresponse: string;
     CronList: TStringList;
   begin
+    processresponse := '';
     script := ArchiveForm.GetUniqueScriptName(CronScriptDir);
     if WriteScript(script) then
        try
@@ -609,7 +611,6 @@ const
   STATUSRIGHTMARGIN = 20;
 var
   FullRect, DisplayRect : TRect;
-  TextStyle: TTextstyle;
   FolderGraphic: TBitmap;
   x: Integer;
   DisplayStr: string;
@@ -662,7 +663,6 @@ var
      var
        Section: THeaderSection;
        ColX: Integer;
-       TrimmedStr: string;
      begin
        tvRect.Top := tvRect.Top + 1;
        case tvCol of
@@ -759,9 +759,7 @@ end;
 procedure TMainForm.miFileOpenClick(Sender: TObject);
 var
   fn: String;
-  pw: String;
 begin
-  pw := '';
   OpenDialog.Title := rsOpenExisting;
   OpenDialog.Filter := rsFilterDARArchives + '|*.1.dar';
   if OpenDialog.Execute then
@@ -810,6 +808,8 @@ var
   Proc: TProcess;
   HelpURL: String;
 begin
+  brParams := '';
+  Browser := '';
   if Sender=miHelpDar then HelpURL := DAR_DOCPAGE
   else if Sender= miHelpContents then HelpURL := DARGUI_HELP;
   GetDefaultBrowser(Browser, brParams);

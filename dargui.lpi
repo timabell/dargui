@@ -1,15 +1,14 @@
 <?xml version="1.0"?>
 <CONFIG>
   <ProjectOptions>
-    <PathDelim Value="/"/>
-    <Version Value="6"/>
+    <Version Value="7"/>
     <General>
       <Flags>
         <AlwaysBuild Value="False"/>
+        <LRSInOutputDirectory Value="False"/>
       </Flags>
       <SessionStorage Value="InProjectDir"/>
       <MainUnit Value="0"/>
-      <IconPath Value="./"/>
       <TargetFileExt Value=""/>
       <Title Value="DarGUI"/>
       <UseAppBundle Value="False"/>
@@ -22,8 +21,8 @@
       <UseVersionInfo Value="True"/>
       <AutoIncrementBuild Value="True"/>
       <CurrentMajorRevNr Value="4"/>
-      <CurrentBuildNr Value="100"/>
-      <ProjectVersion Value=""/>
+      <CurrentBuildNr Value="118"/>
+      <ProjectVersion Value="0.4.0.101"/>
     </VersionInfo>
     <PublishOptions>
       <Version Value="2"/>
@@ -55,7 +54,7 @@
         <Filename Value="main.pas"/>
         <ComponentName Value="MainForm"/>
         <IsPartOfProject Value="True"/>
-        <ResourceFilename Value="main.lrs"/>
+        <ResourceBaseClass Value="Form"/>
         <UnitName Value="main"/>
       </Unit1>
       <Unit2>
@@ -67,21 +66,20 @@
         <Filename Value="selectrestore.pas"/>
         <ComponentName Value="ExtractSelectedForm"/>
         <IsPartOfProject Value="True"/>
-        <ResourceFilename Value="selectrestore.lrs"/>
+        <ResourceBaseClass Value="Form"/>
         <UnitName Value="selectrestore"/>
       </Unit3>
       <Unit4>
         <Filename Value="archive.pas"/>
         <ComponentName Value="ArchiveForm"/>
         <IsPartOfProject Value="True"/>
-        <ResourceFilename Value="archive.lrs"/>
+        <ResourceBaseClass Value="Form"/>
         <UnitName Value="archive"/>
       </Unit4>
       <Unit5>
         <Filename Value="filemaskdlg.pas"/>
         <ComponentName Value="FileMaskDialog"/>
         <IsPartOfProject Value="True"/>
-        <ResourceFilename Value="filemaskdlg.lrs"/>
         <UnitName Value="filemaskdlg"/>
       </Unit5>
       <Unit6>
@@ -93,7 +91,6 @@
         <Filename Value="archiveinfo.pas"/>
         <ComponentName Value="InformationForm"/>
         <IsPartOfProject Value="True"/>
-        <ResourceFilename Value="archiveinfo.lrs"/>
         <UnitName Value="ArchiveInfo"/>
       </Unit7>
       <Unit8>
@@ -101,7 +98,6 @@
         <ComponentName Value="AboutForm"/>
         <HasResources Value="True"/>
         <IsPartOfProject Value="True"/>
-        <ResourceFilename Value="about.lrs"/>
         <UnitName Value="About"/>
       </Unit8>
       <Unit9>
@@ -123,7 +119,6 @@
         <Filename Value="selectfilter.pas"/>
         <ComponentName Value="SelectFilterForm"/>
         <IsPartOfProject Value="True"/>
-        <ResourceFilename Value="selectfilter.lrs"/>
         <UnitName Value="selectfilter"/>
       </Unit12>
       <Unit13>
@@ -131,7 +126,6 @@
         <ComponentName Value="OpLogForm"/>
         <HasResources Value="True"/>
         <IsPartOfProject Value="True"/>
-        <ResourceFilename Value="oplog.lrs"/>
         <UnitName Value="oplog"/>
       </Unit13>
       <Unit14>
@@ -139,7 +133,7 @@
         <ComponentName Value="DiffForm"/>
         <HasResources Value="True"/>
         <IsPartOfProject Value="True"/>
-        <ResourceFilename Value="diff.lrs"/>
+        <ResourceBaseClass Value="Form"/>
         <UnitName Value="diff"/>
       </Unit14>
       <Unit15>
@@ -147,14 +141,12 @@
         <ComponentName Value="IsolateForm"/>
         <HasResources Value="True"/>
         <IsPartOfProject Value="True"/>
-        <ResourceFilename Value="isolate.lrs"/>
         <UnitName Value="isolate"/>
       </Unit15>
       <Unit16>
         <Filename Value="password.pas"/>
         <ComponentName Value="PasswordDlg"/>
         <IsPartOfProject Value="True"/>
-        <ResourceFilename Value="password.lrs"/>
         <UnitName Value="password"/>
       </Unit16>
       <Unit17>
@@ -166,20 +158,19 @@
         <Filename Value="backupsavedlg.pas"/>
         <ComponentName Value="CreateSaveDialog"/>
         <IsPartOfProject Value="True"/>
-        <ResourceFilename Value="backupsavedlg.lrs"/>
         <UnitName Value="backupsavedlg"/>
       </Unit18>
       <Unit19>
         <Filename Value="schedman.pas"/>
         <ComponentName Value="ScheduleManagerForm"/>
         <IsPartOfProject Value="True"/>
-        <ResourceFilename Value="schedman.lrs"/>
+        <ResourceBaseClass Value="Form"/>
         <UnitName Value="schedman"/>
       </Unit19>
     </Units>
   </ProjectOptions>
   <CompilerOptions>
-    <Version Value="5"/>
+    <Version Value="8"/>
     <SearchPaths>
       <Libraries Value="/home/usr/X11R6/lib/"/>
       <UnitOutputDirectory Value="/home/malcolm/lazarus/dargui/compiled"/>

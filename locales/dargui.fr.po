@@ -6,779 +6,1849 @@ msgid ""
 msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Mime-Version: 1.0"
-"Last-Translator: Gwénaël TRELLU<mgpoole@users.sourceforge.net>\n"
+"Mime-Version: 1.0Last-Translator: Gwénaël TRELLU<mgpoole@users.sourceforge.net>\n"
 "PO-Revision-Date: 2008-04-05 21:05+0100\n"
 "Project-Id-Version: dargui\n"
 "Language-Team: French\n"
 "X-Generator: KBabel 1.11.4\n"
 "MIME-Version: 1.0\n"
 
-#: dgstrconst:rsjan
-msgid "Jan"
-msgstr "Jan"
+#: darstrings.dsinodecount
+msgid "total number of inode : %s\\n"
+msgstr ""
 
-#: dgstrconst:rsfeb
-msgid "Feb"
-msgstr "Fév"
+#: darstrings.dslibbz2comp
+msgid "   Libbz2 compression (bzip2) : %s\\n"
+msgstr ""
 
-#: dgstrconst:rsmar
-msgid "Mar"
-msgstr "Mar"
+#: darstrings.dslibzcomp
+msgid "   Libz compression (gzip)    : %s\\n"
+msgstr ""
 
-#: dgstrconst:rsapr
-msgid "Apr"
-msgstr "Avr"
+#: darstrings.dslongoptions
+msgid "Long options support       : %s\\n"
+msgstr ""
 
-#: dgstrconst:rsmay
-msgid "May"
-msgstr "Mai"
+#: darstrings.dsnewblowfish
+msgid "   New Blowfish implementation: %s\\n"
+msgstr ""
 
-#: dgstrconst:rsjun
-msgid "Jun"
-msgstr "Jui"
+#: darstrings.dsno
+msgid "NO"
+msgstr ""
 
-#: dgstrconst:rsjul
-msgid "Jul"
-msgstr "Jul"
+#: darstrings.dsyes
+msgid "YES"
+msgstr ""
 
-#: dgstrconst:rsaug
-msgid "Aug"
-msgstr "Aou"
-
-#: dgstrconst:rssep
-msgid "Sep"
-msgstr "Sep"
-
-#: dgstrconst:rsoct
-msgid "Oct"
-msgstr "Oct"
-
-#: dgstrconst:rsnov
-msgid "Nov"
-msgstr "Nov"
-
-#: dgstrconst:rsdec
-msgid "Dec"
-msgstr "Dec"
-
-#: dgstrconst:rsmon
-msgid "Mon"
-msgstr "Lun"
-
-#: dgstrconst:rstue
-msgid "Tue"
-msgstr "Mar"
-
-#: dgstrconst:rswed
-msgid "Wed"
-msgstr "Mer"
-
-#: dgstrconst:rsthu
-msgid "Thu"
-msgstr "Jeu"
-
-#: dgstrconst:rsfri
-msgid "Fri"
-msgstr "Ven"
-
-#: dgstrconst:rssat
-msgid "Sat"
-msgstr "Sam"
-
-#: dgstrconst:rssun
-msgid "Sun"
-msgstr "Dim"
-
-#: dgstrconst:rserrdarnotfound
-msgid "Unable to locate dar executable: nothing will work!"
-msgstr "Impossible de localiser l'executable dar : rien ne fonctionnera!"
-
-#: dgstrconst:rserrrestoreaborted
-msgid "Operation aborted: Restore selected files"
-msgstr "Opération annulée: Restauration des fichiers sélectionnés"
-
-#: dgstrconst:rserrnofilesselected
-msgid "Error: no files were selected"
-msgstr "Erreur: aucun fichier sélectionné"
-
-#: dgstrconst:rserrnoxterm
-msgid "Unable to find xterm: some features disabled"
-msgstr "xterm non trouvé: des options sont désactivées"
-
-#: dgstrconst:rserrnobash
-msgid "Unable to find bash: some features disabled"
-msgstr "bash non trouvé: des options sont désactivées"
-
-#: dgstrconst:rserrnoxtermbash
-msgid "Unable to find xterm or bash: some features disabled"
-msgstr "xterm ou bash non trouvés: des options sont désactivées"
-
-#: dgstrconst:rsnotcompressthese
-msgid "# Do not compress these files"
-msgstr "# Ne pas compresser ces fichiers"
-
-#: dgstrconst:rsnotcompresssmaller
-msgid "# Do not compress files smaller than this"
-msgstr "# Ne pas compresser les fichiers plus petit que ça"
-
-#: dgstrconst:rsdarbatchfile
-msgid "# DAR batch file written by DarGUI"
-msgstr "# Fichier script DAR écrit par DarGUI"
-
-#: dgstrconst:rsdryrun
-msgid "# Dry run: this archive will not be written to file unless the next option is removed"
-msgstr "# Phase Test: cette archive ne sera pas enregistrée tant que l'option suivante est inactive"
-
-#: dgstrconst:rsincdirectories
-msgid "# Directories to include in archive"
-msgstr "# Répertoires à inclure dans l'archive"
-
-#: dgstrconst:rsincfiles
-msgid "# Files to include in archive"
-msgstr "# Fichiers à inclure dans l'archive"
-
-#: dgstrconst:rsexcldirectories
-msgid "# Directories to exclude from archive"
-msgstr "# Répertoires à exclure de l'archive"
-
-#: dgstrconst:rsexclfiles
-msgid "# Files to exclude from archive"
-msgstr "# Fichiers à exclure de l'archive"
-
-#: dgstrconst:rsusegzipcompr
-msgid "# Use gzip compression"
-msgstr "# Utiliser la compression gzip"
-
-#: dgstrconst:rsusebzip2comp
-msgid "# Use bzip2 compression"
-msgstr "# Utiliser la compression bzip2"
-
-#: dgstrconst:rsnotreaddarcfg
-msgid "# Do not read DAR configuration files (~/.darrc or /etc/darrc)"
-msgstr "# Ne pas lire les fichiers de configuration de DAR (~/.darrc or /etc/darrc)"
-
-#: dgstrconst:rspreservedirs
-msgid "# Preserve ignored directory names"
-msgstr "# Préserver les noms des répertoires ignorés"
-
-#: dgstrconst:rscreateslices
-msgid "# Create slices of size in Mb"
-msgstr "# Création de segments de taille en Mb"
-
-#: dgstrconst:rspausebetween
-msgid "# Pause between slices"
-msgstr "# Pause entre les segments"
-
-#: dgstrconst:rsfilestorestore
-msgid "# Files to restore"
-msgstr "# Fichiers à restaurer"
-
-#: dgstrconst:rscptcreatingarchive
-msgid "creating archive..."
-msgstr "création de l'archive..."
-
-#: dgstrconst:rsstatusnodeselect
-msgid " %s node(s) selected"
-msgstr " %s noeud(s) sélectionné(s)"
-
-#: dgstrconst:rsinformationf
-msgid "Information for archive: %s"
-msgstr "Information de l'archive: %s"
-
-#: dgstrconst:rsinfoformlocation
-msgid "Location: %s"
-msgstr "Localisation: %s"
-
-#: dgstrconst:rsaboutnodar
-msgid "* No DAR executable found! *"
-msgstr "L'executable DAR n'a pas été trouvé!"
-
-#: dgstrconst:rsaboutdarversion
+#: dgstrconst.rsaboutdarversion
 msgid "Using DAR version %s"
 msgstr "Utilisation de DAR version %s"
 
-#: dgstrconst:rscptisolating
-msgid "DarGUI: Isolating catalogue..."
-msgstr "DarGUI: Séparation du catalogue..."
-
-#: dgstrconst:rscptrestorenodes
-msgid "Restore %s nodes..."
-msgstr "Restaurer %s noeuds... "
-
-#: dgstrconst:rscptrestoringfiles
-msgid "restoring files..."
-msgstr "restauration de fichiers..."
-
-#: dgstrconst:rscptrestoreselected
-msgid "Restore selected files"
-msgstr "Restaurer les fichiers sélectionnés"
-
-#: dgstrconst:rscptdarguicheckingarchive
-msgid "DarGUI: checking archive integrity..."
-msgstr "DarGUI: contrôle de l'intégrité de l'archive..."
-
-#: dgstrconst:rsopenexisting
-msgid "Open existing archive"
-msgstr "Ouvrir une archive existante"
-
-#: dgstrconst:rsfilterdararchives
-msgid "DAR archives"
-msgstr "Archives DAR"
-
-#: dgstrconst:rsselectreferencearch
-msgid "Select reference archive"
-msgstr "Sélection de l'archive de référence"
-
-#: dgstrconst:rsfcptselectbyfilter
-msgid "Select using filters..."
-msgstr "Sélection avec filtres..."
-
-#: dgstrconst:rsbuttonadd
-msgid "Add"
-msgstr "Ajouter"
-
-#: dgstrconst:rsnewarchive
-msgid "New archive"
-msgstr "Nouvelle archive"
-
-#: dgstrconst:rserrdatecannotbeinpast
-msgid "Date cannot be in the past"
-msgstr "La date ne peut pas être antérieure"
-
-#: dgstrconst:rsbuttoncancel
-msgid "Cancel"
-msgstr "Annuler"
-
-#: dgstrconst:rsenterpassword
-msgid "Enter Password"
-msgstr "Entrez le Mot de Passe"
-
-#: dgstrconst:rsincorrectpasswordent
-msgid "Incorrect password entered"
-msgstr "Mot de Passe saisi incorrect"
-
-#: dgstrconst:rsthefileisencrypteden
-msgid "The file %s is encrypted. %sEnter the correct password for this archive."
-msgstr "Le fichier %s est crypté. %sEntrez le bon mot de passe pour cette archive."
-
-#: dgstrconst:rssourcearchive
-msgid "Source archive"
-msgstr "Archive source"
-
-#: dgstrconst:rssavecatalogueas
-msgid "Save catalogue as"
-msgstr "Enregistrer le catalogue sous"
-
-#: dgstrconst:rsbuttonbrowse
-msgid "Browse"
-msgstr "Parcourir..."
-
-#: dgstrconst:rsbuttonaddfile
-msgid "Add file"
-msgstr "Ajouter un fichier"
-
-#: dgstrconst:rsmessunabletofind1dar
-msgid "Unable to find %s.1.dar"
-msgstr "%s.1.dar non trouvé"
-
-#: dgstrconst:rserrerrornotfound
-msgid "Error: %s not found"
-msgstr "Erreur: %s non trouvé"
-
-#: dgstrconst:rscptcomparingfiles
-msgid "comparing files..."
-msgstr "Comparaison des fichiers..."
-
-#: dgstrconst:rsinodescheckeddiffere
-msgid "%s inodes checked : %s differences found"
-msgstr "%s contrôle des inodes : %s des différences ont été trouvées"
-
-#: dgstrconst:rsmessnostatisticsavailabl
-msgid "No statistics available - operation aborted?"
-msgstr "Pas de statistique disponible - annuler l'opération?"
-
-#: dgstrconst:rsbuttonremove
-msgid "Remove"
-msgstr "Retirer"
-
-#: dgstrconst:rsarchivebasename
-msgid "Archive base name"
-msgstr "Nom de base de l'Archive"
-
-#: dgstrconst:rsbuttonclear
-msgid "Clear"
-msgstr "Effacer"
-
-#: dgstrconst:rsbuttonok
-msgid "OK"
-msgstr "OK"
-
-#: dgstrconst:rscreatearchiveimmedia
-msgid "Create archive immediately"
-msgstr "Créer l'archive immédiatement"
-
-#: dgstrconst:rsopenarchivewhencompl
-msgid "Open archive when created"
-msgstr "Ouvrir l'archive après la création"
-
-#: dgstrconst:rsencryptarchive
-msgid "Encrypt archive using blowfish"
-msgstr "Cryptage Blowfish de l'archive"
-
-#: dgstrconst:rsbuttonclose
-msgid "Close"
-msgstr "Fermer"
-
-#: dgstrconst:rscptisolatearchivecatalo
-msgid "Isolate archive catalogue"
-msgstr "Isoler le catalogue de l'archive"
-
-#: dgstrconst:rsmenuselectbyfilter
-msgid "Select by Filter"
-msgstr "Sélectionner par Filtre"
-
-#: dgstrconst:rsmenutoggleselect
-msgid "Toggle Selection"
-msgstr "Inverser la sélection"
-
-#: dgstrconst:rsmenushowtoolbar
-msgid "Show Toolbar"
-msgstr "Afficher la barre d'outils"
-
-#: dgstrconst:rsmenuopenrecent
-msgid "Open Recent..."
-msgstr "Fichiers récents... "
-
-#: dgstrconst:rsmenudardocumentation
-msgid "Dar Documentation"
-msgstr "Documentation Dar"
-
-#: dgstrconst:rshintcomparearchivefile
-msgid "Compare archive and filesystem"
-msgstr "Comparer l'archive à un répertoire"
-
-#: dgstrconst:rshintopenanarchive
-msgid "Open an archive"
-msgstr "Ouvrir une archive"
-
-#: dgstrconst:rshintcreateanewarchive
-msgid "Create a new archive"
-msgstr "Créer une nouvelle archive"
-
-#: dgstrconst:rshintisolatecatalogue
-msgid "Isolate catalogue from archive"
-msgstr "Isoler le catalogue de l'archive"
-
-#: dgstrconst:rscheckarchiveforerrors
-msgid "Check the archive for errors"
-msgstr "Contrôle de l'intégrité de l'archive"
-
-#: dgstrconst:rsmenuhelp
-msgid "Help"
-msgstr "Aide"
-
-#: dgstrconst:rsmenuhelpabout
-msgid "About DarGUI"
-msgstr "A propos de DARGUI"
-
-#: dgstrconst:rsversionnumber
-msgid "Version number: %s"
-msgstr "Numéro de version: %s"
-
-#: dgstrconst:rssvnrevision
-msgid "SVN Revision: %s"
-msgstr "Révision: %s"
-
-#: dgstrconst:rsauthor
-msgid "Author: %s"
-msgstr "Auteur: %s"
-
-#: dgstrconst:rslicencegpl
-msgid "Licence: GPL"
-msgstr "Licence : GPL"
-
-#: dgstrconst:rsdarguihasbeendevelop
-msgid "DarGUI has been developed using Freepascal and the Lazarus IDE"
-msgstr "DarGUI a été développé avec l'interface Lazarus et compilée sous Freepascal"
-
-#: dgstrconst:rsmenuisolatecatalogue
-msgid "Isolate Catalogue"
-msgstr "Isoler le Catalogue"
-
-#: dgstrconst:rsmenuoperationlogs
-msgid "Operation Logs"
-msgstr "Journal des Opérations"
-
-#: dgstrconst:rsmenucheckintegrity
-msgid "Check Integrity"
-msgstr "Contrôler l'intégrité"
-
-#: dgstrconst:rsmenuinformation
-msgid "Information"
-msgstr "Informations"
-
-#: dgstrconst:rsmenuoptions
-msgid "Options"
-msgstr "Options"
-
-#: dgstrconst:rsmenufile
-msgid "File"
-msgstr "Fichier"
-
-#: dgstrconst:rscolfilename
-msgid "File"
-msgstr "Fichier"
-
-#: dgstrconst:rsmenuarchive
-msgid "Archive"
-msgstr "Archive"
-
-#: dgstrconst:rsmenurestoreselected
-msgid "Restore Selected"
-msgstr "Restorer la Sélection"
-
-#: dgstrconst:rsmenurestoreall
-msgid "Restore All"
-msgstr "Restorer Tout"
-
-#: dgstrconst:rsmenuexit
-msgid "Exit"
-msgstr "Quitter"
-
-#: dgstrconst:rsmenuhideall
-msgid "Hide All"
-msgstr "Cacher tous"
-
-#: dgstrconst:rsmenushowall
-msgid "Show All"
-msgstr "Afficher Tout"
-
-#: dgstrconst:rsmenunew
-msgid "New"
-msgstr "Nouveau"
-
-#: dgstrconst:rsmenuopen
-msgid "Open"
-msgstr "Ouvrir"
-
-#: dgstrconst:rsmenushowselected
-msgid "Show Selected"
-msgstr "Afficher la Sélection"
-
-#: dgstrconst:rscoldate
-msgid "Date"
-msgstr "Date"
-
-#: dgstrconst:rshour
-msgid "Hour"
-msgstr "Heure"
-
-#: dgstrconst:rsminutes
-msgid "Minutes"
-msgstr "Minutes"
-
-#: dgstrconst:rsdayofweek
-msgid "Day of week"
-msgstr "Jour de la semaine"
-
-#: dgstrconst:rsdayinmonth
-msgid "Day"
-msgstr "Jour"
-
-#: dgstrconst:rsmonth
-msgid "Month"
-msgstr "Mois"
-
-#: dgstrconst:rscptselectdate
-msgid "Select date"
-msgstr "Sélection date"
-
-#: dgstrconst:rscolsize
-msgid "Size"
-msgstr "Taille"
-
-#: dgstrconst:rscoluser
-msgid "User"
-msgstr "Utilisateur"
-
-#: dgstrconst:rscolgroup
-msgid "Group"
-msgstr "Groupe"
-
-#: dgstrconst:rscolstatus
-msgid "Status"
-msgstr "Etat"
-
-#: dgstrconst:rsdirectoriesareexcluded
-msgid "These directories are already selected to be excluded from the archive. %sDo you really want to include them?"
-msgstr "Ces répertoires ont déjà été sélectionnés pour être exclus de l'archive.%s Voulez-vous vraiment les y inclure?"
-
-#: dgstrconst:rsbuttonaddmask
-msgid "Add mask"
-msgstr "Ajouter masque"
-
-#: dgstrconst:rsdirectoriesareincluded
-msgid "These directories are already selected to be included in the archive.%sDo you really want to exclude them?"
-msgstr "Ces répertoires ont déjà été sélectionnés pour être inclus dans l'archive.%s Voulez-vous vraiment les y exclure?"
-
-#: dgstrconst:rsfilesalreadyexcluded
-msgid "These files are already selected to be excluded from the archive.%sDo you really want to include them?"
-msgstr "Ces fichiers ont déjà été sélectionnés pour être exclus de l'archive.%s Voulez-vous vraiment les y inclure?"
-
-#: dgstrconst:rsfilesalreadyincluded
-msgid "These files are already selected to be included in the archive.%sDo you really want to exclude them?"
-msgstr "Ces fichiers ont déjà été sélectionnés pour être inclus dans l'archive.%s Voulez-vous vraiment les y exclure?"
-
-#: dgstrconst:rscptresolveconflict
-msgid "Resolve conflict"
-msgstr "Resoudre les conflits"
-
-#: dgstrconst:rsoverwriteexistingarc
-msgid "Overwrite existing archive?"
-msgstr "Ecraser l'archive existante?"
-
-#: dgstrconst:rserrinvalidarchivename
-msgid "Invalid archive name"
-msgstr "Nom d'archive invalide"
-
-#: dgstrconst:rserrinvaliddirectory
-msgid "Invalid directory"
-msgstr "Répertoire invalide"
-
-#: dgstrconst:rserrrefarchivenotfound
-msgid "Reference archive not found"
-msgstr "Archive de référence non trouvée"
-
-#: dgstrconst:rserrcompressionlevelmust
-msgid "Compression level must be between 0 and 9"
-msgstr "Le niveau de compression doit être entre 0 et 9"
-
-#: dgstrconst:rserrinvalidfilesize
-msgid "Invalid number for file size"
-msgstr "Nombre invalide pour la taille du fichier"
-
-#: dgstrconst:rsusebzip2compression
-msgid "use bzip2 compression"
-msgstr "Utiliser la compression bzip2"
-
-#: dgstrconst:rsslicesize
-msgid "Slice size"
-msgstr "Taille Segment"
-
-#: dgstrconst:rsmb
-msgid "Mb"
-msgstr "Mb"
-
-#: dgstrconst:rsuseslices
-msgid "Use slices"
-msgstr "Segmenter"
-
-#: dgstrconst:rssavescriptas
-msgid "Save script as"
-msgstr "Sauver le script sous"
-
-#: dgstrconst:rspausebetweenslices
-msgid "Pause between slices"
-msgstr "Pause entre les segments"
-
-#: dgstrconst:rsbatchfile
-msgid "Batch file"
-msgstr "Fichier script"
-
-#: dgstrconst:rspreservedirectories
-msgid "Preserve directories"
-msgstr "Preserver les répertoires"
-
-#: dgstrconst:rstestrunonly
-msgid "Test run only"
-msgstr "Test de marche uniquement"
-
-#: dgstrconst:rscompression
-msgid "Compression"
-msgstr "Compression"
-
-#: dgstrconst:rsdonotcompress
-msgid " Do not compress ... "
-msgstr "Ne pas compresser..."
-
-#: dgstrconst:rscompressiontype
-msgid " Compression type "
-msgstr "Type de Compression"
-
-#: dgstrconst:rsusegzipcompression
-msgid "use gzip compression"
-msgstr "Utiliser la compression gzip"
-
-#: dgstrconst:rscompressionlevel
-msgid "Compression level"
-msgstr "Niveau de Compression"
-
-#: dgstrconst:rslowersizelimitforcom
-msgid "Lower size limit for compression:"
-msgstr "Taille limite basse pour la compression:"
-
-#: dgstrconst:rsattempttoreaddarconf
-msgid "Attempt to read DAR configuration files"
-msgstr "Tentative de lecture des fichiers de configuration de DAR"
-
-#: dgstrconst:rssavearchivein
-msgid "Save archive in"
-msgstr "Enregistrer l'archive sous"
-
-#: dgstrconst:rsincludedirectories
-msgid "Include directories:"
-msgstr "Inclure les répertoires :"
-
-#: dgstrconst:rsexcludedirectories
-msgid "Exclude directories"
-msgstr "Exclure les répertoires :"
-
-#: dgstrconst:rsincludefiles
-msgid "Include files:"
-msgstr "Inclure les fichiers :"
-
-#: dgstrconst:rsexcludefiles
-msgid "Exclude files:"
-msgstr "Exclure les fichiers :"
-
-#: dgstrconst:rsselectfile
-msgid "Select file"
-msgstr "Choisir un fichier"
-
-#: dgstrconst:rsoptions
-msgid "Options"
-msgstr "Options"
-
-#: dgstrconst:rsdirectories
-msgid "Directories"
-msgstr "Répertoires"
-
-#: dgstrconst:rsfiles
-msgid "Files"
-msgstr "Fichiers"
-
-#: dgstrconst:rsscheduling
-msgid "Scheduling"
-msgstr "Programmation"
-
-#: dgstrconst:rsincludetimeinname
-msgid "Add timestamp to name"
-msgstr "Estampiller le nom"
-
-#: dgstrconst:rsdifferentialbackup
-msgid "Differential backup"
-msgstr "Sauvegarde différentielle"
-
-#: dgstrconst:rsreferencearchive
-msgid "Reference archive"
-msgstr "Archive de référence"
-
-#: dgstrconst:rsmatchallfilters
-msgid "Match all filters"
-msgstr "Grouper tous les filtres"
-
-#: dgstrconst:rsapplyfilterstofilena
+#: dgstrconst.rsaboutnodar
+msgid "* No DAR executable found! *"
+msgstr "L'executable DAR n'a pas été trouvé!"
+
+#: dgstrconst.rsapplyfilterstofilena
 msgid "Apply filters to filenames only"
 msgstr "Appliquer les filtres aux noms des fichiers uniquement"
 
-#: dgstrconst:rscptaddfilter
-msgid "Add filter"
-msgstr "Ajouter un filtre"
+#: dgstrconst.rsapr
+msgid "Apr"
+msgstr "Avr"
 
-#: dgstrconst:rsfilemask
-msgid "File mask"
-msgstr "Masque fichier"
-
-#: dgstrconst:rscommands
-msgid "Commands"
-msgstr "Commandes"
-
-#: dgstrconst:rscptrepeatingaction
-msgid "Repeating action..."
-msgstr "Action répétée..."
-
-#: dgstrconst:rsrestorefilesto
-msgid "Restore files to"
-msgstr "Restaurer les fichiers dans"
-
-#: dgstrconst:rsignoredirectories
-msgid "Ignore directories"
-msgstr "Ignorer les répertoires"
-
-#: dgstrconst:rsoverwriteexistingfil
-msgid "Overwrite existing files"
-msgstr "Ecraser les fichiers existants"
-
-#: dgstrconst:rsexistingfiles
-msgid "Existing files"
-msgstr "Fichiers existants"
-
-#: dgstrconst:rsmessdirectorynotfound
-msgid "Destination directory not found"
-msgstr "Répertoire de destination non trouvé"
-
-#: dgstrconst:rsmessinvaliddestinationdir
-msgid "Invalid destination directory"
-msgstr "Répertoire de destination invalide"
-
-#: dgstrconst:rsarchive
+#: dgstrconst.rsarchive
+msgctxt "dgstrconst.rsarchive"
 msgid "Archive"
 msgstr "Archive"
 
-#: dgstrconst:rsbasedirectory
+#: dgstrconst.rsarchivebasename
+msgctxt "dgstrconst.rsarchivebasename"
+msgid "Archive base name"
+msgstr "Nom de base de l'Archive"
+
+#: dgstrconst.rsattempttoreaddarconf
+msgctxt "dgstrconst.rsattempttoreaddarconf"
+msgid "Attempt to read DAR configuration files"
+msgstr "Tentative de lecture des fichiers de configuration de DAR"
+
+#: dgstrconst.rsaug
+msgid "Aug"
+msgstr "Aou"
+
+#: dgstrconst.rsauthor
+msgid "Author: %s"
+msgstr "Auteur: %s"
+
+#: dgstrconst.rsbasedirectory
+msgctxt "dgstrconst.rsbasedirectory"
 msgid "Base directory"
 msgstr "Répertoire de base"
 
-#: dgstrconst:rsresults
-msgid "Results"
-msgstr "Résultats"
+#: dgstrconst.rsbatchfile
+msgctxt "dgstrconst.rsbatchfile"
+msgid "Batch file"
+msgstr "Fichier script"
 
-#: dgstrconst:rsverboseoutput
-msgid "Verbose output"
-msgstr "Processus détaillé"
+#: dgstrconst.rsbuttonadd
+msgctxt "dgstrconst.rsbuttonadd"
+msgid "Add"
+msgstr "Ajouter"
 
-#: dgstrconst:rsmessbusy
-msgid " BUSY..."
-msgstr " PROCESSUS EN COURS..."
+#: dgstrconst.rsbuttonaddfile
+msgctxt "dgstrconst.rsbuttonaddfile"
+msgid "Add file"
+msgstr "Ajouter un fichier"
 
-#: dgstrconst:rserrunabletofindarchive
-msgid "Unable to find archive"
-msgstr "Impossible de trouver l'archive"
+#: dgstrconst.rsbuttonaddmask
+msgctxt "dgstrconst.rsbuttonaddmask"
+msgid "Add mask"
+msgstr "Ajouter masque"
 
-#: dgstrconst:rserrunabletoopenarchive
-msgid "Unable to open archive"
-msgstr "Impossible d'ouvrir l'archive"
+#: dgstrconst.rsbuttonbrowse
+msgctxt "dgstrconst.rsbuttonbrowse"
+msgid "Browse"
+msgstr "Parcourir..."
 
-#: dgstrconst:rsconfirmbeforeoverwri
+#: dgstrconst.rsbuttoncancel
+msgctxt "dgstrconst.rsbuttoncancel"
+msgid "Cancel"
+msgstr "Annuler"
+
+#: dgstrconst.rsbuttonclear
+msgctxt "dgstrconst.rsbuttonclear"
+msgid "Clear"
+msgstr "Effacer"
+
+#: dgstrconst.rsbuttonclose
+msgid "Close"
+msgstr "Fermer"
+
+#: dgstrconst.rsbuttonok
+msgctxt "dgstrconst.rsbuttonok"
+msgid "OK"
+msgstr "OK"
+
+#: dgstrconst.rsbuttonremove
+msgctxt "dgstrconst.rsbuttonremove"
+msgid "Remove"
+msgstr "Retirer"
+
+#: dgstrconst.rscancelschedscript
+msgid "Are you sure that you want to cancel scheduled script %s%s"
+msgstr ""
+
+#: dgstrconst.rscheckarchiveforerrors
+msgid "Check the archive for errors"
+msgstr "Contrôle de l'intégrité de l'archive"
+
+#: dgstrconst.rscoldate
+msgid "Date"
+msgstr "Date"
+
+#: dgstrconst.rscolfilename
+msgctxt "dgstrconst.rscolfilename"
+msgid "File"
+msgstr "Fichier"
+
+#: dgstrconst.rscolgroup
+msgid "Group"
+msgstr "Groupe"
+
+#: dgstrconst.rscolsize
+msgid "Size"
+msgstr "Taille"
+
+#: dgstrconst.rscolstatus
+msgid "Status"
+msgstr "Etat"
+
+#: dgstrconst.rscoluser
+msgid "User"
+msgstr "Utilisateur"
+
+#: dgstrconst.rscommands
+msgid "Commands"
+msgstr "Commandes"
+
+#: dgstrconst.rscompression
+msgctxt "dgstrconst.rscompression"
+msgid "Compression"
+msgstr "Compression"
+
+#: dgstrconst.rscompressionlevel
+msgctxt "dgstrconst.rscompressionlevel"
+msgid "Compression level"
+msgstr "Niveau de Compression"
+
+#: dgstrconst.rscompressiontype
+msgctxt "dgstrconst.rscompressiontype"
+msgid " Compression type "
+msgstr "Type de Compression"
+
+#: dgstrconst.rsconfirmbeforeoverwri
 msgid "Confirm before overwriting"
 msgstr "Confirmer avant écrasement"
 
-#: dgstrconst:rsdonotoverwritefiles
-msgid "Do not overwrite files"
-msgstr "Ne pas écraser les fichiers"
+#: dgstrconst.rsconfirmcancel
+msgid "Confirm cancellation"
+msgstr ""
 
-#: dgstrconst:rscptaddfilemask
+#: dgstrconst.rscptaddfilemask
 msgid "Add file mask"
 msgstr "Ajouter un masque fichier"
 
-#: dgstrconst:rsyes
-msgid "Yes"
-msgstr "Oui"
+#: dgstrconst.rscptaddfilter
+msgid "Add filter"
+msgstr "Ajouter un filtre"
 
-#: dgstrconst:rsno
-msgid "No"
-msgstr "Non"
+#: dgstrconst.rscptcomparingfiles
+msgid "comparing files..."
+msgstr "Comparaison des fichiers..."
 
-#: dgstrconst:rsmessinvalidarchivename
+#: dgstrconst.rscptcreatingarchive
+msgid "creating archive..."
+msgstr "création de l'archive..."
+
+#: dgstrconst.rscptdarguicheckingarchive
+msgid "DarGUI: checking archive integrity..."
+msgstr "DarGUI: contrôle de l'intégrité de l'archive..."
+
+#: dgstrconst.rscptisolatearchivecatalo
+msgctxt "dgstrconst.rscptisolatearchivecatalo"
+msgid "Isolate archive catalogue"
+msgstr "Isoler le catalogue de l'archive"
+
+#: dgstrconst.rscptisolating
+msgid "DarGUI: Isolating catalogue..."
+msgstr "DarGUI: Séparation du catalogue..."
+
+#: dgstrconst.rscptrepeatingaction
+msgid "Repeating action..."
+msgstr "Action répétée..."
+
+#: dgstrconst.rscptresolveconflict
+msgid "Resolve conflict"
+msgstr "Resoudre les conflits"
+
+#: dgstrconst.rscptrestorenodes
+msgid "Restore %s nodes..."
+msgstr "Restaurer %s noeuds... "
+
+#: dgstrconst.rscptrestoreselected
+msgid "Restore selected files"
+msgstr "Restaurer les fichiers sélectionnés"
+
+#: dgstrconst.rscptrestoringfiles
+msgid "restoring files..."
+msgstr "restauration de fichiers..."
+
+#: dgstrconst.rscptsavebackupsettings
+msgid "Save backup settings"
+msgstr ""
+
+#: dgstrconst.rscptscheduledbackups
+msgid "Scheduled backups"
+msgstr ""
+
+#: dgstrconst.rscptselectdate
+msgid "Select date"
+msgstr "Sélection date"
+
+#: dgstrconst.rscreatearchiveimmedia
+msgid "Create archive immediately"
+msgstr "Créer l'archive immédiatement"
+
+#: dgstrconst.rscreateslices
+msgid "# Create slices of size in Mb"
+msgstr "# Création de segments de taille en Mb"
+
+#: dgstrconst.rsdarbatchfile
+msgid "# DAR batch file written by DarGUI"
+msgstr "# Fichier script DAR écrit par DarGUI"
+
+#: dgstrconst.rsdarguihasbeendevelop
+msgid "DarGUI has been developed using Freepascal and the Lazarus IDE"
+msgstr "DarGUI a été développé avec l'interface Lazarus et compilée sous Freepascal"
+
+#: dgstrconst.rsdayinmonth
+msgid "Day"
+msgstr "Jour"
+
+#: dgstrconst.rsdayofweek
+msgid "Day of week"
+msgstr "Jour de la semaine"
+
+#: dgstrconst.rsdec
+msgid "Dec"
+msgstr "Dec"
+
+#: dgstrconst.rsdifferentialbackup
+msgctxt "dgstrconst.rsdifferentialbackup"
+msgid "Differential backup"
+msgstr "Sauvegarde différentielle"
+
+#: dgstrconst.rsdirectories
+msgctxt "dgstrconst.rsdirectories"
+msgid "Directories"
+msgstr "Répertoires"
+
+#: dgstrconst.rsdirectoriesareexcluded
+msgid "These directories are already selected to be excluded from the archive. %sDo you really want to include them?"
+msgstr "Ces répertoires ont déjà été sélectionnés pour être exclus de l'archive.%s Voulez-vous vraiment les y inclure?"
+
+#: dgstrconst.rsdirectoriesareincluded
+msgid "These directories are already selected to be included in the archive.%sDo you really want to exclude them?"
+msgstr "Ces répertoires ont déjà été sélectionnés pour être inclus dans l'archive.%s Voulez-vous vraiment les y exclure?"
+
+#: dgstrconst.rsdonotcompress
+msgctxt "dgstrconst.rsdonotcompress"
+msgid " Do not compress ... "
+msgstr "Ne pas compresser..."
+
+#: dgstrconst.rsdonotoverwritefiles
+msgid "Do not overwrite files"
+msgstr "Ne pas écraser les fichiers"
+
+#: dgstrconst.rsdryrun
+msgid "# Dry run: this archive will not be written to file unless the next option is removed"
+msgstr "# Phase Test: cette archive ne sera pas enregistrée tant que l'option suivante est inactive"
+
+#: dgstrconst.rsencryptarchive
+msgid "Encrypt archive using blowfish"
+msgstr "Cryptage Blowfish de l'archive"
+
+#: dgstrconst.rsenterpassword
+msgid "Enter Password"
+msgstr "Entrez le Mot de Passe"
+
+#: dgstrconst.rserrcompressionlevelmust
+msgid "Compression level must be between 0 and 9"
+msgstr "Le niveau de compression doit être entre 0 et 9"
+
+#: dgstrconst.rserrdarnotfound
+msgid "Unable to locate dar executable: nothing will work!"
+msgstr "Impossible de localiser l'executable dar : rien ne fonctionnera!"
+
+#: dgstrconst.rserrdatecannotbeinpast
+msgid "Date cannot be in the past"
+msgstr "La date ne peut pas être antérieure"
+
+#: dgstrconst.rserrdeletingcron
+msgid "Error when deleting crontab entry: %s%s"
+msgstr ""
+
+#: dgstrconst.rserrdeletingsched
+msgid "Error when deleting scheduled backup"
+msgstr ""
+
+#: dgstrconst.rserrerrornotfound
+msgid "Error: %s not found"
+msgstr "Erreur: %s non trouvé"
+
+#: dgstrconst.rserrinvalidarchivename
+msgctxt "dgstrconst.rserrinvalidarchivename"
 msgid "Invalid archive name"
 msgstr "Nom d'archive invalide"
 
-#: dgstrconst:rsmessinvalidcataloguename
+#: dgstrconst.rserrinvalidchars
+msgid "Archive name or path contains invalid characters"
+msgstr ""
+
+#: dgstrconst.rserrinvaliddirectory
+msgid "Invalid directory"
+msgstr "Répertoire invalide"
+
+#: dgstrconst.rserrinvalidfilesize
+msgid "Invalid number for file size"
+msgstr "Nombre invalide pour la taille du fichier"
+
+#: dgstrconst.rserrnobash
+msgid "Unable to find bash: some features disabled"
+msgstr "bash non trouvé: des options sont désactivées"
+
+#: dgstrconst.rserrnofilesselected
+msgid "Error: no files were selected"
+msgstr "Erreur: aucun fichier sélectionné"
+
+#: dgstrconst.rserrnoxterm
+msgid "Unable to find xterm: some features disabled"
+msgstr "xterm non trouvé: des options sont désactivées"
+
+#: dgstrconst.rserrnoxtermbash
+msgid "Unable to find xterm or bash: some features disabled"
+msgstr "xterm ou bash non trouvés: des options sont désactivées"
+
+#: dgstrconst.rserrrefarchivenotfound
+msgid "Reference archive not found"
+msgstr "Archive de référence non trouvée"
+
+#: dgstrconst.rserrrestoreaborted
+msgid "Operation aborted: Restore selected files"
+msgstr "Opération annulée: Restauration des fichiers sélectionnés"
+
+#: dgstrconst.rserrscriptnotsetup
+msgid "Unable to schedule script execution.%sError when executing at: %s%s"
+msgstr ""
+
+#: dgstrconst.rserrunabletofindarchive
+msgid "Unable to find archive"
+msgstr "Impossible de trouver l'archive"
+
+#: dgstrconst.rserrunabletoopenarchive
+msgid "Unable to open archive"
+msgstr "Impossible d'ouvrir l'archive"
+
+#: dgstrconst.rserrwritingscript
+msgid "Error writing script"
+msgstr ""
+
+#: dgstrconst.rsexcldirectories
+msgid "# Directories to exclude from archive"
+msgstr "# Répertoires à exclure de l'archive"
+
+#: dgstrconst.rsexclfiles
+msgid "# Files to exclude from archive"
+msgstr "# Fichiers à exclure de l'archive"
+
+#: dgstrconst.rsexcludedirectories
+msgid "Exclude directories"
+msgstr "Exclure les répertoires :"
+
+#: dgstrconst.rsexcludefiles
+msgctxt "dgstrconst.rsexcludefiles"
+msgid "Exclude files:"
+msgstr "Exclure les fichiers :"
+
+#: dgstrconst.rsexistingfiles
+msgid "Existing files"
+msgstr "Fichiers existants"
+
+#: dgstrconst.rsfcptselectbyfilter
+msgid "Select using filters..."
+msgstr "Sélection avec filtres..."
+
+#: dgstrconst.rsfeb
+msgid "Feb"
+msgstr "Fév"
+
+#: dgstrconst.rsfilemask
+msgctxt "dgstrconst.rsfilemask"
+msgid "File mask"
+msgstr "Masque fichier"
+
+#: dgstrconst.rsfiles
+msgctxt "dgstrconst.rsfiles"
+msgid "Files"
+msgstr "Fichiers"
+
+#: dgstrconst.rsfilesalreadyexcluded
+msgid "These files are already selected to be excluded from the archive.%sDo you really want to include them?"
+msgstr "Ces fichiers ont déjà été sélectionnés pour être exclus de l'archive.%s Voulez-vous vraiment les y inclure?"
+
+#: dgstrconst.rsfilesalreadyincluded
+msgid "These files are already selected to be included in the archive.%sDo you really want to exclude them?"
+msgstr "Ces fichiers ont déjà été sélectionnés pour être inclus dans l'archive.%s Voulez-vous vraiment les y exclure?"
+
+#: dgstrconst.rsfilestorestore
+msgid "# Files to restore"
+msgstr "# Fichiers à restaurer"
+
+#: dgstrconst.rsfilterallfiles
+msgid "All files"
+msgstr ""
+
+#: dgstrconst.rsfilterdararchives
+msgid "DAR archives"
+msgstr "Archives DAR"
+
+#: dgstrconst.rsfilterdarguifiles
+msgid "DarGUI files"
+msgstr ""
+
+#: dgstrconst.rsfri
+msgid "Fri"
+msgstr "Ven"
+
+#: dgstrconst.rshintcomparearchivefile
+msgctxt "dgstrconst.rshintcomparearchivefile"
+msgid "Compare archive and filesystem"
+msgstr "Comparer l'archive à un répertoire"
+
+#: dgstrconst.rshintcreateanewarchive
+msgctxt "dgstrconst.rshintcreateanewarchive"
+msgid "Create a new archive"
+msgstr "Créer une nouvelle archive"
+
+#: dgstrconst.rshintisolatecatalogue
+msgid "Isolate catalogue from archive"
+msgstr "Isoler le catalogue de l'archive"
+
+#: dgstrconst.rshintopenanarchive
+msgctxt "dgstrconst.rshintopenanarchive"
+msgid "Open an archive"
+msgstr "Ouvrir une archive"
+
+#: dgstrconst.rshour
+msgid "Hour"
+msgstr "Heure"
+
+#: dgstrconst.rsignoredirectories
+msgctxt "dgstrconst.rsignoredirectories"
+msgid "Ignore directories"
+msgstr "Ignorer les répertoires"
+
+#: dgstrconst.rsincdirectories
+msgid "# Directories to include in archive"
+msgstr "# Répertoires à inclure dans l'archive"
+
+#: dgstrconst.rsincfiles
+msgid "# Files to include in archive"
+msgstr "# Fichiers à inclure dans l'archive"
+
+#: dgstrconst.rsincludedirectories
+msgid "Include directories:"
+msgstr "Inclure les répertoires :"
+
+#: dgstrconst.rsincludefiles
+msgctxt "dgstrconst.rsincludefiles"
+msgid "Include files:"
+msgstr "Inclure les fichiers :"
+
+#: dgstrconst.rsincludetimeinname
+msgid "Add timestamp to name"
+msgstr "Estampiller le nom"
+
+#: dgstrconst.rsincorrectpasswordent
+msgid "Incorrect password entered"
+msgstr "Mot de Passe saisi incorrect"
+
+#: dgstrconst.rsinfoformlocation
+msgid "Location: %s"
+msgstr "Localisation: %s"
+
+#: dgstrconst.rsinformationf
+msgid "Information for archive: %s"
+msgstr "Information de l'archive: %s"
+
+#: dgstrconst.rsinodescheckeddiffere
+msgid "%s inodes checked : %s differences found"
+msgstr "%s contrôle des inodes : %s des différences ont été trouvées"
+
+#: dgstrconst.rsinvalidinput
+msgid "Invalid input"
+msgstr ""
+
+#: dgstrconst.rsjan
+msgid "Jan"
+msgstr "Jan"
+
+#: dgstrconst.rsjul
+msgid "Jul"
+msgstr "Jul"
+
+#: dgstrconst.rsjun
+msgid "Jun"
+msgstr "Jui"
+
+#: dgstrconst.rslicencegpl
+msgctxt "dgstrconst.rslicencegpl"
+msgid "Licence: GPL"
+msgstr "Licence : GPL"
+
+#: dgstrconst.rsloadsettings
+msgid "Load backup settings from file"
+msgstr ""
+
+#: dgstrconst.rslowersizelimitforcom
+msgctxt "dgstrconst.rslowersizelimitforcom"
+msgid "Lower size limit for compression:"
+msgstr "Taille limite basse pour la compression:"
+
+#: dgstrconst.rsmar
+msgid "Mar"
+msgstr "Mar"
+
+#: dgstrconst.rsmatchallfilters
+msgid "Match all filters"
+msgstr "Grouper tous les filtres"
+
+#: dgstrconst.rsmay
+msgid "May"
+msgstr "Mai"
+
+#: dgstrconst.rsmb
+msgctxt "dgstrconst.rsmb"
+msgid "Mb"
+msgstr "Mb"
+
+#: dgstrconst.rsmenuarchive
+msgctxt "dgstrconst.rsmenuarchive"
+msgid "Archive"
+msgstr "Archive"
+
+#: dgstrconst.rsmenucheckintegrity
+msgctxt "dgstrconst.rsmenucheckintegrity"
+msgid "Check Integrity"
+msgstr "Contrôler l'intégrité"
+
+#: dgstrconst.rsmenucomparefiles
+msgctxt "dgstrconst.rsmenucomparefiles"
+msgid "Compare files"
+msgstr ""
+
+#: dgstrconst.rsmenudardocumentation
+msgctxt "dgstrconst.rsmenudardocumentation"
+msgid "Dar Documentation"
+msgstr "Documentation Dar"
+
+#: dgstrconst.rsmenudarguihelp
+msgctxt "dgstrconst.rsmenudarguihelp"
+msgid "DarGUI Help"
+msgstr ""
+
+#: dgstrconst.rsmenuexit
+msgctxt "dgstrconst.rsmenuexit"
+msgid "Exit"
+msgstr "Quitter"
+
+#: dgstrconst.rsmenufile
+msgctxt "dgstrconst.rsmenufile"
+msgid "File"
+msgstr "Fichier"
+
+#: dgstrconst.rsmenuhelp
+msgid "Help"
+msgstr "Aide"
+
+#: dgstrconst.rsmenuhelpabout
+msgctxt "dgstrconst.rsmenuhelpabout"
+msgid "About DarGUI"
+msgstr "A propos de DARGUI"
+
+#: dgstrconst.rsmenuhideall
+msgctxt "dgstrconst.rsmenuhideall"
+msgid "Hide All"
+msgstr "Cacher tous"
+
+#: dgstrconst.rsmenuinformation
+msgctxt "dgstrconst.rsmenuinformation"
+msgid "Information"
+msgstr "Informations"
+
+#: dgstrconst.rsmenuisolatecatalogue
+msgid "Isolate Catalogue"
+msgstr "Isoler le Catalogue"
+
+#: dgstrconst.rsmenunew
+msgctxt "dgstrconst.rsmenunew"
+msgid "New"
+msgstr "Nouveau"
+
+#: dgstrconst.rsmenuopen
+msgctxt "dgstrconst.rsmenuopen"
+msgid "Open"
+msgstr "Ouvrir"
+
+#: dgstrconst.rsmenuopenrecent
+msgid "Open Recent..."
+msgstr "Fichiers récents... "
+
+#: dgstrconst.rsmenuoperationlogs
+msgid "Operation Logs"
+msgstr "Journal des Opérations"
+
+#: dgstrconst.rsmenuoptions
+msgctxt "dgstrconst.rsmenuoptions"
+msgid "Options"
+msgstr "Options"
+
+#: dgstrconst.rsmenurestoreall
+msgctxt "dgstrconst.rsmenurestoreall"
+msgid "Restore All"
+msgstr "Restorer Tout"
+
+#: dgstrconst.rsmenurestoreselected
+msgctxt "dgstrconst.rsmenurestoreselected"
+msgid "Restore Selected"
+msgstr "Restorer la Sélection"
+
+#: dgstrconst.rsmenuschedulemanager
+msgid "Schedule Manager"
+msgstr ""
+
+#: dgstrconst.rsmenuselectbyfilter
+msgctxt "dgstrconst.rsmenuselectbyfilter"
+msgid "Select by Filter"
+msgstr "Sélectionner par Filtre"
+
+#: dgstrconst.rsmenushowall
+msgctxt "dgstrconst.rsmenushowall"
+msgid "Show All"
+msgstr "Afficher Tout"
+
+#: dgstrconst.rsmenushowselected
+msgctxt "dgstrconst.rsmenushowselected"
+msgid "Show Selected"
+msgstr "Afficher la Sélection"
+
+#: dgstrconst.rsmenushowtoolbar
+msgctxt "dgstrconst.rsmenushowtoolbar"
+msgid "Show Toolbar"
+msgstr "Afficher la barre d'outils"
+
+#: dgstrconst.rsmenutoggleselect
+msgid "Toggle Selection"
+msgstr "Inverser la sélection"
+
+#: dgstrconst.rsmessbusy
+msgid " BUSY..."
+msgstr " PROCESSUS EN COURS..."
+
+#: dgstrconst.rsmessdirectorynotfound
+msgid "Destination directory not found"
+msgstr "Répertoire de destination non trouvé"
+
+#: dgstrconst.rsmessinvalidarchivename
+msgctxt "dgstrconst.rsmessinvalidarchivename"
+msgid "Invalid archive name"
+msgstr "Nom d'archive invalide"
+
+#: dgstrconst.rsmessinvalidcataloguename
 msgid "Invalid catalogue name"
 msgstr "Nom de catalogue invalide"
 
-#: dgstrconst:rsmessunabletofindarchive
+#: dgstrconst.rsmessinvaliddestinationdir
+msgid "Invalid destination directory"
+msgstr "Répertoire de destination invalide"
+
+#: dgstrconst.rsmessnostatisticsavailabl
+msgid "No statistics available - operation aborted?"
+msgstr "Pas de statistique disponible - annuler l'opération?"
+
+#: dgstrconst.rsmessunabletofind1dar
+msgid "Unable to find %s.1.dar"
+msgstr "%s.1.dar non trouvé"
+
+#: dgstrconst.rsmessunabletofindarchive
 msgid "Unable to find archive '%s'"
 msgstr "Impossible de trouver l'archive '%s'"
+
+#: dgstrconst.rsminutes
+msgid "Minutes"
+msgstr "Minutes"
+
+#: dgstrconst.rsmon
+msgid "Mon"
+msgstr "Lun"
+
+#: dgstrconst.rsmonth
+msgid "Month"
+msgstr "Mois"
+
+#: dgstrconst.rsnewarchive
+msgid "New archive"
+msgstr "Nouvelle archive"
+
+#: dgstrconst.rsno
+msgid "No"
+msgstr "Non"
+
+#: dgstrconst.rsnotcompresssmaller
+msgid "# Do not compress files smaller than this"
+msgstr "# Ne pas compresser les fichiers plus petit que ça"
+
+#: dgstrconst.rsnotcompressthese
+msgid "# Do not compress these files"
+msgstr "# Ne pas compresser ces fichiers"
+
+#: dgstrconst.rsnotes
+msgctxt "dgstrconst.rsnotes"
+msgid "Notes"
+msgstr ""
+
+#: dgstrconst.rsnotreaddarcfg
+msgid "# Do not read DAR configuration files (~/.darrc or /etc/darrc)"
+msgstr "# Ne pas lire les fichiers de configuration de DAR (~/.darrc or /etc/darrc)"
+
+#: dgstrconst.rsnov
+msgid "Nov"
+msgstr "Nov"
+
+#: dgstrconst.rsoct
+msgid "Oct"
+msgstr "Oct"
+
+#: dgstrconst.rsopenarchivewhencompl
+msgid "Open archive when created"
+msgstr "Ouvrir l'archive après la création"
+
+#: dgstrconst.rsopenexisting
+msgid "Open existing archive"
+msgstr "Ouvrir une archive existante"
+
+#: dgstrconst.rsoptions
+msgctxt "dgstrconst.rsoptions"
+msgid "Options"
+msgstr "Options"
+
+#: dgstrconst.rsoptions2
+msgctxt "dgstrconst.rsoptions2"
+msgid " Options "
+msgstr ""
+
+#: dgstrconst.rsoverwriteexistingarc
+msgid "Overwrite existing archive?"
+msgstr "Ecraser l'archive existante?"
+
+#: dgstrconst.rsoverwriteexistingfil
+msgid "Overwrite existing files"
+msgstr "Ecraser les fichiers existants"
+
+#: dgstrconst.rspasswordwarning
+msgid "You have chosen to encrypt this scheduled backup.%sThe password for the encrypted archive will be included in the backup script.%sAre you sure that you want to do this?"
+msgstr ""
+
+#: dgstrconst.rspausebetween
+msgid "# Pause between slices"
+msgstr "# Pause entre les segments"
+
+#: dgstrconst.rspausebetweenslices
+msgctxt "dgstrconst.rspausebetweenslices"
+msgid "Pause between slices"
+msgstr "Pause entre les segments"
+
+#: dgstrconst.rspreservedirectories
+msgctxt "dgstrconst.rspreservedirectories"
+msgid "Preserve directories"
+msgstr "Preserver les répertoires"
+
+#: dgstrconst.rspreservedirs
+msgid "# Preserve ignored directory names"
+msgstr "# Préserver les noms des répertoires ignorés"
+
+#: dgstrconst.rsqueryexecutescript
+msgid "A Dar backup script has been saved to %s%s%sDo you want to execute the script now?"
+msgstr ""
+
+#: dgstrconst.rsreferencearchive
+msgctxt "dgstrconst.rsreferencearchive"
+msgid "Reference archive"
+msgstr "Archive de référence"
+
+#: dgstrconst.rsremoveallfilters
+msgid "Remove all filters?"
+msgstr ""
+
+#: dgstrconst.rsrestorefilesto
+msgctxt "dgstrconst.rsrestorefilesto"
+msgid "Restore files to"
+msgstr "Restaurer les fichiers dans"
+
+#: dgstrconst.rsresults
+msgid "Results"
+msgstr "Résultats"
+
+#: dgstrconst.rsrunonceonly
+msgctxt "dgstrconst.rsrunonceonly"
+msgid "Run once only at"
+msgstr ""
+
+#: dgstrconst.rsrunregularily
+msgctxt "dgstrconst.rsrunregularily"
+msgid "Run regularily at"
+msgstr ""
+
+#: dgstrconst.rssat
+msgid "Sat"
+msgstr "Sam"
+
+#: dgstrconst.rssavearchivein
+msgctxt "dgstrconst.rssavearchivein"
+msgid "Save archive in"
+msgstr "Enregistrer l'archive sous"
+
+#: dgstrconst.rssavecatalogueas
+msgid "Save catalogue as"
+msgstr "Enregistrer le catalogue sous"
+
+#: dgstrconst.rssavescriptas
+msgctxt "dgstrconst.rssavescriptas"
+msgid "Save script as"
+msgstr "Sauver le script sous"
+
+#: dgstrconst.rssavesettings
+msgid "Save current backup settings"
+msgstr ""
+
+#: dgstrconst.rssavesettingsas
+msgctxt "dgstrconst.rssavesettingsas"
+msgid "Save backup settings as"
+msgstr ""
+
+#: dgstrconst.rsscheduling
+msgctxt "dgstrconst.rsscheduling"
+msgid "Scheduling"
+msgstr "Programmation"
+
+#: dgstrconst.rsscript
+msgid "Script"
+msgstr ""
+
+#: dgstrconst.rsscriptexecutetime
+msgid "DAR script will be executed at %s:%s on %s"
+msgstr ""
+
+#: dgstrconst.rsscriptsetupok
+msgid "Script successfully scheduled for execution"
+msgstr ""
+
+#: dgstrconst.rsscriptwarning1
+msgid "The backup script will run every minute on the days selected%sAre you sure that you want to do this?"
+msgstr ""
+
+#: dgstrconst.rsscriptwarning2
+msgid "The backup script will run every minute of every day%sAre you sure that you want to do this?"
+msgstr ""
+
+#: dgstrconst.rsseeschedbackups
+msgid "View list of scheduled backups"
+msgstr ""
+
+#: dgstrconst.rsselectfile
+msgid "Select file"
+msgstr "Choisir un fichier"
+
+#: dgstrconst.rsselectreferencearch
+msgid "Select reference archive"
+msgstr "Sélection de l'archive de référence"
+
+#: dgstrconst.rssep
+msgid "Sep"
+msgstr "Sep"
+
+#: dgstrconst.rsslicesize
+msgctxt "dgstrconst.rsslicesize"
+msgid "Slice size"
+msgstr "Taille Segment"
+
+#: dgstrconst.rssourcearchive
+msgid "Source archive"
+msgstr "Archive source"
+
+#: dgstrconst.rsstatusnodeselect
+msgid " %s node(s) selected"
+msgstr " %s noeud(s) sélectionné(s)"
+
+#: dgstrconst.rssun
+msgid "Sun"
+msgstr "Dim"
+
+#: dgstrconst.rssvnrevision
+msgid "SVN Revision: %s"
+msgstr "Révision: %s"
+
+#: dgstrconst.rstestrunonly
+msgctxt "dgstrconst.rstestrunonly"
+msgid "Test run only"
+msgstr "Test de marche uniquement"
+
+#: dgstrconst.rsthefileisencrypteden
+msgid "The file %s is encrypted. %sEnter the correct password for this archive."
+msgstr "Le fichier %s est crypté. %sEntrez le bon mot de passe pour cette archive."
+
+#: dgstrconst.rsthu
+msgid "Thu"
+msgstr "Jeu"
+
+#: dgstrconst.rstime
+msgid "Time"
+msgstr ""
+
+#: dgstrconst.rstue
+msgid "Tue"
+msgstr "Mar"
+
+#: dgstrconst.rsusebzip2comp
+msgid "# Use bzip2 compression"
+msgstr "# Utiliser la compression bzip2"
+
+#: dgstrconst.rsusebzip2compression
+msgctxt "dgstrconst.rsusebzip2compression"
+msgid "use bzip2 compression"
+msgstr "Utiliser la compression bzip2"
+
+#: dgstrconst.rsusegzipcompr
+msgid "# Use gzip compression"
+msgstr "# Utiliser la compression gzip"
+
+#: dgstrconst.rsusegzipcompression
+msgctxt "dgstrconst.rsusegzipcompression"
+msgid "use gzip compression"
+msgstr "Utiliser la compression gzip"
+
+#: dgstrconst.rsuseslices
+msgctxt "dgstrconst.rsuseslices"
+msgid "Use slices"
+msgstr "Segmenter"
+
+#: dgstrconst.rsverboseoutput
+msgid "Verbose output"
+msgstr "Processus détaillé"
+
+#: dgstrconst.rsversionnumber
+msgid "Version number: %s"
+msgstr "Numéro de version: %s"
+
+#: dgstrconst.rswed
+msgid "Wed"
+msgstr "Mer"
+
+#: dgstrconst.rsyes
+msgid "Yes"
+msgstr "Oui"
+
+#: TABOUTFORM.AUTHORLABEL.CAPTION
+msgid "Author: Malcolm Poole"
+msgstr ""
+
+#: TABOUTFORM.CAPTION
+msgctxt "TABOUTFORM.CAPTION"
+msgid "About DarGUI"
+msgstr "A propos de DARGUI"
+
+#: TABOUTFORM.DARVERSIONLABEL.CAPTION
+msgid "DarVersionLabel"
+msgstr ""
+
+#: TABOUTFORM.DEVINFOLABEL.CAPTION
+msgid "Development info"
+msgstr ""
+
+#: TABOUTFORM.GPLLABEL.CAPTION
+msgctxt "TABOUTFORM.GPLLABEL.CAPTION"
+msgid "Licence: GPL"
+msgstr "Licence : GPL"
+
+#: TABOUTFORM.HOTLABEL1.CAPTION
+msgid "http://www.lazarus.freepascal.org/"
+msgstr ""
+
+#: TABOUTFORM.OKBUTTON.CAPTION
+msgctxt "TABOUTFORM.OKBUTTON.CAPTION"
+msgid "&OK"
+msgstr ""
+
+#: TABOUTFORM.SVNLABEL.CAPTION
+msgid "SVN Revision: "
+msgstr ""
+
+#: TABOUTFORM.VERSIONLABEL.CAPTION
+msgid "Version number: "
+msgstr ""
+
+#: TARCHIVEFORM.ADDEXCLUDEFILEBUTTON.CAPTION
+msgctxt "TARCHIVEFORM.ADDEXCLUDEFILEBUTTON.CAPTION"
+msgid "Add file"
+msgstr "Ajouter un fichier"
+
+#: TARCHIVEFORM.ADDINCLUDEDIRBUTTON.CAPTION
+msgctxt "TARCHIVEFORM.ADDINCLUDEDIRBUTTON.CAPTION"
+msgid "Add"
+msgstr "Ajouter"
+
+#: TARCHIVEFORM.ADDINCLUDEFILEBUTTON.CAPTION
+msgctxt "TARCHIVEFORM.ADDINCLUDEFILEBUTTON.CAPTION"
+msgid "Add file"
+msgstr "Ajouter un fichier"
+
+#: TARCHIVEFORM.ARCHIVEBASELABEL.CAPTION
+msgctxt "TARCHIVEFORM.ARCHIVEBASELABEL.CAPTION"
+msgid "Archive base name"
+msgstr "Nom de base de l'Archive"
+
+#: TARCHIVEFORM.ARCHIVEDIRBUTTON.CAPTION
+msgctxt "TARCHIVEFORM.ARCHIVEDIRBUTTON.CAPTION"
+msgid "Browse"
+msgstr "Parcourir..."
+
+#: TARCHIVEFORM.ARCHIVEDIRECTORY.TEXT
+msgid "ArchiveDirectory"
+msgstr ""
+
+#: TARCHIVEFORM.ARCHIVEPAGE.CAPTION
+msgctxt "TARCHIVEFORM.ARCHIVEPAGE.CAPTION"
+msgid "Archive"
+msgstr "Archive"
+
+#: TARCHIVEFORM.BASEDIRBUTTON.CAPTION
+msgctxt "TARCHIVEFORM.BASEDIRBUTTON.CAPTION"
+msgid "Browse"
+msgstr "Parcourir..."
+
+#: TARCHIVEFORM.BASEDIRECTORY.TEXT
+msgctxt "TARCHIVEFORM.BASEDIRECTORY.TEXT"
+msgid "Edit1"
+msgstr ""
+
+#: TARCHIVEFORM.BASEDIRLABEL.CAPTION
+msgctxt "TARCHIVEFORM.BASEDIRLABEL.CAPTION"
+msgid "Base directory"
+msgstr "Répertoire de base"
+
+#: TARCHIVEFORM.BATCHFILEBOX.TEXT
+msgctxt "TARCHIVEFORM.BATCHFILEBOX.TEXT"
+msgid "Edit1"
+msgstr ""
+
+#: TARCHIVEFORM.BATCHFILEBUTTON.CAPTION
+msgctxt "TARCHIVEFORM.BATCHFILEBUTTON.CAPTION"
+msgid "Browse"
+msgstr "Parcourir..."
+
+#: TARCHIVEFORM.BATCHLABEL.CAPTION
+msgctxt "TARCHIVEFORM.BATCHLABEL.CAPTION"
+msgid "Batch file"
+msgstr "Fichier script"
+
+#: TARCHIVEFORM.BZIP2CHECK.CAPTION
+msgctxt "TARCHIVEFORM.BZIP2CHECK.CAPTION"
+msgid "use bzip2 compression"
+msgstr "Utiliser la compression bzip2"
+
+#: TARCHIVEFORM.CANCELBUTTON.CAPTION
+msgctxt "TARCHIVEFORM.CANCELBUTTON.CAPTION"
+msgid "Cancel"
+msgstr "Annuler"
+
+#: TARCHIVEFORM.CAPTION
+msgid "New Archive"
+msgstr ""
+
+#: TARCHIVEFORM.COMPLVLLABEL.CAPTION
+msgctxt "TARCHIVEFORM.COMPLVLLABEL.CAPTION"
+msgid "Compression level"
+msgstr "Niveau de Compression"
+
+#: TARCHIVEFORM.COMPLWRLIMITCOMBO.TEXT
+msgid "bytes"
+msgstr ""
+
+#: TARCHIVEFORM.COMPRESSIONEXCEPTIONS.CAPTION
+msgctxt "TARCHIVEFORM.COMPRESSIONEXCEPTIONS.CAPTION"
+msgid " Do not compress ... "
+msgstr "Ne pas compresser..."
+
+#: TARCHIVEFORM.COMPRESSIONLEVEL.TEXT
+msgid "9"
+msgstr ""
+
+#: TARCHIVEFORM.COMPRESSIONLWRLIMIT.TEXT
+msgid "100"
+msgstr ""
+
+#: TARCHIVEFORM.COMPRESSIONPAGE.CAPTION
+msgctxt "TARCHIVEFORM.COMPRESSIONPAGE.CAPTION"
+msgid "Compression"
+msgstr "Compression"
+
+#: TARCHIVEFORM.COMPRESSIONTYPES.CAPTION
+msgctxt "TARCHIVEFORM.COMPRESSIONTYPES.CAPTION"
+msgid " Compression type "
+msgstr "Type de Compression"
+
+#: TARCHIVEFORM.COMPRESSMASKS.CAPTION
+msgctxt "TARCHIVEFORM.COMPRESSMASKS.CAPTION"
+msgid "Add"
+msgstr "Ajouter"
+
+#: TARCHIVEFORM.COMPSIZELABEL.CAPTION
+msgctxt "TARCHIVEFORM.COMPSIZELABEL.CAPTION"
+msgid "Lower size limit for compression:"
+msgstr "Taille limite basse pour la compression:"
+
+#: TARCHIVEFORM.DELCOMPRESSMASKBUTTON.CAPTION
+msgctxt "TARCHIVEFORM.DELCOMPRESSMASKBUTTON.CAPTION"
+msgid "Remove"
+msgstr "Retirer"
+
+#: TARCHIVEFORM.DELEXCLUDEFILEBUTTON.CAPTION
+msgctxt "TARCHIVEFORM.DELEXCLUDEFILEBUTTON.CAPTION"
+msgid "Remove"
+msgstr "Retirer"
+
+#: TARCHIVEFORM.DELINCLUDEDIRBUTTON.CAPTION
+msgctxt "TARCHIVEFORM.DELINCLUDEDIRBUTTON.CAPTION"
+msgid "Remove"
+msgstr "Retirer"
+
+#: TARCHIVEFORM.DELINCLUDEFILEBUTTON.CAPTION
+msgctxt "TARCHIVEFORM.DELINCLUDEFILEBUTTON.CAPTION"
+msgid "Remove"
+msgstr "Retirer"
+
+#: TARCHIVEFORM.DIFFFILECHECK.CAPTION
+msgctxt "TARCHIVEFORM.DIFFFILECHECK.CAPTION"
+msgid "Differential backup"
+msgstr "Sauvegarde différentielle"
+
+#: TARCHIVEFORM.DIFFREFBUTTON.CAPTION
+msgctxt "TARCHIVEFORM.DIFFREFBUTTON.CAPTION"
+msgid "Browse"
+msgstr "Parcourir..."
+
+#: TARCHIVEFORM.DIFFREFERENCE.EDITLABEL.CAPTION
+msgctxt "TARCHIVEFORM.DIFFREFERENCE.EDITLABEL.CAPTION"
+msgid "Reference archive"
+msgstr "Archive de référence"
+
+#: TARCHIVEFORM.DIRECTORIESPAGE.CAPTION
+msgctxt "TARCHIVEFORM.DIRECTORIESPAGE.CAPTION"
+msgid "Directories"
+msgstr "Répertoires"
+
+#: TARCHIVEFORM.DRYRUNCHECK.CAPTION
+msgctxt "TARCHIVEFORM.DRYRUNCHECK.CAPTION"
+msgid "Test run only"
+msgstr "Test de marche uniquement"
+
+#: TARCHIVEFORM.EMPTYDIRCHECK.CAPTION
+msgctxt "TARCHIVEFORM.EMPTYDIRCHECK.CAPTION"
+msgid "Preserve directories"
+msgstr "Preserver les répertoires"
+
+#: TARCHIVEFORM.ENCRYPTARCHIVECHECK.CAPTION
+msgid "EncryptArchiveCheck"
+msgstr ""
+
+#: TARCHIVEFORM.EXCLUDEDIRSRADIOBUTTON.CAPTION
+msgid "ExcludeDirsRadioButton"
+msgstr ""
+
+#: TARCHIVEFORM.EXCLUDEFILEMASKS.CAPTION
+msgctxt "TARCHIVEFORM.EXCLUDEFILEMASKS.CAPTION"
+msgid "Add mask"
+msgstr "Ajouter masque"
+
+#: TARCHIVEFORM.EXCLUDEFILESLABEL.CAPTION
+msgctxt "TARCHIVEFORM.EXCLUDEFILESLABEL.CAPTION"
+msgid "Exclude files:"
+msgstr "Exclure les fichiers :"
+
+#: TARCHIVEFORM.FILESPAGE.CAPTION
+msgctxt "TARCHIVEFORM.FILESPAGE.CAPTION"
+msgid "Files"
+msgstr "Fichiers"
+
+#: TARCHIVEFORM.GZIPCHECK.CAPTION
+msgctxt "TARCHIVEFORM.GZIPCHECK.CAPTION"
+msgid "use gzip compression"
+msgstr "Utiliser la compression gzip"
+
+#: TARCHIVEFORM.INCLUDEDIRSRADIOBUTTON.CAPTION
+msgid "IncludeDirsRadioButton"
+msgstr ""
+
+#: TARCHIVEFORM.INCLUDEFILEMASKS.CAPTION
+msgctxt "TARCHIVEFORM.INCLUDEFILEMASKS.CAPTION"
+msgid "Add mask"
+msgstr "Ajouter masque"
+
+#: TARCHIVEFORM.INCLUDEFILESLABEL.CAPTION
+msgctxt "TARCHIVEFORM.INCLUDEFILESLABEL.CAPTION"
+msgid "Include files:"
+msgstr "Inclure les fichiers :"
+
+#: TARCHIVEFORM.NOTEBOOKPANEL.CAPTION
+msgid "NoteBookPanel"
+msgstr ""
+
+#: TARCHIVEFORM.NOWRADIOBUTTON.CAPTION
+msgid "NowRadioButton"
+msgstr ""
+
+#: TARCHIVEFORM.OKBUTTON.CAPTION
+msgid "Ok"
+msgstr ""
+
+#: TARCHIVEFORM.OPENCREATEDARCHIVECHECK.CAPTION
+msgid "OpenCreatedArchiveCheck"
+msgstr ""
+
+#: TARCHIVEFORM.OPTIONSPAGE.CAPTION
+msgctxt "TARCHIVEFORM.OPTIONSPAGE.CAPTION"
+msgid "Options"
+msgstr "Options"
+
+#: TARCHIVEFORM.PAUSECHECK.CAPTION
+msgctxt "TARCHIVEFORM.PAUSECHECK.CAPTION"
+msgid "Pause between slices"
+msgstr "Pause entre les segments"
+
+#: TARCHIVEFORM.READCONFIGCHECK.CAPTION
+msgctxt "TARCHIVEFORM.READCONFIGCHECK.CAPTION"
+msgid "Attempt to read DAR configuration files"
+msgstr "Tentative de lecture des fichiers de configuration de DAR"
+
+#: TARCHIVEFORM.REPEATHOURBOX.TEXT
+msgctxt "TARCHIVEFORM.REPEATHOURBOX.TEXT"
+msgid "*"
+msgstr ""
+
+#: TARCHIVEFORM.REPEATHOURLABEL.CAPTION
+msgctxt "TARCHIVEFORM.REPEATHOURLABEL.CAPTION"
+msgid "RunOnceHourLabel"
+msgstr ""
+
+#: TARCHIVEFORM.REPEATMINUTEBOX.TEXT
+msgctxt "TARCHIVEFORM.REPEATMINUTEBOX.TEXT"
+msgid "*"
+msgstr ""
+
+#: TARCHIVEFORM.REPEATMINUTELABEL.CAPTION
+msgid "RepeatMinuteLabel"
+msgstr ""
+
+#: TARCHIVEFORM.REPEATMONTHBOX.TEXT
+msgctxt "TARCHIVEFORM.REPEATMONTHBOX.TEXT"
+msgid "*"
+msgstr ""
+
+#: TARCHIVEFORM.REPEATMONTHDAYBOX.TEXT
+msgctxt "TARCHIVEFORM.REPEATMONTHDAYBOX.TEXT"
+msgid "*"
+msgstr ""
+
+#: TARCHIVEFORM.REPEATMONTHDAYLABEL.CAPTION
+msgid "RepeatMonthDayLabel"
+msgstr ""
+
+#: TARCHIVEFORM.REPEATMONTHLABEL.CAPTION
+msgid "RepeatMonthLabel"
+msgstr ""
+
+#: TARCHIVEFORM.REPEATRADIOBUTTON.CAPTION
+msgctxt "TARCHIVEFORM.REPEATRADIOBUTTON.CAPTION"
+msgid "Run regularily at"
+msgstr ""
+
+#: TARCHIVEFORM.REPEATWEEKDAYBOX.TEXT
+msgctxt "TARCHIVEFORM.REPEATWEEKDAYBOX.TEXT"
+msgid "*"
+msgstr ""
+
+#: TARCHIVEFORM.REPEATWEEKDAYLABEL.CAPTION
+msgid "RepeatWeekDayLabel"
+msgstr ""
+
+#: TARCHIVEFORM.RUNONCEDATEEDIT.CANCELCAPTION
+msgctxt "TARCHIVEFORM.RUNONCEDATEEDIT.CANCELCAPTION"
+msgid "Cancel"
+msgstr "Annuler"
+
+#: TARCHIVEFORM.RUNONCEDATEEDIT.OKCAPTION
+msgctxt "TARCHIVEFORM.RUNONCEDATEEDIT.OKCAPTION"
+msgid "OK"
+msgstr "OK"
+
+#: TARCHIVEFORM.RUNONCEDATELABEL.CAPTION
+msgid "RunOnceDateLabel"
+msgstr ""
+
+#: TARCHIVEFORM.RUNONCEHOURLABEL.CAPTION
+msgctxt "TARCHIVEFORM.RUNONCEHOURLABEL.CAPTION"
+msgid "RunOnceHourLabel"
+msgstr ""
+
+#: TARCHIVEFORM.RUNONCEMINUTELABEL.CAPTION
+msgid "RunOnceMinuteLabel"
+msgstr ""
+
+#: TARCHIVEFORM.RUNONCERADIOBUTTON.CAPTION
+msgctxt "TARCHIVEFORM.RUNONCERADIOBUTTON.CAPTION"
+msgid "Run once only at"
+msgstr ""
+
+#: TARCHIVEFORM.SAVEARCHIVEINLABEL.CAPTION
+msgctxt "TARCHIVEFORM.SAVEARCHIVEINLABEL.CAPTION"
+msgid "Save archive in"
+msgstr "Enregistrer l'archive sous"
+
+#: TARCHIVEFORM.SAVESCRIPTCHECKBOX.CAPTION
+msgctxt "TARCHIVEFORM.SAVESCRIPTCHECKBOX.CAPTION"
+msgid "Save script as"
+msgstr "Sauver le script sous"
+
+#: TARCHIVEFORM.SCHEDULEPAGE.CAPTION
+msgctxt "TARCHIVEFORM.SCHEDULEPAGE.CAPTION"
+msgid "Scheduling"
+msgstr "Programmation"
+
+#: TARCHIVEFORM.SCRIPTFILEBUTTON.CAPTION
+msgctxt "TARCHIVEFORM.SCRIPTFILEBUTTON.CAPTION"
+msgid "Browse"
+msgstr "Parcourir..."
+
+#: TARCHIVEFORM.SLICEMBLABEL.CAPTION
+msgctxt "TARCHIVEFORM.SLICEMBLABEL.CAPTION"
+msgid "Mb"
+msgstr "Mb"
+
+#: TARCHIVEFORM.SLICESCHECK.CAPTION
+msgctxt "TARCHIVEFORM.SLICESCHECK.CAPTION"
+msgid "Use slices"
+msgstr "Segmenter"
+
+#: TARCHIVEFORM.SLICESIZE.TEXT
+msgid "695"
+msgstr ""
+
+#: TARCHIVEFORM.SLICESIZELABEL.CAPTION
+msgctxt "TARCHIVEFORM.SLICESIZELABEL.CAPTION"
+msgid "Slice size"
+msgstr "Taille Segment"
+
+#: TARCHIVEFORM.TIMESTAMPCHECK.CAPTION
+msgid "TimestampCheck"
+msgstr ""
+
+#: TCREATESAVEDIALOG.BROWSEBUTTON.CAPTION
+msgid "..."
+msgstr ""
+
+#: TCREATESAVEDIALOG.CANCELBUTTON.CAPTION
+msgctxt "TCREATESAVEDIALOG.CANCELBUTTON.CAPTION"
+msgid "Cancel"
+msgstr "Annuler"
+
+#: TCREATESAVEDIALOG.CAPTION
+msgid "CreateSaveDialog"
+msgstr ""
+
+#: TCREATESAVEDIALOG.FILENAMELABEL.CAPTION
+msgctxt "TCREATESAVEDIALOG.FILENAMELABEL.CAPTION"
+msgid "Save backup settings as"
+msgstr ""
+
+#: TCREATESAVEDIALOG.NOTESLABEL.CAPTION
+msgctxt "TCREATESAVEDIALOG.NOTESLABEL.CAPTION"
+msgid "Notes"
+msgstr ""
+
+#: TCREATESAVEDIALOG.OKBUTTON.CAPTION
+msgctxt "TCREATESAVEDIALOG.OKBUTTON.CAPTION"
+msgid "&OK"
+msgstr ""
+
+#: TDIFFFORM.ARCHIVEBOX.EDITLABEL.CAPTION
+msgctxt "TDIFFFORM.ARCHIVEBOX.EDITLABEL.CAPTION"
+msgid "Archive"
+msgstr "Archive"
+
+#: TDIFFFORM.BASEDIRBOX.EDITLABEL.CAPTION
+msgid "Base Directory"
+msgstr ""
+
+#: TDIFFFORM.BROWSEARCHIVE.CAPTION
+msgctxt "TDIFFFORM.BROWSEARCHIVE.CAPTION"
+msgid "Browse"
+msgstr "Parcourir..."
+
+#: TDIFFFORM.CAPTION
+msgid "DiffForm"
+msgstr ""
+
+#: TDIFFFORM.CLOSEBUTTON.CAPTION
+msgctxt "TDIFFFORM.CLOSEBUTTON.CAPTION"
+msgid "&Close"
+msgstr ""
+
+#: TDIFFFORM.REPORTLABEL.CAPTION
+msgid "ReportLabel"
+msgstr ""
+
+#: TDIFFFORM.RESULTPANEL.CAPTION
+msgid "ResultPanel"
+msgstr ""
+
+#: TDIFFFORM.RESULTSLABEL.CAPTION
+msgid "Results:"
+msgstr ""
+
+#: TDIFFFORM.VERBOSECHECK.CAPTION
+msgid " Verbose output"
+msgstr ""
+
+#: TEXTRACTSELECTEDFORM.CANCELBUTTON.CAPTION
+msgctxt "TEXTRACTSELECTEDFORM.CANCELBUTTON.CAPTION"
+msgid "Cancel"
+msgstr "Annuler"
+
+#: TEXTRACTSELECTEDFORM.CAPTION
+msgid "ExtractSelectedForm"
+msgstr ""
+
+#: TEXTRACTSELECTEDFORM.DRYRUNCHECKBOX.CAPTION
+msgid "DryRunCheckBox"
+msgstr ""
+
+#: TEXTRACTSELECTEDFORM.FLATRESTORECHECKBOX.CAPTION
+msgctxt "TEXTRACTSELECTEDFORM.FLATRESTORECHECKBOX.CAPTION"
+msgid "Ignore directories"
+msgstr "Ignorer les répertoires"
+
+#: TEXTRACTSELECTEDFORM.OKBUTTON.CAPTION
+msgctxt "TEXTRACTSELECTEDFORM.OKBUTTON.CAPTION"
+msgid "&OK"
+msgstr ""
+
+#: TEXTRACTSELECTEDFORM.OPTIONSGROUPBOX.CAPTION
+msgctxt "TEXTRACTSELECTEDFORM.OPTIONSGROUPBOX.CAPTION"
+msgid " Options "
+msgstr ""
+
+#: TEXTRACTSELECTEDFORM.OVERWRITEOPTIONS.CAPTION
+msgid " Existing files "
+msgstr ""
+
+#: TEXTRACTSELECTEDFORM.RESTOREFILESLABEL.CAPTION
+msgctxt "TEXTRACTSELECTEDFORM.RESTOREFILESLABEL.CAPTION"
+msgid "Restore files to"
+msgstr "Restaurer les fichiers dans"
+
+#: TFILEMASKDIALOG.CANCELBUTTON.CAPTION
+msgctxt "TFILEMASKDIALOG.CANCELBUTTON.CAPTION"
+msgid "Cancel"
+msgstr "Annuler"
+
+#: TFILEMASKDIALOG.CAPTION
+msgctxt "TFILEMASKDIALOG.CAPTION"
+msgid "Add file"
+msgstr "Ajouter un fichier"
+
+#: TFILEMASKDIALOG.FILEMASKLABEL.CAPTION
+msgctxt "TFILEMASKDIALOG.FILEMASKLABEL.CAPTION"
+msgid "File mask"
+msgstr "Masque fichier"
+
+#: TFILEMASKDIALOG.OKBUTTON.CAPTION
+msgctxt "TFILEMASKDIALOG.OKBUTTON.CAPTION"
+msgid "&OK"
+msgstr ""
+
+#: TINFORMATIONFORM.CAPTION
+msgid "InformationForm"
+msgstr ""
+
+#: TMAINFORM.CAPTION
+msgid "DarGUI"
+msgstr ""
+
+#: TMAINFORM.MENUARCHIVE.CAPTION
+msgctxt "TMAINFORM.MENUARCHIVE.CAPTION"
+msgid "Archive"
+msgstr "Archive"
+
+#: TMAINFORM.MENUBREAK1.CAPTION
+msgctxt "TMAINFORM.MENUBREAK1.CAPTION"
+msgid "-"
+msgstr ""
+
+#: TMAINFORM.MENUBREAK2.CAPTION
+msgctxt "TMAINFORM.MENUBREAK2.CAPTION"
+msgid "-"
+msgstr ""
+
+#: TMAINFORM.MENUBREAK3.CAPTION
+msgctxt "TMAINFORM.MENUBREAK3.CAPTION"
+msgid "-"
+msgstr ""
+
+#: TMAINFORM.MENUBREAK4.CAPTION
+msgctxt "TMAINFORM.MENUBREAK4.CAPTION"
+msgid "-"
+msgstr ""
+
+#: TMAINFORM.MENUFILE.CAPTION
+msgid "&File"
+msgstr ""
+
+#: TMAINFORM.MENUHELP.CAPTION
+msgid "&Help"
+msgstr ""
+
+#: TMAINFORM.MENUSCHEDULING.CAPTION
+msgid "MenuScheduling"
+msgstr ""
+
+#: TMAINFORM.MENUSETTINGS.CAPTION
+msgctxt "TMAINFORM.MENUSETTINGS.CAPTION"
+msgid "Options"
+msgstr "Options"
+
+#: TMAINFORM.MESSAGEHIDEBUTTON.CAPTION
+msgid "X"
+msgstr ""
+
+#: TMAINFORM.MESSAGELABEL.CAPTION
+msgid "Messages:"
+msgstr ""
+
+#: TMAINFORM.MESSAGEPANEL.CAPTION
+msgid "MessagePanel"
+msgstr ""
+
+#: TMAINFORM.MIARCHIVEDIFF.CAPTION
+msgctxt "TMAINFORM.MIARCHIVEDIFF.CAPTION"
+msgid "Compare files"
+msgstr ""
+
+#: TMAINFORM.MIARCHIVEINFORMATION.CAPTION
+msgctxt "TMAINFORM.MIARCHIVEINFORMATION.CAPTION"
+msgid "Information"
+msgstr "Informations"
+
+#: TMAINFORM.MIEXIT.CAPTION
+msgctxt "TMAINFORM.MIEXIT.CAPTION"
+msgid "Exit"
+msgstr "Quitter"
+
+#: TMAINFORM.MIFILENEW.CAPTION
+msgctxt "TMAINFORM.MIFILENEW.CAPTION"
+msgid "New"
+msgstr "Nouveau"
+
+#: TMAINFORM.MIFILEOPEN.CAPTION
+msgctxt "TMAINFORM.MIFILEOPEN.CAPTION"
+msgid "Open"
+msgstr "Ouvrir"
+
+#: TMAINFORM.MIHELPABOUT.CAPTION
+msgctxt "TMAINFORM.MIHELPABOUT.CAPTION"
+msgid "About DarGUI"
+msgstr "A propos de DARGUI"
+
+#: TMAINFORM.MIHELPCONTENTS.CAPTION
+msgctxt "TMAINFORM.MIHELPCONTENTS.CAPTION"
+msgid "DarGUI Help"
+msgstr ""
+
+#: TMAINFORM.MIHELPDAR.CAPTION
+msgctxt "TMAINFORM.MIHELPDAR.CAPTION"
+msgid "Dar Documentation"
+msgstr "Documentation Dar"
+
+#: TMAINFORM.MIHIDEMESSAGES.CAPTION
+msgid "Hide messages"
+msgstr ""
+
+#: TMAINFORM.MIISOLATE.CAPTION
+msgid "Isolate catalogue"
+msgstr ""
+
+#: TMAINFORM.MIOPENRECENT.CAPTION
+msgid "Open recent ..."
+msgstr ""
+
+#: TMAINFORM.MIOPERATIONLOGS.CAPTION
+msgid "Operation logs"
+msgstr ""
+
+#: TMAINFORM.MIRESTOREALL.CAPTION
+msgid "Restore all"
+msgstr ""
+
+#: TMAINFORM.MIRESTORESELECTED.CAPTION
+msgid "Restore selected"
+msgstr ""
+
+#: TMAINFORM.MISCHEDMANAGER.CAPTION
+msgid "miSchedMan"
+msgstr ""
+
+#: TMAINFORM.MISELECTFILTER.CAPTION
+msgctxt "TMAINFORM.MISELECTFILTER.CAPTION"
+msgid "Select by Filter"
+msgstr "Sélectionner par Filtre"
+
+#: TMAINFORM.MISHOWSELECT.CAPTION
+msgctxt "TMAINFORM.MISHOWSELECT.CAPTION"
+msgid "Show Selected"
+msgstr "Afficher la Sélection"
+
+#: TMAINFORM.MISHOWTOOLBAR.CAPTION
+msgctxt "TMAINFORM.MISHOWTOOLBAR.CAPTION"
+msgid "Show Toolbar"
+msgstr "Afficher la barre d'outils"
+
+#: TMAINFORM.MITESTARCHIVE.CAPTION
+msgctxt "TMAINFORM.MITESTARCHIVE.CAPTION"
+msgid "Check Integrity"
+msgstr "Contrôler l'intégrité"
+
+#: TMAINFORM.MITOGGLESELECT.CAPTION
+msgctxt "TMAINFORM.MITOGGLESELECT.CAPTION"
+msgid "Toggle Selected"
+msgstr ""
+
+#: TMAINFORM.PMIHIDEALL.CAPTION
+msgctxt "TMAINFORM.PMIHIDEALL.CAPTION"
+msgid "Hide All"
+msgstr "Cacher tous"
+
+#: TMAINFORM.PMIRESTOREALL.CAPTION
+msgctxt "TMAINFORM.PMIRESTOREALL.CAPTION"
+msgid "Restore All"
+msgstr "Restorer Tout"
+
+#: TMAINFORM.PMIRESTORESELECTED.CAPTION
+msgctxt "TMAINFORM.PMIRESTORESELECTED.CAPTION"
+msgid "Restore Selected"
+msgstr "Restorer la Sélection"
+
+#: TMAINFORM.PMISELECTFILTER.CAPTION
+msgctxt "TMAINFORM.PMISELECTFILTER.CAPTION"
+msgid "Select by Filter"
+msgstr "Sélectionner par Filtre"
+
+#: TMAINFORM.PMISHOWALL.CAPTION
+msgctxt "TMAINFORM.PMISHOWALL.CAPTION"
+msgid "Show All"
+msgstr "Afficher Tout"
+
+#: TMAINFORM.PMISHOWALLSELECTED.CAPTION
+msgctxt "TMAINFORM.PMISHOWALLSELECTED.CAPTION"
+msgid "Show Selected"
+msgstr "Afficher la Sélection"
+
+#: TMAINFORM.PMITOGGLESELECT.CAPTION
+msgctxt "TMAINFORM.PMITOGGLESELECT.CAPTION"
+msgid "Toggle Selected"
+msgstr ""
+
+#: TMAINFORM.POPUPBREAK1.CAPTION
+msgctxt "TMAINFORM.POPUPBREAK1.CAPTION"
+msgid "-"
+msgstr ""
+
+#: TMAINFORM.POPUPBREAK2.CAPTION
+msgctxt "TMAINFORM.POPUPBREAK2.CAPTION"
+msgid "-"
+msgstr ""
+
+#: TMAINFORM.TBCREATE.HINT
+msgctxt "TMAINFORM.TBCREATE.HINT"
+msgid "Create a new archive"
+msgstr "Créer une nouvelle archive"
+
+#: TMAINFORM.TBDIFF.HINT
+msgctxt "TMAINFORM.TBDIFF.HINT"
+msgid "Compare archive and filesystem"
+msgstr "Comparer l'archive à un répertoire"
+
+#: TMAINFORM.TBISOLATE.HINT
+msgctxt "TMAINFORM.TBISOLATE.HINT"
+msgid "Isolate archive catalogue"
+msgstr "Isoler le catalogue de l'archive"
+
+#: TMAINFORM.TBOPEN.HINT
+msgctxt "TMAINFORM.TBOPEN.HINT"
+msgid "Open an archive"
+msgstr "Ouvrir une archive"
+
+#: TOPLOGFORM.CAPTION
+msgid "Logs"
+msgstr ""
+
+#: TOPLOGFORM.COMMANDLABEL.CAPTION
+msgid "CommandLabel"
+msgstr ""
+
+#: TOPLOGFORM.CONTENTPANEL.CAPTION
+msgid "ContentPanel"
+msgstr ""
+
+#: TOPLOGFORM.MICOPYCOMMAND.CAPTION
+msgid "Copy Selected"
+msgstr ""
+
+#: TOPLOGFORM.MIEXECUTECOMMAND.CAPTION
+msgid "Execute"
+msgstr ""
+
+#: TPASSWORDDLG.CANCELBUTTON.CAPTION
+msgctxt "TPASSWORDDLG.CANCELBUTTON.CAPTION"
+msgid "Cancel"
+msgstr "Annuler"
+
+#: TPASSWORDDLG.CAPTION
+msgid "PasswordDlg"
+msgstr ""
+
+#: TPASSWORDDLG.NOMATCHLABEL.CAPTION
+msgid "NoMatchLabel"
+msgstr ""
+
+#: TPASSWORDDLG.OKBUTTON.CAPTION
+msgctxt "TPASSWORDDLG.OKBUTTON.CAPTION"
+msgid "&OK"
+msgstr ""
+
+#: TPASSWORDDLG.PASSWORDEDIT.TEXT
+msgid "PasswordEdit"
+msgstr ""
+
+#: TPASSWORDDLG.PASSWORDLABEL.CAPTION
+msgid "PasswordLabel"
+msgstr ""
+
+#: TSCHEDULEMANAGERFORM.CANCELBUTTON.CAPTION
+msgid "CancelButton"
+msgstr ""
+
+#: TSCHEDULEMANAGERFORM.CAPTION
+msgid "ScheduleManagerForm"
+msgstr ""
+
+#: TSCHEDULEMANAGERFORM.CLOSEBUTTON.CAPTION
+msgctxt "TSCHEDULEMANAGERFORM.CLOSEBUTTON.CAPTION"
+msgid "&Close"
+msgstr ""
+
+#: TSELECTFILTERFORM.ADDFILTERBUTTON.CAPTION
+msgctxt "TSELECTFILTERFORM.ADDFILTERBUTTON.CAPTION"
+msgid "Add"
+msgstr "Ajouter"
+
+#: TSELECTFILTERFORM.CANCELBUTTON.CAPTION
+msgctxt "TSELECTFILTERFORM.CANCELBUTTON.CAPTION"
+msgid "Cancel"
+msgstr "Annuler"
+
+#: TSELECTFILTERFORM.CAPTION
+msgid "SelectFilterForm"
+msgstr ""
+
+#: TSELECTFILTERFORM.CLEARFILTERSBUTTON.CAPTION
+msgctxt "TSELECTFILTERFORM.CLEARFILTERSBUTTON.CAPTION"
+msgid "Clear"
+msgstr "Effacer"
+
+#: TSELECTFILTERFORM.DELFILTERBUTTON.CAPTION
+msgctxt "TSELECTFILTERFORM.DELFILTERBUTTON.CAPTION"
+msgid "Remove"
+msgstr "Retirer"
+
+#: TSELECTFILTERFORM.FILENAMESONLYCHECK.CAPTION
+msgid "Apply filter to filenames only"
+msgstr ""
+
+#: TSELECTFILTERFORM.MATCHALLCHECK.CAPTION
+msgid "MatchAllCheck"
+msgstr ""
+
+#: TSELECTFILTERFORM.OKBUTTON.CAPTION
+msgctxt "TSELECTFILTERFORM.OKBUTTON.CAPTION"
+msgid "&OK"
+msgstr ""
 
