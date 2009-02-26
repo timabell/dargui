@@ -142,7 +142,7 @@ const
   {revision.inc is a dynamically produced file containing the number of the most recent SVN revision
    the include directive can be commented out and the following line uncommented, replacing the number 0 with the
    appropriate revision number}
-  SVN_REVISION = '208';
+  SVN_REVISION = '211';
 
   ARCHIVEMENU_TAG = 1; //used for enabling menuitems after loading archive
   SELECT_STATUSBAR = 0;   //index of panel which displays number of selected nodes
