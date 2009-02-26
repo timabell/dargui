@@ -82,6 +82,7 @@ type
     procedure ArchiveTreeViewSelectionChanged(Sender: TObject);
     procedure FormCreate(Sender: TObject);
     procedure FormClose(Sender: TObject; var CloseAction: TCloseAction);
+    procedure FormResize(Sender: TObject);
     procedure HeaderBarSectionResize(HeaderControl: TCustomHeaderControl;
       Section: THeaderSection);
     procedure RecentMenuClick ( Sender: TObject ) ;
@@ -532,6 +533,12 @@ end;
 procedure TMainForm.FormClose(Sender: TObject; var CloseAction: TCloseAction);
 begin
   Preferences.Free;
+end;
+
+procedure TMainForm.FormResize(Sender: TObject);
+begin
+  ToolbarPanel.Refresh;
+  FileHeaderBar.Refresh;
 end;
 
 procedure TMainForm.HeaderBarSectionResize(HeaderControl: TCustomHeaderControl;
