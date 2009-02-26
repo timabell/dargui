@@ -1,17 +1,19 @@
+# translation of dargui.fr.po to Spanish
 # translation of dargui.pot to French
 # Header entry was created by KBabel!
 #
-# Malcolm Poole <mgpoole@users.sourceforge.net>, 2008.
+# Malcolm Poole <mgpoole@users.sourceforge.net>, 2008, 2009.
 msgid ""
 msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Mime-Version: 1.0Last-Translator: Gwénaël TRELLU<mgpoole@users.sourceforge.net>\n"
-"PO-Revision-Date: 2008-04-05 21:05+0100\n"
-"Project-Id-Version: dargui\n"
-"Language-Team: French\n"
+"PO-Revision-Date: 2009-02-26 20:45+0000\n"
+"Project-Id-Version: dargui.fr\n"
+"Language-Team: Spanish\n"
 "X-Generator: KBabel 1.11.4\n"
 "MIME-Version: 1.0\n"
+"Last-Translator: Malcolm Poole <mgpoole@users.sourceforge.net>\n"
 
 #: darstrings.dsinodecount
 msgid "total number of inode : %s\\n"
@@ -103,7 +105,7 @@ msgstr "Ajouter un fichier"
 #: dgstrconst.rsbuttonaddmask
 msgctxt "dgstrconst.rsbuttonaddmask"
 msgid "Add mask"
-msgstr "Ajouter masque"
+msgstr "Ajouter un masque"
 
 #: dgstrconst.rsbuttonbrowse
 msgctxt "dgstrconst.rsbuttonbrowse"
@@ -136,7 +138,7 @@ msgstr "Retirer"
 
 #: dgstrconst.rscancelschedscript
 msgid "Are you sure that you want to cancel scheduled script %s%s"
-msgstr ""
+msgstr "Êtes-vous sûr de vouloir annuler le script programmé %s%s"
 
 #: dgstrconst.rscheckarchiveforerrors
 msgid "Check the archive for errors"
@@ -192,7 +194,7 @@ msgstr "Confirmer avant écrasement"
 
 #: dgstrconst.rsconfirmcancel
 msgid "Confirm cancellation"
-msgstr ""
+msgstr "Confirmer l'annulation"
 
 #: dgstrconst.rscptaddfilemask
 msgid "Add file mask"
@@ -245,11 +247,11 @@ msgstr "restauration de fichiers..."
 
 #: dgstrconst.rscptsavebackupsettings
 msgid "Save backup settings"
-msgstr ""
+msgstr "Enregistrer les paramètres de sauvegarde"
 
 #: dgstrconst.rscptscheduledbackups
 msgid "Scheduled backups"
-msgstr ""
+msgstr "Sauvegardes programmées"
 
 #: dgstrconst.rscptselectdate
 msgid "Select date"
@@ -336,11 +338,11 @@ msgstr "La date ne peut pas être antérieure"
 
 #: dgstrconst.rserrdeletingcron
 msgid "Error when deleting crontab entry: %s%s"
-msgstr ""
+msgstr "Erreur lors de la suppression de l'entrée crontab: %s%s"
 
 #: dgstrconst.rserrdeletingsched
 msgid "Error when deleting scheduled backup"
-msgstr ""
+msgstr "Erreur lors de la suppression de la sauvegarde programmée"
 
 #: dgstrconst.rserrerrornotfound
 msgid "Error: %s not found"
@@ -353,7 +355,7 @@ msgstr "Nom d'archive invalide"
 
 #: dgstrconst.rserrinvalidchars
 msgid "Archive name or path contains invalid characters"
-msgstr ""
+msgstr "Le nom de l'archive ou du chemin contient des caractères non autorisés"
 
 #: dgstrconst.rserrinvaliddirectory
 msgid "Invalid directory"
@@ -389,7 +391,7 @@ msgstr "Opération annulée: Restauration des fichiers sélectionnés"
 
 #: dgstrconst.rserrscriptnotsetup
 msgid "Unable to schedule script execution.%sError when executing at: %s%s"
-msgstr ""
+msgstr "Impossible de programmer l'exécution du script .%sErreur lors de l'exécution à: %s%s"
 
 #: dgstrconst.rserrunabletofindarchive
 msgid "Unable to find archive"
@@ -401,7 +403,7 @@ msgstr "Impossible d'ouvrir l'archive"
 
 #: dgstrconst.rserrwritingscript
 msgid "Error writing script"
-msgstr ""
+msgstr "Erreur d'écriture du script"
 
 #: dgstrconst.rsexcldirectories
 msgid "# Directories to exclude from archive"
@@ -456,7 +458,7 @@ msgstr "# Fichiers à restaurer"
 
 #: dgstrconst.rsfilterallfiles
 msgid "All files"
-msgstr ""
+msgstr "Tous les fichiers"
 
 #: dgstrconst.rsfilterdararchives
 msgid "DAR archives"
@@ -464,7 +466,7 @@ msgstr "Archives DAR"
 
 #: dgstrconst.rsfilterdarguifiles
 msgid "DarGUI files"
-msgstr ""
+msgstr "Fichiers DarGUI"
 
 #: dgstrconst.rsfri
 msgid "Fri"
@@ -537,7 +539,7 @@ msgstr "%s contrôle des inodes : %s des différences ont été trouvées"
 
 #: dgstrconst.rsinvalidinput
 msgid "Invalid input"
-msgstr ""
+msgstr "Entrée non valide"
 
 #: dgstrconst.rsjan
 msgid "Jan"
@@ -558,7 +560,7 @@ msgstr "Licence : GPL"
 
 #: dgstrconst.rsloadsettings
 msgid "Load backup settings from file"
-msgstr ""
+msgstr "Lecture des paramètres de sauvegarde depuis un fichier"
 
 #: dgstrconst.rslowersizelimitforcom
 msgctxt "dgstrconst.rslowersizelimitforcom"
@@ -595,7 +597,7 @@ msgstr "Contrôler l'intégrité"
 #: dgstrconst.rsmenucomparefiles
 msgctxt "dgstrconst.rsmenucomparefiles"
 msgid "Compare files"
-msgstr ""
+msgstr "Comparer les fichiers"
 
 #: dgstrconst.rsmenudardocumentation
 msgctxt "dgstrconst.rsmenudardocumentation"
@@ -605,7 +607,7 @@ msgstr "Documentation Dar"
 #: dgstrconst.rsmenudarguihelp
 msgctxt "dgstrconst.rsmenudarguihelp"
 msgid "DarGUI Help"
-msgstr ""
+msgstr "Aide de DarGUI"
 
 #: dgstrconst.rsmenuexit
 msgctxt "dgstrconst.rsmenuexit"
@@ -675,7 +677,7 @@ msgstr "Restorer la Sélection"
 
 #: dgstrconst.rsmenuschedulemanager
 msgid "Schedule Manager"
-msgstr ""
+msgstr "Gestionnaire de programmation"
 
 #: dgstrconst.rsmenuselectbyfilter
 msgctxt "dgstrconst.rsmenuselectbyfilter"
@@ -765,7 +767,7 @@ msgstr "# Ne pas compresser ces fichiers"
 #: dgstrconst.rsnotes
 msgctxt "dgstrconst.rsnotes"
 msgid "Notes"
-msgstr ""
+msgstr "Notes"
 
 #: dgstrconst.rsnotreaddarcfg
 msgid "# Do not read DAR configuration files (~/.darrc or /etc/darrc)"
@@ -795,7 +797,7 @@ msgstr "Options"
 #: dgstrconst.rsoptions2
 msgctxt "dgstrconst.rsoptions2"
 msgid " Options "
-msgstr ""
+msgstr " Options "
 
 #: dgstrconst.rsoverwriteexistingarc
 msgid "Overwrite existing archive?"
@@ -807,7 +809,7 @@ msgstr "Ecraser les fichiers existants"
 
 #: dgstrconst.rspasswordwarning
 msgid "You have chosen to encrypt this scheduled backup.%sThe password for the encrypted archive will be included in the backup script.%sAre you sure that you want to do this?"
-msgstr ""
+msgstr "Vous avez choisi de crypter cette sauvegarde programmée.%sLe mot de passe de l'archive cryptée sera inclus dans le script de sauvegarde.%s Êtes-vous sûr de vouloir faire cela ?"
 
 #: dgstrconst.rspausebetween
 msgid "# Pause between slices"
@@ -829,7 +831,7 @@ msgstr "# Préserver les noms des répertoires ignorés"
 
 #: dgstrconst.rsqueryexecutescript
 msgid "A Dar backup script has been saved to %s%s%sDo you want to execute the script now?"
-msgstr ""
+msgstr "Un script de sauvegarde Dar a été enregistré dans %s%s%sVoulez-vous exécuter le script maintenant ?"
 
 #: dgstrconst.rsreferencearchive
 msgctxt "dgstrconst.rsreferencearchive"
@@ -838,7 +840,7 @@ msgstr "Archive de référence"
 
 #: dgstrconst.rsremoveallfilters
 msgid "Remove all filters?"
-msgstr ""
+msgstr "Retirer tous les filtres"
 
 #: dgstrconst.rsrestorefilesto
 msgctxt "dgstrconst.rsrestorefilesto"
@@ -852,12 +854,12 @@ msgstr "Résultats"
 #: dgstrconst.rsrunonceonly
 msgctxt "dgstrconst.rsrunonceonly"
 msgid "Run once only at"
-msgstr ""
+msgstr "Lancer une seule fois à"
 
 #: dgstrconst.rsrunregularily
 msgctxt "dgstrconst.rsrunregularily"
 msgid "Run regularily at"
-msgstr ""
+msgstr "Lancer régulièrement à"
 
 #: dgstrconst.rssat
 msgid "Sat"
@@ -875,16 +877,16 @@ msgstr "Enregistrer le catalogue sous"
 #: dgstrconst.rssavescriptas
 msgctxt "dgstrconst.rssavescriptas"
 msgid "Save script as"
-msgstr "Sauver le script sous"
+msgstr "Enregistrer le script sous"
 
 #: dgstrconst.rssavesettings
 msgid "Save current backup settings"
-msgstr ""
+msgstr "Enregistrer les paramètres actuels de sauvegarde"
 
 #: dgstrconst.rssavesettingsas
 msgctxt "dgstrconst.rssavesettingsas"
 msgid "Save backup settings as"
-msgstr ""
+msgstr "Enregistrer les paramètres de sauvegarde dans"
 
 #: dgstrconst.rsscheduling
 msgctxt "dgstrconst.rsscheduling"
@@ -893,27 +895,27 @@ msgstr "Programmation"
 
 #: dgstrconst.rsscript
 msgid "Script"
-msgstr ""
+msgstr "Script"
 
 #: dgstrconst.rsscriptexecutetime
 msgid "DAR script will be executed at %s:%s on %s"
-msgstr ""
+msgstr "Le script DAR sera exécuté à %s:%s le %s"
 
 #: dgstrconst.rsscriptsetupok
 msgid "Script successfully scheduled for execution"
-msgstr ""
+msgstr "Exécution du script programmé avec succès"
 
 #: dgstrconst.rsscriptwarning1
 msgid "The backup script will run every minute on the days selected%sAre you sure that you want to do this?"
-msgstr ""
+msgstr "Le script de sauvegarde démarrera toutes les minutes des jours sélectionnés%sÊtes-vous sûr de vouloir faire cela ?"
 
 #: dgstrconst.rsscriptwarning2
 msgid "The backup script will run every minute of every day%sAre you sure that you want to do this?"
-msgstr ""
+msgstr "Le script de sauvegarde démarrera toutes les minutes%sÊtes-vous sûr de vouloir faire cela ?"
 
 #: dgstrconst.rsseeschedbackups
 msgid "View list of scheduled backups"
-msgstr ""
+msgstr "Voir la liste des sauvegardes programmées"
 
 #: dgstrconst.rsselectfile
 msgid "Select file"
@@ -963,7 +965,7 @@ msgstr "Jeu"
 
 #: dgstrconst.rstime
 msgid "Time"
-msgstr ""
+msgstr "Heure"
 
 #: dgstrconst.rstue
 msgid "Tue"
@@ -1228,7 +1230,7 @@ msgstr ""
 #: TARCHIVEFORM.EXCLUDEFILEMASKS.CAPTION
 msgctxt "TARCHIVEFORM.EXCLUDEFILEMASKS.CAPTION"
 msgid "Add mask"
-msgstr "Ajouter masque"
+msgstr "Ajouter un masque"
 
 #: TARCHIVEFORM.EXCLUDEFILESLABEL.CAPTION
 msgctxt "TARCHIVEFORM.EXCLUDEFILESLABEL.CAPTION"
@@ -1252,7 +1254,7 @@ msgstr ""
 #: TARCHIVEFORM.INCLUDEFILEMASKS.CAPTION
 msgctxt "TARCHIVEFORM.INCLUDEFILEMASKS.CAPTION"
 msgid "Add mask"
-msgstr "Ajouter masque"
+msgstr "Ajouter un masque"
 
 #: TARCHIVEFORM.INCLUDEFILESLABEL.CAPTION
 msgctxt "TARCHIVEFORM.INCLUDEFILESLABEL.CAPTION"
@@ -1330,7 +1332,7 @@ msgstr ""
 #: TARCHIVEFORM.REPEATRADIOBUTTON.CAPTION
 msgctxt "TARCHIVEFORM.REPEATRADIOBUTTON.CAPTION"
 msgid "Run regularily at"
-msgstr ""
+msgstr "Lancer régulièrement à"
 
 #: TARCHIVEFORM.REPEATWEEKDAYBOX.TEXT
 msgctxt "TARCHIVEFORM.REPEATWEEKDAYBOX.TEXT"
@@ -1367,7 +1369,7 @@ msgstr ""
 #: TARCHIVEFORM.RUNONCERADIOBUTTON.CAPTION
 msgctxt "TARCHIVEFORM.RUNONCERADIOBUTTON.CAPTION"
 msgid "Run once only at"
-msgstr ""
+msgstr "Lancer une seule fois à"
 
 #: TARCHIVEFORM.SAVEARCHIVEINLABEL.CAPTION
 msgctxt "TARCHIVEFORM.SAVEARCHIVEINLABEL.CAPTION"
@@ -1377,7 +1379,7 @@ msgstr "Enregistrer l'archive sous"
 #: TARCHIVEFORM.SAVESCRIPTCHECKBOX.CAPTION
 msgctxt "TARCHIVEFORM.SAVESCRIPTCHECKBOX.CAPTION"
 msgid "Save script as"
-msgstr "Sauver le script sous"
+msgstr "Enregistrer le script sous"
 
 #: TARCHIVEFORM.SCHEDULEPAGE.CAPTION
 msgctxt "TARCHIVEFORM.SCHEDULEPAGE.CAPTION"
@@ -1428,12 +1430,12 @@ msgstr ""
 #: TCREATESAVEDIALOG.FILENAMELABEL.CAPTION
 msgctxt "TCREATESAVEDIALOG.FILENAMELABEL.CAPTION"
 msgid "Save backup settings as"
-msgstr ""
+msgstr "Enregistrer les paramètres de sauvegarde dans"
 
 #: TCREATESAVEDIALOG.NOTESLABEL.CAPTION
 msgctxt "TCREATESAVEDIALOG.NOTESLABEL.CAPTION"
 msgid "Notes"
-msgstr ""
+msgstr "Notes"
 
 #: TCREATESAVEDIALOG.OKBUTTON.CAPTION
 msgctxt "TCREATESAVEDIALOG.OKBUTTON.CAPTION"
@@ -1505,7 +1507,7 @@ msgstr ""
 #: TEXTRACTSELECTEDFORM.OPTIONSGROUPBOX.CAPTION
 msgctxt "TEXTRACTSELECTEDFORM.OPTIONSGROUPBOX.CAPTION"
 msgid " Options "
-msgstr ""
+msgstr "Options"
 
 #: TEXTRACTSELECTEDFORM.OVERWRITEOPTIONS.CAPTION
 msgid " Existing files "
@@ -1601,7 +1603,7 @@ msgstr ""
 #: TMAINFORM.MIARCHIVEDIFF.CAPTION
 msgctxt "TMAINFORM.MIARCHIVEDIFF.CAPTION"
 msgid "Compare files"
-msgstr ""
+msgstr "Comparer les fichiers"
 
 #: TMAINFORM.MIARCHIVEINFORMATION.CAPTION
 msgctxt "TMAINFORM.MIARCHIVEINFORMATION.CAPTION"
@@ -1631,7 +1633,7 @@ msgstr "A propos de DARGUI"
 #: TMAINFORM.MIHELPCONTENTS.CAPTION
 msgctxt "TMAINFORM.MIHELPCONTENTS.CAPTION"
 msgid "DarGUI Help"
-msgstr ""
+msgstr "Aide de DarGUI"
 
 #: TMAINFORM.MIHELPDAR.CAPTION
 msgctxt "TMAINFORM.MIHELPDAR.CAPTION"
