@@ -138,11 +138,11 @@ var
   
 const
   APP_VERSION = '0.5.0';
-  //{$I revision.inc}
+  {$I revision.inc}
   {revision.inc is a dynamically produced file containing the number of the most recent SVN revision
    the include directive can be commented out and the following line uncommented, replacing the number 0 with the
    appropriate revision number}
-  SVN_REVISION = '211';
+  //SVN_REVISION = '0';
 
   ARCHIVEMENU_TAG = 1; //used for enabling menuitems after loading archive
   SELECT_STATUSBAR = 0;   //index of panel which displays number of selected nodes
@@ -212,11 +212,25 @@ begin
        2: ShowMessage ( rsErrNoBash ) ;
        3: ShowMessage ( rsErrNoXtermBash ) ;
        end;
-  HasATD := (ProcessRunning('atd'))
-     and (ShellCommand('atq -V', test) = 0);
-  HasCron :=  ( ( (ProcessRunning('cron')  // Ubuntu
-              or (ProcessRunning('crond') ) ) ) // CentOS
-     and (ShellCommand('crontab -l', test) = 0) ) ;
+  HasATD := (ProcessRunning('atd'));
+  if HasATD then
+     begin
+       HasATD := (ShellCommand('atq -V', test) = 0);
+       if not HasATD
+          then WriteLn('test for atq failed:',#10,test);
+     end
+  else writeln('atd daemon not running');
+
+  HasCron :=   (ProcessRunning('cron')  // Ubuntu
+                or ProcessRunning('crond'));  // Red Hat
+  if HasCron then
+     begin
+       HasCron := (ShellCommand('crontab -l', test) = 0);
+       if not HasCron
+          then WriteLn('test for crontab failed:',#10,test);
+     end
+  else writeln('cron daemon not running');
+
   miSchedManager.Enabled := HasATD or HasCron;
   tbSchedMan.Enabled := HasATD or HasCron;
   DarInfo := GetDarVersion;

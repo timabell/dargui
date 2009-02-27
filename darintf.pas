@@ -255,6 +255,7 @@ begin
       b := Proc.Output.NumBytesAvailable;
       SetLength(output, b);
       Proc.Output.Read(output[1], b);
+      output := output + #10;
       processname := #32 + processname + #10;
       Result := (Pos(processname, output) > 0);
     except
@@ -570,8 +571,9 @@ begin
        bytes := Shell.Output.NumBytesAvailable;
        SetLength(processoutput, bytes);
        Shell.Output.Read(processoutput[1], bytes);
-     finally
        Result := Shell.ExitStatus;
+       Shell.Free;
+     except
        Shell.Free;
      end;
 end;
