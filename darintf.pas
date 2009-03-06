@@ -405,9 +405,11 @@ var
         begin                                   // file still exists
      for x := 0 to SEGPERMISSIONS do
          begin
-           CurrentFile[x] := Copy(fileinfo,
+           CurrentFile[x] := Trim(
+                                  Copy(fileinfo,
                                   DataCoords[x].StartChar,
-                                  DataCoords[x].EndChar - DataCoords[x].StartChar);
+                                  DataCoords[x].EndChar - DataCoords[x].StartChar)
+                                  );
          end;
      s := DataCoords[SEGUSER].StartChar;
      for x := SEGUSER to SEGFILENAME do
@@ -495,9 +497,8 @@ begin
                                 item[n] := CurrentFile[n];
                             folder := false;
                           end;
-                       if (Pos('[-----]', CurrentFile[SEGSTATUS]) > 0)
-                          and (CurrentFile[SEGSIZE] = '0') then
-                          begin // NB: empty files still get marked as folders in isolated catalogues
+                       if CurrentFile[SEGPERMISSIONS][1]='d' then // node is a directory
+                          begin
                             parentnode := currentnode;
                             TFileData(currentnode.Data).folder := true;
                           end;
