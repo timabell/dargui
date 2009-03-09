@@ -50,6 +50,7 @@ object MainForm: TMainForm
   OnClose = FormClose
   OnCreate = FormCreate
   OnResize = FormResize
+  Position = poMainFormCenter
   LCLVersion = '0.9.27'
   object StatusBar: TStatusBar
     Height = 17

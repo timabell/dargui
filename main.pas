@@ -205,6 +205,17 @@ begin
           RecentFile := Preferences.ReadString(CfgRecentFiles,CfgRecentX + IntToStr(x),'');
         end;
   miShowToolbar.Checked := Preferences.ReadString ( CfgUserPrefs, CfgShowToolbar, '1' ) = '1';
+  Height := Preferences.ReadInteger('Screen', 'MainHeight', Height);
+  Width := Preferences.ReadInteger('Screen', 'MainWidth', Width);
+  if Preferences.ReadInteger('Screen', 'MainTop', Top) < Screen.Height-Height
+     then Top := Preferences.ReadInteger('Screen', 'MainTop', Top)
+  else Top := Screen.Height-Height;
+    if Preferences.ReadInteger('Screen', 'MainLeft', Left) < Screen.Width-Width
+     then Left := Preferences.ReadInteger('Screen', 'MainLeft', Left)
+  else Left := Screen.Width-Width;
+  if Preferences.ReadBool('Screen', 'Maximised', false) = true
+     then WindowState := wsMaximized;
+
   ToolbarPanel.Visible := miShowToolbar.Checked;
   Caption := Caption + #32 + APP_VERSION;
   case CheckSupportingApps of
@@ -546,6 +557,11 @@ end;
 
 procedure TMainForm.FormClose(Sender: TObject; var CloseAction: TCloseAction);
 begin
+  Preferences.WriteInteger('Screen', 'MainHeight', Height);
+  Preferences.WriteInteger('Screen', 'MainWidth', Width);
+  Preferences.WriteInteger('Screen', 'MainTop', Top);
+  Preferences.WriteInteger('Screen', 'MainLeft', Left);
+  Preferences.WriteBool('Screen', 'Maximised', (WindowState = wsMaximized));
   Preferences.Free;
 end;
 
