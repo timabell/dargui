@@ -13,26 +13,45 @@ uses
 
 var
   DarMOFile: TMOFile;
+
+var
+  dsDataColumn,
+  dsStatusColumn,
+  dsPermissionColumn : string;
   
   
 resourcestring
   dsYES           = 'YES';
   dsNO            = 'NO';
-  dsLongoptions   = 'Long options support       : %s\n';
-  dsLibzComp      = '   Libz compression (gzip)    : %s\n';
-  dsLibbz2Comp    = '   Libbz2 compression (bzip2) : %s\n';
-  dsNewBlowfish   = '   New Blowfish implementation: %s\n';
+  dsLongoptions   = 'Long options support       : %s' + #10;
+  dsLibzComp      = '   Libz compression (gzip)    : %s' + #10;
+  dsLibbz2Comp    = '   Libbz2 compression (bzip2) : %s' + #10;
+  dsNewBlowfish   = '   New Blowfish implementation: %s' + #10;
+  dsExtendedAttributes = '   Extended Attributes support: %s' + #10;
+  dsLargeFiles    = '   Large files support (> 2GB): %s' + #10;
+  dsNoDump        = '   ext2fs NODUMP flag support : %s' + #10;
+  dsSpecialAlloc  = '   Special allocation scheme  : %s' + #10;
+  dsThreadSafe    = '   Thread safe support        : %s' + #10;
+
+  dsRemoved       = '[     REMOVED       ]';
+
+  dsArchiveEncrypted = 'The archive %S is encrypted and no encryption cipher has been given, cannot '
+                       + 'open archive.';
+  dsColumnTitles  = '[data ][ EA  ][compr] | permission | user  | group | size  |          '
+                    + 'date                 |    filename' + #10;
   
-  dsInodeCount    = 'total number of inode : %s\n';   // NOT VERSION CHECKED
+  dsInodeCount    = 'total number of inode : %i' + #10;
   
 function OpenDarTranslationInterface: Boolean;
 procedure CloseDarTranslationInterface;
 
 function TranslateDarString( darstring: string ): string;
 function PosDarString( darstring, searchstring :string): integer;
-function LengthDarString( darstring: string ): integer;  //returns chars preceding first %s or \n
+function LengthDarString( darstring: string ): integer;  //returns chars preceding first %s or #10
 
 function SetDarStrings: boolean;
+procedure ExtractColumnTitles;
+function UTF8EncodeChars( translatestring: string ): ansistring;
 
 
 
@@ -103,6 +122,7 @@ function TranslateDarString(darstring: string): string;
 var
   p: LongInt;
 begin
+  ResetResourceTables;
   if DarMOFile=nil then
      begin
        Result := darstring;
@@ -124,11 +144,18 @@ var
   p: LongInt;
 begin
   Result := 0;
-  if DarMOFile <> nil
-     then darstring := TranslateDarString(darstring);
+  //if DarMOFile <> nil
+  //   then darstring := TranslateDarString(darstring);
+  darstring := Trim(darstring);
   p := Pos('%s', darstring);
   if p > 0
-     then darstring := Copy(darstring, 1, p-1);
+     then darstring := Copy(darstring, 1, p-1)
+  else
+      begin
+          p := Pos('%i', darstring);
+          if p > 0
+             then darstring := Copy(darstring, 1, p-1);
+      end;
   Result := Pos(darstring, searchstring);
 end;
 
@@ -136,13 +163,18 @@ function LengthDarString(darstring: string): integer;
 var
   s: LongInt;
   n: LongInt;
+  i: LongInt;
 begin
   Result := Length(darstring);
+  i := Pos('%i', darstring);
+  if i > 0
+     then if i < Result
+        then Result := i-1;
   s := Pos('%s', darstring);
   if s > 0
      then if s < Result
         then Result := s-1;
-  n := Pos('\n', darstring);
+  n := Pos(#10, darstring);
   if n > 0
      then if n < Result
           then Result := n-1;
@@ -178,7 +210,7 @@ function SetDarStrings: boolean;
 Var
   ResStr : PResourceStringRecord;
   i      : Longint;
-  s,
+  s : Ansistring;
   UpUnitName : AnsiString;
 begin
   if DarMOFile=nil
@@ -196,6 +228,7 @@ begin
           while ResStr<Tables[I].TableEnd do
             begin
               s:=DarMOFile.Translate(ResStr^.DefaultValue,ResStr^.HashValue);
+              s := UTF8EncodeChars(s);
               if s<>'' then
                 ResStr^.CurrentValue:=s;
               inc(ResStr);
@@ -203,6 +236,37 @@ begin
         end;
     end;
    CloseDarTranslationInterface;
+end;
+
+procedure ExtractColumnTitles;
+var
+  p: LongInt;
+begin
+  p := Pos(']', dsColumnTitles);
+  // at present we only use the [data ] column
+  dsDataColumn := Copy(dsColumnTitles, 1, p);
+end;
+
+function UTF8EncodeChars(translatestring: string): ansistring;
+var
+  x: Integer;
+begin
+  Result := '';
+  for x := 1 to Length(translatestring) do
+      if Ord(translatestring[x]) > 127
+         then begin
+           //for some reason we do not get the desired result if we UTFEncode Chr(Ord(translatestring[x]))
+           //so this is the best we can do at the moment. These are French accented characters
+           case Ord(translatestring[x]) of
+                224: Result := Result + UTF8Encode(Chr(224));
+                226: Result := Result + UTF8Encode(Chr(226));
+                232: Result := Result + UTF8Encode(Chr(232));
+                233: Result := Result + UTF8Encode(Chr(233));
+                234: Result := Result + UTF8Encode(Chr(234));
+           otherwise Result := Result + translatestring[x];
+           end;
+         end
+      else Result := Result + translatestring[x];
 end;
 
 

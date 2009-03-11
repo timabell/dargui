@@ -179,7 +179,7 @@ begin
       Output.LoadFromStream(Proc.Output);
       for x := 0 to Output.Count -1 do
           if PosDarString(dsLongoptions, Output.Strings[x]) > 0
-             then DarInEnglish := true;
+             then DarInEnglish := true; // TODO: make this less of a hack
       if DarInEnglish then writeln('DAR using English language');
       if not DarInEnglish
          then begin
@@ -187,6 +187,7 @@ begin
                     then SetDarStrings
                     else writeln('Unable to translate DAR output: please report this as a bug');
               end;
+      ExtractColumnTitles;
       for x := 0 to Output.Count -1 do
           begin
           if Pos('dar version',Output.Strings[x]) > 0
@@ -199,16 +200,16 @@ begin
                   then info.Libbz2 := GetBoolean(Output.Strings[x], LengthDarString(dsLibbz2Comp))
           else if PosDarString(dsNewBlowfish, Output.Strings[x]) > 0
                   then info.Blowfish := GetBoolean(Output.Strings[x], LengthDarString(dsNewBlowfish))
-          else if Pos('extended attrib', Output.Strings[x]) > 0
-                  then info.Extended := GetBoolean(Output.Strings[x], 1 )
-          else if Pos('large files', Output.Strings[x]) > 0
-                  then info.Largefiles := GetBoolean(Output.Strings[x], 1)
-          else if Pos('nodump', Output.Strings[x]) > 0
-                  then info.Nodump := GetBoolean(Output.Strings[x], 1)
-          else if Pos('thread safe', Output.Strings[x]) > 0
-                  then info.Threadsafe := GetBoolean(Output.Strings[x], 1)
-          else if Pos('special alloc', Output.Strings[x]) > 0
-                  then info.SpAlloc := GetBoolean(Output.Strings[x], 1)
+          else if PosDarString(dsExtendedAttributes, Output.Strings[x]) > 0
+                  then info.Extended := GetBoolean(Output.Strings[x], LengthDarString(dsExtendedAttributes))
+          else if PosDarString(dsLargeFiles, Output.Strings[x]) > 0
+                  then info.Largefiles := GetBoolean(Output.Strings[x], LengthDarString(dsLargeFiles))
+          else if PosDarString(dsNoDump, Output.Strings[x]) > 0
+                  then info.Nodump := GetBoolean(Output.Strings[x], LengthDarString(dsNoDump))
+          else if PosDarString(dsThreadSafe, Output.Strings[x]) > 0
+                  then info.Threadsafe := GetBoolean(Output.Strings[x], LengthDarString(dsThreadSafe))
+          else if PosDarString(dsSpecialAlloc, Output.Strings[x]) > 0
+                  then info.SpAlloc := GetBoolean(Output.Strings[x], LengthDarString(dsSpecialAlloc))
           else if Pos('integer size', Output.Strings[x]) > 0
                   then info.IntSize := GetIntSize(Output.Strings[x]);
           end;
@@ -391,8 +392,7 @@ var
      x, y, s, e : integer;
    begin
      fileinfo := fileinfo + #13;
-     if (Pos('[     REMOVED',fileinfo)=1)
-        or (Pos('[     SUPPRIME', fileinfo)=1) then   // file flagged as removed
+     if (Pos(dsRemoved, fileinfo)=1) then   // file flagged as removed
         begin
           CurrentFile[SEGSTATUS] := Copy(fileinfo,
                                   DataCoords[SEGSTATUS].StartChar,
@@ -479,10 +479,11 @@ begin
           begin
           if Proc.ExitStatus <> 0 then raise Exception.Create('Dar exited with error code ' + IntToStr(Proc.ExitStatus));
           outputline := Proc.ReadLine;
+  //        writeln(outputline);
           if outputline<>'' then
               begin
               if outputline[1]='[' then
-                 if not (Pos('[data', outputline)=1) then
+                 if not (Pos(dsDataColumn, outputline)=1) then
                     begin
                        Inc(nodesloaded);
                        Inc(progressinterval);
@@ -751,7 +752,7 @@ var
   teststr: String;
 begin
   Result := false;
-  teststr := 'The archive ' + ExtractFileName(fn) + ' is encrypted';
+  teststr := Format(dsArchiveEncrypted, [ExtractFileName(fn)]);
   Proc := TProcess.Create(Application);
   Output := TStringList.Create;
   Proc.CommandLine :=  DAR_EXECUTABLE + ' -l ' + fn + ' -v -Q';
@@ -852,6 +853,7 @@ begin
  finally
    if Result=-1
       then writeln('Unable to extract node count - dumping output of dar -l -v:' + #10 + Output.Text);
+   //writeln('inodecount: ',Result);
    Proc.Free;
    Output.Free;
  end;
