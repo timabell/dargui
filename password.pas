@@ -21,6 +21,7 @@ type
     procedure FormCreate ( Sender: TObject ) ;
     procedure FormShow ( Sender: TObject ) ;
     function GetPassword: string;
+    procedure NoMatchLabelChangeBounds(Sender: TObject);
     procedure OKButtonClick ( Sender: TObject ) ;
   private
     { private declarations }
@@ -59,6 +60,15 @@ end;
 function TPasswordDlg.GetPassword: string;
 begin
   Result := PasswordEdit.Text;
+end;
+
+procedure TPasswordDlg.NoMatchLabelChangeBounds(Sender: TObject);
+begin
+    with TLabel(Sender) do
+       begin
+         if FocusControl <> nil then
+            Top := FocusControl.Top - Height;
+       end;
 end;
 
 procedure TPasswordDlg.OKButtonClick ( Sender: TObject ) ;

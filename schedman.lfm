@@ -42,7 +42,7 @@ object ScheduleManagerForm: TScheduleManagerForm
   end
   object CancelButton: TButton
     Left = 16
-    Height = 30
+    Height = 35
     Top = 152
     Width = 112
     Caption = 'CancelButton'
@@ -60,10 +60,10 @@ object ScheduleManagerForm: TScheduleManagerForm
     ClientWidth = 595
     TabOrder = 2
     object CloseButton: TBitBtn
-      Left = 253
-      Height = 30
+      Left = 248
+      Height = 35
       Top = 12
-      Width = 90
+      Width = 100
       Caption = '&Close'
       Kind = bkClose
       ModalResult = 1

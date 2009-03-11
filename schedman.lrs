@@ -14,12 +14,12 @@ LazarusResources.Add('TScheduleManagerForm','FORMDATA',[
   +'Sizing'#11'goRowSelect'#14'goSmoothScroll'#0#8'RowCount'#2#1#10'ScrollBars'
   +#7#14'ssAutoVertical'#8'TabOrder'#2#0#10'OnDrawCell'#7#20'ScheduleListDrawCe'
   +'ll'#13'OnHeaderSized'#7#23'ScheduleListHeaderSized'#0#0#7'TButton'#12'Cance'
-  +'lButton'#4'Left'#2#16#6'Height'#2#30#3'Top'#3#152#0#5'Width'#2'p'#7'Caption'
+  +'lButton'#4'Left'#2#16#6'Height'#2'#'#3'Top'#3#152#0#5'Width'#2'p'#7'Caption'
   +#6#12'CancelButton'#7'Enabled'#8#7'OnClick'#7#17'CancelButtonClick'#8'TabOrd'
   +'er'#2#1#0#0#6'TPanel'#17'ResultButtonPanel'#6'Height'#2':'#3'Top'#3#11#1#5
   +'Width'#3'S'#2#5'Align'#7#8'alBottom'#10'BevelOuter'#7#6'bvNone'#12'ClientHe'
   +'ight'#2':'#11'ClientWidth'#3'S'#2#8'TabOrder'#2#2#0#7'TBitBtn'#11'CloseButt'
-  +'on'#4'Left'#3#253#0#6'Height'#2#30#3'Top'#2#12#5'Width'#2'Z'#7'Caption'#6#6
+  +'on'#4'Left'#3#248#0#6'Height'#2'#'#3'Top'#2#12#5'Width'#2'd'#7'Caption'#6#6
   +'&Close'#4'Kind'#7#7'bkClose'#11'ModalResult'#2#1#9'NumGlyphs'#2#0#7'OnClick'
   +#7#16'CloseButtonClick'#8'TabOrder'#2#0#0#0#0#10'TImageList'#8'IconList'#4'l'
   +'eft'#2'&'#3'top'#3#204#0#6'Bitmap'#10#14#8#0#0'Li'#2#0#0#0#16#0#0#0#16#0#0#0

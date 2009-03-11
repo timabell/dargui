@@ -1,36 +1,36 @@
 object DiffForm: TDiffForm
   Left = 419
-  Height = 290
+  Height = 307
   Top = 254
-  Width = 595
-  HorzScrollBar.Page = 594
-  VertScrollBar.Page = 289
+  Width = 599
   ActiveControl = OKButton
   Caption = 'DiffForm'
-  ClientHeight = 290
-  ClientWidth = 595
+  ClientHeight = 307
+  ClientWidth = 599
   OnCreate = FormCreate
   OnResize = FormResize
   Position = poOwnerFormCenter
+  LCLVersion = '0.9.27'
   object DialogPanel: TPanel
-    Height = 182
-    Width = 595
+    Height = 199
+    Width = 599
     Align = alClient
-    ClientHeight = 182
-    ClientWidth = 595
+    ClientHeight = 199
+    ClientWidth = 599
     TabOrder = 2
     object ArchiveBox: TLabeledEdit
       Left = 15
       Height = 23
       Top = 35
       Width = 425
+      EditLabel.AnchorSideLeft.Control = ArchiveBox
+      EditLabel.AnchorSideBottom.Control = ArchiveBox
       EditLabel.Left = 15
-      EditLabel.Height = 14
-      EditLabel.Top = 15
-      EditLabel.Width = 43
+      EditLabel.Height = 16
+      EditLabel.Top = 16
+      EditLabel.Width = 46
       EditLabel.Caption = 'Archive'
       EditLabel.ParentColor = False
-      ParentColor = False
       TabOrder = 0
     end
     object BaseDirBox: TLabeledEdit
@@ -38,13 +38,14 @@ object DiffForm: TDiffForm
       Height = 23
       Top = 104
       Width = 425
+      EditLabel.AnchorSideLeft.Control = BaseDirBox
+      EditLabel.AnchorSideBottom.Control = BaseDirBox
       EditLabel.Left = 15
-      EditLabel.Height = 14
-      EditLabel.Top = 84
-      EditLabel.Width = 87
+      EditLabel.Height = 16
+      EditLabel.Top = 85
+      EditLabel.Width = 92
       EditLabel.Caption = 'Base Directory'
       EditLabel.ParentColor = False
-      ParentColor = False
       TabOrder = 2
     end
     object BrowseArchive: TButton
@@ -67,9 +68,9 @@ object DiffForm: TDiffForm
     end
     object VerboseCheck: TCheckBox
       Left = 15
-      Height = 23
+      Height = 21
       Top = 144
-      Width = 116
+      Width = 124
       Caption = ' Verbose output'
       Checked = True
       State = cbChecked
@@ -77,17 +78,17 @@ object DiffForm: TDiffForm
     end
   end
   object ResultPanel: TPanel
-    Height = 182
-    Width = 595
+    Height = 199
+    Width = 599
     Align = alClient
     Caption = 'ResultPanel'
-    ClientHeight = 182
-    ClientWidth = 595
+    ClientHeight = 199
+    ClientWidth = 599
     TabOrder = 3
     Visible = False
     object ResultsLabel: TLabel
       Left = 8
-      Height = 20
+      Height = 16
       Top = 16
       Width = 50
       Caption = 'Results:'
@@ -95,17 +96,18 @@ object DiffForm: TDiffForm
     end
     object ReportLabel: TLabel
       Left = 8
-      Height = 20
+      Height = 16
       Top = 40
       Width = 75
       Caption = 'ReportLabel'
+      FocusControl = ResultListBox
       ParentColor = False
     end
     object ResultListBox: TListBox
       Left = 6
       Height = 114
-      Top = 62
-      Width = 583
+      Top = 79
+      Width = 587
       Align = alBottom
       BorderSpacing.Around = 5
       OnDrawItem = ResultListBoxDrawItem
@@ -116,11 +118,11 @@ object DiffForm: TDiffForm
   end
   object ResultButtonPanel: TPanel
     Height = 58
-    Top = 182
-    Width = 595
+    Top = 199
+    Width = 599
     Align = alBottom
     ClientHeight = 58
-    ClientWidth = 595
+    ClientWidth = 599
     TabOrder = 1
     Visible = False
     object CloseButton: TBitBtn
@@ -137,11 +139,11 @@ object DiffForm: TDiffForm
   end
   object DialogButtonPanel: TPanel
     Height = 50
-    Top = 240
-    Width = 595
+    Top = 257
+    Width = 599
     Align = alBottom
     ClientHeight = 50
-    ClientWidth = 595
+    ClientWidth = 599
     TabOrder = 0
     object OKButton: TBitBtn
       Left = 193
@@ -169,13 +171,11 @@ object DiffForm: TDiffForm
     end
   end
   object OpenDialog: TOpenDialog
-    Title = 'Open existing file'
     Filter = 'DAR archives|*.*.dar'
     left = 544
     top = 16
   end
   object SelectDirectoryDialog: TSelectDirectoryDialog
-    Title = 'Select Directory'
     left = 504
     top = 16
   end

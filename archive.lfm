@@ -1,9 +1,9 @@
 object ArchiveForm: TArchiveForm
-  Left = 377
+  Left = 119
   Height = 490
-  Top = 224
+  Top = 186
   Width = 637
-  ActiveControl = ArchiveName
+  ActiveControl = TimestampCheck
   BorderIcons = [biSystemMenu]
   BorderStyle = bsDialog
   Caption = 'New Archive'
@@ -160,8 +160,8 @@ object ArchiveForm: TArchiveForm
     end
     object OKButton: TBitBtn
       Left = 392
-      Height = 30
-      Top = 21
+      Height = 35
+      Top = 15
       Width = 106
       Caption = 'Ok'
       Default = True
@@ -172,8 +172,8 @@ object ArchiveForm: TArchiveForm
     end
     object CancelButton: TBitBtn
       Left = 512
-      Height = 30
-      Top = 21
+      Height = 35
+      Top = 15
       Width = 106
       Cancel = True
       Caption = 'Cancel'
@@ -204,39 +204,47 @@ object ArchiveForm: TArchiveForm
         ClientHeight = 351
         object ArchiveBaseLabel: TLabel
           Left = 19
-          Height = 20
+          Height = 16
           Top = 12
           Width = 120
           Caption = 'Archive base name'
+          FocusControl = ArchiveName
           ParentColor = False
+          OnChangeBounds = LabelResize
         end
         object BaseDirLabel: TLabel
           Left = 19
-          Height = 20
+          Height = 16
           Top = 132
           Width = 91
           Caption = 'Base directory'
+          FocusControl = BaseDirectory
           ParentColor = False
+          OnChangeBounds = LabelResize
         end
         object SaveArchiveInLabel: TLabel
           Left = 19
-          Height = 20
+          Height = 16
           Top = 68
           Width = 95
           Caption = 'Save archive in'
+          FocusControl = ArchiveDirectory
           ParentColor = False
+          OnChangeBounds = LabelResize
         end
         object BatchLabel: TLabel
           Left = 19
-          Height = 20
+          Height = 16
           Top = 200
           Width = 59
           Caption = 'Batch file'
+          FocusControl = BatchFileBox
           ParentColor = False
+          OnChangeBounds = LabelResize
         end
         object ArchiveDirectory: TEdit
           Left = 19
-          Height = 23
+          Height = 25
           Top = 84
           Width = 350
           TabOrder = 1
@@ -253,7 +261,7 @@ object ArchiveForm: TArchiveForm
         end
         object BaseDirectory: TEdit
           Left = 19
-          Height = 23
+          Height = 25
           Top = 148
           Width = 350
           TabOrder = 3
@@ -270,7 +278,7 @@ object ArchiveForm: TArchiveForm
         end
         object ArchiveName: TEdit
           Left = 19
-          Height = 24
+          Height = 25
           Top = 28
           Width = 282
           OnExit = ArchiveNameExit
@@ -287,16 +295,16 @@ object ArchiveForm: TArchiveForm
         end
         object BatchFileBox: TEdit
           Left = 19
-          Height = 23
+          Height = 25
           Top = 216
           Width = 350
           TabOrder = 5
           Text = 'Edit1'
         end
         object DiffFileCheck: TCheckBox
-          Left = 19
+          Left = 21
           Height = 21
-          Top = 258
+          Top = 257
           Width = 141
           Caption = 'Differential backup'
           OnChange = DiffFileCheckChange
@@ -304,14 +312,14 @@ object ArchiveForm: TArchiveForm
         end
         object DiffReference: TLabeledEdit
           Left = 45
-          Height = 23
-          Top = 309
+          Height = 25
+          Top = 313
           Width = 324
           EditLabel.AnchorSideLeft.Control = DiffReference
           EditLabel.AnchorSideBottom.Control = DiffReference
           EditLabel.Left = 45
-          EditLabel.Height = 20
-          EditLabel.Top = 286
+          EditLabel.Height = 16
+          EditLabel.Top = 294
           EditLabel.Width = 113
           EditLabel.Caption = 'Reference archive'
           EditLabel.ParentColor = False
@@ -321,7 +329,7 @@ object ArchiveForm: TArchiveForm
         object DiffRefButton: TButton
           Left = 389
           Height = 30
-          Top = 306
+          Top = 310
           Width = 90
           Caption = 'Browse'
           Enabled = False
@@ -388,9 +396,9 @@ object ArchiveForm: TArchiveForm
           TabOrder = 4
         end
         object EmptyDirCheck: TCheckBox
-          Left = 29
+          Left = 19
           Height = 21
-          Top = 313
+          Top = 310
           Width = 149
           Caption = 'Preserve directories'
           TabOrder = 5
@@ -402,19 +410,23 @@ object ArchiveForm: TArchiveForm
         ClientHeight = 351
         object IncludeFilesLabel: TLabel
           Left = 19
-          Height = 20
+          Height = 16
           Top = 18
           Width = 79
           Caption = 'Include files:'
+          FocusControl = IncludeFiles
           ParentColor = False
+          OnChangeBounds = LabelResize
         end
         object ExcludeFilesLabel: TLabel
           Left = 19
-          Height = 20
+          Height = 16
           Top = 196
           Width = 82
           Caption = 'Exclude files:'
+          FocusControl = ExcludeFiles
           ParentColor = False
+          OnChangeBounds = LabelResize
         end
         object IncludeFiles: TListBox
           Tag = 1
@@ -505,17 +517,18 @@ object ArchiveForm: TArchiveForm
           Top = 10
           Width = 288
           Caption = ' Do not compress ... '
-          ClientHeight = 311
+          ClientHeight = 313
           ClientWidth = 282
           TabOrder = 0
           object CompSizeLabel: TLabel
             Left = 21
-            Height = 20
+            Height = 16
             Top = 240
             Width = 202
             Caption = 'Lower size limit for compression:'
             FocusControl = CompressionLwrLimit
             ParentColor = False
+            OnChangeBounds = LabelResize
           end
           object NoCompressList: TListBox
             Left = 13
@@ -530,8 +543,8 @@ object ArchiveForm: TArchiveForm
               '*.gif'
               '*.png'
             )
+            ItemHeight = 21
             TabOrder = 0
-            TopIndex = -1
           end
           object CompressMasks: TButton
             Left = 165
@@ -556,14 +569,15 @@ object ArchiveForm: TArchiveForm
             Height = 23
             Top = 267
             Width = 114
+            OnChangeBounds = LabelResize
             OnExit = CompressionLwrLimitExit
             TabOrder = 3
             Text = '100'
           end
           object CompLwrLimitCombo: TComboBox
             Left = 149
-            Height = 25
-            Top = 265
+            Height = 23
+            Top = 267
             Width = 100
             ItemIndex = 0
             Items.Strings = (
@@ -581,21 +595,22 @@ object ArchiveForm: TArchiveForm
           Top = 11
           Width = 257
           Caption = ' Compression type '
-          ClientHeight = 311
+          ClientHeight = 313
           ClientWidth = 251
           TabOrder = 1
           object CompLvlLabel: TLabel
-            Left = 62
-            Height = 20
-            Top = 102
+            Left = 30
+            Height = 16
+            Top = 111
             Width = 114
             Caption = 'Compression level'
             Enabled = False
             FocusControl = CompressionLevel
             ParentColor = False
+            OnChangeBounds = LabelResize
           end
           object GZipCheck: TCheckBox
-            Left = 26
+            Left = 14
             Height = 21
             Top = 29
             Width = 158
@@ -604,7 +619,7 @@ object ArchiveForm: TArchiveForm
             TabOrder = 0
           end
           object Bzip2Check: TCheckBox
-            Left = 26
+            Left = 14
             Height = 21
             Top = 67
             Width = 166
@@ -613,9 +628,9 @@ object ArchiveForm: TArchiveForm
             TabOrder = 1
           end
           object CompressionLevel: TEdit
-            Left = 62
+            Left = 30
             Height = 23
-            Top = 122
+            Top = 135
             Width = 80
             Enabled = False
             MaxLength = 1
@@ -631,7 +646,7 @@ object ArchiveForm: TArchiveForm
         ClientHeight = 351
         object SliceMbLabel: TLabel
           Left = 509
-          Height = 20
+          Height = 16
           Top = 52
           Width = 19
           Caption = 'Mb'
@@ -640,19 +655,20 @@ object ArchiveForm: TArchiveForm
         end
         object SliceSizeLabel: TLabel
           Left = 237
-          Height = 20
-          Top = 52
-          Width = 169
+          Height = 32
+          Top = 49
+          Width = 175
           Alignment = taRightJustify
           AutoSize = False
           Caption = 'Slice size'
           Enabled = False
+          ParentBidiMode = False
           ParentColor = False
         end
         object ReadConfigCheck: TCheckBox
           Left = 33
           Height = 21
-          Top = 18
+          Top = 9
           Width = 268
           Caption = 'Attempt to read DAR configuration files'
           Checked = True
@@ -677,9 +693,9 @@ object ArchiveForm: TArchiveForm
           TabOrder = 1
         end
         object SliceSize: TEdit
-          Left = 418
-          Height = 23
-          Top = 49
+          Left = 421
+          Height = 25
+          Top = 43
           Width = 80
           Enabled = False
           OnExit = CompressionLwrLimitExit
@@ -687,7 +703,7 @@ object ArchiveForm: TArchiveForm
           Text = '695'
         end
         object PauseCheck: TCheckBox
-          Left = 125
+          Left = 61
           Height = 21
           Top = 81
           Width = 158
@@ -706,7 +722,7 @@ object ArchiveForm: TArchiveForm
         end
         object ScriptFilenameBox: TEdit
           Left = 61
-          Height = 23
+          Height = 25
           Top = 221
           Width = 350
           Enabled = False
@@ -714,7 +730,7 @@ object ArchiveForm: TArchiveForm
         end
         object ScriptFileButton: TButton
           Left = 431
-          Height = 30
+          Height = 35
           Top = 218
           Width = 90
           Caption = 'Browse'
@@ -768,16 +784,16 @@ object ArchiveForm: TArchiveForm
         object RepeatRadioButton: TRadioButton
           Left = 35
           Height = 21
-          Top = 162
+          Top = 177
           Width = 124
           Caption = 'Run regularily at'
           OnChange = ScheduleRadioChange
           TabOrder = 2
         end
         object RunOncePanel: TPanel
-          Left = 4
+          Left = 5
           Height = 81
-          Top = 81
+          Top = 89
           Width = 602
           BevelOuter = bvNone
           ClientHeight = 81
@@ -785,34 +801,40 @@ object ArchiveForm: TArchiveForm
           TabOrder = 3
           object RunOnceHourLabel: TLabel
             Left = 65
-            Height = 20
+            Height = 16
             Top = 12
             Width = 119
             Caption = 'RunOnceHourLabel'
             Enabled = False
+            FocusControl = RunOnceHourBox
             ParentColor = False
+            OnChangeBounds = LabelResize
           end
           object RunOnceMinuteLabel: TLabel
             Left = 158
-            Height = 20
+            Height = 16
             Top = 12
             Width = 131
             Caption = 'RunOnceMinuteLabel'
             Enabled = False
+            FocusControl = RunOnceMinuteBox
             ParentColor = False
+            OnChangeBounds = LabelResize
           end
           object RunOnceDateLabel: TLabel
             Left = 273
-            Height = 20
+            Height = 16
             Top = 12
             Width = 119
             Caption = 'RunOnceDateLabel'
             Enabled = False
+            FocusControl = RunOnceDateEdit
             ParentColor = False
+            OnChangeBounds = LabelResize
           end
           object RunOnceDateEdit: TDateEdit
             Left = 273
-            Height = 23
+            Height = 25
             Top = 35
             Width = 112
             CalendarDisplaySettings = [dsShowHeadings, dsShowDayNames]
@@ -851,7 +873,7 @@ object ArchiveForm: TArchiveForm
           end
           object RunOnceHourBox: TComboBox
             Left = 65
-            Height = 25
+            Height = 23
             Top = 33
             Width = 70
             Enabled = False
@@ -860,7 +882,7 @@ object ArchiveForm: TArchiveForm
           end
           object RunOnceMinuteBox: TComboBox
             Left = 158
-            Height = 25
+            Height = 23
             Top = 33
             Width = 70
             Enabled = False
@@ -869,62 +891,72 @@ object ArchiveForm: TArchiveForm
           end
         end
         object RepeatPanel: TPanel
-          Left = 10
+          Left = 5
           Height = 75
-          Top = 186
+          Top = 209
           Width = 596
           BevelOuter = bvNone
           ClientHeight = 75
           ClientWidth = 596
           TabOrder = 4
           object RepeatHourLabel: TLabel
-            Left = 65
-            Height = 20
+            Left = 59
+            Height = 16
             Top = 12
             Width = 119
             Caption = 'RunOnceHourLabel'
             Enabled = False
+            FocusControl = RepeatHourBox
             ParentColor = False
+            OnChangeBounds = LabelResize
           end
           object RepeatMinuteLabel: TLabel
             Left = 158
-            Height = 20
+            Height = 16
             Top = 12
             Width = 120
             Caption = 'RepeatMinuteLabel'
             Enabled = False
+            FocusControl = RepeatMinuteBox
             ParentColor = False
+            OnChangeBounds = LabelResize
           end
           object RepeatWeekDayLabel: TLabel
             Left = 243
-            Height = 20
+            Height = 16
             Top = 12
             Width = 134
             Caption = 'RepeatWeekDayLabel'
             Enabled = False
+            FocusControl = RepeatWeekDayBox
             ParentColor = False
+            OnChangeBounds = LabelResize
           end
           object RepeatMonthDayLabel: TLabel
             Left = 371
-            Height = 20
+            Height = 16
             Top = 12
             Width = 140
             Caption = 'RepeatMonthDayLabel'
             Enabled = False
+            FocusControl = RepeatMonthDayBox
             ParentColor = False
+            OnChangeBounds = LabelResize
           end
           object RepeatMonthLabel: TLabel
             Left = 467
-            Height = 20
+            Height = 16
             Top = 12
             Width = 117
             Caption = 'RepeatMonthLabel'
             Enabled = False
+            FocusControl = RepeatMonthBox
             ParentColor = False
+            OnChangeBounds = LabelResize
           end
           object RepeatHourBox: TComboBox
             Left = 59
-            Height = 25
+            Height = 23
             Top = 32
             Width = 70
             Enabled = False
@@ -939,7 +971,7 @@ object ArchiveForm: TArchiveForm
           end
           object RepeatMinuteBox: TComboBox
             Left = 152
-            Height = 25
+            Height = 23
             Top = 32
             Width = 70
             Enabled = False
@@ -953,7 +985,7 @@ object ArchiveForm: TArchiveForm
           end
           object RepeatWeekDayBox: TComboBox
             Left = 243
-            Height = 25
+            Height = 23
             Top = 32
             Width = 100
             Enabled = False
@@ -967,7 +999,7 @@ object ArchiveForm: TArchiveForm
           end
           object RepeatMonthDayBox: TComboBox
             Left = 371
-            Height = 25
+            Height = 23
             Top = 32
             Width = 70
             Enabled = False
@@ -981,7 +1013,7 @@ object ArchiveForm: TArchiveForm
           end
           object RepeatMonthBox: TComboBox
             Left = 467
-            Height = 25
+            Height = 23
             Top = 32
             Width = 100
             Enabled = False

@@ -123,6 +123,7 @@ type
     procedure DiffRefButtonClick ( Sender: TObject ) ;
     procedure DirectoryRBChange ( Sender: TObject ) ;
     procedure FormDestroy ( Sender: TObject ) ;
+    procedure LabelResize(Sender: TObject);
     procedure LoadButtonClick ( Sender: TObject ) ;
     procedure OKButtonClick ( Sender: TObject ) ;
     procedure DelExcludeFileButtonClick ( Sender: TObject ) ;
@@ -199,7 +200,10 @@ procedure TArchiveForm.FormCreate ( Sender: TObject ) ;
 var
   x: Integer;
 begin
-  ArchiveDirectory.Text := SysUtils.GetEnvironmentVariable('HOME');
+  ArchiveDirectory.Text :=
+       Preferences.ReadString('User Preferences',
+                              'Archive Directory',
+                              SysUtils.GetEnvironmentVariable('HOME'));
   BaseDirectory.Text := SysUtils.GetEnvironmentVariable('HOME');
   SelectDirectoryDialog.InitialDir := SysUtils.GetEnvironmentVariable('HOME');
   OpenDialog.InitialDir := SysUtils.GetEnvironmentVariable('HOME');
@@ -677,6 +681,15 @@ begin
   BatchFile.Free;
   IncludeDirList.Free;
   ExcludeDirList.Free;
+end;
+
+procedure TArchiveForm.LabelResize(Sender: TObject);
+begin
+    with TLabel(Sender) do
+       begin
+         if FocusControl <> nil then
+            Top := FocusControl.Top - Height;
+       end;
 end;
 
 procedure TArchiveForm.LoadButtonClick ( Sender: TObject ) ;

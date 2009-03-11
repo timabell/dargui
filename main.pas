@@ -153,7 +153,8 @@ const
 
 implementation
 
-uses baseunix, dgStrConst, selectrestore, archive, archiveinfo, About, oplog, isolate, diff, prefs, schedman, password;
+uses baseunix, dgStrConst, selectrestore, archive, archiveinfo, About, oplog, isolate,
+     diff, prefs, schedman, password;
 
 { TMainForm }
 
@@ -497,7 +498,10 @@ var
   end;
   
 begin
-  ArchiveForm.BatchFileBox.Text := GetNextFileName(TEMP_DIRECTORY + BATCHFILE_BASE);
+  ArchiveForm.BatchFileBox.Text := GetNextFileName(
+                      Preferences.ReadString('User Preferences',
+                      'Batchfile Directory', TEMP_DIRECTORY)
+                      + DirectorySeparator + BATCHFILE_BASE);
   try
     if ArchiveForm.ShowModal = mrOk then
        if ArchiveForm.RunOnceRadioButton.Checked
@@ -728,8 +732,9 @@ begin
             Font.Color := clWhite
          else
             Font.Color := clBlack;
-         Font.Size:=9;
+         //Get user preferred font here
         end;
+  Sender.DefaultItemHeight := Sender.Canvas.TextHeight('Yy')+2;
   Sender.Canvas.FillRect(Displayrect);
   if Node.Data <> nil then
      begin
@@ -737,7 +742,9 @@ begin
          begin
            FolderGraphic := TBitmap.Create;
            IconList.GetBitmap(FOLDERICON, FolderGraphic);
-           Sender.Canvas.Draw(Displayrect.Left, DisplayRect.Top, FolderGraphic);
+           Sender.Canvas.Draw(Displayrect.Left,
+                              DisplayRect.Top + (DisplayRect.Bottom-DisplayRect.Top-FolderGraphic.Height) div 2,
+                              FolderGraphic);
            DisplayStr := TFileData(Node.Data).item[SEGFILENAME];
            TrimText(DisplayStr, SEGFILENAME, Displayrect.Left + FolderGraphic.Width);
            Sender.Canvas.TextOut(Displayrect.Left + FolderGraphic.Width, DisplayRect.Top+1,

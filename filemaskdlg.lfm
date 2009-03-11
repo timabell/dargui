@@ -1,12 +1,12 @@
 object FileMaskDialog: TFileMaskDialog
   Left = 359
-  Height = 148
+  Height = 154
   Top = 532
-  Width = 278
+  Width = 301
   ActiveControl = OKButton
   Caption = 'Add file'
-  ClientHeight = 148
-  ClientWidth = 278
+  ClientHeight = 154
+  ClientWidth = 301
   OnCreate = FormCreate
   OnShow = FormShow
   LCLVersion = '0.9.27'
@@ -16,13 +16,15 @@ object FileMaskDialog: TFileMaskDialog
     Top = 24
     Width = 58
     Caption = 'File mask'
+    FocusControl = FileMask
     ParentColor = False
+    OnChangeBounds = FileMaskLabelChangeBounds
   end
   object OKButton: TBitBtn
     Left = 48
-    Height = 30
+    Height = 35
     Top = 96
-    Width = 90
+    Width = 95
     Caption = '&OK'
     Default = True
     Kind = bkOK
@@ -31,10 +33,10 @@ object FileMaskDialog: TFileMaskDialog
     TabOrder = 1
   end
   object CancelButton: TBitBtn
-    Left = 148
-    Height = 30
+    Left = 160
+    Height = 35
     Top = 96
-    Width = 90
+    Width = 95
     Cancel = True
     Caption = 'Cancel'
     Kind = bkCancel
@@ -43,10 +45,10 @@ object FileMaskDialog: TFileMaskDialog
     TabOrder = 2
   end
   object FileMask: TComboBox
-    Left = 34
+    Left = 32
     Height = 23
-    Top = 45
-    Width = 214
+    Top = 48
+    Width = 234
     MaxLength = 65535
     OnExit = FileMaskExit
     TabOrder = 0

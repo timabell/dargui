@@ -28,6 +28,7 @@ type
     procedure FormDestroy ( Sender: TObject ) ;
     procedure OkButtonClick(Sender: TObject);
     procedure FormCreate(Sender: TObject);
+    procedure RestoreFilesLabelChangeBounds(Sender: TObject);
   private
     { private declarations }
     procedure InitialiseInterface;
@@ -52,6 +53,15 @@ begin
   FullRestore := true;
   InitialiseInterface;
   RestoreDirectoryEdit.Directory := SysUtils.GetEnvironmentVariable('HOME');
+end;
+
+procedure TExtractSelectedForm.RestoreFilesLabelChangeBounds(Sender: TObject);
+begin
+    with TLabel(Sender) do
+       begin
+         if FocusControl <> nil then
+            Top := FocusControl.Top - Height;
+       end;
 end;
 
 procedure TExtractSelectedForm.InitialiseInterface;

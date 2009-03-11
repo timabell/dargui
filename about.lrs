@@ -473,7 +473,7 @@ LazarusResources.Add('TAboutForm','FORMDATA',[
   +'on: '#11'ParentColor'#8#0#0#6'TLabel'#8'GPLLabel'#4'Left'#3#176#0#6'Height'
   +#2#16#3'Top'#3#144#0#5'Width'#2'O'#7'Caption'#6#12'Licence: GPL'#11'ParentCo'
   +'lor'#8#0#0#6'TLabel'#11'AuthorLabel'#4'Left'#3#176#0#6'Height'#2#16#3'Top'#2
-  +'x'#5'Width'#3#140#0#7'Caption'#6#21'Author: Malcolm Poole'#11'ParentColor'#8
+  +'s'#5'Width'#3#140#0#7'Caption'#6#21'Author: Malcolm Poole'#11'ParentColor'#8
   +#0#0#6'TLabel'#12'DevInfoLabel'#4'Left'#2#27#6'Height'#2'0'#3'Top'#3#176#0#5
   +'Width'#3']'#1#8'AutoSize'#8#7'Caption'#6#16'Development info'#11'ParentColo'
   +'r'#8#8'WordWrap'#9#0#0#6'TBevel'#6'Bevel1'#4'Left'#2#24#6'Height'#2#3#3'Top'

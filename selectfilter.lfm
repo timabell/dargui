@@ -1,16 +1,14 @@
 object SelectFilterForm: TSelectFilterForm
-  Left = 618
-  Height = 330
-  Top = 326
+  Left = 460
+  Height = 362
+  Top = 232
   Width = 400
   ActiveControl = OKButton
   BorderIcons = [biSystemMenu, biMinimize]
   BorderStyle = bsToolWindow
   Caption = 'SelectFilterForm'
-  ClientHeight = 330
+  ClientHeight = 362
   ClientWidth = 400
-  Constraints.MaxHeight = 330
-  Constraints.MaxWidth = 400
   Constraints.MinHeight = 330
   Constraints.MinWidth = 400
   OnCreate = FormCreate
@@ -19,7 +17,7 @@ object SelectFilterForm: TSelectFilterForm
   LCLVersion = '0.9.27'
   object OKCancelPanel: TPanel
     Height = 66
-    Top = 264
+    Top = 296
     Width = 400
     Align = alBottom
     ClientHeight = 66
@@ -27,9 +25,9 @@ object SelectFilterForm: TSelectFilterForm
     TabOrder = 0
     object OKButton: TBitBtn
       Left = 96
-      Height = 30
+      Height = 35
       Top = 14
-      Width = 90
+      Width = 100
       Caption = '&OK'
       Default = True
       Kind = bkOK
@@ -39,9 +37,9 @@ object SelectFilterForm: TSelectFilterForm
     end
     object CancelButton: TBitBtn
       Left = 216
-      Height = 30
+      Height = 35
       Top = 14
-      Width = 90
+      Width = 100
       Cancel = True
       Caption = 'Cancel'
       Kind = bkCancel
@@ -51,34 +49,34 @@ object SelectFilterForm: TSelectFilterForm
     end
   end
   object MainPanel: TPanel
-    Height = 264
+    Height = 296
     Width = 400
     Align = alClient
-    ClientHeight = 264
+    ClientHeight = 296
     ClientWidth = 400
     TabOrder = 1
     object FilterList: TListBox
       Left = 8
       Height = 152
       Top = 32
-      Width = 200
+      Width = 224
       TabOrder = 0
       TopIndex = -1
     end
     object AddFilterButton: TButton
       Left = 256
-      Height = 30
+      Height = 35
       Top = 32
-      Width = 95
+      Width = 100
       Caption = 'Add'
       OnClick = AddFilterButtonClick
       TabOrder = 1
     end
     object DelFilterButton: TButton
       Left = 256
-      Height = 30
+      Height = 35
       Top = 72
-      Width = 95
+      Width = 100
       Caption = 'Remove'
       Enabled = False
       OnClick = DelFilterButtonClick
@@ -86,9 +84,9 @@ object SelectFilterForm: TSelectFilterForm
     end
     object ClearFiltersButton: TButton
       Left = 256
-      Height = 30
+      Height = 35
       Top = 154
-      Width = 95
+      Width = 100
       Caption = 'Clear'
       Enabled = False
       OnClick = ClearFiltersButtonClick
@@ -97,7 +95,7 @@ object SelectFilterForm: TSelectFilterForm
     object FileNamesOnlyCheck: TCheckBox
       Left = 16
       Height = 21
-      Top = 232
+      Top = 248
       Width = 198
       Caption = 'Apply filter to filenames only'
       Checked = True
@@ -107,7 +105,7 @@ object SelectFilterForm: TSelectFilterForm
     object MatchAllCheck: TCheckBox
       Left = 16
       Height = 21
-      Top = 200
+      Top = 208
       Width = 113
       Caption = 'MatchAllCheck'
       TabOrder = 4

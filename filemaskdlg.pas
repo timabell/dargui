@@ -18,6 +18,7 @@ type
     CancelButton: TBitBtn;
     FileMaskLabel: TLabel;
     procedure FileMaskExit(Sender: TObject);
+    procedure FileMaskLabelChangeBounds(Sender: TObject);
     procedure FormCreate ( Sender: TObject ) ;
     procedure FormShow ( Sender: TObject ) ;
     procedure OKButtonClick ( Sender: TObject ) ;
@@ -129,6 +130,15 @@ begin
      then FileMask.Items.Delete(FileMask.Items.Count-1);
   FileMask.ItemIndex := 0;
   StoreMasks;
+end;
+
+procedure TFileMaskDialog.FileMaskLabelChangeBounds(Sender: TObject);
+begin
+    with TLabel(Sender) do
+       begin
+         if FocusControl <> nil then
+            Top := FocusControl.Top - Height;
+       end;
 end;
 
 procedure TFileMaskDialog.FormCreate ( Sender: TObject ) ;

@@ -397,7 +397,7 @@ object AboutForm: TAboutForm
   object AuthorLabel: TLabel
     Left = 176
     Height = 16
-    Top = 120
+    Top = 115
     Width = 140
     Caption = 'Author: Malcolm Poole'
     ParentColor = False

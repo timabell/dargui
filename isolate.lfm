@@ -3,8 +3,6 @@ object IsolateForm: TIsolateForm
   Height = 247
   Top = 227
   Width = 479
-  HorzScrollBar.Page = 478
-  VertScrollBar.Page = 246
   ActiveControl = ArchiveBox
   BorderIcons = [biSystemMenu]
   BorderStyle = bsDialog
@@ -13,6 +11,7 @@ object IsolateForm: TIsolateForm
   ClientWidth = 479
   OnCreate = FormCreate
   Position = poOwnerFormCenter
+  LCLVersion = '0.9.27'
   object MainPanel: TPanel
     Height = 181
     Width = 479
@@ -22,37 +21,39 @@ object IsolateForm: TIsolateForm
     TabOrder = 0
     object ArchiveBox: TLabeledEdit
       Left = 17
-      Height = 23
+      Height = 25
       Top = 48
       Width = 335
+      EditLabel.AnchorSideLeft.Control = ArchiveBox
+      EditLabel.AnchorSideBottom.Control = ArchiveBox
       EditLabel.Left = 17
-      EditLabel.Height = 20
-      EditLabel.Top = 28
+      EditLabel.Height = 16
+      EditLabel.Top = 29
       EditLabel.Width = 46
       EditLabel.Caption = 'Archive'
       EditLabel.ParentColor = False
-      ParentColor = False
       TabOrder = 0
       OnExit = OnEditBoxExit
     end
     object CatalogueBox: TLabeledEdit
       Left = 17
-      Height = 23
+      Height = 25
       Top = 104
       Width = 335
+      EditLabel.AnchorSideLeft.Control = CatalogueBox
+      EditLabel.AnchorSideBottom.Control = CatalogueBox
       EditLabel.Left = 17
-      EditLabel.Height = 20
-      EditLabel.Top = 84
+      EditLabel.Height = 16
+      EditLabel.Top = 85
       EditLabel.Width = 117
       EditLabel.Caption = 'Save catalogue as'
       EditLabel.ParentColor = False
-      ParentColor = False
       TabOrder = 2
       OnExit = OnEditBoxExit
     end
     object ArchiveButton: TButton
       Left = 368
-      Height = 30
+      Height = 35
       Top = 45
       Width = 90
       Caption = 'Browse'
@@ -61,7 +62,7 @@ object IsolateForm: TIsolateForm
     end
     object CatalogueButton: TButton
       Left = 368
-      Height = 30
+      Height = 35
       Top = 101
       Width = 90
       Caption = 'Browse'
@@ -79,8 +80,8 @@ object IsolateForm: TIsolateForm
     TabOrder = 1
     object OKButton: TBitBtn
       Left = 112
-      Height = 30
-      Top = 21
+      Height = 35
+      Top = 16
       Width = 100
       Caption = '&OK'
       Default = True
@@ -91,8 +92,8 @@ object IsolateForm: TIsolateForm
     end
     object CancelButton: TBitBtn
       Left = 248
-      Height = 30
-      Top = 21
+      Height = 35
+      Top = 16
       Width = 100
       Cancel = True
       Caption = 'Cancel'
@@ -103,14 +104,12 @@ object IsolateForm: TIsolateForm
     end
   end
   object OpenDialog: TOpenDialog
-    Title = 'Open existing file'
     Filter = 'DAR archives|*.*.dar'
     Options = [ofFileMustExist, ofEnableSizing, ofViewDetail]
     left = 408
     top = 8
   end
   object SaveDialog: TSaveDialog
-    Title = 'Save file as'
     Options = [ofNoTestFileCreate, ofEnableSizing]
     left = 440
     top = 8
