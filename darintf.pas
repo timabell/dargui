@@ -780,7 +780,7 @@ begin
   archivename := TrimToBase( archivename );
   if ArchiveIsEncrypted(archivename) then
    if PasswordDlg.Execute( archivename ) = mrOK
-      then pw := ' -K :' + PasswordDlg.Password
+      then pw := ' -K ":' + PasswordDlg.Password + '"'
       else Result := false;
 end;
 
@@ -820,6 +820,7 @@ var
  var
    ln: integer;
  begin
+   if Output.Count < 1 then exit;
    ln := 0;
    Result := Output.Strings[ln];
      while (ln < Output.Count) do
@@ -835,6 +836,7 @@ var
 begin
  Result := -1;
  coloncount := 0;
+ p := 0;
  Proc := TProcess.Create(Application);
  Output := TStringList.Create;
  Proc.CommandLine :=  'dar -l "' + archivename + '" -v' + key + ' -Q';
@@ -843,7 +845,8 @@ begin
     Proc.Execute;
     Output.LoadFromStream(Proc.Output);
     outputline := FindInodeLine;
-    p := Pos(':',outputline);
+    if Length(outputline) > 0
+       then p := Pos(':',outputline);
     if p > 0 then  //try to avoid provoking an exception
        try
          Result := StrToInt(Copy(outputline, p+2, MaxInt));
