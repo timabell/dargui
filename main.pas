@@ -137,12 +137,12 @@ var
 
   
 const
-  APP_VERSION = '0.5.0';
-  {$I revision.inc}
+  APP_VERSION = '0.5.1 Beta';
+  //{$I revision.inc}
   {revision.inc is a dynamically produced file containing the number of the most recent SVN revision
    the include directive can be commented out and the following line uncommented, replacing the number 0 with the
    appropriate revision number}
-  //SVN_REVISION = '213';
+  SVN_REVISION = '220';
 
   ARCHIVEMENU_TAG = 1; //used for enabling menuitems after loading archive
   SELECT_STATUSBAR = 0;   //index of panel which displays number of selected nodes
@@ -375,8 +375,9 @@ var
                             + DarOptions;
      if ArchiveForm.EncryptArchiveCheck.Checked
         then
+        //TODO: change message displayed by TPasswordDlg.PasswordLabel;
         if PasswordDlg.Execute('') = mrOk
-           then Command := Command + ' -K :' + PasswordDlg.Password
+           then Command := Command + ' -K ":' + PasswordDlg.Password + '"'
         else ShowMessage('Archive will not be encrypted');
 //     if UseInfoFile then
 //        begin
