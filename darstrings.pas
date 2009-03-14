@@ -41,6 +41,7 @@ resourcestring
                     + 'date                 |    filename' + #10;
   
   dsInodeCount    = 'total number of inode : %i' + #10;
+  dsDestroyedFiles = '   %i file(s) have been record as destroyed since backup of reference' + #10#10;
   
 function OpenDarTranslationInterface: Boolean;
 procedure CloseDarTranslationInterface;

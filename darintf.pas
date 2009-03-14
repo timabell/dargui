@@ -392,14 +392,13 @@ var
      x, y, s, e : integer;
    begin
      fileinfo := fileinfo + #13;
-     if (Pos(dsRemoved, fileinfo)=1) then   // file flagged as removed
+     //TODO: rewrite this to reverse order of if..then
+     if (Pos(dsRemoved, fileinfo)>0) then   // file flagged as removed
         begin
-          CurrentFile[SEGSTATUS] := Copy(fileinfo,
-                                  DataCoords[SEGSTATUS].StartChar,
-                                  DataCoords[SEGSTATUS].EndChar - DataCoords[SEGSTATUS].StartChar);
+          CurrentFile[SEGSTATUS] := dsRemoved;
           for x := 1 to SEGDATE do
               CurrentFile[x] := '';
-          CurrentFile[SEGFILENAME] := Copy(fileinfo, Length(CurrentFile[SEGSTATUS])+1, MaxInt);
+          CurrentFile[SEGFILENAME] := Trim(Copy(fileinfo, Length(CurrentFile[SEGSTATUS])+1, MaxInt));
         end
      else
         begin                                   // file still exists
@@ -498,6 +497,7 @@ begin
                                 item[n] := CurrentFile[n];
                             folder := false;
                           end;
+                       if Length(CurrentFile[SEGPERMISSIONS]) > 0 then
                        if CurrentFile[SEGPERMISSIONS][1]='d' then // node is a directory
                           begin
                             parentnode := currentnode;
@@ -816,23 +816,56 @@ var
  outputline: string;
  coloncount: Integer;
 
- function FindInodeLine: string;
+ function ExtractInteger(searchstring: string): integer;
+ //TODO: rewrite this as two functions and move the string parsing function to darstrings
  var
    ln: integer;
+   a1, a2: integer;
+   b1, b2:integer;
+   anInt: integer;
+   teststr: string;
+   IntStr: string;
  begin
+   Result := -1;
+   IntStr := '';
+   searchstring := TrimRight(searchstring);
    if Output.Count < 1 then exit;
-   ln := 0;
-   Result := Output.Strings[ln];
-     while (ln < Output.Count) do
+   ln := Output.Count -1;
+     while (ln > 0) do
+       if Length(Output[ln]) > 0 then
          begin
-           Result := Output.Strings[ln];
-           if PosDarString((dsInodeCount), Result) > 0
-              then exit ;
-           Inc(ln);
-         end;
-
+           teststr := TrimRight( Output[ln] );
+           a1 := 1;
+           b1 := 1;
+           while a1 < Length(teststr) do
+             begin
+               if teststr[a1] = searchstring[b1]
+                  then begin Inc(a1); Inc(b1);
+                   if (b1 = Length(searchstring)) and (teststr[a1] = searchstring[b1]) then
+                      begin
+                        TryStrToInt(IntStr, Result);
+//                        writeln(teststr);
+                        exit;
+                      end;
+                  end
+               else if (searchstring[b1] = '%') and (searchstring[b1+1] = 'i') then
+                    begin
+                      IntStr := '';
+                      b1 := b1 + 2;
+                      while teststr[a1] in ['0'..'9'] do
+                            begin
+                              IntStr := IntStr + teststr[a1];
+                              Inc(a1);
+                            end;
+                    end
+               else a1 := MaxInt;
+             end;
+           Dec(ln);
+         end
+       else Dec(ln);
+   TryStrToInt(IntStr, Result);
  end;
- 
+
 begin
  Result := -1;
  coloncount := 0;
@@ -844,19 +877,15 @@ begin
  try
     Proc.Execute;
     Output.LoadFromStream(Proc.Output);
-    outputline := FindInodeLine;
-    if Length(outputline) > 0
-       then p := Pos(':',outputline);
-    if p > 0 then  //try to avoid provoking an exception
+    if Output.Count > 0 then  //try to avoid provoking an exception :
        try
-         Result := StrToInt(Copy(outputline, p+2, MaxInt));
+         Result := ExtractInteger(dsInodeCount) + ExtractInteger(dsDestroyedFiles);
        except
          Result := -1;
        end;
  finally
    if Result=-1
       then writeln('Unable to extract node count - dumping output of dar -l -v:' + #10 + Output.Text);
-   //writeln('inodecount: ',Result);
    Proc.Free;
    Output.Free;
  end;
