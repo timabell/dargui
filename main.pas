@@ -681,7 +681,7 @@ var
                SEGDATE        : maxwidth :=
                                  FileHeaderBar.SectionFromOriginalIndex[HEADERDATE].Width;
                SEGFILENAME    : maxwidth :=
-                                 FileHeaderBar.SectionFromOriginalIndex[HEADERNAME].Width;
+                                 FileHeaderBar.SectionFromOriginalIndex[HEADERNAME].Width - leftMargin;
                end;
        if aCol < SEGFILENAME then RightAlign := true;
        a := 1;
