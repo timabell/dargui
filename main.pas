@@ -216,6 +216,18 @@ begin
   else Left := Screen.Width-Width;
   if Preferences.ReadBool('Screen', 'Maximised', false) = true
      then WindowState := wsMaximized;
+  FileHeaderBar.Sections[HEADERNAME].Width :=
+      Preferences.ReadInteger('Screen', 'FilenameColumn', Longint(FileHeaderBar.Sections[HEADERNAME].Width));
+  FileHeaderBar.Sections[HEADERDATE].Width :=
+      Preferences.ReadInteger('Screen', 'FiledateColumn', Longint(FileHeaderBar.SectionFromOriginalIndex[HEADERDATE].Width));
+  FileHeaderBar.Sections[HEADERSIZE].Width :=
+      Preferences.ReadInteger('Screen', 'FilesizeColumn', LongInt(FileHeaderBar.Sections[HEADERSIZE].Width));
+  FileHeaderBar.Sections[HEADERUSER].Width :=
+      Preferences.ReadInteger('Screen', 'FileuserColumn', LongInt(FileHeaderBar.Sections[HEADERUSER].Width));
+  FileHeaderBar.Sections[HEADERGROUP].Width :=
+      Preferences.ReadInteger('Screen', 'FilegroupColumn', Longint(FileHeaderBar.Sections[HEADERGROUP].Width));
+  FileHeaderBar.Sections[HEADERSTATUS].Width :=
+      Preferences.ReadInteger('Screen', 'FilestatusColumn', LongInt(FileHeaderBar.Sections[HEADERSTATUS].Width));
 
   ToolbarPanel.Visible := miShowToolbar.Checked;
   Caption := Caption + #32 + APP_VERSION;
@@ -567,6 +579,12 @@ begin
   Preferences.WriteInteger('Screen', 'MainTop', Top);
   Preferences.WriteInteger('Screen', 'MainLeft', Left);
   Preferences.WriteBool('Screen', 'Maximised', (WindowState = wsMaximized));
+  Preferences.WriteInteger('Screen', 'FilenameColumn', FileHeaderBar.Sections[HEADERNAME].Width);
+  Preferences.WriteInteger('Screen', 'FiledateColumn', FileHeaderBar.Sections[HEADERDATE].Width);
+  Preferences.WriteInteger('Screen', 'FilesizeColumn', FileHeaderBar.Sections[HEADERSIZE].Width);
+  Preferences.WriteInteger('Screen', 'FileuserColumn', FileHeaderBar.Sections[HEADERUSER].Width);
+  Preferences.WriteInteger('Screen', 'FilegroupColumn', FileHeaderBar.Sections[HEADERGROUP].Width);
+  Preferences.WriteInteger('Screen', 'FilestatusColumn', FileHeaderBar.Sections[HEADERSTATUS].Width);
   Preferences.Free;
 end;
 
