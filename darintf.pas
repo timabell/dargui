@@ -121,7 +121,7 @@ var
 
 implementation
 
-uses baseunix, processline, password, darstrings, dgStrConst;
+uses processline, password, darstrings, dgStrConst;
 
 // ************** GetDarVersion ***************** //
 
@@ -363,8 +363,6 @@ var
   n: Integer;
   nodesloaded: Integer;
   progressinterval: Integer;
-  completed: LongInt;
-  EncryptedArchive: Boolean;
 
    procedure SetSegments(colheading: string);
    var
@@ -748,7 +746,6 @@ function ArchiveIsEncrypted ( fn: TFilename ) : Boolean;
 var
   Proc : TProcess;
   Output: TStringList;
-  p: Integer;
   teststr: String;
 begin
   Result := false;
@@ -812,64 +809,24 @@ function GetInodeCount( archivename, key: string ):integer;
 var
  Proc : TProcess;
  Output: TStringList;
- p: Integer;
- outputline: string;
- coloncount: Integer;
 
  function ExtractInteger(searchstring: string): integer;
- //TODO: rewrite this as two functions and move the string parsing function to darstrings
  var
    ln: integer;
-   a1, a2: integer;
-   b1, b2:integer;
-   anInt: integer;
-   teststr: string;
-   IntStr: string;
  begin
    Result := -1;
-   IntStr := '';
-   searchstring := TrimRight(searchstring);
    if Output.Count < 1 then exit;
    ln := Output.Count -1;
      while (ln > 0) do
-       if Length(Output[ln]) > 0 then
          begin
-           teststr := TrimRight( Output[ln] );
-           a1 := 1;
-           b1 := 1;
-           while a1 < Length(teststr) do
-             begin
-               if teststr[a1] = searchstring[b1]
-                  then begin Inc(a1); Inc(b1);
-                   if (b1 = Length(searchstring)) and (teststr[a1] = searchstring[b1]) then
-                      begin
-                        TryStrToInt(IntStr, Result);
-//                        writeln(teststr);
-                        exit;
-                      end;
-                  end
-               else if (searchstring[b1] = '%') and (searchstring[b1+1] = 'i') then
-                    begin
-                      IntStr := '';
-                      b1 := b1 + 2;
-                      while teststr[a1] in ['0'..'9'] do
-                            begin
-                              IntStr := IntStr + teststr[a1];
-                              Inc(a1);
-                            end;
-                    end
-               else a1 := MaxInt;
-             end;
+           Result := ScanForInteger(Output[ln], searchstring);
+           if Result > -1 then exit;
            Dec(ln);
-         end
-       else Dec(ln);
-   TryStrToInt(IntStr, Result);
+         end;
  end;
 
 begin
  Result := -1;
- coloncount := 0;
- p := 0;
  Proc := TProcess.Create(Application);
  Output := TStringList.Create;
  Proc.CommandLine :=  'dar -l "' + archivename + '" -v' + key + ' -Q';
