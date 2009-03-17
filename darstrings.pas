@@ -54,6 +54,8 @@ function SetDarStrings: boolean;
 procedure ExtractColumnTitles;
 function UTF8EncodeChars( translatestring: string ): ansistring;
 
+function ScanForInteger( searchstring, darstring :string): integer;
+
 
 
 implementation
@@ -268,6 +270,40 @@ begin
            end;
          end
       else Result := Result + translatestring[x];
+end;
+
+function ScanForInteger(searchstring, darstring: string): integer;
+var
+  a1: Integer;
+  b1: Integer;
+  IntStr: String;
+begin
+  Result := -1;
+  searchstring := Trim( searchstring );
+  darstring := Trim( darstring );
+  if Length(searchstring) = 0 then exit;
+  a1 := 1;
+  b1 := 1;
+  while a1 < Length(darstring) do
+    begin
+      if searchstring[a1] = darstring[b1] then
+        begin
+          Inc(a1);
+          Inc(b1);
+        end
+      else if (darstring[b1] = '%') and (darstring[b1+1] = 'i') then
+          begin
+            IntStr := '';
+            b1 := b1 + 2;
+            while searchstring[a1] in ['0'..'9'] do
+                  begin
+                    IntStr := IntStr + searchstring[a1];
+                    Inc(a1);
+                  end;
+          end
+      else exit;
+  end;
+  TryStrToInt(IntStr, Result);
 end;
 
 
