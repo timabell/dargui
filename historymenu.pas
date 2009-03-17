@@ -35,8 +35,6 @@ uses darintf;
 { TRecentFiles }
 
 procedure TRecentFiles.SetMax ( Value: integer ) ;
-var
-  x: Integer;
 begin
   if Value > 0 then
      begin
@@ -75,8 +73,6 @@ begin
 end;
 
 destructor TRecentFiles.Destroy;
-var
-  x: integer;
 begin
   fItems[0] := nil;
   fItems.Free;

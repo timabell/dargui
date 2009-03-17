@@ -3,8 +3,6 @@ object FileConflictForm: TFileConflictForm
   Height = 331
   Top = 386
   Width = 607
-  HorzScrollBar.Page = 606
-  VertScrollBar.Page = 330
   ActiveControl = YesButton
   Caption = 'FileConflictForm'
   ClientHeight = 331
@@ -12,6 +10,7 @@ object FileConflictForm: TFileConflictForm
   OnCreate = FormCreate
   OnResize = FormResize
   Position = poDefault
+  LCLVersion = '0.9.27'
   object InstructionPanel: TPanel
     Height = 66
     Width = 607

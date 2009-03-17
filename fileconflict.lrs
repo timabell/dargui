@@ -2,30 +2,29 @@
 
 LazarusResources.Add('TFileConflictForm','FORMDATA',[
   'TPF0'#17'TFileConflictForm'#16'FileConflictForm'#4'Left'#3#138#1#6'Height'#3
-  +'K'#1#3'Top'#3#130#1#5'Width'#3'_'#2#18'HorzScrollBar.Page'#3'^'#2#18'VertSc'
-  +'rollBar.Page'#3'J'#1#13'ActiveControl'#7#9'YesButton'#7'Caption'#6#16'FileC'
-  +'onflictForm'#12'ClientHeight'#3'K'#1#11'ClientWidth'#3'_'#2#8'OnCreate'#7#10
-  +'FormCreate'#8'OnResize'#7#10'FormResize'#8'Position'#7#9'poDefault'#0#6'TPa'
-  +'nel'#16'InstructionPanel'#6'Height'#2'B'#5'Width'#3'_'#2#5'Align'#7#5'alTop'
-  +#12'ClientHeight'#2'B'#11'ClientWidth'#3'_'#2#8'TabOrder'#2#0#0#6'TLabel'#16
-  +'InstructionLabel'#4'Left'#2#8#6'Height'#2'+'#3'Top'#2#8#5'Width'#3'I'#2#8'A'
-  +'utoSize'#8#7'Caption'#6'wWARNING: The files listed below will be overwritte'
-  +'n if you continue. '#10'Please confirm which files should be overwritten.'
-  +#11'ParentColor'#8#8'WordWrap'#9#0#0#0#6'TPanel'#11'ButtonPanel'#6'Height'#2
-  +';'#3'Top'#3#16#1#5'Width'#3'_'#2#5'Align'#7#8'alBottom'#12'ClientHeight'#2
-  +';'#11'ClientWidth'#3'_'#2#8'TabOrder'#2#1#0#7'TBitBtn'#9'YesButton'#4'Left'
-  +#3#200#0#6'Height'#2#30#3'Top'#2#13#5'Width'#2'Z'#7'Caption'#6#4'&Yes'#7'Def'
-  +'ault'#9#4'Kind'#7#5'bkYes'#11'ModalResult'#2#6#9'NumGlyphs'#2#0#8'TabOrder'
-  +#2#0#0#0#7'TBitBtn'#8'NoButton'#4'Left'#3'@'#1#6'Height'#2#30#3'Top'#2#13#5
-  +'Width'#2'Z'#6'Cancel'#9#7'Caption'#6#3'&No'#4'Kind'#7#4'bkNo'#11'ModalResul'
-  +'t'#2#7#9'NumGlyphs'#2#0#8'TabOrder'#2#1#0#0#0#6'TPanel'#13'FileListPanel'#6
-  +'Height'#3#206#0#3'Top'#2'B'#5'Width'#3'_'#2#5'Align'#7#8'alClient'#8'AutoSi'
-  +'ze'#9#10'BevelOuter'#7#6'bvNone'#7'Caption'#6#13'FileListPanel'#12'ClientHe'
-  +'ight'#3#206#0#11'ClientWidth'#3'_'#2#8'TabOrder'#2#2#0#6'TPanel'#9'MainPane'
-  +'l'#6'Height'#3#206#0#5'Width'#3'_'#2#5'Align'#7#8'alClient'#7'Caption'#6#9
-  +'MainPanel'#12'ClientHeight'#3#206#0#11'ClientWidth'#3'_'#2#8'TabOrder'#2#0#0
-  +#8'TListBox'#11'FileListBox'#4'Left'#2#6#6'Height'#3#194#0#3'Top'#2#6#5'Widt'
-  +'h'#3'K'#2#5'Align'#7#8'alClient'#19'BorderSpacing.Right'#2#8#20'BorderSpaci'
-  +'ng.Around'#2#5#6'Sorted'#9#8'TabOrder'#2#0#7'TabStop'#8#8'TopIndex'#2#255#0
-  +#0#0#0#0
+  +'K'#1#3'Top'#3#130#1#5'Width'#3'_'#2#13'ActiveControl'#7#9'YesButton'#7'Capt'
+  +'ion'#6#16'FileConflictForm'#12'ClientHeight'#3'K'#1#11'ClientWidth'#3'_'#2#8
+  +'OnCreate'#7#10'FormCreate'#8'OnResize'#7#10'FormResize'#8'Position'#7#9'poD'
+  +'efault'#10'LCLVersion'#6#6'0.9.27'#0#6'TPanel'#16'InstructionPanel'#6'Heigh'
+  +'t'#2'B'#5'Width'#3'_'#2#5'Align'#7#5'alTop'#12'ClientHeight'#2'B'#11'Client'
+  +'Width'#3'_'#2#8'TabOrder'#2#0#0#6'TLabel'#16'InstructionLabel'#4'Left'#2#8#6
+  +'Height'#2'+'#3'Top'#2#8#5'Width'#3'I'#2#8'AutoSize'#8#7'Caption'#6'wWARNING'
+  +': The files listed below will be overwritten if you continue. '#10'Please c'
+  +'onfirm which files should be overwritten.'#11'ParentColor'#8#8'WordWrap'#9#0
+  +#0#0#6'TPanel'#11'ButtonPanel'#6'Height'#2';'#3'Top'#3#16#1#5'Width'#3'_'#2#5
+  +'Align'#7#8'alBottom'#12'ClientHeight'#2';'#11'ClientWidth'#3'_'#2#8'TabOrde'
+  +'r'#2#1#0#7'TBitBtn'#9'YesButton'#4'Left'#3#200#0#6'Height'#2#30#3'Top'#2#13
+  +#5'Width'#2'Z'#7'Caption'#6#4'&Yes'#7'Default'#9#4'Kind'#7#5'bkYes'#11'Modal'
+  +'Result'#2#6#9'NumGlyphs'#2#0#8'TabOrder'#2#0#0#0#7'TBitBtn'#8'NoButton'#4'L'
+  +'eft'#3'@'#1#6'Height'#2#30#3'Top'#2#13#5'Width'#2'Z'#6'Cancel'#9#7'Caption'
+  +#6#3'&No'#4'Kind'#7#4'bkNo'#11'ModalResult'#2#7#9'NumGlyphs'#2#0#8'TabOrder'
+  +#2#1#0#0#0#6'TPanel'#13'FileListPanel'#6'Height'#3#206#0#3'Top'#2'B'#5'Width'
+  +#3'_'#2#5'Align'#7#8'alClient'#8'AutoSize'#9#10'BevelOuter'#7#6'bvNone'#7'Ca'
+  +'ption'#6#13'FileListPanel'#12'ClientHeight'#3#206#0#11'ClientWidth'#3'_'#2#8
+  +'TabOrder'#2#2#0#6'TPanel'#9'MainPanel'#6'Height'#3#206#0#5'Width'#3'_'#2#5
+  +'Align'#7#8'alClient'#7'Caption'#6#9'MainPanel'#12'ClientHeight'#3#206#0#11
+  +'ClientWidth'#3'_'#2#8'TabOrder'#2#0#0#8'TListBox'#11'FileListBox'#4'Left'#2
+  +#6#6'Height'#3#194#0#3'Top'#2#6#5'Width'#3'K'#2#5'Align'#7#8'alClient'#19'Bo'
+  +'rderSpacing.Right'#2#8#20'BorderSpacing.Around'#2#5#6'Sorted'#9#8'TabOrder'
+  +#2#0#7'TabStop'#8#8'TopIndex'#2#255#0#0#0#0#0
 ]);
