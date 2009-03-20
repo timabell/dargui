@@ -108,6 +108,7 @@ begin
   except
     DarMOFile := nil;
     Result := false;
+    WriteLn('Error when trying to create ',mofilepath);
   end;
   Result := DarMOFile <> nil;
 end;
@@ -258,15 +259,25 @@ begin
   for x := 1 to Length(translatestring) do
       if Ord(translatestring[x]) > 127
          then begin
-           //for some reason we do not get the desired result if we UTFEncode Chr(Ord(translatestring[x]))
-           //so this is the best we can do at the moment. These are French accented characters
+           //for some reason we do not get the desired result if we UTF8Encode Chr(Ord(translatestring[x]))
+           //so this is the best we can do at the moment.
            case Ord(translatestring[x]) of
-                224: Result := Result + UTF8Encode(Chr(224));
-                226: Result := Result + UTF8Encode(Chr(226));
-                232: Result := Result + UTF8Encode(Chr(232));
-                233: Result := Result + UTF8Encode(Chr(233));
-                234: Result := Result + UTF8Encode(Chr(234));
-           otherwise Result := Result + translatestring[x];
+                223: Result := Result + UTF8Encode(Chr(223));  // ß
+                224: Result := Result + UTF8Encode(Chr(224));  // à
+                226: Result := Result + UTF8Encode(Chr(226));  // â
+                228: Result := Result + UTF8Encode(Chr(228));  // ä
+                229: Result := Result + UTF8Encode(Chr(229));  // å
+                232: Result := Result + UTF8Encode(Chr(232));  // è
+                233: Result := Result + UTF8Encode(Chr(233));  // é
+                234: Result := Result + UTF8Encode(Chr(234));  // ê
+                246: Result := Result + UTF8Encode(Chr(246));  // ö
+                252: Result := Result + UTF8Encode(Chr(252));  // ü
+           otherwise
+                begin
+                  Result := Result + translatestring[x];
+                  writeln('Character #', Ord(translatestring[x]),
+                                     ' not found in translation table: please report this as a bug');
+                end;
            end;
          end
       else Result := Result + translatestring[x];
