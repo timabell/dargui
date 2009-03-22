@@ -177,42 +177,47 @@ begin
     try
       Proc.Execute;
       Output.LoadFromStream(Proc.Output);
-      for x := 0 to Output.Count -1 do
-          if PosDarString(dsLongoptions, Output.Strings[x]) > 0
-             then DarInEnglish := true; // TODO: make this less of a hack
-      if DarInEnglish then writeln('DAR using English language');
-      if not DarInEnglish
-         then begin
-               if OpenDarTranslationInterface
-                    then SetDarStrings
-                    else writeln('Unable to translate DAR output: please report this as a bug');
+      //TODO: check that Output.Count > 0
+      if Output.Count > 0 then
+        begin
+          for x := 0 to Output.Count -1 do
+              if PosDarString(dsLongoptions, Output.Strings[x]) > 0
+                 then DarInEnglish := true; // TODO: make this less of a hack
+          if DarInEnglish then writeln('DAR using English language');
+          if not DarInEnglish
+             then begin
+                   if OpenDarTranslationInterface
+                        then SetDarStrings
+                        else writeln('Unable to translate DAR output: please report this as a bug');
+                  end;
+          ExtractColumnTitles;
+          for x := 0 to Output.Count -1 do
+              begin
+              if Pos('dar version',Output.Strings[x]) > 0
+                 then info.version := GetVersion(Output.Strings[x])
+              else if PosDarString(dsLongoptions, Output.Strings[x]) > 0
+                      then info.Longopts := GetBoolean(Output.Strings[x], LengthDarString(dsLongoptions))
+              else if PosDarString(dsLibzComp, Output.Strings[x]) > 0
+                      then info.Libz := GetBoolean(Output.Strings[x], LengthDarString(dsLibzComp))
+              else if PosDarString(dsLibbz2Comp, Output.Strings[x]) > 0
+                      then info.Libbz2 := GetBoolean(Output.Strings[x], LengthDarString(dsLibbz2Comp))
+              else if PosDarString(dsNewBlowfish, Output.Strings[x]) > 0
+                      then info.Blowfish := GetBoolean(Output.Strings[x], LengthDarString(dsNewBlowfish))
+              else if PosDarString(dsExtendedAttributes, Output.Strings[x]) > 0
+                      then info.Extended := GetBoolean(Output.Strings[x], LengthDarString(dsExtendedAttributes))
+              else if PosDarString(dsLargeFiles, Output.Strings[x]) > 0
+                      then info.Largefiles := GetBoolean(Output.Strings[x], LengthDarString(dsLargeFiles))
+              else if PosDarString(dsNoDump, Output.Strings[x]) > 0
+                      then info.Nodump := GetBoolean(Output.Strings[x], LengthDarString(dsNoDump))
+              else if PosDarString(dsThreadSafe, Output.Strings[x]) > 0
+                      then info.Threadsafe := GetBoolean(Output.Strings[x], LengthDarString(dsThreadSafe))
+              else if PosDarString(dsSpecialAlloc, Output.Strings[x]) > 0
+                      then info.SpAlloc := GetBoolean(Output.Strings[x], LengthDarString(dsSpecialAlloc))
+              else if Pos('integer size', Output.Strings[x]) > 0
+                      then info.IntSize := GetIntSize(Output.Strings[x]);
               end;
-      ExtractColumnTitles;
-      for x := 0 to Output.Count -1 do
-          begin
-          if Pos('dar version',Output.Strings[x]) > 0
-             then info.version := GetVersion(Output.Strings[x])
-          else if PosDarString(dsLongoptions, Output.Strings[x]) > 0
-                  then info.Longopts := GetBoolean(Output.Strings[x], LengthDarString(dsLongoptions))
-          else if PosDarString(dsLibzComp, Output.Strings[x]) > 0
-                  then info.Libz := GetBoolean(Output.Strings[x], LengthDarString(dsLibzComp))
-          else if PosDarString(dsLibbz2Comp, Output.Strings[x]) > 0
-                  then info.Libbz2 := GetBoolean(Output.Strings[x], LengthDarString(dsLibbz2Comp))
-          else if PosDarString(dsNewBlowfish, Output.Strings[x]) > 0
-                  then info.Blowfish := GetBoolean(Output.Strings[x], LengthDarString(dsNewBlowfish))
-          else if PosDarString(dsExtendedAttributes, Output.Strings[x]) > 0
-                  then info.Extended := GetBoolean(Output.Strings[x], LengthDarString(dsExtendedAttributes))
-          else if PosDarString(dsLargeFiles, Output.Strings[x]) > 0
-                  then info.Largefiles := GetBoolean(Output.Strings[x], LengthDarString(dsLargeFiles))
-          else if PosDarString(dsNoDump, Output.Strings[x]) > 0
-                  then info.Nodump := GetBoolean(Output.Strings[x], LengthDarString(dsNoDump))
-          else if PosDarString(dsThreadSafe, Output.Strings[x]) > 0
-                  then info.Threadsafe := GetBoolean(Output.Strings[x], LengthDarString(dsThreadSafe))
-          else if PosDarString(dsSpecialAlloc, Output.Strings[x]) > 0
-                  then info.SpAlloc := GetBoolean(Output.Strings[x], LengthDarString(dsSpecialAlloc))
-          else if Pos('integer size', Output.Strings[x]) > 0
-                  then info.IntSize := GetIntSize(Output.Strings[x]);
-          end;
+        end
+      else writeln('Error: no output from Dar in GetDarVersion');
       except
       info.version := '-';
       end;  //try
