@@ -723,8 +723,11 @@ var
    Result := '';
    SavedSettings.Read(datalength, SizeOf(datalength));
    SetLength(databuffer, datalength);
-   SavedSettings.Read(databuffer[1], datalength);
-   Result := databuffer;
+   if datalength > 0 then
+      begin
+       SavedSettings.Read(databuffer[1], datalength);
+       Result := databuffer;
+      end;
   end;
 
 begin
