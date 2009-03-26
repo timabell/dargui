@@ -295,7 +295,7 @@ begin
   if Length(searchstring) = 0 then exit;
   a1 := 1;
   b1 := 1;
-  while a1 < Length(darstring) do
+  while b1 <= Length(darstring) do
     begin
       if searchstring[a1] = darstring[b1] then
         begin
@@ -306,7 +306,8 @@ begin
           begin
             IntStr := '';
             b1 := b1 + 2;
-            while searchstring[a1] in ['0'..'9'] do
+            while (a1 <= Length(searchstring))
+                  and (searchstring[a1] in ['0'..'9']) do
                   begin
                     IntStr := IntStr + searchstring[a1];
                     Inc(a1);

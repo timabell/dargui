@@ -50,6 +50,7 @@ object MainForm: TMainForm
   OnClose = FormClose
   OnCreate = FormCreate
   OnResize = FormResize
+  OnShow = FormShow
   Position = poMainFormCenter
   LCLVersion = '0.9.27'
   object StatusBar: TStatusBar
@@ -1215,6 +1216,8 @@ object MainForm: TMainForm
     end
   end
   object OpenDialog: TOpenDialog
+    Width = 200
+    Height = 200
     Title = 'Open existing archive'
     Filter = 'DAR Archives|*.dar'
     FilterIndex = 0

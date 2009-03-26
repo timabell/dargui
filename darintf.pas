@@ -177,7 +177,6 @@ begin
     try
       Proc.Execute;
       Output.LoadFromStream(Proc.Output);
-      //TODO: check that Output.Count > 0
       if Output.Count > 0 then
         begin
           for x := 0 to Output.Count -1 do
@@ -847,7 +846,7 @@ begin
        end;
  finally
    if Result=-1
-      then writeln('Unable to extract node count - dumping output of dar -l -v:' + #10 + Output.Text);
+      then writeln('Unable to extract node count - dumping output of dar -l ' + archivename + ' -v:' + #10 + Output.Text);
    Proc.Free;
    Output.Free;
  end;

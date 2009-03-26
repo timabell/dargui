@@ -83,6 +83,7 @@ type
     procedure FormCreate(Sender: TObject);
     procedure FormClose(Sender: TObject; var CloseAction: TCloseAction);
     procedure FormResize(Sender: TObject);
+    procedure FormShow(Sender: TObject);
     procedure HeaderBarSectionResize(HeaderControl: TCustomHeaderControl;
       Section: THeaderSection);
     procedure RecentMenuClick ( Sender: TObject ) ;
@@ -137,12 +138,12 @@ var
 
   
 const
-  APP_VERSION = '0.5.1 Beta';
+  APP_VERSION = '0.5.1 rc1';
   //{$I revision.inc}
   {revision.inc is a dynamically produced file containing the number of the most recent SVN revision
    the include directive can be commented out and the following line uncommented, replacing the number 0 with the
    appropriate revision number}
-  SVN_REVISION = '220';
+  SVN_REVISION = '230';
 
   ARCHIVEMENU_TAG = 1; //used for enabling menuitems after loading archive
   SELECT_STATUSBAR = 0;   //index of panel which displays number of selected nodes
@@ -275,18 +276,10 @@ begin
   UpdatingSelection := false;
   miHideMessages.Checked := true;
 
-  writeln(DarInfo.version);
+  writeln('Dar version detected: ', DarInfo.version);
 
   OpenDialog.InitialDir := SysUtils.GetEnvironmentVariable('HOME');
 
-  if Paramcount > 0 then
-       if FileExists(ParamStr(1)) then
-          begin
-            OpenDialog.FileName := ParamStr(1);
-            if DarInfo.version<>'-'
-               then if OpenArchive(OpenDialog.FileName,ArchiveTreeView, '') = 0  //need to check for encryption
-                    then EnableArchiveMenus(true);
-          end;
 end;
 
 procedure TMainForm.miFileNewClick ( Sender: TObject ) ;
@@ -592,6 +585,24 @@ procedure TMainForm.FormResize(Sender: TObject);
 begin
   ToolbarPanel.Refresh;
   FileHeaderBar.Refresh;
+end;
+
+procedure TMainForm.FormShow(Sender: TObject);
+begin
+  if (Paramcount > 0) and (CurrentArchive = '') then
+       if FileExists(ParamStr(1)) then
+          begin
+            OpenDialog.FileName := ParamStr(1);
+            if DarInfo.version<>'-'
+               then if ValidateArchive(OpenDialog.FileName, CurrentPass)
+                 then if OpenArchive(OpenDialog.FileName,ArchiveTreeView, CurrentPass) = 0
+                      then
+                      begin
+                        EnableArchiveMenus(true);
+                        CurrentArchive := OpenDialog.FileName;
+                        RecentList.AddFile(OpenDialog.FileName);
+                      end;
+          end;
 end;
 
 procedure TMainForm.HeaderBarSectionResize(HeaderControl: TCustomHeaderControl;
