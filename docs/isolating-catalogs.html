@@ -58,9 +58,9 @@
 
 </div>
 
-<p>A Dar archive stores information about its files at the end of the archive in a table of contents, or a “catalog”. When creating a differential backup based on an existing “reference” archive, Dar only needs to scan the reference archive's catalog to determine changes in filesystem with respect to the reference archive.</p>
+<p>A Dar archive stores information about its files at the end of the archive in a table of contents, or a "catalog". When creating a differential backup based on an existing "reference" archive, Dar only needs to scan the reference archive's catalog to determine changes in filesystem with respect to the reference archive.</p>
 
-<p>DarGUI can “isolate” or extract the reference catalog into a separate file. The isolated catalog can be read and listed like the full reference archive but it contains none of the actual stored data. Since the isolated catalog is much smaller than the reference archive, you can store it on your filesystem and use it for making differential backups, i.e. use the isolated catalog as your reference archive.</p>
+<p>DarGUI can "isolate" or extract the reference catalog into a separate file. The isolated catalog can be read and listed like the full reference archive but it contains none of the actual stored data. Since the isolated catalog is much smaller than the reference archive, you can store it on your filesystem and use it for making differential backups, i.e. use the isolated catalog as your reference archive.</p>
 
 <p>To isolate a catalog select Archive->Isolate Catalog from the main menu. An dialog will appear which allows you to select an archive and the name to be given to the catalog.</p>
 

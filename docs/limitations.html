@@ -82,20 +82,13 @@
 
 </div>
 
-
-
-
-
-<p>- non-English versions of Dar: users of systems which are set up to
-use the French, German or Swedish languages may find that they have a
-version of Dar which uses the appropriate language for the system. At
-present (v. 0.5.0) many of DarGUI's functions will not work&nbsp;on
-these systems. This problem will be resolved in a future release of
-DarGUI.</p><p>- Unimplemented features of Dar: While DarGUI attempts to
+<p>- Unimplemented features of Dar: While DarGUI attempts to
 provide access to the most common functionality of Dar, there are many
 other features which are not implemented. These include:</p><ul><li>Extended Attributes</li><li>include-from-file/exclude-from-file (-[ and -] ) options</li><li>Merging of archives</li><li>Execution of a script or command between slices</li><li>Support&nbsp;for the nodump option</li></ul>
 
-<p>- cannot open or create an archive if its name includes apostrophes, double quotes or other characters which have a special meaning in bash scripts. These are   <strong>&#124;  &amp; &#059; &#040; &#041; &#060; &#062; &#034; &#039;</strong>.  </p>
+<p>- Opening large archives: When opening archives DarGUI reads the output from a Dar command, interprets it and displays it. This is more time consuming than using the libdar library as KDar does and as a result DarGUI can be quite slow to open archives which contain tens of thousands of files, especially on systems with older processors.</p>
+
+<p>- DarGUI cannot open or create an archive if its name includes apostrophes, double quotes or other characters which have a special meaning in bash scripts. These are   <strong>&#124;  &amp; &#059; &#040; &#041; &#060; &#062; &#034; &#039;</strong>.  </p>
 
 <hr>
 <div>
