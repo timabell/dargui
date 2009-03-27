@@ -138,12 +138,12 @@ var
 
   
 const
-  APP_VERSION = '0.5.1 rc1';
+  APP_VERSION = '0.5.1';
   //{$I revision.inc}
   {revision.inc is a dynamically produced file containing the number of the most recent SVN revision
    the include directive can be commented out and the following line uncommented, replacing the number 0 with the
    appropriate revision number}
-  SVN_REVISION = '230';
+  SVN_REVISION = '232';
 
   ARCHIVEMENU_TAG = 1; //used for enabling menuitems after loading archive
   SELECT_STATUSBAR = 0;   //index of panel which displays number of selected nodes
@@ -344,9 +344,6 @@ var
              end;
           OpLogForm.RefreshOpList;
         end;
-      if ArchiveForm.SaveScriptCheckBox.Checked
-        then if ArchiveForm.ScriptFilenameBox.Text <> ''
-             then WriteArchiveScript(ArchiveForm.ScriptFilenameBox.Text);
      finally
      Enabled := true;
      if FileExists(infofilename)
@@ -764,7 +761,9 @@ begin
             Font.Color := clBlack;
          //Get user preferred font here
         end;
-  Sender.DefaultItemHeight := Sender.Canvas.TextHeight('Yy')+2;
+  //Adjust row heights if the font is too big to fit
+  if (Sender.Canvas.TextHeight('Yy')+2) > Sender.DefaultItemHeight
+     then Sender.DefaultItemHeight := Sender.Canvas.TextHeight('Yy')+2;
   Sender.Canvas.FillRect(Displayrect);
   if Node.Data <> nil then
      begin

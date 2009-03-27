@@ -1159,23 +1159,24 @@ LazarusResources.Add('TMainForm','FORMDATA',[
   +'aption'#6#17'Dar Documentation'#7'OnClick'#7#14'miHelpDarClick'#0#0#9'TMenu'
   +'Item'#10'MenuBreak3'#7'Caption'#6#1'-'#0#0#9'TMenuItem'#11'miHelpAbout'#7'C'
   +'aption'#6#12'About DarGUI'#7'OnClick'#7#16'miHelpAboutClick'#0#0#0#0#11'TOp'
-  +'enDialog'#10'OpenDialog'#5'Width'#3#200#0#6'Height'#3#200#0#5'Title'#6#21'O'
+  +'enDialog'#10'OpenDialog'#5'Width'#3#244#1#6'Height'#3#144#1#5'Title'#6#21'O'
   +'pen existing archive'#6'Filter'#6#18'DAR Archives|*.dar'#11'FilterIndex'#2#0
-  +#4'left'#3'P'#3#3'top'#2#8#0#0#10'TPopupMenu'#12'TreeViewMenu'#4'left'#3'0'#3
-  +#3'top'#2#8#0#9'TMenuItem'#18'pmiRestoreSelected'#3'Tag'#2#1#7'Caption'#6#16
-  +'Restore Selected'#7'Enabled'#8#7'OnClick'#7#23'pmiRestoreSelectedClick'#0#0
-  +#9'TMenuItem'#13'pmiRestoreAll'#3'Tag'#2#1#7'Caption'#6#11'Restore All'#7'En'
-  +'abled'#8#7'OnClick'#7#17'miRestoreAllClick'#0#0#9'TMenuItem'#11'PopupBreak1'
-  +#7'Caption'#6#1'-'#0#0#9'TMenuItem'#15'pmiToggleSelect'#3'Tag'#2#1#7'Caption'
-  +#6#15'Toggle Selected'#7'Enabled'#8#7'OnClick'#7#20'pmiToggleSelectClick'#0#0
-  +#9'TMenuItem'#15'pmiSelectFilter'#3'Tag'#2#1#7'Caption'#6#16'Select by Filte'
-  +'r'#7'Enabled'#8#7'OnClick'#7#20'pmiSelectFilterClick'#0#0#9'TMenuItem'#18'p'
-  +'miShowAllSelected'#3'Tag'#2#1#7'Caption'#6#13'Show Selected'#7'Enabled'#8#7
-  +'OnClick'#7#23'pmiShowAllSelectedClick'#0#0#9'TMenuItem'#11'PopupBreak2'#7'C'
-  +'aption'#6#1'-'#0#0#9'TMenuItem'#10'pmiShowAll'#3'Tag'#2#1#7'Caption'#6#8'Sh'
-  +'ow All'#7'Enabled'#8#7'OnClick'#7#15'pmiShowAllClick'#0#0#9'TMenuItem'#10'p'
-  +'miHideAll'#3'Tag'#2#1#7'Caption'#6#8'Hide All'#7'Enabled'#8#7'OnClick'#7#15
-  +'pmiHideAllClick'#0#0#0#10'TImageList'#8'IconList'#4'left'#3#232#2#3'top'#2#8
+  +#7'Options'#11#15'ofFileMustExist'#12'ofViewDetail'#13'ofAutoPreview'#0#4'le'
+  +'ft'#3'P'#3#3'top'#2#8#0#0#10'TPopupMenu'#12'TreeViewMenu'#4'left'#3'0'#3#3
+  +'top'#2#8#0#9'TMenuItem'#18'pmiRestoreSelected'#3'Tag'#2#1#7'Caption'#6#16'R'
+  +'estore Selected'#7'Enabled'#8#7'OnClick'#7#23'pmiRestoreSelectedClick'#0#0#9
+  +'TMenuItem'#13'pmiRestoreAll'#3'Tag'#2#1#7'Caption'#6#11'Restore All'#7'Enab'
+  +'led'#8#7'OnClick'#7#17'miRestoreAllClick'#0#0#9'TMenuItem'#11'PopupBreak1'#7
+  +'Caption'#6#1'-'#0#0#9'TMenuItem'#15'pmiToggleSelect'#3'Tag'#2#1#7'Caption'#6
+  +#15'Toggle Selected'#7'Enabled'#8#7'OnClick'#7#20'pmiToggleSelectClick'#0#0#9
+  +'TMenuItem'#15'pmiSelectFilter'#3'Tag'#2#1#7'Caption'#6#16'Select by Filter'
+  +#7'Enabled'#8#7'OnClick'#7#20'pmiSelectFilterClick'#0#0#9'TMenuItem'#18'pmiS'
+  +'howAllSelected'#3'Tag'#2#1#7'Caption'#6#13'Show Selected'#7'Enabled'#8#7'On'
+  +'Click'#7#23'pmiShowAllSelectedClick'#0#0#9'TMenuItem'#11'PopupBreak2'#7'Cap'
+  +'tion'#6#1'-'#0#0#9'TMenuItem'#10'pmiShowAll'#3'Tag'#2#1#7'Caption'#6#8'Show'
+  +' All'#7'Enabled'#8#7'OnClick'#7#15'pmiShowAllClick'#0#0#9'TMenuItem'#10'pmi'
+  +'HideAll'#3'Tag'#2#1#7'Caption'#6#8'Hide All'#7'Enabled'#8#7'OnClick'#7#15'p'
+  +'miHideAllClick'#0#0#0#10'TImageList'#8'IconList'#4'left'#3#232#2#3'top'#2#8
   +#6'Bitmap'#10#14#4#0#0'Li'#1#0#0#0#16#0#0#0#16#0#0#0#216#211#238#0#216#211
   +#238#0#240#233#193#0#240#233#193#0#0#0#0#0#0#0#0#0#0#0#0#0#0#0#0#0'y|{'#0'SW'
   +'U'#0'SWU'#0'SWU'#0'SWU'#0'SWU'#0'}'#128''#0#1#137#239#0'y|{'#255'SWU'#255
@@ -1216,8 +1217,8 @@ LazarusResources.Add('TMainForm','FORMDATA',[
   +#255#164#186#185#0'SWU'#255#188#204#203#255#164#186#185#255#164#186#185#255
   +#164#186#185#255#164#186#185#255#164#186#185#255#164#186#185#255#164#186#185
   +#255#164#186#185#255#164#186#185#255#164#186#185#255#164#186#185#255#181#199
-  +#198#255'SWU'#255#182#199#198#0'SWU'#255#181#197#196#255#182#199#198#255#182
-  ,#199#198#255#182#199#198#255#182#199#198#255#182#199#198#255#182#199#198#255
+  ,#198#255'SWU'#255#182#199#198#0'SWU'#255#181#197#196#255#182#199#198#255#182
+  +#199#198#255#182#199#198#255#182#199#198#255#182#199#198#255#182#199#198#255
   +#182#198#197#255#182#198#197#255#181#198#197#255#181#198#197#255#181#198#197
   +#255#175#192#191#255'SWU'#255'SWU'#0#134#138#136#255'SWU'#255'SWU'#255'SWU'
   +#255'SWU'#255'SWU'#255'SWU'#255'SWU'#255'SWU'#255'SWU'#255'SWU'#255'SWU'#255

@@ -1216,11 +1216,12 @@ object MainForm: TMainForm
     end
   end
   object OpenDialog: TOpenDialog
-    Width = 200
-    Height = 200
+    Width = 500
+    Height = 400
     Title = 'Open existing archive'
     Filter = 'DAR Archives|*.dar'
     FilterIndex = 0
+    Options = [ofFileMustExist, ofViewDetail, ofAutoPreview]
     left = 848
     top = 8
   end
