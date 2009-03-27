@@ -107,7 +107,6 @@ type
   function ValidateArchive( var archivename: string; var pw: string ): Boolean;
   function CreateUniqueFileName(sPath: string): string;
   
-  procedure WriteArchiveScript(fn: TFilename);
   function TrimToBase(fn: string): string;
   
   procedure GetDefaultBrowser(var Browser, Params: string);
@@ -784,13 +783,6 @@ begin
       then pw := ' -K ":' + PasswordDlg.Password + '"'
       else Result := false;
 end;
-
-//TODO: implement this procedure WriteArchiveScript(fn: TFilename);
-procedure WriteArchiveScript(fn: TFilename);
-begin
-
-end;
-
 
 // from http://www.delphifaq.net/how-to-get-a-unique-file-name/
 function CreateUniqueFileName(sPath: string): string;
