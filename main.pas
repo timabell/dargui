@@ -956,6 +956,7 @@ begin
              1: ;
              2: daroptions := daroptions + ' --no-overwrite';
              end;
+        if CurrentPass <> '' then daroptions := ' -K : ' + daroptions;
         CommandLine := (DAR_EXECUTABLE + ' -x "' + CurrentArchive + '"  -R "' + RestoreForm.RestoreDirectoryEdit.Text + '"' + daroptions);
         RunDarCommand ( CommandLine, rsCptRestoringFiles, Left + 100, Top + 150
           ) ;
@@ -1120,6 +1121,7 @@ begin
               batch.Insert(0,'-R "' + RestoreForm.RestoreDirectoryEdit.Text + '"');
               batchfile := GetNextFileName(TEMP_DIRECTORY + BATCHFILE_BASE);
               batch.SaveToFile(batchfile);
+              if CurrentPass <> '' then daroptions := ' -K : ' + daroptions;
               CommandLine := (DAR_EXECUTABLE + ' -x "' + CurrentArchive + '" -B "' + batchfile + '" ' + daroptions);
               RunDarCommand(CommandLine, rsCptRestoringFiles, Left+100, Top+150);
               //OpLogForm.AddCommand(CommandLine);
