@@ -2,6 +2,10 @@ unit main;
 
 {$mode objfpc}{$H+}
 
+//TODO: fix problem preventing opening archives with spaces in path
+//TODO: enable opening of multi-slice archives
+//TODO: implement 'first slice size' option
+
 interface
 
 uses
@@ -16,6 +20,7 @@ type
   TMainForm = class(TForm)
     ArchiveTreeView: TTreeView;
     FileHeaderBar: THeaderControl;
+    miUserPrefs: TMenuItem;
     miHelpContents: TMenuItem;
     miArchiveDiff: TMenuItem;
     MenuScheduling: TMenuItem;
@@ -86,6 +91,7 @@ type
     procedure FormShow(Sender: TObject);
     procedure HeaderBarSectionResize(HeaderControl: TCustomHeaderControl;
       Section: THeaderSection);
+    procedure miUserPrefsClick(Sender: TObject);
     procedure RecentMenuClick ( Sender: TObject ) ;
     procedure miArchiveInformationClick(Sender: TObject);
     procedure miExitClick ( Sender: TObject ) ;
@@ -155,7 +161,7 @@ const
 implementation
 
 uses baseunix, dgStrConst, selectrestore, archive, archiveinfo, About, oplog, isolate,
-     diff, prefs, schedman, password;
+     diff, prefs, schedman, password, userprefs;
 
 { TMainForm }
 
@@ -606,6 +612,11 @@ procedure TMainForm.HeaderBarSectionResize(HeaderControl: TCustomHeaderControl;
   Section: THeaderSection);
 begin
   ArchiveTreeView.Update;
+end;
+
+procedure TMainForm.miUserPrefsClick(Sender: TObject);
+begin
+  OptionsForm.ShowModal;
 end;
 
 procedure TMainForm.RecentMenuClick ( Sender: TObject ) ;

@@ -5,7 +5,7 @@ object MainForm: TMainForm
   Width = 893
   ActiveControl = ToolbarPanel
   Caption = 'DarGUI'
-  ClientHeight = 584
+  ClientHeight = 578
   ClientWidth = 893
   Icon.Data = {
     7E04000000000100010010100000010020006804000016000000280000001000
@@ -54,8 +54,9 @@ object MainForm: TMainForm
   Position = poMainFormCenter
   LCLVersion = '0.9.27'
   object StatusBar: TStatusBar
-    Height = 17
-    Top = 567
+    Left = 0
+    Height = 21
+    Top = 557
     Width = 893
     Panels = <    
       item
@@ -70,7 +71,9 @@ object MainForm: TMainForm
     SimplePanel = False
   end
   object ToolbarPanel: TPanel
+    Left = 0
     Height = 48
+    Top = 0
     Width = 893
     Align = alTop
     ClientHeight = 48
@@ -950,8 +953,9 @@ object MainForm: TMainForm
     end
   end
   object MessagePanel: TPanel
+    Left = 0
     Height = 200
-    Top = 367
+    Top = 357
     Width = 893
     Align = alBottom
     Caption = 'MessagePanel'
@@ -980,6 +984,7 @@ object MainForm: TMainForm
       object MessageHideButton: TBitBtn
         Left = 865
         Height = 26
+        Top = 0
         Width = 26
         Align = alRight
         Caption = 'X'
@@ -1001,8 +1006,9 @@ object MainForm: TMainForm
   end
   object MessageBoxSplitter: TSplitter
     Cursor = crVSplit
+    Left = 0
     Height = 5
-    Top = 362
+    Top = 352
     Width = 893
     Align = alBottom
     Beveled = True
@@ -1011,16 +1017,19 @@ object MainForm: TMainForm
     Visible = False
   end
   object FileViewScrollBox: TScrollBox
-    Height = 314
+    Left = 0
+    Height = 304
     Top = 48
     Width = 893
     Align = alClient
     AutoSize = True
+    Ctl3D = False
     TabOrder = 4
     object ArchiveTreeView: TTreeView
-      Height = 282
+      Left = 0
+      Height = 270
       Top = 30
-      Width = 887
+      Width = 889
       Align = alClient
       Ctl3D = True
       DefaultItemHeight = 18
@@ -1041,40 +1050,49 @@ object MainForm: TMainForm
       TreeLineColor = clDefault
     end
     object FileHeaderBar: THeaderControl
+      Left = 0
       Height = 30
-      Width = 887
+      Top = 0
+      Width = 889
+      DragReorder = False
       Sections = <      
         item
+          Alignment = taLeftJustify
           MinWidth = 150
           Text = '  File'
           Width = 250
           Visible = True
         end      
         item
+          Alignment = taLeftJustify
           MinWidth = 50
           Text = '  Date'
           Width = 200
           Visible = True
         end      
         item
+          Alignment = taLeftJustify
           MinWidth = 50
           Text = ' Size'
           Width = 60
           Visible = True
         end      
         item
+          Alignment = taLeftJustify
           MinWidth = 50
           Text = ' User'
           Width = 100
           Visible = True
         end      
         item
+          Alignment = taLeftJustify
           MinWidth = 50
           Text = ' Group'
           Width = 100
           Visible = True
         end      
         item
+          Alignment = taLeftJustify
           MinWidth = 50
           Text = ' Status'
           Width = 150
@@ -1179,6 +1197,10 @@ object MainForm: TMainForm
     end
     object MenuSettings: TMenuItem
       Caption = 'Options'
+      object miUserPrefs: TMenuItem
+        Caption = 'User preferences'
+        OnClick = miUserPrefsClick
+      end
       object miHideMessages: TMenuItem
         Caption = 'Hide messages'
         Checked = True
@@ -1278,6 +1300,7 @@ object MainForm: TMainForm
     end
   end
   object IconList: TImageList
+    Masked = False
     left = 744
     top = 8
     Bitmap = {

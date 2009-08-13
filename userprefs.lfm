@@ -1,0 +1,64 @@
+object OptionsForm: TOptionsForm
+  Left = 274
+  Height = 399
+  Top = 177
+  Width = 642
+  ActiveControl = MainNotebook
+  Caption = 'OptionsForm'
+  ClientHeight = 399
+  ClientWidth = 642
+  LCLVersion = '0.9.27'
+  object MainNotebook: TNotebook
+    Left = 0
+    Height = 333
+    Top = 0
+    Width = 642
+    Align = alClient
+    PageIndex = 0
+    TabOrder = 0
+    object DisplayPage: TPage
+      Caption = 'Display'
+    end
+    object CreateArchivesPage: TPage
+      Caption = 'Archive creation'
+      ClientWidth = 638
+      ClientHeight = 302
+      object PageControl1: TPageControl
+        Left = 128
+        Height = 292
+        Top = 5
+        Width = 505
+        ActivePage = TabSheet2
+        Align = alClient
+        BorderSpacing.Around = 5
+        TabIndex = 1
+        TabOrder = 0
+        object TabSheet1: TTabSheet
+          Caption = 'TabSheet1'
+        end
+        object TabSheet2: TTabSheet
+          Caption = 'TabSheet2'
+        end
+      end
+      object ListBox1: TListBox
+        Left = 5
+        Height = 292
+        Top = 5
+        Width = 118
+        Align = alLeft
+        BorderSpacing.Around = 5
+        ItemHeight = 0
+        TabOrder = 1
+      end
+    end
+  end
+  object ButtonPanel: TPanel
+    Left = 0
+    Height = 66
+    Top = 333
+    Width = 642
+    Align = alBottom
+    Caption = 'ButtonPanel'
+    TabOrder = 1
+  end
+end
