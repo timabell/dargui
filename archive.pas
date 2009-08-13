@@ -510,6 +510,9 @@ begin
   OpenDialog.Options := OpenDialog.Options+[ofAllowMultiSelect];
   if Pos(BaseDirectory.Text, OpenDialog.InitialDir) <> 1 then
      OpenDialog.InitialDir := BaseDirectory.Text;
+  OpenDialog.Filter := rsFilterAllFiles + '|*';
+  OpenDialog.FileName := '';
+  OpenDialog.Title := rsSelectFile;
   if OpenDialog.Execute then
       begin
         case TButton(Sender).Tag of
@@ -733,6 +736,7 @@ var
 begin
   OpenDialog.Filter := rsFilterDarGUIFiles + '|*.dargui|' + rsFilterAllFiles + '|*';
   OpenDialog.FilterIndex := 0;
+  OpenDialog.Title := rsLoadSettings;
   if OpenDialog.Execute then
      begin
        bytesread := 0;
@@ -851,7 +855,7 @@ begin        //TODO: check that script is not to be created within base director
        Result := false;
        exit;
      end;
-  if ContainsSpecialChars(ArchiveName.Text)
+  {if ContainsSpecialChars(ArchiveName.Text)
      or ContainsSpecialChars(ArchiveDirectory.Text) then
      begin
        ArchiveNotebook.PageIndex := 0;
@@ -859,7 +863,7 @@ begin        //TODO: check that script is not to be created within base director
        ShowMessage(rsErrInvalidChars);
        Result := false;
        exit;
-     end;
+     end; }
   if ArchiveDirectory.Text[Length(ArchiveDirectory.Text)] <> DirectorySeparator
      then ArchiveDirectory.Text := ArchiveDirectory.Text + DirectorySeparator;
   if BaseDirectory.Text[Length(BaseDirectory.Text)] <> DirectorySeparator
