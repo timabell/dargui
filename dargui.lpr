@@ -30,19 +30,22 @@ uses
   { add your units here }, main, darintf, selectrestore, archive, filemaskdlg,
   ProcessLine, ArchiveInfo, About, oplog, isolate, diff, prefs,
   historymenu, dgStrConst, selectfilter, password, darstrings, backupsavedlg,
-  schedman;
+  schedman, userprefs, LResources;
+
+{$IFDEF WINDOWS}{$R dargui.rc}{$ENDIF}
 
 begin
+  {$I dargui.lrs}
   Application.Title:='DarGUI';
   SetupLanguage;
   Application.Initialize;
-  Application.CreateForm ( TMainForm, MainForm ) ;
-  Application.CreateForm ( TArchiveForm, ArchiveForm ) ;
-  Application.CreateForm ( TFileMaskDialog, FileMaskDialog ) ;
-  Application.CreateForm ( TInformationForm, InformationForm ) ;
-  Application.CreateForm ( TOpLogForm, OpLogForm ) ;
-  Application.CreateForm ( TPasswordDlg, PasswordDlg ) ;
-  Application.CreateForm ( TCreateSaveDialog, CreateSaveDialog ) ;
+  Application.CreateForm(TMainForm, MainForm);
+  Application.CreateForm(TArchiveForm, ArchiveForm);
+  Application.CreateForm(TFileMaskDialog, FileMaskDialog);
+  Application.CreateForm(TInformationForm, InformationForm);
+  Application.CreateForm(TOpLogForm, OpLogForm);
+  Application.CreateForm(TPasswordDlg, PasswordDlg);
+  Application.CreateForm(TCreateSaveDialog, CreateSaveDialog);
   Application.Run;
 end.
 

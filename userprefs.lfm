@@ -7,6 +7,8 @@ object OptionsForm: TOptionsForm
   Caption = 'OptionsForm'
   ClientHeight = 399
   ClientWidth = 642
+  OnCreate = FormCreate
+  Position = poMainFormCenter
   LCLVersion = '0.9.27'
   object MainNotebook: TNotebook
     Left = 0
@@ -18,37 +20,84 @@ object OptionsForm: TOptionsForm
     TabOrder = 0
     object DisplayPage: TPage
       Caption = 'Display'
-    end
-    object CreateArchivesPage: TPage
-      Caption = 'Archive creation'
       ClientWidth = 638
       ClientHeight = 302
-      object PageControl1: TPageControl
-        Left = 128
-        Height = 292
-        Top = 5
-        Width = 505
-        ActivePage = TabSheet2
-        Align = alClient
-        BorderSpacing.Around = 5
-        TabIndex = 1
-        TabOrder = 0
-        object TabSheet1: TTabSheet
-          Caption = 'TabSheet1'
-        end
-        object TabSheet2: TTabSheet
-          Caption = 'TabSheet2'
-        end
+      object RememberLbl: TLabel
+        Left = 40
+        Height = 18
+        Top = 140
+        Width = 98
+        Caption = 'Remember last'
+        ParentColor = False
       end
-      object ListBox1: TListBox
-        Left = 5
-        Height = 292
-        Top = 5
-        Width = 118
-        Align = alLeft
-        BorderSpacing.Around = 5
-        ItemHeight = 0
+      object FilesOpenedLbl: TLabel
+        Left = 222
+        Height = 18
+        Top = 140
+        Width = 78
+        Caption = 'files opened'
+        ParentColor = False
+      end
+      object DefConfigLabel: TLabel
+        Left = 40
+        Height = 18
+        Top = 195
+        Width = 97
+        Caption = 'DefConfigLabel'
+        ParentColor = False
+      end
+      object MainFormPosition: TCheckBox
+        Left = 40
+        Height = 21
+        Top = 36
+        Width = 136
+        Caption = 'MainFormPosition'
+        Checked = True
+        State = cbChecked
+        TabOrder = 0
+      end
+      object MainFormSize: TCheckBox
+        Left = 40
+        Height = 21
+        Top = 67
+        Width = 113
+        Caption = 'MainFormSize'
+        Checked = True
+        State = cbChecked
         TabOrder = 1
+      end
+      object ToolbarCheck: TCheckBox
+        Left = 40
+        Height = 21
+        Top = 99
+        Width = 102
+        Caption = 'ShowToolbar'
+        Checked = True
+        State = cbChecked
+        TabOrder = 2
+      end
+      object RecentFilesSpinEdit: TSpinEdit
+        Left = 126
+        Height = 23
+        Top = 135
+        Width = 50
+        MaxValue = 20
+        MinValue = 3
+        TabOrder = 3
+        Value = 3
+      end
+      object DefaultConfigEdit: TFileNameEdit
+        Left = 40
+        Height = 23
+        Top = 219
+        Width = 368
+        DialogOptions = []
+        Filter = 'DarGUI Files|*.dargui|All Files|*'
+        FilterIndex = 0
+        ButtonWidth = 23
+        NumGlyphs = 0
+        Ctl3D = False
+        TabOrder = 4
       end
     end
   end
@@ -58,7 +107,32 @@ object OptionsForm: TOptionsForm
     Top = 333
     Width = 642
     Align = alBottom
-    Caption = 'ButtonPanel'
+    ClientHeight = 66
+    ClientWidth = 642
     TabOrder = 1
+    object CancelButton: TBitBtn
+      Left = 512
+      Height = 35
+      Top = 15
+      Width = 106
+      Cancel = True
+      Caption = 'Cancel'
+      Kind = bkCancel
+      ModalResult = 2
+      NumGlyphs = 0
+      TabOrder = 0
+    end
+    object OKButton: TBitBtn
+      Left = 392
+      Height = 35
+      Top = 15
+      Width = 106
+      Caption = 'Ok'
+      Default = True
+      Kind = bkOK
+      ModalResult = 1
+      NumGlyphs = 0
+      TabOrder = 1
+    end
   end
 end

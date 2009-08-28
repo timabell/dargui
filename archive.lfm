@@ -57,6 +57,7 @@ object ArchiveForm: TArchiveForm
   Position = poMainFormCenter
   LCLVersion = '0.9.27'
   object OKCancelPanel: TPanel
+    Left = 0
     Height = 66
     Top = 424
     Width = 637
@@ -184,7 +185,9 @@ object ArchiveForm: TArchiveForm
     end
   end
   object NoteBookPanel: TPanel
+    Left = 0
     Height = 424
+    Top = 0
     Width = 637
     Align = alClient
     Caption = 'NoteBookPanel'
@@ -201,12 +204,12 @@ object ArchiveForm: TArchiveForm
       object ArchivePage: TPage
         Caption = 'Archive'
         ClientWidth = 612
-        ClientHeight = 350
+        ClientHeight = 353
         object ArchiveBaseLabel: TLabel
           Left = 19
-          Height = 17
+          Height = 18
           Top = 12
-          Width = 140
+          Width = 124
           Caption = 'Archive base name'
           FocusControl = ArchiveName
           ParentColor = False
@@ -214,9 +217,9 @@ object ArchiveForm: TArchiveForm
         end
         object BaseDirLabel: TLabel
           Left = 19
-          Height = 17
+          Height = 18
           Top = 132
-          Width = 104
+          Width = 93
           Caption = 'Base directory'
           FocusControl = BaseDirectory
           ParentColor = False
@@ -224,9 +227,9 @@ object ArchiveForm: TArchiveForm
         end
         object SaveArchiveInLabel: TLabel
           Left = 19
-          Height = 17
+          Height = 18
           Top = 68
-          Width = 111
+          Width = 98
           Caption = 'Save archive in'
           FocusControl = ArchiveDirectory
           ParentColor = False
@@ -234,9 +237,9 @@ object ArchiveForm: TArchiveForm
         end
         object BatchLabel: TLabel
           Left = 19
-          Height = 17
+          Height = 18
           Top = 200
-          Width = 68
+          Width = 60
           Caption = 'Batch file'
           FocusControl = BatchFileBox
           ParentColor = False
@@ -303,9 +306,9 @@ object ArchiveForm: TArchiveForm
         end
         object DiffFileCheck: TCheckBox
           Left = 21
-          Height = 24
+          Height = 21
           Top = 257
-          Width = 158
+          Width = 142
           Caption = 'Differential backup'
           OnChange = DiffFileCheckChange
           TabOrder = 7
@@ -318,9 +321,9 @@ object ArchiveForm: TArchiveForm
           EditLabel.AnchorSideLeft.Control = DiffReference
           EditLabel.AnchorSideBottom.Control = DiffReference
           EditLabel.Left = 45
-          EditLabel.Height = 17
-          EditLabel.Top = 293
-          EditLabel.Width = 132
+          EditLabel.Height = 18
+          EditLabel.Top = 292
+          EditLabel.Width = 114
           EditLabel.Caption = 'Reference archive'
           EditLabel.ParentColor = False
           Enabled = False
@@ -338,22 +341,23 @@ object ArchiveForm: TArchiveForm
         end
         object TimestampCheck: TCheckBox
           Left = 325
-          Height = 24
+          Height = 21
           Top = 28
-          Width = 151
+          Width = 134
           Caption = 'TimestampCheck'
           TabOrder = 10
         end
       end
       object DirectoriesPage: TPage
         Caption = 'Directories'
-        ClientWidth = 616
-        ClientHeight = 384
+        ClientWidth = 612
+        ClientHeight = 353
         object IncludeDirectories: TListBox
           Left = 19
           Height = 239
           Top = 58
           Width = 483
+          ItemHeight = 0
           TabOrder = 0
           TopIndex = -1
         end
@@ -407,7 +411,7 @@ object ArchiveForm: TArchiveForm
       object FilesPage: TPage
         Caption = 'Files'
         ClientWidth = 612
-        ClientHeight = 350
+        ClientHeight = 353
         object IncludeFilesLabel: TLabel
           Left = 19
           Height = 17
@@ -434,6 +438,7 @@ object ArchiveForm: TArchiveForm
           Height = 120
           Top = 40
           Width = 440
+          ItemHeight = 0
           TabOrder = 0
           TopIndex = -1
         end
@@ -443,6 +448,7 @@ object ArchiveForm: TArchiveForm
           Height = 120
           Top = 218
           Width = 440
+          ItemHeight = 0
           TabOrder = 4
           TopIndex = -1
         end
@@ -510,21 +516,22 @@ object ArchiveForm: TArchiveForm
       object CompressionPage: TPage
         Caption = 'Compression'
         ClientWidth = 612
-        ClientHeight = 350
+        ClientHeight = 353
         object CompressionExceptions: TGroupBox
           Left = 301
           Height = 329
           Top = 10
           Width = 288
           Caption = ' Do not compress ... '
-          ClientHeight = 308
+          ClientHeight = 310
           ClientWidth = 284
+          Ctl3D = False
           TabOrder = 0
           object CompSizeLabel: TLabel
             Left = 21
-            Height = 17
+            Height = 18
             Top = 240
-            Width = 235
+            Width = 209
             Caption = 'Lower size limit for compression:'
             FocusControl = CompressionLwrLimit
             ParentColor = False
@@ -538,12 +545,24 @@ object ArchiveForm: TArchiveForm
             Items.Strings = (
               '*.zip'
               '*.jpg'
+              '*.jpeg'
               '*.bz2'
               '*.gz'
               '*.gif'
               '*.png'
+              '*.mpg'
+              '*.mpeg'
+              '*.mp4'
+              '*.wmv'
+              '*.flv'
+              '*.swf'
+              '*.mov'
+              '*.divx'
+              '*.mp3'
+              '*.ogg'
+              '*.wma'
             )
-            ItemHeight = 20
+            ItemHeight = 22
             TabOrder = 0
           end
           object CompressMasks: TButton
@@ -576,15 +595,19 @@ object ArchiveForm: TArchiveForm
           end
           object CompLwrLimitCombo: TComboBox
             Left = 149
-            Height = 23
+            Height = 27
             Top = 267
             Width = 100
+            AutoComplete = False
+            Ctl3D = False
+            ItemHeight = 0
             ItemIndex = 0
             Items.Strings = (
               'bytes'
               'kilobytes'
               'Megabytes'
             )
+            ItemWidth = 0
             TabOrder = 4
             Text = 'bytes'
           end
@@ -595,14 +618,15 @@ object ArchiveForm: TArchiveForm
           Top = 11
           Width = 257
           Caption = ' Compression type '
-          ClientHeight = 308
+          ClientHeight = 310
           ClientWidth = 253
+          Ctl3D = False
           TabOrder = 1
           object CompLvlLabel: TLabel
             Left = 30
-            Height = 17
+            Height = 18
             Top = 111
-            Width = 133
+            Width = 118
             Caption = 'Compression level'
             Enabled = False
             FocusControl = CompressionLevel
@@ -611,18 +635,18 @@ object ArchiveForm: TArchiveForm
           end
           object GZipCheck: TCheckBox
             Left = 14
-            Height = 24
+            Height = 21
             Top = 29
-            Width = 180
+            Width = 162
             Caption = 'use gzip compression'
             OnClick = ZipCheckChange
             TabOrder = 0
           end
           object Bzip2Check: TCheckBox
             Left = 14
-            Height = 24
+            Height = 21
             Top = 67
-            Width = 189
+            Width = 170
             Caption = 'use bzip2 compression'
             OnClick = ZipCheckChange
             TabOrder = 1
@@ -643,12 +667,12 @@ object ArchiveForm: TArchiveForm
       object OptionsPage: TPage
         Caption = 'Options'
         ClientWidth = 612
-        ClientHeight = 350
+        ClientHeight = 353
         object SliceMbLabel: TLabel
           Left = 509
-          Height = 17
+          Height = 18
           Top = 52
-          Width = 23
+          Width = 20
           Caption = 'Mb'
           Enabled = False
           ParentColor = False
@@ -667,9 +691,9 @@ object ArchiveForm: TArchiveForm
         end
         object ReadConfigCheck: TCheckBox
           Left = 33
-          Height = 24
+          Height = 21
           Top = 9
-          Width = 308
+          Width = 273
           Caption = 'Attempt to read DAR configuration files'
           Checked = True
           State = cbChecked
@@ -677,17 +701,17 @@ object ArchiveForm: TArchiveForm
         end
         object DryRunCheck: TCheckBox
           Left = 33
-          Height = 24
+          Height = 21
           Top = 305
-          Width = 118
+          Width = 103
           Caption = 'Test run only'
           TabOrder = 4
         end
         object SlicesCheck: TCheckBox
           Left = 33
-          Height = 24
+          Height = 21
           Top = 49
-          Width = 97
+          Width = 87
           Caption = 'Use slices'
           OnClick = SlicesCheckClick
           TabOrder = 1
@@ -704,18 +728,18 @@ object ArchiveForm: TArchiveForm
         end
         object PauseCheck: TCheckBox
           Left = 61
-          Height = 24
+          Height = 21
           Top = 81
-          Width = 181
+          Width = 158
           Caption = 'Pause between slices'
           Enabled = False
           TabOrder = 3
         end
         object SaveScriptCheckBox: TCheckBox
           Left = 33
-          Height = 24
+          Height = 21
           Top = 188
-          Width = 126
+          Width = 113
           Caption = 'Save script as'
           OnClick = SaveScriptCheckBoxClick
           TabOrder = 5
@@ -740,9 +764,9 @@ object ArchiveForm: TArchiveForm
         end
         object OpenCreatedArchiveCheck: TCheckBox
           Left = 33
-          Height = 24
+          Height = 21
           Top = 153
-          Width = 221
+          Width = 194
           Caption = 'OpenCreatedArchiveCheck'
           Checked = True
           State = cbChecked
@@ -750,17 +774,17 @@ object ArchiveForm: TArchiveForm
         end
         object EncryptArchiveCheck: TCheckBox
           Left = 33
-          Height = 24
+          Height = 21
           Top = 116
-          Width = 178
+          Width = 157
           Caption = 'EncryptArchiveCheck'
           TabOrder = 9
         end
       end
       object SchedulePage: TPage
         Caption = 'Scheduling'
-        ClientWidth = 616
-        ClientHeight = 384
+        ClientWidth = 612
+        ClientHeight = 353
         object NowRadioButton: TRadioButton
           Left = 35
           Height = 21
@@ -876,7 +900,11 @@ object ArchiveForm: TArchiveForm
             Height = 23
             Top = 33
             Width = 70
+            AutoComplete = False
+            Ctl3D = False
             Enabled = False
+            ItemHeight = 0
+            ItemWidth = 0
             OnExit = ScheduleBoxExit
             TabOrder = 1
           end
@@ -885,7 +913,11 @@ object ArchiveForm: TArchiveForm
             Height = 23
             Top = 33
             Width = 70
+            AutoComplete = False
+            Ctl3D = False
             Enabled = False
+            ItemHeight = 0
+            ItemWidth = 0
             OnExit = ScheduleBoxExit
             TabOrder = 2
           end
@@ -959,11 +991,15 @@ object ArchiveForm: TArchiveForm
             Height = 23
             Top = 32
             Width = 70
+            AutoComplete = False
+            Ctl3D = False
             Enabled = False
+            ItemHeight = 0
             ItemIndex = 0
             Items.Strings = (
               '*'
             )
+            ItemWidth = 0
             OnExit = ScheduleBoxExit
             Style = csSimple
             TabOrder = 0
@@ -974,11 +1010,15 @@ object ArchiveForm: TArchiveForm
             Height = 23
             Top = 32
             Width = 70
+            AutoComplete = False
+            Ctl3D = False
             Enabled = False
+            ItemHeight = 0
             ItemIndex = 0
             Items.Strings = (
               '*'
             )
+            ItemWidth = 0
             OnExit = ScheduleBoxExit
             TabOrder = 1
             Text = '*'
@@ -988,11 +1028,15 @@ object ArchiveForm: TArchiveForm
             Height = 23
             Top = 32
             Width = 100
+            AutoComplete = False
+            Ctl3D = False
             Enabled = False
+            ItemHeight = 0
             ItemIndex = 0
             Items.Strings = (
               '*'
             )
+            ItemWidth = 0
             OnExit = ScheduleBoxExit
             TabOrder = 2
             Text = '*'
@@ -1002,11 +1046,15 @@ object ArchiveForm: TArchiveForm
             Height = 23
             Top = 32
             Width = 70
+            AutoComplete = False
+            Ctl3D = False
             Enabled = False
+            ItemHeight = 0
             ItemIndex = 0
             Items.Strings = (
               '*'
             )
+            ItemWidth = 0
             OnExit = ScheduleBoxExit
             TabOrder = 3
             Text = '*'
@@ -1016,11 +1064,15 @@ object ArchiveForm: TArchiveForm
             Height = 23
             Top = 32
             Width = 100
+            AutoComplete = False
+            Ctl3D = False
             Enabled = False
+            ItemHeight = 0
             ItemIndex = 0
             Items.Strings = (
               '*'
             )
+            ItemWidth = 0
             OnExit = ScheduleBoxExit
             TabOrder = 4
             Text = '*'

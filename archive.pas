@@ -151,6 +151,7 @@ type
     procedure ResolveConflicts( Sender, RefList: TObject; ConflictMessage: string );
   public
     { public declarations }
+    procedure LoadSettings(configfile:TFilename);
     function CreateBatchfile: Boolean;
     function GetUniqueScriptName(aDir: string): string;
     BatchFile: TStringList;
@@ -737,68 +738,8 @@ begin
   OpenDialog.Filter := rsFilterDarGUIFiles + '|*.dargui|' + rsFilterAllFiles + '|*';
   OpenDialog.FilterIndex := 0;
   OpenDialog.Title := rsLoadSettings;
-  if OpenDialog.Execute then
-     begin
-       bytesread := 0;
-       SavedSettings := TFileStream.Create(OpenDialog.FileName, fmOpenRead);
-       SetLength(datatext, 6);
-       bytesread := bytesread + SavedSettings.Read(datatext[1], 6);
-       if datatext = 'DarGUI' then
-          try
-            LoadingSettings := true;
-            p := 1;
-            SetLength(datatext, p);
-            bytesread := bytesread + SavedSettings.Read(datatext[p], 1);
-            while (datatext[p] <> #32) and (bytesread < SavedSettings.Size) do
-                  begin
-                    Inc(p);
-                    SetLength(datatext, p);
-                    bytesread := bytesread + SavedSettings.Read(datatext[p], 1);
-                  end;
-            if TryStrToInt(Trim(datatext), p) then
-               begin
-                 SavedSettings.Read(LastBackupTime, SizeOf(LastBackupTime));
-                 SavedSettings.Read(datasize,SizeOf(datasize));
-                 if datasize > 0 then
-                    begin
-                      SetLength(BackupNotes, datasize);
-                      SavedSettings.Read(BackupNotes[1], datasize);
-                    end;
-                 while SavedSettings.Position < SavedSettings.Size do
-                   begin
-                     SavedSettings.Read(datatype, Sizeof(datatype));
-                     dataname := GetDataChunk;
-                     datatext := GetDataChunk;
-                     controlindex := GetComponentByName(dataname);
-                     if controlindex > -1 then
-                        case datatype of
-                             ctEdit:        TEdit(Components[controlindex]).Text := datatext;
-                             ctCombobox:    TComboBox(Components[controlindex]).ItemIndex := StrToInt(datatext);
-                             ctDateEdit:    TDateEdit(Components[controlindex]).Date := StrToFloat(datatext);
-                             ctRadiobutton: TRadioButton(Components[controlindex]).Checked := datatext = '1';
-                             ctCheckbox:    TCheckBox(Components[controlindex]).Checked := datatext = '1';
-                             ctListBox:     begin
-                                              p := StrToInt(datatext);
-                                              TListBox(Components[controlindex]).Clear;
-                                              for x := 1 to p do
-                                                  begin
-                                                   datatext := GetDataChunk;
-                                                   TListBox(Components[controlindex]).Items.Add(datatext);
-                                                  end;
-                                            end;
-                             end;
-                   end;
-               end;
-          finally
-            SavedSettings.Free;
-            BackupFilename := OpenDialog.FileName;
-            DelIncludeDirButton.Enabled := IncludeDirectories.Count > 0;
-            DelIncludeFileButton.Enabled := IncludeFiles.Count > 0;
-            DelExcludeFileButton.Enabled := ExcludeFiles.Count > 0;
-            DelCompressMaskButton.Enabled := NoCompressList.Count > 0;
-            LoadingSettings := false;
-          end;
-     end;
+  if OpenDialog.Execute
+     then LoadSettings(OpenDialog.FileName);
   OpenDialog.Filter := rsFilterAllFiles + '|*';
 end;
 
@@ -1000,6 +941,106 @@ begin
           end;
   FileConflictForm.Free;
 end;
+
+ procedure TArchiveForm.LoadSettings(configfile: TFilename);
+ var
+  SavedSettings: TFileStream;
+  datasize: smallint;
+  datatype: TControlType;
+  dataname: string;
+  datatext: string;
+  x: Integer;
+  bytesread: LongInt;
+  p: Integer;
+  controlindex: LongInt;
+
+  function GetComponentByName( cn: string ): integer;
+  var
+    c: integer;
+  begin
+    Result := -1;
+    for c := 0 to ComponentCount-1 do
+        if Components[c] is TWinControl then
+           if TWinControl(Components[c]).Name = cn
+              then Result := c;
+  end;
+
+  function GetDataChunk: string;
+  var
+    datalength: smallint;
+    databuffer: string;
+  begin
+   Result := '';
+   SavedSettings.Read(datalength, SizeOf(datalength));
+   SetLength(databuffer, datalength);
+   if datalength > 0 then
+      begin
+       SavedSettings.Read(databuffer[1], datalength);
+       Result := databuffer;
+      end;
+  end;
+
+begin
+  bytesread := 0;
+  SavedSettings := TFileStream.Create(configfile, fmOpenRead);
+  SetLength(datatext, 6);
+  bytesread := bytesread + SavedSettings.Read(datatext[1], 6);
+  if datatext = 'DarGUI' then
+    try
+      LoadingSettings := true;
+      p := 1;
+      SetLength(datatext, p);
+      bytesread := bytesread + SavedSettings.Read(datatext[p], 1);
+      while (datatext[p] <> #32) and (bytesread < SavedSettings.Size) do
+            begin
+              Inc(p);
+              SetLength(datatext, p);
+              bytesread := bytesread + SavedSettings.Read(datatext[p], 1);
+            end;
+      if TryStrToInt(Trim(datatext), p) then
+         begin
+           SavedSettings.Read(LastBackupTime, SizeOf(LastBackupTime));
+           SavedSettings.Read(datasize,SizeOf(datasize));
+           if datasize > 0 then
+              begin
+                SetLength(BackupNotes, datasize);
+                SavedSettings.Read(BackupNotes[1], datasize);
+              end;
+           while SavedSettings.Position < SavedSettings.Size do
+             begin
+               SavedSettings.Read(datatype, Sizeof(datatype));
+               dataname := GetDataChunk;
+               datatext := GetDataChunk;
+               controlindex := GetComponentByName(dataname);
+               if controlindex > -1 then
+                  case datatype of
+                       ctEdit:        TEdit(Components[controlindex]).Text := datatext;
+                       ctCombobox:    TComboBox(Components[controlindex]).ItemIndex := StrToInt(datatext);
+                       ctDateEdit:    TDateEdit(Components[controlindex]).Date := StrToFloat(datatext);
+                       ctRadiobutton: TRadioButton(Components[controlindex]).Checked := datatext = '1';
+                       ctCheckbox:    TCheckBox(Components[controlindex]).Checked := datatext = '1';
+                       ctListBox:     begin
+                                        p := StrToInt(datatext);
+                                        TListBox(Components[controlindex]).Clear;
+                                        for x := 1 to p do
+                                            begin
+                                             datatext := GetDataChunk;
+                                             TListBox(Components[controlindex]).Items.Add(datatext);
+                                            end;
+                                      end;
+                       end;
+             end;
+         end;
+    finally
+      SavedSettings.Free;
+      BackupFilename := configfile;
+      DelIncludeDirButton.Enabled := IncludeDirectories.Count > 0;
+      DelIncludeFileButton.Enabled := IncludeFiles.Count > 0;
+      DelExcludeFileButton.Enabled := ExcludeFiles.Count > 0;
+      DelCompressMaskButton.Enabled := NoCompressList.Count > 0;
+      LoadingSettings := false;
+    end;
+ end;
 
 function TArchiveForm.CreateBatchfile : Boolean;
 var

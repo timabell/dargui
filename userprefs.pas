@@ -16,23 +16,30 @@ interface
 
 uses
   Classes, SysUtils, FileUtil, LResources, Forms, Controls, Graphics, Dialogs,
-  ExtCtrls, ComCtrls, StdCtrls;
+  ExtCtrls, ComCtrls, StdCtrls, Spin, Buttons, EditBtn;
 
 type
 
   { TOptionsForm }
 
   TOptionsForm = class(TForm)
-    ListBox1: TListBox;
+    CancelButton: TBitBtn;
+    ToolbarCheck: TCheckBox;
+    DefaultConfigEdit: TFileNameEdit;
+    FilesOpenedLbl: TLabel;
+    DefConfigLabel: TLabel;
+    OKButton: TBitBtn;
+    RememberLbl: TLabel;
+    MainFormPosition: TCheckBox;
+    MainFormSize: TCheckBox;
     MainNotebook: TNotebook;
     ButtonPanel: TPanel;
     DisplayPage: TPage;
-    CreateArchivesPage: TPage;
-    PageControl1: TPageControl;
-    TabSheet1: TTabSheet;
-    TabSheet2: TTabSheet;
+    RecentFilesSpinEdit: TSpinEdit;
+    procedure FormCreate(Sender: TObject);
   private
     { private declarations }
+    procedure InitialiseInterface;
   public
     { public declarations }
   end; 
@@ -41,6 +48,31 @@ var
   OptionsForm: TOptionsForm;
 
 implementation
+
+uses dgStrConst;
+
+{ TOptionsForm }
+
+ procedure TOptionsForm.FormCreate(Sender: TObject);
+ begin
+   InitialiseInterface;
+ end;
+
+ procedure TOptionsForm.InitialiseInterface;
+ begin
+   Caption := 'User preferences';
+   DisplayPage.Caption := 'General';
+   MainFormPosition.Caption := 'Remember main window position on exit';
+   MainFormSize.Caption := 'Remember main window size on exit';
+   ToolbarCheck.Caption := rsMenuShowToolbar;
+   RememberLbl.Caption := 'Remember last';
+   FilesOpenedLbl.Caption := 'files opened';
+   RecentFilesSpinEdit.Left := RememberLbl.Left + RememberLbl.Width + 10;
+   FilesOpenedLbl.Left := RecentFilesSpinEdit.Left + RecentFilesSpinEdit.Width + 10;
+   DefConfigLabel.Caption := 'Default archive creation settings';
+   OKButton.Caption := rsButtonOK;
+   CancelButton.Caption := rsButtonCancel;
+ end;
 
 initialization
   {$I userprefs.lrs}

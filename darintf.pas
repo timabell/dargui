@@ -60,10 +60,14 @@ const
    DARGUI_HELP = '/usr/share/doc/dargui/index.html';
    
 // Config file
-   CfgUserPrefs = 'User Preferences';
-   CfgRecentFiles = 'Recent Files';
-   CfgRecentX = 'Recent';
-   CfgShowToolbar = 'ShowToolbar';
+   cfgUserPrefs = 'User Preferences';
+   cfgRecentFiles = 'Recent Files';
+   cfgRecentX = 'Recent';
+   cfgShowToolbar = 'ShowToolbar';
+   cfgDefaultConfig = 'DefaultArchiveConfig';
+   cfgKeepWindowPos = 'KeepWindowPosition';
+   cfgKeepWindowSize = 'KeepWindowSize';
+   cfgRecentFileCnt = 'RecentFilesCount';
 
 // bash special chars which we can't handle in archive names or paths
 // we can already handle spaces so they're commented out
@@ -770,12 +774,12 @@ end;
 function ValidateArchive( var archivename: string; var pw: string ): Boolean;
 begin
   result := true;
-  if ContainsSpecialChars(archivename) then
+  {if ContainsSpecialChars(archivename) then
      begin
        Result := false;
        ShowMessage(rsErrInvalidChars);
        exit;
-     end;
+     end; }
   pw := '';
   archivename := TrimToBase( archivename );
   if ArchiveIsEncrypted(archivename) then

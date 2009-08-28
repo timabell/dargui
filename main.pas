@@ -20,11 +20,11 @@ type
   TMainForm = class(TForm)
     ArchiveTreeView: TTreeView;
     FileHeaderBar: THeaderControl;
+    MenuEdit: TMenuItem;
+    miSchedManager: TMenuItem;
     miUserPrefs: TMenuItem;
     miHelpContents: TMenuItem;
     miArchiveDiff: TMenuItem;
-    MenuScheduling: TMenuItem;
-    miSchedManager: TMenuItem;
     miSelectFilter: TMenuItem;
     miShowSelect: TMenuItem;
     miTestArchive: TMenuItem;
@@ -144,7 +144,7 @@ var
 
   
 const
-  APP_VERSION = '0.5.1';
+  APP_VERSION = '0.5.2';
   //{$I revision.inc}
   {revision.inc is a dynamically produced file containing the number of the most recent SVN revision
    the include directive can be commented out and the following line uncommented, replacing the number 0 with the
@@ -206,23 +206,29 @@ begin
   RecentList.IniFile := Preferences;
   x := 0;
   RecentFile := Preferences.ReadString ( CfgRecentFiles, CfgRecentX + IntToStr(x) , '' ) ;
-  While RecentFile <> '' do
+  while (RecentFile <> '') and (x < Preferences.ReadInteger(CfgUserPrefs, cfgRecentFileCnt, 5)) do
         begin
           RecentList.AddFile(RecentFile, false);
           Inc(x);
           RecentFile := Preferences.ReadString(CfgRecentFiles,CfgRecentX + IntToStr(x),'');
         end;
   miShowToolbar.Checked := Preferences.ReadString ( CfgUserPrefs, CfgShowToolbar, '1' ) = '1';
-  Height := Preferences.ReadInteger('Screen', 'MainHeight', Height);
-  Width := Preferences.ReadInteger('Screen', 'MainWidth', Width);
-  if Preferences.ReadInteger('Screen', 'MainTop', Top) < Screen.Height-Height
-     then Top := Preferences.ReadInteger('Screen', 'MainTop', Top)
-  else Top := Screen.Height-Height;
-    if Preferences.ReadInteger('Screen', 'MainLeft', Left) < Screen.Width-Width
-     then Left := Preferences.ReadInteger('Screen', 'MainLeft', Left)
-  else Left := Screen.Width-Width;
-  if Preferences.ReadBool('Screen', 'Maximised', false) = true
-     then WindowState := wsMaximized;
+  if Preferences.ReadBool(CfgUserPrefs, cfgKeepWindowPos, true) then
+     begin
+       if Preferences.ReadInteger('Screen', 'MainTop', Top) < Screen.Height-Height
+          then Top := Preferences.ReadInteger('Screen', 'MainTop', Top)
+       else Top := Screen.Height-Height;
+       if Preferences.ReadInteger('Screen', 'MainLeft', Left) < Screen.Width-Width
+          then Left := Preferences.ReadInteger('Screen', 'MainLeft', Left)
+       else Left := Screen.Width-Width;
+     end;
+  if Preferences.ReadBool(CfgUserPrefs, cfgKeepWindowSize, true) then
+     begin
+       Height := Preferences.ReadInteger('Screen', 'MainHeight', Height);
+       Width := Preferences.ReadInteger('Screen', 'MainWidth', Width);
+        if Preferences.ReadBool('Screen', 'Maximised', false)
+           then WindowState := wsMaximized;
+     end;
   FileHeaderBar.Sections[HEADERNAME].Width :=
       Preferences.ReadInteger('Screen', 'FilenameColumn', Longint(FileHeaderBar.Sections[HEADERNAME].Width));
   FileHeaderBar.Sections[HEADERDATE].Width :=
@@ -259,6 +265,7 @@ begin
        HasCron := (ShellCommand('crontab -l', test) = 0);
        if not HasCron
           then WriteLn('test for crontab failed:',#10,test);
+          // TODO: Create crontab here
      end
   else writeln('cron daemon not running');
 
@@ -507,9 +514,12 @@ var
   end;
   
 begin
+  if Preferences.ReadString(CfgUserPrefs, cfgDefaultConfig, '') <> ''
+     then if FileExists(Preferences.ReadString(CfgUserPrefs, cfgDefaultConfig, ''))
+          then ArchiveForm.LoadSettings(Preferences.ReadString(CfgUserPrefs, cfgDefaultConfig, ''));
   ArchiveForm.BatchFileBox.Text := GetNextFileName(
                       Preferences.ReadString('User Preferences',
-                      'Batchfile Directory', TEMP_DIRECTORY)
+                      'Batchfile Directory', TEMP_DIRECTORY)  // TODO: just make this the default?
                       + DirectorySeparator + BATCHFILE_BASE);
   try
     if ArchiveForm.ShowModal = mrOk then
@@ -616,7 +626,29 @@ end;
 
 procedure TMainForm.miUserPrefsClick(Sender: TObject);
 begin
-  OptionsForm.ShowModal;
+  OptionsForm := TOptionsForm.Create(Self);
+  try
+    with OptionsForm do
+         begin
+           MainFormPosition.Checked := Preferences.ReadBool(CfgUserPrefs,cfgKeepWindowPos, true);
+           MainFormSize.Checked := Preferences.ReadBool(CfgUserPrefs, cfgKeepWindowSize, true);
+           ToolbarCheck.Checked := Preferences.ReadBool(CfgUserPrefs, CfgShowToolbar, true);
+           RecentFilesSpinEdit.Value := Preferences.ReadInteger(CfgUserPrefs, cfgRecentFileCnt, 5);
+           DefaultConfigEdit.FileName := Preferences.ReadString(CfgUserPrefs, cfgDefaultConfig, '');
+         end;
+    if OptionsForm.ShowModal = mrOK then
+       with OptionsForm do
+            begin
+             Preferences.WriteBool(CfgUserPrefs,cfgKeepWindowPos, MainFormPosition.Checked);
+             Preferences.WriteBool(CfgUserPrefs, cfgKeepWindowSize, MainFormSize.Checked);
+             Preferences.WriteBool(CfgUserPrefs, CfgShowToolbar, ToolbarCheck.Checked);
+             ToolbarPanel.Visible := ToolbarCheck.Checked;
+             Preferences.WriteInteger(CfgUserPrefs, cfgRecentFileCnt, RecentFilesSpinEdit.Value);
+             Preferences.WriteString(CfgUserPrefs, cfgDefaultConfig, DefaultConfigEdit.FileName);
+            end;
+  finally
+    OptionsForm.Free;
+  end;
 end;
 
 procedure TMainForm.RecentMenuClick ( Sender: TObject ) ;
@@ -1175,7 +1207,7 @@ begin
   MenuHelp.Caption := rsMenuHelp;
   miHelpContents.Caption := rsMenuDarGUIHelp;
   miIsolate.Caption := rsMenuIsolateCatalogue;
-  MenuScheduling.Caption := rsScheduling;
+  //MenuScheduling.Caption := rsScheduling;
   miSchedManager.Caption := rsMenuScheduleManager;
   miTestArchive.Caption := rsMenuCheckIntegrity;
   miOperationlogs.Caption := rsMenuOperationLogs;

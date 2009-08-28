@@ -1,7 +1,7 @@
 object MainForm: TMainForm
-  Left = 12
+  Left = 140
   Height = 605
-  Top = 68
+  Top = 125
   Width = 893
   ActiveControl = ToolbarPanel
   Caption = 'DarGUI'
@@ -1126,6 +1126,17 @@ object MainForm: TMainForm
         OnClick = miExitClick
       end
     end
+    object MenuEdit: TMenuItem
+      Caption = 'Edit'
+      object miSchedManager: TMenuItem
+        Caption = 'miSchedman'
+        OnClick = miSchedManagerClick
+      end
+      object miUserPrefs: TMenuItem
+        Caption = 'Preferences'
+        OnClick = miUserPrefsClick
+      end
+    end
     object MenuArchive: TMenuItem
       Caption = 'Archive'
       object miRestoreSelected: TMenuItem
@@ -1187,20 +1198,9 @@ object MainForm: TMainForm
         OnClick = miArchiveInformationClick
       end
     end
-    object MenuScheduling: TMenuItem
-      Caption = 'MenuScheduling'
-      object miSchedManager: TMenuItem
-        Caption = 'miSchedMan'
-        Enabled = False
-        OnClick = miSchedManagerClick
-      end
-    end
     object MenuSettings: TMenuItem
       Caption = 'Options'
-      object miUserPrefs: TMenuItem
-        Caption = 'User preferences'
-        OnClick = miUserPrefsClick
-      end
+      Visible = False
       object miHideMessages: TMenuItem
         Caption = 'Hide messages'
         Checked = True
