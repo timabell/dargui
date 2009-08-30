@@ -24,6 +24,8 @@ type
 
   TOptionsForm = class(TForm)
     CancelButton: TBitBtn;
+    DarLocationEdit: TFileNameEdit;
+    DarLocationLabel: TLabel;
     ToolbarCheck: TCheckBox;
     DefaultConfigEdit: TFileNameEdit;
     FilesOpenedLbl: TLabel;
@@ -70,6 +72,7 @@ uses dgStrConst;
    RecentFilesSpinEdit.Left := RememberLbl.Left + RememberLbl.Width + 10;
    FilesOpenedLbl.Left := RecentFilesSpinEdit.Left + RecentFilesSpinEdit.Width + 10;
    DefConfigLabel.Caption := 'Default archive creation settings';
+   DarLocationLabel.Caption := 'Dar executable';
    OKButton.Caption := rsButtonOK;
    CancelButton.Caption := rsButtonCancel;
  end;

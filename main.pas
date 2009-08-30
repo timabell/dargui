@@ -11,7 +11,7 @@ interface
 uses
   Classes, SysUtils, LResources, Forms, Controls, Graphics, Dialogs, DarIntf,
   Menus, ComCtrls, ExtCtrls, Buttons, StdCtrls, Process, LCLType, historymenu,
-  selectfilter;
+  selectfilter, FileUtil;
 
 type
 
@@ -273,7 +273,8 @@ begin
 
   miSchedManager.Enabled := HasATD or HasCron;
   tbSchedMan.Enabled := HasATD or HasCron;
-  DAR_EXECUTABLE := Preferences.ReadString('dar', 'executablename', 'dar');
+  DAR_EXECUTABLE := Preferences.ReadString('dar', 'executable',
+                          SearchFileInPath('dar','', SysUtils.GetEnvironmentVariable('PATH'),PathSeparator,[]));
   DarInfo := GetDarVersion;
   if DarInfo.version='-' then
      begin
@@ -660,6 +661,8 @@ begin
            ToolbarCheck.Checked := Preferences.ReadBool(CfgUserPrefs, CfgShowToolbar, true);
            RecentFilesSpinEdit.Value := Preferences.ReadInteger(CfgUserPrefs, cfgRecentFileCnt, 5);
            DefaultConfigEdit.FileName := Preferences.ReadString(CfgUserPrefs, cfgDefaultConfig, '');
+           DarLocationEdit.FileName := Preferences.ReadString('dar', 'executable',
+                          SearchFileInPath('dar','', SysUtils.GetEnvironmentVariable('PATH'),PathSeparator,[]));
          end;
     if OptionsForm.ShowModal = mrOK then
        with OptionsForm do
@@ -670,6 +673,7 @@ begin
              ToolbarPanel.Visible := ToolbarCheck.Checked;
              Preferences.WriteInteger(CfgUserPrefs, cfgRecentFileCnt, RecentFilesSpinEdit.Value);
              Preferences.WriteString(CfgUserPrefs, cfgDefaultConfig, DefaultConfigEdit.FileName);
+             Preferences.ReadString('dar', 'executable', DarLocationEdit.FileName);
             end;
   finally
     OptionsForm.Free;

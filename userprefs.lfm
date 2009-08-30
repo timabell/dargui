@@ -41,9 +41,17 @@ object OptionsForm: TOptionsForm
       object DefConfigLabel: TLabel
         Left = 40
         Height = 18
-        Top = 195
+        Top = 179
         Width = 97
         Caption = 'DefConfigLabel'
+        ParentColor = False
+      end
+      object DarLocationLabel: TLabel
+        Left = 40
+        Height = 18
+        Top = 243
+        Width = 112
+        Caption = 'DarLocationLabel'
         ParentColor = False
       end
       object MainFormPosition: TCheckBox
@@ -89,7 +97,7 @@ object OptionsForm: TOptionsForm
       object DefaultConfigEdit: TFileNameEdit
         Left = 40
         Height = 23
-        Top = 219
+        Top = 203
         Width = 368
         DialogOptions = []
         Filter = 'DarGUI Files|*.dargui|All Files|*'
@@ -98,6 +106,18 @@ object OptionsForm: TOptionsForm
         NumGlyphs = 0
         Ctl3D = False
         TabOrder = 4
+      end
+      object DarLocationEdit: TFileNameEdit
+        Left = 40
+        Height = 23
+        Top = 267
+        Width = 368
+        DialogOptions = []
+        FilterIndex = 0
+        ButtonWidth = 23
+        NumGlyphs = 0
+        Ctl3D = False
+        TabOrder = 5
       end
     end
   end
