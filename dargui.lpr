@@ -1,4 +1,4 @@
-{ DarGUI v.0.2.0
+{ DarGUI v.0.5.2
 
   Copyright (C) 2008 Malcolm Poole mgpoole@users.sourceforge.net
 
@@ -17,7 +17,7 @@
   to the Free Software Foundation, Inc., 59 Temple Place - Suite 330, Boston,
   MA 02111-1307, USA.
 }
-program createsavedlg;
+program dargui;
 
 {$mode objfpc}{$H+}
 
@@ -30,7 +30,7 @@ uses
   { add your units here }, main, darintf, selectrestore, archive, filemaskdlg,
   ProcessLine, ArchiveInfo, About, oplog, isolate, diff, prefs,
   historymenu, dgStrConst, selectfilter, password, darstrings, backupsavedlg,
-  schedman, userprefs, LResources;
+  schedman, userprefs, LResources, locatefiledlg;
 
 {$IFDEF WINDOWS}{$R dargui.rc}{$ENDIF}
 

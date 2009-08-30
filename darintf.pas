@@ -48,9 +48,7 @@ const
    HEADERGROUP    = 4;
    HEADERSTATUS   = 5;
    
-   DAR_EXECUTABLE = 'dar';
-   
-   TEMP_DIRECTORY = '/tmp/dargui/';
+
    LOGFILE_BASE = 'dargui.log.';
    BATCHFILE_BASE = 'dargui.batch.';
    TOOLDIR           = '/usr/share/dargui/';
@@ -121,6 +119,9 @@ type
 var
   TerminalCommand: string;
   RunscriptPath: String;
+  DAR_EXECUTABLE: string;
+  TEMP_DIRECTORY: string;
+
 
 implementation
 
@@ -169,12 +170,12 @@ var
   info : TDarInfo;
   DarInEnglish: Boolean;
 begin
-  info.version := '';
+  info.version := '-';
   DarInEnglish := false;
   Result := info;
   Proc := TProcess.Create(Application);
   Output := TStringList.Create;
-  Proc.CommandLine := 'dar -V';
+  Proc.CommandLine := DAR_EXECUTABLE + ' -V';
   Proc.Options := Proc.Options  + [poWaitOnExit, poUsePipes];
   try
     try
@@ -474,7 +475,7 @@ begin
   progressinterval := 0;
   outputline := '';
   Proc := TProcessLineTalk.Create(nil);
-  Proc.CommandLine := 'dar -l "' + fn + '"' + pw + ' -Q';
+  Proc.CommandLine := DAR_EXECUTABLE + ' -l "' + fn + '"' + pw + ' -Q';
   Proc.Execute;
   TTreeView(TV).Visible := false;
   Application.ProcessMessages;
@@ -664,7 +665,7 @@ var
 begin
   Result := -1;
   Proc := TProcess.Create(nil);
-  Proc.CommandLine := 'dar -l "' + fn + '" ' + pw + ' -v -Q';
+  Proc.CommandLine := DAR_EXECUTABLE + ' -l "' + fn + '" ' + pw + ' -v -Q';
   Proc.Options := Proc.Options  + [poWaitOnExit, poUsePipes, poStderrToOutPut];
       try
       Proc.Execute;
@@ -829,7 +830,7 @@ begin
  Result := -1;
  Proc := TProcess.Create(Application);
  Output := TStringList.Create;
- Proc.CommandLine :=  'dar -l "' + archivename + '" -v' + key + ' -Q';
+ Proc.CommandLine :=  DAR_EXECUTABLE + ' -l "' + archivename + '" -v' + key + ' -Q';
  Proc.Options := Proc.Options  + [poWaitOnExit, poUsePipes];
  try
     Proc.Execute;

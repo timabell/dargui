@@ -12,6 +12,7 @@
       <TargetFileExt Value=""/>
       <Title Value="DarGUI"/>
       <UseAppBundle Value="False"/>
+      <Icon Value="0"/>
     </General>
     <i18n>
       <EnableI18N Value="True"/>
@@ -21,7 +22,7 @@
       <UseVersionInfo Value="True"/>
       <AutoIncrementBuild Value="True"/>
       <CurrentMajorRevNr Value="4"/>
-      <CurrentBuildNr Value="118"/>
+      <CurrentBuildNr Value="468"/>
       <ProjectVersion Value="0.4.0.101"/>
     </VersionInfo>
     <PublishOptions>
@@ -44,7 +45,7 @@
         <PackageName Value="LCL"/>
       </Item2>
     </RequiredPackages>
-    <Units Count="20">
+    <Units Count="21">
       <Unit0>
         <Filename Value="dargui.lpr"/>
         <IsPartOfProject Value="True"/>
@@ -80,6 +81,7 @@
         <Filename Value="filemaskdlg.pas"/>
         <ComponentName Value="FileMaskDialog"/>
         <IsPartOfProject Value="True"/>
+        <ResourceBaseClass Value="Form"/>
         <UnitName Value="filemaskdlg"/>
       </Unit5>
       <Unit6>
@@ -91,6 +93,7 @@
         <Filename Value="archiveinfo.pas"/>
         <ComponentName Value="InformationForm"/>
         <IsPartOfProject Value="True"/>
+        <ResourceBaseClass Value="Form"/>
         <UnitName Value="ArchiveInfo"/>
       </Unit7>
       <Unit8>
@@ -98,6 +101,7 @@
         <ComponentName Value="AboutForm"/>
         <HasResources Value="True"/>
         <IsPartOfProject Value="True"/>
+        <ResourceBaseClass Value="Form"/>
         <UnitName Value="About"/>
       </Unit8>
       <Unit9>
@@ -119,6 +123,7 @@
         <Filename Value="selectfilter.pas"/>
         <ComponentName Value="SelectFilterForm"/>
         <IsPartOfProject Value="True"/>
+        <ResourceBaseClass Value="Form"/>
         <UnitName Value="selectfilter"/>
       </Unit12>
       <Unit13>
@@ -141,12 +146,14 @@
         <ComponentName Value="IsolateForm"/>
         <HasResources Value="True"/>
         <IsPartOfProject Value="True"/>
+        <ResourceBaseClass Value="Form"/>
         <UnitName Value="isolate"/>
       </Unit15>
       <Unit16>
         <Filename Value="password.pas"/>
         <ComponentName Value="PasswordDlg"/>
         <IsPartOfProject Value="True"/>
+        <ResourceBaseClass Value="Form"/>
         <UnitName Value="password"/>
       </Unit16>
       <Unit17>
@@ -158,6 +165,7 @@
         <Filename Value="backupsavedlg.pas"/>
         <ComponentName Value="CreateSaveDialog"/>
         <IsPartOfProject Value="True"/>
+        <ResourceBaseClass Value="Form"/>
         <UnitName Value="backupsavedlg"/>
       </Unit18>
       <Unit19>
@@ -167,12 +175,20 @@
         <ResourceBaseClass Value="Form"/>
         <UnitName Value="schedman"/>
       </Unit19>
+      <Unit20>
+        <Filename Value="userprefs.pas"/>
+        <ComponentName Value="OptionsForm"/>
+        <IsPartOfProject Value="True"/>
+        <ResourceBaseClass Value="Form"/>
+        <UnitName Value="userprefs"/>
+      </Unit20>
     </Units>
   </ProjectOptions>
   <CompilerOptions>
     <Version Value="8"/>
     <SearchPaths>
       <Libraries Value="/home/usr/X11R6/lib/"/>
+      <OtherUnitFiles Value="/home/malcolm/Projects/lazarus_svn/components/synedit/"/>
       <UnitOutputDirectory Value="/home/malcolm/lazarus/dargui/compiled"/>
       <LCLWidgetType Value="gtk2"/>
     </SearchPaths>
@@ -180,10 +196,13 @@
       <SyntaxOptions>
         <CStyleOperator Value="False"/>
         <AllowLabel Value="False"/>
+        <UseAnsiStrings Value="True"/>
       </SyntaxOptions>
     </Parsing>
     <CodeGeneration>
-      <SmartLinkUnit Value="True"/>
+      <TargetProcessor Value="386"/>
+      <TargetCPU Value="i386"/>
+      <TargetOS Value="Linux"/>
     </CodeGeneration>
     <Linking>
       <Debugging>

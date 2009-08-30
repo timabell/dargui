@@ -145,11 +145,12 @@ var
   
 const
   APP_VERSION = '0.5.2';
-  //{$I revision.inc}
-  {revision.inc is a dynamically produced file containing the number of the most recent SVN revision
-   the include directive can be commented out and the following line uncommented, replacing the number 0 with the
-   appropriate revision number}
-  SVN_REVISION = '232';
+  {$IFDEF malcolm}
+     // revision.inc provides number of next SVN commit
+     {$I revision.inc}
+  {$ELSE}
+     SVN_REVISION = '';
+  {$ENDIF}
 
   ARCHIVEMENU_TAG = 1; //used for enabling menuitems after loading archive
   SELECT_STATUSBAR = 0;   //index of panel which displays number of selected nodes
@@ -161,7 +162,7 @@ const
 implementation
 
 uses baseunix, dgStrConst, selectrestore, archive, archiveinfo, About, oplog, isolate,
-     diff, prefs, schedman, password, userprefs;
+     diff, prefs, schedman, password, userprefs, locatefiledlg;
 
 { TMainForm }
 
@@ -171,6 +172,7 @@ var
   RecentFile: string;
   x: integer;
   test: string;
+  FindDarDlg: TLocateFileForm;
 begin
   //set default colors for Treeview levels
   //at some point it will be possible for the user to change these
@@ -271,15 +273,38 @@ begin
 
   miSchedManager.Enabled := HasATD or HasCron;
   tbSchedMan.Enabled := HasATD or HasCron;
+  DAR_EXECUTABLE := Preferences.ReadString('dar', 'executablename', 'dar');
   DarInfo := GetDarVersion;
   if DarInfo.version='-' then
      begin
-     MessageDlg ( rsErrDarNotFound,
-                        mtWarning,
-                        [mbOk],
-                        0);
+       FindDarDlg := TLocateFileForm.Create(nil);
+       with FindDarDlg do
+            begin
+              Caption := 'Locate dar executable';
+              MessageLabel.Caption := 'DarGUI has not been able to find dar' + #10
+                                      + 'Please locate dar or dar static';
+              FilenameEdit.EditLabel.Caption:= 'Location of dar executable';
+            end;
+       try
+        if FindDarDlg.ShowModal=mrOk then
+           begin
+             DAR_EXECUTABLE := FindDarDlg.FilenameEdit.Text;
+             DarInfo := GetDarVersion;
+             if DarInfo.version='-' then
+                 begin
+                   MessageDlg ( rsErrDarNotFound ,
+                          mtWarning,
+                          [mbOk],
+                          0);
+                 end
+             else Preferences.WriteString('dar', 'executablename', DAR_EXECUTABLE);
+           end;
+       finally
+       FindDarDlg.Free;
+       end;
      end;
 
+  TEMP_DIRECTORY := '/tmp/dargui-' + GetEnvironmentVariable('USER') ;
   if not FileExists(TEMP_DIRECTORY)
      then mkdir(TEMP_DIRECTORY);
 
