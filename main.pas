@@ -262,14 +262,8 @@ begin
 
   HasCron :=   (ProcessRunning('cron')  // Ubuntu
                 or ProcessRunning('crond'));  // Red Hat
-  if HasCron then
-     begin
-       HasCron := (ShellCommand('crontab -l', test) = 0);
-       if not HasCron
-          then WriteLn('test for crontab failed:',#10,test);
-          // TODO: Create crontab here
-     end
-  else writeln('cron daemon not running');
+  if not HasCron
+         then writeln('cron daemon not running');
 
   miSchedManager.Enabled := HasATD or HasCron;
   tbSchedMan.Enabled := HasATD or HasCron;
@@ -517,22 +511,20 @@ var
     if WriteScript(script) then
        try
          CronList := TStringList.Create;
-         if ShellCommand('crontab -l', processresponse) = 0 then
-            begin
-              CronList.Text := processresponse;
-              CronList.Add(ArchiveForm.RepeatMinuteBox.Text + #32
-                            + ArchiveForm.RepeatHourBox.Text + #32
-                            + ArchiveForm.RepeatMonthDayBox.Text + #32
-                            + ArchiveForm.RepeatMonthBox.Text + #32
-                            + ArchiveForm.RepeatWeekDayBox.Text + #32
-                            + script);
-              script := '/tmp/' + CreateUniqueFileName('/tmp/');
-              CronList.SaveToFile(script);
-              if ShellCommand('crontab ' + script, processresponse) = 0 then
-                 ShowMessage(rsScriptSetUpOK)
-              else ShowMessage(processresponse);
-              ShellCommand('rm -f ' + script, processresponse);
-            end;
+         if ShellCommand('crontab -l', processresponse) = 0
+             then CronList.Text := processresponse;  // only works if user's crontab already exists
+         CronList.Add(ArchiveForm.RepeatMinuteBox.Text + #32
+                      + ArchiveForm.RepeatHourBox.Text + #32
+                      + ArchiveForm.RepeatMonthDayBox.Text + #32
+                      + ArchiveForm.RepeatMonthBox.Text + #32
+                      + ArchiveForm.RepeatWeekDayBox.Text + #32
+                      + script);
+        script := '/tmp/' + CreateUniqueFileName('/tmp/');
+        CronList.SaveToFile(script);
+        if ShellCommand('crontab ' + script, processresponse) = 0 then
+           ShowMessage(rsScriptSetUpOK)    //OK, now user definitely has a crontab :)
+        else ShowMessage(processresponse);
+        DeleteFileUTF8(script);
        finally
          if CronList <> nil
             then CronList.Free;
