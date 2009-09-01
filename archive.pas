@@ -697,43 +697,6 @@ begin
 end;
 
 procedure TArchiveForm.LoadButtonClick ( Sender: TObject ) ;
-var
-  SavedSettings: TFileStream;
-  datasize: smallint;
-  datatype: TControlType;
-  dataname: string;
-  datatext: string;
-  x: Integer;
-  bytesread: LongInt;
-  p: Integer;
-  controlindex: LongInt;
-  
-  function GetComponentByName( cn: string ): integer;
-  var
-    c: integer;
-  begin
-    Result := -1;
-    for c := 0 to ComponentCount-1 do
-        if Components[c] is TWinControl then
-           if TWinControl(Components[c]).Name = cn
-              then Result := c;
-  end;
-  
-  function GetDataChunk: string;
-  var
-    datalength: smallint;
-    databuffer: string;
-  begin
-   Result := '';
-   SavedSettings.Read(datalength, SizeOf(datalength));
-   SetLength(databuffer, datalength);
-   if datalength > 0 then
-      begin
-       SavedSettings.Read(databuffer[1], datalength);
-       Result := databuffer;
-      end;
-  end;
-
 begin
   OpenDialog.Filter := rsFilterDarGUIFiles + '|*.dargui|' + rsFilterAllFiles + '|*';
   OpenDialog.FilterIndex := 0;
