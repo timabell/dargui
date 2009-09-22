@@ -52,7 +52,7 @@ object MainForm: TMainForm
   OnResize = FormResize
   OnShow = FormShow
   Position = poMainFormCenter
-  LCLVersion = '0.9.27'
+  LCLVersion = '0.9.29'
   object StatusBar: TStatusBar
     Left = 0
     Height = 21
@@ -1023,7 +1023,8 @@ object MainForm: TMainForm
     Width = 893
     Align = alClient
     AutoSize = True
-    Ctl3D = False
+    ClientHeight = 300
+    ClientWidth = 889
     TabOrder = 4
     object ArchiveTreeView: TTreeView
       Left = 0
@@ -1031,7 +1032,6 @@ object MainForm: TMainForm
       Top = 30
       Width = 889
       Align = alClient
-      Ctl3D = True
       DefaultItemHeight = 18
       HideSelection = False
       HotTrack = True
@@ -1300,7 +1300,6 @@ object MainForm: TMainForm
     end
   end
   object IconList: TImageList
-    Masked = False
     left = 744
     top = 8
     Bitmap = {

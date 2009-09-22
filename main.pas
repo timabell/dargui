@@ -206,6 +206,7 @@ begin
   miOpenRecent.Add(RecentList);
   Preferences := TSettingsFile.Create(PrefFileName);
   RecentList.IniFile := Preferences;
+  RecentList.Max := Preferences.ReadInteger(CfgUserPrefs, cfgRecentFileCnt, 5);
   x := 0;
   RecentFile := Preferences.ReadString ( CfgRecentFiles, CfgRecentX + IntToStr(x) , '' ) ;
   while (RecentFile <> '') and (x < Preferences.ReadInteger(CfgUserPrefs, cfgRecentFileCnt, 5)) do
@@ -664,6 +665,7 @@ begin
              Preferences.WriteBool(CfgUserPrefs, CfgShowToolbar, ToolbarCheck.Checked);
              ToolbarPanel.Visible := ToolbarCheck.Checked;
              Preferences.WriteInteger(CfgUserPrefs, cfgRecentFileCnt, RecentFilesSpinEdit.Value);
+             RecentList.Max := Preferences.ReadInteger(CfgUserPrefs, cfgRecentFileCnt, 5);
              Preferences.WriteString(CfgUserPrefs, cfgDefaultConfig, DefaultConfigEdit.FileName);
              Preferences.ReadString('dar', 'executable', DarLocationEdit.FileName);
             end;
