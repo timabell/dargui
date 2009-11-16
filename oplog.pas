@@ -101,11 +101,11 @@ var
  fileHandle: TextFile;
  LogfileMask: String;
  begin
-  LogfileMask := TEMP_DIRECTORY + LOGFILE_BASE + '*';
+  LogfileMask := TEMP_DIRECTORY + DirectorySeparator + LOGFILE_BASE + '*';
   try
   if FindFirst (LogfileMask, faAnyFile - faDirectory, Rec) = 0 then
    repeat
-      fn := TEMP_DIRECTORY + Rec.Name;
+      fn := TEMP_DIRECTORY + DirectorySeparator + Rec.Name;
       if LogList.IndexOf(fn) < 0 then
          begin
           AssignFile(fileHandle, fn);
