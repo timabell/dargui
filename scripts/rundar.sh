@@ -8,15 +8,13 @@ Logfile=${p#*;}
 echo $CommandLine
 echo $CommandLine > $Logfile
 
-#$CommandLine | /usr/share/dargui/darlogger $Logfile
-
-chmod +x /tmp/dargui/darcommand.sh
-/tmp/dargui/darcommand.sh  | /usr/share/dargui/darlogger $Logfile
-rm /tmp/dargui/darcommand.sh
-
+chmod +x /tmp/dargui-$USER/darcommand.sh
+/tmp/dargui-$USER/darcommand.sh  | /usr/share/dargui/darlogger $Logfile
 DarStatus=$?
+rm /tmp/dargui-$USER/darcommand.sh
 
-echo $? > /tmp/dar_exit
+echo $DarStatus > /tmp/dargui-$USER/dar_exit
+#echo DarStatus is $DarStatus
 
 echo "--------------------------------------------------"
 echo "Operation complete: Press enter"

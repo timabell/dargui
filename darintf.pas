@@ -143,7 +143,7 @@ type
   function GetInodeCount( archivename, key: string ):integer;
   function ValidateArchive( var archivename: string; var pw: string ): Boolean;
   function CreateUniqueFileName(sPath: string): string;
-  
+
   function TrimToBase(fn: string): string;
   
   procedure GetDefaultBrowser(var Browser, Params: string);
@@ -315,11 +315,13 @@ function GetDarExit: integer;
 var
   fout: Text;
   s: string;
+  Exitfile: String;
 begin
   Result := -1;
-  if FileExists('/tmp/dar_exit') then
+  ExitFile := TEMP_DIRECTORY + DirectorySeparator + 'dar_exit';
+  if FileExists(Exitfile) then
       begin
-        Assign(fout, '/tmp/dar_exit');
+        Assign(fout, Exitfile);
         Reset(fout);
         ReadLn(fout,s);
         Result := StrToInt(s);
@@ -572,14 +574,15 @@ var
   Proc: TProcess;
   commandfile: TFileStream;
   LogFile: string;
+  buffer: string;
 begin
   Result := -1;
   LogFile := GetNextFileName(TEMP_DIRECTORY + LOGFILE_BASE);
   Proc := TProcess.Create(Application);
-  commandfile := TFileStream.Create('/tmp/dargui/darcommand.sh', fmCreate);
-  commandfile.Write(Cmd[1], Length(Cmd));
+  buffer := Cmd + #10 + 'DarStatus=$?' + #10 + 'exit $DarStatus';
+  commandfile := TFileStream.Create(TEMP_DIRECTORY + DirectorySeparator + 'darcommand.sh', fmCreate);
+  commandfile.Write(buffer[1], Length(buffer));
   commandfile.Free;
-//  FpChmod('/tmp/dargui/darcommand.sh', &777);
   try
     Proc.CommandLine := TerminalCommand
                              +  ' -geometry 100x15+' + IntToStr(x) + '+' + IntToStr(y)
