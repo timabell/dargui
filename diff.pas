@@ -120,7 +120,7 @@ begin
   LogFile := GetNextFileName(TEMP_DIRECTORY + LOGFILE_BASE);
   if VerboseCheck.Checked then verboseflag := ' -v';
   Cmd :=  DAR_EXECUTABLE + ' -d "' + ArchiveBox.Text + '" -R "' + BaseDirBox.Text + '"' + verboseflag;
-  if ArchiveIsEncrypted(ArchiveBox.Text)
+  if ArchiveIsEncrypted(ArchiveBox.Text, nil)
      then Cmd := Cmd + ' -K :';
   if RunDarCommand ( Cmd, rsCptComparingFiles, Left + 100, Top + 150 ) = 0
      then begin

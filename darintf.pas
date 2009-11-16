@@ -5,7 +5,8 @@ unit darintf;
 interface
 
 uses
-  Classes, SysUtils, Process, Comctrls, StdCtrls, FileUtil, Forms, controls, Dialogs;
+  Classes, SysUtils, Process, Comctrls, StdCtrls, FileUtil, Forms, controls, Dialogs,
+  vteterminal;
   
 type
   TDarInfo = record
@@ -72,6 +73,40 @@ const
 const escapechars = ['|', '&', ';', '(', ')', '<', '>', '"', ''''{, ' '}];
 
 type
+
+  TLoadProgress = (lpIncomplete, lpHistoryLoaded, lpLoaded, lpAborted);
+
+  { TArchive }
+
+  TArchive = class(TObject)
+  private
+    fTreeView: TTreeView;
+    fLoaded: TLoadProgress;
+    fLastNewLineChar: char;
+    fDataBuffer: string;
+    fMsgBuffer: string;
+    nodecount: integer;
+    nodesloaded: Integer;
+    Term: TVTETerminal;
+    rootnode: TTreeNode;
+    currentnode : TTreeNode;
+    parentnode: TTreeNode;
+    DataCoords : array[SEGSTATUS .. SEGFILENAME] of TdgSegment;
+    CurrentFile : array[SEGSTATUS .. SEGFILEPATH] of string;
+    inodecount: LongInt;
+    removednodes: LongInt;
+    progressinterval: integer;
+    function GetLineFromBuffer: string;
+  public
+    constructor Create(Sender, Treeview: TObject);
+    destructor Destroy;
+    function Open( fn, pw: string ): integer;
+    procedure ExitSignalHandler(Sender: TObject; ExitCode: integer);
+    procedure DataHandler(Sender: TObject; data: string);
+    procedure ErrMessageHandler(Sender: TObject; msg: string);
+  end;
+
+type
   TFileData = class
     item : array[SEGSTATUS .. SEGFILEPATH] of string;
     folder : Boolean;
@@ -104,7 +139,7 @@ type
   function isInteger(aString: string): Boolean;
   function DeleteFilesByMask(FileMask: string): integer;
   function GetArchiveInformation (fn: TFilename; Memo: TMemo; pw:string): integer;
-  function ArchiveIsEncrypted( fn: TFilename ): Boolean;
+  function ArchiveIsEncrypted( fn: TFilename; pass: PChar ) : Boolean;
   function GetInodeCount( archivename, key: string ):integer;
   function ValidateArchive( var archivename: string; var pw: string ): Boolean;
   function CreateUniqueFileName(sPath: string): string;
@@ -170,7 +205,7 @@ var
   info : TDarInfo;
   DarInEnglish: Boolean;
 begin
-  info.version := '-';
+  info.version := '';
   DarInEnglish := false;
   Result := info;
   Proc := TProcess.Create(Application);
@@ -750,13 +785,16 @@ begin
   end;
 end;
 
-function ArchiveIsEncrypted ( fn: TFilename ) : Boolean;
+function ArchiveIsEncrypted ( fn: TFilename; pass: PChar ) : Boolean;
 var
   Proc : TProcess;
   Output: TStringList;
   teststr: String;
+  pw: string;
 begin
   Result := false;
+  pw := '';
+  if pass <> nil then pw := '-K ":' + pass^ + '"';
   teststr := Format(dsArchiveEncrypted, [ExtractFileName(fn)]);
   Proc := TProcess.Create(Application);
   Output := TStringList.Create;
@@ -783,10 +821,15 @@ begin
      end; }
   pw := '';
   archivename := TrimToBase( archivename );
-  if ArchiveIsEncrypted(archivename) then
-   if PasswordDlg.Execute( archivename ) = mrOK
-      then pw := ' -K ":' + PasswordDlg.Password + '"'
-      else Result := false;
+  try
+    if ArchiveIsEncrypted(archivename, nil) then
+     if PasswordDlg.Execute( archivename ) = mrOK
+        then pw := ' -K ":' + PasswordDlg.Password + '"'
+        else Result := false;
+  except
+    ShowMessage('Error in ValidateArchive');
+    Result := false;
+  end;
 end;
 
 // from http://www.delphifaq.net/how-to-get-a-unique-file-name/
@@ -842,7 +885,7 @@ begin
          Result := -1;
        end;
  finally
-   if Result=-1
+   if Result<-1
       then writeln('Unable to extract node count - dumping output of dar -l ' + archivename + ' -v:' + #10 + Output.Text);
    Proc.Free;
    Output.Free;
@@ -871,6 +914,251 @@ begin
            exit;
          end;
 end;
+
+{ TArchive }
+
+ function TArchive.GetLineFromBuffer: string;
+ var
+  z: integer;
+  LastNewLineChar: Char;
+  b: string;
+ begin
+   z:= 1;
+   Result := '';
+   while (z <= Length(fDataBuffer)) and (fDataBuffer[z] in [#10, #13]) do inc(z);
+   Delete(fDataBuffer, 1, z-1); //remove any leading newlines
+   z := 1;
+   while z <= Length(fDataBuffer) do
+       begin
+         if (fDataBuffer[z] in [#10, #13]) then
+            begin
+              Result := Copy(fDataBuffer, 1, z-1);
+              Delete(fDataBuffer, 1, z);
+              Exit;
+            end
+         else
+            begin
+              Inc(z);
+            end;
+       end;
+ end;
+
+constructor TArchive.Create(Sender, Treeview: TObject);
+ begin
+   inherited Create;
+   fTreeView := TTreeView(TreeView);
+   fLoaded := lpIncomplete;
+ end;
+
+ destructor TArchive.Destroy;
+ begin
+   if Term <> nil then Term.Free;
+   inherited Destroy;
+ end;
+
+function TArchive.Open(fn, pw: string): integer;
+ { var
+    stopwatch: TStopwatch;}
+  begin
+  fTreeView.Items.Clear;
+  Result := -1;
+  fn := TrimToBase(fn);
+  nodecount := 0;
+  nodesloaded := 0;
+  rootnode := fTreeView.Items.AddFirst(nil, ExtractFileName(fn));
+  rootnode.Data := TFileData.Create;
+  TFileData(rootnode.Data).item[SEGFILENAME] := rootnode.Text;
+  parentnode := rootnode;
+  fTreeView.Visible := false;
+  Term := TVTETerminal.Create(nil);
+  if Term <> nil then
+    try
+      Term.StdPipe := '/tmp/dargui/stdo';
+      Term.ErrPipe := '/tmp/dargui/stde';
+      //Term.OnProcessExit := @ExitSignalHandler;
+      Term.OnStdout := @DataHandler;
+      Term.OnStderr := @ErrMessageHandler;
+      Term.ExecuteCommand('dar -l "' + fn+ '" -v ' + pw );
+ // stopwatch := TStopwatch.Create;
+      while fLoaded < lpLoaded do Application.ProcessMessages;
+ //      writeln('stopwatch 2 output: ', FormatDateTime('S.ZZZ', stopwatch.Stop));
+ //      stopwatch.Free;
+      Result := 0;
+    finally
+      Term.Free;
+    end;
+   fTreeView.AlphaSort;
+   fTreeView.Visible := true;
+   fTreeView.Items[0].Selected := true;
+ end;
+
+ procedure TArchive.ExitSignalHandler(Sender: TObject; ExitCode: integer);
+ begin
+   writeln('TArchive got exit signal: ', ExitCode);
+ end;
+
+procedure TArchive.DataHandler(Sender: TObject; data: string);
+  var
+    n: Integer;
+    t: string;
+    dataline: String;
+   procedure SetSegments(colheading: string);
+   var
+     a, b : integer;
+     S : integer;
+   begin
+     S := SEGSTATUS;
+     a := 1;
+     b := PosFrom('+', colheading, a);
+     DataCoords[S].StartChar := a;
+     DataCoords[S].EndChar := b;
+     While b <> 0 do
+           begin
+           Inc(S);
+           a := b+1;
+           b := PosFrom('+', colheading, a);
+           DataCoords[S].StartChar := a;
+           DataCoords[S].EndChar := b;
+           end;
+     DataCoords[S].EndChar := 1000;
+   end;
+
+   procedure ParseCurrentFile(fileinfo: string);
+   var
+     x, y, s, e : integer;
+   begin
+     fileinfo := fileinfo + #13;
+     //TODO: rewrite this to reverse order of if..then
+     if (Pos(dsRemoved, fileinfo)>0) then   // file flagged as removed
+        begin
+          CurrentFile[SEGSTATUS] := dsRemoved;
+          for x := 1 to SEGDATE do
+              CurrentFile[x] := '';
+          CurrentFile[SEGFILENAME] := Trim(Copy(fileinfo, Length(CurrentFile[SEGSTATUS])+1, MaxInt));
+        end
+     else
+        begin                                   // file still exists
+     for x := 0 to SEGPERMISSIONS do
+         begin
+           CurrentFile[x] := Trim(
+                                  Copy(fileinfo,
+                                  DataCoords[x].StartChar,
+                                  DataCoords[x].EndChar - DataCoords[x].StartChar)
+                                  );
+         end;
+     s := DataCoords[SEGUSER].StartChar;
+     for x := SEGUSER to SEGFILENAME do
+         begin
+           while fileinfo[s] < #33 do
+                 Inc(s);
+           e := s;
+           while  fileinfo[e] > #30 do
+                  Inc(e);
+           CurrentFile[x] := Copy(fileinfo, s, e - s);
+           s := e + 1;
+         end;
+        end;
+     y := Length(CurrentFile[SEGFILENAME]);
+     if y > 0 then
+      while (CurrentFile[SEGFILENAME][y] <> DirectorySeparator) and (y > 1) do
+         Dec(y);
+      if CurrentFile[SEGFILENAME][y] = DirectorySeparator then
+         begin
+           CurrentFile[SEGFILEPATH] := Copy(CurrentFile[SEGFILENAME],1,y);
+           Delete(CurrentFile[SEGFILENAME],1,y);
+         end
+         else CurrentFile[SEGFILEPATH] := '';
+   end;
+
+   function GetParentDirectoryNode(dir: string) : TTreeNode;
+   var
+     x,
+     y: integer;
+     teststr: string;
+   begin
+     if (parentNode = rootNode) or (dir = '') then
+        begin
+          Result := rootnode;
+          exit;
+        end;
+     dir := DirectorySeparator + dir;
+     y := length(dir) - 1; // allow for final '/'
+     x := y;
+     while (dir[x] <> DirectorySeparator) do
+           Dec(x);
+     teststr := Copy( dir, x+1, y-x);
+     while (teststr <> parentNode.Text) and (parentNode <> rootNode) do
+           parentNode := parentNode.Parent;
+     Result := parentNode;
+   end;
+
+  begin   //procedure TArchive.DataHandler(Sender: TObject; data: string); Main Code
+  fDataBuffer := fDataBuffer + data;
+    if floaded = lpIncomplete then repeat
+                        dataline := GetLineFromBuffer;
+                        if dataline <> '' then
+                        begin
+                          inodecount := ScanForInteger(dataline, dsInodeCount);
+                          if inodecount > -1 then nodecount := nodecount + inodecount;
+                          removednodes := ScanForInteger(dataline, dsDestroyedFiles);
+                          if removednodes > -1 then
+                             begin
+                               nodecount := nodecount + removednodes;
+                              fLoaded := lpHistoryLoaded;
+                             end;
+                        end;
+                        until dataline=''
+                        else
+          repeat
+         dataline := GetLineFromBuffer;
+         if dataline <> '' then
+               if dataline[1]='[' then
+                 if not (Pos(dsDataColumn, dataline)=1) then
+                    begin
+                       Inc(nodesloaded);
+                       Inc(progressinterval);
+                       ParseCurrentFile(dataline);
+                       currentnode :=  fTreeView.Items.AddChild(GetParentDirectoryNode(Currentfile[SEGFILEPATH]), CurrentFile[SEGFILENAME]);
+                       currentnode.Data := TFileData.Create;
+                       if currentnode.Level < 2
+                          then currentnode.Parent.Expand(false);
+                       with TFileData(currentnode.data) do
+                          begin
+                            for n := SEGSTATUS to SEGFILEPATH do
+                                item[n] := CurrentFile[n];
+                            folder := false;
+                          end;
+                       if Length(CurrentFile[SEGPERMISSIONS]) > 0 then
+                       if CurrentFile[SEGPERMISSIONS][1]='d' then // node is a directory
+                          begin
+                            parentnode := currentnode;
+                            TFileData(currentnode.Data).folder := true;
+                          end;
+                       {completed := (nodesloaded*90) div nodecount;
+                       if progressinterval=(nodecount div 20) then    //can be used for calling a progress monitor callback
+                            begin
+                              write(completed, '% complete', #13);
+                              progressinterval := 0;
+                            end;   }
+                       //Application.ProcessMessages;
+                    end;
+              if Pos('----', dataline) = 1 then SetSegments(dataline);
+              if nodesloaded=nodecount then fLoaded := lpLoaded;
+              until ((dataline='') or (nodesloaded=nodecount));
+  end;
+
+procedure TArchive.ErrMessageHandler(Sender: TObject; msg: string);
+  var
+    x: integer;
+  begin
+    fMsgBuffer := fMsgBuffer + msg;
+    x := AnsiPos('Continue listing archive contents? [return = OK | Esc = cancel]', fMsgBuffer);
+    if x > 0 then
+       begin
+         Term.SendNewline;
+         fMsgBuffer := '';   //reset fMsgBuffer after each successful message read;
+       end;
+  end;
 
 
 End.

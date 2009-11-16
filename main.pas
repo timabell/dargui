@@ -985,7 +985,7 @@ begin
        begin
          Cmd := DAR_EXECUTABLE + ' -C "' + IsolateForm.CatalogueBox.Text
                        + '" -A "' + IsolateForm.ArchiveBox.Text + '" -v';
-         if ArchiveIsEncrypted(IsolateForm.ArchiveBox.Text)
+         if ArchiveIsEncrypted(IsolateForm.ArchiveBox.Text, nil)
             then Cmd := Cmd + ' -J :';
          RunDarCommand ( Cmd, rsCptIsolating, Left + 100, Top + 150 ) ;
          //OpLogForm.AddCommand(Cmd);
@@ -1130,7 +1130,7 @@ begin
   Cmd := DAR_EXECUTABLE + ' -t "' + CurrentArchive + '" -v';
   if FileExists(CurrentArchive + '.1.dar') then
      begin
-       if ArchiveIsEncrypted(CurrentArchive)
+       if ArchiveIsEncrypted(CurrentArchive, nil)
           then Cmd := Cmd + ' -K :';
        RunDarCommand(Cmd,
                         rsCptDarGUICheckingArchive,

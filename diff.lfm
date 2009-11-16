@@ -3,16 +3,18 @@ object DiffForm: TDiffForm
   Height = 307
   Top = 254
   Width = 599
-  ActiveControl = OKButton
+  ActiveControl = DialogPanel
   Caption = 'DiffForm'
   ClientHeight = 307
   ClientWidth = 599
   OnCreate = FormCreate
   OnResize = FormResize
   Position = poOwnerFormCenter
-  LCLVersion = '0.9.27'
+  LCLVersion = '0.9.29'
   object DialogPanel: TPanel
+    Left = 0
     Height = 199
+    Top = 0
     Width = 599
     Align = alClient
     ClientHeight = 199
@@ -20,30 +22,30 @@ object DiffForm: TDiffForm
     TabOrder = 2
     object ArchiveBox: TLabeledEdit
       Left = 15
-      Height = 23
+      Height = 25
       Top = 35
       Width = 425
       EditLabel.AnchorSideLeft.Control = ArchiveBox
       EditLabel.AnchorSideBottom.Control = ArchiveBox
       EditLabel.Left = 15
-      EditLabel.Height = 16
-      EditLabel.Top = 16
-      EditLabel.Width = 46
+      EditLabel.Height = 18
+      EditLabel.Top = 14
+      EditLabel.Width = 48
       EditLabel.Caption = 'Archive'
       EditLabel.ParentColor = False
       TabOrder = 0
     end
     object BaseDirBox: TLabeledEdit
       Left = 15
-      Height = 23
+      Height = 25
       Top = 104
       Width = 425
       EditLabel.AnchorSideLeft.Control = BaseDirBox
       EditLabel.AnchorSideBottom.Control = BaseDirBox
       EditLabel.Left = 15
-      EditLabel.Height = 16
-      EditLabel.Top = 85
-      EditLabel.Width = 92
+      EditLabel.Height = 18
+      EditLabel.Top = 83
+      EditLabel.Width = 95
       EditLabel.Caption = 'Base Directory'
       EditLabel.ParentColor = False
       TabOrder = 2
@@ -70,7 +72,7 @@ object DiffForm: TDiffForm
       Left = 15
       Height = 21
       Top = 144
-      Width = 124
+      Width = 125
       Caption = ' Verbose output'
       Checked = True
       State = cbChecked
@@ -78,7 +80,9 @@ object DiffForm: TDiffForm
     end
   end
   object ResultPanel: TPanel
+    Left = 0
     Height = 199
+    Top = 0
     Width = 599
     Align = alClient
     Caption = 'ResultPanel'
@@ -110,6 +114,7 @@ object DiffForm: TDiffForm
       Width = 587
       Align = alBottom
       BorderSpacing.Around = 5
+      ItemHeight = 0
       OnDrawItem = ResultListBoxDrawItem
       Style = lbOwnerDrawFixed
       TabOrder = 0
@@ -117,6 +122,7 @@ object DiffForm: TDiffForm
     end
   end
   object ResultButtonPanel: TPanel
+    Left = 0
     Height = 58
     Top = 199
     Width = 599
@@ -138,6 +144,7 @@ object DiffForm: TDiffForm
     end
   end
   object DialogButtonPanel: TPanel
+    Left = 0
     Height = 50
     Top = 257
     Width = 599
