@@ -333,7 +333,7 @@ var
      referencearchive := '';
      if ArchiveForm.DiffFileCheck.Checked
         then referencearchive := ' -A ' + TrimToBase( ArchiveForm.DiffReference.Text );
-     DarOptions := ' -X ' + ArchiveForm.ArchiveBaseName + '.*.dar';
+     DarOptions := ' -X "' + ArchiveForm.ArchiveBaseName + '.*.dar"';
      Command := DAR_EXECUTABLE + ' -c "' + ArchiveForm.ArchiveDirectory.Text
                             + ArchiveForm.ArchiveBaseName + '"'
                             + referencearchive
