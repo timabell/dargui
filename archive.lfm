@@ -55,7 +55,7 @@ object ArchiveForm: TArchiveForm
   OnCreate = FormCreate
   OnDestroy = FormDestroy
   Position = poMainFormCenter
-  LCLVersion = '0.9.27'
+  LCLVersion = '0.9.29'
   object OKCancelPanel: TPanel
     Left = 0
     Height = 66
@@ -398,6 +398,7 @@ object ArchiveForm: TArchiveForm
           Width = 172
           Caption = 'ExcludeDirsRadioButton'
           TabOrder = 4
+          TabStop = False
         end
         object EmptyDirCheck: TCheckBox
           Left = 19
@@ -525,7 +526,6 @@ object ArchiveForm: TArchiveForm
           Caption = ' Do not compress ... '
           ClientHeight = 310
           ClientWidth = 284
-          Ctl3D = False
           TabOrder = 0
           object CompSizeLabel: TLabel
             Left = 21
@@ -562,7 +562,7 @@ object ArchiveForm: TArchiveForm
               '*.ogg'
               '*.wma'
             )
-            ItemHeight = 22
+            ItemHeight = 23
             TabOrder = 0
           end
           object CompressMasks: TButton
@@ -585,7 +585,7 @@ object ArchiveForm: TArchiveForm
           end
           object CompressionLwrLimit: TEdit
             Left = 27
-            Height = 23
+            Height = 25
             Top = 267
             Width = 114
             OnChangeBounds = LabelResize
@@ -598,8 +598,6 @@ object ArchiveForm: TArchiveForm
             Height = 27
             Top = 267
             Width = 100
-            AutoComplete = False
-            Ctl3D = False
             ItemHeight = 0
             ItemIndex = 0
             Items.Strings = (
@@ -607,7 +605,6 @@ object ArchiveForm: TArchiveForm
               'kilobytes'
               'Megabytes'
             )
-            ItemWidth = 0
             TabOrder = 4
             Text = 'bytes'
           end
@@ -620,7 +617,6 @@ object ArchiveForm: TArchiveForm
           Caption = ' Compression type '
           ClientHeight = 310
           ClientWidth = 253
-          Ctl3D = False
           TabOrder = 1
           object CompLvlLabel: TLabel
             Left = 30
@@ -653,7 +649,7 @@ object ArchiveForm: TArchiveForm
           end
           object CompressionLevel: TEdit
             Left = 30
-            Height = 23
+            Height = 25
             Top = 135
             Width = 80
             Enabled = False
@@ -804,6 +800,7 @@ object ArchiveForm: TArchiveForm
           Caption = 'Run once only at'
           OnChange = ScheduleRadioChange
           TabOrder = 1
+          TabStop = False
         end
         object RepeatRadioButton: TRadioButton
           Left = 35
@@ -813,6 +810,7 @@ object ArchiveForm: TArchiveForm
           Caption = 'Run regularily at'
           OnChange = ScheduleRadioChange
           TabOrder = 2
+          TabStop = False
         end
         object RunOncePanel: TPanel
           Left = 5
@@ -865,7 +863,9 @@ object ArchiveForm: TArchiveForm
             OnAcceptDate = RunOnceDateEditAcceptDate
             OKCaption = 'OK'
             CancelCaption = 'Cancel'
+            DateOrder = doNone
             ButtonWidth = 23
+            CharCase = ecNormal
             Glyph.Data = {
               D6020000424DD60200000000000036000000280000000E0000000C0000000100
               200000000000A002000064000000640000000000000000000000000000000000
@@ -893,6 +893,7 @@ object ArchiveForm: TArchiveForm
             }
             NumGlyphs = 1
             Enabled = False
+            MaxLength = 0
             TabOrder = 0
           end
           object RunOnceHourBox: TComboBox
@@ -900,11 +901,8 @@ object ArchiveForm: TArchiveForm
             Height = 23
             Top = 33
             Width = 70
-            AutoComplete = False
-            Ctl3D = False
             Enabled = False
             ItemHeight = 0
-            ItemWidth = 0
             OnExit = ScheduleBoxExit
             TabOrder = 1
           end
@@ -913,11 +911,8 @@ object ArchiveForm: TArchiveForm
             Height = 23
             Top = 33
             Width = 70
-            AutoComplete = False
-            Ctl3D = False
             Enabled = False
             ItemHeight = 0
-            ItemWidth = 0
             OnExit = ScheduleBoxExit
             TabOrder = 2
           end
@@ -991,15 +986,12 @@ object ArchiveForm: TArchiveForm
             Height = 23
             Top = 32
             Width = 70
-            AutoComplete = False
-            Ctl3D = False
             Enabled = False
             ItemHeight = 0
             ItemIndex = 0
             Items.Strings = (
               '*'
             )
-            ItemWidth = 0
             OnExit = ScheduleBoxExit
             Style = csSimple
             TabOrder = 0
@@ -1010,15 +1002,12 @@ object ArchiveForm: TArchiveForm
             Height = 23
             Top = 32
             Width = 70
-            AutoComplete = False
-            Ctl3D = False
             Enabled = False
             ItemHeight = 0
             ItemIndex = 0
             Items.Strings = (
               '*'
             )
-            ItemWidth = 0
             OnExit = ScheduleBoxExit
             TabOrder = 1
             Text = '*'
@@ -1028,15 +1017,12 @@ object ArchiveForm: TArchiveForm
             Height = 23
             Top = 32
             Width = 100
-            AutoComplete = False
-            Ctl3D = False
             Enabled = False
             ItemHeight = 0
             ItemIndex = 0
             Items.Strings = (
               '*'
             )
-            ItemWidth = 0
             OnExit = ScheduleBoxExit
             TabOrder = 2
             Text = '*'
@@ -1046,15 +1032,12 @@ object ArchiveForm: TArchiveForm
             Height = 23
             Top = 32
             Width = 70
-            AutoComplete = False
-            Ctl3D = False
             Enabled = False
             ItemHeight = 0
             ItemIndex = 0
             Items.Strings = (
               '*'
             )
-            ItemWidth = 0
             OnExit = ScheduleBoxExit
             TabOrder = 3
             Text = '*'
@@ -1064,15 +1047,12 @@ object ArchiveForm: TArchiveForm
             Height = 23
             Top = 32
             Width = 100
-            AutoComplete = False
-            Ctl3D = False
             Enabled = False
             ItemHeight = 0
             ItemIndex = 0
             Items.Strings = (
               '*'
             )
-            ItemWidth = 0
             OnExit = ScheduleBoxExit
             TabOrder = 4
             Text = '*'
