@@ -326,13 +326,18 @@ var
   var
     InfoFile: TSettingsFile;
     infofilename: String;
+    refarch: string;
   begin
      try
-     Enabled := false;
+      Enabled := false;
      ArchiveForm.CreateBatchfile;
      referencearchive := '';
-     if ArchiveForm.DiffFileCheck.Checked
-        then referencearchive := ' -A ' + TrimToBase( ArchiveForm.DiffReference.Text );
+     if ArchiveForm.DiffFileCheck.Checked then
+         begin
+           refarch := TrimToBase( ArchiveForm.DiffReference.Text );
+           referencearchive := ' -A ' + refarch;
+           if ArchiveIsEncrypted(refarch, nil) then referencearchive := referencearchive + ' -J : ';
+         end;
      DarOptions := ' -X "' + ArchiveForm.ArchiveBaseName + '.*.dar"';
      Command := DAR_EXECUTABLE + ' -c "' + ArchiveForm.ArchiveDirectory.Text
                             + ArchiveForm.ArchiveBaseName + '"'
@@ -400,8 +405,13 @@ var
      if ( ArchiveForm.RepeatRadioButton.Checked ) or ( ArchiveForm.TimestampCheck.Checked )
         then archivename := archivename + '`date +_%Y%m%d%H%M`';  // All cron jobs are timestamped to avoid duplicate filenames
      referencearchive := '';
-     if ArchiveForm.DiffFileCheck.Checked
-        then referencearchive := ' -A "' + TrimToBase( ArchiveForm.DiffReference.Text ) + '" ';
+     if ArchiveForm.DiffFileCheck.Checked then
+        begin
+          referencearchive := ' -A "' + TrimToBase( ArchiveForm.DiffReference.Text ) + '" ';
+          if ArchiveIsEncrypted(TrimToBase( ArchiveForm.DiffReference.Text ), nil)
+             then if ArchiveForm.RunOnceRadioButton.Checked
+                  then referencearchive := referencearchive + ' -J : ';
+        end;
      DarOptions := ' -X ' + ArchiveForm.ArchiveBaseName + '.*.dar';
      Command := DAR_EXECUTABLE + ' -c "' + ArchiveForm.ArchiveDirectory.Text
                             + archivename + '"'
@@ -972,8 +982,10 @@ procedure TMainForm.miIsolateClick ( Sender: TObject ) ;
 var
   IsolateForm: TIsolateForm;
   Cmd: String;
+  Encrypt: string;
 begin
   IsolateForm := TIsolateForm.Create(Self);
+  Encrypt := '';
   try
     if CurrentArchive <> ''
        then
@@ -983,8 +995,10 @@ begin
        end;
     if IsolateForm.ShowModal = mrOK then
        begin
+         if IsolateForm.Encryptarchivecheck.Checked then
+            Encrypt := ' -K : ';
          Cmd := DAR_EXECUTABLE + ' -C "' + IsolateForm.CatalogueBox.Text
-                       + '" -A "' + IsolateForm.ArchiveBox.Text + '" -v';
+                       + '"' + Encrypt + ' -A "' + IsolateForm.ArchiveBox.Text + '" -v';
          if ArchiveIsEncrypted(IsolateForm.ArchiveBox.Text, nil)
             then Cmd := Cmd + ' -J :';
          RunDarCommand ( Cmd, rsCptIsolating, Left + 100, Top + 150 ) ;

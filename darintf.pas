@@ -813,6 +813,9 @@ begin
   end;
 end;
 
+
+// checks to see if archive is encrypted. Requests password if encrypted
+// TODO: cannot handle absent final slice or archives created by newer versions of dar
 function ValidateArchive( var archivename: string; var pw: string ): Boolean;
 begin
   result := true;

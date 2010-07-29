@@ -18,6 +18,7 @@ type
     CancelButton: TBitBtn;
     ArchiveBox: TLabeledEdit;
     CatalogueBox: TLabeledEdit;
+    Encryptarchivecheck: Tcheckbox;
     OKButton: TBitBtn;
     OKCancelPanel: TPanel;
     MainPanel: TPanel;
@@ -81,6 +82,7 @@ begin
   CancelButton.Caption := rsButtonCancel;
   ArchiveBox.EditLabel.Caption := rsSourceArchive;
   CatalogueBox.EditLabel.Caption := rsSaveCatalogueAs;
+  Encryptarchivecheck.Caption := rsEncryptArchive;
   ArchiveButton.Caption := rsButtonBrowse;
   CatalogueButton.Caption := rsButtonBrowse;
 end;

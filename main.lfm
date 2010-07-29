@@ -975,9 +975,9 @@ object MainForm: TMainForm
       TabOrder = 0
       object MessageLabel: TLabel
         Left = 7
-        Height = 14
+        Height = 18
         Top = 8
-        Width = 65
+        Width = 69
         Caption = 'Messages:'
         ParentColor = False
       end

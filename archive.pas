@@ -17,6 +17,8 @@ type
   TArchiveForm = class ( TForm )
     EmptyDirCheck: TCheckBox;
     EncryptArchiveCheck: TCheckBox;
+    EncryptedSymbolImage: TImage;
+    EncryptionImageList: TImageList;
     OpenCreatedArchiveCheck: TCheckBox;
     IncludeDirsRadioButton: TRadioButton;
     ExcludeDirsRadioButton: TRadioButton;
@@ -121,6 +123,7 @@ type
     procedure DelCompressMaskButtonClick ( Sender: TObject ) ;
     procedure DiffFileCheckChange ( Sender: TObject ) ;
     procedure DiffRefButtonClick ( Sender: TObject ) ;
+    procedure Diffreferencechange ( Sender: Tobject ) ;
     procedure DirectoryRBChange ( Sender: TObject ) ;
     procedure FormDestroy ( Sender: TObject ) ;
     procedure LabelResize(Sender: TObject);
@@ -653,6 +656,15 @@ procedure TArchiveForm.DiffFileCheckChange ( Sender: TObject ) ;
 begin
   DiffReference.Enabled := DiffFileCheck.Checked;
   DiffRefButton.Enabled := DiffFileCheck.Checked;
+  if EncryptedSymbolImage.Visible then
+     begin
+       NowRadioButton.Checked := true;
+       if DiffFileCheck.Checked
+          then EncryptionImageList.GetBitmap(0, EncryptedSymbolImage.Picture.Bitmap)
+          else EncryptionImageList.GetBitmap(1, EncryptedSymbolImage.Picture.Bitmap);
+     end;
+  RunOnceRadioButton.Enabled := not (EncryptedSymbolImage.Visible and DiffFileCheck.Checked);
+  RepeatRadioButton.Enabled := not (EncryptedSymbolImage.Visible and DiffFileCheck.Checked);
 end;
 
 procedure TArchiveForm.DiffRefButtonClick ( Sender: TObject ) ;
@@ -663,6 +675,22 @@ begin
   if OpenDialog.Execute
      then DiffReference.Text := OpenDialog.FileName;
 end;
+
+procedure Tarchiveform.Diffreferencechange ( Sender: Tobject ) ;
+begin
+  if FileExists(DiffReference.Text)
+   then
+      begin
+      EncryptedSymbolImage.Visible := ArchiveIsEncrypted(TrimToBase(DiffReference.Text), nil);
+      EncryptionImageList.GetBitmap(0, EncryptedSymbolImage.Picture.Bitmap);
+      if EncryptedSymbolImage.Visible then
+         begin
+            NowRadioButton.Checked := true;
+            RunOnceRadioButton.Enabled := not EncryptedSymbolImage.Visible;
+            RepeatRadioButton.Enabled := not EncryptedSymbolImage.Visible;
+         end;
+      end;
+End;
 
 procedure TArchiveForm.DirectoryRBChange ( Sender: TObject ) ;
 begin

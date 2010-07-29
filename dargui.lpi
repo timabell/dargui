@@ -22,7 +22,7 @@
       <UseVersionInfo Value="True"/>
       <AutoIncrementBuild Value="True"/>
       <CurrentMajorRevNr Value="4"/>
-      <CurrentBuildNr Value="468"/>
+      <CurrentBuildNr Value="556"/>
       <ProjectVersion Value="0.4.0.101"/>
     </VersionInfo>
     <PublishOptions>
@@ -33,7 +33,7 @@
     <RunParams>
       <local>
         <FormatVersion Value="1"/>
-        <LaunchingApplication PathPlusParams="/usr/X11R6/bin/xterm -T 'Lazarus Run Output' -e $(LazarusDir)/tools/runwait.sh $(TargetCmdLine)"/>
+        <LaunchingApplication Use="True" PathPlusParams="/usr/X11R6/bin/xterm -T 'Lazarus Run Output' -e $(LazarusDir)/tools/runwait.sh $(TargetCmdLine)"/>
       </local>
     </RunParams>
     <RequiredPackages Count="2">
@@ -53,8 +53,8 @@
       </Unit0>
       <Unit1>
         <Filename Value="main.pas"/>
-        <ComponentName Value="MainForm"/>
         <IsPartOfProject Value="True"/>
+        <ComponentName Value="MainForm"/>
         <ResourceBaseClass Value="Form"/>
         <UnitName Value="main"/>
       </Unit1>
@@ -65,22 +65,22 @@
       </Unit2>
       <Unit3>
         <Filename Value="selectrestore.pas"/>
-        <ComponentName Value="ExtractSelectedForm"/>
         <IsPartOfProject Value="True"/>
+        <ComponentName Value="ExtractSelectedForm"/>
         <ResourceBaseClass Value="Form"/>
         <UnitName Value="selectrestore"/>
       </Unit3>
       <Unit4>
         <Filename Value="archive.pas"/>
-        <ComponentName Value="ArchiveForm"/>
         <IsPartOfProject Value="True"/>
+        <ComponentName Value="ArchiveForm"/>
         <ResourceBaseClass Value="Form"/>
         <UnitName Value="archive"/>
       </Unit4>
       <Unit5>
         <Filename Value="filemaskdlg.pas"/>
-        <ComponentName Value="FileMaskDialog"/>
         <IsPartOfProject Value="True"/>
+        <ComponentName Value="FileMaskDialog"/>
         <ResourceBaseClass Value="Form"/>
         <UnitName Value="filemaskdlg"/>
       </Unit5>
@@ -91,16 +91,16 @@
       </Unit6>
       <Unit7>
         <Filename Value="archiveinfo.pas"/>
-        <ComponentName Value="InformationForm"/>
         <IsPartOfProject Value="True"/>
+        <ComponentName Value="InformationForm"/>
         <ResourceBaseClass Value="Form"/>
         <UnitName Value="ArchiveInfo"/>
       </Unit7>
       <Unit8>
         <Filename Value="about.pas"/>
+        <IsPartOfProject Value="True"/>
         <ComponentName Value="AboutForm"/>
         <HasResources Value="True"/>
-        <IsPartOfProject Value="True"/>
         <ResourceBaseClass Value="Form"/>
         <UnitName Value="About"/>
       </Unit8>
@@ -121,38 +121,39 @@
       </Unit11>
       <Unit12>
         <Filename Value="selectfilter.pas"/>
-        <ComponentName Value="SelectFilterForm"/>
         <IsPartOfProject Value="True"/>
+        <ComponentName Value="SelectFilterForm"/>
         <ResourceBaseClass Value="Form"/>
         <UnitName Value="selectfilter"/>
       </Unit12>
       <Unit13>
         <Filename Value="oplog.pas"/>
+        <IsPartOfProject Value="True"/>
         <ComponentName Value="OpLogForm"/>
         <HasResources Value="True"/>
-        <IsPartOfProject Value="True"/>
+        <ResourceBaseClass Value="Form"/>
         <UnitName Value="oplog"/>
       </Unit13>
       <Unit14>
         <Filename Value="diff.pas"/>
+        <IsPartOfProject Value="True"/>
         <ComponentName Value="DiffForm"/>
         <HasResources Value="True"/>
-        <IsPartOfProject Value="True"/>
         <ResourceBaseClass Value="Form"/>
         <UnitName Value="diff"/>
       </Unit14>
       <Unit15>
         <Filename Value="isolate.pas"/>
+        <IsPartOfProject Value="True"/>
         <ComponentName Value="IsolateForm"/>
         <HasResources Value="True"/>
-        <IsPartOfProject Value="True"/>
         <ResourceBaseClass Value="Form"/>
         <UnitName Value="isolate"/>
       </Unit15>
       <Unit16>
         <Filename Value="password.pas"/>
-        <ComponentName Value="PasswordDlg"/>
         <IsPartOfProject Value="True"/>
+        <ComponentName Value="PasswordDlg"/>
         <ResourceBaseClass Value="Form"/>
         <UnitName Value="password"/>
       </Unit16>
@@ -163,22 +164,22 @@
       </Unit17>
       <Unit18>
         <Filename Value="backupsavedlg.pas"/>
-        <ComponentName Value="CreateSaveDialog"/>
         <IsPartOfProject Value="True"/>
+        <ComponentName Value="CreateSaveDialog"/>
         <ResourceBaseClass Value="Form"/>
         <UnitName Value="backupsavedlg"/>
       </Unit18>
       <Unit19>
         <Filename Value="schedman.pas"/>
-        <ComponentName Value="ScheduleManagerForm"/>
         <IsPartOfProject Value="True"/>
+        <ComponentName Value="ScheduleManagerForm"/>
         <ResourceBaseClass Value="Form"/>
         <UnitName Value="schedman"/>
       </Unit19>
       <Unit20>
         <Filename Value="userprefs.pas"/>
-        <ComponentName Value="OptionsForm"/>
         <IsPartOfProject Value="True"/>
+        <ComponentName Value="OptionsForm"/>
         <ResourceBaseClass Value="Form"/>
         <UnitName Value="userprefs"/>
       </Unit20>
@@ -188,9 +189,8 @@
     <Version Value="8"/>
     <SearchPaths>
       <Libraries Value="/home/usr/X11R6/lib/"/>
-      <OtherUnitFiles Value="/home/malcolm/Projects/lazarus_svn/components/synedit/"/>
+      <OtherUnitFiles Value="/home/malcolm/Projects/lazarus_svn/components/synedit/;Vte/"/>
       <UnitOutputDirectory Value="/home/malcolm/lazarus/dargui/compiled"/>
-      <LCLWidgetType Value="gtk2"/>
     </SearchPaths>
     <Parsing>
       <SyntaxOptions>
@@ -214,6 +214,7 @@
         <ShoLineNum Value="True"/>
       </Verbosity>
       <WriteFPCLogo Value="False"/>
+      <CustomOptions Value="-dUSE_QT_44"/>
       <CompilerPath Value="$(CompPath)"/>
       <ExecuteBefore>
         <Command Value="rstconv -i compiled/dgstrconst.rst -o locales/dargui.pot"/>

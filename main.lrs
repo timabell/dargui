@@ -1,3 +1,5 @@
+{ This is an automatically generated lazarus resource file }
+
 LazarusResources.Add('TMainForm','FORMDATA',[
   'TPF0'#9'TMainForm'#8'MainForm'#4'Left'#3#140#0#6'Height'#3']'#2#3'Top'#2'}'#5
   +'Width'#3'}'#3#13'ActiveControl'#7#12'ToolbarPanel'#7'Caption'#6#6'DarGUI'#12
@@ -1092,8 +1094,8 @@ LazarusResources.Add('TMainForm','FORMDATA',[
   +'ClientWidth'#3'}'#3#8'TabOrder'#2#1#7'Visible'#8#0#6'TPanel'#17'MessageClos'
   +'ePanel'#4'Left'#2#1#6'Height'#2#26#3'Top'#2#1#5'Width'#3'{'#3#5'Align'#7#5
   +'alTop'#10'BevelOuter'#7#6'bvNone'#12'ClientHeight'#2#26#11'ClientWidth'#3'{'
-  +#3#8'TabOrder'#2#0#0#6'TLabel'#12'MessageLabel'#4'Left'#2#7#6'Height'#2#14#3
-  +'Top'#2#8#5'Width'#2'A'#7'Caption'#6#9'Messages:'#11'ParentColor'#8#0#0#7'TB'
+  +#3#8'TabOrder'#2#0#0#6'TLabel'#12'MessageLabel'#4'Left'#2#7#6'Height'#2#18#3
+  +'Top'#2#8#5'Width'#2'E'#7'Caption'#6#9'Messages:'#11'ParentColor'#8#0#0#7'TB'
   +'itBtn'#17'MessageHideButton'#4'Left'#3'a'#3#6'Height'#2#26#3'Top'#2#0#5'Wid'
   +'th'#2#26#5'Align'#7#7'alRight'#7'Caption'#6#1'X'#9'NumGlyphs'#2#0#7'OnClick'
   +#7#22'MessageHideButtonClick'#8'TabOrder'#2#0#0#0#0#5'TMemo'#11'MessageMemo'
