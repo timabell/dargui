@@ -1,7 +1,8 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
-<html>
-<head>
-  <title>Chapter 2: Creating Archives - Main Options </title>
+<html><head><title>Chapter 2: Creating Archives - Main Options</title>
+
+
+  
 
 
   <link rel="stylesheet" href="kde-default.css" type="text/css">
@@ -14,10 +15,7 @@
 
   <link rel="previous" href="using-dargui.html" title="templateprev">
 
-  <link rel="next" href="#.html" title="templatenext">
-
-</head>
-<body style="color: black; background-color: white;" alink="#0000ff" link="#0000ff" vlink="#840084">
+  <link rel="next" href="#.html" title="templatenext"></head><body style="color: black; background-color: white;" alink="#0000ff" link="#0000ff" vlink="#840084">
 
 <br>
 
@@ -57,22 +55,61 @@
 </div>
 
 </div>
-<p>To create a new archive select File->New. The "New Archive" window will appear.</p>
-<p><IMG src="images/newarchivetab1.png" alt="Screenshot of Archive tab" width="522" height="418" border="0"></p>
-<p>There are six tabs of options in the "New Archive" window but in most cases you will only use the first three, "Archive", "Directories" and "Files". The first of these, "Archive", is used to set the following options:
-<ul>
-<li><strong>Archive base name</strong> - Enter a suitable name for the archive, for example the name of the root directory of the backup or a name decribing the contents such as "Photographs" or "Letters". If you select the option "Add timestamp to name" then a suffix will be added to the name giving the time and date that the archive was created in the format yyyymmddhhmm.<br>Dar will automatically add a slice number and the suffix "dar" so your final archive will end up with a name like "Photographs.1.dar" or "Photographs_200901092010.1.dar".</li> 
+<p>To create a new archive select File-&gt;New. The "New Archive" window will appear.</p>
+<p><img src="images/newarchivetab1.png" alt="Screenshot of Archive tab" border="0" height="418" width="522"></p>
+<p>There are six tabs of options in the "New Archive" window but in
+most cases you will only use the first three, "Archive", "Directories"
+and "Files". The first of these, "Archive", is used to set the
+following options:
+</p><ul>
+<li><strong>Archive base name</strong> - Enter a suitable name for the
+archive, for example the name of the root directory of the backup or a
+name decribing the contents such as "Photographs" or "Letters". If you
+select the option "Add timestamp to name" then a suffix will be added
+to the name giving the time and date that the archive was created in
+the format yyyymmddhhmm.<br>Dar will automatically add a slice number
+and the suffix "dar" so your final archive will end up with a name like
+"Photographs.1.dar" or "Photographs_200901092010.1.dar".</li> 
 
-<li><strong>Save archive in</strong> - enter the directory in which you want to save the archive. For scheduled backups it is recommended that this directory is outside the root directory of the backup.</li>
+<li><strong>Save archive in</strong> - enter the directory in which you
+want to save the archive. For scheduled backups it is recommended that
+this directory is outside the root directory of the backup.</li>
 
-<li><strong>Base directory</strong> - enter the root directory of the backup. This is the which contains all the files and directories that you want to archive. The directories that you enter on the "Directories" tab must be in this directory. <br>
-For example, you may want to backup only the directories "/home/John/Documents/Letters" and "/home/John/Documents/Poems". You would enter "/home/John/Documents/" as your base directory.</li>
+<li><strong>Base directory</strong> - enter the root directory of the
+backup. This is the which contains all the files and directories that
+you want to archive. The directories that you enter on the
+"Directories" tab must be in this directory. <br>
+For example, you may want to backup only the directories
+"/home/John/Documents/Letters" and "/home/John/Documents/Poems". You
+would enter "/home/John/Documents/" as your base directory.</li>
 
-<li><strong>Batch file</strong> - batch files are temporary files used by DarGUI when creating archives. As they are normally created in the /tmp directory they are lost when the system is shut down. You will only need to change this option if you want to keep the batch file, for example, if you want to use it as a basis from which to write your own backup script. </li>
+<li><strong>Batch file</strong> - batch files are temporary files used
+by DarGUI when creating archives. As they are normally created in the
+/tmp directory they are lost when the system is shut down. You will
+only need to change this option if you want to keep the batch file, for
+example, if you want to use it as a basis from which to write your own
+backup script. </li>
 
-<li><strong>Differential backup</strong> A differential archive is an archive which stores the difference between the current state of the filesystem and the state of the filesystem when you last created a full backup. Performing a differential backup can take considerably less time than doing a full backup, and the resulting archive usually takes up much less space on your filesystem or storage media.<br>
-If you select this option you must also specify a <strong>Reference archive</strong> which is can be either a Dar archive or a Dar catalog. Dar will examine the files stored in the reference archive and compare them with the files on your system. It will only store them in the differential archive if they have been changed since the reference archive was created. </li>
-</ul></p>
+  <li><strong>Differential backup</strong> A differential archive is an
+archive which stores the difference between the current state of the
+filesystem and the state of the filesystem when you last created a full
+backup. Performing a differential backup can take considerably less
+time than doing a full backup, and the resulting archive usually takes
+up much less space on your filesystem or storage media.<br>
+If you select this option you must also specify a <strong>Reference archive</strong>
+which is can be either a Dar archive or a Dar catalog. Dar will examine
+the files stored in the reference archive and compare them with the
+files on your system. It will only store them in the differential
+archive if they have been changed since the reference archive was
+created.<br>
+    <span style="font-weight: bold;">NB: </span>If the reference
+archive is encrypted, it will not be possible to schedule the backup to
+be created at a later date. If the option to write a backup script is
+selected, the script will request a password when it is run, unless it
+is manually edited.<br>
+ </li>
+
+</ul><p></p>
 
 </div>
 
@@ -105,5 +142,4 @@ If you select this option you must also specify a <strong>Reference archive</str
   </tbody>
 </table>
 
-</body>
-</html>
+</body></html>
