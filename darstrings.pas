@@ -33,16 +33,28 @@ resourcestring
   dsSpecialAlloc  = '   Special allocation scheme  : %s' + #10;
   dsThreadSafe    = '   Thread safe support        : %s' + #10;
 
-  dsRemoved       = '[     REMOVED       ]';
-
-  dsArchiveEncrypted = 'The archive %S is encrypted and no encryption cipher has been given, cannot '
-                       + 'open archive.';
   dsColumnTitles  = '[data ][ EA  ][compr] | permission | user  | group | size  |          '
                     + 'date                 |    filename' + #10;
-  
+  dsRemoved       = '[     REMOVED       ]';
+
+  dsCatalogueContents = 'CATALOGUE CONTENTS :' + #10;
   dsInodeCount    = 'total number of inode : %i' + #10;
   dsDestroyedFiles = '   %i file(s) have been record as destroyed since backup of reference' + #10#10;
-  
+
+  // used by darintf.CheckArchiveStatus and darintf.GetArchiveInformation
+  dsArchiveEncrypted = 'The archive %S is encrypted and no encryption cipher has been given, cannot '
+                       + 'open archive.';
+  dsArchiveVersionTooHigh = 'The format version of the archive is too high for that software version, try '
+                       + 'reading anyway?';
+  dsAbortingNoUserResponse = 'Aborting program. User refused to continue while asking: ';
+  dsLastSliceNotFound = 'The last file of the set is not present in ';
+  dsSliceNotFound =  '%s is required for further operation, please provide the file.';
+
+  dsReturnCancel = ' [return = OK | Esc = cancel]';
+
+  dsExtractingContents = 'Extracting contents of the archive...';
+
+
 function OpenDarTranslationInterface: Boolean;
 procedure CloseDarTranslationInterface;
 
@@ -59,6 +71,8 @@ function ScanForInteger( searchstring, darstring :string): integer;
 
 
 implementation
+
+uses darintf;
 
 function OpenDarTranslationInterface: Boolean;
 var
@@ -143,24 +157,60 @@ begin
   Result := DarMOFile.Translate(darstring, Hash(darstring));
 end;
 
+//TODO: review this code - will it work with %S or when %s is at start of string?
 function PosDarString(darstring, searchstring: string): integer;
 var
-  p: LongInt;
+  p: integer;
+  q: integer;
+  x: integer;
+  stringparts: TStringList;
+
+  procedure SplitDarString;
+  var
+    s: integer;
+    i: integer;
+  begin
+    q := -1;
+    p := 1;
+    while p > 0 do
+          begin
+            s := Pos('%s', AnsiLowerCase(darstring));
+            i := Pos('%i', AnsiLowerCase(darstring));
+            p := s;
+            if i>p then if p=0 then p := i;
+            if p > 0 then
+               begin
+                 stringparts.Add(Copy(darstring,1,p-1));
+                 Delete(darstring, 1, p+1);
+               end
+               else stringparts.Add(darstring);
+          end;
+  end;
+
 begin
   Result := 0;
+  stringparts := TStringList.Create;
   //if DarMOFile <> nil
   //   then darstring := TranslateDarString(darstring);
-  darstring := Trim(darstring);
-  p := Pos('%s', darstring);
-  if p > 0
-     then darstring := Copy(darstring, 1, p-1)
-  else
-      begin
-          p := Pos('%i', darstring);
-          if p > 0
-             then darstring := Copy(darstring, 1, p-1);
-      end;
-  Result := Pos(darstring, searchstring);
+  try
+    darstring := Trim(darstring);
+    SplitDarString;
+    x:= 0;
+    p := Pos(stringparts[x], searchstring);
+    if p > 0 then
+       begin
+         Result := p;
+         while x < stringparts.Count-1 do
+               begin
+                 q := p + Length(stringparts[x]);
+                 Inc(x);
+                 p := PosFrom(stringparts[x], searchstring, q);
+                 if p=0 then Result := 0;
+               end;
+       end;
+  finally
+    stringparts.Free;
+  end;
 end;
 
 function LengthDarString(darstring: string): integer;
@@ -170,11 +220,11 @@ var
   i: LongInt;
 begin
   Result := Length(darstring);
-  i := Pos('%i', darstring);
+  i := Pos('%i', AnsiLowerCase(darstring));
   if i > 0
      then if i < Result
         then Result := i-1;
-  s := Pos('%s', darstring);
+  s := Pos('%s', AnsiLowerCase(darstring));
   if s > 0
      then if s < Result
         then Result := s-1;

@@ -122,6 +122,7 @@ type
 
 type
   TControlType = (ctNone, ctEdit, ctCombobox, ctRadiobutton, ctCheckbox, ctDateEdit, ctListBox);
+  TArchiveOpenStatus =(aosOK, aosEncrypted, aosFileNotPresent, aosAborted, aosError);
 
   function GetDarVersion : TDarInfo;
   function CheckSupportingApps : integer;
@@ -138,6 +139,7 @@ type
   function SelectChildren(Node: TTreeNode): integer;
   function isInteger(aString: string): Boolean;
   function DeleteFilesByMask(FileMask: string): integer;
+  function CheckArchiveStatus(fn: TFilename; pw:string): TArchiveOpenStatus;
   function GetArchiveInformation (fn: TFilename; Memo: TMemo; pw:string): integer;
   function ArchiveIsEncrypted( fn: TFilename; pass: PChar ) : Boolean;
   function GetInodeCount( archivename, key: string ):integer;
@@ -156,6 +158,8 @@ var
   RunscriptPath: String;
   DAR_EXECUTABLE: string;
   TEMP_DIRECTORY: string;
+
+  DarErrorMessage: string;
 
 
 implementation
@@ -514,6 +518,7 @@ begin
   Proc := TProcessLineTalk.Create(nil);
   Proc.CommandLine := DAR_EXECUTABLE + ' -l "' + fn + '"' + pw + ' -Q';
   Proc.Execute;
+writeln(#10, 'Executed process ',  proc.ProcessID);
   TTreeView(TV).Visible := false;
   Application.ProcessMessages;
   try
@@ -563,6 +568,7 @@ begin
   finally
     Result := Proc.ExitStatus;
     Proc.Free;
+    proc.Destroy;
   end;  // try .. finally
 end;
 
@@ -696,32 +702,81 @@ Begin
      end;
 End;
 
-function GetArchiveInformation(fn: TFilename; Memo: TMemo; pw: string): integer;
+function Checkarchivestatus ( Fn: Tfilename; Pw: String ) : Tarchiveopenstatus;
 var
   Proc: TProcess;
   x: Integer;
+  t: string;
+  OutputStrings: TStringList;
 begin
-  Result := -1;
+  Result := aosError;
+  DarErrorMessage := '';
   Proc := TProcess.Create(nil);
   Proc.CommandLine := DAR_EXECUTABLE + ' -l "' + fn + '" ' + pw + ' -v -Q';
   Proc.Options := Proc.Options  + [poWaitOnExit, poUsePipes, poStderrToOutPut];
       try
+      OutputStrings := TStringList.Create;
       Proc.Execute;
-      Memo.Lines.LoadFromStream(Proc.Output);
-      for x := Memo.Lines.Count -1 downto 0 do
+  writeln(#10, 'Executed process ',  proc.ProcessID);
+      OutputStrings.LoadFromStream(Proc.Output);
+      for x := 0 to OutputStrings.Count -1 do
           begin
-            if Memo.Lines[x] = ''
-               then Memo.Lines[x] := StringOfChar('-',45)
-            else if Pos('aborting', AnsiLowerCase(Memo.Lines[x])) = 1
-               then Memo.Lines.Delete(x)
-            else if Pos('extracting', AnsiLowerCase(Memo.Lines[x])) = 1
-               then Memo.Lines.Delete(x)
-            else if Pos('has been encrypted', Memo.Lines[x]) > 0
-               then Memo.Lines.Delete(x);
+          t := OutputStrings[x];
+          if PosDarString(dsCatalogueContents, OutputStrings[x]) > 0
+               then Result := aosOK
+            else if PosDarString(dsArchiveEncrypted, OutputStrings[x]) > 0
+               then Result := aosEncrypted
+            else if PosDarString(dsLastSliceNotFound, OutputStrings[x]) > 0
+               then Result := aosFileNotPresent
+            else if PosDarString(dsSliceNotFound, OutputStrings[x]) > 0
+               then Result := aosFileNotPresent;
+          if Result <> aosOK then DarErrorMessage := OutputStrings.Text;
           end;
-      Result := 0;
+      finally
+      //TODO: remove following code when debugging complete
+        writeln('OutputStrings: ', OutputStrings.Text);
+        case Result of
+             aosOK: writeln('Checkarchivestatus: OK');
+             aosEncrypted: writeln('Checkarchivestatus: Encrypted');
+             aosError: writeln('Checkarchivestatus: Error');
+             aosFileNotPresent: writeln('Checkarchivestatus: Slice missing');
+             end;
+      OutputStrings.Free;
+      Proc.Free;
+      end;
+End;
+
+function GetArchiveInformation(fn: TFilename; Memo: TMemo; pw: string): integer;
+var
+  Proc: TProcess;
+  x: Integer;
+  tempMemo: TStringList;
+begin
+  Result := -1;
+  DarErrorMessage := '';
+  Proc := TProcess.Create(nil);
+  Proc.CommandLine := DAR_EXECUTABLE + ' -l "' + fn + '" ' + pw + ' -v -Q';
+  Proc.Options := Proc.Options  + [poWaitOnExit, poUsePipes, poStderrToOutPut];
+      try
+      tempMemo := TStringList.Create;
+      Proc.Execute;
+      tempMemo.LoadFromStream(Proc.Output);
+      for x := tempMemo.Count -1 downto 0 do
+          begin
+          if tempMemo[x] = ''
+               then tempMemo[x] := StringOfChar('-',45)
+            else if Pos(dsAbortingNoUserResponse, tempMemo[x]) > 0
+               then tempMemo.Delete(x)
+            else if Pos(dsExtractingContents, tempMemo[x]) > 0
+               then tempMemo.Delete(x)
+            else if PosDarString(dsArchiveEncrypted, tempMemo[x]) > 0
+               then tempMemo.Delete(x);
+          end;
+         if Memo<>nil then Memo.Lines.Assign(tempMemo);
+         Result := 0;
       finally
       Proc.Free;
+      tempMemo.Free;
       end;
  end;
 
@@ -788,7 +843,7 @@ begin
   end;
 end;
 
-function ArchiveIsEncrypted ( fn: TFilename; pass: PChar ) : Boolean;
+function ArchiveIsEncrypted ( fn: TFilename; pass: PChar ) : Boolean;    //TODO: rewrite this
 var
   Proc : TProcess;
   Output: TStringList;
@@ -828,7 +883,7 @@ begin
   pw := '';
   archivename := TrimToBase( archivename );
   try
-    if ArchiveIsEncrypted(archivename, nil) then
+   // if ArchiveIsEncrypted(archivename, nil) then
      if PasswordDlg.Execute( archivename ) = mrOK
         then pw := ' -K ":' + PasswordDlg.Password + '"'
         else Result := false;

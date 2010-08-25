@@ -15,28 +15,94 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Last-Translator: Malcolm Poole <mgpoole@users.sourceforge.net>\n"
 
+#: darstrings.dsabortingnouserresponse
+msgid "Aborting program. User refused to continue while asking: "
+msgstr ""
+
+#: darstrings.dsarchiveencrypted
+msgid "The archive %S is encrypted and no encryption cipher has been given, cannot open archive."
+msgstr ""
+
+#: darstrings.dsarchiveversiontoohigh
+msgid "The format version of the archive is too high for that software version, try reading anyway?"
+msgstr ""
+
+#: darstrings.dscataloguecontents
+msgid "CATALOGUE CONTENTS :"
+msgstr ""
+
+#: darstrings.dscolumntitles
+msgid "[data ][ EA  ][compr] | permission | user  | group | size  |          date                 |    filename"
+msgstr ""
+
+#: darstrings.dsdestroyedfiles
+msgid ""
+"   %i file(s) have been record as destroyed since backup of reference\n"
+"\n"
+msgstr ""
+
+#: darstrings.dsextendedattributes
+msgid "   Extended Attributes support: %s"
+msgstr ""
+
+#: darstrings.dsextractingcontents
+msgid "Extracting contents of the archive..."
+msgstr ""
+
 #: darstrings.dsinodecount
-msgid "total number of inode : %s\\n"
+msgid "total number of inode : %i"
+msgstr ""
+
+#: darstrings.dslargefiles
+msgid "   Large files support (> 2GB): %s"
+msgstr ""
+
+#: darstrings.dslastslicenotfound
+msgid "The last file of the set is not present in "
 msgstr ""
 
 #: darstrings.dslibbz2comp
-msgid "   Libbz2 compression (bzip2) : %s\\n"
+msgid "   Libbz2 compression (bzip2) : %s"
 msgstr ""
 
 #: darstrings.dslibzcomp
-msgid "   Libz compression (gzip)    : %s\\n"
+msgid "   Libz compression (gzip)    : %s"
 msgstr ""
 
 #: darstrings.dslongoptions
-msgid "Long options support       : %s\\n"
+msgid "Long options support       : %s"
 msgstr ""
 
 #: darstrings.dsnewblowfish
-msgid "   New Blowfish implementation: %s\\n"
+msgid "   New Blowfish implementation: %s"
 msgstr ""
 
 #: darstrings.dsno
 msgid "NO"
+msgstr ""
+
+#: darstrings.dsnodump
+msgid "   ext2fs NODUMP flag support : %s"
+msgstr ""
+
+#: darstrings.dsremoved
+msgid "[     REMOVED       ]"
+msgstr ""
+
+#: darstrings.dsreturncancel
+msgid " [return = OK | Esc = cancel]"
+msgstr ""
+
+#: darstrings.dsslicenotfound
+msgid "%s is required for further operation, please provide the file."
+msgstr ""
+
+#: darstrings.dsspecialalloc
+msgid "   Special allocation scheme  : %s"
+msgstr ""
+
+#: darstrings.dsthreadsafe
+msgid "   Thread safe support        : %s"
 msgstr ""
 
 #: darstrings.dsyes
@@ -871,6 +937,7 @@ msgid "Save archive in"
 msgstr "Guardar copia en"
 
 #: dgstrconst.rssavecatalogueas
+msgctxt "dgstrconst.rssavecatalogueas"
 msgid "Save catalogue as"
 msgstr "Guardar catálogo como"
 
@@ -1220,6 +1287,7 @@ msgid "Preserve directories"
 msgstr "Retener nombres de directorios"
 
 #: TARCHIVEFORM.ENCRYPTARCHIVECHECK.CAPTION
+msgctxt "TARCHIVEFORM.ENCRYPTARCHIVECHECK.CAPTION"
 msgid "EncryptArchiveCheck"
 msgstr ""
 
@@ -1270,6 +1338,7 @@ msgid "NowRadioButton"
 msgstr ""
 
 #: TARCHIVEFORM.OKBUTTON.CAPTION
+msgctxt "TARCHIVEFORM.OKBUTTON.CAPTION"
 msgid "Ok"
 msgstr ""
 
@@ -1456,6 +1525,16 @@ msgctxt "TDIFFFORM.BROWSEARCHIVE.CAPTION"
 msgid "Browse"
 msgstr "Buscar"
 
+#: TDIFFFORM.BROWSEDIRECTORY.CAPTION
+msgctxt "TDIFFFORM.BROWSEDIRECTORY.CAPTION"
+msgid "Browse"
+msgstr "Buscar"
+
+#: TDIFFFORM.CANCELBUTTON.CAPTION
+msgctxt "TDIFFFORM.CANCELBUTTON.CAPTION"
+msgid "Cancel"
+msgstr "Cancelar"
+
 #: TDIFFFORM.CAPTION
 msgid "DiffForm"
 msgstr ""
@@ -1463,6 +1542,11 @@ msgstr ""
 #: TDIFFFORM.CLOSEBUTTON.CAPTION
 msgctxt "TDIFFFORM.CLOSEBUTTON.CAPTION"
 msgid "&Close"
+msgstr ""
+
+#: TDIFFFORM.OKBUTTON.CAPTION
+msgctxt "TDIFFFORM.OKBUTTON.CAPTION"
+msgid "&OK"
 msgstr ""
 
 #: TDIFFFORM.REPORTLABEL.CAPTION
@@ -1542,6 +1626,77 @@ msgstr ""
 msgid "InformationForm"
 msgstr ""
 
+#: TINFORMATIONFORM.OKBUTTON.CAPTION
+msgctxt "TINFORMATIONFORM.OKBUTTON.CAPTION"
+msgid "&OK"
+msgstr ""
+
+#: TISOLATEFORM.ARCHIVEBOX.EDITLABEL.CAPTION
+msgctxt "TISOLATEFORM.ARCHIVEBOX.EDITLABEL.CAPTION"
+msgid "Archive"
+msgstr "Copia"
+
+#: TISOLATEFORM.ARCHIVEBUTTON.CAPTION
+msgctxt "TISOLATEFORM.ARCHIVEBUTTON.CAPTION"
+msgid "Browse"
+msgstr "Buscar"
+
+#: TISOLATEFORM.CANCELBUTTON.CAPTION
+msgctxt "TISOLATEFORM.CANCELBUTTON.CAPTION"
+msgid "Cancel"
+msgstr "Cancelar"
+
+#: TISOLATEFORM.CAPTION
+msgctxt "TISOLATEFORM.CAPTION"
+msgid "Isolate archive catalogue"
+msgstr "Extraer catálogo de la copia"
+
+#: TISOLATEFORM.CATALOGUEBOX.EDITLABEL.CAPTION
+msgctxt "TISOLATEFORM.CATALOGUEBOX.EDITLABEL.CAPTION"
+msgid "Save catalogue as"
+msgstr "Guardar catálogo como"
+
+#: TISOLATEFORM.CATALOGUEBUTTON.CAPTION
+msgctxt "TISOLATEFORM.CATALOGUEBUTTON.CAPTION"
+msgid "Browse"
+msgstr "Buscar"
+
+#: TISOLATEFORM.ENCRYPTARCHIVECHECK.CAPTION
+msgctxt "TISOLATEFORM.ENCRYPTARCHIVECHECK.CAPTION"
+msgid "EncryptArchiveCheck"
+msgstr ""
+
+#: TISOLATEFORM.OKBUTTON.CAPTION
+msgctxt "TISOLATEFORM.OKBUTTON.CAPTION"
+msgid "&OK"
+msgstr ""
+
+#: TLOCATEFILEFORM.BROWSEBUTTON.CAPTION
+msgid "BrowseButton"
+msgstr ""
+
+#: TLOCATEFILEFORM.CANCELBUTTON.CAPTION
+msgctxt "TLOCATEFILEFORM.CANCELBUTTON.CAPTION"
+msgid "Cancel"
+msgstr "Cancelar"
+
+#: TLOCATEFILEFORM.CAPTION
+msgid "LocateFileForm"
+msgstr ""
+
+#: TLOCATEFILEFORM.FILENAMEEDIT.EDITLABEL.CAPTION
+msgid "FilenameEdit"
+msgstr ""
+
+#: TLOCATEFILEFORM.MESSAGELABEL.CAPTION
+msgid "MessageLabel"
+msgstr ""
+
+#: TLOCATEFILEFORM.OKBUTTON.CAPTION
+msgctxt "TLOCATEFILEFORM.OKBUTTON.CAPTION"
+msgid "Ok"
+msgstr ""
+
 #: TMAINFORM.CAPTION
 msgid "DarGUI"
 msgstr ""
@@ -1571,16 +1726,16 @@ msgctxt "TMAINFORM.MENUBREAK4.CAPTION"
 msgid "-"
 msgstr ""
 
+#: TMAINFORM.MENUEDIT.CAPTION
+msgid "Edit"
+msgstr ""
+
 #: TMAINFORM.MENUFILE.CAPTION
 msgid "&File"
 msgstr ""
 
 #: TMAINFORM.MENUHELP.CAPTION
 msgid "&Help"
-msgstr ""
-
-#: TMAINFORM.MENUSCHEDULING.CAPTION
-msgid "MenuScheduling"
 msgstr ""
 
 #: TMAINFORM.MENUSETTINGS.CAPTION
@@ -1665,7 +1820,7 @@ msgid "Restore selected"
 msgstr ""
 
 #: TMAINFORM.MISCHEDMANAGER.CAPTION
-msgid "miSchedMan"
+msgid "miSchedman"
 msgstr ""
 
 #: TMAINFORM.MISELECTFILTER.CAPTION
@@ -1691,6 +1846,10 @@ msgstr "Verificar Integridad"
 #: TMAINFORM.MITOGGLESELECT.CAPTION
 msgctxt "TMAINFORM.MITOGGLESELECT.CAPTION"
 msgid "Toggle Selected"
+msgstr ""
+
+#: TMAINFORM.MIUSERPREFS.CAPTION
+msgid "Preferences"
 msgstr ""
 
 #: TMAINFORM.PMIHIDEALL.CAPTION
@@ -1759,7 +1918,13 @@ msgid "Open an archive"
 msgstr "Abrir una copia de seguridad"
 
 #: TOPLOGFORM.CAPTION
+msgctxt "TOPLOGFORM.CAPTION"
 msgid "Logs"
+msgstr ""
+
+#: TOPLOGFORM.CLOSEBUTTON.CAPTION
+msgctxt "TOPLOGFORM.CLOSEBUTTON.CAPTION"
+msgid "&Close"
 msgstr ""
 
 #: TOPLOGFORM.COMMANDLABEL.CAPTION
@@ -1776,6 +1941,52 @@ msgstr ""
 
 #: TOPLOGFORM.MIEXECUTECOMMAND.CAPTION
 msgid "Execute"
+msgstr ""
+
+#: TOPTIONSFORM.CANCELBUTTON.CAPTION
+msgctxt "TOPTIONSFORM.CANCELBUTTON.CAPTION"
+msgid "Cancel"
+msgstr "Cancelar"
+
+#: TOPTIONSFORM.CAPTION
+msgid "OptionsForm"
+msgstr ""
+
+#: TOPTIONSFORM.DARLOCATIONLABEL.CAPTION
+msgid "DarLocationLabel"
+msgstr ""
+
+#: TOPTIONSFORM.DEFCONFIGLABEL.CAPTION
+msgid "DefConfigLabel"
+msgstr ""
+
+#: TOPTIONSFORM.DISPLAYPAGE.CAPTION
+msgid "Display"
+msgstr ""
+
+#: TOPTIONSFORM.FILESOPENEDLBL.CAPTION
+msgid "files opened"
+msgstr ""
+
+#: TOPTIONSFORM.MAINFORMPOSITION.CAPTION
+msgid "MainFormPosition"
+msgstr ""
+
+#: TOPTIONSFORM.MAINFORMSIZE.CAPTION
+msgid "MainFormSize"
+msgstr ""
+
+#: TOPTIONSFORM.OKBUTTON.CAPTION
+msgctxt "TOPTIONSFORM.OKBUTTON.CAPTION"
+msgid "Ok"
+msgstr ""
+
+#: TOPTIONSFORM.REMEMBERLBL.CAPTION
+msgid "Remember last"
+msgstr ""
+
+#: TOPTIONSFORM.TOOLBARCHECK.CAPTION
+msgid "ShowToolbar"
 msgstr ""
 
 #: TPASSWORDDLG.CANCELBUTTON.CAPTION

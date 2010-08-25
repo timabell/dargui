@@ -89,9 +89,9 @@ function TPasswordDlg.IsValidPassword ( pw: string ) : Boolean;
 var
   x: Integer;
 begin
-  if Length(ArchiveName) > 0 then   // test if it is the right password
-     Result := GetInodeCount(ArchiveName, ' -K ":' + pw + '"') > -1
-  else begin                        // is new password valid?
+  if Length(ArchiveName) > 0 then   // test if it is the right password - other problems not relevant here
+     Result := CheckArchiveStatus(ArchiveName, ' -K ":' + pw + '"')<>aosEncrypted
+  else begin                        // user entered a new password - is it valid?
          Result := true;
          for x := 1 to Length(pw) do
              if pw[x] in [#0..#31,':'] then Result := false;
