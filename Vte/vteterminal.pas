@@ -67,10 +67,10 @@ type
     fStderrReader: TPipeReader;
     fOnStdout: TPipeOutputEvent;
     fOnStdErr: TPipeOutputEvent;
+    FOnProcessExit: TProcessExitEvent;
     procedure SetErrorOutput(AValue: TFilename);
     procedure SetOutput(AValue: TFilename);
     function fGetEOF: Boolean;
-    FOnProcessExit: TProcessExitEvent;
   public
     constructor Create ( Commandline: PChar );
     destructor Destroy; override;
