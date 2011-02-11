@@ -154,11 +154,11 @@ type
     procedure ResolveConflicts( Sender, RefList: TObject; ConflictMessage: string );
   public
     { public declarations }
+    BatchFile: TStringList;
+    ArchiveBaseName: string;
     procedure LoadSettings(configfile:TFilename);
     function CreateBatchfile: Boolean;
     function GetUniqueScriptName(aDir: string): string;
-    BatchFile: TStringList;
-    ArchiveBaseName: string;
   end;
 
 var

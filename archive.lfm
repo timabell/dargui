@@ -3,7 +3,7 @@ object ArchiveForm: TArchiveForm
   Height = 490
   Top = 413
   Width = 637
-  ActiveControl = ArchiveNotebook
+  ActiveControl = TimestampCheck
   BorderIcons = [biSystemMenu]
   BorderStyle = bsDialog
   Caption = 'New Archive'
@@ -203,8 +203,8 @@ object ArchiveForm: TArchiveForm
       TabOrder = 0
       object ArchivePage: TPage
         Caption = 'Archive'
-        ClientWidth = 612
-        ClientHeight = 353
+        ClientWidth = 614
+        ClientHeight = 357
         object ArchiveBaseLabel: TLabel
           Left = 19
           Height = 18
@@ -358,8 +358,8 @@ object ArchiveForm: TArchiveForm
       end
       object DirectoriesPage: TPage
         Caption = 'Directories'
-        ClientWidth = 612
-        ClientHeight = 353
+        ClientWidth = 614
+        ClientHeight = 357
         object IncludeDirectories: TListBox
           Left = 19
           Height = 239
@@ -392,40 +392,39 @@ object ArchiveForm: TArchiveForm
           Left = 19
           Height = 21
           Top = 2
-          Width = 169
+          Width = 171
           Caption = 'IncludeDirsRadioButton'
           Checked = True
           OnChange = DirectoryRBChange
-          State = cbChecked
           TabOrder = 3
+          TabStop = True
         end
         object ExcludeDirsRadioButton: TRadioButton
           Left = 19
           Height = 21
           Top = 26
-          Width = 172
+          Width = 175
           Caption = 'ExcludeDirsRadioButton'
           TabOrder = 4
-          TabStop = False
         end
         object EmptyDirCheck: TCheckBox
           Left = 19
           Height = 21
           Top = 310
-          Width = 149
+          Width = 150
           Caption = 'Preserve directories'
           TabOrder = 5
         end
       end
       object FilesPage: TPage
         Caption = 'Files'
-        ClientWidth = 612
-        ClientHeight = 353
+        ClientWidth = 614
+        ClientHeight = 357
         object IncludeFilesLabel: TLabel
           Left = 19
-          Height = 17
+          Height = 18
           Top = 18
-          Width = 89
+          Width = 79
           Caption = 'Include files:'
           FocusControl = IncludeFiles
           ParentColor = False
@@ -433,9 +432,9 @@ object ArchiveForm: TArchiveForm
         end
         object ExcludeFilesLabel: TLabel
           Left = 19
-          Height = 17
+          Height = 18
           Top = 196
-          Width = 95
+          Width = 83
           Caption = 'Exclude files:'
           FocusControl = ExcludeFiles
           ParentColor = False
@@ -524,15 +523,15 @@ object ArchiveForm: TArchiveForm
       end
       object CompressionPage: TPage
         Caption = 'Compression'
-        ClientWidth = 612
-        ClientHeight = 353
+        ClientWidth = 614
+        ClientHeight = 357
         object CompressionExceptions: TGroupBox
           Left = 301
           Height = 329
           Top = 10
           Width = 288
           Caption = ' Do not compress ... '
-          ClientHeight = 325
+          ClientHeight = 310
           ClientWidth = 284
           TabOrder = 0
           object CompSizeLabel: TLabel
@@ -570,9 +569,8 @@ object ArchiveForm: TArchiveForm
               '*.ogg'
               '*.wma'
             )
-            ItemHeight = 0
+            ItemHeight = 23
             TabOrder = 0
-            TopIndex = -1
           end
           object CompressMasks: TButton
             Left = 165
@@ -624,7 +622,7 @@ object ArchiveForm: TArchiveForm
           Top = 11
           Width = 257
           Caption = ' Compression type '
-          ClientHeight = 325
+          ClientHeight = 310
           ClientWidth = 253
           TabOrder = 1
           object CompLvlLabel: TLabel
@@ -671,8 +669,8 @@ object ArchiveForm: TArchiveForm
       end
       object OptionsPage: TPage
         Caption = 'Options'
-        ClientWidth = 612
-        ClientHeight = 353
+        ClientWidth = 614
+        ClientHeight = 357
         object SliceMbLabel: TLabel
           Left = 509
           Height = 18
@@ -788,8 +786,8 @@ object ArchiveForm: TArchiveForm
       end
       object SchedulePage: TPage
         Caption = 'Scheduling'
-        ClientWidth = 612
-        ClientHeight = 353
+        ClientWidth = 614
+        ClientHeight = 357
         object NowRadioButton: TRadioButton
           Left = 35
           Height = 21
@@ -798,8 +796,8 @@ object ArchiveForm: TArchiveForm
           Caption = 'NowRadioButton'
           Checked = True
           OnChange = ScheduleRadioChange
-          State = cbChecked
           TabOrder = 0
+          TabStop = True
         end
         object RunOnceRadioButton: TRadioButton
           Left = 35
@@ -809,7 +807,6 @@ object ArchiveForm: TArchiveForm
           Caption = 'Run once only at'
           OnChange = ScheduleRadioChange
           TabOrder = 1
-          TabStop = False
         end
         object RepeatRadioButton: TRadioButton
           Left = 35
@@ -819,7 +816,6 @@ object ArchiveForm: TArchiveForm
           Caption = 'Run regularily at'
           OnChange = ScheduleRadioChange
           TabOrder = 2
-          TabStop = False
         end
         object RunOncePanel: TPanel
           Left = 5

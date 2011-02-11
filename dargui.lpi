@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <CONFIG>
   <ProjectOptions>
-    <Version Value="7"/>
+    <Version Value="9"/>
     <General>
       <Flags>
         <AlwaysBuild Value="False"/>
@@ -9,7 +9,6 @@
       </Flags>
       <SessionStorage Value="InProjectDir"/>
       <MainUnit Value="0"/>
-      <TargetFileExt Value=""/>
       <Title Value="DarGUI"/>
       <UseAppBundle Value="False"/>
       <Icon Value="0"/>
@@ -21,9 +20,9 @@
     <VersionInfo>
       <UseVersionInfo Value="True"/>
       <AutoIncrementBuild Value="True"/>
-      <CurrentMajorRevNr Value="4"/>
-      <CurrentBuildNr Value="556"/>
-      <ProjectVersion Value="0.4.0.101"/>
+      <MinorVersionNr Value="4"/>
+      <BuildNr Value="679"/>
+      <StringTable ProductVersion="0.4.0.101"/>
     </VersionInfo>
     <PublishOptions>
       <Version Value="2"/>
@@ -33,7 +32,7 @@
     <RunParams>
       <local>
         <FormatVersion Value="1"/>
-        <LaunchingApplication Use="True" PathPlusParams="/usr/X11R6/bin/xterm -T 'Lazarus Run Output' -e $(LazarusDir)/tools/runwait.sh $(TargetCmdLine)"/>
+        <LaunchingApplication PathPlusParams="/usr/bin/xterm -T 'Lazarus Run Output' -e $(LazarusDir)/tools/runwait.sh $(TargetCmdLine)"/>
       </local>
     </RunParams>
     <RequiredPackages Count="2">
@@ -49,7 +48,7 @@
       <Unit0>
         <Filename Value="dargui.lpr"/>
         <IsPartOfProject Value="True"/>
-        <UnitName Value="createsavedlg"/>
+        <UnitName Value="dargui"/>
       </Unit0>
       <Unit1>
         <Filename Value="main.pas"/>
@@ -186,7 +185,7 @@
     </Units>
   </ProjectOptions>
   <CompilerOptions>
-    <Version Value="8"/>
+    <Version Value="9"/>
     <SearchPaths>
       <Libraries Value="/home/usr/X11R6/lib/"/>
       <OtherUnitFiles Value="/home/malcolm/Projects/lazarus_svn/components/synedit/;Vte/"/>
@@ -196,7 +195,6 @@
       <SyntaxOptions>
         <CStyleOperator Value="False"/>
         <AllowLabel Value="False"/>
-        <UseAnsiStrings Value="True"/>
       </SyntaxOptions>
     </Parsing>
     <CodeGeneration>

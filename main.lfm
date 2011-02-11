@@ -1023,14 +1023,14 @@ object MainForm: TMainForm
     Width = 893
     Align = alClient
     AutoSize = True
-    ClientHeight = 300
-    ClientWidth = 889
+    ClientHeight = 302
+    ClientWidth = 891
     TabOrder = 4
     object ArchiveTreeView: TTreeView
       Left = 0
-      Height = 270
+      Height = 272
       Top = 30
-      Width = 889
+      Width = 891
       Align = alClient
       DefaultItemHeight = 18
       HideSelection = False
@@ -1053,7 +1053,7 @@ object MainForm: TMainForm
       Left = 0
       Height = 30
       Top = 0
-      Width = 889
+      Width = 891
       DragReorder = False
       Sections = <      
         item

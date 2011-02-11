@@ -1106,8 +1106,8 @@ LazarusResources.Add('TMainForm','FORMDATA',[
   +#12'ResizeAnchor'#7#8'akBottom'#11'ResizeStyle'#7#6'rsNone'#7'Visible'#8#0#0
   +#10'TScrollBox'#17'FileViewScrollBox'#4'Left'#2#0#6'Height'#3'0'#1#3'Top'#2
   +'0'#5'Width'#3'}'#3#5'Align'#7#8'alClient'#8'AutoSize'#9#12'ClientHeight'#3
-  +','#1#11'ClientWidth'#3'y'#3#8'TabOrder'#2#4#0#9'TTreeView'#15'ArchiveTreeVi'
-  +'ew'#4'Left'#2#0#6'Height'#3#14#1#3'Top'#2#30#5'Width'#3'y'#3#5'Align'#7#8'a'
+  +'.'#1#11'ClientWidth'#3'{'#3#8'TabOrder'#2#4#0#9'TTreeView'#15'ArchiveTreeVi'
+  +'ew'#4'Left'#2#0#6'Height'#3#16#1#3'Top'#2#30#5'Width'#3'{'#3#5'Align'#7#8'a'
   +'lClient'#17'DefaultItemHeight'#2#18#13'HideSelection'#8#8'HotTrack'#9#9'Pop'
   +'upMenu'#7#12'TreeViewMenu'#8'ReadOnly'#9#9'RowSelect'#9#10'ScrollBars'#7#14
   +'ssAutoVertical'#8'ShowRoot'#8#8'SortType'#7#6'stText'#8'TabOrder'#2#0#24'On'
@@ -1117,7 +1117,7 @@ LazarusResources.Add('TMainForm','FORMDATA',[
   +#11#19'tvoAllowMultiselect'#11'tvoHotTrack'#21'tvoKeepCollapsedNodes'#11'tvo'
   +'ReadOnly'#12'tvoRowSelect'#14'tvoShowButtons'#12'tvoShowLines'#11'tvoToolTi'
   +'ps'#0#13'TreeLineColor'#7#9'clDefault'#0#0#14'THeaderControl'#13'FileHeader'
-  +'Bar'#4'Left'#2#0#6'Height'#2#30#3'Top'#2#0#5'Width'#3'y'#3#11'DragReorder'#8
+  +'Bar'#4'Left'#2#0#6'Height'#2#30#3'Top'#2#0#5'Width'#3'{'#3#11'DragReorder'#8
   +#8'Sections'#14#1#9'Alignment'#7#13'taLeftJustify'#8'MinWidth'#3#150#0#4'Tex'
   +'t'#6#6'  File'#5'Width'#3#250#0#7'Visible'#9#0#1#9'Alignment'#7#13'taLeftJu'
   +'stify'#8'MinWidth'#2'2'#4'Text'#6#6'  Date'#5'Width'#3#200#0#7'Visible'#9#0

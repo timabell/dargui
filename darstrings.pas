@@ -44,6 +44,8 @@ resourcestring
   // used by darintf.CheckArchiveStatus and darintf.GetArchiveInformation
   dsArchiveEncrypted = 'The archive %S is encrypted and no encryption cipher has been given, cannot '
                        + 'open archive.';
+  dsWrongPassword    = 'Warning, the archive %S has been encrypted. A wrong key is not possible to '
+                       + 'detect, it would cause DAR to report the archive as corrupted';
   dsArchiveVersionTooHigh = 'The format version of the archive is too high for that software version, try '
                        + 'reading anyway?';
   dsAbortingNoUserResponse = 'Aborting program. User refused to continue while asking: ';

@@ -122,7 +122,7 @@ type
 
 type
   TControlType = (ctNone, ctEdit, ctCombobox, ctRadiobutton, ctCheckbox, ctDateEdit, ctListBox);
-  TArchiveOpenStatus =(aosOK, aosEncrypted, aosFileNotPresent, aosAborted, aosError);
+  TArchiveOpenStatus =(aosOK, aosEncrypted, aosWrongPassword, aosFileNotPresent, aosAborted, aosError);
 
   function GetDarVersion : TDarInfo;
   function CheckSupportingApps : integer;
@@ -132,7 +132,7 @@ type
   function GetNextFileName( FileBase: string): string;
   procedure GetTerminalCommand(var Terminal: string);
   function GetRunscriptPath: string;
-  function OpenArchive(var fn: string; TV: TTreeview; pw: string): integer;
+  function OpenArchive(fn: string; TV: TTreeview; pw: string): integer;
   function RunDarCommand ( Cmd, Title: string; x, y :integer ) : integer;
   function ShellCommand ( Cmd: string; var processoutput: string ) : integer;
   function PosFrom(const SubStr, Value: String; From: integer): integer;
@@ -143,7 +143,7 @@ type
   function GetArchiveInformation (fn: TFilename; Memo: TMemo; pw:string): integer;
   function ArchiveIsEncrypted( fn: TFilename; pass: PChar ) : Boolean;
   function GetInodeCount( archivename, key: string ):integer;
-  function ValidateArchive( var archivename: string; var pw: string ): Boolean;
+  function ValidateArchive( archivename: string; var pw: string ): Boolean;
   function CreateUniqueFileName(sPath: string): string;
 
   function TrimToBase(fn: string): string;
@@ -399,7 +399,7 @@ begin
 end;
 
 // ************** OpenArchive ***************** //
-function OpenArchive(var fn: string; TV : TTreeview; pw: string): integer;
+function OpenArchive(fn: string; TV : TTreeview; pw: string): integer;
 var
   Proc : TProcessLineTalk;
   rootnode: TTreeNode;
@@ -568,7 +568,7 @@ writeln(#10, 'Executed process ',  proc.ProcessID);
   finally
     Result := Proc.ExitStatus;
     Proc.Free;
-    proc.Destroy;
+    Proc := nil;
   end;  // try .. finally
 end;
 
@@ -713,6 +713,8 @@ begin
   DarErrorMessage := '';
   Proc := TProcess.Create(nil);
   Proc.CommandLine := DAR_EXECUTABLE + ' -l "' + fn + '" ' + pw + ' -v -Q';
+  //Proc.CommandLine := '"/usr/share/dargui/getstatus.sh" "' + DAR_EXECUTABLE + '" "' + fn + '" ' + pw + ' -v -Q';
+  //ShowMessage (Proc.CommandLine);
   Proc.Options := Proc.Options  + [poWaitOnExit, poUsePipes, poStderrToOutPut];
       try
       OutputStrings := TStringList.Create;
@@ -726,6 +728,8 @@ begin
                then Result := aosOK
             else if PosDarString(dsArchiveEncrypted, OutputStrings[x]) > 0
                then Result := aosEncrypted
+            else if PosDarString(dsWrongPassword, OutputStrings[x]) > 0
+               then Result := aosWrongPassword
             else if PosDarString(dsLastSliceNotFound, OutputStrings[x]) > 0
                then Result := aosFileNotPresent
             else if PosDarString(dsSliceNotFound, OutputStrings[x]) > 0
@@ -871,7 +875,7 @@ end;
 
 // checks to see if archive is encrypted. Requests password if encrypted
 // TODO: cannot handle absent final slice or archives created by newer versions of dar
-function ValidateArchive( var archivename: string; var pw: string ): Boolean;
+function ValidateArchive( archivename: string; var pw: string ): Boolean;
 begin
   result := true;
   {if ContainsSpecialChars(archivename) then

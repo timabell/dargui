@@ -300,7 +300,7 @@ begin
        end;
      end;
 
-  TEMP_DIRECTORY := '/tmp/dargui-' + GetEnvironmentVariable('USER') ;
+  TEMP_DIRECTORY := '/tmp/dargui-' + GetEnvironmentVariable('USER') + DirectorySeparator;
   if not FileExists(TEMP_DIRECTORY)
      then mkdir(TEMP_DIRECTORY);
 
@@ -692,7 +692,8 @@ begin
   fn := TMenuItem(Sender).Caption + '.1.dar';
   if FileExists(fn) then
      begin
-      fn := TMenuItem(Sender).Caption;
+       CurrentPass := '';
+       fn := TMenuItem(Sender).Caption;
       ArchiveStatus := CheckArchiveStatus(fn, '');
       if Archivestatus = aosEncrypted then
       if ValidateArchive(fn, CurrentPass)
@@ -925,6 +926,7 @@ begin
   OpenDialog.Filter := rsFilterDARArchives + '|*.1.dar';
   if OpenDialog.Execute then
      begin
+       CurrentPass := '';;
        StatusBar.Panels[SELECT_STATUSBAR].Text := #32 + rsMessBUSY;
        Application.ProcessMessages;
        fn := TrimToBase( OpenDialog.FileName );

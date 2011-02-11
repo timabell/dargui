@@ -90,7 +90,7 @@ var
   x: Integer;
 begin
   if Length(ArchiveName) > 0 then   // test if it is the right password - other problems not relevant here
-     Result := CheckArchiveStatus(ArchiveName, ' -K ":' + pw + '"')<>aosEncrypted
+     Result := CheckArchiveStatus(ArchiveName, ' -K ":' + pw + '"')<>aosWrongPassword
   else begin                        // user entered a new password - is it valid?
          Result := true;
          for x := 1 to Length(pw) do
