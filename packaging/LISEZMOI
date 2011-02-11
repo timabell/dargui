@@ -1,0 +1,29 @@
+LISEZMOI de l'archive binaire au format tar de DarGUI
+=======================================================
+
+6 Avril 2008
+
+Merci d'avoir téléchargé l'archive binaire au format tar de DarGUI.
+
+Pour installer DarGUI, ouvrir la console et aller dans le répertoire contenant ce fichier avec la commande cd.
+Exécuter "./install.sh" en tant que root ou "sudo ./install.sh" suivant votre distribution Linux.
+
+Pour désinstaller DarGUI, exécuter "./uninstall.sh".
+
+Pour lancer DarGUI exécuter "dargui" dans la console.
+
+DarGUI a été compilé avec les librairies GTK+ qui sont installées par défaut avec la plupart des distributions récentes de Linux.
+Si, malgré tout, dargui ne veut pas démarrer par manque de librairies, exécuter la commande "ldd /usr/bin/dargui" dans la console. Vous verez alors la liste des librairies nécessaires à DarGUI et un avertissement si celles-ci ne sont pas trouvées. Le nom des librairies devrait vous aider a définir quel package doit être installé afin de régler le problème.
+
+Pour fonctionner correctement, DarGUI a également besoin des programmes suivants :
+       dar
+       xterm
+       bash
+
+Support des langues:
+DarGUI supporte maintenant le français et l'espagnol.
+Le fichier matrice de la langue, dargui.pot, est installé dans /usr/share/dargui/locales
+Si vous pouvez améliorer la traduction en espagnol ou êtes capable de traduire
+dans une autre langue, veuillez me contacter à l'adresse email suivante.
+       
+Malcolm Poole <mgpoole@users.sourceforge.net>

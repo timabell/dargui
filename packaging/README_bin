@@ -1,0 +1,42 @@
+README for DarGUI binary tarball
+================================
+
+27 March 2009
+
+Thank you for downloading the binary tarball for DarGUI.
+
+To install DarGUI open a console and cd to the directory containing this file.
+Execute ./install.sh as root or sudo ./install.sh depending on your Linux distribution
+
+To uninstall DarGUI execute ./uninstall.sh
+
+To run DarGUI type dargui in a console
+
+DarGUI has been compiled using the GTK+ libraries, which are installed by default
+on many modern Linux distributions.
+If, however, dargui fails to run because of missing libraries try typing
+ldd /usr/bin/dargui in a console. You will see a list of the libraries required
+by DarGUI and a warning if any are not found. The name of the library will help you
+work out which package you need to install to fix the missing library.
+
+DarGUI also needs the following programs to work correctly:
+       dar
+       xterm
+       bash
+
+To use DarGUI's scheduling capabilities, atd and cron must be running.
+
+Language Support:
+DarGUI now has multilingual support.
+The language template file dargui.pot is installed in /usr/share/dargui/locales
+If you can improve the Spanish translation or are able to help with translation
+to another language please contact the author at the email address below.
+
+French translation provided by Gwen Trellu
+
+NB: Some functions of DarGUI may not work when used with a version of DAR which is 
+using DAR's Swedish localisation files. This can be fixed by deleting 
+or renaming the DAR localisation file dar.mo . Be warned, however, that this will
+mean that commandline DAR will then function only in English.
+       
+Malcolm Poole <mgpoole@users.sourceforge.net>

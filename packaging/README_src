@@ -1,0 +1,31 @@
+README for DarGUI source tarball
+================================
+
+27 March 2009
+
+Thank you for downloading the source tarball for DarGUI.
+
+DarGUI has been written using FreePascal and the Lazarus IDE.
+You will need to install both in order to compile this source.
+They can be found in the repositories of some distributions
+and packages for most platforms can be downloaded from
+http://sourceforge.net/project/showfiles.php?group_id=89339
+
+Documentation for FreePascal can be found at
+http://wiki.lazarus.freepascal.org/FPC_documentation
+
+Documentation for Lazarus and a number of tutorials can be found at
+http://wiki.lazarus.freepascal.org/Lazarus_Documentation
+Beginners will also find most Delphi beginners' tutorials useful.
+
+------------------------------------------------------------------------------
+
+Note that DarGUI also needs the following programs installed in order to work
+correctly. With the exception of Dar they are usually installed by default.
+       dar
+       xterm
+       bash
+       
+DarGUI is licensed under the GPL v.3
+Please let me know of any improvements that you make to DarGUI.
+Malcolm Poole <mgpoole@users.sourceforge.net>
