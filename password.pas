@@ -89,14 +89,12 @@ function TPasswordDlg.IsValidPassword ( pw: string ) : Boolean;
 var
   x: Integer;
 begin
-  if Length(ArchiveName) > 0 then   // test if it is the right password - other problems not relevant here
+  Trim(pw);  //NOTE: users may specify pw with leading or trailing spaces on commandline dar, but unsure if dar retains them
+  if Length(pw) > 0 then   // test if it is the right password - other problems not relevant here
      Result := CheckArchiveStatus(ArchiveName, ' -K ":' + pw + '"')<>aosWrongPassword
-  else begin                        // user entered a new password - is it valid?
-         Result := true;
-         for x := 1 to Length(pw) do
-             if pw[x] in [#0..#31,':'] then Result := false;
-         if Length(pw) = 0 then Result := false;
-       end;
+  else Result := false;
+  for x := 1 to Length(pw) do
+      if pw[x] in [#0..#31,':'] then Result := false;   // disallow ':' and control chars in password. Perhaps this should be more thorough
 end;
 
 function TPasswordDlg.Execute( anArchive: string ): TModalResult;
