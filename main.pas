@@ -327,6 +327,7 @@ var
     InfoFile: TSettingsFile;
     infofilename: String;
     refarch: string;
+    ArchiveStatus: TArchiveOpenStatus;
   begin
      try
       Enabled := false;
@@ -365,9 +366,15 @@ var
      if (RunDarCommand ( Command, rsCptCreatingArchive, Left + 100, Top + 150 )
        = 0 ) and (ArchiveForm.OpenCreatedArchiveCheck.Checked) then
         begin
+          CurrentPass := '';
           CurrentArchive := ArchiveForm.ArchiveDirectory.Text
                             + ArchiveForm.ArchiveBaseName;
-          if ValidateArchive(CurrentArchive, CurrentPass) then
+          ArchiveStatus := CheckArchiveStatus(CurrentArchive, '');
+          if Archivestatus = aosEncrypted then
+          if ValidateArchive(CurrentArchive, CurrentPass)
+             then ArchiveStatus := CheckArchiveStatus(CurrentArchive, CurrentPass)
+             else Archivestatus := aosAborted;
+          if Archivestatus = aosOK then
              begin
                 if OpenArchive(CurrentArchive, ArchiveTreeView, CurrentPass) = 0 then
                    begin
