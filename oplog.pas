@@ -90,7 +90,7 @@ end;
 procedure TOpLogForm.miExecuteCommandClick ( Sender: TObject ) ;
 begin
   RunDarCommand(OpList.Items[Oplist.ItemIndex], rsCptRepeatingAction, Left+100,
-    Top+150);
+    Top+150, false);
 end;
 
 procedure TOpLogForm.RefreshOpList;

@@ -133,7 +133,7 @@ type
   procedure GetTerminalCommand(var Terminal: string);
   function GetRunscriptPath: string;
   function OpenArchive(fn: string; TV: TTreeview; pw: string): integer;
-  function RunDarCommand ( Cmd, Title: string; x, y :integer ) : integer;
+  function RunDarCommand ( Cmd, Title: string; x, y :integer; log: Boolean ) : integer;
   function ShellCommand ( Cmd: string; var processoutput: string ) : integer;
   function PosFrom(const SubStr, Value: String; From: integer): integer;
   function SelectChildren(Node: TTreeNode): integer;
@@ -575,7 +575,7 @@ end;
 
 // ************** RunDarCommand ***************** //
 
-function RunDarCommand ( Cmd, Title: string; x, y :integer ) : integer;
+function RunDarCommand ( Cmd, Title: string; x, y :integer ; log: Boolean ) : integer;
 var
   Proc: TProcess;
   commandfile: TFileStream;
@@ -594,8 +594,8 @@ begin
                              +  ' -geometry 100x15+' + IntToStr(x) + '+' + IntToStr(y)
                              + ' -T "DarGUI: ' + Title
                              + '" '
-                             + ' -e ' + RunscriptPath + RUNSCRIPT + #32  + Cmd
-                             + ';' + Logfile;
+                             + ' -e ' + RunscriptPath + RUNSCRIPT + ' -c "' + Cmd;
+    if log then Proc.CommandLine := Proc.CommandLine + '" -l "' + Logfile + '"';
     Cmd := Proc.CommandLine; //for debugging
     Proc.Options := Proc.Options + [poStderrToOutPut];
     Proc.Execute;
@@ -847,7 +847,7 @@ begin
   end;
 end;
 
-function ArchiveIsEncrypted ( fn: TFilename; pass: PChar ) : Boolean;    //TODO: rewrite this
+function ArchiveIsEncrypted ( fn: TFilename; pass: PChar ) : Boolean;    //TODO: remove? (replaced by CheckArchiveStatus ? )
 var
   Proc : TProcess;
   Output: TStringList;
@@ -875,6 +875,7 @@ end;
 
 // checks to see if archive is encrypted. Requests password if encrypted
 // TODO: cannot handle absent final slice or archives created by newer versions of dar
+// TODO: this function has a lot of legacy baggage to tidy up
 function ValidateArchive( archivename: string; var pw: string ): Boolean;
 begin
   result := true;

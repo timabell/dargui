@@ -1,15 +1,28 @@
 #!/bin/bash
 
-p=$@
+Logfile=""
 
-CommandLine=${p%;*}
-Logfile=${p#*;}
+args=("$@")
+for ((i=0; i < $#; i++)) {
+  if [ "${args[$i]}" == "-c" ] ; then CommandLine="${args[$i+1]}"; fi
+  if [ "${args[$i]}" == "-l" ] ; then Logfile="${args[$i+1]}"; fi
+ #echo "${args[$i]}"
+}
 
+#echo $@
 echo $CommandLine
-echo $CommandLine > $Logfile
+#echo $Logfile
+if [ "$Logfile" != "" ] ; then
+  echo $CommandLine > $Logfile
+fi
 
 chmod +x /tmp/dargui-$USER/darcommand.sh
-/tmp/dargui-$USER/darcommand.sh  | /usr/share/dargui/darlogger $Logfile
+if [ "$Logfile" != "" ] ; then
+  /tmp/dargui-$USER/darcommand.sh  | /usr/share/dargui/darlogger $Logfile
+else
+  /tmp/dargui-$USER/darcommand.sh
+fi
+
 DarStatus=$?
 rm /tmp/dargui-$USER/darcommand.sh
 

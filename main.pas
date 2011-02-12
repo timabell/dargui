@@ -363,7 +363,7 @@ var
      MessageMemo.Lines.Add('Creating archive: ' + ArchiveForm.ArchiveName.Text);
      writeln('Creating archive: ' + ArchiveForm.ArchiveName.Text);
 
-     if (RunDarCommand ( Command, rsCptCreatingArchive, Left + 100, Top + 150 )
+     if (RunDarCommand ( Command, rsCptCreatingArchive, Left + 100, Top + 150 , true)
        = 0 ) and (ArchiveForm.OpenCreatedArchiveCheck.Checked) then
         begin
           CurrentPass := '';
@@ -1034,7 +1034,7 @@ begin
                        + '"' + Encrypt + ' -A "' + IsolateForm.ArchiveBox.Text + '" -v';
          if ArchiveIsEncrypted(IsolateForm.ArchiveBox.Text, nil)
             then Cmd := Cmd + ' -J :';
-         RunDarCommand ( Cmd, rsCptIsolating, Left + 100, Top + 150 ) ;
+         RunDarCommand ( Cmd, rsCptIsolating, Left + 100, Top + 150, false ) ;
          //OpLogForm.AddCommand(Cmd);
        end;
   finally
@@ -1071,8 +1071,7 @@ begin
              end;
         if CurrentPass <> '' then daroptions := ' -K : ' + daroptions;
         CommandLine := (DAR_EXECUTABLE + ' -x "' + CurrentArchive + '"  -R "' + RestoreForm.RestoreDirectoryEdit.Text + '"' + daroptions);
-        RunDarCommand ( CommandLine, rsCptRestoringFiles, Left + 100, Top + 150
-          ) ;
+        RunDarCommand ( CommandLine, rsCptRestoringFiles, Left + 100, Top + 150 , true ) ;
         OpLogForm.AddCommand(CommandLine);
         end
         else MessageMemo.Lines.Add ( rsErrRestoreAborted ) ;
@@ -1181,7 +1180,7 @@ begin
           then Cmd := Cmd + ' -K :';
        RunDarCommand(Cmd,
                         rsCptDarGUICheckingArchive,
-                        Left+100, Top+150);
+                        Left+100, Top+150, false);
       end;
 end;
 
@@ -1236,7 +1235,7 @@ begin
               batch.SaveToFile(batchfile);
               if CurrentPass <> '' then daroptions := ' -K : ' + daroptions;
               CommandLine := (DAR_EXECUTABLE + ' -x "' + CurrentArchive + '" -B "' + batchfile + '" ' + daroptions);
-              RunDarCommand(CommandLine, rsCptRestoringFiles, Left+100, Top+150);
+              RunDarCommand(CommandLine, rsCptRestoringFiles, Left+100, Top+150, true);
               //OpLogForm.AddCommand(CommandLine);
               OpLogForm.RefreshOpList;
               //TODO: check that some files do need to be restored: ie not all excluded by overwrite rule

@@ -122,7 +122,7 @@ begin
   Cmd :=  DAR_EXECUTABLE + ' -d "' + ArchiveBox.Text + '" -R "' + BaseDirBox.Text + '"' + verboseflag;
   if ArchiveIsEncrypted(ArchiveBox.Text, nil)
      then Cmd := Cmd + ' -K :';
-  if RunDarCommand ( Cmd, rsCptComparingFiles, Left + 100, Top + 150 ) = 0
+  if RunDarCommand ( Cmd, rsCptComparingFiles, Left + 100, Top + 150 , true) = 0
      then begin
        ResultListBox.Items.LoadFromFile(LogFile);
        if Pos(DAR_EXECUTABLE, ResultListBox.Items[0]) = 1
