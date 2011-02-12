@@ -146,9 +146,10 @@ implementation
 
 procedure VTE_child_exit_callback( Term: TObject);
 begin
+{ NOTE: This code disabled as does not work with libvte v0.16 [ < 0.20 ? ]
   if Assigned(TVTETerminal(Term).OnProcessExit)
      then TVTETerminal(Term).OnProcessExit(TVTETerminal(Term),
-           vte_terminal_get_child_exit_status  (PVteTerminal(TVTETerminal( Term).Vte))) ;
+           vte_terminal_get_child_exit_status  (PVteTerminal(TVTETerminal( Term).Vte))) ; }
 end;
 
 function VTE_window_destroy_callback(Term: TObject): gboolean;
