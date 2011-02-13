@@ -39,12 +39,12 @@ and&nbsp;DarGUI is not planned to be a means of&nbsp;accessing
 all its features. Instead, DarGUI is intended to simplify the most
 common tasks
 of making backup&nbsp;archives and restoring files from these and
-to provide a small number of additional features. DarGUI version 0.5.1
+to provide a small number of additional features. DarGUI version 0.5.2
 provides the following features:</p>
 <div class="itemizedlist">
 <ul type="disc">
 <li>
-<p><a name="feature-encryption"></a><a href="features.html#desc-filters">Filters</a></p>
+<p><a name="feature-filters"></a><a href="features.html#desc-filters">Filters</a></p>
 </li>
 <li>
 <p><a name="feature-diff-backup"></a><a href="features.html#desc-diff-backup">Differential backup</a></p>
@@ -64,6 +64,9 @@ compression</a></p>
 </li>
 <li>
 <p><a name="feature-testing"></a><a href="features.html#desc-testing">Archive testing</a></p>
+</li>
+<li>
+<p><a name="feature-encryption"></a><a href="features.html#desc-encryption">Archive encryption</a></p>
 </li>
 <li>
 <p><a name="feature-isolation"></a><a href="features.html#desc-isolation">Isolation</a></p>
@@ -91,7 +94,7 @@ archive names</a></p>
 Corbin's FEATURES document.</p>
 <div class="variablelist">
 <dl>
-<dt><a name="desc-encryption"></a><span class="term">Filters</span></dt>
+<dt><a name="desc-filters"></a><span class="term">Filters</span></dt>
 <dd>
 <p>DarGUI is able to backup everything from a single file to
 an entire filesystem. Additionally a mechanism of filters enables the
@@ -166,6 +169,11 @@ detect data corruption in the archive. If data corruption occurs in a
 file it will not be possible to restore it but the other files in the
 archive can
 be restored even when compression is used. <a href="features.html" title="Features">(back
+to top)</a></p>
+</dd>
+<dt><a name="desc-encryption"></a><span class="term">Archive encryption</span></dt>
+<dd>
+<p>Dar archives can be encrypted using the Blowfish cypher. <a href="features.html" title="Features">(back
 to top)</a></p>
 </dd>
 <dt><a name="desc-isolation"></a><span class="term">Isolation</span></dt>

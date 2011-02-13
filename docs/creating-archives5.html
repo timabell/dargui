@@ -1,40 +1,36 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
-<html>
-<head>
-  <title>Chapter 2: Creating Archives - General Options </title>
+<html><head><title>Chapter 2: Creating Archives - General Options</title>
 
+  
 
+  
+  
   <link rel="stylesheet" href="kde-default.css" type="text/css">
 
+  
   <meta name="keywords" content="dargui, backup, archive, slice, disk">
 
+  
   <link rel="home" href="index.html" title="index">
 
+  
   <link rel="up" href="index.html" title="DarGUI Documentation Index">
 
+  
   <link rel="previous" href="using-dargui.html" title="templateprev">
 
-  <link rel="next" href="#.html" title="templatenext">
-
-</head>
-<body style="color: black; background-color: white;" alink="#0000ff" link="#0000ff" vlink="#840084">
-
+  
+  <link rel="next" href="#.html" title="templatenext"></head><body style="color: black; background-color: white;" alink="#0000ff" link="#0000ff" vlink="#840084">
 <br>
 
 <table class="header" width="100%">
 
   <tbody>
-
     <tr>
-
       <td class="navLeft" align="left" width="33%"><a href="creating-archives4.html">Prev</a></td>
-
       <td class="navCenter" align="center" valign="top" width="34%"><a href="index.html">Home</a></td>
-
       <td class="navRight" align="right" width="33%"> <a href="creating-archives6.html">Next</a></td>
-
     </tr>
-
   </tbody>
 </table>
 
@@ -43,66 +39,85 @@
 <div>
 <h2 class="title"><a name="introduction"></a>Chapter
 2. Using DarGUI</h2>
-
 </div>
-
 </div>
-
 <div class="sect1">
 <div class="titlepage">
 <div>
-<h2 class="title" style="clear: both;"><a name="overview"></a>Creating archives: General options</h2>
-
+<h2 class="title" style="clear: both;"><a name="overview"></a>Creating
+archives: General options</h2>
 </div>
-
 </div>
-<p>The "Options" tab of the "New archive" window provides a number of extra options, including division of an archive into "slices", encryption and script creation.</p>
-<p><IMG src="images/newarchivetab5.png" alt="Screenshot of Archive tab" width="522" height="418" align="middle" border="0"></p>
+<p>The "Options" tab of the "New archive" window provides a number of
+extra options, including division of an archive into "slices",
+encryption and script creation.</p>
+<p><img src="images/newarchivetab5.png" alt="Screenshot of Archive tab" align="middle" border="0" height="418" width="522"></p>
 <ul>
-<li><p><strong>Read DAR configuration files</strong> - if this option is selected Dar will read the configuration files $HOME/.darrc and /etc/darrc if they are present. Instructions in the configuration files will be parsed after reading the DarGUI settings. For more information about configuration files see the DAR manual page.</p>
-</li>
-<li><p><strong>Use slices</strong> - Dar can split an archive up into a number of files or "slices" of a specified maximum size, making it possible, for example, to store several Gb of data on an appropriate number of CDs. Slice filenames are composed of the archive base name followed by a dot, a number, a dot and the extension (dar).<br>
-You can tell Dar to <strong>pause between slices</strong> to allow another activity to be carried out, for example, copying the slice to CD.</p>
-</li>
-<li><p><strong>Encrypt archive using blowfish</strong> - Dar archives can be encrypted using the Blowfish cypher.  An encrypted archive can only be read if the same pass phrase is given as that used to encrypt it.</p>
-</li>
-<li><p><strong>Open archive when created</strong> - After creating an archive, DarGUI will attempt to open it if this option is selected.</p>
-</li>
-<li><p><strong>Save script as</strong> - Select this option to produce a backup script using the current settings. You must also give a suitable filename in a location where you have write permissions.</p>
-</li>
-<li><p><strong>Test run only</strong> - When this option is selected Dar will produce messages as if an archive is being created, but no archive will be written.</p>
-</li>
+  <li>
+    <p><strong>Read DAR configuration files</strong> - if this option
+is selected Dar will read the configuration files $HOME/.darrc and
+/etc/darrc if they are present. Instructions in the configuration files
+will be parsed after reading the DarGUI settings. For more information
+about configuration files see the DAR manual page.</p>
+  </li>
+  <li>
+    <p><strong>Use slices</strong> - Dar can split an archive up into a
+number of files or "slices" of a specified maximum size, making it
+possible, for example, to store several Gb of data on an appropriate
+number of CDs. Slice filenames are composed of the archive base name
+followed by a dot, a number, a dot and the extension (dar).<br>
+You can tell Dar to <strong>pause between slices</strong> to allow
+another activity to be carried out, for example, copying the slice to
+CD-ROM.<br>
+<b><br>
+Note:</b>to read the contents of an archive which is composed of more than
+one slice DarGUI needs to be able to access both the first and last
+slices, in the same location. This makes it impossible to read the
+contents of an archive which has been stored, for example, on a number
+of CD-ROM unless the <span style="font-weight: bold;">Slice size</span> on the <a href="creating-archives5.html">Options tab</a>
+is set to slightly less than
+half of the size of the storage medium - eg 320Mb for a 650Mb CD-ROM.
+Two slices can then be saved on each disk, ensuring that the first and
+final slices are saved on the same disk.</p>
+  </li>
+  <li>
+    <p><strong>Encrypt archive using blowfish</strong> - Dar archives
+can be encrypted using the Blowfish cypher. An encrypted archive can
+only be read if the same pass phrase is given as that used to encrypt
+it.</p>
+  </li>
+  <li>
+    <p><strong>Open archive when created</strong> - After creating an
+archive, DarGUI will attempt to open it if this option is selected.</p>
+  </li>
+  <li>
+    <p><strong>Save script as</strong> - Select this option to produce
+a backup script using the current settings. You must also give a
+suitable filename in a location where you have write permissions.</p>
+  </li>
+  <li>
+    <p><strong>Test run only</strong> - When this option is selected
+Dar will produce messages as if an archive is being created, but no
+archive will be written.</p>
+  </li>
 </ul>
 </div>
-
 </div>
 
 <table class="bottom-nav" width="100%">
 
   <tbody>
-
     <tr>
-
       <td class="navLeft" align="left" valign="top" width="33%"><a href="creating-archives4.html">Prev</a></td>
-
       <td class="navCenter" align="center" valign="top" width="34%"><a href="index.html">Home</a></td>
-
       <td class="navRight" align="right" valign="top" width="33%"><a href="creating-archives6.html">Next</a></td>
-
     </tr>
-
     <tr>
-
       <td class="navLeft" align="left" width="33%">Compression </td>
-
       <td class="navCenter" align="center" width="34%"><a href="index.html">Up</a></td>
-
       <td class="navRight" align="right" width="33%">Scheduling</td>
-
     </tr>
-
   </tbody>
 </table>
 
-</body>
-</html>
+</body></html>

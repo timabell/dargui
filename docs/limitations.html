@@ -1,153 +1,118 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
-<html lang="en"><head><meta content="text/html;charset=ISO-8859-1" http-equiv="Content-Type">
+<html lang="en"><head>
+  
+  <meta content="text/html;charset=ISO-8859-1" http-equiv="Content-Type">
+  <title>Introduction: Limitations and bugs</title>
 
   
-
-
   
-  
-  <title>Introduction: Limitations and bugs</title><link rel="stylesheet" href="kde-default.css" type="text/css">
-
+  <link rel="stylesheet" href="kde-default.css" type="text/css">
 
   
   <meta name="keywords" content="dargui, backup, archive, slice, disk">
 
-
   
   <link rel="home" href="index.html" title="template">
-
 
   
   <link rel="up" href="index.html" title="DarGUI Documentation Index">
 
-
   
   <link rel="previous" href="features.html" title="Features">
 
-
   
-  <link rel="next" href="#.html" title="template"></head>
+  <link rel="next" href="#.html" title="template">
 
-<body style="color: black; background-color: white;" alink="#0000ff" link="#0000ff" vlink="#840084">
-
-
+</head><body style="color: black; background-color: white;" alink="#0000ff" link="#0000ff" vlink="#840084">
 <br>
-
 
 <table class="header" width="100%">
 
-
   <tbody>
-
-
     <tr>
-
-
       <td class="navLeft" align="left" width="33%"><a accesskey="p" href="features.html">Prev</a></td>
-
-
-      <td class="navCenter" align="center" width="34%">
+      <td class="navCenter" align="center" width="34%"> <br>
       </td>
-
-
-      <td class="navRight" align="right" width="33%">
-      <a accesskey="n" href="using-dargui.html">Next</a></td>
-
-
+      <td class="navRight" align="right" width="33%"> <a accesskey="n" href="using-dargui.html">Next</a></td>
     </tr>
-
-
-  
   </tbody>
 </table>
-
 
 <div class="chapter">
 <div class="titlepage">
 <div>
 <h2 class="title"><a name="introduction"></a>Chapter 1. Introduction</h2>
-
-
 </div>
-
-
 </div>
-
-
 <div class="sect1">
 <div class="titlepage">
 <div>
 <h2 class="title"><a name="overview"></a>Limitations of DarGUI</h2>
-
-
 </div>
-
 <p>- Unimplemented features of Dar: While DarGUI attempts to
 provide access to the most common functionality of Dar, there are many
-other features which are not implemented. These include:</p><ul><li>Extended Attributes</li><li>include-from-file/exclude-from-file (-[ and -] ) options</li><li>Merging of archives</li><li>Execution of a script or command between slices</li><li>Support&nbsp;for the nodump option</li></ul>
-
-<p>- Opening large archives: When opening archives DarGUI reads the output from a Dar command, interprets it and displays it. This is more time consuming than using the libdar library as KDar does and as a result DarGUI can be quite slow to open archives which contain tens of thousands of files, especially on systems with older processors.</p>
-
-<p>- DarGUI cannot open or create an archive if its name includes apostrophes, double quotes or other characters which have a special meaning in bash scripts. These are   <strong>&#124;  &amp; &#059; &#040; &#041; &#060; &#062; &#034; &#039;</strong>.  </p>
-
+other features which are not implemented. These include:</p>
+<ul>
+  <li>Extended Attributes</li>
+  <li>include-from-file/exclude-from-file (-[ and -] ) options</li>
+  <li>Merging of archives</li>
+  <li>Execution of a script or command between slices</li>
+  <li>Support&nbsp;for the nodump option</li>
+</ul>
+<p>- Opening large archives: When opening archives DarGUI reads the
+output from a Dar command, interprets it and displays it. This is more
+time consuming than using the libdar library as KDar does and as a
+result DarGUI can be quite slow to open archives which contain tens of
+thousands of files, especially on systems with older processors.</p>
+<p>- DarGUI cannot open or create an archive if its name includes
+apostrophes, double quotes or other characters which have a special
+meaning in bash scripts. These are <strong>| &amp; ; ( ) &lt; &gt; " '</strong>.<br>
+</p>
+<p>- DarGUI cannot open an archive which was created with a more recent
+version of dar than the version available to DarGUI. This limitation
+has been filed as bug <a href="http://sourceforge.net/tracker/?func=detail&amp;aid=2878685&amp;group_id=211843&amp;atid=1019387">#2878685</a>
+.<br>
+</p>
+<p>- to read the contents of an archive which is composed of more than
+one slice DarGUI needs to be able to access both the first and last
+slices, in the same folder. This makes it impossible to read the
+contents of an archive which has been stored, for example, on a number
+of CD-ROM unless it is done in the following manner: set the <span style="font-weight: bold;">Slice size</span> on the <a href="creating-archives5.html">Options tab</a> to slightly less than
+half of the size of your storage medium - eg 320Mb for a 650Mb CD-ROM.
+You can then save two slices on each disk, ensuring that the first and
+final slices are saved on the same disk. This limitation has been filed
+as bug <a href="http://sourceforge.net/tracker/?func=detail&amp;aid=2840912&amp;group_id=211843&amp;atid=1019387">#2840912</a>.
+</p>
 <hr>
 <div>
 <h2 class="title"><a name="overview"></a>Bugs</h2>
-
 </div>
-<p>At the time of writing we are aware of the following bugs, but others probably exist. If you find a bug or something that is not working as you think it should, please contact the author, Malcolm Poole, at <A href="mailto:mgpoole@users.sourceforge.net">mgpoole@users.sourceforge.net</A>.</p>
+<p>At the time of writing we are aware of the following bugs, but
+others probably exist. If you find a bug or something that is not
+working as you think it should, please contact the author, Malcolm
+Poole, at <a href="mailto:mgpoole@users.sourceforge.net">mgpoole@users.sourceforge.net</a>.</p>
 <ol>
-<li><strong>Restore selected fails on filename with apostrophe</strong> (bug <A href="https://sourceforge.net/tracker2/?func=detail&aid=2473539&group_id=211843&atid=1019387">#2473539</A>)- this is actually a DAR bug, but <A href="faq.html#apostrophebug">a workaround exists</A> in DAR but not from within DarGUI. </li>
-
+  <li><strong>Restore selected fails on filename with apostrophe</strong>
+(bug <a href="https://sourceforge.net/tracker2/?func=detail&amp;aid=2473539&amp;group_id=211843&amp;atid=1019387">#2473539</a>)-
+this is actually a DAR bug, but <a href="faq.html#apostrophebug">a
+workaround exists</a> in DAR but not from within DarGUI. </li>
 </ol>
-
-
 </div>
-
-
 </div>
-
-
 <table class="bottom-nav" width="100%">
-
-
   <tbody>
-
-
     <tr>
-
-
       <td class="navLeft" align="left" valign="top" width="33%"><a href="features.html">Prev</a></td>
-
-
       <td class="navCenter" align="center" valign="top" width="34%"><a href="index.html">Home</a></td>
-
-
       <td class="navRight" align="right" valign="top" width="33%"><a href="using-dargui.html">Next</a></td>
-
-
     </tr>
-
-
     <tr>
-
-
       <td class="navLeft" align="left" width="33%">Features </td>
-
-
       <td class="navCenter" align="center" width="34%"><a href="index.html">Up</a></td>
-
-
-      <td class="navRight" align="right" width="33%">
-Using DarGUI</td>
-
-
+      <td class="navRight" align="right" width="33%">Using DarGUI</td>
     </tr>
-
-
-  
   </tbody>
 </table>
-
+</div>
 
 </body></html>

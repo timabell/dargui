@@ -1,3 +1,13 @@
+2011-02-XX DarGUI 0.5.2
+	* Bug fix: cannot restore files from encrypted archive
+	* User preferences dialog added
+	* Location of dar executable can be set by user
+	* Cron no longer unavailable as a result of no crontab found
+	* Added Swedish translation files provided by Peter Landgren
+	* fixed bug #2773134 Missing switch for encrypted reference archive
+	* Improved pre-opening routine to detect multiple slice archives and errors
+	* Source now includes packaging script and associated files
+
 2009-03-27 DarGUI 0.5.1
 	* Improved handling of larger than normal GUI fonts
 	* Implemented ability to handle French and German output from Dar 

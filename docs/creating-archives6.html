@@ -1,38 +1,37 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
-<html><head><title>Chapter 2: Creating Archives - General Options</title>
-
+<html><head>
+  <title>Chapter 2: Creating Archives - General Options</title>
 
   
-
-
+  
   <link rel="stylesheet" href="kde-default.css" type="text/css">
 
+  
   <meta name="keywords" content="dargui, backup, archive, slice, disk">
 
+  
   <link rel="home" href="index.html" title="index">
 
+  
   <link rel="up" href="index.html" title="DarGUI Documentation Index">
 
+  
   <link rel="previous" href="using-dargui.html" title="templateprev">
 
-  <link rel="next" href="#.html" title="templatenext"></head><body style="color: black; background-color: white;" alink="#0000ff" link="#0000ff" vlink="#840084">
+  
+  <link rel="next" href="#.html" title="templatenext">
 
+</head><body style="color: black; background-color: white;" alink="#0000ff" link="#0000ff" vlink="#840084">
 <br>
 
 <table class="header" width="100%">
 
   <tbody>
-
     <tr>
-
       <td class="navLeft" align="left" width="33%"><a href="creating-archives5.html">Prev</a></td>
-
       <td class="navCenter" align="center" valign="top" width="34%"><a href="index.html">Home</a></td>
-
       <td class="navRight" align="right" width="33%"> <a href="creating-archives7.html">Next</a></td>
-
     </tr>
-
   </tbody>
 </table>
 
@@ -41,74 +40,72 @@
 <div>
 <h2 class="title"><a name="introduction"></a>Chapter
 2. Using DarGUI</h2>
-
 </div>
-
 </div>
-
 <div class="sect1">
 <div class="titlepage">
 <div>
-<h2 class="title" style="clear: both;"><a name="overview"></a>Creating archives: Scheduled backups</h2>
-
+<h2 class="title" style="clear: both;"><a name="overview"></a>Creating
+archives: Scheduled backups</h2>
 </div>
-
 </div>
-<p>The "Scheduling" tab of the "New archive" window allows backup scripts to be executed automatically at a certain time or times.</p>
+<p>The "Scheduling" tab of the "New archive" window allows backup
+scripts to be executed automatically at a certain time or times.</p>
 <p><img src="images/newarchivetab6.png" alt="Screenshot of Archive tab" align="middle" border="0" height="418" width="522"></p>
 <ul>
-<li><p><strong>Create archive immediately</strong> - the archive will
+  <li>
+    <p><strong>Create archive immediately</strong> - the archive will
 be created immediately when the "Enter" key is pressed or the "OK"
 button is selected, unless the "Save script as" option has been
 selected, in which case the script will be written and the user will be
 asked if it should be executed.<br>
-    <span style="font-weight: bold;">NB: </span>If a differential backup is being created, using a reference archive which has been
+    <span style="font-weight: bold;">NB: </span>If a differential
+backup is being created, using a reference archive which has been
 encrypted, this option will be the only one available.<br>
-</p>
-</li>
-<li><p><strong>Run once only at</strong> - the script will be executed once only, at the specified time on the selected date. This function uses the "<a href="http://linux.die.net/man/1/at">at</a>" utility. If the "atd" daemon is not running or the "at" executable cannot be found this option will not be available.</p>
-</li>
-<li><p><strong>Run regularly at</strong> - the script will be executed as a "<a href="http://linux.die.net/man/8/cron">cron</a>"
+    </p>
+  </li>
+  <li>
+    <p><strong>Run once only at</strong> - the script will be executed
+once only, at the specified time on the selected date. This function
+uses the "<a href="http://linux.die.net/man/1/at">at</a>" utility. If
+the "atd" daemon is not running or the "at" executable cannot be found
+this option will not be available.</p>
+  </li>
+  <li>
+    <p><strong>Run regularly at</strong> - the script will be executed
+as a "<a href="http://linux.die.net/man/8/cron">cron</a>"
 task. A job is executed when the time/date specification fields all
 match the current time and date. The option "*" means "use all values".
 The example in the screenshot would run every Wednesday at 10:20<br>
- If the "crond" daemon is not running or the "crontab" executable cannot be found this option will not be available.<br> 
+If the "crond" daemon is not running or the "crontab" executable cannot
+be found this option will not be available.<br>
 Further guidance on using cron scheduling:
-</p><ul>
-<li><a href="http://en.wikipedia.org/wiki/Cron">Cron (Wikipedia)</a></li>
-<li><a href="http://www.hxpi.com/cron_sandbox.php">Cron Sandbox at HxPI</a></li>
-</ul>
-<p></p>
-</li>
+    </p>
+    <ul>
+      <li><a href="http://en.wikipedia.org/wiki/Cron">Cron (Wikipedia)</a></li>
+      <li><a href="http://www.thegeekstuff.com/2009/06/15-practical-crontab-examples/">15
+awesome Cron Job examples<br>
+</a></li>
+    </ul>
+    
+  </li>
 </ul>
 </div>
-
 </div>
 
 <table class="bottom-nav" width="100%">
 
   <tbody>
-
     <tr>
-
       <td class="navLeft" align="left" valign="top" width="33%"><a href="creating-archives4.html">Prev</a></td>
-
       <td class="navCenter" align="center" valign="top" width="34%"><a href="index.html">Home</a></td>
-
       <td class="navRight" align="right" valign="top" width="33%"><a href="creating-archives7.html">Next</a></td>
-
     </tr>
-
     <tr>
-
       <td class="navLeft" align="left" width="33%">Compression </td>
-
       <td class="navCenter" align="center" width="34%"><a href="index.html">Up</a></td>
-
       <td class="navRight" align="right" width="33%">Saved settings</td>
-
     </tr>
-
   </tbody>
 </table>
 

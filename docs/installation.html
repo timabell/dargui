@@ -1,41 +1,37 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
-<html>
-<head>
-  <title>Frequently asked questions</title>
+<html><head>
+  <title>Compilation and installation</title>
 
-
+  
+  
   <link rel="stylesheet" href="kde-default.css" type="text/css">
 
+  
   <meta name="keywords" content="dargui, backup, archive, slice, disk">
 
+  
   <link rel="home" href="index.html" title="template">
 
+  
   <link rel="up" href="index.html" title="Restoring Archives">
 
+  
   <link rel="previous" href="backup-schedules.html" title="templateprev">
 
+  
   <link rel="next" href="installation.html" title="templatenext">
 
-</head>
-<body style="color: black; background-color: white;" alink="#0000ff" link="#0000ff" vlink="#840084">
-
+</head><body style="color: black; background-color: white;" alink="#0000ff" link="#0000ff" vlink="#840084">
 <br>
 
 <table class="header" width="100%">
 
   <tbody>
-
     <tr>
-
       <td class="navLeft" align="left" width="33%"><a href="faq.html">Prev</a></td>
-
       <td class="navCenter" align="center" valign="top" width="34%"><a href="index.html">Home</a></td>
-
-      <td class="navRight" align="right" width="33%">
-      &nbsp;</td>
-
+      <td class="navRight" align="right" width="33%"> &nbsp;</td>
     </tr>
-
   </tbody>
 </table>
 
@@ -44,60 +40,60 @@
 <div>
 <h2 class="title"><a name="introduction"></a>Chapter
 4. Compilation and Installation</h2>
-
 </div>
-
 </div>
-
 <ul class="sect1">
-<div class="titlepage">
-<div>
-<h2 class="title" style="clear: both;"><a name="overview"></a>How to install DarGUI</h2>
-
-</div>
-
-</div>
-
-<p><strong>deb and rpm packages</strong> - DarGUI can be downloaded from Sourceforge as Debian or RPM packages which can be installed with the appropriate tools.</p>
-
-<p><strong>Binary tarball</strong> - DarGUI can be downloaded from Sourceforge as a binary archive, compressed using gzip. To install using this method, extract the contents of the archive to a convenient location and then execute the script <em>install.sh</em>. If you should later want to remove DarGUI you can do this by executing the script <em>uninstall.sh</em>.</p>
-
-<p><strong>Compilation from source</strong> - DarGUI is written in Freepascal using the Lazarus Component Library. To compile DarGUI from source you will need to install the most recent versions of Freepascal and Lazarus from the <A href="http://sourceforge.net/project/showfiles.php?group_id=89339">Lazarus download page</A>. Versions available through your distribution's package manager may not be recent enough to have all the necessary components.<br>
-To compile, startup Lazarus and open the DarGUI project file using Project->Open Project from the main menu. There are two project files in the DarGUI source directory, named <em>dargui.lpi</em> and <em>darlogger.lpi</em>. You will need to open and compile both projects. To compile, select Run->Build all.<br>
-Release versions 0.5.0 and 0.5.1 of DarGUI were compiled using Freepascal 2.2.2 [2009/01/19] and Lazarus 0.9.27 beta SVN revision 18340.</p>
-
-<p><strong>Requirements</strong> - DarGUI uses <strong>xterm</strong> and the <strong>bash</strong> shell to run dar scripts. To schedule automatic backups <strong>atd</strong> and/or <strong>cron</strong> are required.</p>
-
-</div>
-
+  <div class="titlepage">
+  <div>
+  <h2 class="title" style="clear: both;"><a name="overview"></a>How to
+install DarGUI</h2>
+  </div>
+  </div>
+  <p><strong>deb and rpm packages</strong> - DarGUI can be downloaded
+from Sourceforge as Debian or RPM packages which can be installed with
+the appropriate tools.</p>
+  <p><strong>Binary tarball</strong> - DarGUI can be downloaded from
+Sourceforge as a binary archive, compressed using gzip. To install
+using this method, extract the contents of the archive to a convenient
+location and then execute the script <em>install.sh</em>. If you
+should later want to remove DarGUI you can do this by executing the
+script <em>uninstall.sh</em>.</p>
+  <p><strong>Compilation from source</strong> - DarGUI is written in
+Freepascal using the Lazarus Component Library. To compile DarGUI from
+source you will need to install&nbsp; Freepascal and Lazarus either
+from your distribution's package manager or from the <a href="http://sourceforge.net/project/showfiles.php?group_id=89339">Lazarus
+download page</a>. Note that versions available through your
+distribution's package manager may not be recent enough to have all the
+necessary components.<br>
+To compile, startup Lazarus and open the DarGUI project file using
+Project-&gt;Open Project from the main menu. There are two project
+files in the DarGUI source directory, named <em>dargui.lpi</em> and <em>darlogger.lpi</em>.
+You will need to open and compile both projects. To compile, select
+Run-&gt;Build all.<br>
+Release version 0.5.2 of DarGUI was compiled using Freepascal 2.4.0 and
+Lazarus 0.9.29 beta SVN revision 27340.</p>
+  <p><strong>Requirements</strong> - DarGUI uses <strong>xterm</strong>
+and the <strong>bash</strong> shell to run dar scripts. DarGUI 0.5.2
+also requires libvte.so.9. To schedule automatic backups <strong>atd</strong>
+and/or <strong>cron</strong> are required.</p>
+</ul>
 </div>
 
 <table class="bottom-nav" width="100%">
 
   <tbody>
-
     <tr>
-
       <td class="navLeft" align="left" valign="top" width="33%"><a href="faq.html">Prev</a></td>
-
       <td class="navCenter" align="center" valign="top" width="34%"><a href="index.html">Home</a></td>
-
-      <td class="navRight" align="right" valign="top" width="33%">&nbsp</td>
-
+      <td class="navRight" align="right" valign="top" width="33%">&nbsp;</td>
     </tr>
-
     <tr>
-
-      <td class="navLeft" align="left" width="33%">Viewing scheduled backups</td>
-
+      <td class="navLeft" align="left" width="33%">Frequently asked questions<br>
+</td>
       <td class="navCenter" align="center" width="34%"><a href="index.html">Up</a></td>
-
       <td class="navRight" align="right" width="33%">&nbsp;</td>
-
     </tr>
-
   </tbody>
 </table>
 
-</body>
-</html>
+</body></html>
