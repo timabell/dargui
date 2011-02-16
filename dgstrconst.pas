@@ -118,6 +118,7 @@ rsSaveSettingsAs = 'Save backup settings as';
 rsCreateArchiveImmedia = 'Create archive immediately';
 rsOpenArchiveWhenCompl = 'Open archive when created';
 rsEncryptArchive = 'Encrypt archive using blowfish';
+rsEncryptCatalogue = 'Encrypt catalogue using blowfish';
 rsSaveSettings = 'Save current backup settings';
 rsLoadSettings = 'Load backup settings from file';
 rsButtonClose = 'Close';

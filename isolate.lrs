@@ -24,8 +24,8 @@ LazarusResources.Add('TIsolateForm','FORMDATA',[
   +'chiveButtonClick'#8'TabOrder'#2#1#0#0#7'TButton'#15'CatalogueButton'#4'Left'
   +#3'p'#1#6'Height'#2'#'#3'Top'#2'e'#5'Width'#2'Z'#7'Caption'#6#6'Browse'#7'On'
   +'Click'#7#20'CatalogueButtonClick'#8'TabOrder'#2#3#0#0#9'TCheckBox'#19'Encry'
-  +'ptArchiveCheck'#4'Left'#2'!'#6'Height'#2#21#3'Top'#3#144#0#5'Width'#3#157#0
-  +#7'Caption'#6#19'EncryptArchiveCheck'#8'TabOrder'#2#4#0#0#0#6'TPanel'#13'OKC'
+  +'ptCatalogCheck'#4'Left'#2'!'#6'Height'#2#21#3'Top'#3#144#0#5'Width'#3#159#0
+  +#7'Caption'#6#19'EncryptCatalogCheck'#8'TabOrder'#2#4#0#0#0#6'TPanel'#13'OKC'
   +'ancelPanel'#4'Left'#2#0#6'Height'#2'B'#3'Top'#3#207#0#5'Width'#3#223#1#5'Al'
   +'ign'#7#8'alBottom'#12'ClientHeight'#2'B'#11'ClientWidth'#3#223#1#8'TabOrder'
   +#2#1#0#7'TBitBtn'#8'OKButton'#4'Left'#2'p'#6'Height'#2'#'#3'Top'#2#16#5'Widt'

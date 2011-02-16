@@ -71,12 +71,12 @@ object IsolateForm: TIsolateForm
       OnClick = CatalogueButtonClick
       TabOrder = 3
     end
-    object EncryptArchiveCheck: TCheckBox
+    object EncryptCatalogCheck: TCheckBox
       Left = 33
       Height = 21
       Top = 144
-      Width = 157
-      Caption = 'EncryptArchiveCheck'
+      Width = 159
+      Caption = 'EncryptCatalogCheck'
       TabOrder = 4
     end
   end
