@@ -1,0 +1,9 @@
+Package: dargui
+Version: 0.5.2beta
+Section: x11
+Priority: optional
+Architecture: i386
+Depends: dar, libx11-6, libgtk2.0-0, libglib2.0-0, libpango1.0-0, libcairo2, libatk1.0-0, xterm, bash, libvte9
+Maintainer: Malcolm Poole <mgpoole@users.sourceforge.net>
+Provides: dargui
+Description: DarGUI is a simple graphical interface for Denis Corbin's Disk ARchive utility (DAR)

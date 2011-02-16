@@ -21,9 +21,15 @@ do
 done
 
 if test -w /usr/bin ; then
-  echo "WARNING! - it is dangerous to run packaging tools as root"
-  read -p "Are you sure you want to continue? [y/N] " K
-  if [ ![ $K="y" || $K="Y" ]] ; then echo "Aborted script"; exit 0 ;  fi
+  echo "WARNING! - running packaging tools as root is not recommended!"
+  echo "Script aborted"
+  exit 0
+fi
+
+which fakeroot > /dev/null
+if [ ! $? -eq 0 ] ; then
+   echo "Please install fakeroot and try again."
+   exit 0
 fi
 
 # let's find out what editors we have
@@ -104,9 +110,11 @@ if [ $tar -eq 0 ]  || [ $all -eq 0 ] ; then
   cp $VERBOSITY $BASEDIR/docs/changelog $TARDIR/doc/
   rm -f $TARDIR/*~
   rm -f $TARDIR/doc/*~
+  find $TARDIR -name ".svn" -exec rm -rf {} \ > /dev/null   # remove SVN directories
+  find $TARDIR -name ".directory" -exec rm -rf {} \ > /dev/null #remove .directory files
   echo creating tarball $RELEASENAME-bin.tar.gz
   cd $TARDIR/..
-  tar -cvzf ../$RELEASENAME-bin.tar.gz $RELEASENAME/ > /dev/null
+  fakeroot tar -cvzf ../$RELEASENAME-bin.tar.gz $RELEASENAME/ > /dev/null
   if [ $? -eq 0 ] ; then
   	echo binary tarball created successfully
   else
@@ -156,6 +164,12 @@ if [ $deb -eq 0 ] || [ $all -eq 0 ] || [ $rpm -eq 0 ] ; then
     rm -f $DEBDIR/DEBIAN/*~
     rm -f $DEBDIR/usr/share/doc/dargui/*~
     rm -f $DEBDIR/usr/share/menu/*~
+    find $DEBDIR -name .svn -print0 | xargs -0 rm -rf
+
+
+    #find $DEBDIR -name ".svn" -exec rm -rf {} \  > /dev/null    # remove SVN directories
+    find $DEBDIR -name ".directory" -exec rm -rf {} \ > /dev/null #remove .directory files
+
     echo "deb contents created in '$DEBDIR'"
   fi
   if [ $deb -eq 0 ] || [ $all -eq 0 ] ; then
@@ -163,7 +177,7 @@ if [ $deb -eq 0 ] || [ $all -eq 0 ] || [ $rpm -eq 0 ] ; then
     which dpkg > /dev/null
     if [ $? -eq 0 ] ; then
        cd $RELEASEDIR
-       dpkg -b $DEBDIR ./$RELEASENAME.deb
+       fakeroot dpkg -b $DEBDIR ./$RELEASENAME.deb
        [ $? -eq 0 ] && echo "deb package created successfully in $RELEASEDIR" || echo "ERROR: dpkg failed with error number $? when creating deb package"
     else
       echo "dpkg not found - unable to create deb package"
@@ -231,8 +245,8 @@ if [ $src -eq 0 ] || [ $all -eq 0 ] ; then
   #	cp $VERBOSITY ../../locales/*.*.po $SRCDIR/locales/
   #	cp $VERBOSITY ../../locales/dargui.pot $SRCDIR/locales/
   cp $VERBOSITY -R $BASEDIR/locales $SRCDIR/
-  find $SRCDIR -name ".svn" -exec rm -rf {} \;    # remove SVN directories
-  find $SRCDIR -name ".directory" -exec rm -rf {} \; #remove .directory files
+  find $SRCDIR -name ".svn" -exec rm -rf {} \  > /dev/null    # remove SVN directories
+  find $SRCDIR -name ".directory" -exec rm -rf {} \ > /dev/null #remove .directory files
   cd $SRCDIR/..
   echo "creating source tarball $RELEASENAME-src.tar.gz"
   tar -cvzf ../$RELEASENAME-src.tar.gz $RELEASENAME-src > /dev/null

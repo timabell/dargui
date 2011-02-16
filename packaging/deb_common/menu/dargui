@@ -1,0 +1,9 @@
+?package(dargui): \
+  needs="X11" \
+  section="Applications/File Management"\
+  title="DarGUI" \
+  command="/usr/bin/dargui" \
+  icon="/usr/share/pixmaps/dargui32.png" \
+  icon32x32="/usr/share/pixmaps/dargui32.xpm" \
+  icon16x16="/usr/share/pixmaps/dargui16.xpm" \
+  longtitle="File backup utility"

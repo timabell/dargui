@@ -25,6 +25,7 @@ correctly. With the exception of Dar they are usually installed by default.
        dar
        xterm
        bash
+       libvte9
        
 DarGUI is licensed under the GPL v.3
 Please let me know of any improvements that you make to DarGUI.

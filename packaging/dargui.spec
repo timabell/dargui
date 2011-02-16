@@ -1,5 +1,5 @@
 %define name    dargui
-%define version 0.5.6
+%define version 0.5.2beta
 %define release 1
 
 Summary:   A GUI for the dar archive utility
@@ -11,7 +11,7 @@ License:   GPL
 Group:     Productivity/Archiving/Backup
 Packager:  Malcolm Poole <mgpoole@users.sourceforge.net>
 BuildRoot: %{root}
-Requires:  dar
+Requires:  dar libvte9 
 
 %description
 DarGUI is a simple graphical interface for Denis Corbin's Disk ARchive utility (DAR)
@@ -50,6 +50,7 @@ if [ -x "`which update-menus 2>/dev/null`" ]; then update-menus ; fi
 %attr(0755, root, root) /usr/share/doc/dargui/creating-archives5.html
 %attr(0755, root, root) /usr/share/doc/dargui/creating-archives6.html
 %attr(0755, root, root) /usr/share/doc/dargui/creating-archives7.html
+%attr(0755, root, root) /usr/share/doc/dargui/preferences.html
 %attr(0755, root, root) /usr/share/doc/dargui/faq.html
 %attr(0755, root, root) /usr/share/doc/dargui/features.html
 %attr(0755, root, root) /usr/share/doc/dargui/images/compare-files.png
