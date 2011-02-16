@@ -1028,7 +1028,7 @@ begin
        end;
     if IsolateForm.ShowModal = mrOK then
        begin
-         if IsolateForm.Encryptarchivecheck.Checked then
+         if IsolateForm.Encryptcatalogcheck.Checked then
             Encrypt := ' -K : ';
          Cmd := DAR_EXECUTABLE + ' -C "' + IsolateForm.CatalogueBox.Text
                        + '"' + Encrypt + ' -A "' + IsolateForm.ArchiveBox.Text + '" -v';
