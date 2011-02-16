@@ -223,7 +223,7 @@ begin
       if Output.Count > 0 then
         begin
           for x := 0 to Output.Count -1 do
-              if PosDarString(dsLongoptions, Output.Strings[x]) > 0
+              if Pos(Copy(dsLongoptions,1, 22), Output.Strings[x]) > 0
                  then DarInEnglish := true; // TODO: make this less of a hack
           if DarInEnglish then writeln('DAR using English language');
           if not DarInEnglish
@@ -518,7 +518,7 @@ begin
   Proc := TProcessLineTalk.Create(nil);
   Proc.CommandLine := DAR_EXECUTABLE + ' -l "' + fn + '"' + pw + ' -Q';
   Proc.Execute;
-writeln(#10, 'Executed process ',  proc.ProcessID);
+//writeln(#10, 'Executed process ',  proc.ProcessID);
   TTreeView(TV).Visible := false;
   Application.ProcessMessages;
   try
@@ -719,7 +719,7 @@ begin
       try
       OutputStrings := TStringList.Create;
       Proc.Execute;
-  writeln(#10, 'Executed process ',  proc.ProcessID);
+  //writeln(#10, 'Executed process ',  proc.ProcessID);
       OutputStrings.LoadFromStream(Proc.Output);
       for x := 0 to OutputStrings.Count -1 do
           begin
@@ -738,13 +738,13 @@ begin
           end;
       finally
       //TODO: remove following code when debugging complete
-        writeln('OutputStrings: ', OutputStrings.Text);
+      {  writeln('OutputStrings: ', OutputStrings.Text);
         case Result of
              aosOK: writeln('Checkarchivestatus: OK');
              aosEncrypted: writeln('Checkarchivestatus: Encrypted');
              aosError: writeln('Checkarchivestatus: Error');
              aosFileNotPresent: writeln('Checkarchivestatus: Slice missing');
-             end;
+             end;    }
       OutputStrings.Free;
       Proc.Free;
       end;
