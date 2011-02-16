@@ -595,7 +595,6 @@ object ArchiveForm: TArchiveForm
             Height = 25
             Top = 267
             Width = 114
-            OnChangeBounds = LabelResize
             OnExit = CompressionLwrLimitExit
             TabOrder = 3
             Text = '100'
