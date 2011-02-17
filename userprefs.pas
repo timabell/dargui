@@ -73,6 +73,8 @@ uses dgStrConst;
    FilesOpenedLbl.Left := RecentFilesSpinEdit.Left + RecentFilesSpinEdit.Width + 10;
    DefConfigLabel.Caption := 'Default archive creation settings';
    DarLocationLabel.Caption := 'Dar executable';
+   DefaultConfigEdit.Filter := rsFilterDarGUIFiles + '|*.dargui|' + rsFilterAllFiles + '|*';
+   DefaultConfigEdit.FilterIndex := 0;
    OKButton.Caption := rsButtonOK;
    CancelButton.Caption := rsButtonCancel;
  end;

@@ -59,6 +59,8 @@ begin
   NotesLabel.Caption := rsNotes;
   OKButton.Caption := rsButtonOK;
   CancelButton.Caption := rsButtonCancel;
+  SaveDialog.Filter := rsFilterDarGUIFiles + '|*.dargui|' + rsFilterAllFiles + '|*';
+  SaveDialog.FilterIndex := 0;
 end;
 
 initialization

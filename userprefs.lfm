@@ -9,7 +9,7 @@ object OptionsForm: TOptionsForm
   ClientWidth = 642
   OnCreate = FormCreate
   Position = poMainFormCenter
-  LCLVersion = '0.9.27'
+  LCLVersion = '0.9.29'
   object MainNotebook: TNotebook
     Left = 0
     Height = 333
@@ -21,18 +21,18 @@ object OptionsForm: TOptionsForm
     object DisplayPage: TPage
       Caption = 'Display'
       ClientWidth = 638
-      ClientHeight = 302
+      ClientHeight = 304
       object RememberLbl: TLabel
         Left = 40
-        Height = 18
+        Height = 16
         Top = 140
-        Width = 98
+        Width = 99
         Caption = 'Remember last'
         ParentColor = False
       end
       object FilesOpenedLbl: TLabel
         Left = 222
-        Height = 18
+        Height = 16
         Top = 140
         Width = 78
         Caption = 'files opened'
@@ -40,7 +40,7 @@ object OptionsForm: TOptionsForm
       end
       object DefConfigLabel: TLabel
         Left = 40
-        Height = 18
+        Height = 16
         Top = 179
         Width = 97
         Caption = 'DefConfigLabel'
@@ -48,7 +48,7 @@ object OptionsForm: TOptionsForm
       end
       object DarLocationLabel: TLabel
         Left = 40
-        Height = 18
+        Height = 16
         Top = 243
         Width = 112
         Caption = 'DarLocationLabel'
@@ -78,7 +78,7 @@ object OptionsForm: TOptionsForm
         Left = 40
         Height = 21
         Top = 99
-        Width = 102
+        Width = 103
         Caption = 'ShowToolbar'
         Checked = True
         State = cbChecked
@@ -102,9 +102,10 @@ object OptionsForm: TOptionsForm
         DialogOptions = []
         Filter = 'DarGUI Files|*.dargui|All Files|*'
         FilterIndex = 0
+        HideDirectories = False
         ButtonWidth = 23
         NumGlyphs = 0
-        Ctl3D = False
+        MaxLength = 0
         TabOrder = 4
       end
       object DarLocationEdit: TFileNameEdit
@@ -114,9 +115,10 @@ object OptionsForm: TOptionsForm
         Width = 368
         DialogOptions = []
         FilterIndex = 0
+        HideDirectories = False
         ButtonWidth = 23
         NumGlyphs = 0
-        Ctl3D = False
+        MaxLength = 0
         TabOrder = 5
       end
     end
@@ -155,4 +157,4 @@ object OptionsForm: TOptionsForm
       TabOrder = 1
     end
   end
-end
+end

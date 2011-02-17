@@ -8,12 +8,12 @@ object CreateSaveDialog: TCreateSaveDialog
   ClientHeight = 293
   ClientWidth = 592
   OnCreate = FormCreate
-  LCLVersion = '0.9.27'
+  LCLVersion = '0.9.29'
   object FilenameLabel: TLabel
     Left = 35
     Height = 16
     Top = 18
-    Width = 155
+    Width = 157
     Caption = 'Save backup settings as'
     ParentColor = False
   end
@@ -21,7 +21,7 @@ object CreateSaveDialog: TCreateSaveDialog
     Left = 35
     Height = 16
     Top = 85
-    Width = 38
+    Width = 39
     Caption = 'Notes'
     ParentColor = False
   end
@@ -49,6 +49,7 @@ object CreateSaveDialog: TCreateSaveDialog
     TabOrder = 2
   end
   object DialogButtonPanel: TPanel
+    Left = 0
     Height = 50
     Top = 243
     Width = 592
@@ -84,9 +85,8 @@ object CreateSaveDialog: TCreateSaveDialog
   object SaveDialog: TSaveDialog
     Title = 'Save backup settings as'
     DefaultExt = '.dargui'
-    Filter = 'DarGUI files|*.dargui|All files|*'
     Options = [ofOverwritePrompt, ofEnableSizing, ofViewDetail]
     left = 553
     top = 19
   end
-end
+end
