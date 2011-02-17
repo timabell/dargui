@@ -11,7 +11,6 @@
       <MainUnit Value="0"/>
       <Title Value="DarGUI"/>
       <UseAppBundle Value="False"/>
-      <Icon Value="0"/>
     </General>
     <i18n>
       <EnableI18N Value="True"/>
@@ -21,7 +20,7 @@
       <UseVersionInfo Value="True"/>
       <AutoIncrementBuild Value="True"/>
       <MinorVersionNr Value="4"/>
-      <BuildNr Value="679"/>
+      <BuildNr Value="681"/>
       <StringTable ProductVersion="0.4.0.101"/>
     </VersionInfo>
     <PublishOptions>
@@ -188,8 +187,8 @@
     <Version Value="9"/>
     <SearchPaths>
       <Libraries Value="/home/usr/X11R6/lib/"/>
-      <OtherUnitFiles Value="/home/malcolm/Projects/lazarus_svn/components/synedit/;Vte/"/>
-      <UnitOutputDirectory Value="/home/malcolm/lazarus/dargui/compiled"/>
+      <OtherUnitFiles Value="/$(LazarusDir)/components/synedit/;Vte/"/>
+      <UnitOutputDirectory Value="./compiled"/>
     </SearchPaths>
     <Parsing>
       <SyntaxOptions>
@@ -212,6 +211,9 @@
         <ShoLineNum Value="True"/>
       </Verbosity>
       <WriteFPCLogo Value="False"/>
+      <CompilerMessages>
+        <UseMsgFile Value="True"/>
+      </CompilerMessages>
       <CustomOptions Value="-dUSE_QT_44"/>
       <CompilerPath Value="$(CompPath)"/>
       <ExecuteBefore>
