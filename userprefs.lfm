@@ -20,19 +20,19 @@ object OptionsForm: TOptionsForm
     TabOrder = 0
     object DisplayPage: TPage
       Caption = 'Display'
-      ClientWidth = 638
-      ClientHeight = 304
+      ClientWidth = 640
+      ClientHeight = 306
       object RememberLbl: TLabel
         Left = 40
-        Height = 16
+        Height = 18
         Top = 140
-        Width = 99
+        Width = 98
         Caption = 'Remember last'
         ParentColor = False
       end
       object FilesOpenedLbl: TLabel
         Left = 222
-        Height = 16
+        Height = 18
         Top = 140
         Width = 78
         Caption = 'files opened'
@@ -40,7 +40,7 @@ object OptionsForm: TOptionsForm
       end
       object DefConfigLabel: TLabel
         Left = 40
-        Height = 16
+        Height = 18
         Top = 179
         Width = 97
         Caption = 'DefConfigLabel'
@@ -48,7 +48,7 @@ object OptionsForm: TOptionsForm
       end
       object DarLocationLabel: TLabel
         Left = 40
-        Height = 16
+        Height = 18
         Top = 243
         Width = 112
         Caption = 'DarLocationLabel'
@@ -78,7 +78,7 @@ object OptionsForm: TOptionsForm
         Left = 40
         Height = 21
         Top = 99
-        Width = 103
+        Width = 102
         Caption = 'ShowToolbar'
         Checked = True
         State = cbChecked
@@ -86,7 +86,7 @@ object OptionsForm: TOptionsForm
       end
       object RecentFilesSpinEdit: TSpinEdit
         Left = 126
-        Height = 23
+        Height = 25
         Top = 135
         Width = 50
         MaxValue = 20
@@ -96,7 +96,7 @@ object OptionsForm: TOptionsForm
       end
       object DefaultConfigEdit: TFileNameEdit
         Left = 40
-        Height = 23
+        Height = 25
         Top = 203
         Width = 368
         DialogOptions = []
@@ -110,7 +110,7 @@ object OptionsForm: TOptionsForm
       end
       object DarLocationEdit: TFileNameEdit
         Left = 40
-        Height = 23
+        Height = 25
         Top = 267
         Width = 368
         DialogOptions = []

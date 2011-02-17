@@ -280,6 +280,16 @@ rsErrDeletingSched = 'Error when deleting scheduled backup';
 rsConfirmCancel = 'Confirm cancellation';
 rsCancelSchedScript = 'Are you sure that you want to cancel scheduled script %s%s';
 
+// Preferences form
+rsUserPreferen = 'User preferences';
+rsGeneral = 'General';
+rsRememberWinPos = 'Remember main window position on exit';
+rsRememberWinSize = 'Remember main window size on exit';
+rsRememberLast = 'Remember last';
+rsFilesOpened = 'files opened';
+rsDefaultSettings = 'Default archive creation settings';
+rsDarExecutabl = 'Dar executable';
+
 implementation
 
 procedure SetupLanguage;

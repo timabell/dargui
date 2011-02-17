@@ -62,17 +62,17 @@ uses dgStrConst;
 
  procedure TOptionsForm.InitialiseInterface;
  begin
-   Caption := 'User preferences';
-   DisplayPage.Caption := 'General';
-   MainFormPosition.Caption := 'Remember main window position on exit';
-   MainFormSize.Caption := 'Remember main window size on exit';
+   Caption := rsUserPreferen;
+   DisplayPage.Caption := rsGeneral;
+   MainFormPosition.Caption := rsRememberWinPos;
+   MainFormSize.Caption := rsRememberWinSize;
    ToolbarCheck.Caption := rsMenuShowToolbar;
-   RememberLbl.Caption := 'Remember last';
-   FilesOpenedLbl.Caption := 'files opened';
+   RememberLbl.Caption := rsRememberLast;
+   FilesOpenedLbl.Caption := rsFilesOpened;
    RecentFilesSpinEdit.Left := RememberLbl.Left + RememberLbl.Width + 10;
    FilesOpenedLbl.Left := RecentFilesSpinEdit.Left + RecentFilesSpinEdit.Width + 10;
-   DefConfigLabel.Caption := 'Default archive creation settings';
-   DarLocationLabel.Caption := 'Dar executable';
+   DefConfigLabel.Caption := rsDefaultSettings;
+   DarLocationLabel.Caption := rsDarExecutabl;
    DefaultConfigEdit.Filter := rsFilterDarGUIFiles + '|*.dargui|' + rsFilterAllFiles + '|*';
    DefaultConfigEdit.FilterIndex := 0;
    OKButton.Caption := rsButtonOK;
