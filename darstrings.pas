@@ -314,6 +314,7 @@ begin
            //for some reason we do not get the desired result if we UTF8Encode Chr(Ord(translatestring[x]))
            //so this is the best we can do at the moment.
            case Ord(translatestring[x]) of
+                201: Result := Result + UTF8Encode(Chr(201));  // É
                 223: Result := Result + UTF8Encode(Chr(223));  // ß
                 224: Result := Result + UTF8Encode(Chr(224));  // à
                 226: Result := Result + UTF8Encode(Chr(226));  // â
