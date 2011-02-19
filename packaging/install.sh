@@ -1,13 +1,15 @@
 # /bin/sh
 
- if ! test -w /usr/bin ; then 
+cd `dirname $0`
+
+if ! test -w /usr/bin ; then
 	echo You need to be root to install dargui
 	exit 0
 	fi
 
 mkdir /usr/share/doc/dargui
 cp -vR doc/* /usr/share/doc/dargui/
-cp -v doc/copyright /usr/share/doc/dargui/
+#cp -v doc/copyright /usr/share/doc/dargui/
 cp -v man/dargui.1.gz /usr/share/man/man1/
 
 cp -v menu/* /usr/share/menu/

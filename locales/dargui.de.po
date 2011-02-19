@@ -1,4 +1,4 @@
-# translation of dargui.pot to Swedish
+# translation of dargui.pot to German
 #
 # IMPORTANT: Note for translators
 # DarGUI translates only strings from the dgstrconst unit
@@ -8,7 +8,7 @@
 #
 # Strings with identifier darstrings.* _must_ have the
 # same translation as used by dar: do not change them!
-# darstrings "Last-Translator: Peter Landgren <peter.talken@telia.com>\n"
+# darstrings "Last-Translator: Markus Kamp <mk_cactus@gmx.de>"
 #
 #
 # Other strings will not be used.
@@ -16,32 +16,25 @@
 # Further information from
 # Malcolm Poole <mgpoole@users.sourceforge.net>.
 msgid ""
-msgstr ""
-"Project-Id-Version: \n"
-"PO-Revision-Date: 2010-06-25 15:43+0200\n"
-"Language-Team: Swedish <kde-i18n-doc@kde.org>\n"
-"MIME-Version: 1.0\n"
-"Content-Type: text/plain; charset=UTF-8\n"
-"Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Lokalize 1.0\n"
-"Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"Last-Translator: \n"
+msgstr "Content-Type: text/plain; charset=UTF-8"
 
 #: darstrings.dsabortingnouserresponse
 msgid "Aborting program. User refused to continue while asking: "
-msgstr "Avbryter program. Användare vägrade fortsätta vid förfrågan: "
+msgstr ""
+"Breche das Programm ab. Benutzer hat die Fortsetzung abgelehnt bei folgender "
+"Frage: "
 
 #: darstrings.dsarchiveencrypted
 msgid "The archive %S is encrypted and no encryption cipher has been given, cannot open archive."
 msgstr ""
-"Arkivet %S är krypterat och ingen krypteringschiffer har getts, kan ej öppna "
-"arkivet."
+"Das Archiv %S ist verschlüsselt und es wurde keine Passphrase angegeben. Das "
+"Archiv kann nicht geöffnet werden"
 
 #: darstrings.dsarchiveversiontoohigh
 msgid "The format version of the archive is too high for that software version, try reading anyway?"
 msgstr ""
-"Arkivets formatversion är för högt för denna programvaruversion, försöka "
-"läsa ändå?"
+"Die Formatversion ist zu neu für diese Software, trotzdem versuchen, das "
+"Archiv zu lesen?"
 
 #: darstrings.dscataloguecontents
 msgid ""
@@ -50,93 +43,96 @@ msgid ""
 "\n"
 msgstr ""
 "\n"
-"KATALOGINNEHÅLL :\n"
+"KATALOG INHALT :\n"
 "\n"
 
 #: darstrings.dscolumntitles
 msgid "[data ][ EA  ][compr] | permission | user  | group | size  |          date                 |    filename"
 msgstr ""
-"[data ][ EA  ][kompr] | behörighet  | anvd |  grupp | storl |           "
-"datum               |    filnamn\n"
+"[Daten][ EA  ][Kompr] | Rechte     | User  | Gruppe| Größe |          "
+"Datum                |    Dateiname"
 
 #: darstrings.dsdestroyedfiles
 msgid ""
 "   %i file(s) have been record as destroyed since backup of reference\n"
 "\n"
 msgstr ""
-"   %i filer har noterats som förstörda sedan referenssäkerhetskopian\n"
+"   %i Datei(en) sind seit der Erstellung der Vergleichs-Sicherung gelöscht "
+"worden\n"
 "\n"
 
 #: darstrings.dsextendedattributes
 msgid "   Extended Attributes support: %s"
-msgstr "   Stöd för Extended Attribut : %s\n"
+msgstr "   Unterstützung erweit. Attr.: %s"
 
 #: darstrings.dsextractingcontents
 msgid "Extracting contents of the archive..."
-msgstr "Extraherar innehållet i arkivet..."
+msgstr "Archiv wird extrahiert..."
 
 #: darstrings.dsinodecount
 msgid "total number of inode : %i"
-msgstr "totalt antal inoder : %i\n"
+msgstr "Indexeinträge (Inodes) insgesamt: %i\n"
 
 #: darstrings.dslargefiles
-msgid "   Large files support (> 2GB): %s"
-msgstr "   Stöd för stora filer(> 2GB): %s\n"
+msgid "   Large files support (> 2GB): %s\n"
+msgstr "   Unterstützung für große Dateien (> 2GB): %s\n"
+
 
 #: darstrings.dslastslicenotfound
 msgid "The last file of the set is not present in "
-msgstr "Den sista filen i omgången finns inte i "
+msgstr "Die letzte Datei dieses Satzes ist nicht vorhanden in "
 
 #: darstrings.dslibbz2comp
-msgid "   Libbz2 compression (bzip2) : %s"
-msgstr "   Libbz2-komprimering (bzip2): %s\n"
+msgid "   Libbz2 compression (bzip2) : %s\n"
+msgstr "   Libbz2 Kompression (bzip2) : %s\n"
 
 #: darstrings.dslibzcomp
-msgid "   Libz compression (gzip)    : %s"
-msgstr "   Libz-komprimering (gzip)   : %s\n"
+msgid "   Libz compression (gzip)    : %s\n"
+msgstr "   Libz Kompression (gzip)    : %s\n"
 
 #: darstrings.dslongoptions
-msgid "Long options support       : %s"
-msgstr "Stöd för långa alternativ  : %s\n"
+msgid "Long options support       : %s\n"
+msgstr "Unterstützung langer Optionen %s\n"
 
 #: darstrings.dsnewblowfish
 msgid "   New Blowfish implementation: %s"
-msgstr "   Ny Blowfish-implementering: %s\n"
+msgstr ""
 
 #: darstrings.dsno
 msgid "NO"
-msgstr "NEJ"
+msgstr "NEIN"
 
 #: darstrings.dsnodump
-msgid "   ext2fs NODUMP flag support : %s"
-msgstr "   stöd för ext2fs NODUMP-flagga : %s\n"
+msgid "   ext2fs NODUMP flag support : %s\n"
+msgstr "   xt2fs NODUMP flags unterst.: %s\n"
 
 #: darstrings.dsremoved
 msgid "[     REMOVED       ]"
-msgstr "[     FLYTTAD      ]"
+msgstr "[     ENTFERNT       ]"
 
 #: darstrings.dsreturncancel
 msgid " [return = OK | Esc = cancel]"
-msgstr " [vagnretur = OK | Esc = avbryt]"
+msgstr " [Return = OK | ESC = Abbruch]"
 
 #: darstrings.dsslicenotfound
 msgid "%s is required for further operation, please provide the file."
-msgstr "%s krävs för ytterligare åtgärd, vänligen förse med filen."
+msgstr ""
+"%s ist für den weiteren Vorgang erforderlich, bitte stellen Sie diese Datei "
+"zur Verfügung"
 
 #: darstrings.dsspecialalloc
-msgid "   Special allocation scheme  : %s"
-msgstr "   Särskilt tilldelningsschema: %s\n"
+msgid "   Special allocation scheme  : %s\n"
+msgstr "   Spezial Zuordnungs-Schema  : %s\n"
 
 #: darstrings.dsthreadsafe
-msgid "   Thread safe support        : %s"
-msgstr "   Stöd för säker trådning    : %s\n"
+msgid "   Thread safe support        : %s\n"
+msgstr "   Thread-sicher              : %s\n"
 
 #: darstrings.dswrongpassword
 msgid "Warning, the archive %S has been encrypted. A wrong key is not possible to detect, it would cause DAR to report the archive as corrupted"
-msgstr ""
-"Varning, arkivet %S har krypterats. En felaktig nyckel är omöjlig att "
-"detektera, det skulle leda till att DAR rapporterar att arkivet var "
-"förstört"
+msgstr "Achtung, dieses Archiv wurde verschlüsselt. Es ist nicht möglich, einen "
+"falschen Schlüssel zu erkennen, in diesem Fall wird das Archiv von DAR als "
+"beschädigt gemeldet"
 
 #: darstrings.dsyes
 msgid "YES"
@@ -144,234 +140,229 @@ msgstr "JA"
 
 #: dgstrconst.rsaboutdarversion
 msgid "Using DAR version %s"
-msgstr "Använder DAR-version %s"
+msgstr ""
 
 #: dgstrconst.rsaboutnodar
 msgid "* No DAR executable found! *"
-msgstr "* Inget DAR-program funnet! *"
+msgstr ""
 
 #: dgstrconst.rsapplyfilterstofilena
 msgid "Apply filters to filenames only"
-msgstr "Tillämpa filter bara på filnamn"
+msgstr ""
 
 #: dgstrconst.rsapr
 msgid "Apr"
-msgstr "Apr"
+msgstr ""
 
 #: dgstrconst.rsarchive
 msgctxt "dgstrconst.rsarchive"
 msgid "Archive"
-msgstr "Arkiv"
+msgstr "Archiv"
 
 #: dgstrconst.rsarchivebasename
 msgctxt "dgstrconst.rsarchivebasename"
 msgid "Archive base name"
-msgstr "Arkivets basnamn"
+msgstr ""
 
 #: dgstrconst.rsattempttoreaddarconf
 msgctxt "dgstrconst.rsattempttoreaddarconf"
 msgid "Attempt to read DAR configuration files"
-msgstr "Försök att läsa DARs inställningsfiler"
+msgstr "Konfigurationsdateien ~/.darrc und /etc/darrc lesen"
 
 #: dgstrconst.rsaug
 msgid "Aug"
-msgstr "Aug"
+msgstr ""
 
 #: dgstrconst.rsauthor
 msgid "Author: %s"
-msgstr "Författare: %s"
+msgstr ""
 
 #: dgstrconst.rsbasedirectory
 msgctxt "dgstrconst.rsbasedirectory"
 msgid "Base directory"
-msgstr "Basmapp"
+msgstr ""
 
 #: dgstrconst.rsbatchfile
 msgctxt "dgstrconst.rsbatchfile"
 msgid "Batch file"
-msgstr "Kommandofil"
+msgstr ""
 
 #: dgstrconst.rsbuttonadd
 msgctxt "dgstrconst.rsbuttonadd"
 msgid "Add"
-msgstr "Lägg till"
+msgstr ""
 
 #: dgstrconst.rsbuttonaddfile
 msgctxt "dgstrconst.rsbuttonaddfile"
 msgid "Add file"
-msgstr "Lägg till fil"
+msgstr ""
 
 #: dgstrconst.rsbuttonaddmask
 msgctxt "dgstrconst.rsbuttonaddmask"
 msgid "Add mask"
-msgstr "Lägg till mask"
+msgstr ""
 
 #: dgstrconst.rsbuttonbrowse
 msgctxt "dgstrconst.rsbuttonbrowse"
 msgid "Browse"
-msgstr "Bläddra"
+msgstr ""
 
 #: dgstrconst.rsbuttoncancel
 msgctxt "dgstrconst.rsbuttoncancel"
 msgid "Cancel"
-msgstr "Avbryt"
+msgstr ""
 
 #: dgstrconst.rsbuttonclear
 msgctxt "dgstrconst.rsbuttonclear"
 msgid "Clear"
-msgstr "Rensa"
+msgstr ""
 
 #: dgstrconst.rsbuttonclose
 msgid "Close"
-msgstr "Stäng"
+msgstr ""
 
 #: dgstrconst.rsbuttonok
 msgctxt "dgstrconst.rsbuttonok"
 msgid "OK"
-msgstr "OK"
+msgstr ""
 
 #: dgstrconst.rsbuttonremove
 msgctxt "dgstrconst.rsbuttonremove"
 msgid "Remove"
-msgstr "Tag bort"
+msgstr ""
 
 #: dgstrconst.rscancelschedscript
 msgid "Are you sure that you want to cancel scheduled script %s%s"
-msgstr "Är du säker på att du vill avbryta schemalagt skript %s%s"
+msgstr ""
 
 #: dgstrconst.rscheckarchiveforerrors
 msgid "Check the archive for errors"
-msgstr "Felkontrollera  arkivet"
+msgstr ""
 
 #: dgstrconst.rscoldate
-msgctxt "dgstrconst.rscoldate"
 msgid "Date"
 msgstr "Datum"
 
 #: dgstrconst.rscolfilename
 msgctxt "dgstrconst.rscolfilename"
 msgid "File"
-msgstr "Fil"
+msgstr "Datei"
 
 #: dgstrconst.rscolgroup
-msgctxt "dgstrconst.rscolgroup"
 msgid "Group"
-msgstr "Grupp"
+msgstr "Gruppe"
 
 #: dgstrconst.rscolsize
-msgctxt "dgstrconst.rscolsize"
 msgid "Size"
-msgstr "Storlek"
+msgstr "Größe"
 
 #: dgstrconst.rscolstatus
-msgctxt "dgstrconst.rscolstatus"
 msgid "Status"
-msgstr "Status"
+msgstr ""
 
 #: dgstrconst.rscoluser
-msgctxt "dgstrconst.rscoluser"
 msgid "User"
-msgstr "Användare"
+msgstr "Benutzer"
 
 #: dgstrconst.rscommands
 msgid "Commands"
-msgstr "Kommandon"
+msgstr ""
 
 #: dgstrconst.rscompression
 msgctxt "dgstrconst.rscompression"
 msgid "Compression"
-msgstr "Komprimering"
+msgstr ""
 
 #: dgstrconst.rscompressionlevel
 msgctxt "dgstrconst.rscompressionlevel"
 msgid "Compression level"
-msgstr "Komprimeringsnivå"
+msgstr "Kompressionsstufe"
 
 #: dgstrconst.rscompressiontype
 msgctxt "dgstrconst.rscompressiontype"
 msgid " Compression type "
-msgstr " Komprimeringstyp "
+msgstr " Kompressions-Algorithmus "
 
 #: dgstrconst.rsconfirmbeforeoverwri
 msgid "Confirm before overwriting"
-msgstr "Bekräfta före överskrivning"
+msgstr ""
 
 #: dgstrconst.rsconfirmcancel
 msgid "Confirm cancellation"
-msgstr "Bekräfta avbryt"
+msgstr ""
 
 #: dgstrconst.rscptaddfilemask
 msgid "Add file mask"
-msgstr "Lägg till filmask"
+msgstr ""
 
 #: dgstrconst.rscptaddfilter
 msgid "Add filter"
-msgstr "Lägg till filter"
+msgstr ""
 
 #: dgstrconst.rscptcomparingfiles
 msgid "comparing files..."
-msgstr "jämför filer..."
+msgstr ""
 
 #: dgstrconst.rscptcreatingarchive
 msgid "creating archive..."
-msgstr "skapar arkiv..."
+msgstr ""
 
 #: dgstrconst.rscptdarguicheckingarchive
 msgid "DarGUI: checking archive integrity..."
-msgstr "DarGUI: kontrollerar arkivets integritet..."
+msgstr ""
 
 #: dgstrconst.rscptisolatearchivecatalo
 msgctxt "dgstrconst.rscptisolatearchivecatalo"
 msgid "Isolate archive catalogue"
-msgstr "Isolera arkivkatalog"
+msgstr ""
 
 #: dgstrconst.rscptisolating
 msgid "DarGUI: Isolating catalogue..."
-msgstr "DarGUI: Isolerar katalog..."
+msgstr ""
 
 #: dgstrconst.rscptrepeatingaction
 msgid "Repeating action..."
-msgstr "Repeterar åtgärd..."
+msgstr ""
 
 #: dgstrconst.rscptresolveconflict
 msgid "Resolve conflict"
-msgstr "Lös konflikt"
+msgstr ""
 
 #: dgstrconst.rscptrestorenodes
 msgid "Restore %s nodes..."
-msgstr "Återställer %s noder..."
+msgstr ""
 
 #: dgstrconst.rscptrestoreselected
 msgid "Restore selected files"
-msgstr "Återställer valda filer"
+msgstr ""
 
 #: dgstrconst.rscptrestoringfiles
 msgid "restoring files..."
-msgstr "återställer filer..."
+msgstr ""
 
 #: dgstrconst.rscptsavebackupsettings
 msgid "Save backup settings"
-msgstr "Spara backupinställningar"
+msgstr ""
 
 #: dgstrconst.rscptscheduledbackups
 msgid "Scheduled backups"
-msgstr "Schemalägg backup"
+msgstr ""
 
 #: dgstrconst.rscptselectdate
 msgid "Select date"
-msgstr "Välj dag"
+msgstr ""
 
 #: dgstrconst.rscreatearchiveimmedia
 msgid "Create archive immediately"
-msgstr "Skapa arkiv omedelbart"
+msgstr ""
 
 #: dgstrconst.rscreateslices
 msgid "# Create slices of size in Mb"
-msgstr "# Skapa bitar i storlek av MB"
+msgstr ""
 
 #: dgstrconst.rsdarbatchfile
 msgid "# DAR batch file written by DarGUI"
-msgstr "# DAR kommandofil, skriven av DarGUI"
+msgstr ""
 
 #: dgstrconst.rsdarexecutabl
 msgid "Dar executable"
@@ -379,19 +370,19 @@ msgstr ""
 
 #: dgstrconst.rsdarguihasbeendevelop
 msgid "DarGUI has been developed using Freepascal and the Lazarus IDE"
-msgstr "DarGUI har utvecklats med hjälp av Freepascal och Lazarus IDE"
+msgstr ""
 
 #: dgstrconst.rsdayinmonth
 msgid "Day"
-msgstr "Dag"
+msgstr ""
 
 #: dgstrconst.rsdayofweek
 msgid "Day of week"
-msgstr "Veckodag"
+msgstr ""
 
 #: dgstrconst.rsdec
 msgid "Dec"
-msgstr "Dec"
+msgstr ""
 
 #: dgstrconst.rsdefaultsettings
 msgid "Default archive creation settings"
@@ -400,37 +391,37 @@ msgstr ""
 #: dgstrconst.rsdifferentialbackup
 msgctxt "dgstrconst.rsdifferentialbackup"
 msgid "Differential backup"
-msgstr "Differentiell säkerhetskopiering"
+msgstr ""
 
 #: dgstrconst.rsdirectories
 msgctxt "dgstrconst.rsdirectories"
 msgid "Directories"
-msgstr "Mappar"
+msgstr ""
 
 #: dgstrconst.rsdirectoriesareexcluded
 msgid "These directories are already selected to be excluded from the archive. %sDo you really want to include them?"
-msgstr "Dessa mappar har redan valts till att uteslutas från arkivet. %sVill du verkligen ta med dem?"
+msgstr ""
 
 #: dgstrconst.rsdirectoriesareincluded
 msgid "These directories are already selected to be included in the archive.%sDo you really want to exclude them?"
-msgstr "Dessa mappar har redan valts till att ingå i arkivet. %sVill du verkligen utesluta dem?"
+msgstr ""
 
 #: dgstrconst.rsdonotcompress
 msgctxt "dgstrconst.rsdonotcompress"
 msgid " Do not compress ... "
-msgstr " Komprimera ej ... "
+msgstr ""
 
 #: dgstrconst.rsdonotoverwritefiles
 msgid "Do not overwrite files"
-msgstr "Skriv ej över filer"
+msgstr ""
 
 #: dgstrconst.rsdryrun
 msgid "# Dry run: this archive will not be written to file unless the next option is removed"
-msgstr "# Torrkörning: detta arkiv kommer ej att skrivas till fil såvida inte nästa val är borttaget"
+msgstr ""
 
 #: dgstrconst.rsencryptarchive
 msgid "Encrypt archive using blowfish"
-msgstr "Kryptera arkiv med blowfish"
+msgstr ""
 
 #: dgstrconst.rsencryptcatalogue
 msgid "Encrypt catalogue using blowfish"
@@ -438,160 +429,160 @@ msgstr ""
 
 #: dgstrconst.rsenterpassword
 msgid "Enter Password"
-msgstr "Skriv in lösenord"
+msgstr ""
 
 #: dgstrconst.rserrcompressionlevelmust
 msgid "Compression level must be between 0 and 9"
-msgstr "Komprimeringsnivån måste vara mellan 0 och 9"
+msgstr ""
 
 #: dgstrconst.rserrdarnotfound
 msgid "Unable to locate dar executable: nothing will work!"
-msgstr "Kan ej hitta dar: inget kommer att fungera!"
+msgstr ""
 
 #: dgstrconst.rserrdatecannotbeinpast
 msgid "Date cannot be in the past"
-msgstr "Datum kan ej vara i det förgångna"
+msgstr ""
 
 #: dgstrconst.rserrdeletingcron
 msgid "Error when deleting crontab entry: %s%s"
-msgstr "Fel vid borttagande av rad i crontab: %s%s"
+msgstr ""
 
 #: dgstrconst.rserrdeletingsched
 msgid "Error when deleting scheduled backup"
-msgstr "Fel vid borttagande av schemalagd backup"
+msgstr ""
 
 #: dgstrconst.rserrerrornotfound
 msgid "Error: %s not found"
-msgstr "Fel: %s ej hittad"
+msgstr ""
 
 #: dgstrconst.rserrinvalidarchivename
 msgctxt "dgstrconst.rserrinvalidarchivename"
 msgid "Invalid archive name"
-msgstr "Ogiltigt arkivnamn"
+msgstr ""
 
 #: dgstrconst.rserrinvalidchars
 msgid "Archive name or path contains invalid characters"
-msgstr "Arkivnamn  eller sökväg innehåller ogiltiga tecken"
+msgstr ""
 
 #: dgstrconst.rserrinvaliddirectory
 msgid "Invalid directory"
-msgstr "Ogiltig mapp"
+msgstr ""
 
 #: dgstrconst.rserrinvalidfilesize
 msgid "Invalid number for file size"
-msgstr "Ogiltigt tal för filstorlek"
+msgstr ""
 
 #: dgstrconst.rserrnobash
 msgid "Unable to find bash: some features disabled"
-msgstr "Kan ej hitta bash: några funktioner borttagna"
+msgstr ""
 
 #: dgstrconst.rserrnofilesselected
 msgid "Error: no files were selected"
-msgstr "Fel: inga filer valda"
+msgstr ""
 
 #: dgstrconst.rserrnoxterm
 msgid "Unable to find xterm: some features disabled"
-msgstr "Kan ej hitta xterm: några funktioner borttagna"
+msgstr ""
 
 #: dgstrconst.rserrnoxtermbash
 msgid "Unable to find xterm or bash: some features disabled"
-msgstr "Kan ej hitta varken xterm eller bash: några funktioner borttagna"
+msgstr ""
 
 #: dgstrconst.rserrrefarchivenotfound
 msgid "Reference archive not found"
-msgstr "Referensarkiv ej hittat"
+msgstr ""
 
 #: dgstrconst.rserrrestoreaborted
 msgid "Operation aborted: Restore selected files"
-msgstr "Åtgärd avbruten: Återställer valda filer"
+msgstr ""
 
 #: dgstrconst.rserrscriptnotsetup
 msgid "Unable to schedule script execution.%sError when executing at: %s%s"
-msgstr "Kunde ej schemalägga skript för körning.%sFel vid körning: %s%s"
+msgstr ""
 
 #: dgstrconst.rserrunabletofindarchive
 msgid "Unable to find archive"
-msgstr "Kan ej hitta arkiv"
+msgstr ""
 
 #: dgstrconst.rserrunabletoopenarchive
 msgid "Unable to open archive"
-msgstr "Kan ej öppna arkiv"
+msgstr ""
 
 #: dgstrconst.rserrwritingscript
 msgid "Error writing script"
-msgstr "fel vid skrivning av skript"
+msgstr ""
 
 #: dgstrconst.rsexcldirectories
 msgid "# Directories to exclude from archive"
-msgstr "# Mappar att utesluta från arkivet"
+msgstr ""
 
 #: dgstrconst.rsexclfiles
 msgid "# Files to exclude from archive"
-msgstr "# Filer att utesluta från arkivet"
+msgstr ""
 
 #: dgstrconst.rsexcludedirectories
 msgid "Exclude directories"
-msgstr "Uteslut mappar"
+msgstr ""
 
 #: dgstrconst.rsexcludefiles
 msgctxt "dgstrconst.rsexcludefiles"
 msgid "Exclude files:"
-msgstr "Uteslut filer:"
+msgstr ""
 
 #: dgstrconst.rsexistingfiles
 msgid "Existing files"
-msgstr "Befintliga filer"
+msgstr ""
 
 #: dgstrconst.rsfcptselectbyfilter
 msgid "Select using filters..."
-msgstr "Välj genom att använda filter..."
+msgstr ""
 
 #: dgstrconst.rsfeb
 msgid "Feb"
-msgstr "Feb"
+msgstr ""
 
 #: dgstrconst.rsfilemask
 msgctxt "dgstrconst.rsfilemask"
 msgid "File mask"
-msgstr "Filmask"
+msgstr ""
 
 #: dgstrconst.rsfiles
 msgctxt "dgstrconst.rsfiles"
 msgid "Files"
-msgstr "Filer"
+msgstr ""
 
 #: dgstrconst.rsfilesalreadyexcluded
 msgid "These files are already selected to be excluded from the archive.%sDo you really want to include them?"
-msgstr "Dessa filer har redan valts till att uteslutas från arkivet. %sVill du verkligen ta med dem?"
+msgstr ""
 
 #: dgstrconst.rsfilesalreadyincluded
 msgid "These files are already selected to be included in the archive.%sDo you really want to exclude them?"
-msgstr "Dessa filer har redan valts till att ingå i arkivet. %sVill du verkligen utesluta dem?"
+msgstr ""
 
 #: dgstrconst.rsfilesopened
 msgctxt "dgstrconst.rsfilesopened"
 msgid "files opened"
-msgstr "filer öppnade"
+msgstr ""
 
 #: dgstrconst.rsfilestorestore
 msgid "# Files to restore"
-msgstr "# Filer att återställe"
+msgstr ""
 
 #: dgstrconst.rsfilterallfiles
 msgid "All files"
-msgstr "Alla filer"
+msgstr ""
 
 #: dgstrconst.rsfilterdararchives
 msgid "DAR archives"
-msgstr "DAR arkiv"
+msgstr ""
 
 #: dgstrconst.rsfilterdarguifiles
 msgid "DarGUI files"
-msgstr "DarGUI filer"
+msgstr ""
 
 #: dgstrconst.rsfri
 msgid "Fri"
-msgstr "Fre"
+msgstr ""
 
 #: dgstrconst.rsgeneral
 msgid "General"
@@ -600,374 +591,373 @@ msgstr ""
 #: dgstrconst.rshintcomparearchivefile
 msgctxt "dgstrconst.rshintcomparearchivefile"
 msgid "Compare archive and filesystem"
-msgstr "Jämför arkiv och filsystem"
+msgstr ""
 
 #: dgstrconst.rshintcreateanewarchive
 msgctxt "dgstrconst.rshintcreateanewarchive"
 msgid "Create a new archive"
-msgstr "Skapa ett nytt arkiv"
+msgstr ""
 
 #: dgstrconst.rshintisolatecatalogue
 msgid "Isolate catalogue from archive"
-msgstr "Isolera katalog från arkiv"
+msgstr ""
 
 #: dgstrconst.rshintopenanarchive
 msgctxt "dgstrconst.rshintopenanarchive"
 msgid "Open an archive"
-msgstr "Öppna ett arkiv"
+msgstr "Archiv öffnen"
 
 #: dgstrconst.rshour
 msgid "Hour"
-msgstr "Timme"
+msgstr ""
 
 #: dgstrconst.rsignoredirectories
 msgctxt "dgstrconst.rsignoredirectories"
 msgid "Ignore directories"
-msgstr "Ignorera mappar"
+msgstr ""
 
 #: dgstrconst.rsincdirectories
 msgid "# Directories to include in archive"
-msgstr "# Mappar att ta med i arkivet"
+msgstr ""
 
 #: dgstrconst.rsincfiles
 msgid "# Files to include in archive"
-msgstr "# Filer att ta med i arkivet"
+msgstr ""
 
 #: dgstrconst.rsincludedirectories
-msgctxt "dgstrconst.rsincludedirectories"
 msgid "Include directories:"
-msgstr "Medtag mappar:"
+msgstr ""
 
 #: dgstrconst.rsincludefiles
 msgctxt "dgstrconst.rsincludefiles"
 msgid "Include files:"
-msgstr "Medtag filer:"
+msgstr ""
 
 #: dgstrconst.rsincludetimeinname
 msgid "Add timestamp to name"
-msgstr "Lägg till tidsmarkering till namn"
+msgstr ""
 
 #: dgstrconst.rsincorrectpasswordent
 msgid "Incorrect password entered"
-msgstr "Felaktigt lösenord inskrivet"
+msgstr ""
 
 #: dgstrconst.rsinfoformlocation
 msgid "Location: %s"
-msgstr "Plats: %s"
+msgstr ""
 
 #: dgstrconst.rsinformationf
 msgid "Information for archive: %s"
-msgstr "Information om arkiv: %s"
+msgstr ""
 
 #: dgstrconst.rsinodescheckeddiffere
 msgid "%s inodes checked : %s differences found"
-msgstr "%s inoder kontrollerade : %s skillnader funna"
+msgstr ""
 
 #: dgstrconst.rsinvalidinput
 msgid "Invalid input"
-msgstr "Ogiltig inmatning"
+msgstr ""
 
 #: dgstrconst.rsjan
 msgid "Jan"
-msgstr "Jan"
+msgstr ""
 
 #: dgstrconst.rsjul
 msgid "Jul"
-msgstr "Jul"
+msgstr ""
 
 #: dgstrconst.rsjun
 msgid "Jun"
-msgstr "Jun"
+msgstr ""
 
 #: dgstrconst.rslicencegpl
 msgctxt "dgstrconst.rslicencegpl"
 msgid "Licence: GPL"
-msgstr "Licence: GPL"
+msgstr ""
 
 #: dgstrconst.rsloadsettings
 msgid "Load backup settings from file"
-msgstr "ladda backupinställningar från fil"
+msgstr ""
 
 #: dgstrconst.rslowersizelimitforcom
 msgctxt "dgstrconst.rslowersizelimitforcom"
 msgid "Lower size limit for compression:"
-msgstr "Mindre storleksgräns för komprimering"
+msgstr ""
 
 #: dgstrconst.rsmar
 msgid "Mar"
-msgstr "Mar"
+msgstr ""
 
 #: dgstrconst.rsmatchallfilters
 msgid "Match all filters"
-msgstr "Matcha alla filter"
+msgstr ""
 
 #: dgstrconst.rsmay
 msgid "May"
-msgstr "Maj"
+msgstr ""
 
 #: dgstrconst.rsmb
 msgctxt "dgstrconst.rsmb"
 msgid "Mb"
-msgstr "Mb"
+msgstr ""
 
 #: dgstrconst.rsmenuarchive
 msgctxt "dgstrconst.rsmenuarchive"
 msgid "Archive"
-msgstr "Arkiv"
+msgstr ""
 
 #: dgstrconst.rsmenucheckintegrity
 msgctxt "dgstrconst.rsmenucheckintegrity"
 msgid "Check Integrity"
-msgstr "Kontrollera integritet"
+msgstr ""
 
 #: dgstrconst.rsmenucomparefiles
 msgctxt "dgstrconst.rsmenucomparefiles"
 msgid "Compare files"
-msgstr "Jämför filer"
+msgstr ""
 
 #: dgstrconst.rsmenudardocumentation
 msgctxt "dgstrconst.rsmenudardocumentation"
 msgid "Dar Documentation"
-msgstr "Dar dokumentation"
+msgstr ""
 
 #: dgstrconst.rsmenudarguihelp
 msgctxt "dgstrconst.rsmenudarguihelp"
 msgid "DarGUI Help"
-msgstr "DarGUI Hjälp"
+msgstr ""
 
 #: dgstrconst.rsmenuexit
 msgctxt "dgstrconst.rsmenuexit"
 msgid "Exit"
-msgstr "Avsluta"
+msgstr ""
 
 #: dgstrconst.rsmenufile
 msgctxt "dgstrconst.rsmenufile"
 msgid "File"
-msgstr "Fil"
+msgstr ""
 
 #: dgstrconst.rsmenuhelp
 msgid "Help"
-msgstr "Hjälp"
+msgstr "Hilfe"
 
 #: dgstrconst.rsmenuhelpabout
 msgctxt "dgstrconst.rsmenuhelpabout"
 msgid "About DarGUI"
-msgstr "Om DarGUI"
+msgstr ""
 
 #: dgstrconst.rsmenuhideall
 msgctxt "dgstrconst.rsmenuhideall"
 msgid "Hide All"
-msgstr "Göm allt"
+msgstr ""
 
 #: dgstrconst.rsmenuinformation
 msgctxt "dgstrconst.rsmenuinformation"
 msgid "Information"
-msgstr "Information"
+msgstr ""
 
 #: dgstrconst.rsmenuisolatecatalogue
 msgid "Isolate Catalogue"
-msgstr "Isolera katalog"
+msgstr "Katalog Isolieren"
 
 #: dgstrconst.rsmenunew
 msgctxt "dgstrconst.rsmenunew"
 msgid "New"
-msgstr "Nytt"
+msgstr "Neu"
 
 #: dgstrconst.rsmenuopen
 msgctxt "dgstrconst.rsmenuopen"
 msgid "Open"
-msgstr "Öppna"
+msgstr "öffnen"
 
 #: dgstrconst.rsmenuopenrecent
 msgid "Open Recent..."
-msgstr "Öppna tidigare..."
+msgstr ""
 
 #: dgstrconst.rsmenuoperationlogs
 msgid "Operation Logs"
-msgstr "Åtgärdsloggar"
+msgstr ""
 
 #: dgstrconst.rsmenuoptions
 msgctxt "dgstrconst.rsmenuoptions"
 msgid "Options"
-msgstr "Val"
+msgstr ""
 
 #: dgstrconst.rsmenurestoreall
 msgctxt "dgstrconst.rsmenurestoreall"
 msgid "Restore All"
-msgstr "Återställ allt"
+msgstr ""
 
 #: dgstrconst.rsmenurestoreselected
 msgctxt "dgstrconst.rsmenurestoreselected"
 msgid "Restore Selected"
-msgstr "Återställ valt"
+msgstr ""
 
 #: dgstrconst.rsmenuschedulemanager
 msgid "Schedule Manager"
-msgstr "Schemaläggningshanterare"
+msgstr ""
 
 #: dgstrconst.rsmenuselectbyfilter
 msgctxt "dgstrconst.rsmenuselectbyfilter"
 msgid "Select by Filter"
-msgstr "Välj med hjälp av filter"
+msgstr ""
 
 #: dgstrconst.rsmenushowall
 msgctxt "dgstrconst.rsmenushowall"
 msgid "Show All"
-msgstr "Visa allt"
+msgstr ""
 
 #: dgstrconst.rsmenushowselected
 msgctxt "dgstrconst.rsmenushowselected"
 msgid "Show Selected"
-msgstr "Visa valt"
+msgstr ""
 
 #: dgstrconst.rsmenushowtoolbar
 msgctxt "dgstrconst.rsmenushowtoolbar"
 msgid "Show Toolbar"
-msgstr "Visa verktygsrad"
+msgstr ""
 
 #: dgstrconst.rsmenutoggleselect
 msgid "Toggle Selection"
-msgstr "Byt valt"
+msgstr ""
 
 #: dgstrconst.rsmessbusy
 msgid " BUSY..."
-msgstr "UPPTAGEN..."
+msgstr ""
 
 #: dgstrconst.rsmessdirectorynotfound
 msgid "Destination directory not found"
-msgstr "Målmapp ej funnen"
+msgstr ""
 
 #: dgstrconst.rsmessinvalidarchivename
 msgctxt "dgstrconst.rsmessinvalidarchivename"
 msgid "Invalid archive name"
-msgstr "Ogiltigt arkivnamn"
+msgstr ""
 
 #: dgstrconst.rsmessinvalidcataloguename
 msgid "Invalid catalogue name"
-msgstr "Ogiltigt katalognamn"
+msgstr ""
 
 #: dgstrconst.rsmessinvaliddestinationdir
 msgid "Invalid destination directory"
-msgstr "Ogiltig målmapp"
+msgstr ""
 
 #: dgstrconst.rsmessnostatisticsavailabl
 msgid "No statistics available - operation aborted?"
-msgstr "Ingen statistik tillgänglig - avbryta åtgärden?"
+msgstr ""
 
 #: dgstrconst.rsmessunabletofind1dar
 msgid "Unable to find %s.1.dar"
-msgstr "Kan ej hitta %s.1.dar"
+msgstr ""
 
 #: dgstrconst.rsmessunabletofindarchive
 msgid "Unable to find archive '%s'"
-msgstr "Kan ej hitta arkiv '%s'"
+msgstr ""
 
 #: dgstrconst.rsminutes
 msgid "Minutes"
-msgstr "Minut"
+msgstr ""
 
 #: dgstrconst.rsmon
 msgid "Mon"
-msgstr "Mån"
+msgstr ""
 
 #: dgstrconst.rsmonth
 msgid "Month"
-msgstr "Månad"
+msgstr ""
 
 #: dgstrconst.rsnewarchive
 msgid "New archive"
-msgstr "Nytt arkiv"
+msgstr ""
 
 #: dgstrconst.rsno
 msgid "No"
-msgstr "Nej"
+msgstr ""
 
 #: dgstrconst.rsnotcompresssmaller
 msgid "# Do not compress files smaller than this"
-msgstr "# Komprimera ej filer mindre än detta"
+msgstr ""
 
 #: dgstrconst.rsnotcompressthese
 msgid "# Do not compress these files"
-msgstr "# Komprimera ej dessa filer"
+msgstr ""
 
 #: dgstrconst.rsnotes
 msgctxt "dgstrconst.rsnotes"
 msgid "Notes"
-msgstr "Notiser"
+msgstr ""
 
 #: dgstrconst.rsnotreaddarcfg
 msgid "# Do not read DAR configuration files (~/.darrc or /etc/darrc)"
-msgstr "# Läs ej DAR's inställningsfiler (~/.darrc eller /etc/darrc)"
+msgstr ""
 
 #: dgstrconst.rsnov
 msgid "Nov"
-msgstr "Nov"
+msgstr ""
 
 #: dgstrconst.rsoct
 msgid "Oct"
-msgstr "Okt"
+msgstr ""
 
 #: dgstrconst.rsopenarchivewhencompl
 msgid "Open archive when created"
-msgstr "Öppna arkiv när det är skapat"
+msgstr ""
 
 #: dgstrconst.rsopenexisting
 msgid "Open existing archive"
-msgstr "Öppnar befintligt arkiv"
+msgstr ""
 
 #: dgstrconst.rsoptions
 msgctxt "dgstrconst.rsoptions"
 msgid "Options"
-msgstr "Val"
+msgstr ""
 
 #: dgstrconst.rsoptions2
 msgctxt "dgstrconst.rsoptions2"
 msgid " Options "
-msgstr " Val "
+msgstr ""
 
 #: dgstrconst.rsoverwriteexistingarc
 msgid "Overwrite existing archive?"
-msgstr "Skriva över befintligt arkiv?"
+msgstr ""
 
 #: dgstrconst.rsoverwriteexistingfil
 msgid "Overwrite existing files"
-msgstr "Skriv över befintliga filer"
+msgstr ""
 
 #: dgstrconst.rspasswordwarning
 msgid "You have chosen to encrypt this scheduled backup.%sThe password for the encrypted archive will be included in the backup script.%sAre you sure that you want to do this?"
-msgstr "Du har valt att kryptera denna schemalagda backup.%sLösenordet för krypterat arkiv kommer att ingå i backup skriptet.%sär fu säker på att du vill göra detta?"
+msgstr ""
 
 #: dgstrconst.rspausebetween
 msgid "# Pause between slices"
-msgstr "# Gör en paus mellan bitar"
+msgstr ""
 
 #: dgstrconst.rspausebetweenslices
 msgctxt "dgstrconst.rspausebetweenslices"
 msgid "Pause between slices"
-msgstr "Gör paus mellan bitar"
+msgstr ""
 
 #: dgstrconst.rspreservedirectories
 msgctxt "dgstrconst.rspreservedirectories"
 msgid "Preserve directories"
-msgstr "Bevara mappar"
+msgstr ""
 
 #: dgstrconst.rspreservedirs
 msgid "# Preserve ignored directory names"
-msgstr "# Bevara ignorerade mappnamn"
+msgstr ""
 
 #: dgstrconst.rsqueryexecutescript
 msgid "A Dar backup script has been saved to %s%s%sDo you want to execute the script now?"
-msgstr "Ett Dar skript har sparats till %s%s%sVill du köra skriptet nu?"
+msgstr ""
 
 #: dgstrconst.rsreferencearchive
 msgctxt "dgstrconst.rsreferencearchive"
 msgid "Reference archive"
-msgstr "Referensarkiv"
+msgstr ""
 
 #: dgstrconst.rsrememberlast
 msgctxt "dgstrconst.rsrememberlast"
 msgid "Remember last"
-msgstr "Kom ihåg senaste"
+msgstr ""
 
 #: dgstrconst.rsrememberwinpos
 msgid "Remember main window position on exit"
@@ -979,155 +969,155 @@ msgstr ""
 
 #: dgstrconst.rsremoveallfilters
 msgid "Remove all filters?"
-msgstr "Matcha alla filter"
+msgstr ""
 
 #: dgstrconst.rsrestorefilesto
 msgctxt "dgstrconst.rsrestorefilesto"
 msgid "Restore files to"
-msgstr "Återställ filer till"
+msgstr ""
 
 #: dgstrconst.rsresults
 msgid "Results"
-msgstr "Result"
+msgstr ""
 
 #: dgstrconst.rsrunonceonly
 msgctxt "dgstrconst.rsrunonceonly"
 msgid "Run once only at"
-msgstr "Kör endast en gång "
+msgstr ""
 
 #: dgstrconst.rsrunregularily
 msgctxt "dgstrconst.rsrunregularily"
 msgid "Run regularily at"
-msgstr "Kör regelbundet "
+msgstr ""
 
 #: dgstrconst.rssat
 msgid "Sat"
-msgstr "Lör"
+msgstr ""
 
 #: dgstrconst.rssavearchivein
 msgctxt "dgstrconst.rssavearchivein"
 msgid "Save archive in"
-msgstr "Spara arkiv i"
+msgstr ""
 
 #: dgstrconst.rssavecatalogueas
 msgctxt "dgstrconst.rssavecatalogueas"
 msgid "Save catalogue as"
-msgstr "Spara katalog som"
+msgstr ""
 
 #: dgstrconst.rssavescriptas
 msgctxt "dgstrconst.rssavescriptas"
 msgid "Save script as"
-msgstr "Spara skript som"
+msgstr ""
 
 #: dgstrconst.rssavesettings
 msgid "Save current backup settings"
-msgstr "Spara aktuella backupinställningar"
+msgstr ""
 
 #: dgstrconst.rssavesettingsas
 msgctxt "dgstrconst.rssavesettingsas"
 msgid "Save backup settings as"
-msgstr "Spara backupinställningar som"
+msgstr ""
 
 #: dgstrconst.rsscheduling
 msgctxt "dgstrconst.rsscheduling"
 msgid "Scheduling"
-msgstr "Schemaläggning"
+msgstr ""
 
 #: dgstrconst.rsscript
 msgid "Script"
-msgstr "Skript"
+msgstr ""
 
 #: dgstrconst.rsscriptexecutetime
 msgid "DAR script will be executed at %s:%s on %s"
-msgstr "DAR skript kommer att köras: %s: %s på %s"
+msgstr ""
 
 #: dgstrconst.rsscriptsetupok
 msgid "Script successfully scheduled for execution"
-msgstr "Skriptet har schemalagts för utförande"
+msgstr ""
 
 #: dgstrconst.rsscriptwarning1
 msgid "The backup script will run every minute on the days selected%sAre you sure that you want to do this?"
-msgstr "Backup-skriptet kommar att köras varje minut de dagar som valts%sÄr du säker på att du vill detta?"
+msgstr ""
 
 #: dgstrconst.rsscriptwarning2
 msgid "The backup script will run every minute of every day%sAre you sure that you want to do this?"
-msgstr "Backup-skriptet kommar att köras varje minut varje dag%sÄr du säker på att du vill detta?"
+msgstr ""
 
 #: dgstrconst.rsseeschedbackups
 msgid "View list of scheduled backups"
-msgstr "Se på en lista med schemalagda backup"
+msgstr ""
 
 #: dgstrconst.rsselectfile
 msgid "Select file"
-msgstr "Välj fil"
+msgstr ""
 
 #: dgstrconst.rsselectreferencearch
 msgid "Select reference archive"
-msgstr "Välj referensarkiv"
+msgstr ""
 
 #: dgstrconst.rssep
 msgid "Sep"
-msgstr "Sep"
+msgstr ""
 
 #: dgstrconst.rsslicesize
 msgctxt "dgstrconst.rsslicesize"
 msgid "Slice size"
-msgstr "Bitstorlek"
+msgstr ""
 
 #: dgstrconst.rssourcearchive
 msgid "Source archive"
-msgstr "Källarkiv"
+msgstr ""
 
 #: dgstrconst.rsstatusnodeselect
 msgid " %s node(s) selected"
-msgstr " %s nod(er) valda"
+msgstr ""
 
 #: dgstrconst.rssun
 msgid "Sun"
-msgstr "Sön"
+msgstr ""
 
 #: dgstrconst.rssvnrevision
 msgid "SVN Revision: %s"
-msgstr "SVN revision: %s"
+msgstr ""
 
 #: dgstrconst.rstestrunonly
 msgctxt "dgstrconst.rstestrunonly"
 msgid "Test run only"
-msgstr "Endast provkörning"
+msgstr ""
 
 #: dgstrconst.rsthefileisencrypteden
 msgid "The file %s is encrypted. %sEnter the correct password for this archive."
-msgstr "Filen %s är krypterad. %sSkriv in the riktiga lösenordet för detta arkiv"
+msgstr ""
 
 #: dgstrconst.rsthu
 msgid "Thu"
-msgstr "Tor"
+msgstr ""
 
 #: dgstrconst.rstime
 msgid "Time"
-msgstr "Tid"
+msgstr ""
 
 #: dgstrconst.rstue
 msgid "Tue"
-msgstr "Tis"
+msgstr ""
 
 #: dgstrconst.rsusebzip2comp
 msgid "# Use bzip2 compression"
-msgstr "# Använd bzip2-komprimering"
+msgstr ""
 
 #: dgstrconst.rsusebzip2compression
 msgctxt "dgstrconst.rsusebzip2compression"
 msgid "use bzip2 compression"
-msgstr "använd bzip2-komprimering"
+msgstr ""
 
 #: dgstrconst.rsusegzipcompr
 msgid "# Use gzip compression"
-msgstr "# Använd gzip-komprimering"
+msgstr ""
 
 #: dgstrconst.rsusegzipcompression
 msgctxt "dgstrconst.rsusegzipcompression"
 msgid "use gzip compression"
-msgstr "använd gzip-komprimering"
+msgstr ""
 
 #: dgstrconst.rsuserpreferen
 msgid "User preferences"
@@ -1136,23 +1126,23 @@ msgstr ""
 #: dgstrconst.rsuseslices
 msgctxt "dgstrconst.rsuseslices"
 msgid "Use slices"
-msgstr "Använd bitar"
+msgstr ""
 
 #: dgstrconst.rsverboseoutput
 msgid "Verbose output"
-msgstr "Pratigt utdata"
+msgstr ""
 
 #: dgstrconst.rsversionnumber
 msgid "Version number: %s"
-msgstr "Version nummer: %s"
+msgstr ""
 
 #: dgstrconst.rswed
 msgid "Wed"
-msgstr "Ons"
+msgstr ""
 
 #: dgstrconst.rsyes
 msgid "Yes"
-msgstr "Ja"
+msgstr ""
 
 #: main.rsdonotcompres
 msgid "%s# Do not compress files smaller than this"
@@ -1164,12 +1154,12 @@ msgstr ""
 
 #: TABOUTFORM.AUTHORLABEL.CAPTION
 msgid "Author: Malcolm Poole"
-msgstr "Author: Malcolm Poole"
+msgstr ""
 
 #: TABOUTFORM.CAPTION
 msgctxt "TABOUTFORM.CAPTION"
 msgid "About DarGUI"
-msgstr "Om DarGUI"
+msgstr ""
 
 #: TABOUTFORM.DARVERSIONLABEL.CAPTION
 msgid "DarVersionLabel"
@@ -1177,195 +1167,194 @@ msgstr ""
 
 #: TABOUTFORM.DEVINFOLABEL.CAPTION
 msgid "Development info"
-msgstr "Utvecklingsinformation"
+msgstr ""
 
 #: TABOUTFORM.GPLLABEL.CAPTION
 msgctxt "TABOUTFORM.GPLLABEL.CAPTION"
 msgid "Licence: GPL"
-msgstr "Licence: GPL"
+msgstr ""
 
 #: TABOUTFORM.HOTLABEL1.CAPTION
 msgid "http://www.lazarus.freepascal.org/"
-msgstr "http://www.lazarus.freepascal.org/"
+msgstr ""
 
 #: TABOUTFORM.OKBUTTON.CAPTION
 msgctxt "TABOUTFORM.OKBUTTON.CAPTION"
 msgid "&OK"
-msgstr "&OK"
+msgstr ""
 
 #: TABOUTFORM.SVNLABEL.CAPTION
 msgid "SVN Revision: "
-msgstr "SVN revision: "
+msgstr ""
 
 #: TABOUTFORM.VERSIONLABEL.CAPTION
 msgid "Version number: "
-msgstr "Version nummer: "
+msgstr ""
 
 #: TARCHIVEFORM.ADDEXCLUDEFILEBUTTON.CAPTION
 msgctxt "TARCHIVEFORM.ADDEXCLUDEFILEBUTTON.CAPTION"
 msgid "Add file"
-msgstr "Lägg till fil"
+msgstr ""
 
 #: TARCHIVEFORM.ADDINCLUDEDIRBUTTON.CAPTION
 msgctxt "TARCHIVEFORM.ADDINCLUDEDIRBUTTON.CAPTION"
 msgid "Add"
-msgstr "Lägg till"
+msgstr ""
 
 #: TARCHIVEFORM.ADDINCLUDEFILEBUTTON.CAPTION
 msgctxt "TARCHIVEFORM.ADDINCLUDEFILEBUTTON.CAPTION"
 msgid "Add file"
-msgstr "Lägg till fil"
+msgstr ""
 
 #: TARCHIVEFORM.ARCHIVEBASELABEL.CAPTION
 msgctxt "TARCHIVEFORM.ARCHIVEBASELABEL.CAPTION"
 msgid "Archive base name"
-msgstr "Arkivets basnamn"
+msgstr ""
 
 #: TARCHIVEFORM.ARCHIVEDIRBUTTON.CAPTION
 msgctxt "TARCHIVEFORM.ARCHIVEDIRBUTTON.CAPTION"
 msgid "Browse"
-msgstr "Bläddra"
+msgstr ""
 
 #: TARCHIVEFORM.ARCHIVEDIRECTORY.TEXT
 msgid "ArchiveDirectory"
 msgstr ""
 
 #: TARCHIVEFORM.ARCHIVEFORM.CAPTION
-msgctxt "TARCHIVEFORM.ARCHIVEFORM.CAPTION"
 msgid "New Archive"
-msgstr "Nytt arkiv"
+msgstr ""
 
 #: TARCHIVEFORM.ARCHIVEPAGE.CAPTION
 msgctxt "TARCHIVEFORM.ARCHIVEPAGE.CAPTION"
 msgid "Archive"
-msgstr "Arkiv"
+msgstr ""
 
 #: TARCHIVEFORM.BASEDIRBUTTON.CAPTION
 msgctxt "TARCHIVEFORM.BASEDIRBUTTON.CAPTION"
 msgid "Browse"
-msgstr "Bläddra"
+msgstr ""
 
 #: TARCHIVEFORM.BASEDIRECTORY.TEXT
 msgctxt "TARCHIVEFORM.BASEDIRECTORY.TEXT"
 msgid "Edit1"
-msgstr "Redigera 1"
+msgstr ""
 
 #: TARCHIVEFORM.BASEDIRLABEL.CAPTION
 msgctxt "TARCHIVEFORM.BASEDIRLABEL.CAPTION"
 msgid "Base directory"
-msgstr "Basmapp"
+msgstr ""
 
 #: TARCHIVEFORM.BATCHFILEBOX.TEXT
 msgctxt "TARCHIVEFORM.BATCHFILEBOX.TEXT"
 msgid "Edit1"
-msgstr "Redigera 1"
+msgstr ""
 
 #: TARCHIVEFORM.BATCHFILEBUTTON.CAPTION
 msgctxt "TARCHIVEFORM.BATCHFILEBUTTON.CAPTION"
 msgid "Browse"
-msgstr "Bläddra"
+msgstr ""
 
 #: TARCHIVEFORM.BATCHLABEL.CAPTION
 msgctxt "TARCHIVEFORM.BATCHLABEL.CAPTION"
 msgid "Batch file"
-msgstr "Kommandofil"
+msgstr ""
 
 #: TARCHIVEFORM.BZIP2CHECK.CAPTION
 msgctxt "TARCHIVEFORM.BZIP2CHECK.CAPTION"
 msgid "use bzip2 compression"
-msgstr "använd bzip2-komprimering"
+msgstr ""
 
 #: TARCHIVEFORM.CANCELBUTTON.CAPTION
 msgctxt "TARCHIVEFORM.CANCELBUTTON.CAPTION"
 msgid "Cancel"
-msgstr "Avbryt"
+msgstr ""
 
 #: TARCHIVEFORM.COMPLVLLABEL.CAPTION
 msgctxt "TARCHIVEFORM.COMPLVLLABEL.CAPTION"
 msgid "Compression level"
-msgstr "Komprimeringsnivå"
+msgstr ""
 
 #: TARCHIVEFORM.COMPLWRLIMITCOMBO.TEXT
 msgid "bytes"
-msgstr "bytes"
+msgstr ""
 
 #: TARCHIVEFORM.COMPRESSIONEXCEPTIONS.CAPTION
 msgctxt "TARCHIVEFORM.COMPRESSIONEXCEPTIONS.CAPTION"
 msgid " Do not compress ... "
-msgstr " Komprimera ej ... "
+msgstr ""
 
 #: TARCHIVEFORM.COMPRESSIONLEVEL.TEXT
 msgid "9"
-msgstr "9"
+msgstr ""
 
 #: TARCHIVEFORM.COMPRESSIONLWRLIMIT.TEXT
 msgid "100"
-msgstr "100"
+msgstr ""
 
 #: TARCHIVEFORM.COMPRESSIONPAGE.CAPTION
 msgctxt "TARCHIVEFORM.COMPRESSIONPAGE.CAPTION"
 msgid "Compression"
-msgstr "Komprimering"
+msgstr ""
 
 #: TARCHIVEFORM.COMPRESSIONTYPES.CAPTION
 msgctxt "TARCHIVEFORM.COMPRESSIONTYPES.CAPTION"
 msgid " Compression type "
-msgstr " Komprimeringstyp "
+msgstr ""
 
 #: TARCHIVEFORM.COMPRESSMASKS.CAPTION
 msgctxt "TARCHIVEFORM.COMPRESSMASKS.CAPTION"
 msgid "Add"
-msgstr "Lägg till"
+msgstr ""
 
 #: TARCHIVEFORM.COMPSIZELABEL.CAPTION
 msgctxt "TARCHIVEFORM.COMPSIZELABEL.CAPTION"
 msgid "Lower size limit for compression:"
-msgstr "Mindre storleksgräns för komprimering"
+msgstr ""
 
 #: TARCHIVEFORM.DELCOMPRESSMASKBUTTON.CAPTION
 msgctxt "TARCHIVEFORM.DELCOMPRESSMASKBUTTON.CAPTION"
 msgid "Remove"
-msgstr "Tag bort"
+msgstr ""
 
 #: TARCHIVEFORM.DELEXCLUDEFILEBUTTON.CAPTION
 msgctxt "TARCHIVEFORM.DELEXCLUDEFILEBUTTON.CAPTION"
 msgid "Remove"
-msgstr "Tag bort"
+msgstr ""
 
 #: TARCHIVEFORM.DELINCLUDEDIRBUTTON.CAPTION
 msgctxt "TARCHIVEFORM.DELINCLUDEDIRBUTTON.CAPTION"
 msgid "Remove"
-msgstr "Tag bort"
+msgstr ""
 
 #: TARCHIVEFORM.DELINCLUDEFILEBUTTON.CAPTION
 msgctxt "TARCHIVEFORM.DELINCLUDEFILEBUTTON.CAPTION"
 msgid "Remove"
-msgstr "Tag bort"
+msgstr ""
 
 #: TARCHIVEFORM.DIFFFILECHECK.CAPTION
 msgctxt "TARCHIVEFORM.DIFFFILECHECK.CAPTION"
 msgid "Differential backup"
-msgstr "Differentiell säkerhetskopiering"
+msgstr ""
 
 #: TARCHIVEFORM.DIFFREFBUTTON.CAPTION
 msgctxt "TARCHIVEFORM.DIFFREFBUTTON.CAPTION"
 msgid "Browse"
-msgstr "Bläddra"
+msgstr ""
 
 #: TARCHIVEFORM.DIRECTORIESPAGE.CAPTION
 msgctxt "TARCHIVEFORM.DIRECTORIESPAGE.CAPTION"
 msgid "Directories"
-msgstr "Mappar"
+msgstr ""
 
 #: TARCHIVEFORM.DRYRUNCHECK.CAPTION
 msgctxt "TARCHIVEFORM.DRYRUNCHECK.CAPTION"
 msgid "Test run only"
-msgstr "Endast provkörning"
+msgstr ""
 
 #: TARCHIVEFORM.EMPTYDIRCHECK.CAPTION
 msgctxt "TARCHIVEFORM.EMPTYDIRCHECK.CAPTION"
 msgid "Preserve directories"
-msgstr "Bevara mappar"
+msgstr ""
 
 #: TARCHIVEFORM.ENCRYPTARCHIVECHECK.CAPTION
 msgid "EncryptArchiveCheck"
@@ -1378,22 +1367,22 @@ msgstr ""
 #: TARCHIVEFORM.EXCLUDEFILEMASKS.CAPTION
 msgctxt "TARCHIVEFORM.EXCLUDEFILEMASKS.CAPTION"
 msgid "Add mask"
-msgstr "Lägg till mask"
+msgstr ""
 
 #: TARCHIVEFORM.EXCLUDEFILESLABEL.CAPTION
 msgctxt "TARCHIVEFORM.EXCLUDEFILESLABEL.CAPTION"
 msgid "Exclude files:"
-msgstr "Uteslut filer:"
+msgstr ""
 
 #: TARCHIVEFORM.FILESPAGE.CAPTION
 msgctxt "TARCHIVEFORM.FILESPAGE.CAPTION"
 msgid "Files"
-msgstr "Filer"
+msgstr ""
 
 #: TARCHIVEFORM.GZIPCHECK.CAPTION
 msgctxt "TARCHIVEFORM.GZIPCHECK.CAPTION"
 msgid "use gzip compression"
-msgstr "använd gzip-komprimering"
+msgstr ""
 
 #: TARCHIVEFORM.INCLUDEDIRSRADIOBUTTON.CAPTION
 msgid "IncludeDirsRadioButton"
@@ -1402,12 +1391,12 @@ msgstr ""
 #: TARCHIVEFORM.INCLUDEFILEMASKS.CAPTION
 msgctxt "TARCHIVEFORM.INCLUDEFILEMASKS.CAPTION"
 msgid "Add mask"
-msgstr "Lägg till mask"
+msgstr ""
 
 #: TARCHIVEFORM.INCLUDEFILESLABEL.CAPTION
 msgctxt "TARCHIVEFORM.INCLUDEFILESLABEL.CAPTION"
 msgid "Include files:"
-msgstr "Medtag filer:"
+msgstr ""
 
 #: TARCHIVEFORM.NOTEBOOKPANEL.CAPTION
 msgid "NoteBookPanel"
@@ -1420,7 +1409,7 @@ msgstr ""
 #: TARCHIVEFORM.OKBUTTON.CAPTION
 msgctxt "TARCHIVEFORM.OKBUTTON.CAPTION"
 msgid "Ok"
-msgstr "Ok"
+msgstr ""
 
 #: TARCHIVEFORM.OPENCREATEDARCHIVECHECK.CAPTION
 msgid "OpenCreatedArchiveCheck"
@@ -1429,22 +1418,22 @@ msgstr ""
 #: TARCHIVEFORM.OPTIONSPAGE.CAPTION
 msgctxt "TARCHIVEFORM.OPTIONSPAGE.CAPTION"
 msgid "Options"
-msgstr "Val"
+msgstr ""
 
 #: TARCHIVEFORM.PAUSECHECK.CAPTION
 msgctxt "TARCHIVEFORM.PAUSECHECK.CAPTION"
 msgid "Pause between slices"
-msgstr "Gör paus mellan bitar"
+msgstr ""
 
 #: TARCHIVEFORM.READCONFIGCHECK.CAPTION
 msgctxt "TARCHIVEFORM.READCONFIGCHECK.CAPTION"
 msgid "Attempt to read DAR configuration files"
-msgstr "Försök att läsa DARs inställnings filer"
+msgstr ""
 
 #: TARCHIVEFORM.REPEATHOURBOX.TEXT
 msgctxt "TARCHIVEFORM.REPEATHOURBOX.TEXT"
 msgid "*"
-msgstr "*"
+msgstr ""
 
 #: TARCHIVEFORM.REPEATHOURLABEL.CAPTION
 msgctxt "TARCHIVEFORM.REPEATHOURLABEL.CAPTION"
@@ -1454,7 +1443,7 @@ msgstr ""
 #: TARCHIVEFORM.REPEATMINUTEBOX.TEXT
 msgctxt "TARCHIVEFORM.REPEATMINUTEBOX.TEXT"
 msgid "*"
-msgstr "*"
+msgstr ""
 
 #: TARCHIVEFORM.REPEATMINUTELABEL.CAPTION
 msgid "RepeatMinuteLabel"
@@ -1463,12 +1452,12 @@ msgstr ""
 #: TARCHIVEFORM.REPEATMONTHBOX.TEXT
 msgctxt "TARCHIVEFORM.REPEATMONTHBOX.TEXT"
 msgid "*"
-msgstr "*"
+msgstr ""
 
 #: TARCHIVEFORM.REPEATMONTHDAYBOX.TEXT
 msgctxt "TARCHIVEFORM.REPEATMONTHDAYBOX.TEXT"
 msgid "*"
-msgstr "*"
+msgstr ""
 
 #: TARCHIVEFORM.REPEATMONTHDAYLABEL.CAPTION
 msgid "RepeatMonthDayLabel"
@@ -1481,12 +1470,12 @@ msgstr ""
 #: TARCHIVEFORM.REPEATRADIOBUTTON.CAPTION
 msgctxt "TARCHIVEFORM.REPEATRADIOBUTTON.CAPTION"
 msgid "Run regularily at"
-msgstr "Kör regelbundet "
+msgstr ""
 
 #: TARCHIVEFORM.REPEATWEEKDAYBOX.TEXT
 msgctxt "TARCHIVEFORM.REPEATWEEKDAYBOX.TEXT"
 msgid "*"
-msgstr "*"
+msgstr ""
 
 #: TARCHIVEFORM.REPEATWEEKDAYLABEL.CAPTION
 msgid "RepeatWeekDayLabel"
@@ -1495,12 +1484,12 @@ msgstr ""
 #: TARCHIVEFORM.RUNONCEDATEEDIT.CANCELCAPTION
 msgctxt "TARCHIVEFORM.RUNONCEDATEEDIT.CANCELCAPTION"
 msgid "Cancel"
-msgstr "Avbryt"
+msgstr ""
 
 #: TARCHIVEFORM.RUNONCEDATEEDIT.OKCAPTION
 msgctxt "TARCHIVEFORM.RUNONCEDATEEDIT.OKCAPTION"
 msgid "OK"
-msgstr "OK"
+msgstr ""
 
 #: TARCHIVEFORM.RUNONCEDATELABEL.CAPTION
 msgid "RunOnceDateLabel"
@@ -1518,51 +1507,51 @@ msgstr ""
 #: TARCHIVEFORM.RUNONCERADIOBUTTON.CAPTION
 msgctxt "TARCHIVEFORM.RUNONCERADIOBUTTON.CAPTION"
 msgid "Run once only at"
-msgstr "Kör endast en gång "
+msgstr ""
 
 #: TARCHIVEFORM.SAVEARCHIVEINLABEL.CAPTION
 msgctxt "TARCHIVEFORM.SAVEARCHIVEINLABEL.CAPTION"
 msgid "Save archive in"
-msgstr "Spara arkiv i"
+msgstr ""
 
 #: TARCHIVEFORM.SAVESCRIPTCHECKBOX.CAPTION
 msgctxt "TARCHIVEFORM.SAVESCRIPTCHECKBOX.CAPTION"
 msgid "Save script as"
-msgstr "Spara skript som"
+msgstr ""
 
 #: TARCHIVEFORM.SCHEDULEPAGE.CAPTION
 msgctxt "TARCHIVEFORM.SCHEDULEPAGE.CAPTION"
 msgid "Scheduling"
-msgstr "Schemaläggning"
+msgstr ""
 
 #: TARCHIVEFORM.SCRIPTFILEBUTTON.CAPTION
 msgctxt "TARCHIVEFORM.SCRIPTFILEBUTTON.CAPTION"
 msgid "Browse"
-msgstr "Bläddra"
+msgstr ""
 
 #: TARCHIVEFORM.SLICEMBLABEL.CAPTION
 msgctxt "TARCHIVEFORM.SLICEMBLABEL.CAPTION"
 msgid "Mb"
-msgstr "Mb"
+msgstr ""
 
 #: TARCHIVEFORM.SLICESCHECK.CAPTION
 msgctxt "TARCHIVEFORM.SLICESCHECK.CAPTION"
 msgid "Use slices"
-msgstr "Använd bitar"
+msgstr ""
 
 #: TARCHIVEFORM.SLICESIZE.TEXT
 msgid "695"
-msgstr "695"
+msgstr ""
 
 #: TARCHIVEFORM.SLICESIZELABEL.CAPTION
 msgctxt "TARCHIVEFORM.SLICESIZELABEL.CAPTION"
 msgid "Slice size"
-msgstr "Bitstorlek"
+msgstr ""
 
 #: TARCHIVEFORM.SUBLABEL.CAPTION
 msgctxt "TARCHIVEFORM.SUBLABEL.CAPTION"
 msgid "Reference archive"
-msgstr "Referensarkiv"
+msgstr ""
 
 #: TARCHIVEFORM.TIMESTAMPCHECK.CAPTION
 msgid "TimestampCheck"
@@ -1570,12 +1559,12 @@ msgstr ""
 
 #: TCREATESAVEDIALOG.BROWSEBUTTON.CAPTION
 msgid "..."
-msgstr "..."
+msgstr ""
 
 #: TCREATESAVEDIALOG.CANCELBUTTON.CAPTION
 msgctxt "TCREATESAVEDIALOG.CANCELBUTTON.CAPTION"
 msgid "Cancel"
-msgstr "Avbryt"
+msgstr ""
 
 #: TCREATESAVEDIALOG.CREATESAVEDIALOG.CAPTION
 msgctxt "TCREATESAVEDIALOG.CREATESAVEDIALOG.CAPTION"
@@ -1585,55 +1574,55 @@ msgstr ""
 #: TCREATESAVEDIALOG.FILENAMELABEL.CAPTION
 msgctxt "TCREATESAVEDIALOG.FILENAMELABEL.CAPTION"
 msgid "Save backup settings as"
-msgstr "Spara backupinställningar som"
+msgstr ""
 
 #: TCREATESAVEDIALOG.NOTESLABEL.CAPTION
 msgctxt "TCREATESAVEDIALOG.NOTESLABEL.CAPTION"
 msgid "Notes"
-msgstr "Notiser"
+msgstr ""
 
 #: TCREATESAVEDIALOG.OKBUTTON.CAPTION
 msgctxt "TCREATESAVEDIALOG.OKBUTTON.CAPTION"
 msgid "&OK"
-msgstr "&OK"
+msgstr ""
 
 #: TDIFFFORM.ARCHIVEBOX.EDITLABEL.CAPTION
 msgctxt "TDIFFFORM.ARCHIVEBOX.EDITLABEL.CAPTION"
 msgid "Archive"
-msgstr "Arkiv"
+msgstr ""
 
 #: TDIFFFORM.BASEDIRBOX.EDITLABEL.CAPTION
 msgid "Base Directory"
-msgstr "Basmapp"
+msgstr ""
 
 #: TDIFFFORM.BROWSEARCHIVE.CAPTION
 msgctxt "TDIFFFORM.BROWSEARCHIVE.CAPTION"
 msgid "Browse"
-msgstr "Bläddra"
+msgstr ""
 
 #: TDIFFFORM.BROWSEDIRECTORY.CAPTION
 msgctxt "TDIFFFORM.BROWSEDIRECTORY.CAPTION"
 msgid "Browse"
-msgstr "Bläddra"
+msgstr ""
 
 #: TDIFFFORM.CANCELBUTTON.CAPTION
 msgctxt "TDIFFFORM.CANCELBUTTON.CAPTION"
 msgid "Cancel"
-msgstr "Avbryt"
+msgstr ""
 
 #: TDIFFFORM.CAPTION
 msgid "DiffForm"
-msgstr "DiffForm"
+msgstr ""
 
 #: TDIFFFORM.CLOSEBUTTON.CAPTION
 msgctxt "TDIFFFORM.CLOSEBUTTON.CAPTION"
 msgid "&Close"
-msgstr "&Stäng"
+msgstr ""
 
 #: TDIFFFORM.OKBUTTON.CAPTION
 msgctxt "TDIFFFORM.OKBUTTON.CAPTION"
 msgid "&OK"
-msgstr "&OK"
+msgstr ""
 
 #: TDIFFFORM.REPORTLABEL.CAPTION
 msgid "ReportLabel"
@@ -1645,16 +1634,16 @@ msgstr ""
 
 #: TDIFFFORM.RESULTSLABEL.CAPTION
 msgid "Results:"
-msgstr "Result:"
+msgstr ""
 
 #: TDIFFFORM.VERBOSECHECK.CAPTION
 msgid " Verbose output"
-msgstr " Pratigt utdata"
+msgstr ""
 
 #: TEXTRACTSELECTEDFORM.CANCELBUTTON.CAPTION
 msgctxt "TEXTRACTSELECTEDFORM.CANCELBUTTON.CAPTION"
 msgid "Cancel"
-msgstr "Avbryt"
+msgstr ""
 
 #: TEXTRACTSELECTEDFORM.CAPTION
 msgid "ExtractSelectedForm"
@@ -1667,46 +1656,46 @@ msgstr ""
 #: TEXTRACTSELECTEDFORM.FLATRESTORECHECKBOX.CAPTION
 msgctxt "TEXTRACTSELECTEDFORM.FLATRESTORECHECKBOX.CAPTION"
 msgid "Ignore directories"
-msgstr "Ignorera mappar"
+msgstr ""
 
 #: TEXTRACTSELECTEDFORM.OKBUTTON.CAPTION
 msgctxt "TEXTRACTSELECTEDFORM.OKBUTTON.CAPTION"
 msgid "&OK"
-msgstr "&OK"
+msgstr ""
 
 #: TEXTRACTSELECTEDFORM.OPTIONSGROUPBOX.CAPTION
 msgctxt "TEXTRACTSELECTEDFORM.OPTIONSGROUPBOX.CAPTION"
 msgid " Options "
-msgstr " Val "
+msgstr ""
 
 #: TEXTRACTSELECTEDFORM.OVERWRITEOPTIONS.CAPTION
 msgid " Existing files "
-msgstr " Befintliga filer "
+msgstr ""
 
 #: TEXTRACTSELECTEDFORM.RESTOREFILESLABEL.CAPTION
 msgctxt "TEXTRACTSELECTEDFORM.RESTOREFILESLABEL.CAPTION"
 msgid "Restore files to"
-msgstr "Återställ filer till"
+msgstr ""
 
 #: TFILEMASKDIALOG.CANCELBUTTON.CAPTION
 msgctxt "TFILEMASKDIALOG.CANCELBUTTON.CAPTION"
 msgid "Cancel"
-msgstr "Avbryt"
+msgstr ""
 
 #: TFILEMASKDIALOG.CAPTION
 msgctxt "TFILEMASKDIALOG.CAPTION"
 msgid "Add file"
-msgstr "Lägg till fil"
+msgstr ""
 
 #: TFILEMASKDIALOG.FILEMASKLABEL.CAPTION
 msgctxt "TFILEMASKDIALOG.FILEMASKLABEL.CAPTION"
 msgid "File mask"
-msgstr "Filmask"
+msgstr ""
 
 #: TFILEMASKDIALOG.OKBUTTON.CAPTION
 msgctxt "TFILEMASKDIALOG.OKBUTTON.CAPTION"
 msgid "&OK"
-msgstr "&OK"
+msgstr ""
 
 #: TINFORMATIONFORM.CAPTION
 msgid "InformationForm"
@@ -1715,22 +1704,22 @@ msgstr ""
 #: TINFORMATIONFORM.OKBUTTON.CAPTION
 msgctxt "TINFORMATIONFORM.OKBUTTON.CAPTION"
 msgid "&OK"
-msgstr "&OK"
+msgstr ""
 
 #: TISOLATEFORM.ARCHIVEBUTTON.CAPTION
 msgctxt "TISOLATEFORM.ARCHIVEBUTTON.CAPTION"
 msgid "Browse"
-msgstr "Bläddra"
+msgstr ""
 
 #: TISOLATEFORM.CANCELBUTTON.CAPTION
 msgctxt "TISOLATEFORM.CANCELBUTTON.CAPTION"
 msgid "Cancel"
-msgstr "Avbryt"
+msgstr ""
 
 #: TISOLATEFORM.CATALOGUEBUTTON.CAPTION
 msgctxt "TISOLATEFORM.CATALOGUEBUTTON.CAPTION"
 msgid "Browse"
-msgstr "Bläddra"
+msgstr ""
 
 #: TISOLATEFORM.ENCRYPTCATALOGCHECK.CAPTION
 msgid "EncryptCatalogCheck"
@@ -1739,72 +1728,71 @@ msgstr ""
 #: TISOLATEFORM.ISOLATEFORM.CAPTION
 msgctxt "TISOLATEFORM.ISOLATEFORM.CAPTION"
 msgid "Isolate archive catalogue"
-msgstr "Isolera arkivkatalog"
+msgstr ""
 
 #: TISOLATEFORM.OKBUTTON.CAPTION
 msgctxt "TISOLATEFORM.OKBUTTON.CAPTION"
 msgid "&OK"
-msgstr "&OK"
+msgstr ""
 
 #: TISOLATEFORM.SUBLABEL.CAPTION
 msgctxt "TISOLATEFORM.SUBLABEL.CAPTION"
 msgid "Save catalogue as"
-msgstr "Spara katalog som"
+msgstr ""
 
 #: TMAINFORM.MAINFORM.CAPTION
-msgctxt "TMAINFORM.MAINFORM.CAPTION"
 msgid "DarGUI"
-msgstr "DarGUI"
+msgstr ""
 
 #: TMAINFORM.MENUARCHIVE.CAPTION
 msgctxt "TMAINFORM.MENUARCHIVE.CAPTION"
 msgid "Archive"
-msgstr "Arkiv"
+msgstr ""
 
 #: TMAINFORM.MENUBREAK1.CAPTION
 msgctxt "TMAINFORM.MENUBREAK1.CAPTION"
 msgid "-"
-msgstr "-"
+msgstr ""
 
 #: TMAINFORM.MENUBREAK2.CAPTION
 msgctxt "TMAINFORM.MENUBREAK2.CAPTION"
 msgid "-"
-msgstr "-"
+msgstr ""
 
 #: TMAINFORM.MENUBREAK3.CAPTION
 msgctxt "TMAINFORM.MENUBREAK3.CAPTION"
 msgid "-"
-msgstr "-"
+msgstr ""
 
 #: TMAINFORM.MENUBREAK4.CAPTION
 msgctxt "TMAINFORM.MENUBREAK4.CAPTION"
 msgid "-"
-msgstr "-"
+msgstr ""
 
 #: TMAINFORM.MENUEDIT.CAPTION
 msgid "Edit"
-msgstr "Redigera"
+msgstr ""
 
 #: TMAINFORM.MENUFILE.CAPTION
 msgid "&File"
-msgstr "&Fil"
+msgstr ""
 
 #: TMAINFORM.MENUHELP.CAPTION
 msgid "&Help"
-msgstr "&Hjälp"
+msgstr ""
 
 #: TMAINFORM.MENUSETTINGS.CAPTION
 msgctxt "TMAINFORM.MENUSETTINGS.CAPTION"
 msgid "Options"
-msgstr "Val"
+msgstr ""
 
 #: TMAINFORM.MESSAGEHIDEBUTTON.CAPTION
 msgid "X"
-msgstr "X"
+msgstr ""
 
 #: TMAINFORM.MESSAGELABEL.CAPTION
 msgid "Messages:"
-msgstr "Meddelanden:"
+msgstr ""
 
 #: TMAINFORM.MESSAGEPANEL.CAPTION
 msgid "MessagePanel"
@@ -1813,66 +1801,66 @@ msgstr ""
 #: TMAINFORM.MIARCHIVEDIFF.CAPTION
 msgctxt "TMAINFORM.MIARCHIVEDIFF.CAPTION"
 msgid "Compare files"
-msgstr "jämför filer..."
+msgstr ""
 
 #: TMAINFORM.MIARCHIVEINFORMATION.CAPTION
 msgctxt "TMAINFORM.MIARCHIVEINFORMATION.CAPTION"
 msgid "Information"
-msgstr "Information"
+msgstr ""
 
 #: TMAINFORM.MIEXIT.CAPTION
 msgctxt "TMAINFORM.MIEXIT.CAPTION"
 msgid "Exit"
-msgstr "Avsluta"
+msgstr ""
 
 #: TMAINFORM.MIFILENEW.CAPTION
 msgctxt "TMAINFORM.MIFILENEW.CAPTION"
 msgid "New"
-msgstr "Nytt"
+msgstr ""
 
 #: TMAINFORM.MIFILEOPEN.CAPTION
 msgctxt "TMAINFORM.MIFILEOPEN.CAPTION"
 msgid "Open"
-msgstr "Öppna"
+msgstr ""
 
 #: TMAINFORM.MIHELPABOUT.CAPTION
 msgctxt "TMAINFORM.MIHELPABOUT.CAPTION"
 msgid "About DarGUI"
-msgstr "Om DarGUI"
+msgstr ""
 
 #: TMAINFORM.MIHELPCONTENTS.CAPTION
 msgctxt "TMAINFORM.MIHELPCONTENTS.CAPTION"
 msgid "DarGUI Help"
-msgstr "DarGUI Hjälp"
+msgstr ""
 
 #: TMAINFORM.MIHELPDAR.CAPTION
 msgctxt "TMAINFORM.MIHELPDAR.CAPTION"
 msgid "Dar Documentation"
-msgstr "Dar dokumentation"
+msgstr ""
 
 #: TMAINFORM.MIHIDEMESSAGES.CAPTION
 msgid "Hide messages"
-msgstr "Göm meddelanden"
+msgstr ""
 
 #: TMAINFORM.MIISOLATE.CAPTION
 msgid "Isolate catalogue"
-msgstr "Isolera katalog"
+msgstr ""
 
 #: TMAINFORM.MIOPENRECENT.CAPTION
 msgid "Open recent ..."
-msgstr "Öppna tidigare..."
+msgstr ""
 
 #: TMAINFORM.MIOPERATIONLOGS.CAPTION
 msgid "Operation logs"
-msgstr "Åtgärdsloggar"
+msgstr ""
 
 #: TMAINFORM.MIRESTOREALL.CAPTION
 msgid "Restore all"
-msgstr "Återställ allt"
+msgstr ""
 
 #: TMAINFORM.MIRESTORESELECTED.CAPTION
 msgid "Restore selected"
-msgstr "Återställ valt"
+msgstr ""
 
 #: TMAINFORM.MISCHEDMANAGER.CAPTION
 msgid "miSchedman"
@@ -1881,106 +1869,105 @@ msgstr ""
 #: TMAINFORM.MISELECTFILTER.CAPTION
 msgctxt "TMAINFORM.MISELECTFILTER.CAPTION"
 msgid "Select by Filter"
-msgstr "Välj med hjälp av filter"
+msgstr ""
 
 #: TMAINFORM.MISHOWSELECT.CAPTION
 msgctxt "TMAINFORM.MISHOWSELECT.CAPTION"
 msgid "Show Selected"
-msgstr "Visa valt"
+msgstr ""
 
 #: TMAINFORM.MISHOWTOOLBAR.CAPTION
 msgctxt "TMAINFORM.MISHOWTOOLBAR.CAPTION"
 msgid "Show Toolbar"
-msgstr "Visa verktygsrad"
+msgstr ""
 
 #: TMAINFORM.MITESTARCHIVE.CAPTION
 msgctxt "TMAINFORM.MITESTARCHIVE.CAPTION"
 msgid "Check Integrity"
-msgstr "Kontrollera integritet"
+msgstr ""
 
 #: TMAINFORM.MITOGGLESELECT.CAPTION
 msgctxt "TMAINFORM.MITOGGLESELECT.CAPTION"
 msgid "Toggle Selected"
-msgstr "Byt valt"
+msgstr ""
 
 #: TMAINFORM.MIUSERPREFS.CAPTION
 msgid "Preferences"
-msgstr "Inställningar"
+msgstr ""
 
 #: TMAINFORM.PMIHIDEALL.CAPTION
 msgctxt "TMAINFORM.PMIHIDEALL.CAPTION"
 msgid "Hide All"
-msgstr "Göm allt"
+msgstr ""
 
 #: TMAINFORM.PMIRESTOREALL.CAPTION
 msgctxt "TMAINFORM.PMIRESTOREALL.CAPTION"
 msgid "Restore All"
-msgstr "Återställ allt"
+msgstr ""
 
 #: TMAINFORM.PMIRESTORESELECTED.CAPTION
 msgctxt "TMAINFORM.PMIRESTORESELECTED.CAPTION"
 msgid "Restore Selected"
-msgstr "Återställ valt"
+msgstr ""
 
 #: TMAINFORM.PMISELECTFILTER.CAPTION
 msgctxt "TMAINFORM.PMISELECTFILTER.CAPTION"
 msgid "Select by Filter"
-msgstr "Välj med hjälp av filter"
+msgstr ""
 
 #: TMAINFORM.PMISHOWALL.CAPTION
 msgctxt "TMAINFORM.PMISHOWALL.CAPTION"
 msgid "Show All"
-msgstr "Visa allt"
+msgstr ""
 
 #: TMAINFORM.PMISHOWALLSELECTED.CAPTION
 msgctxt "TMAINFORM.PMISHOWALLSELECTED.CAPTION"
 msgid "Show Selected"
-msgstr "Visa valt"
+msgstr ""
 
 #: TMAINFORM.PMITOGGLESELECT.CAPTION
 msgctxt "TMAINFORM.PMITOGGLESELECT.CAPTION"
 msgid "Toggle Selected"
-msgstr "Byt valt"
+msgstr ""
 
 #: TMAINFORM.POPUPBREAK1.CAPTION
 msgctxt "TMAINFORM.POPUPBREAK1.CAPTION"
 msgid "-"
-msgstr "-"
+msgstr ""
 
 #: TMAINFORM.POPUPBREAK2.CAPTION
 msgctxt "TMAINFORM.POPUPBREAK2.CAPTION"
 msgid "-"
-msgstr "-"
+msgstr ""
 
 #: TMAINFORM.TBCREATE.HINT
 msgctxt "TMAINFORM.TBCREATE.HINT"
 msgid "Create a new archive"
-msgstr "Skapa ett nytt arkiv"
+msgstr ""
 
 #: TMAINFORM.TBDIFF.HINT
 msgctxt "TMAINFORM.TBDIFF.HINT"
 msgid "Compare archive and filesystem"
-msgstr "Jämför arkiv och filsystem"
+msgstr ""
 
 #: TMAINFORM.TBISOLATE.HINT
 msgctxt "TMAINFORM.TBISOLATE.HINT"
 msgid "Isolate archive catalogue"
-msgstr "Isolera arkivkatalog"
+msgstr ""
 
 #: TMAINFORM.TBOPEN.HINT
 msgctxt "TMAINFORM.TBOPEN.HINT"
 msgid "Open an archive"
-msgstr "Öppna ett arkiv"
+msgstr ""
 
 #: TOPLOGFORM.CAPTION
-msgctxt "TOPLOGFORM.CAPTION"
 msgid "Logs"
-msgstr "Loggar"
+msgstr ""
 
 #: TOPLOGFORM.CLOSEBUTTON.CAPTION
 msgctxt "TOPLOGFORM.CLOSEBUTTON.CAPTION"
 msgid "&Close"
-msgstr "&Stäng"
+msgstr ""
 
 #: TOPLOGFORM.COMMANDLABEL.CAPTION
 msgid "CommandLabel"
@@ -1992,16 +1979,16 @@ msgstr ""
 
 #: TOPLOGFORM.MICOPYCOMMAND.CAPTION
 msgid "Copy Selected"
-msgstr "Visa valt"
+msgstr ""
 
 #: TOPLOGFORM.MIEXECUTECOMMAND.CAPTION
 msgid "Execute"
-msgstr "Utför"
+msgstr ""
 
 #: TOPTIONSFORM.CANCELBUTTON.CAPTION
 msgctxt "TOPTIONSFORM.CANCELBUTTON.CAPTION"
 msgid "Cancel"
-msgstr "Avbryt"
+msgstr ""
 
 #: TOPTIONSFORM.DARLOCATIONLABEL.CAPTION
 msgid "DarLocationLabel"
@@ -2013,12 +2000,12 @@ msgstr ""
 
 #: TOPTIONSFORM.DISPLAYPAGE.CAPTION
 msgid "Display"
-msgstr "Display"
+msgstr ""
 
 #: TOPTIONSFORM.FILESOPENEDLBL.CAPTION
 msgctxt "TOPTIONSFORM.FILESOPENEDLBL.CAPTION"
 msgid "files opened"
-msgstr "filer öppnade"
+msgstr ""
 
 #: TOPTIONSFORM.MAINFORMPOSITION.CAPTION
 msgid "MainFormPosition"
@@ -2031,7 +2018,7 @@ msgstr ""
 #: TOPTIONSFORM.OKBUTTON.CAPTION
 msgctxt "TOPTIONSFORM.OKBUTTON.CAPTION"
 msgid "Ok"
-msgstr "Ok"
+msgstr ""
 
 #: TOPTIONSFORM.OPTIONSFORM.CAPTION
 msgctxt "TOPTIONSFORM.OPTIONSFORM.CAPTION"
@@ -2041,7 +2028,7 @@ msgstr ""
 #: TOPTIONSFORM.REMEMBERLBL.CAPTION
 msgctxt "TOPTIONSFORM.REMEMBERLBL.CAPTION"
 msgid "Remember last"
-msgstr "Kom ihåg senaste"
+msgstr ""
 
 #: TOPTIONSFORM.TOOLBARCHECK.CAPTION
 msgid "ShowToolbar"
@@ -2050,7 +2037,7 @@ msgstr ""
 #: TPASSWORDDLG.CANCELBUTTON.CAPTION
 msgctxt "TPASSWORDDLG.CANCELBUTTON.CAPTION"
 msgid "Cancel"
-msgstr "Avbryt"
+msgstr ""
 
 #: TPASSWORDDLG.NOMATCHLABEL.CAPTION
 msgid "NoMatchLabel"
@@ -2059,10 +2046,9 @@ msgstr ""
 #: TPASSWORDDLG.OKBUTTON.CAPTION
 msgctxt "TPASSWORDDLG.OKBUTTON.CAPTION"
 msgid "&OK"
-msgstr "&OK"
+msgstr ""
 
 #: TPASSWORDDLG.PASSWORDDLG.CAPTION
-msgctxt "TPASSWORDDLG.PASSWORDDLG.CAPTION"
 msgid "PasswordDlg"
 msgstr ""
 
@@ -2085,17 +2071,17 @@ msgstr ""
 #: TSCHEDULEMANAGERFORM.CLOSEBUTTON.CAPTION
 msgctxt "TSCHEDULEMANAGERFORM.CLOSEBUTTON.CAPTION"
 msgid "&Close"
-msgstr "&Stäng"
+msgstr ""
 
 #: TSELECTFILTERFORM.ADDFILTERBUTTON.CAPTION
 msgctxt "TSELECTFILTERFORM.ADDFILTERBUTTON.CAPTION"
 msgid "Add"
-msgstr "Lägg till"
+msgstr ""
 
 #: TSELECTFILTERFORM.CANCELBUTTON.CAPTION
 msgctxt "TSELECTFILTERFORM.CANCELBUTTON.CAPTION"
 msgid "Cancel"
-msgstr "Avbryt"
+msgstr ""
 
 #: TSELECTFILTERFORM.CAPTION
 msgid "SelectFilterForm"
@@ -2104,16 +2090,16 @@ msgstr ""
 #: TSELECTFILTERFORM.CLEARFILTERSBUTTON.CAPTION
 msgctxt "TSELECTFILTERFORM.CLEARFILTERSBUTTON.CAPTION"
 msgid "Clear"
-msgstr "Rensa"
+msgstr ""
 
 #: TSELECTFILTERFORM.DELFILTERBUTTON.CAPTION
 msgctxt "TSELECTFILTERFORM.DELFILTERBUTTON.CAPTION"
 msgid "Remove"
-msgstr "Tag bort"
+msgstr ""
 
 #: TSELECTFILTERFORM.FILENAMESONLYCHECK.CAPTION
 msgid "Apply filter to filenames only"
-msgstr "Tillämpa filter bara på filnamn"
+msgstr ""
 
 #: TSELECTFILTERFORM.MATCHALLCHECK.CAPTION
 msgid "MatchAllCheck"
@@ -2122,5 +2108,5 @@ msgstr ""
 #: TSELECTFILTERFORM.OKBUTTON.CAPTION
 msgctxt "TSELECTFILTERFORM.OKBUTTON.CAPTION"
 msgid "&OK"
-msgstr "&OK"
+msgstr ""
 

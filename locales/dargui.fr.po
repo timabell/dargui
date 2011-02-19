@@ -1,6 +1,16 @@
-# translation of dargui.fr.po to Spanish
 # translation of dargui.pot to French
-# Header entry was created by KBabel!
+#
+# IMPORTANT: Note for translators
+# DarGUI translates only strings from the dgstrconst unit
+# As a result you should only
+# translate any strings in this file which have
+# an identifier which begins '#. dgstrconst.'
+#
+# Strings with identifier darstrings.* _must_ have the
+# same translation as used by dar: do not change them!
+#
+#
+# Other strings will not be used.
 #
 # Malcolm Poole <mgpoole@users.sourceforge.net>, 2008, 2009.
 msgid ""
@@ -10,104 +20,139 @@ msgstr ""
 "Mime-Version: 1.0Last-Translator: Gwénaël TRELLU<mgpoole@users.sourceforge.net>\n"
 "PO-Revision-Date: 2009-02-26 20:45+0000\n"
 "Project-Id-Version: dargui.fr\n"
-"Language-Team: Spanish\n"
 "X-Generator: KBabel 1.11.4\n"
 "MIME-Version: 1.0\n"
 "Last-Translator: Malcolm Poole <mgpoole@users.sourceforge.net>\n"
 
 #: darstrings.dsabortingnouserresponse
 msgid "Aborting program. User refused to continue while asking: "
-msgstr ""
+msgstr "Abandon. L'utilisateur a refusé de continuer suite à la question : "
 
 #: darstrings.dsarchiveencrypted
 msgid "The archive %S is encrypted and no encryption cipher has been given, cannot open archive."
-msgstr ""
+msgstr "L'archive %S est chiffrée mais aucun algorithme de chiffrement n'a été donné. Ouverture de l'archive impossible."
 
 #: darstrings.dsarchiveversiontoohigh
 msgid "The format version of the archive is too high for that software version, try reading anyway?"
-msgstr ""
+msgstr "La version du format de cette archive est trop grand pour cette version d'application. Essaye t-on quand même lire cette archive ?"
 
 #: darstrings.dscataloguecontents
-msgid "CATALOGUE CONTENTS :"
+msgid ""
+"\n"
+"CATALOGUE CONTENTS :\n"
+"\n"
 msgstr ""
+"\n"
+"CONTENU DU CATALOGUE :\n"
+"\n"
 
 #: darstrings.dscolumntitles
+#, fuzzy
+#| msgid "[data ][ EA  ][compr] | permission | user  | group | size  |          date                 |    filename"
 msgid "[data ][ EA  ][compr] | permission | user  | group | size  |          date                 |    filename"
-msgstr ""
+msgstr "[donnée][ AE  ][compr] | accès     |utilisat.|groupe |taille |          date                 | nom de fichier"
 
 #: darstrings.dsdestroyedfiles
 msgid ""
 "   %i file(s) have been record as destroyed since backup of reference\n"
 "\n"
 msgstr ""
+"   %i fichier(s) ont été enregistré(s) comme détruit(s) depuis la sauvegarde de référence\n"
+"\n"
 
 #: darstrings.dsextendedattributes
+#, fuzzy
+#| msgid "   Extended Attributes support: %s"
 msgid "   Extended Attributes support: %s"
-msgstr ""
+msgstr "   Support Attributs Etendus  : %s"
 
 #: darstrings.dsextractingcontents
 msgid "Extracting contents of the archive..."
-msgstr ""
+msgstr "Lecture du contenu de l'archive ..."
 
 #: darstrings.dsinodecount
+#, fuzzy
+#| msgid "total number of inode : %i"
 msgid "total number of inode : %i"
-msgstr ""
+msgstr "nombre total d'inodes : %i"
 
 #: darstrings.dslargefiles
+#, fuzzy
+#| msgid "   Large files support (> 2GB): %s"
 msgid "   Large files support (> 2GB): %s"
-msgstr ""
+msgstr "   Support fichiers géants    : %s"
 
 #: darstrings.dslastslicenotfound
 msgid "The last file of the set is not present in "
-msgstr ""
+msgstr "Le dernier fichier (tranche) de l'archive n'est pas présent dans "
 
 #: darstrings.dslibbz2comp
+#, fuzzy
+#| msgid "   Libbz2 compression (bzip2) : %s"
 msgid "   Libbz2 compression (bzip2) : %s"
-msgstr ""
+msgstr "   Compression libbz2 (bzip2) : %s"
 
 #: darstrings.dslibzcomp
+#, fuzzy
+#| msgid "   Libz compression (gzip)    : %s"
 msgid "   Libz compression (gzip)    : %s"
-msgstr ""
+msgstr "   Compression libz (gzip)    : %s"
 
 #: darstrings.dslongoptions
+#, fuzzy
+#| msgid "Long options support       : %s"
 msgid "Long options support       : %s"
-msgstr ""
+msgstr "Options longues supportées : %s"
 
 #: darstrings.dsnewblowfish
+#, fuzzy
+#| msgid "   New Blowfish implementation: %s"
 msgid "   New Blowfish implementation: %s"
-msgstr ""
+msgstr "   Nlle implément. Blowfish   : %s"
 
 #: darstrings.dsno
 msgid "NO"
-msgstr ""
+msgstr "NON"
 
 #: darstrings.dsnodump
+#, fuzzy
+#| msgid "   ext2fs NODUMP flag support : %s"
 msgid "   ext2fs NODUMP flag support : %s"
-msgstr ""
+msgstr "   support drapeau \"nodump\"   : %s"
 
 #: darstrings.dsremoved
 msgid "[     REMOVED       ]"
-msgstr ""
+msgstr "[     SUPPRIMÉ      ]"
 
 #: darstrings.dsreturncancel
 msgid " [return = OK | Esc = cancel]"
-msgstr ""
+msgstr " [Entrée = OK | Echap = annuler]"
 
 #: darstrings.dsslicenotfound
 msgid "%s is required for further operation, please provide the file."
-msgstr ""
+msgstr "%s est requis pour la suite des opérations, merci de fournir ce fichier."
 
 #: darstrings.dsspecialalloc
+#, fuzzy
+#| msgid "   Special allocation scheme  : %s"
 msgid "   Special allocation scheme  : %s"
-msgstr ""
+msgstr "   Allocation mém. optimisée  : %s"
 
 #: darstrings.dsthreadsafe
+#, fuzzy
+#| msgid "   Thread safe support        : %s"
 msgid "   Thread safe support        : %s"
-msgstr ""
+msgstr "   Support files d'exécution  : %s"
+
+#: darstrings.dswrongpassword
+#, fuzzy
+#| msgid "Warning, the archive %S has been encrypted. A wrong key is not possible to detect, it would cause DAR to report the archive as corrupted"
+msgid "Warning, the archive %S has been encrypted. A wrong key is not possible to detect, it would cause DAR to report the archive as corrupted"
+msgstr "Attention, l'archive %S a été chiffrée. Une mauvaise clef est impossible à détecter, cela aura pour conséquence la signalisation d'une corruption de l'archive."
 
 #: darstrings.dsyes
 msgid "YES"
-msgstr ""
+msgstr "OUI"
 
 #: dgstrconst.rsaboutdarversion
 msgid "Using DAR version %s"
@@ -335,6 +380,10 @@ msgstr "# Création de segments de taille en Mb"
 msgid "# DAR batch file written by DarGUI"
 msgstr "# Fichier script DAR écrit par DarGUI"
 
+#: dgstrconst.rsdarexecutabl
+msgid "Dar executable"
+msgstr ""
+
 #: dgstrconst.rsdarguihasbeendevelop
 msgid "DarGUI has been developed using Freepascal and the Lazarus IDE"
 msgstr "DarGUI a été développé avec l'interface Lazarus et compilée sous Freepascal"
@@ -350,6 +399,10 @@ msgstr "Jour de la semaine"
 #: dgstrconst.rsdec
 msgid "Dec"
 msgstr "Dec"
+
+#: dgstrconst.rsdefaultsettings
+msgid "Default archive creation settings"
+msgstr ""
 
 #: dgstrconst.rsdifferentialbackup
 msgctxt "dgstrconst.rsdifferentialbackup"
@@ -385,6 +438,10 @@ msgstr "# Phase Test: cette archive ne sera pas enregistrée tant que l'option s
 #: dgstrconst.rsencryptarchive
 msgid "Encrypt archive using blowfish"
 msgstr "Cryptage Blowfish de l'archive"
+
+#: dgstrconst.rsencryptcatalogue
+msgid "Encrypt catalogue using blowfish"
+msgstr ""
 
 #: dgstrconst.rsenterpassword
 msgid "Enter Password"
@@ -518,6 +575,11 @@ msgstr "Ces fichiers ont déjà été sélectionnés pour être exclus de l'arch
 msgid "These files are already selected to be included in the archive.%sDo you really want to exclude them?"
 msgstr "Ces fichiers ont déjà été sélectionnés pour être inclus dans l'archive.%s Voulez-vous vraiment les y exclure?"
 
+#: dgstrconst.rsfilesopened
+msgctxt "dgstrconst.rsfilesopened"
+msgid "files opened"
+msgstr ""
+
 #: dgstrconst.rsfilestorestore
 msgid "# Files to restore"
 msgstr "# Fichiers à restaurer"
@@ -537,6 +599,10 @@ msgstr "Fichiers DarGUI"
 #: dgstrconst.rsfri
 msgid "Fri"
 msgstr "Ven"
+
+#: dgstrconst.rsgeneral
+msgid "General"
+msgstr ""
 
 #: dgstrconst.rshintcomparearchivefile
 msgctxt "dgstrconst.rshintcomparearchivefile"
@@ -904,6 +970,19 @@ msgctxt "dgstrconst.rsreferencearchive"
 msgid "Reference archive"
 msgstr "Archive de référence"
 
+#: dgstrconst.rsrememberlast
+msgctxt "dgstrconst.rsrememberlast"
+msgid "Remember last"
+msgstr ""
+
+#: dgstrconst.rsrememberwinpos
+msgid "Remember main window position on exit"
+msgstr ""
+
+#: dgstrconst.rsrememberwinsize
+msgid "Remember main window size on exit"
+msgstr ""
+
 #: dgstrconst.rsremoveallfilters
 msgid "Remove all filters?"
 msgstr "Retirer tous les filtres"
@@ -1056,6 +1135,10 @@ msgctxt "dgstrconst.rsusegzipcompression"
 msgid "use gzip compression"
 msgstr "Utiliser la compression gzip"
 
+#: dgstrconst.rsuserpreferen
+msgid "User preferences"
+msgstr ""
+
 #: dgstrconst.rsuseslices
 msgctxt "dgstrconst.rsuseslices"
 msgid "Use slices"
@@ -1076,6 +1159,14 @@ msgstr "Mer"
 #: dgstrconst.rsyes
 msgid "Yes"
 msgstr "Oui"
+
+#: main.rsdonotcompres
+msgid "%s# Do not compress files smaller than this"
+msgstr ""
+
+#: main.test
+msgid "tesdt"
+msgstr ""
 
 #: TABOUTFORM.AUTHORLABEL.CAPTION
 msgid "Author: Malcolm Poole"
@@ -1145,6 +1236,11 @@ msgstr "Parcourir..."
 msgid "ArchiveDirectory"
 msgstr ""
 
+#: TARCHIVEFORM.ARCHIVEFORM.CAPTION
+msgctxt "TARCHIVEFORM.ARCHIVEFORM.CAPTION"
+msgid "New Archive"
+msgstr ""
+
 #: TARCHIVEFORM.ARCHIVEPAGE.CAPTION
 msgctxt "TARCHIVEFORM.ARCHIVEPAGE.CAPTION"
 msgid "Archive"
@@ -1189,10 +1285,6 @@ msgstr "Utiliser la compression bzip2"
 msgctxt "TARCHIVEFORM.CANCELBUTTON.CAPTION"
 msgid "Cancel"
 msgstr "Annuler"
-
-#: TARCHIVEFORM.CAPTION
-msgid "New Archive"
-msgstr ""
 
 #: TARCHIVEFORM.COMPLVLLABEL.CAPTION
 msgctxt "TARCHIVEFORM.COMPLVLLABEL.CAPTION"
@@ -1265,11 +1357,6 @@ msgstr "Sauvegarde différentielle"
 msgctxt "TARCHIVEFORM.DIFFREFBUTTON.CAPTION"
 msgid "Browse"
 msgstr "Parcourir..."
-
-#: TARCHIVEFORM.DIFFREFERENCE.EDITLABEL.CAPTION
-msgctxt "TARCHIVEFORM.DIFFREFERENCE.EDITLABEL.CAPTION"
-msgid "Reference archive"
-msgstr "Archive de référence"
 
 #: TARCHIVEFORM.DIRECTORIESPAGE.CAPTION
 msgctxt "TARCHIVEFORM.DIRECTORIESPAGE.CAPTION"
@@ -1479,6 +1566,11 @@ msgctxt "TARCHIVEFORM.SLICESIZELABEL.CAPTION"
 msgid "Slice size"
 msgstr "Taille Segment"
 
+#: TARCHIVEFORM.SUBLABEL.CAPTION
+msgctxt "TARCHIVEFORM.SUBLABEL.CAPTION"
+msgid "Reference archive"
+msgstr "Archive de référence"
+
 #: TARCHIVEFORM.TIMESTAMPCHECK.CAPTION
 msgid "TimestampCheck"
 msgstr ""
@@ -1492,7 +1584,8 @@ msgctxt "TCREATESAVEDIALOG.CANCELBUTTON.CAPTION"
 msgid "Cancel"
 msgstr "Annuler"
 
-#: TCREATESAVEDIALOG.CAPTION
+#: TCREATESAVEDIALOG.CREATESAVEDIALOG.CAPTION
+msgctxt "TCREATESAVEDIALOG.CREATESAVEDIALOG.CAPTION"
 msgid "CreateSaveDialog"
 msgstr ""
 
@@ -1631,11 +1724,6 @@ msgctxt "TINFORMATIONFORM.OKBUTTON.CAPTION"
 msgid "&OK"
 msgstr ""
 
-#: TISOLATEFORM.ARCHIVEBOX.EDITLABEL.CAPTION
-msgctxt "TISOLATEFORM.ARCHIVEBOX.EDITLABEL.CAPTION"
-msgid "Archive"
-msgstr "Archive"
-
 #: TISOLATEFORM.ARCHIVEBUTTON.CAPTION
 msgctxt "TISOLATEFORM.ARCHIVEBUTTON.CAPTION"
 msgid "Browse"
@@ -1646,58 +1734,32 @@ msgctxt "TISOLATEFORM.CANCELBUTTON.CAPTION"
 msgid "Cancel"
 msgstr "Annuler"
 
-#: TISOLATEFORM.CAPTION
-msgctxt "TISOLATEFORM.CAPTION"
-msgid "Isolate archive catalogue"
-msgstr "Isoler le catalogue de l'archive"
-
-#: TISOLATEFORM.CATALOGUEBOX.EDITLABEL.CAPTION
-msgctxt "TISOLATEFORM.CATALOGUEBOX.EDITLABEL.CAPTION"
-msgid "Save catalogue as"
-msgstr "Enregistrer le catalogue sous"
-
 #: TISOLATEFORM.CATALOGUEBUTTON.CAPTION
 msgctxt "TISOLATEFORM.CATALOGUEBUTTON.CAPTION"
 msgid "Browse"
 msgstr "Parcourir..."
 
-#: TISOLATEFORM.ENCRYPTARCHIVECHECK.CAPTION
-msgctxt "TISOLATEFORM.ENCRYPTARCHIVECHECK.CAPTION"
-msgid "EncryptArchiveCheck"
+#: TISOLATEFORM.ENCRYPTCATALOGCHECK.CAPTION
+msgid "EncryptCatalogCheck"
 msgstr ""
+
+#: TISOLATEFORM.ISOLATEFORM.CAPTION
+msgctxt "TISOLATEFORM.ISOLATEFORM.CAPTION"
+msgid "Isolate archive catalogue"
+msgstr "Isoler le catalogue de l'archive"
 
 #: TISOLATEFORM.OKBUTTON.CAPTION
 msgctxt "TISOLATEFORM.OKBUTTON.CAPTION"
 msgid "&OK"
 msgstr ""
 
-#: TLOCATEFILEFORM.BROWSEBUTTON.CAPTION
-msgid "BrowseButton"
-msgstr ""
+#: TISOLATEFORM.SUBLABEL.CAPTION
+msgctxt "TISOLATEFORM.SUBLABEL.CAPTION"
+msgid "Save catalogue as"
+msgstr "Enregistrer le catalogue sous"
 
-#: TLOCATEFILEFORM.CANCELBUTTON.CAPTION
-msgctxt "TLOCATEFILEFORM.CANCELBUTTON.CAPTION"
-msgid "Cancel"
-msgstr "Annuler"
-
-#: TLOCATEFILEFORM.CAPTION
-msgid "LocateFileForm"
-msgstr ""
-
-#: TLOCATEFILEFORM.FILENAMEEDIT.EDITLABEL.CAPTION
-msgid "FilenameEdit"
-msgstr ""
-
-#: TLOCATEFILEFORM.MESSAGELABEL.CAPTION
-msgid "MessageLabel"
-msgstr ""
-
-#: TLOCATEFILEFORM.OKBUTTON.CAPTION
-msgctxt "TLOCATEFILEFORM.OKBUTTON.CAPTION"
-msgid "Ok"
-msgstr ""
-
-#: TMAINFORM.CAPTION
+#: TMAINFORM.MAINFORM.CAPTION
+msgctxt "TMAINFORM.MAINFORM.CAPTION"
 msgid "DarGUI"
 msgstr ""
 
@@ -1948,10 +2010,6 @@ msgctxt "TOPTIONSFORM.CANCELBUTTON.CAPTION"
 msgid "Cancel"
 msgstr "Annuler"
 
-#: TOPTIONSFORM.CAPTION
-msgid "OptionsForm"
-msgstr ""
-
 #: TOPTIONSFORM.DARLOCATIONLABEL.CAPTION
 msgid "DarLocationLabel"
 msgstr ""
@@ -1965,6 +2023,7 @@ msgid "Display"
 msgstr ""
 
 #: TOPTIONSFORM.FILESOPENEDLBL.CAPTION
+msgctxt "TOPTIONSFORM.FILESOPENEDLBL.CAPTION"
 msgid "files opened"
 msgstr ""
 
@@ -1981,7 +2040,13 @@ msgctxt "TOPTIONSFORM.OKBUTTON.CAPTION"
 msgid "Ok"
 msgstr ""
 
+#: TOPTIONSFORM.OPTIONSFORM.CAPTION
+msgctxt "TOPTIONSFORM.OPTIONSFORM.CAPTION"
+msgid "OptionsForm"
+msgstr ""
+
 #: TOPTIONSFORM.REMEMBERLBL.CAPTION
+msgctxt "TOPTIONSFORM.REMEMBERLBL.CAPTION"
 msgid "Remember last"
 msgstr ""
 
@@ -1994,10 +2059,6 @@ msgctxt "TPASSWORDDLG.CANCELBUTTON.CAPTION"
 msgid "Cancel"
 msgstr "Annuler"
 
-#: TPASSWORDDLG.CAPTION
-msgid "PasswordDlg"
-msgstr ""
-
 #: TPASSWORDDLG.NOMATCHLABEL.CAPTION
 msgid "NoMatchLabel"
 msgstr ""
@@ -2005,6 +2066,11 @@ msgstr ""
 #: TPASSWORDDLG.OKBUTTON.CAPTION
 msgctxt "TPASSWORDDLG.OKBUTTON.CAPTION"
 msgid "&OK"
+msgstr ""
+
+#: TPASSWORDDLG.PASSWORDDLG.CAPTION
+msgctxt "TPASSWORDDLG.PASSWORDDLG.CAPTION"
+msgid "PasswordDlg"
 msgstr ""
 
 #: TPASSWORDDLG.PASSWORDEDIT.TEXT

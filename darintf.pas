@@ -228,9 +228,11 @@ begin
           if DarInEnglish then writeln('DAR using English language');
           if not DarInEnglish
              then begin
-                   if OpenDarTranslationInterface
-                        then SetDarStrings
-                        else writeln('Unable to translate DAR output: please report this as a bug');
+                  if IsLanguageSupported
+                        then TranslateDarStringsFromPO
+                   {if OpenDarTranslationInterface
+                        then SetDarStrings }
+                        else writeln('Unable to translate DAR output (', SysUtils.GetEnvironmentVariable('LANG'), '): please report this as a bug');
                   end;
           ExtractColumnTitles;
           for x := 0 to Output.Count -1 do

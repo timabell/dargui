@@ -8,7 +8,7 @@ interface
 uses
   Classes, SysUtils, LCLProc, FileUtil, StringHashList
   {$IFDEF UNIX}{$IFNDEF DisableCWString}, cwstring{$ENDIF}{$ENDIF}
-  {$IFDEF MultiLocale},LConv{$ENDIF}, gettext;
+  {$IFDEF MultiLocale},LConv{$ENDIF}, gettext, translations;
   
 
 var
@@ -37,7 +37,7 @@ resourcestring
                     + 'date                 |    filename' + #10;
   dsRemoved       = '[     REMOVED       ]';
 
-  dsCatalogueContents = 'CATALOGUE CONTENTS :' + #10;
+  dsCatalogueContents = #10'CATALOGUE CONTENTS :'#10#10;
   dsInodeCount    = 'total number of inode : %i' + #10;
   dsDestroyedFiles = '   %i file(s) have been record as destroyed since backup of reference' + #10#10;
 
@@ -45,7 +45,7 @@ resourcestring
   dsArchiveEncrypted = 'The archive %S is encrypted and no encryption cipher has been given, cannot '
                        + 'open archive.';
   dsWrongPassword    = 'Warning, the archive %S has been encrypted. A wrong key is not possible to '
-                       + 'detect, it would cause DAR to report the archive as corrupted';
+                       + 'detect, it would cause DAR to report the archive as corrupted'#10;
   dsArchiveVersionTooHigh = 'The format version of the archive is too high for that software version, try '
                        + 'reading anyway?';
   dsAbortingNoUserResponse = 'Aborting program. User refused to continue while asking: ';
@@ -59,6 +59,9 @@ resourcestring
 
 function OpenDarTranslationInterface: Boolean;
 procedure CloseDarTranslationInterface;
+
+function IsLanguageSupported: Boolean;  // Added 2011-02-19 : previous method of
+procedure TranslateDarStringsFromPO;    // using dar-provided dar.mo files now unable to handle accented characters
 
 function TranslateDarString( darstring: string ): string;
 function PosDarString( darstring, searchstring :string): integer;
@@ -135,6 +138,35 @@ begin
      begin
       DarMOFile.Free;
       DarMOFile := nil;
+     end;
+end;
+
+function IsLanguageSupported: Boolean;
+var
+  MainLang: string;
+  FallbackLang: string;
+  p: LongInt;
+begin
+  Result := false;
+  GetLanguageIDs(MainLang, FallbackLang);
+  writeln(MainLang, ' : ', FallbackLang);
+  if Pos('fr', MainLang)=1 then Result := true;
+  if Pos('de', MainLang)=1  then Result := true;
+  if Pos('sv', MainLang)=1  then Result := true;
+end;
+
+procedure TranslateDarStringsFromPO;
+var
+  Lang: string;
+  FallbackLang: string;
+  PODirectory: string;
+begin
+  PODirectory := TOOLDIR + 'locales/';
+  if DirectoryExists(PODirectory) then
+     begin
+      GetLanguageIDs(Lang, FallbackLang); // in unit gettext
+      TranslateUnitResourceStrings('darstrings', PODirectory + 'dargui.%s.po', Lang, FallbackLang);
+      writeln('Reading output from dar using language ', Lang);
      end;
 end;
 

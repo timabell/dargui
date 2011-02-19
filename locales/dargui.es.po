@@ -1,6 +1,14 @@
-# translation of dargui.po to Spanish
 # translation of dargui.pot to Spanish
-# Header entry was created by KBabel!
+#
+# IMPORTANT: Note for translators
+# DarGUI only translates strings from the dgstrconst unit
+# Only translate any strings in this file which have
+# an identifier which begins '#. dgstrconst.'
+#
+# Other strings will not be used.
+#
+#
+#
 #
 # Malcolm Poole <mgpoole@users.sourceforge.net>, 2008, 2009.
 msgid ""
@@ -28,7 +36,10 @@ msgid "The format version of the archive is too high for that software version, 
 msgstr ""
 
 #: darstrings.dscataloguecontents
-msgid "CATALOGUE CONTENTS :"
+msgid ""
+"\n"
+"CATALOGUE CONTENTS :\n"
+"\n"
 msgstr ""
 
 #: darstrings.dscolumntitles
@@ -103,6 +114,10 @@ msgstr ""
 
 #: darstrings.dsthreadsafe
 msgid "   Thread safe support        : %s"
+msgstr ""
+
+#: darstrings.dswrongpassword
+msgid "Warning, the archive %S has been encrypted. A wrong key is not possible to detect, it would cause DAR to report the archive as corrupted"
 msgstr ""
 
 #: darstrings.dsyes
@@ -335,6 +350,10 @@ msgstr "# Guardar la copia de seguridad como trozos del tamaño especificado"
 msgid "# DAR batch file written by DarGUI"
 msgstr "# Fichero de parámetros DAR, escrito por DarGUI"
 
+#: dgstrconst.rsdarexecutabl
+msgid "Dar executable"
+msgstr ""
+
 #: dgstrconst.rsdarguihasbeendevelop
 msgid "DarGUI has been developed using Freepascal and the Lazarus IDE"
 msgstr "DarGUI fue desarrollado empleando Freepascal y el IDE Lazarus"
@@ -350,6 +369,10 @@ msgstr "Día de la semana"
 #: dgstrconst.rsdec
 msgid "Dec"
 msgstr "dic"
+
+#: dgstrconst.rsdefaultsettings
+msgid "Default archive creation settings"
+msgstr ""
 
 #: dgstrconst.rsdifferentialbackup
 msgctxt "dgstrconst.rsdifferentialbackup"
@@ -385,6 +408,10 @@ msgstr "# Ensayo: la copia de seguridad no será creada sin quitar este parámet
 #: dgstrconst.rsencryptarchive
 msgid "Encrypt archive using blowfish"
 msgstr "Cifrar el archivo con Blowfish"
+
+#: dgstrconst.rsencryptcatalogue
+msgid "Encrypt catalogue using blowfish"
+msgstr ""
 
 #: dgstrconst.rsenterpassword
 msgid "Enter Password"
@@ -518,6 +545,11 @@ msgstr "Estos ficheros están marcados como excluidos de la copia. %s¿Está seg
 msgid "These files are already selected to be included in the archive.%sDo you really want to exclude them?"
 msgstr "Estos ficheros están marcados como incluidos en la copia. %s¿Está seguro que desea excluirlos?"
 
+#: dgstrconst.rsfilesopened
+msgctxt "dgstrconst.rsfilesopened"
+msgid "files opened"
+msgstr ""
+
 #: dgstrconst.rsfilestorestore
 msgid "# Files to restore"
 msgstr "# Ficheros para restaurar"
@@ -537,6 +569,10 @@ msgstr "Ficheros DarGUI"
 #: dgstrconst.rsfri
 msgid "Fri"
 msgstr "vie"
+
+#: dgstrconst.rsgeneral
+msgid "General"
+msgstr ""
 
 #: dgstrconst.rshintcomparearchivefile
 msgctxt "dgstrconst.rshintcomparearchivefile"
@@ -904,6 +940,19 @@ msgctxt "dgstrconst.rsreferencearchive"
 msgid "Reference archive"
 msgstr "Copia de referencia"
 
+#: dgstrconst.rsrememberlast
+msgctxt "dgstrconst.rsrememberlast"
+msgid "Remember last"
+msgstr ""
+
+#: dgstrconst.rsrememberwinpos
+msgid "Remember main window position on exit"
+msgstr ""
+
+#: dgstrconst.rsrememberwinsize
+msgid "Remember main window size on exit"
+msgstr ""
+
 #: dgstrconst.rsremoveallfilters
 msgid "Remove all filters?"
 msgstr "¿Quitar todos los filtros?"
@@ -1056,6 +1105,10 @@ msgctxt "dgstrconst.rsusegzipcompression"
 msgid "use gzip compression"
 msgstr "emplear compresión gzip"
 
+#: dgstrconst.rsuserpreferen
+msgid "User preferences"
+msgstr ""
+
 #: dgstrconst.rsuseslices
 msgctxt "dgstrconst.rsuseslices"
 msgid "Use slices"
@@ -1076,6 +1129,14 @@ msgstr "mie"
 #: dgstrconst.rsyes
 msgid "Yes"
 msgstr "Sí"
+
+#: main.rsdonotcompres
+msgid "%s# Do not compress files smaller than this"
+msgstr ""
+
+#: main.test
+msgid "tesdt"
+msgstr ""
 
 #: TABOUTFORM.AUTHORLABEL.CAPTION
 msgid "Author: Malcolm Poole"
@@ -1145,6 +1206,11 @@ msgstr "Buscar"
 msgid "ArchiveDirectory"
 msgstr ""
 
+#: TARCHIVEFORM.ARCHIVEFORM.CAPTION
+msgctxt "TARCHIVEFORM.ARCHIVEFORM.CAPTION"
+msgid "New Archive"
+msgstr ""
+
 #: TARCHIVEFORM.ARCHIVEPAGE.CAPTION
 msgctxt "TARCHIVEFORM.ARCHIVEPAGE.CAPTION"
 msgid "Archive"
@@ -1189,10 +1255,6 @@ msgstr "emplear compresión bzip2"
 msgctxt "TARCHIVEFORM.CANCELBUTTON.CAPTION"
 msgid "Cancel"
 msgstr "Cancelar"
-
-#: TARCHIVEFORM.CAPTION
-msgid "New Archive"
-msgstr ""
 
 #: TARCHIVEFORM.COMPLVLLABEL.CAPTION
 msgctxt "TARCHIVEFORM.COMPLVLLABEL.CAPTION"
@@ -1265,11 +1327,6 @@ msgstr "Copia diferencial"
 msgctxt "TARCHIVEFORM.DIFFREFBUTTON.CAPTION"
 msgid "Browse"
 msgstr "Buscar"
-
-#: TARCHIVEFORM.DIFFREFERENCE.EDITLABEL.CAPTION
-msgctxt "TARCHIVEFORM.DIFFREFERENCE.EDITLABEL.CAPTION"
-msgid "Reference archive"
-msgstr "Copia de referencia"
 
 #: TARCHIVEFORM.DIRECTORIESPAGE.CAPTION
 msgctxt "TARCHIVEFORM.DIRECTORIESPAGE.CAPTION"
@@ -1479,6 +1536,11 @@ msgctxt "TARCHIVEFORM.SLICESIZELABEL.CAPTION"
 msgid "Slice size"
 msgstr "Tamaño de trozo"
 
+#: TARCHIVEFORM.SUBLABEL.CAPTION
+msgctxt "TARCHIVEFORM.SUBLABEL.CAPTION"
+msgid "Reference archive"
+msgstr "Copia de referencia"
+
 #: TARCHIVEFORM.TIMESTAMPCHECK.CAPTION
 msgid "TimestampCheck"
 msgstr ""
@@ -1492,7 +1554,8 @@ msgctxt "TCREATESAVEDIALOG.CANCELBUTTON.CAPTION"
 msgid "Cancel"
 msgstr "Cancelar"
 
-#: TCREATESAVEDIALOG.CAPTION
+#: TCREATESAVEDIALOG.CREATESAVEDIALOG.CAPTION
+msgctxt "TCREATESAVEDIALOG.CREATESAVEDIALOG.CAPTION"
 msgid "CreateSaveDialog"
 msgstr ""
 
@@ -1631,11 +1694,6 @@ msgctxt "TINFORMATIONFORM.OKBUTTON.CAPTION"
 msgid "&OK"
 msgstr ""
 
-#: TISOLATEFORM.ARCHIVEBOX.EDITLABEL.CAPTION
-msgctxt "TISOLATEFORM.ARCHIVEBOX.EDITLABEL.CAPTION"
-msgid "Archive"
-msgstr "Copia"
-
 #: TISOLATEFORM.ARCHIVEBUTTON.CAPTION
 msgctxt "TISOLATEFORM.ARCHIVEBUTTON.CAPTION"
 msgid "Browse"
@@ -1646,58 +1704,32 @@ msgctxt "TISOLATEFORM.CANCELBUTTON.CAPTION"
 msgid "Cancel"
 msgstr "Cancelar"
 
-#: TISOLATEFORM.CAPTION
-msgctxt "TISOLATEFORM.CAPTION"
-msgid "Isolate archive catalogue"
-msgstr "Extraer catálogo de la copia"
-
-#: TISOLATEFORM.CATALOGUEBOX.EDITLABEL.CAPTION
-msgctxt "TISOLATEFORM.CATALOGUEBOX.EDITLABEL.CAPTION"
-msgid "Save catalogue as"
-msgstr "Guardar catálogo como"
-
 #: TISOLATEFORM.CATALOGUEBUTTON.CAPTION
 msgctxt "TISOLATEFORM.CATALOGUEBUTTON.CAPTION"
 msgid "Browse"
 msgstr "Buscar"
 
-#: TISOLATEFORM.ENCRYPTARCHIVECHECK.CAPTION
-msgctxt "TISOLATEFORM.ENCRYPTARCHIVECHECK.CAPTION"
-msgid "EncryptArchiveCheck"
+#: TISOLATEFORM.ENCRYPTCATALOGCHECK.CAPTION
+msgid "EncryptCatalogCheck"
 msgstr ""
+
+#: TISOLATEFORM.ISOLATEFORM.CAPTION
+msgctxt "TISOLATEFORM.ISOLATEFORM.CAPTION"
+msgid "Isolate archive catalogue"
+msgstr "Extraer catálogo de la copia"
 
 #: TISOLATEFORM.OKBUTTON.CAPTION
 msgctxt "TISOLATEFORM.OKBUTTON.CAPTION"
 msgid "&OK"
 msgstr ""
 
-#: TLOCATEFILEFORM.BROWSEBUTTON.CAPTION
-msgid "BrowseButton"
-msgstr ""
+#: TISOLATEFORM.SUBLABEL.CAPTION
+msgctxt "TISOLATEFORM.SUBLABEL.CAPTION"
+msgid "Save catalogue as"
+msgstr "Guardar catálogo como"
 
-#: TLOCATEFILEFORM.CANCELBUTTON.CAPTION
-msgctxt "TLOCATEFILEFORM.CANCELBUTTON.CAPTION"
-msgid "Cancel"
-msgstr "Cancelar"
-
-#: TLOCATEFILEFORM.CAPTION
-msgid "LocateFileForm"
-msgstr ""
-
-#: TLOCATEFILEFORM.FILENAMEEDIT.EDITLABEL.CAPTION
-msgid "FilenameEdit"
-msgstr ""
-
-#: TLOCATEFILEFORM.MESSAGELABEL.CAPTION
-msgid "MessageLabel"
-msgstr ""
-
-#: TLOCATEFILEFORM.OKBUTTON.CAPTION
-msgctxt "TLOCATEFILEFORM.OKBUTTON.CAPTION"
-msgid "Ok"
-msgstr ""
-
-#: TMAINFORM.CAPTION
+#: TMAINFORM.MAINFORM.CAPTION
+msgctxt "TMAINFORM.MAINFORM.CAPTION"
 msgid "DarGUI"
 msgstr ""
 
@@ -1948,10 +1980,6 @@ msgctxt "TOPTIONSFORM.CANCELBUTTON.CAPTION"
 msgid "Cancel"
 msgstr "Cancelar"
 
-#: TOPTIONSFORM.CAPTION
-msgid "OptionsForm"
-msgstr ""
-
 #: TOPTIONSFORM.DARLOCATIONLABEL.CAPTION
 msgid "DarLocationLabel"
 msgstr ""
@@ -1965,6 +1993,7 @@ msgid "Display"
 msgstr ""
 
 #: TOPTIONSFORM.FILESOPENEDLBL.CAPTION
+msgctxt "TOPTIONSFORM.FILESOPENEDLBL.CAPTION"
 msgid "files opened"
 msgstr ""
 
@@ -1981,7 +2010,13 @@ msgctxt "TOPTIONSFORM.OKBUTTON.CAPTION"
 msgid "Ok"
 msgstr ""
 
+#: TOPTIONSFORM.OPTIONSFORM.CAPTION
+msgctxt "TOPTIONSFORM.OPTIONSFORM.CAPTION"
+msgid "OptionsForm"
+msgstr ""
+
 #: TOPTIONSFORM.REMEMBERLBL.CAPTION
+msgctxt "TOPTIONSFORM.REMEMBERLBL.CAPTION"
 msgid "Remember last"
 msgstr ""
 
@@ -1994,10 +2029,6 @@ msgctxt "TPASSWORDDLG.CANCELBUTTON.CAPTION"
 msgid "Cancel"
 msgstr "Cancelar"
 
-#: TPASSWORDDLG.CAPTION
-msgid "PasswordDlg"
-msgstr ""
-
 #: TPASSWORDDLG.NOMATCHLABEL.CAPTION
 msgid "NoMatchLabel"
 msgstr ""
@@ -2005,6 +2036,11 @@ msgstr ""
 #: TPASSWORDDLG.OKBUTTON.CAPTION
 msgctxt "TPASSWORDDLG.OKBUTTON.CAPTION"
 msgid "&OK"
+msgstr ""
+
+#: TPASSWORDDLG.PASSWORDDLG.CAPTION
+msgctxt "TPASSWORDDLG.PASSWORDDLG.CAPTION"
+msgid "PasswordDlg"
 msgstr ""
 
 #: TPASSWORDDLG.PASSWORDEDIT.TEXT

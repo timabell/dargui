@@ -1,3 +1,17 @@
+# dargui.pot : template file for translations of DarGUI
+#
+# IMPORTANT: Note for translators
+# DarGUI only translates strings from the dgstrconst unit
+# Only translate any strings in this file which have
+# an identifier which begins '#. dgstrconst.'
+#
+# Other strings will not be used.
+#
+# Please do not attempt to translate the lclstrconts files
+# as translations for your language may exist already
+# Contact the author for more information
+#
+
 #: dgstrconst:rsjan
 msgid "Jan"
 msgstr ""
