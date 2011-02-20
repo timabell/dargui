@@ -1,5 +1,5 @@
 Package: dargui
-Version: 0.5.2beta
+Version: 0.5.2
 Section: x11
 Priority: optional
 Architecture: i386

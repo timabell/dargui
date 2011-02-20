@@ -20,7 +20,7 @@
       <UseVersionInfo Value="True"/>
       <AutoIncrementBuild Value="True"/>
       <MinorVersionNr Value="4"/>
-      <BuildNr Value="681"/>
+      <BuildNr Value="712"/>
       <StringTable ProductVersion="0.4.0.101"/>
     </VersionInfo>
     <PublishOptions>
@@ -188,7 +188,7 @@
     <SearchPaths>
       <Libraries Value="/home/usr/X11R6/lib/"/>
       <OtherUnitFiles Value="/$(LazarusDir)/components/synedit/;Vte/"/>
-      <UnitOutputDirectory Value="./compiled"/>
+      <UnitOutputDirectory Value="compiled"/>
     </SearchPaths>
     <Parsing>
       <SyntaxOptions>
@@ -197,14 +197,19 @@
       </SyntaxOptions>
     </Parsing>
     <CodeGeneration>
+      <SmartLinkUnit Value="True"/>
       <TargetProcessor Value="386"/>
       <TargetCPU Value="i386"/>
       <TargetOS Value="Linux"/>
+      <Optimizations>
+        <OptimizationLevel Value="3"/>
+      </Optimizations>
     </CodeGeneration>
     <Linking>
       <Debugging>
-        <GenerateDebugInfo Value="True"/>
+        <UseLineInfoUnit Value="False"/>
       </Debugging>
+      <LinkSmart Value="True"/>
     </Linking>
     <Other>
       <Verbosity>
@@ -214,7 +219,6 @@
       <CompilerMessages>
         <UseMsgFile Value="True"/>
       </CompilerMessages>
-      <CustomOptions Value="-dUSE_QT_44"/>
       <CompilerPath Value="$(CompPath)"/>
       <ExecuteBefore>
         <Command Value="rstconv -i compiled/dgstrconst.rst -o locales/dargui.pot"/>

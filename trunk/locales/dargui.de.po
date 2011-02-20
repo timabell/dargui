@@ -15,26 +15,22 @@
 #
 # Further information from
 # Malcolm Poole <mgpoole@users.sourceforge.net>.
+# This string does not appear to be translated in dar 2.3.10 and possibly other versions
+#msgstr "Das Archiv %S ist verschlüsselt und es wurde keine Passphrase angegeben. Das Archiv kann nicht geöffnet werden"
 msgid ""
 msgstr "Content-Type: text/plain; charset=UTF-8"
 
 #: darstrings.dsabortingnouserresponse
 msgid "Aborting program. User refused to continue while asking: "
-msgstr ""
-"Breche das Programm ab. Benutzer hat die Fortsetzung abgelehnt bei folgender "
-"Frage: "
+msgstr "Breche das Programm ab. Benutzer hat die Fortsetzung abgelehnt bei folgender Frage: "
 
 #: darstrings.dsarchiveencrypted
 msgid "The archive %S is encrypted and no encryption cipher has been given, cannot open archive."
 msgstr ""
-"Das Archiv %S ist verschlüsselt und es wurde keine Passphrase angegeben. Das "
-"Archiv kann nicht geöffnet werden"
 
 #: darstrings.dsarchiveversiontoohigh
 msgid "The format version of the archive is too high for that software version, try reading anyway?"
-msgstr ""
-"Die Formatversion ist zu neu für diese Software, trotzdem versuchen, das "
-"Archiv zu lesen?"
+msgstr "Die Formatversion ist zu neu für diese Software, trotzdem versuchen, das Archiv zu lesen?"
 
 #: darstrings.dscataloguecontents
 msgid ""
@@ -47,21 +43,22 @@ msgstr ""
 "\n"
 
 #: darstrings.dscolumntitles
+#, fuzzy
+#| msgid "[data ][ EA  ][compr] | permission | user  | group | size  |          date                 |    filename"
 msgid "[data ][ EA  ][compr] | permission | user  | group | size  |          date                 |    filename"
-msgstr ""
-"[Daten][ EA  ][Kompr] | Rechte     | User  | Gruppe| Größe |          "
-"Datum                |    Dateiname"
+msgstr "[Daten][ EA  ][Kompr] | Rechte     | User  | Gruppe| Größe |          Datum                |    Dateiname"
 
 #: darstrings.dsdestroyedfiles
 msgid ""
 "   %i file(s) have been record as destroyed since backup of reference\n"
 "\n"
 msgstr ""
-"   %i Datei(en) sind seit der Erstellung der Vergleichs-Sicherung gelöscht "
-"worden\n"
+"   %i Datei(en) sind seit der Erstellung der Vergleichs-Sicherung gelöscht worden\n"
 "\n"
 
 #: darstrings.dsextendedattributes
+#, fuzzy
+#| msgid "   Extended Attributes support: %s"
 msgid "   Extended Attributes support: %s"
 msgstr "   Unterstützung erweit. Attr.: %s"
 
@@ -70,29 +67,40 @@ msgid "Extracting contents of the archive..."
 msgstr "Archiv wird extrahiert..."
 
 #: darstrings.dsinodecount
+#, fuzzy
+#| msgid "total number of inode : %i"
 msgid "total number of inode : %i"
-msgstr "Indexeinträge (Inodes) insgesamt: %i\n"
+msgstr "Indexeinträge (Inodes) insgesamt: %i"
 
 #: darstrings.dslargefiles
-msgid "   Large files support (> 2GB): %s\n"
-msgstr "   Unterstützung für große Dateien (> 2GB): %s\n"
-
+#, fuzzy
+#| msgid "   Large files support (> 2GB): %s"
+msgid "   Large files support (> 2GB): %s"
+msgstr "   Unterstützung für große Dateien (> 2GB): %s"
 
 #: darstrings.dslastslicenotfound
 msgid "The last file of the set is not present in "
 msgstr "Die letzte Datei dieses Satzes ist nicht vorhanden in "
 
 #: darstrings.dslibbz2comp
-msgid "   Libbz2 compression (bzip2) : %s\n"
-msgstr "   Libbz2 Kompression (bzip2) : %s\n"
+#, fuzzy
+#| msgid "   Libbz2 compression (bzip2) : %s"
+msgid "   Libbz2 compression (bzip2) : %s"
+msgstr "   Libbz2 Kompression (bzip2) : %s"
 
 #: darstrings.dslibzcomp
-msgid "   Libz compression (gzip)    : %s\n"
-msgstr "   Libz Kompression (gzip)    : %s\n"
+#, fuzzy
+#| msgid "   Libz compression (gzip)    : %s"
+msgid "   Libz compression (gzip)    : %s"
+msgstr "   Libz Kompression (gzip)    : %s"
 
+# This string does not appear to be translated in dar 2.3.10 and possibly other versions
+#msgstr "Achtung, dieses Archiv wurde verschlüsselt. Es ist nicht möglich, einen falschen Schlüssel zu erkennen, in diesem Fall wird das Archiv von DAR als beschädigt gemeldet"
 #: darstrings.dslongoptions
-msgid "Long options support       : %s\n"
-msgstr "Unterstützung langer Optionen %s\n"
+#, fuzzy
+#| msgid "Long options support       : %s"
+msgid "Long options support       : %s"
+msgstr "Unterstützung langer Optionen %s"
 
 #: darstrings.dsnewblowfish
 msgid "   New Blowfish implementation: %s"
@@ -103,8 +111,10 @@ msgid "NO"
 msgstr "NEIN"
 
 #: darstrings.dsnodump
-msgid "   ext2fs NODUMP flag support : %s\n"
-msgstr "   xt2fs NODUMP flags unterst.: %s\n"
+#, fuzzy
+#| msgid "   ext2fs NODUMP flag support : %s"
+msgid "   ext2fs NODUMP flag support : %s"
+msgstr "   xt2fs NODUMP flags unterst.: %s"
 
 #: darstrings.dsremoved
 msgid "[     REMOVED       ]"
@@ -116,23 +126,23 @@ msgstr " [Return = OK | ESC = Abbruch]"
 
 #: darstrings.dsslicenotfound
 msgid "%s is required for further operation, please provide the file."
-msgstr ""
-"%s ist für den weiteren Vorgang erforderlich, bitte stellen Sie diese Datei "
-"zur Verfügung"
+msgstr "%s ist für den weiteren Vorgang erforderlich, bitte stellen Sie diese Datei zur Verfügung"
 
 #: darstrings.dsspecialalloc
-msgid "   Special allocation scheme  : %s\n"
-msgstr "   Spezial Zuordnungs-Schema  : %s\n"
+#, fuzzy
+#| msgid "   Special allocation scheme  : %s"
+msgid "   Special allocation scheme  : %s"
+msgstr "   Spezial Zuordnungs-Schema  : %s"
 
 #: darstrings.dsthreadsafe
-msgid "   Thread safe support        : %s\n"
-msgstr "   Thread-sicher              : %s\n"
+#, fuzzy
+#| msgid "   Thread safe support        : %s"
+msgid "   Thread safe support        : %s"
+msgstr "   Thread-sicher              : %s"
 
 #: darstrings.dswrongpassword
 msgid "Warning, the archive %S has been encrypted. A wrong key is not possible to detect, it would cause DAR to report the archive as corrupted"
-msgstr "Achtung, dieses Archiv wurde verschlüsselt. Es ist nicht möglich, einen "
-"falschen Schlüssel zu erkennen, in diesem Fall wird das Archiv von DAR als "
-"beschädigt gemeldet"
+msgstr ""
 
 #: darstrings.dsyes
 msgid "YES"
@@ -210,7 +220,7 @@ msgstr ""
 #: dgstrconst.rsbuttoncancel
 msgctxt "dgstrconst.rsbuttoncancel"
 msgid "Cancel"
-msgstr ""
+msgstr "Abbrechen"
 
 #: dgstrconst.rsbuttonclear
 msgctxt "dgstrconst.rsbuttonclear"
@@ -703,7 +713,7 @@ msgstr ""
 #: dgstrconst.rsmenuarchive
 msgctxt "dgstrconst.rsmenuarchive"
 msgid "Archive"
-msgstr ""
+msgstr "Archiv"
 
 #: dgstrconst.rsmenucheckintegrity
 msgctxt "dgstrconst.rsmenucheckintegrity"
@@ -733,7 +743,7 @@ msgstr ""
 #: dgstrconst.rsmenufile
 msgctxt "dgstrconst.rsmenufile"
 msgid "File"
-msgstr ""
+msgstr "Datei"
 
 #: dgstrconst.rsmenuhelp
 msgid "Help"
@@ -1151,962 +1161,3 @@ msgstr ""
 #: main.test
 msgid "tesdt"
 msgstr ""
-
-#: TABOUTFORM.AUTHORLABEL.CAPTION
-msgid "Author: Malcolm Poole"
-msgstr ""
-
-#: TABOUTFORM.CAPTION
-msgctxt "TABOUTFORM.CAPTION"
-msgid "About DarGUI"
-msgstr ""
-
-#: TABOUTFORM.DARVERSIONLABEL.CAPTION
-msgid "DarVersionLabel"
-msgstr ""
-
-#: TABOUTFORM.DEVINFOLABEL.CAPTION
-msgid "Development info"
-msgstr ""
-
-#: TABOUTFORM.GPLLABEL.CAPTION
-msgctxt "TABOUTFORM.GPLLABEL.CAPTION"
-msgid "Licence: GPL"
-msgstr ""
-
-#: TABOUTFORM.HOTLABEL1.CAPTION
-msgid "http://www.lazarus.freepascal.org/"
-msgstr ""
-
-#: TABOUTFORM.OKBUTTON.CAPTION
-msgctxt "TABOUTFORM.OKBUTTON.CAPTION"
-msgid "&OK"
-msgstr ""
-
-#: TABOUTFORM.SVNLABEL.CAPTION
-msgid "SVN Revision: "
-msgstr ""
-
-#: TABOUTFORM.VERSIONLABEL.CAPTION
-msgid "Version number: "
-msgstr ""
-
-#: TARCHIVEFORM.ADDEXCLUDEFILEBUTTON.CAPTION
-msgctxt "TARCHIVEFORM.ADDEXCLUDEFILEBUTTON.CAPTION"
-msgid "Add file"
-msgstr ""
-
-#: TARCHIVEFORM.ADDINCLUDEDIRBUTTON.CAPTION
-msgctxt "TARCHIVEFORM.ADDINCLUDEDIRBUTTON.CAPTION"
-msgid "Add"
-msgstr ""
-
-#: TARCHIVEFORM.ADDINCLUDEFILEBUTTON.CAPTION
-msgctxt "TARCHIVEFORM.ADDINCLUDEFILEBUTTON.CAPTION"
-msgid "Add file"
-msgstr ""
-
-#: TARCHIVEFORM.ARCHIVEBASELABEL.CAPTION
-msgctxt "TARCHIVEFORM.ARCHIVEBASELABEL.CAPTION"
-msgid "Archive base name"
-msgstr ""
-
-#: TARCHIVEFORM.ARCHIVEDIRBUTTON.CAPTION
-msgctxt "TARCHIVEFORM.ARCHIVEDIRBUTTON.CAPTION"
-msgid "Browse"
-msgstr ""
-
-#: TARCHIVEFORM.ARCHIVEDIRECTORY.TEXT
-msgid "ArchiveDirectory"
-msgstr ""
-
-#: TARCHIVEFORM.ARCHIVEFORM.CAPTION
-msgid "New Archive"
-msgstr ""
-
-#: TARCHIVEFORM.ARCHIVEPAGE.CAPTION
-msgctxt "TARCHIVEFORM.ARCHIVEPAGE.CAPTION"
-msgid "Archive"
-msgstr ""
-
-#: TARCHIVEFORM.BASEDIRBUTTON.CAPTION
-msgctxt "TARCHIVEFORM.BASEDIRBUTTON.CAPTION"
-msgid "Browse"
-msgstr ""
-
-#: TARCHIVEFORM.BASEDIRECTORY.TEXT
-msgctxt "TARCHIVEFORM.BASEDIRECTORY.TEXT"
-msgid "Edit1"
-msgstr ""
-
-#: TARCHIVEFORM.BASEDIRLABEL.CAPTION
-msgctxt "TARCHIVEFORM.BASEDIRLABEL.CAPTION"
-msgid "Base directory"
-msgstr ""
-
-#: TARCHIVEFORM.BATCHFILEBOX.TEXT
-msgctxt "TARCHIVEFORM.BATCHFILEBOX.TEXT"
-msgid "Edit1"
-msgstr ""
-
-#: TARCHIVEFORM.BATCHFILEBUTTON.CAPTION
-msgctxt "TARCHIVEFORM.BATCHFILEBUTTON.CAPTION"
-msgid "Browse"
-msgstr ""
-
-#: TARCHIVEFORM.BATCHLABEL.CAPTION
-msgctxt "TARCHIVEFORM.BATCHLABEL.CAPTION"
-msgid "Batch file"
-msgstr ""
-
-#: TARCHIVEFORM.BZIP2CHECK.CAPTION
-msgctxt "TARCHIVEFORM.BZIP2CHECK.CAPTION"
-msgid "use bzip2 compression"
-msgstr ""
-
-#: TARCHIVEFORM.CANCELBUTTON.CAPTION
-msgctxt "TARCHIVEFORM.CANCELBUTTON.CAPTION"
-msgid "Cancel"
-msgstr ""
-
-#: TARCHIVEFORM.COMPLVLLABEL.CAPTION
-msgctxt "TARCHIVEFORM.COMPLVLLABEL.CAPTION"
-msgid "Compression level"
-msgstr ""
-
-#: TARCHIVEFORM.COMPLWRLIMITCOMBO.TEXT
-msgid "bytes"
-msgstr ""
-
-#: TARCHIVEFORM.COMPRESSIONEXCEPTIONS.CAPTION
-msgctxt "TARCHIVEFORM.COMPRESSIONEXCEPTIONS.CAPTION"
-msgid " Do not compress ... "
-msgstr ""
-
-#: TARCHIVEFORM.COMPRESSIONLEVEL.TEXT
-msgid "9"
-msgstr ""
-
-#: TARCHIVEFORM.COMPRESSIONLWRLIMIT.TEXT
-msgid "100"
-msgstr ""
-
-#: TARCHIVEFORM.COMPRESSIONPAGE.CAPTION
-msgctxt "TARCHIVEFORM.COMPRESSIONPAGE.CAPTION"
-msgid "Compression"
-msgstr ""
-
-#: TARCHIVEFORM.COMPRESSIONTYPES.CAPTION
-msgctxt "TARCHIVEFORM.COMPRESSIONTYPES.CAPTION"
-msgid " Compression type "
-msgstr ""
-
-#: TARCHIVEFORM.COMPRESSMASKS.CAPTION
-msgctxt "TARCHIVEFORM.COMPRESSMASKS.CAPTION"
-msgid "Add"
-msgstr ""
-
-#: TARCHIVEFORM.COMPSIZELABEL.CAPTION
-msgctxt "TARCHIVEFORM.COMPSIZELABEL.CAPTION"
-msgid "Lower size limit for compression:"
-msgstr ""
-
-#: TARCHIVEFORM.DELCOMPRESSMASKBUTTON.CAPTION
-msgctxt "TARCHIVEFORM.DELCOMPRESSMASKBUTTON.CAPTION"
-msgid "Remove"
-msgstr ""
-
-#: TARCHIVEFORM.DELEXCLUDEFILEBUTTON.CAPTION
-msgctxt "TARCHIVEFORM.DELEXCLUDEFILEBUTTON.CAPTION"
-msgid "Remove"
-msgstr ""
-
-#: TARCHIVEFORM.DELINCLUDEDIRBUTTON.CAPTION
-msgctxt "TARCHIVEFORM.DELINCLUDEDIRBUTTON.CAPTION"
-msgid "Remove"
-msgstr ""
-
-#: TARCHIVEFORM.DELINCLUDEFILEBUTTON.CAPTION
-msgctxt "TARCHIVEFORM.DELINCLUDEFILEBUTTON.CAPTION"
-msgid "Remove"
-msgstr ""
-
-#: TARCHIVEFORM.DIFFFILECHECK.CAPTION
-msgctxt "TARCHIVEFORM.DIFFFILECHECK.CAPTION"
-msgid "Differential backup"
-msgstr ""
-
-#: TARCHIVEFORM.DIFFREFBUTTON.CAPTION
-msgctxt "TARCHIVEFORM.DIFFREFBUTTON.CAPTION"
-msgid "Browse"
-msgstr ""
-
-#: TARCHIVEFORM.DIRECTORIESPAGE.CAPTION
-msgctxt "TARCHIVEFORM.DIRECTORIESPAGE.CAPTION"
-msgid "Directories"
-msgstr ""
-
-#: TARCHIVEFORM.DRYRUNCHECK.CAPTION
-msgctxt "TARCHIVEFORM.DRYRUNCHECK.CAPTION"
-msgid "Test run only"
-msgstr ""
-
-#: TARCHIVEFORM.EMPTYDIRCHECK.CAPTION
-msgctxt "TARCHIVEFORM.EMPTYDIRCHECK.CAPTION"
-msgid "Preserve directories"
-msgstr ""
-
-#: TARCHIVEFORM.ENCRYPTARCHIVECHECK.CAPTION
-msgid "EncryptArchiveCheck"
-msgstr ""
-
-#: TARCHIVEFORM.EXCLUDEDIRSRADIOBUTTON.CAPTION
-msgid "ExcludeDirsRadioButton"
-msgstr ""
-
-#: TARCHIVEFORM.EXCLUDEFILEMASKS.CAPTION
-msgctxt "TARCHIVEFORM.EXCLUDEFILEMASKS.CAPTION"
-msgid "Add mask"
-msgstr ""
-
-#: TARCHIVEFORM.EXCLUDEFILESLABEL.CAPTION
-msgctxt "TARCHIVEFORM.EXCLUDEFILESLABEL.CAPTION"
-msgid "Exclude files:"
-msgstr ""
-
-#: TARCHIVEFORM.FILESPAGE.CAPTION
-msgctxt "TARCHIVEFORM.FILESPAGE.CAPTION"
-msgid "Files"
-msgstr ""
-
-#: TARCHIVEFORM.GZIPCHECK.CAPTION
-msgctxt "TARCHIVEFORM.GZIPCHECK.CAPTION"
-msgid "use gzip compression"
-msgstr ""
-
-#: TARCHIVEFORM.INCLUDEDIRSRADIOBUTTON.CAPTION
-msgid "IncludeDirsRadioButton"
-msgstr ""
-
-#: TARCHIVEFORM.INCLUDEFILEMASKS.CAPTION
-msgctxt "TARCHIVEFORM.INCLUDEFILEMASKS.CAPTION"
-msgid "Add mask"
-msgstr ""
-
-#: TARCHIVEFORM.INCLUDEFILESLABEL.CAPTION
-msgctxt "TARCHIVEFORM.INCLUDEFILESLABEL.CAPTION"
-msgid "Include files:"
-msgstr ""
-
-#: TARCHIVEFORM.NOTEBOOKPANEL.CAPTION
-msgid "NoteBookPanel"
-msgstr ""
-
-#: TARCHIVEFORM.NOWRADIOBUTTON.CAPTION
-msgid "NowRadioButton"
-msgstr ""
-
-#: TARCHIVEFORM.OKBUTTON.CAPTION
-msgctxt "TARCHIVEFORM.OKBUTTON.CAPTION"
-msgid "Ok"
-msgstr ""
-
-#: TARCHIVEFORM.OPENCREATEDARCHIVECHECK.CAPTION
-msgid "OpenCreatedArchiveCheck"
-msgstr ""
-
-#: TARCHIVEFORM.OPTIONSPAGE.CAPTION
-msgctxt "TARCHIVEFORM.OPTIONSPAGE.CAPTION"
-msgid "Options"
-msgstr ""
-
-#: TARCHIVEFORM.PAUSECHECK.CAPTION
-msgctxt "TARCHIVEFORM.PAUSECHECK.CAPTION"
-msgid "Pause between slices"
-msgstr ""
-
-#: TARCHIVEFORM.READCONFIGCHECK.CAPTION
-msgctxt "TARCHIVEFORM.READCONFIGCHECK.CAPTION"
-msgid "Attempt to read DAR configuration files"
-msgstr ""
-
-#: TARCHIVEFORM.REPEATHOURBOX.TEXT
-msgctxt "TARCHIVEFORM.REPEATHOURBOX.TEXT"
-msgid "*"
-msgstr ""
-
-#: TARCHIVEFORM.REPEATHOURLABEL.CAPTION
-msgctxt "TARCHIVEFORM.REPEATHOURLABEL.CAPTION"
-msgid "RunOnceHourLabel"
-msgstr ""
-
-#: TARCHIVEFORM.REPEATMINUTEBOX.TEXT
-msgctxt "TARCHIVEFORM.REPEATMINUTEBOX.TEXT"
-msgid "*"
-msgstr ""
-
-#: TARCHIVEFORM.REPEATMINUTELABEL.CAPTION
-msgid "RepeatMinuteLabel"
-msgstr ""
-
-#: TARCHIVEFORM.REPEATMONTHBOX.TEXT
-msgctxt "TARCHIVEFORM.REPEATMONTHBOX.TEXT"
-msgid "*"
-msgstr ""
-
-#: TARCHIVEFORM.REPEATMONTHDAYBOX.TEXT
-msgctxt "TARCHIVEFORM.REPEATMONTHDAYBOX.TEXT"
-msgid "*"
-msgstr ""
-
-#: TARCHIVEFORM.REPEATMONTHDAYLABEL.CAPTION
-msgid "RepeatMonthDayLabel"
-msgstr ""
-
-#: TARCHIVEFORM.REPEATMONTHLABEL.CAPTION
-msgid "RepeatMonthLabel"
-msgstr ""
-
-#: TARCHIVEFORM.REPEATRADIOBUTTON.CAPTION
-msgctxt "TARCHIVEFORM.REPEATRADIOBUTTON.CAPTION"
-msgid "Run regularily at"
-msgstr ""
-
-#: TARCHIVEFORM.REPEATWEEKDAYBOX.TEXT
-msgctxt "TARCHIVEFORM.REPEATWEEKDAYBOX.TEXT"
-msgid "*"
-msgstr ""
-
-#: TARCHIVEFORM.REPEATWEEKDAYLABEL.CAPTION
-msgid "RepeatWeekDayLabel"
-msgstr ""
-
-#: TARCHIVEFORM.RUNONCEDATEEDIT.CANCELCAPTION
-msgctxt "TARCHIVEFORM.RUNONCEDATEEDIT.CANCELCAPTION"
-msgid "Cancel"
-msgstr ""
-
-#: TARCHIVEFORM.RUNONCEDATEEDIT.OKCAPTION
-msgctxt "TARCHIVEFORM.RUNONCEDATEEDIT.OKCAPTION"
-msgid "OK"
-msgstr ""
-
-#: TARCHIVEFORM.RUNONCEDATELABEL.CAPTION
-msgid "RunOnceDateLabel"
-msgstr ""
-
-#: TARCHIVEFORM.RUNONCEHOURLABEL.CAPTION
-msgctxt "TARCHIVEFORM.RUNONCEHOURLABEL.CAPTION"
-msgid "RunOnceHourLabel"
-msgstr ""
-
-#: TARCHIVEFORM.RUNONCEMINUTELABEL.CAPTION
-msgid "RunOnceMinuteLabel"
-msgstr ""
-
-#: TARCHIVEFORM.RUNONCERADIOBUTTON.CAPTION
-msgctxt "TARCHIVEFORM.RUNONCERADIOBUTTON.CAPTION"
-msgid "Run once only at"
-msgstr ""
-
-#: TARCHIVEFORM.SAVEARCHIVEINLABEL.CAPTION
-msgctxt "TARCHIVEFORM.SAVEARCHIVEINLABEL.CAPTION"
-msgid "Save archive in"
-msgstr ""
-
-#: TARCHIVEFORM.SAVESCRIPTCHECKBOX.CAPTION
-msgctxt "TARCHIVEFORM.SAVESCRIPTCHECKBOX.CAPTION"
-msgid "Save script as"
-msgstr ""
-
-#: TARCHIVEFORM.SCHEDULEPAGE.CAPTION
-msgctxt "TARCHIVEFORM.SCHEDULEPAGE.CAPTION"
-msgid "Scheduling"
-msgstr ""
-
-#: TARCHIVEFORM.SCRIPTFILEBUTTON.CAPTION
-msgctxt "TARCHIVEFORM.SCRIPTFILEBUTTON.CAPTION"
-msgid "Browse"
-msgstr ""
-
-#: TARCHIVEFORM.SLICEMBLABEL.CAPTION
-msgctxt "TARCHIVEFORM.SLICEMBLABEL.CAPTION"
-msgid "Mb"
-msgstr ""
-
-#: TARCHIVEFORM.SLICESCHECK.CAPTION
-msgctxt "TARCHIVEFORM.SLICESCHECK.CAPTION"
-msgid "Use slices"
-msgstr ""
-
-#: TARCHIVEFORM.SLICESIZE.TEXT
-msgid "695"
-msgstr ""
-
-#: TARCHIVEFORM.SLICESIZELABEL.CAPTION
-msgctxt "TARCHIVEFORM.SLICESIZELABEL.CAPTION"
-msgid "Slice size"
-msgstr ""
-
-#: TARCHIVEFORM.SUBLABEL.CAPTION
-msgctxt "TARCHIVEFORM.SUBLABEL.CAPTION"
-msgid "Reference archive"
-msgstr ""
-
-#: TARCHIVEFORM.TIMESTAMPCHECK.CAPTION
-msgid "TimestampCheck"
-msgstr ""
-
-#: TCREATESAVEDIALOG.BROWSEBUTTON.CAPTION
-msgid "..."
-msgstr ""
-
-#: TCREATESAVEDIALOG.CANCELBUTTON.CAPTION
-msgctxt "TCREATESAVEDIALOG.CANCELBUTTON.CAPTION"
-msgid "Cancel"
-msgstr ""
-
-#: TCREATESAVEDIALOG.CREATESAVEDIALOG.CAPTION
-msgctxt "TCREATESAVEDIALOG.CREATESAVEDIALOG.CAPTION"
-msgid "CreateSaveDialog"
-msgstr ""
-
-#: TCREATESAVEDIALOG.FILENAMELABEL.CAPTION
-msgctxt "TCREATESAVEDIALOG.FILENAMELABEL.CAPTION"
-msgid "Save backup settings as"
-msgstr ""
-
-#: TCREATESAVEDIALOG.NOTESLABEL.CAPTION
-msgctxt "TCREATESAVEDIALOG.NOTESLABEL.CAPTION"
-msgid "Notes"
-msgstr ""
-
-#: TCREATESAVEDIALOG.OKBUTTON.CAPTION
-msgctxt "TCREATESAVEDIALOG.OKBUTTON.CAPTION"
-msgid "&OK"
-msgstr ""
-
-#: TDIFFFORM.ARCHIVEBOX.EDITLABEL.CAPTION
-msgctxt "TDIFFFORM.ARCHIVEBOX.EDITLABEL.CAPTION"
-msgid "Archive"
-msgstr ""
-
-#: TDIFFFORM.BASEDIRBOX.EDITLABEL.CAPTION
-msgid "Base Directory"
-msgstr ""
-
-#: TDIFFFORM.BROWSEARCHIVE.CAPTION
-msgctxt "TDIFFFORM.BROWSEARCHIVE.CAPTION"
-msgid "Browse"
-msgstr ""
-
-#: TDIFFFORM.BROWSEDIRECTORY.CAPTION
-msgctxt "TDIFFFORM.BROWSEDIRECTORY.CAPTION"
-msgid "Browse"
-msgstr ""
-
-#: TDIFFFORM.CANCELBUTTON.CAPTION
-msgctxt "TDIFFFORM.CANCELBUTTON.CAPTION"
-msgid "Cancel"
-msgstr ""
-
-#: TDIFFFORM.CAPTION
-msgid "DiffForm"
-msgstr ""
-
-#: TDIFFFORM.CLOSEBUTTON.CAPTION
-msgctxt "TDIFFFORM.CLOSEBUTTON.CAPTION"
-msgid "&Close"
-msgstr ""
-
-#: TDIFFFORM.OKBUTTON.CAPTION
-msgctxt "TDIFFFORM.OKBUTTON.CAPTION"
-msgid "&OK"
-msgstr ""
-
-#: TDIFFFORM.REPORTLABEL.CAPTION
-msgid "ReportLabel"
-msgstr ""
-
-#: TDIFFFORM.RESULTPANEL.CAPTION
-msgid "ResultPanel"
-msgstr ""
-
-#: TDIFFFORM.RESULTSLABEL.CAPTION
-msgid "Results:"
-msgstr ""
-
-#: TDIFFFORM.VERBOSECHECK.CAPTION
-msgid " Verbose output"
-msgstr ""
-
-#: TEXTRACTSELECTEDFORM.CANCELBUTTON.CAPTION
-msgctxt "TEXTRACTSELECTEDFORM.CANCELBUTTON.CAPTION"
-msgid "Cancel"
-msgstr ""
-
-#: TEXTRACTSELECTEDFORM.CAPTION
-msgid "ExtractSelectedForm"
-msgstr ""
-
-#: TEXTRACTSELECTEDFORM.DRYRUNCHECKBOX.CAPTION
-msgid "DryRunCheckBox"
-msgstr ""
-
-#: TEXTRACTSELECTEDFORM.FLATRESTORECHECKBOX.CAPTION
-msgctxt "TEXTRACTSELECTEDFORM.FLATRESTORECHECKBOX.CAPTION"
-msgid "Ignore directories"
-msgstr ""
-
-#: TEXTRACTSELECTEDFORM.OKBUTTON.CAPTION
-msgctxt "TEXTRACTSELECTEDFORM.OKBUTTON.CAPTION"
-msgid "&OK"
-msgstr ""
-
-#: TEXTRACTSELECTEDFORM.OPTIONSGROUPBOX.CAPTION
-msgctxt "TEXTRACTSELECTEDFORM.OPTIONSGROUPBOX.CAPTION"
-msgid " Options "
-msgstr ""
-
-#: TEXTRACTSELECTEDFORM.OVERWRITEOPTIONS.CAPTION
-msgid " Existing files "
-msgstr ""
-
-#: TEXTRACTSELECTEDFORM.RESTOREFILESLABEL.CAPTION
-msgctxt "TEXTRACTSELECTEDFORM.RESTOREFILESLABEL.CAPTION"
-msgid "Restore files to"
-msgstr ""
-
-#: TFILEMASKDIALOG.CANCELBUTTON.CAPTION
-msgctxt "TFILEMASKDIALOG.CANCELBUTTON.CAPTION"
-msgid "Cancel"
-msgstr ""
-
-#: TFILEMASKDIALOG.CAPTION
-msgctxt "TFILEMASKDIALOG.CAPTION"
-msgid "Add file"
-msgstr ""
-
-#: TFILEMASKDIALOG.FILEMASKLABEL.CAPTION
-msgctxt "TFILEMASKDIALOG.FILEMASKLABEL.CAPTION"
-msgid "File mask"
-msgstr ""
-
-#: TFILEMASKDIALOG.OKBUTTON.CAPTION
-msgctxt "TFILEMASKDIALOG.OKBUTTON.CAPTION"
-msgid "&OK"
-msgstr ""
-
-#: TINFORMATIONFORM.CAPTION
-msgid "InformationForm"
-msgstr ""
-
-#: TINFORMATIONFORM.OKBUTTON.CAPTION
-msgctxt "TINFORMATIONFORM.OKBUTTON.CAPTION"
-msgid "&OK"
-msgstr ""
-
-#: TISOLATEFORM.ARCHIVEBUTTON.CAPTION
-msgctxt "TISOLATEFORM.ARCHIVEBUTTON.CAPTION"
-msgid "Browse"
-msgstr ""
-
-#: TISOLATEFORM.CANCELBUTTON.CAPTION
-msgctxt "TISOLATEFORM.CANCELBUTTON.CAPTION"
-msgid "Cancel"
-msgstr ""
-
-#: TISOLATEFORM.CATALOGUEBUTTON.CAPTION
-msgctxt "TISOLATEFORM.CATALOGUEBUTTON.CAPTION"
-msgid "Browse"
-msgstr ""
-
-#: TISOLATEFORM.ENCRYPTCATALOGCHECK.CAPTION
-msgid "EncryptCatalogCheck"
-msgstr ""
-
-#: TISOLATEFORM.ISOLATEFORM.CAPTION
-msgctxt "TISOLATEFORM.ISOLATEFORM.CAPTION"
-msgid "Isolate archive catalogue"
-msgstr ""
-
-#: TISOLATEFORM.OKBUTTON.CAPTION
-msgctxt "TISOLATEFORM.OKBUTTON.CAPTION"
-msgid "&OK"
-msgstr ""
-
-#: TISOLATEFORM.SUBLABEL.CAPTION
-msgctxt "TISOLATEFORM.SUBLABEL.CAPTION"
-msgid "Save catalogue as"
-msgstr ""
-
-#: TMAINFORM.MAINFORM.CAPTION
-msgid "DarGUI"
-msgstr ""
-
-#: TMAINFORM.MENUARCHIVE.CAPTION
-msgctxt "TMAINFORM.MENUARCHIVE.CAPTION"
-msgid "Archive"
-msgstr ""
-
-#: TMAINFORM.MENUBREAK1.CAPTION
-msgctxt "TMAINFORM.MENUBREAK1.CAPTION"
-msgid "-"
-msgstr ""
-
-#: TMAINFORM.MENUBREAK2.CAPTION
-msgctxt "TMAINFORM.MENUBREAK2.CAPTION"
-msgid "-"
-msgstr ""
-
-#: TMAINFORM.MENUBREAK3.CAPTION
-msgctxt "TMAINFORM.MENUBREAK3.CAPTION"
-msgid "-"
-msgstr ""
-
-#: TMAINFORM.MENUBREAK4.CAPTION
-msgctxt "TMAINFORM.MENUBREAK4.CAPTION"
-msgid "-"
-msgstr ""
-
-#: TMAINFORM.MENUEDIT.CAPTION
-msgid "Edit"
-msgstr ""
-
-#: TMAINFORM.MENUFILE.CAPTION
-msgid "&File"
-msgstr ""
-
-#: TMAINFORM.MENUHELP.CAPTION
-msgid "&Help"
-msgstr ""
-
-#: TMAINFORM.MENUSETTINGS.CAPTION
-msgctxt "TMAINFORM.MENUSETTINGS.CAPTION"
-msgid "Options"
-msgstr ""
-
-#: TMAINFORM.MESSAGEHIDEBUTTON.CAPTION
-msgid "X"
-msgstr ""
-
-#: TMAINFORM.MESSAGELABEL.CAPTION
-msgid "Messages:"
-msgstr ""
-
-#: TMAINFORM.MESSAGEPANEL.CAPTION
-msgid "MessagePanel"
-msgstr ""
-
-#: TMAINFORM.MIARCHIVEDIFF.CAPTION
-msgctxt "TMAINFORM.MIARCHIVEDIFF.CAPTION"
-msgid "Compare files"
-msgstr ""
-
-#: TMAINFORM.MIARCHIVEINFORMATION.CAPTION
-msgctxt "TMAINFORM.MIARCHIVEINFORMATION.CAPTION"
-msgid "Information"
-msgstr ""
-
-#: TMAINFORM.MIEXIT.CAPTION
-msgctxt "TMAINFORM.MIEXIT.CAPTION"
-msgid "Exit"
-msgstr ""
-
-#: TMAINFORM.MIFILENEW.CAPTION
-msgctxt "TMAINFORM.MIFILENEW.CAPTION"
-msgid "New"
-msgstr ""
-
-#: TMAINFORM.MIFILEOPEN.CAPTION
-msgctxt "TMAINFORM.MIFILEOPEN.CAPTION"
-msgid "Open"
-msgstr ""
-
-#: TMAINFORM.MIHELPABOUT.CAPTION
-msgctxt "TMAINFORM.MIHELPABOUT.CAPTION"
-msgid "About DarGUI"
-msgstr ""
-
-#: TMAINFORM.MIHELPCONTENTS.CAPTION
-msgctxt "TMAINFORM.MIHELPCONTENTS.CAPTION"
-msgid "DarGUI Help"
-msgstr ""
-
-#: TMAINFORM.MIHELPDAR.CAPTION
-msgctxt "TMAINFORM.MIHELPDAR.CAPTION"
-msgid "Dar Documentation"
-msgstr ""
-
-#: TMAINFORM.MIHIDEMESSAGES.CAPTION
-msgid "Hide messages"
-msgstr ""
-
-#: TMAINFORM.MIISOLATE.CAPTION
-msgid "Isolate catalogue"
-msgstr ""
-
-#: TMAINFORM.MIOPENRECENT.CAPTION
-msgid "Open recent ..."
-msgstr ""
-
-#: TMAINFORM.MIOPERATIONLOGS.CAPTION
-msgid "Operation logs"
-msgstr ""
-
-#: TMAINFORM.MIRESTOREALL.CAPTION
-msgid "Restore all"
-msgstr ""
-
-#: TMAINFORM.MIRESTORESELECTED.CAPTION
-msgid "Restore selected"
-msgstr ""
-
-#: TMAINFORM.MISCHEDMANAGER.CAPTION
-msgid "miSchedman"
-msgstr ""
-
-#: TMAINFORM.MISELECTFILTER.CAPTION
-msgctxt "TMAINFORM.MISELECTFILTER.CAPTION"
-msgid "Select by Filter"
-msgstr ""
-
-#: TMAINFORM.MISHOWSELECT.CAPTION
-msgctxt "TMAINFORM.MISHOWSELECT.CAPTION"
-msgid "Show Selected"
-msgstr ""
-
-#: TMAINFORM.MISHOWTOOLBAR.CAPTION
-msgctxt "TMAINFORM.MISHOWTOOLBAR.CAPTION"
-msgid "Show Toolbar"
-msgstr ""
-
-#: TMAINFORM.MITESTARCHIVE.CAPTION
-msgctxt "TMAINFORM.MITESTARCHIVE.CAPTION"
-msgid "Check Integrity"
-msgstr ""
-
-#: TMAINFORM.MITOGGLESELECT.CAPTION
-msgctxt "TMAINFORM.MITOGGLESELECT.CAPTION"
-msgid "Toggle Selected"
-msgstr ""
-
-#: TMAINFORM.MIUSERPREFS.CAPTION
-msgid "Preferences"
-msgstr ""
-
-#: TMAINFORM.PMIHIDEALL.CAPTION
-msgctxt "TMAINFORM.PMIHIDEALL.CAPTION"
-msgid "Hide All"
-msgstr ""
-
-#: TMAINFORM.PMIRESTOREALL.CAPTION
-msgctxt "TMAINFORM.PMIRESTOREALL.CAPTION"
-msgid "Restore All"
-msgstr ""
-
-#: TMAINFORM.PMIRESTORESELECTED.CAPTION
-msgctxt "TMAINFORM.PMIRESTORESELECTED.CAPTION"
-msgid "Restore Selected"
-msgstr ""
-
-#: TMAINFORM.PMISELECTFILTER.CAPTION
-msgctxt "TMAINFORM.PMISELECTFILTER.CAPTION"
-msgid "Select by Filter"
-msgstr ""
-
-#: TMAINFORM.PMISHOWALL.CAPTION
-msgctxt "TMAINFORM.PMISHOWALL.CAPTION"
-msgid "Show All"
-msgstr ""
-
-#: TMAINFORM.PMISHOWALLSELECTED.CAPTION
-msgctxt "TMAINFORM.PMISHOWALLSELECTED.CAPTION"
-msgid "Show Selected"
-msgstr ""
-
-#: TMAINFORM.PMITOGGLESELECT.CAPTION
-msgctxt "TMAINFORM.PMITOGGLESELECT.CAPTION"
-msgid "Toggle Selected"
-msgstr ""
-
-#: TMAINFORM.POPUPBREAK1.CAPTION
-msgctxt "TMAINFORM.POPUPBREAK1.CAPTION"
-msgid "-"
-msgstr ""
-
-#: TMAINFORM.POPUPBREAK2.CAPTION
-msgctxt "TMAINFORM.POPUPBREAK2.CAPTION"
-msgid "-"
-msgstr ""
-
-#: TMAINFORM.TBCREATE.HINT
-msgctxt "TMAINFORM.TBCREATE.HINT"
-msgid "Create a new archive"
-msgstr ""
-
-#: TMAINFORM.TBDIFF.HINT
-msgctxt "TMAINFORM.TBDIFF.HINT"
-msgid "Compare archive and filesystem"
-msgstr ""
-
-#: TMAINFORM.TBISOLATE.HINT
-msgctxt "TMAINFORM.TBISOLATE.HINT"
-msgid "Isolate archive catalogue"
-msgstr ""
-
-#: TMAINFORM.TBOPEN.HINT
-msgctxt "TMAINFORM.TBOPEN.HINT"
-msgid "Open an archive"
-msgstr ""
-
-#: TOPLOGFORM.CAPTION
-msgid "Logs"
-msgstr ""
-
-#: TOPLOGFORM.CLOSEBUTTON.CAPTION
-msgctxt "TOPLOGFORM.CLOSEBUTTON.CAPTION"
-msgid "&Close"
-msgstr ""
-
-#: TOPLOGFORM.COMMANDLABEL.CAPTION
-msgid "CommandLabel"
-msgstr ""
-
-#: TOPLOGFORM.CONTENTPANEL.CAPTION
-msgid "ContentPanel"
-msgstr ""
-
-#: TOPLOGFORM.MICOPYCOMMAND.CAPTION
-msgid "Copy Selected"
-msgstr ""
-
-#: TOPLOGFORM.MIEXECUTECOMMAND.CAPTION
-msgid "Execute"
-msgstr ""
-
-#: TOPTIONSFORM.CANCELBUTTON.CAPTION
-msgctxt "TOPTIONSFORM.CANCELBUTTON.CAPTION"
-msgid "Cancel"
-msgstr ""
-
-#: TOPTIONSFORM.DARLOCATIONLABEL.CAPTION
-msgid "DarLocationLabel"
-msgstr ""
-
-#: TOPTIONSFORM.DEFCONFIGLABEL.CAPTION
-msgid "DefConfigLabel"
-msgstr ""
-
-#: TOPTIONSFORM.DISPLAYPAGE.CAPTION
-msgid "Display"
-msgstr ""
-
-#: TOPTIONSFORM.FILESOPENEDLBL.CAPTION
-msgctxt "TOPTIONSFORM.FILESOPENEDLBL.CAPTION"
-msgid "files opened"
-msgstr ""
-
-#: TOPTIONSFORM.MAINFORMPOSITION.CAPTION
-msgid "MainFormPosition"
-msgstr ""
-
-#: TOPTIONSFORM.MAINFORMSIZE.CAPTION
-msgid "MainFormSize"
-msgstr ""
-
-#: TOPTIONSFORM.OKBUTTON.CAPTION
-msgctxt "TOPTIONSFORM.OKBUTTON.CAPTION"
-msgid "Ok"
-msgstr ""
-
-#: TOPTIONSFORM.OPTIONSFORM.CAPTION
-msgctxt "TOPTIONSFORM.OPTIONSFORM.CAPTION"
-msgid "OptionsForm"
-msgstr ""
-
-#: TOPTIONSFORM.REMEMBERLBL.CAPTION
-msgctxt "TOPTIONSFORM.REMEMBERLBL.CAPTION"
-msgid "Remember last"
-msgstr ""
-
-#: TOPTIONSFORM.TOOLBARCHECK.CAPTION
-msgid "ShowToolbar"
-msgstr ""
-
-#: TPASSWORDDLG.CANCELBUTTON.CAPTION
-msgctxt "TPASSWORDDLG.CANCELBUTTON.CAPTION"
-msgid "Cancel"
-msgstr ""
-
-#: TPASSWORDDLG.NOMATCHLABEL.CAPTION
-msgid "NoMatchLabel"
-msgstr ""
-
-#: TPASSWORDDLG.OKBUTTON.CAPTION
-msgctxt "TPASSWORDDLG.OKBUTTON.CAPTION"
-msgid "&OK"
-msgstr ""
-
-#: TPASSWORDDLG.PASSWORDDLG.CAPTION
-msgid "PasswordDlg"
-msgstr ""
-
-#: TPASSWORDDLG.PASSWORDEDIT.TEXT
-msgid "PasswordEdit"
-msgstr ""
-
-#: TPASSWORDDLG.PASSWORDLABEL.CAPTION
-msgid "PasswordLabel"
-msgstr ""
-
-#: TSCHEDULEMANAGERFORM.CANCELBUTTON.CAPTION
-msgid "CancelButton"
-msgstr ""
-
-#: TSCHEDULEMANAGERFORM.CAPTION
-msgid "ScheduleManagerForm"
-msgstr ""
-
-#: TSCHEDULEMANAGERFORM.CLOSEBUTTON.CAPTION
-msgctxt "TSCHEDULEMANAGERFORM.CLOSEBUTTON.CAPTION"
-msgid "&Close"
-msgstr ""
-
-#: TSELECTFILTERFORM.ADDFILTERBUTTON.CAPTION
-msgctxt "TSELECTFILTERFORM.ADDFILTERBUTTON.CAPTION"
-msgid "Add"
-msgstr ""
-
-#: TSELECTFILTERFORM.CANCELBUTTON.CAPTION
-msgctxt "TSELECTFILTERFORM.CANCELBUTTON.CAPTION"
-msgid "Cancel"
-msgstr ""
-
-#: TSELECTFILTERFORM.CAPTION
-msgid "SelectFilterForm"
-msgstr ""
-
-#: TSELECTFILTERFORM.CLEARFILTERSBUTTON.CAPTION
-msgctxt "TSELECTFILTERFORM.CLEARFILTERSBUTTON.CAPTION"
-msgid "Clear"
-msgstr ""
-
-#: TSELECTFILTERFORM.DELFILTERBUTTON.CAPTION
-msgctxt "TSELECTFILTERFORM.DELFILTERBUTTON.CAPTION"
-msgid "Remove"
-msgstr ""
-
-#: TSELECTFILTERFORM.FILENAMESONLYCHECK.CAPTION
-msgid "Apply filter to filenames only"
-msgstr ""
-
-#: TSELECTFILTERFORM.MATCHALLCHECK.CAPTION
-msgid "MatchAllCheck"
-msgstr ""
-
-#: TSELECTFILTERFORM.OKBUTTON.CAPTION
-msgctxt "TSELECTFILTERFORM.OKBUTTON.CAPTION"
-msgid "&OK"
-msgstr ""
-

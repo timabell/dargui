@@ -1,7 +1,7 @@
 README for DarGUI binary tarball
 ================================
 
-27 March 2009
+20 February 2011
 
 Thank you for downloading the binary tarball for DarGUI.
 
@@ -23,6 +23,7 @@ DarGUI also needs the following programs to work correctly:
        dar
        xterm
        bash
+       libvte9
 
 To use DarGUI's scheduling capabilities, atd and cron must be running.
 
@@ -35,7 +36,7 @@ to another language please contact the author at the email address below.
 French translation provided by Gwen Trellu
 
 NB: Some functions of DarGUI may not work when used with a version of DAR which is 
-using DAR's Swedish localisation files. This can be fixed by deleting 
+using DAR's Swedish or German localisation files. This can be fixed by deleting 
 or renaming the DAR localisation file dar.mo . Be warned, however, that this will
 mean that commandline DAR will then function only in English.
        

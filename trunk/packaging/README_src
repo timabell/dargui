@@ -1,7 +1,7 @@
 README for DarGUI source tarball
 ================================
 
-27 March 2009
+20 February 2011
 
 Thank you for downloading the source tarball for DarGUI.
 
@@ -17,6 +17,8 @@ http://wiki.lazarus.freepascal.org/FPC_documentation
 Documentation for Lazarus and a number of tutorials can be found at
 http://wiki.lazarus.freepascal.org/Lazarus_Documentation
 Beginners will also find most Delphi beginners' tutorials useful.
+
+Some help for compiling DarGUI from source is found in the HTML documentation
 
 ------------------------------------------------------------------------------
 

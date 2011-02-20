@@ -30,12 +30,13 @@ uses
   { add your units here }, main, darintf, selectrestore, archive, filemaskdlg,
   ProcessLine, ArchiveInfo, About, oplog, isolate, diff, prefs,
   historymenu, dgStrConst, selectfilter, password, darstrings, backupsavedlg,
-  schedman, userprefs, LResources, locatefiledlg;
+  schedman, userprefs, locatefiledlg;
 
 {$IFDEF WINDOWS}{$R dargui.rc}{$ENDIF}
 
+{$R *.res}
+
 begin
-  {$I dargui.lrs}
   Application.Title:='DarGUI';
   SetupLanguage;
   Application.Initialize;

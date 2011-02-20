@@ -150,7 +150,7 @@ const
      // revision.inc provides number of next SVN commit
      {$I revision.inc}
   {$ELSE}
-     SVN_REVISION = '0';
+     SVN_REVISION = '282';
   {$ENDIF}
 
   ARCHIVEMENU_TAG = 1; //used for enabling menuitems after loading archive
