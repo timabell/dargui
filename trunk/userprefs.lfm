@@ -31,10 +31,13 @@ object OptionsForm: TOptionsForm
         ParentColor = False
       end
       object FilesOpenedLbl: TLabel
-        Left = 222
+        AnchorSideLeft.Control = RecentFilesSpinEdit
+        AnchorSideLeft.Side = asrBottom
+        Left = 208
         Height = 18
         Top = 140
         Width = 78
+        BorderSpacing.Left = 10
         Caption = 'files opened'
         ParentColor = False
       end
@@ -85,10 +88,13 @@ object OptionsForm: TOptionsForm
         TabOrder = 2
       end
       object RecentFilesSpinEdit: TSpinEdit
-        Left = 126
+        AnchorSideLeft.Control = RememberLbl
+        AnchorSideLeft.Side = asrBottom
+        Left = 148
         Height = 25
         Top = 135
         Width = 50
+        BorderSpacing.Left = 10
         MaxValue = 20
         MinValue = 3
         TabOrder = 3
