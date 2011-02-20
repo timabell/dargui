@@ -116,6 +116,7 @@ type
     procedure EnableArchiveMenus( flag: Boolean );
     procedure InitialiseInterface;
     procedure tbTestClick ( Sender: TObject ) ;
+    procedure TryOpenArchive( fn: string ) ;
   private
     LevelColors: array[0..4] of TColor;
     CurrentPass: string;
@@ -640,18 +641,7 @@ procedure TMainForm.FormShow(Sender: TObject);
 begin
   if (Paramcount > 0) and (CurrentArchive = '') then
        if FileExists(ParamStr(1)) then
-          begin
-            OpenDialog.FileName := ParamStr(1);
-            if DarInfo.version<>'-'
-               then if ValidateArchive(OpenDialog.FileName, CurrentPass)
-                 then if OpenArchive(OpenDialog.FileName,ArchiveTreeView, CurrentPass) = 0
-                      then
-                      begin
-                        EnableArchiveMenus(true);
-                        CurrentArchive := OpenDialog.FileName;
-                        RecentList.AddFile(OpenDialog.FileName);
-                      end;
-          end;
+         TryOpenArchive(Paramstr(1));
 end;
 
 procedure TMainForm.HeaderBarSectionResize(HeaderControl: TCustomHeaderControl;
@@ -697,42 +687,9 @@ var
   Archivestatus: Tarchiveopenstatus;
 begin
   fn := TMenuItem(Sender).Caption + '.1.dar';
-  if FileExists(fn) then
-     begin
-       CurrentPass := '';
-       fn := TMenuItem(Sender).Caption;
-      ArchiveStatus := CheckArchiveStatus(fn, '');
-      if Archivestatus = aosEncrypted then
-      if ValidateArchive(fn, CurrentPass)
-         then ArchiveStatus := CheckArchiveStatus(fn, CurrentPass)
-         else Archivestatus := aosAborted;
-      if Archivestatus = aosOK then
-         begin
-           if DarInfo.version<>'-' then  //TODO: disable open menus if dar is absent
-              begin
-                StatusBar.Panels[SELECT_STATUSBAR].Text := rsMessBUSY;
-                Application.ProcessMessages;
-                OpenDialog.FileName := fn;
-                if CheckArchiveStatus(fn, CurrentPass) = aosOK then
-                  begin
-                    if OpenArchive(OpenDialog.FileName,ArchiveTreeView, CurrentPass) = 0 then
-                        begin
-                          EnableArchiveMenus(true);
-                          CurrentArchive := TrimToBase(OpenDialog.FileName);
-                          RecentList.AddFile(fn);
-                        end
-                        else
-                        begin
-                          EnableArchiveMenus(false);
-                          CurrentArchive := '';
-                        end;
-                  end
-                  else ShowMessage(DarErrorMessage);
-                  StatusBar.Panels[SELECT_STATUSBAR].Text := '';
-              end;
-         end;
-       end
-       else MessageDlg ( rsErrUnableToFindArchive, mtError, [ mbOk ] , 0 ) ;
+  if FileExists(fn)
+     then TryOpenArchive(fn)
+  else MessageDlg ( rsErrUnableToFindArchive, mtError, [ mbOk ] , 0 ) ;
        //TODO: if archive not found it should be removed from menu
 end;
 
@@ -932,40 +889,7 @@ begin
   OpenDialog.Title := rsOpenExisting;
   OpenDialog.Filter := rsFilterDARArchives + '|*.1.dar';
   if OpenDialog.Execute then
-     begin
-       CurrentPass := '';;
-       StatusBar.Panels[SELECT_STATUSBAR].Text := #32 + rsMessBUSY;
-       Application.ProcessMessages;
-       fn := TrimToBase( OpenDialog.FileName );
-       ArchiveStatus := CheckArchiveStatus(fn, '');
-       if Archivestatus = aosEncrypted then
-       if ValidateArchive(fn, CurrentPass)
-          then ArchiveStatus := CheckArchiveStatus(fn, CurrentPass)
-          else Archivestatus := aosAborted;
-       if Archivestatus = aosOK then
-           begin
-             if OpenArchive(fn, ArchiveTreeView, CurrentPass) = 0 then
-                begin
-                  EnableArchiveMenus(true);
-                  CurrentArchive := fn;
-                  RecentList.AddFile(fn);
-                end
-             else
-                begin
-                  MessageDlg ( rsErrUnableToOpenArchive, mtError, [ mbOK ] , 0 ) ;
-                  EnableArchiveMenus(false);
-                  CurrentArchive := '';
-                end;
-           end
-           else
-            case Archivestatus of
-                 aosFileNotPresent: ShowMessage('The last file of the set could not be found' + #10
-                                                     + 'See Help for more information');
-                 aosError: ShowMessage(DarErrorMessage);
-            end;
-       StatusBar.Panels[SELECT_STATUSBAR].Text := '';
-     end;
-
+     TryOpenArchive(OpenDialog.FileName);
 end;
 
 procedure TMainForm.miHelpAboutClick ( Sender: TObject ) ;
@@ -1182,6 +1106,44 @@ begin
                         rsCptDarGUICheckingArchive,
                         Left+100, Top+150, false);
       end;
+end;
+
+procedure TMainForm.TryOpenArchive ( fn: string ) ;
+var
+  fname: String;
+  Archivestatus: Tarchiveopenstatus;
+begin
+   CurrentPass := '';;
+   StatusBar.Panels[SELECT_STATUSBAR].Text := #32 + rsMessBUSY;
+   Application.ProcessMessages;
+   fname := TrimToBase( fn );
+   ArchiveStatus := CheckArchiveStatus(fname, '');
+   if Archivestatus = aosEncrypted then
+   if ValidateArchive(fname, CurrentPass)
+      then ArchiveStatus := CheckArchiveStatus(fname, CurrentPass)
+      else Archivestatus := aosAborted;
+   if Archivestatus = aosOK then
+       begin
+         if OpenArchive(fname, ArchiveTreeView, CurrentPass) = 0 then
+            begin
+              EnableArchiveMenus(true);
+              CurrentArchive := fname;
+              RecentList.AddFile(fname);
+            end
+         else
+            begin
+              MessageDlg ( rsErrUnableToOpenArchive, mtError, [ mbOK ] , 0 ) ;
+              EnableArchiveMenus(false);
+              CurrentArchive := '';
+            end;
+       end
+       else
+        case Archivestatus of
+             aosFileNotPresent: ShowMessage('The last file of the set could not be found' + #10
+                                                 + 'See Help for more information');
+             aosError: ShowMessage(DarErrorMessage);
+        end;
+   StatusBar.Panels[SELECT_STATUSBAR].Text := '';
 end;
 
 procedure TMainForm.pmiRestoreSelectedClick(Sender: TObject);
