@@ -8,7 +8,7 @@ interface
 uses
   Classes, SysUtils, LCLProc, FileUtil, StringHashList
   {$IFDEF UNIX}{$IFNDEF DisableCWString}, cwstring{$ENDIF}{$ENDIF}
-  {$IFDEF MultiLocale},LConv{$ENDIF}, gettext, translations;
+  {$IFDEF MultiLocale},LConv{$ENDIF}, gettext, translations, dialogs;
   
 
 var
@@ -151,7 +151,12 @@ begin
   GetLanguageIDs(MainLang, FallbackLang);
   writeln(MainLang, ' : ', FallbackLang);
   if Pos('fr', MainLang)=1 then Result := true;
-  if Pos('de', MainLang)=1  then Result := true;
+  if Pos('de', MainLang)=1  then
+     begin
+       Result := false;
+       ShowMessage('Warning: dar output is in German, which DarGUI cannot interpret correctly'+#10
+                        + 'Check Help for more information');
+     end;
   if Pos('sv', MainLang)=1  then Result := true;
 end;
 
