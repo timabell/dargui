@@ -2,6 +2,9 @@
 <html><head><title>Chapter 2: Creating Archives - Main Options</title>
 
 
+
+
+
   
 
 
@@ -19,7 +22,7 @@
 
 <br>
 
-<table class="header" width="100%">
+<table style="width: 100%; text-align: left; margin-left: auto; margin-right: auto;" class="header">
 
   <tbody>
 
@@ -56,7 +59,7 @@
 
 </div>
 <p>To create a new archive select File-&gt;New. The "New Archive" window will appear.</p>
-<p><img src="images/newarchivetab1.png" alt="Screenshot of Archive tab" border="0" height="418" width="522"></p>
+<p><img style="border: 0px solid ; width: 511px; height: 416px;" src="images/newarchivetab1.png" alt=""></p>
 <p>There are six tabs of options in the "New Archive" window but in
 most cases you will only use the first three, "Archive", "Directories"
 and "Files". The first of these, "Archive", is used to set the
@@ -90,6 +93,7 @@ only need to change this option if you want to keep the batch file, for
 example, if you want to use it as a basis from which to write your own
 backup script. </li>
 
+  
   <li><strong>Differential backup</strong> A differential archive is an
 archive which stores the difference between the current state of the
 filesystem and the state of the filesystem when you last created a full
@@ -102,12 +106,16 @@ the files stored in the reference archive and compare them with the
 files on your system. It will only store them in the differential
 archive if they have been changed since the reference archive was
 created.<br>
-    <span style="font-weight: bold;">NB: </span>If the reference
-archive is encrypted, it will not be possible to schedule the backup to
+<br>
+    <span style="font-weight: bold;">Note: </span>If the reference
+archive is encrypted this will be indicated by a lock symbol. When
+using an encrypted archive of reference, it will not be possible to
+schedule the backup to
 be created at a later date. If the option to write a backup script is
 selected, the script will request a password when it is run, unless it
 is manually edited.<br>
  </li>
+
 
 </ul><p></p>
 
@@ -115,7 +123,7 @@ is manually edited.<br>
 
 </div>
 
-<table class="bottom-nav" width="100%">
+<table style="width: 100%; text-align: left; margin-left: auto; margin-right: auto;" class="bottom-nav">
 
   <tbody>
 

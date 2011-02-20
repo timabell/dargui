@@ -1,7 +1,10 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
-<html>
-<head>
-  <title>Isolating catalogs</title>
+<html><head><title>Isolating catalogs</title>
+
+
+
+
+  
 
 
   <link rel="stylesheet" href="kde-default.css" type="text/css">
@@ -14,14 +17,11 @@
 
   <link rel="previous" href="viewing-archives.html" title="templateprev">
 
-  <link rel="next" href="#.html" title="templatenext">
-
-</head>
-<body style="color: black; background-color: white;" alink="#0000ff" link="#0000ff" vlink="#840084">
+  <link rel="next" href="#.html" title="templatenext"></head><body style="color: black; background-color: white;" alink="#0000ff" link="#0000ff" vlink="#840084">
 
 <br>
 
-<table class="header" width="100%">
+<table style="width: 100%; text-align: left; margin-left: auto; margin-right: auto;" class="header">
 
   <tbody>
 
@@ -52,34 +52,58 @@
 <div class="sect1">
 <div class="titlepage">
 <div>
-<h2 class="title" style="clear: both;"><a name="overview"></a>Isolating catalogs</h2>
+<h2 class="title" style="clear: both;"><a name="overview"></a>Isolating catalogues</h2>
 
 </div>
 
 </div>
 
-<p>A Dar archive stores information about its files at the end of the archive in a table of contents, or a "catalog". When creating a differential backup based on an existing "reference" archive, Dar only needs to scan the reference archive's catalog to determine changes in filesystem with respect to the reference archive.</p>
+<p>A Dar archive stores information about its files at the end of the
+archive in a table of contents, or a "catalogue" (Both the author of
+Dar and the author of DarGUI are used to this spelling, so it tends to
+prevail..) When creating a
+differential backup based on an existing "reference" archive, Dar only
+needs to scan the reference archive's catalogue to determine changes in
+filesystem with respect to the reference archive.</p>
 
-<p>DarGUI can "isolate" or extract the reference catalog into a separate file. The isolated catalog can be read and listed like the full reference archive but it contains none of the actual stored data. Since the isolated catalog is much smaller than the reference archive, you can store it on your filesystem and use it for making differential backups, i.e. use the isolated catalog as your reference archive.</p>
+<p>DarGUI can "isolate" or extract the reference catalogue into a
+separate file. The isolated catalogue can be read and listed like the
+full reference archive but it contains none of the actual stored data.
+Since the isolated catalogue is much smaller than the reference archive,
+you can store it on your filesystem and use it for making differential
+backups, i.e. use the isolated catalogue as your reference archive. To restore files, however, you need the original archive.<br>
+</p>
 
-<p>To isolate a catalog select Archive->Isolate Catalog from the main menu. An dialog will appear which allows you to select an archive and the name to be given to the catalog.</p>
+<p>To isolate a catalog select Archive-&gt;Isolate Catalogue from the
+main menu. An dialog will appear which allows you to select an archive
+and the name to be given to the catalogue.</p>
 
-<IMG src="images/isolate-catalog.png" width="396" height="224" align="middle" border="0">
+<img style="border: 0px solid ; width: 385px; height: 242px;" alt="" src="images/isolate-catalog.png" align="middle">
 
 <ul>
-<li><p><strong>Source archive</strong> - If an archive is already open then its name will be entered automatically as the "Source archive" but another archive can be selected using the "Browse" button.</p></li>
+<li><p><strong>Source archive</strong> - If an archive is already open
+then its name will be entered automatically as the "Source archive" but
+another archive can be selected using the "Browse" button.</p></li>
 
-<li><p><strong>Save catalog as</strong> - A suggested catalog name is given automatically but different location and name can be selected using the "Browse" button.</p></li>
+<li><p><strong>Save catalogue as</strong> - A suggested catalogue name
+is given automatically but different a location and name can be
+selected using the "Browse" button or by typing it in.</p></li>
+  <li><span style="font-weight: bold;">Encrypt catalogue using blowfish</span> - when this option is selected the catalogue will be encrypted and a password required to view its contents.<br>
+  </li>
+
 
 </ul>
 
 
-<p>You can open the isolated catalog in DarGUI and display the contents. The status field will display [InRef] to indicate that the actual file data is stored in another archive, the "reference archive". To restore the data you have to open the appropriate reference archive.</p>
+<p>You can open the isolated catalogue in DarGUI and display the
+contents. The status field will display [InRef] to indicate that the
+actual file data is stored in another archive, the "reference archive".
+To restore the data you have to open the appropriate reference archive.</p>
 </div>
 
 </div>
 
-<table class="bottom-nav" width="100%">
+<table style="width: 100%; text-align: left; margin-left: auto; margin-right: auto;" class="bottom-nav">
 
   <tbody>
 
@@ -106,5 +130,4 @@
   </tbody>
 </table>
 
-</body>
-</html>
+</body></html>

@@ -2,6 +2,8 @@
 <html><head><title>Chapter2: Using DarGUI</title>
 
 
+
+
   
 
 
@@ -19,7 +21,7 @@
 
 <br>
 
-<table class="header" width="100%">
+<table style="width: 100%; text-align: left; margin-left: auto; margin-right: auto;" class="header">
 
   <tbody>
 
@@ -72,7 +74,12 @@ number and the extension ".dar".</p>
 <p>For example, a full backup of your filesystem might have archive
 slices that look like "localhost-20090108-full.1.dar",
 "localhost-20090108-full.2.dar", and so-on, up to the number of slices
-in the archive.</p>
+in the archive. Note that DarGUI needs access to both the first and
+last slices of a set to be able to list the contents of the archive, so
+these need to be stored in the same location if you intend to access
+the archive with DarGUI. Dar on the commandline does not have this
+limitation.<br>
+</p>
 
 <p>You can also ask DarGUI not to split the archive into individual
 slices. The resulting archive still follows the naming convention
@@ -101,7 +108,7 @@ a disk crash where you need to boot from a rescue disk.</p>
 
 </div>
 
-<table class="bottom-nav" width="100%">
+<table style="width: 100%; text-align: left; margin-left: auto; margin-right: auto;" class="bottom-nav">
 
   <tbody>
 
