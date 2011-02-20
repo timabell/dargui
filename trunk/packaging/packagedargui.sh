@@ -66,13 +66,6 @@ fi
 PACKAGEDIR=`pwd`/packaging
 strip -s $EXECDIR/dargui
 
-# remove any gz archives in directory ( why?)
-files=$(ls $RELEASEDIR/*.gz 2> /dev/null | wc -l)
-if [ "$files" != "0" ]
-  then
-  rm $VERBOSITY $RELEASEDIR/*.gz
-fi
-
 # update the changelog
 $editor $BASEDIR/docs/changelog
 
@@ -83,14 +76,16 @@ if [ $tar -eq 0 ]  || [ $all -eq 0 ] ; then
     echo "removing existing directory '$TARDIR'"
     rm -rf $TARDIR
   fi
+  if [ -e $RELEASEDIR/$RELEASENAME-bin.tar.gz ] ; then rm $RELEASEDIR/$RELEASENAME-bin.tar.gz ; fi
   mkdir $TARDIR
   TARDIR=$TARDIR"/"$RELEASENAME
   mkdir $TARDIR
   cp $VERBOSITY $EXECDIR/dargui $TARDIR/
-  cp $VERBOSITY $EXECDIR/darlogger $TARDIR/
+  cp $VERBOSITY $EXECDIR/darlogger/darlogger $TARDIR/
   cp $VERBOSITY $PACKAGEDIR/*install.sh $TARDIR/
   $editor $PACKAGEDIR/README_bin > /dev/null
   cp $VERBOSITY $PACKAGEDIR/README_bin $TARDIR/README
+  cp $VERBOSITY $PACKAGEDIR/LISEZMOI $TARDIR/
   mkdir $TARDIR/doc
   cp $VERBOSITY $BASEDIR/docs/* $TARDIR/doc/
   #mkdir $TARDIR/doc/images
@@ -102,7 +97,7 @@ if [ $tar -eq 0 ]  || [ $all -eq 0 ] ; then
   cp $VERBOSITY `pwd`/locales/dargui.pot $TARDIR/locales/
   mkdir $TARDIR/scripts
   cp $VERBOSITY $BASEDIR/scripts/*.sh $TARDIR/scripts/
-  cp $VERBOSITY -R $BASEDIR/packaging $TARDIR/packagingtools
+  #cp $VERBOSITY -R $BASEDIR/packaging $TARDIR/packagingtools
   cp $VERBOSITY `pwd`/docs/man/dargui.gz $TARDIR/doc/
   cp $VERBOSITY -R $PACKAGEDIR/deb_common/applications $TARDIR/
   cp $VERBOSITY -R $PACKAGEDIR/deb_common/menu $TARDIR/
@@ -149,7 +144,7 @@ if [ $deb -eq 0 ] || [ $all -eq 0 ] || [ $rpm -eq 0 ] ; then
     cp $VERBOSITY $BASEDIR/docs/images/* $DEBDIR/usr/share/doc/dargui/images
     mkdir -p $DEBDIR/usr/share/man/man1/
     cp $VERBOSITY $BASEDIR/docs/man/*.gz $DEBDIR/usr/share/man/man1/
-    cp $VERBOSITY $EXECDIR/darlogger $DEBDIR/usr/share/dargui/
+    cp $VERBOSITY $EXECDIR/darlogger/darlogger $DEBDIR/usr/share/dargui/
     cp $VERBOSITY $BASEDIR/scripts/*.sh $DEBDIR/usr/share/dargui/
     mkdir $DEBDIR/usr/share/dargui/locales
     cp $VERBOSITY $BASEDIR/locales/*.*.po $DEBDIR/usr/share/dargui/locales/
@@ -177,7 +172,7 @@ if [ $deb -eq 0 ] || [ $all -eq 0 ] || [ $rpm -eq 0 ] ; then
     which dpkg > /dev/null
     if [ $? -eq 0 ] ; then
        cd $RELEASEDIR
-       fakeroot dpkg -b $DEBDIR ./$RELEASENAME.deb
+       fakeroot dpkg -b $DEBDIR ./$RELEASENAME"_i386.deb"
        [ $? -eq 0 ] && echo "deb package created successfully in $RELEASEDIR" || echo "ERROR: dpkg failed with error number $? when creating deb package"
     else
       echo "dpkg not found - unable to create deb package"
@@ -214,6 +209,7 @@ if [ $src -eq 0 ] || [ $all -eq 0 ] ; then
      echo "removing existing directory '$SRCDIR'"
      rm -rf $SRCDIR
   fi
+  if [ -e $RELEASEDIR/$RELEASENAME-src.tar.gz ] ; then rm $RELEASEDIR/$RELEASENAME-src.tar.gz ; fi
   mkdir $SRCDIR
   SRCDIR=$SRCDIR"/"$RELEASENAME-src
   mkdir $SRCDIR

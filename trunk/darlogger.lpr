@@ -3,59 +3,14 @@ program darlogger;
 {$mode objfpc}{$H+}
 
 uses
-  Classes, SysUtils
+  SysUtils
   { you can add units after this };
   var input : string;
       st: text;
       log: textfile;
       logging: Boolean;
-      
-const
-    TEMP_DIRECTORY = '/tmp/dargui/';
-   LOGFILE_BASE = 'dargui.log.';
 
-      
- function LogNumber(fn: string): integer;
-var
-  x: Integer;
-  NumAsString: String;
-begin
-  x := Length(fn);
-  while ((fn[x] in ['0'..'9']) and (x > 1)) do
-      Dec(x);
-  NumAsString := Copy(fn, x+1, 8);
-  try
-   Result := StrToInt(NumAsString);
-   except
-   Result := -1;
-   end
-end;
-
-function GetNextFileName( FileBase: string): string;
-var
- Rec : TSearchRec;
- fn: string;
- HighNum: integer;
- LogfileMask: String;
- ThisNum: LongInt;
- begin
-  HighNum := 1;
-  LogfileMask := FileBase + '*';
-  if FindFirst (LogfileMask, faAnyFile - faDirectory, Rec) = 0 then
-  try
-   repeat
-      fn := Rec.Name;
-      ThisNum := LogNumber(fn);
-      if ThisNum >= HighNum
-              then HighNum := ThisNum+1;
-   until FindNext(Rec) <> 0;
-  finally
-   FindClose(Rec) ;
-  end;
-  Result :=  FileBase + IntToStr(HighNum);
-end;
-
-
+{$R *.res}
 
 begin
  logging := false;
