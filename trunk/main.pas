@@ -305,7 +305,6 @@ begin
   if not FileExists(TEMP_DIRECTORY)
      then mkdir(TEMP_DIRECTORY);
 
-  GetTerminalCommand(TerminalCommand);
   RunscriptPath := GetRunscriptPath;
 
   UpdatingSelection := false;
@@ -367,28 +366,8 @@ var
      if (RunDarCommand ( Command, rsCptCreatingArchive, Left + 100, Top + 150 , true)
        = 0 ) and (ArchiveForm.OpenCreatedArchiveCheck.Checked) then
         begin
-          CurrentPass := '';
-          CurrentArchive := ArchiveForm.ArchiveDirectory.Text
-                            + ArchiveForm.ArchiveBaseName;
-          ArchiveStatus := CheckArchiveStatus(CurrentArchive, '');
-          if Archivestatus = aosEncrypted then
-          if ValidateArchive(CurrentArchive, CurrentPass)
-             then ArchiveStatus := CheckArchiveStatus(CurrentArchive, CurrentPass)
-             else Archivestatus := aosAborted;
-          if Archivestatus = aosOK then
-             begin
-                if OpenArchive(CurrentArchive, ArchiveTreeView, CurrentPass) = 0 then
-                   begin
-                     EnableArchiveMenus(true);
-                     OpenDialog.FileName := CurrentArchive;
-                     RecentList.AddFile(CurrentArchive);
-                   end
-                else
-                   begin
-                     EnableArchiveMenus(false);
-                     CurrentArchive := '';
-                   end;
-             end;
+          TryOpenArchive(ArchiveForm.ArchiveDirectory.Text
+                            + ArchiveForm.ArchiveBaseName);
           OpLogForm.RefreshOpList;
         end;
      finally

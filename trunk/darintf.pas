@@ -130,7 +130,6 @@ type
   function GetDarExit: integer;
   function LogNumber(fn: string): integer;
   function GetNextFileName( FileBase: string): string;
-  procedure GetTerminalCommand(var Terminal: string);
   function GetRunscriptPath: string;
   function OpenArchive(fn: string; TV: TTreeview; pw: string): integer;
   function RunDarCommand ( Cmd, Title: string; x, y :integer; log: Boolean ) : integer;
@@ -279,8 +278,9 @@ var
 begin
   Result := -1;
   Returnvalue := 0;
-  if SearchFileInPath('xterm','',
-                   SysUtils.GetEnvironmentVariable('PATH'),PathSeparator,[]) = ''
+  TerminalCommand := SearchFileInPath('xterm','',
+                   SysUtils.GetEnvironmentVariable('PATH'),PathSeparator,[]);
+  if TerminalCommand = ''
      then Returnvalue := 1;
   if SearchFileInPath('bash','',
                    SysUtils.GetEnvironmentVariable('PATH'),PathSeparator,[]) = ''
@@ -374,24 +374,6 @@ begin
     FindClose(Rec) ;
   end;
   Result :=  FileBase + IntToStr(HighNum);
-end;
-
-procedure GetTerminalCommand(var Terminal: string);
-
-  function Find(const ShortFilename: string; var Filename: string): boolean;
-  begin
-    Filename:=SearchFileInPath(ShortFilename,'',
-                   SysUtils.GetEnvironmentVariable('PATH'),PathSeparator,[]);
-    Result:=Filename<>'';
-  end;
-
-begin
-  Terminal:='';
-  // prefer xterm ;)
-  if Find('xterm',Terminal) then exit;
-  if Find('konsole',Terminal) then exit;
-  if Find('gnome-terminal',Terminal) then exit;
-  if Find('rxvt',Terminal) then exit;
 end;
 
 function GetRunscriptPath: string;
