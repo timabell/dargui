@@ -69,7 +69,6 @@ function LengthDarString( darstring: string ): integer;  //returns chars precedi
 
 function SetDarStrings: boolean;
 procedure ExtractColumnTitles;
-function UTF8EncodeChars( translatestring: string ): ansistring;
 
 function ScanForInteger( searchstring, darstring :string): integer;
 
@@ -303,7 +302,8 @@ function SetDarStrings: boolean;
 Var
   ResStr : PResourceStringRecord;
   i      : Longint;
-  s : Ansistring;
+  ucs : UnicodeString  ;
+  s: AnsiString;
   UpUnitName : AnsiString;
 begin
   if DarMOFile=nil
@@ -320,8 +320,8 @@ begin
           inc(ResStr);
           while ResStr<Tables[I].TableEnd do
             begin
-              s:=DarMOFile.Translate(ResStr^.DefaultValue,ResStr^.HashValue);
-              s := UTF8EncodeChars(s);
+              ucs:=DarMOFile.Translate(ResStr^.DefaultValue,ResStr^.HashValue);
+              s := UTF8Encode(ucs);
               if s<>'' then
                 ResStr^.CurrentValue:=s;
               inc(ResStr);
@@ -338,39 +338,6 @@ begin
   p := Pos(']', dsColumnTitles);
   // at present we only use the [data ] column
   dsDataColumn := Copy(dsColumnTitles, 1, p);
-end;
-
-function UTF8EncodeChars(translatestring: string): ansistring;
-var
-  x: Integer;
-begin
-  Result := '';
-  for x := 1 to Length(translatestring) do
-      if Ord(translatestring[x]) > 127
-         then begin
-           //for some reason we do not get the desired result if we UTF8Encode Chr(Ord(translatestring[x]))
-           //so this is the best we can do at the moment.
-           case Ord(translatestring[x]) of
-                201: Result := Result + UTF8Encode(Chr(201));  // É
-                223: Result := Result + UTF8Encode(Chr(223));  // ß
-                224: Result := Result + UTF8Encode(Chr(224));  // à
-                226: Result := Result + UTF8Encode(Chr(226));  // â
-                228: Result := Result + UTF8Encode(Chr(228));  // ä
-                229: Result := Result + UTF8Encode(Chr(229));  // å
-                232: Result := Result + UTF8Encode(Chr(232));  // è
-                233: Result := Result + UTF8Encode(Chr(233));  // é
-                234: Result := Result + UTF8Encode(Chr(234));  // ê
-                246: Result := Result + UTF8Encode(Chr(246));  // ö
-                252: Result := Result + UTF8Encode(Chr(252));  // ü
-           otherwise
-                begin
-                  Result := Result + translatestring[x];
-                  writeln('Character #', Ord(translatestring[x]),
-                                     ' not found in translation table: please report this as a bug');
-                end;
-           end;
-         end
-      else Result := Result + translatestring[x];
 end;
 
 function ScanForInteger(searchstring, darstring: string): integer;
