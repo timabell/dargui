@@ -1,7 +1,7 @@
 object MainForm: TMainForm
-  Left = 140
+  Left = 122
   Height = 605
-  Top = 125
+  Top = 94
   Width = 893
   ActiveControl = ToolbarPanel
   Caption = 'DarGUI'
@@ -1064,35 +1064,35 @@ object MainForm: TMainForm
           Visible = True
         end      
         item
-          Alignment = taLeftJustify
+          Alignment = taCenter
           MinWidth = 50
           Text = '  Date'
           Width = 200
           Visible = True
         end      
         item
-          Alignment = taLeftJustify
+          Alignment = taRightJustify
           MinWidth = 50
           Text = ' Size'
           Width = 60
           Visible = True
         end      
         item
-          Alignment = taLeftJustify
+          Alignment = taCenter
           MinWidth = 50
           Text = ' User'
           Width = 100
           Visible = True
         end      
         item
-          Alignment = taLeftJustify
+          Alignment = taCenter
           MinWidth = 50
           Text = ' Group'
           Width = 100
           Visible = True
         end      
         item
-          Alignment = taLeftJustify
+          Alignment = taCenter
           MinWidth = 50
           Text = ' Status'
           Width = 150
