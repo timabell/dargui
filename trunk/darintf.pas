@@ -32,15 +32,15 @@ type
     
 const
    READ_BYTES = 2048;
-   
-   SEGSTATUS      = 0;
-   SEGPERMISSIONS = 1;
-   SEGUSER        = 2;
-   SEGGROUP       = 3;
-   SEGSIZE        = 4;
-   SEGDATE        = 5;
+
+   SEGPERMISSIONS = 0;
+   SEGUSER        = 1;
+   SEGGROUP       = 2;
+   SEGSIZE        = 3;
+   SEGDATE        = 4;
+   SEGSTATUS      = 5;
    SEGFILENAME    = 6;
-   SEGFILEPATH    = 7;
+   SEGFILEPATH    = 7; //TODO: REMOVE THIS
 
    HEADERNAME     = 0;
    HEADERDATE     = 1;
@@ -48,7 +48,7 @@ const
    HEADERUSER     = 3;
    HEADERGROUP    = 4;
    HEADERSTATUS   = 5;
-   
+
 
    LOGFILE_BASE = 'dargui.log.';
    BATCHFILE_BASE = 'dargui.batch.';
@@ -107,17 +107,11 @@ type
   end;
 
 type
+  TStrArray = array[SEGPERMISSIONS .. SEGFILENAME] of string;
+
   TFileData = class
-    item : array[SEGSTATUS .. SEGFILEPATH] of string;
+    item : TStrArray;
     folder : Boolean;
-    //Filename      : string;
-    //Filepath      : string;
-    //Archivestatus : string;
-    //Permissions   : string;
-    //Filesize      : string;
-    //Filedate      : string;
-    //Group         : string;
-    //User          : string;
     end;
 
 type
@@ -131,7 +125,7 @@ type
   function LogNumber(fn: string): integer;
   function GetNextFileName( FileBase: string): string;
   function GetRunscriptPath: string;
-  function OpenArchive(fn: string; TV: TTreeview; pw: string): integer;
+  function LoadArchiveToTree(fn: string; Tree: TTreeView; pw: string): integer;
   function RunDarCommand ( Cmd, Title: string; x, y :integer; log: Boolean ) : integer;
   function ShellCommand ( Cmd: string; var processoutput: string ) : integer;
   function PosFrom(const SubStr, Value: String; From: integer): integer;
@@ -225,8 +219,8 @@ begin
               if Pos(Copy(dsLongoptions,1, 22), Output.Strings[x]) > 0
                  then DarInEnglish := true; // TODO: make this less of a hack
           if DarInEnglish then writeln('DAR using English language');
-          if not DarInEnglish
-             then begin
+          if not DarInEnglish then
+              begin
                   {if IsLanguageSupported
                         then TranslateDarStringsFromPO   }
                    if OpenDarTranslationInterface
@@ -382,116 +376,74 @@ begin
   //TODO: replace this by check for runscript.sh in appropriate directory
 end;
 
-// ************** OpenArchive ***************** //
-function OpenArchive(fn: string; TV : TTreeview; pw: string): integer;
+// ************** LoadArchiveToTree **************
+function LoadArchiveToTree(fn: string; Tree: TTreeView; pw: string): integer;
 var
   Proc : TProcessLineTalk;
   rootnode: TTreeNode;
   currentnode : TTreeNode;
   parentnode: TTreeNode;
-  DataCoords : array[SEGSTATUS .. SEGFILENAME] of TdgSegment;
-  CurrentFile : array[SEGSTATUS .. SEGFILEPATH] of string;
+  CurrentFile : array[SEGPERMISSIONS .. SEGFILENAME] of string;
   outputline: String;
   nodecount: LongInt;
   n: Integer;
   nodesloaded: Integer;
   progressinterval: Integer;
+  completed: LongInt;
 
-   procedure SetSegments(colheading: string);
-   var
-     a, b : integer;
-     S : integer;
-   begin
-     S := SEGSTATUS;
-     a := 1;
-     b := PosFrom('+', colheading, a);
-     DataCoords[S].StartChar := a;
-     DataCoords[S].EndChar := b;
-     While b <> 0 do
-           begin
-           Inc(S);
-           a := b+1;
-           b := PosFrom('+', colheading, a);
-           DataCoords[S].StartChar := a;
-           DataCoords[S].EndChar := b;
-           end;
-     DataCoords[S].EndChar := 1000;
-   end;
-   
-   procedure ParseCurrentFile(fileinfo: string);
-   var
-     x, y, s, e : integer;
-   begin
-     fileinfo := fileinfo + #13;
-     //TODO: rewrite this to reverse order of if..then
-     if (Pos(dsRemoved, fileinfo)>0) then   // file flagged as removed
-        begin
-          CurrentFile[SEGSTATUS] := dsRemoved;
-          for x := 1 to SEGDATE do
-              CurrentFile[x] := '';
-          CurrentFile[SEGFILENAME] := Trim(Copy(fileinfo, Length(CurrentFile[SEGSTATUS])+1, MaxInt));
-        end
-     else
-        begin                                   // file still exists
-     for x := 0 to SEGPERMISSIONS do
+      function ExplodeString(var A: TStrArray; Border, S: string): Integer;
+       var
+         S2: string;
+         x: Integer;
+       begin
+         Result  := 0;
+         if (PosDarString(dsRemoved, S)>0) then   // file flagged as removed
          begin
-           CurrentFile[x] := Trim(
-                                  Copy(fileinfo,
-                                  DataCoords[x].StartChar,
-                                  DataCoords[x].EndChar - DataCoords[x].StartChar)
-                                  );
-         end;
-     s := DataCoords[SEGUSER].StartChar;
-     for x := SEGUSER to SEGFILENAME do
-         begin
-           while fileinfo[s] < #33 do
-                 Inc(s);
-           e := s;
-           while  fileinfo[e] > #30 do
-                  Inc(e);
-           CurrentFile[x] := Copy(fileinfo, s, e - s);
-           s := e + 1;
-         end;
-        end;
-     y := Length(CurrentFile[SEGFILENAME]);
-     if y > 0 then
-      while (CurrentFile[SEGFILENAME][y] <> DirectorySeparator) and (y > 1) do
-         Dec(y);
-      if CurrentFile[SEGFILENAME][y] = DirectorySeparator then
-         begin
-           CurrentFile[SEGFILEPATH] := Copy(CurrentFile[SEGFILENAME],1,y);
-           Delete(CurrentFile[SEGFILENAME],1,y);
+              A[SEGSTATUS] := Copy(dsRemoved, Pos('[',dsRemoved), Pos(']', dsRemoved)-Pos('[',dsRemoved)+1);
+              for x := 0 to SEGDATE do
+                  A[x] := '';
+              x := Pos(dsRemoved, S) + Length(dsRemoved);
+              while S[x] = #32 do inc(x);
+              A[SEGFILENAME] := Trim(Copy(S, x-1, MaxInt));
+              Result := 7;
          end
-         else CurrentFile[SEGFILEPATH] := '';
-   end;
+         else
+           begin
+             S2 := S + Border;
+             repeat
+               A[Result] := Copy(S2, 0 ,Pos(Border, S2) - 1);
+               Delete(S2, 1,Length(A[Result] + Border));
+               Inc(Result);
+             until S2 = '';
+           end;
+       end;
 
-   function GetParentDirectoryNode(dir: string) : TTreeNode;
-   var
-     x,
-     y: integer;
-     teststr: string;
-   begin
-     if (parentNode = rootNode) or (dir = '') then
-        begin
-          Result := rootnode;
-          exit;
-        end;
-     dir := DirectorySeparator + dir;
-     y := length(dir) - 1; // allow for final '/'
-     x := y;
-     while (dir[x] <> DirectorySeparator) do
-           Dec(x);
-     teststr := Copy( dir, x+1, y-x);
-     while (teststr <> parentNode.Text) and (parentNode <> rootNode) do
-           parentNode := parentNode.Parent;
-     Result := parentNode;
-   end;
+       // trims depth markers from permissions  string : returns position in tree
+       function GetLevel(var perms: string): integer;
+       var
+         p: Integer;
+       begin
+         Result := -1;
+         if Length(perms)<1 then
+            begin
+              perms := ' '; //NB: do this to avoid an error when testing for folder
+              exit;
+            end;
+         Result := 0;
+         p := 1;
+         while perms[p] in [#32,'|'] do
+               begin
+                 if perms[p]='|' then Inc(Result);
+                 inc(p);
+               end;
+         Delete(perms, 1, p-1);
+       end;
 
 begin
-  TV.Items.Clear;
+  Tree.Items.Clear;
   Result := -1;
   fn := TrimToBase(fn);
-  rootnode := TTreeview(TV).Items.AddFirst(nil, ExtractFileName(fn));
+  rootnode := TTreeview(Tree).Items.AddFirst(nil, ExtractFileName(fn));
   rootnode.Data := TFileData.Create;
   TFileData(rootnode.Data).item[SEGFILENAME] := rootnode.Text;
   parentnode := rootnode;
@@ -500,65 +452,63 @@ begin
   progressinterval := 0;
   outputline := '';
   Proc := TProcessLineTalk.Create(nil);
-  Proc.CommandLine := DAR_EXECUTABLE + ' -l "' + fn + '"' + pw + ' -Q';
+  Proc.CommandLine := DAR_EXECUTABLE + ' -l "' + fn + '"' + pw + ' -Q --list-format=tree';
   Proc.Execute;
-//writeln(#10, 'Executed process ',  proc.ProcessID);
-  TTreeView(TV).Visible := false;
+  TTreeView(Tree).Visible := false;
   Application.ProcessMessages;
   try
-    While (nodesloaded < nodecount) do
-          begin
-          if Proc.ExitStatus <> 0 then raise Exception.Create('Dar exited with error code ' + IntToStr(Proc.ExitStatus));
-          outputline := Proc.ReadLine;
-  //        writeln(outputline);
-          if outputline<>'' then
-              begin
-              if outputline[1]='[' then
-                 if not (Pos(dsDataColumn, outputline)=1) then
+    outputline := Proc.ReadLine;
+    while Pos('---+---', outputline)<1 do   // loop over header lines
+                    outputline := Proc.ReadLine;
+    While (nodesloaded <= nodecount) do
+      begin
+        if Proc.ExitStatus <> 0 then raise Exception.Create('Dar exited with error code ' + IntToStr(Proc.ExitStatus));
+        outputline := Proc.ReadLine;
+        Inc(nodesloaded);
+        Inc(progressinterval);
+        if ExplodeString(CurrentFile, #9, outputline)=7 then
+           begin
+             GetLevel(CurrentFile[SEGPERMISSIONS]);
+             currentnode :=  TTreeView(Tree).Items.AddChild(parentnode, CurrentFile[SEGFILENAME]);
+             currentnode.Data := TFileData.Create;
+             if currentnode.Level < 2
+                  then currentnode.Parent.Expand(false);
+             with TFileData(currentnode.data) do
+                  begin
+                    for n := SEGPERMISSIONS to SEGFILENAME do
+                        item[n] := CurrentFile[n];
+                    folder := false;
+                  end;
+             if CurrentFile[SEGPERMISSIONS][1]='d' then
+                  begin
+                    if currentnode.Level > 1 then
+                    TFileData(currentnode.Data).item[SEGFILENAME] := TFileData(parentnode.Data).item[SEGFILENAME] + DirectorySeparator + CurrentFile[SEGFILENAME];
+                    parentnode := currentnode;
+                    TFileData(currentnode.Data).folder := true;
+                  end;
+             completed := (nodesloaded*90) div nodecount;
+             if progressinterval=(nodecount div 20) then    //can be used for calling a progress monitor callback
                     begin
-                       Inc(nodesloaded);
-                       Inc(progressinterval);
-                       ParseCurrentFile(outputline);
-                       currentnode :=  TTreeView(TV).Items.AddChild(GetParentDirectoryNode(Currentfile[SEGFILEPATH]), CurrentFile[SEGFILENAME]);
-                       currentnode.Data := TFileData.Create;
-                       if currentnode.Level < 2
-                          then currentnode.Parent.Expand(false);
-                       with TFileData(currentnode.data) do
-                          begin
-                            for n := SEGSTATUS to SEGFILEPATH do
-                                item[n] := CurrentFile[n];
-                            folder := false;
-                          end;
-                       if Length(CurrentFile[SEGPERMISSIONS]) > 0 then
-                       if CurrentFile[SEGPERMISSIONS][1]='d' then // node is a directory
-                          begin
-                            parentnode := currentnode;
-                            TFileData(currentnode.Data).folder := true;
-                          end;
-                       {completed := (nodesloaded*90) div nodecount;
-                       if progressinterval=(nodecount div 20) then    //can be used for calling a progress monitor callback
-                            begin
-                              write(completed, '% complete', #13);
-                              progressinterval := 0;
-                            end;   }
-                       //Application.ProcessMessages;
+                      write(completed, '% complete', #13);
+                      progressinterval := 0;
                     end;
-              if Pos('----', outputline) = 1 then SetSegments(outputline);
-              end;
-          end;
-    TV.AlphaSort;
-    TTreeView(TV).Visible := true;
-    TTreeView(TV).Items[0].Selected := true;
+               //Application.ProcessMessages;
+           end
+        else if Pos('+---', outputline)>0 then  //go up a level
+           begin
+             parentnode := parentnode.Parent;
+           end;
+      end;
+    Tree.AlphaSort;
+    Tree.Visible := true;
+    Tree.Items[0].Selected := true;
   finally
     Result := Proc.ExitStatus;
     Proc.Free;
-    Proc := nil;
   end;  // try .. finally
 end;
 
-
 // ************** RunDarCommand ***************** //
-
 function RunDarCommand ( Cmd, Title: string; x, y :integer ; log: Boolean ) : integer;
 var
   Proc: TProcess;
@@ -690,24 +640,19 @@ function Checkarchivestatus ( Fn: Tfilename; Pw: String ) : Tarchiveopenstatus;
 var
   Proc: TProcess;
   x: Integer;
-  t: string;
   OutputStrings: TStringList;
 begin
   Result := aosError;
   DarErrorMessage := '';
   Proc := TProcess.Create(nil);
   Proc.CommandLine := DAR_EXECUTABLE + ' -l "' + fn + '" ' + pw + ' -v -Q';
-  //Proc.CommandLine := '"/usr/share/dargui/getstatus.sh" "' + DAR_EXECUTABLE + '" "' + fn + '" ' + pw + ' -v -Q';
-  //ShowMessage (Proc.CommandLine);
   Proc.Options := Proc.Options  + [poWaitOnExit, poUsePipes, poStderrToOutPut];
       try
       OutputStrings := TStringList.Create;
       Proc.Execute;
-  //writeln(#10, 'Executed process ',  proc.ProcessID);
       OutputStrings.LoadFromStream(Proc.Output);
       for x := 0 to OutputStrings.Count -1 do
           begin
-          t := OutputStrings[x];
           if PosDarString(dsCatalogueContents, OutputStrings[x]) > 0
                then Result := aosOK
             else if PosDarString(dsArchiveEncrypted, OutputStrings[x]) > 0
@@ -836,11 +781,8 @@ var
   Proc : TProcess;
   Output: TStringList;
   teststr: String;
-  pw: string;
 begin
   Result := false;
-  pw := '';
-  if pass <> nil then pw := '-K ":' + pass^ + '"';
   teststr := Format(dsArchiveEncrypted, [ExtractFileName(fn)]);
   Proc := TProcess.Create(Application);
   Output := TStringList.Create;

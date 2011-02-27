@@ -8,7 +8,7 @@ interface
 uses
   Classes, SysUtils, LCLProc, FileUtil, StringHashList
   {$IFDEF UNIX}{$IFNDEF DisableCWString}, cwstring{$ENDIF}{$ENDIF}
-  {$IFDEF MultiLocale},LConv{$ENDIF}, gettext, translations, dialogs;
+  , gettext, translations, dialogs, LConvEncoding;
   
 
 var
@@ -35,7 +35,7 @@ resourcestring
 
   dsColumnTitles  = '[data ][ EA  ][compr] | permission | user  | group | size  |          '
                     + 'date                 |    filename' + #10;
-  dsRemoved       = '[     REMOVED       ]';
+  dsRemoved       = '%S[ REMOVED ]    %S'#10;
 
   dsCatalogueContents = #10'CATALOGUE CONTENTS :'#10#10;
   dsInodeCount    = 'total number of inode : %i' + #10;
@@ -91,13 +91,20 @@ var
   begin
     Result := '';
     testpath := aPath + MainLang + '/LC_MESSAGES/dar.mo';
-    if FileExists(testpath)
-       then Result := testpath
-       else begin
-              testpath := aPath + FallbackLang + '/LC_MESSAGES/dar.mo';;
-              if FileExists(testpath)
-                 then Result := testpath;
-            end;
+    if FileExists(testpath) then
+       begin
+         Result := testpath;
+         writeln('Reading output from dar using language ', MainLang);
+       end
+    else
+       begin
+         testpath := aPath + FallbackLang + '/LC_MESSAGES/dar.mo';
+         if FileExists(testpath) then
+           begin
+             Result := testpath;
+             writeln('Reading output from dar using language ', FallbackLang);
+           end;
+       end;
   end;
   
   procedure SearchForDarMO;
@@ -107,7 +114,7 @@ var
         mofilepath := Check_LC_MESSAGES_Path('/usr/local/share/locale/');
     if Length(mofilepath)=0 then
         mofilepath := Check_LC_MESSAGES_Path('/usr/share/locale-langpack/');
-writeln('dar.mo location: ', mofilepath);
+    writeln('dar.mo location: ', mofilepath);
   end;
   
 begin
@@ -121,7 +128,6 @@ begin
      SearchForDarMO;
   if mofilepath <> '' then
   try
-    //DarMOFile:= TMOFile.Create('/home/curator/tmp/Pascal/dargui/locales/fr.gmo');
     DarMOFile:= TMOFile.Create(mofilepath);
   except
     DarMOFile := nil;
@@ -144,18 +150,12 @@ function IsLanguageSupported: Boolean;
 var
   MainLang: string;
   FallbackLang: string;
-  p: LongInt;
 begin
   Result := false;
   GetLanguageIDs(MainLang, FallbackLang);
   writeln(MainLang, ' : ', FallbackLang);
   if Pos('fr', MainLang)=1 then Result := true;
-  if Pos('de', MainLang)=1  then
-     begin
-       Result := false;
-       ShowMessage('Warning: dar output is in German, which DarGUI cannot interpret correctly'+#10
-                        + 'Check Help for more information');
-     end;
+  if Pos('de', MainLang)=1  then Result := true;
   if Pos('sv', MainLang)=1  then Result := true;
 end;
 
@@ -195,7 +195,8 @@ begin
   Result := DarMOFile.Translate(darstring, Hash(darstring));
 end;
 
-//TODO: review this code - will it work with %S or when %s is at start of string?
+//PosDarString tests if all elements of darstring other than %s and %i are present in searchstring, in the correct order
+//returns position of start of last element
 function PosDarString(darstring, searchstring: string): integer;
 var
   p: integer;
@@ -207,45 +208,42 @@ var
   var
     s: integer;
     i: integer;
+    pp: integer;
   begin
-    q := -1;
-    p := 1;
-    while p > 0 do
+    pp := 1;
+    while pp > 0 do
           begin
             s := Pos('%s', AnsiLowerCase(darstring));
             i := Pos('%i', AnsiLowerCase(darstring));
-            p := s;
-            if i>p then if p=0 then p := i;
-            if p > 0 then
+            pp := s;
+            if i>pp then if pp=0 then pp := i;
+            if pp > 0 then
                begin
-                 stringparts.Add(Copy(darstring,1,p-1));
-                 Delete(darstring, 1, p+1);
-               end
-               else stringparts.Add(darstring);
+                 if pp > 1
+                    then stringparts.Add(Copy(darstring,1,pp-1));
+                 stringparts.Add( AnsiLowerCase( Copy(darstring,pp, 2) ) );
+                 Delete(darstring, 1, pp+1);
+               end;
           end;
+    if Length(darstring)> 0 then StringParts.Add(darstring);
   end;
 
 begin
   Result := 0;
+  p := 0;
+  q := 1;
+  if Length(searchstring)<1 then exit;
   stringparts := TStringList.Create;
-  //if DarMOFile <> nil
-  //   then darstring := TranslateDarString(darstring);
   try
     darstring := Trim(darstring);
     SplitDarString;
-    x:= 0;
-    p := Pos(stringparts[x], searchstring);
-    if p > 0 then
-       begin
-         Result := p;
-         while x < stringparts.Count-1 do
-               begin
-                 q := p + Length(stringparts[x]);
-                 Inc(x);
-                 p := PosFrom(stringparts[x], searchstring, q);
-                 if p=0 then Result := 0;
-               end;
-       end;
+    for x := 0 to stringparts.Count-1 do
+      begin
+        if (stringparts[x]<>'%s') and (stringparts[x]<>'%i')
+           then p := PosFrom(stringparts[x], searchstring, q);
+        q := p + 1;
+      end;
+    Result := p;
   finally
     stringparts.Free;
   end;
@@ -302,9 +300,9 @@ function SetDarStrings: boolean;
 Var
   ResStr : PResourceStringRecord;
   i      : Longint;
-  ucs : UnicodeString  ;
   s: AnsiString;
   UpUnitName : AnsiString;
+
 begin
   if DarMOFile=nil
      then exit;
@@ -320,8 +318,7 @@ begin
           inc(ResStr);
           while ResStr<Tables[I].TableEnd do
             begin
-              ucs:=DarMOFile.Translate(ResStr^.DefaultValue,ResStr^.HashValue);
-              s := UTF8Encode(ucs);
+              s := ISO_8859_1ToUTF8( DarMOFile.Translate(ResStr^.DefaultValue,ResStr^.HashValue) );
               if s<>'' then
                 ResStr^.CurrentValue:=s;
               inc(ResStr);
@@ -336,7 +333,7 @@ var
   p: LongInt;
 begin
   p := Pos(']', dsColumnTitles);
-  // at present we only use the [data ] column
+  // at present we only use the [data ] column  - v. 0.5.2: now redundant?
   dsDataColumn := Copy(dsColumnTitles, 1, p);
 end;
 

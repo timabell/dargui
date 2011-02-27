@@ -674,7 +674,7 @@ end;
 
 procedure TMainForm.miArchiveInformationClick(Sender: TObject);
 begin
-  if GetArchiveInformation(ExtractFilePath(OpenDialog.FileName) + ExtractFileName( CurrentArchive ),
+  if GetArchiveInformation(CurrentArchive ,
                             InformationForm.InformationMemo,
                             CurrentPass ) = 0
       then
@@ -805,7 +805,7 @@ begin
            Sender.Canvas.Draw(Displayrect.Left,
                               DisplayRect.Top + (DisplayRect.Bottom-DisplayRect.Top-FolderGraphic.Height) div 2,
                               FolderGraphic);
-           DisplayStr := TFileData(Node.Data).item[SEGFILENAME];
+           DisplayStr := ExtractFileName( TFileData(Node.Data).item[SEGFILENAME] );
            TrimText(DisplayStr, SEGFILENAME, Displayrect.Left + FolderGraphic.Width);
            Sender.Canvas.TextOut(Displayrect.Left + FolderGraphic.Width, DisplayRect.Top+1,
                 DisplayStr);
@@ -818,7 +818,7 @@ begin
            Sender.Canvas.TextOut(Displayrect.Left,DisplayRect.Top+1,
                 DisplayStr);
          end;
-      for x := SEGSTATUS to SEGDATE do
+      for x := SEGPERMISSIONS to SEGSTATUS do
             WriteColumn( x, DisplayRect, TFileData(Node.Data).item[x]);
      end;
 end;
@@ -1103,7 +1103,7 @@ begin
       else Archivestatus := aosAborted;
    if Archivestatus = aosOK then
        begin
-         if OpenArchive(fname, ArchiveTreeView, CurrentPass) = 0 then
+        if LoadArchiveToTree(fname, ArchiveTreeView, CurrentPass) = 0 then
             begin
               EnableArchiveMenus(true);
               CurrentArchive := fname;
@@ -1135,6 +1135,7 @@ var
   RestoreForm: TExtractSelectedForm;
   daroptions: string;
   CommandLine: String;
+  fp: TFileData;
 
 begin
   if SelectedNodes = 0 then exit;
@@ -1147,7 +1148,8 @@ begin
       if ArchiveTreeView.Items[x].MultiSelected then
          begin
          fd := TFileData(ArchiveTreeView.Items[x].Data);
-         fn := fd.item[SEGFILEPATH] + fd.item[SEGFILENAME];
+         fp := TFileData(ArchiveTreeView.Items[x].Parent.Data);
+         fn := fp.item[SEGFILENAME] + DirectorySeparator + fd.item[SEGFILENAME];
          RestoreForm.SelectedFiles.Add(fn);
          Inc(SelectedNodes);
          end;
