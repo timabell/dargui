@@ -159,7 +159,6 @@ rsMenuScheduleManager = 'Schedule Manager';
 rsMenuInformation = 'Information';
 rsMenuOptions = 'Options';
 rsMenuFile = 'File';
-rsColFileName = 'File';
 rsMenuArchive = 'Archive';
 rsMenuRestoreSelected = 'Restore Selected';
 rsMenuRestoreAll = 'Restore All';
@@ -170,7 +169,6 @@ rsMenuNew = 'New';
 rsMenuOpen = 'Open';
 rsMenuShowSelected = 'Show Selected';
 rsMenuCompareFiles = 'Compare files';
-rsColDate = 'Date';
 rsHour = 'Hour';
 rsRunRegularily = 'Run regularily at';
 rsMinutes = 'Minutes';
@@ -179,10 +177,12 @@ rsDayInMonth = 'Day';
 rsMonth = 'Month';
 rsCptSelectDate = 'Select date';
 rsRunOnceOnly = 'Run once only at';
-rsColSize = 'Size';
-rsColUser = 'User';
-rsColGroup = 'Group';
-rsColStatus = 'Status';
+rsColDate = ' Date ';
+rsColFileName = ' File ';
+rsColSize = ' Size ';
+rsColUser = ' User ';
+rsColGroup = ' Group ';
+rsColStatus = ' Status ';
 
 //ArchiveForm
 rsDirectoriesAreExcluded = 'These directories are already selected to be excluded from the archive. %sDo you really want to include them?';
@@ -303,7 +303,7 @@ begin
      begin
       GetLanguageIDs(Lang, FallbackLang); // in unit gettext
       TranslateUnitResourceStrings('dgStrConst', PODirectory + 'dargui.%s.po', Lang, FallbackLang);
-      TranslateUnitResourceStrings('LCLStrConsts', PODirectory + 'lclstrconsts.%s.po', Lang, FallbackLang);
+//      TranslateUnitResourceStrings('lclstrconsts', PODirectory + 'lclstrconsts.%s.po', Lang, FallbackLang);
      end;
   WeekdayNames[1] := rsMon;
   WeekdayNames[2] := rsTue;
