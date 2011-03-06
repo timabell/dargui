@@ -23,6 +23,13 @@ type
     IntSize    : byte;
     Threadsafe : Boolean;
     end;
+
+  TArchiveInfo = record
+    name       : string[128];
+    password   : string[32];
+    nodes      : longint;
+    rootdir    : string[64];
+  end;
     
   TdgSegment = record
     StartChar    : integer;
@@ -57,6 +64,8 @@ const
    
    DAR_DOCPAGE = 'http://dar.linux.free.fr/doc/index.html';
    DARGUI_HELP = '/usr/share/doc/dargui/index.html';
+   DARGUI_INFO_FILE = 'dargui-info-file';
+
    
 // Config file
    cfgUserPrefs = 'User Preferences';
@@ -75,6 +84,18 @@ const escapechars = ['|', '&', ';', '(', ')', '<', '>', '"', ''''{, ' '}];
 type
 
   TLoadProgress = (lpIncomplete, lpHistoryLoaded, lpLoaded, lpAborted);
+  TProgressCallback = procedure(progress: integer) of object;
+
+  TSettingsHeader = record
+    version_major: byte;
+    version_minor: byte;
+    version_revision: byte;
+    rootdir: string[64];
+    reserve1: longint;
+    reserve2: longint;
+    reserve3: longint;
+    backuptime: TDateTime;
+  end;
 
   { TArchive }
 
@@ -125,7 +146,7 @@ type
   function LogNumber(fn: string): integer;
   function GetNextFileName( FileBase: string): string;
   function GetRunscriptPath: string;
-  function LoadArchiveToTree(fn: string; Tree: TTreeView; pw: string): integer;
+  function LoadArchiveToTree(fn: string; Tree: TTreeView; var info: TArchiveInfo; pw: string; progresscallback: TProgressCallback): integer;
   function RunDarCommand ( Cmd, Title: string; x, y :integer; log: Boolean ) : integer;
   function ShellCommand ( Cmd: string; var processoutput: string ) : integer;
   function PosFrom(const SubStr, Value: String; From: integer): integer;
@@ -135,7 +156,7 @@ type
   function CheckArchiveStatus(fn: TFilename; pw:string): TArchiveOpenStatus;
   function GetArchiveInformation (fn: TFilename; Memo: TMemo; pw:string): integer;
   function ArchiveIsEncrypted( fn: TFilename; pass: PChar ) : Boolean;
-  function GetInodeCount( archivename, key: string ):integer;
+  function GetInodeCount( var archinfo: TArchiveInfo ):integer;
   function ValidateArchive( archivename: string; var pw: string ): Boolean;
   function CreateUniqueFileName(sPath: string): string;
 
@@ -377,7 +398,7 @@ begin
 end;
 
 // ************** LoadArchiveToTree **************
-function LoadArchiveToTree(fn: string; Tree: TTreeView; pw: string): integer;
+function LoadArchiveToTree(fn: string; Tree: TTreeView; var info: TArchiveInfo; pw: string; progresscallback: TProgressCallback): integer;
 var
   Proc : TProcessLineTalk;
   rootnode: TTreeNode;
@@ -439,6 +460,45 @@ var
          Delete(perms, 1, p-1);
        end;
 
+       function GetInfoFile: Boolean;
+       var
+         DarProc: TProcess;
+         SavedSettings: TFileStream;
+         header: TSettingsHeader;
+         databuffer: string;
+         datalength: smallint;
+         datatype: TControlType;
+         x: Integer;
+       begin
+        Result := false;
+        DarProc := TProcess.Create(nil);
+        DarProc.Options := [poWaitOnExit];
+         Try
+         if FileExistsUTF8(TEMP_DIRECTORY + DARGUI_INFO_FILE)
+            then DeleteFileUTF8(TEMP_DIRECTORY + DARGUI_INFO_FILE);
+         DarProc.CommandLine := DAR_EXECUTABLE + ' -x "' + fn + '" -g "'
+               + DARGUI_INFO_FILE + '" -R "' + TEMP_DIRECTORY + '" -O -Q';
+         writeln(DarProc.CommandLine);
+         DarProc.Execute;
+         if FileExistsUTF8(TEMP_DIRECTORY + DARGUI_INFO_FILE) then
+            begin
+              SavedSettings := TFileStream.Create(TEMP_DIRECTORY + DARGUI_INFO_FILE, fmOpenRead);
+              if SavedSettings<> nil then
+                 try
+                   SavedSettings.Seek(7, soFromBeginning);
+                   SavedSettings.Read(header, SizeOf(header));
+                   info.rootdir := header.rootdir;
+                   Result := true;
+                 finally
+                   SavedSettings.Free;
+                 end;
+            end;
+         finally
+         DarProc.Free;
+         end;
+       end;
+
+
 begin
   Tree.Items.Clear;
   Result := -1;
@@ -448,7 +508,8 @@ begin
   TFileData(rootnode.Data).item[SEGFILENAME] := rootnode.Text;
   parentnode := rootnode;
   nodesloaded := 0;
-  nodecount := GetInodeCount(fn, pw);
+  nodecount := GetInodeCount(info);
+  GetInfoFile;
   progressinterval := 0;
   outputline := '';
   Proc := TProcessLineTalk.Create(nil);
@@ -460,15 +521,18 @@ begin
     outputline := Proc.ReadLine;
     while Pos('---+---', outputline)<1 do   // loop over header lines
                     outputline := Proc.ReadLine;
-    While (nodesloaded <= nodecount) do
+    While (nodesloaded < nodecount) do
       begin
         if Proc.ExitStatus <> 0 then raise Exception.Create('Dar exited with error code ' + IntToStr(Proc.ExitStatus));
         outputline := Proc.ReadLine;
-        Inc(nodesloaded);
-        Inc(progressinterval);
         if ExplodeString(CurrentFile, #9, outputline)=7 then
            begin
+             Inc(nodesloaded);
+             Inc(progressinterval);
              GetLevel(CurrentFile[SEGPERMISSIONS]);
+
+             if CurrentFile[SEGFILENAME]<>DARGUI_INFO_FILE then
+             begin
              currentnode :=  TTreeView(Tree).Items.AddChild(parentnode, CurrentFile[SEGFILENAME]);
              currentnode.Data := TFileData.Create;
              if currentnode.Level < 2
@@ -481,18 +545,19 @@ begin
                   end;
              if CurrentFile[SEGPERMISSIONS][1]='d' then
                   begin
-                    if currentnode.Level > 1 then
+                    if currentnode.Level > 0 then
                     TFileData(currentnode.Data).item[SEGFILENAME] := TFileData(parentnode.Data).item[SEGFILENAME] + DirectorySeparator + CurrentFile[SEGFILENAME];
                     parentnode := currentnode;
                     TFileData(currentnode.Data).folder := true;
                   end;
+             end;
              completed := (nodesloaded*90) div nodecount;
              if progressinterval=(nodecount div 20) then    //can be used for calling a progress monitor callback
                     begin
-                      write(completed, '% complete', #13);
+                      if Assigned(progresscallback)
+                           then progresscallback(completed);
                       progressinterval := 0;
                     end;
-               //Application.ProcessMessages;
            end
         else if Pos('+---', outputline)>0 then  //go up a level
            begin
@@ -705,8 +770,8 @@ begin
             else if PosDarString(dsArchiveEncrypted, tempMemo[x]) > 0
                then tempMemo.Delete(x);
           end;
-         if Memo<>nil then Memo.Lines.Assign(tempMemo);
-         Result := 0;
+      if Memo<>nil then Memo.Lines.Assign(tempMemo);
+      Result := 0;
       finally
       Proc.Free;
       tempMemo.Free;
@@ -798,7 +863,6 @@ begin
   end;
 end;
 
-
 // checks to see if archive is encrypted. Requests password if encrypted
 // TODO: cannot handle absent final slice or archives created by newer versions of dar
 // TODO: this function has a lot of legacy baggage to tidy up
@@ -841,7 +905,7 @@ begin
   until not FileExists(sPath + Result);
 end;
 
-function GetInodeCount( archivename, key: string ):integer;
+function GetInodeCount( var archinfo: TArchiveInfo ):integer;
 var
  Proc : TProcess;
  Output: TStringList;
@@ -865,20 +929,21 @@ begin
  Result := -1;
  Proc := TProcess.Create(Application);
  Output := TStringList.Create;
- Proc.CommandLine :=  DAR_EXECUTABLE + ' -l "' + archivename + '" -v' + key + ' -Q';
+ Proc.CommandLine :=  DAR_EXECUTABLE + ' -l "' + archinfo.name + '" -v' + archinfo.password + ' -Q';
  Proc.Options := Proc.Options  + [poWaitOnExit, poUsePipes];
  try
     Proc.Execute;
     Output.LoadFromStream(Proc.Output);
     if Output.Count > 0 then  //try to avoid provoking an exception :
        try
-         Result := ExtractInteger(dsInodeCount) + ExtractInteger(dsDestroyedFiles);
+         archinfo.nodes := ExtractInteger(dsInodeCount) + ExtractInteger(dsDestroyedFiles);
+         Result := archinfo.nodes;
        except
          Result := -1;
        end;
  finally
    if Result<-1
-      then writeln('Unable to extract node count - dumping output of dar -l ' + archivename + ' -v:' + #10 + Output.Text);
+      then writeln('Unable to extract node count - dumping output of dar -l ' + archinfo.name + ' -v:' + #10 + Output.Text);
    Proc.Free;
    Output.Free;
  end;

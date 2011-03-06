@@ -117,6 +117,7 @@ type
     procedure InitialiseInterface;
     procedure tbTestClick ( Sender: TObject ) ;
     procedure TryOpenArchive( fn: string ) ;
+    procedure ReportProgress( p: integer );
   private
     LevelColors: array[0..4] of TColor;
     CurrentPass: string;
@@ -129,6 +130,7 @@ var
   MainForm: TMainForm;
   SelectFilterForm: TSelectFilterForm;
   CurrentArchive: string;
+  ArchiveInform: TArchiveInfo; //TODO: include CurrentArchive and CurrentPass in ArchiveInfo
   DarInfo: TDarInfo;
   SelectedNodes: integer;
   UpdatingSelection: Boolean;
@@ -145,7 +147,9 @@ var
 
   
 const
-  APP_VERSION = '0.5.2';
+  APP_VERSION_MAJOR = 0;
+  APP_VERSION_MINOR = 5;
+  APP_VERSION_REVISION = 3;
   {$IFDEF malcolm}
      // revision.inc provides number of next SVN commit
      {$I revision.inc}
@@ -156,8 +160,6 @@ const
   ARCHIVEMENU_TAG = 1; //used for enabling menuitems after loading archive
   SELECT_STATUSBAR = 0;   //index of panel which displays number of selected nodes
   FOLDERICON = 0;  //index of folder icon in IconList
-  
-  DARGUI_INFO_FILE = '.dargui-info-file';
 
 
 implementation
@@ -247,7 +249,7 @@ begin
       Preferences.ReadInteger('Screen', 'FilestatusColumn', LongInt(FileHeaderBar.Sections[HEADERSTATUS].Width));
 
   ToolbarPanel.Visible := miShowToolbar.Checked;
-  Caption := Caption + #32 + APP_VERSION;
+  Caption := Format('%s %d.%d.%d', [Caption, APP_VERSION_MAJOR, APP_VERSION_MINOR, APP_VERSION_REVISION]);
   case CheckSupportingApps of
        1: ShowMessage ( rsErrNoXterm ) ;
        2: ShowMessage ( rsErrNoBash ) ;
@@ -324,14 +326,28 @@ var
   
   procedure CreateNewArchive;
   var
-    InfoFile: TSettingsFile;
     infofilename: String;
     refarch: string;
     ArchiveStatus: TArchiveOpenStatus;
+    dFlag: String;
+
   begin
      try
       Enabled := false;
      ArchiveForm.CreateBatchfile;
+//      if UseInfoFile then
+     begin
+      infofilename := DARGUI_INFO_FILE;
+      dFlag := '';
+      if ArchiveForm.SaveSettings(ArchiveForm.BaseDirectory.Text + infofilename, '') then
+          begin
+            if ArchiveForm.IncludeFiles.Count > 0 then dFlag := '-I '
+            else if ArchiveForm.IncludeDirsRadioButton.Checked
+                 then dFlag := '-g ';
+            if Length(dFlag)>0
+               then ArchiveForm.BatchFile.Insert(2, dFlag + infofilename);
+          end;
+     end;
      referencearchive := '';
      if ArchiveForm.DiffFileCheck.Checked then
          begin
@@ -349,14 +365,6 @@ var
      if ArchiveForm.EncryptArchiveCheck.Checked
         then Command := Command + ' -K :';
      ArchiveForm.BatchFile.Insert(1, '# ' + Command);
-     if UseInfoFile then
-        begin
-          infofilename := ArchiveForm.BaseDirectory.Text + DirectorySeparator + DARGUI_INFO_FILE;
-          InfoFile := TSettingsFile.Create(infofilename);
-          InfoFile.WriteString('Archive information', 'Basedirectory', ArchiveForm.BaseDirectory.Text );
-          InfoFile.Free;
-          ArchiveForm.BatchFile.Insert(2, '-I ' + DARGUI_INFO_FILE);
-        end;
      ArchiveForm.BatchFile.SaveToFile(ArchiveForm.BatchFileBox.Text);
 
      MessageMemo.Lines.Add(#32 + StringOfChar('-',45));
@@ -372,8 +380,8 @@ var
         end;
      finally
      Enabled := true;
-     if FileExists(infofilename)
-        then DeleteFile(infofilename);
+     if FileExists(ArchiveForm.BaseDirectory.Text + infofilename)
+        then DeleteFile(ArchiveForm.BaseDirectory.Text + infofilename);
      end;
   end;
   
@@ -673,6 +681,8 @@ begin
 end;
 
 procedure TMainForm.miArchiveInformationClick(Sender: TObject);
+var
+  basedir: String;
 begin
   if GetArchiveInformation(CurrentArchive ,
                             InformationForm.InformationMemo,
@@ -684,6 +694,12 @@ begin
         InformationForm.InformationMemo.Lines.Insert ( 0, Format (
           rsInfoFormLocation, [ CurrentArchive ] ) ) ;
         InformationForm.InformationMemo.Lines.Insert(1, StringOfChar('-',45));
+        basedir := ArchiveInform.rootdir;
+        if basedir<>'' then
+           begin
+             InformationForm.InformationMemo.Lines.Insert(1, basedir);
+             InformationForm.InformationMemo.Lines[1] := rsBaseDirectory + ': ' + InformationForm.InformationMemo.Lines[1];
+           end;
         InformationForm.ShowModal;
       end;
 end;
@@ -869,6 +885,7 @@ begin
   OpenDialog.Filter := rsFilterDARArchives + '|*.1.dar';
   if OpenDialog.Execute then
      TryOpenArchive(OpenDialog.FileName);
+  writeln('ArchiveInform.rootdir: ', ArchiveInform.rootdir);
 end;
 
 procedure TMainForm.miHelpAboutClick ( Sender: TObject ) ;
@@ -880,8 +897,8 @@ begin
      then AboutForm.DarVersionLabel.Caption := rsAboutNoDAR
      else AboutForm.DarVersionLabel.Caption := Format ( rsAboutDARVersion, [
        DarInfo.version ] ) ;
-  Aboutform.VersionLabel.Caption := Format (rsVersionNumber, [ APP_VERSION ] );
-  Aboutform.SVNLabel.Caption := Format ( rsSVNRevision, [ SVN_REVISION ] );
+  Aboutform.VersionLabel.Caption := Format(rsVersionNumber, [APP_VERSION_MAJOR, APP_VERSION_MINOR, APP_VERSION_REVISION]);
+  Aboutform.SVNLabel.Caption := 'Build date: ' + FormatDateTime('yyyy-mm-dd', Date);
   AboutForm.ShowModal;
   Aboutform.Free;
 end;
@@ -1103,7 +1120,9 @@ begin
       else Archivestatus := aosAborted;
    if Archivestatus = aosOK then
        begin
-        if LoadArchiveToTree(fname, ArchiveTreeView, CurrentPass) = 0 then
+         ArchiveInform.name := fname;
+         ArchiveInform.password := CurrentPass;
+         if LoadArchiveToTree(fname, ArchiveTreeView, ArchiveInform, CurrentPass, @ReportProgress) = 0 then
             begin
               EnableArchiveMenus(true);
               CurrentArchive := fname;
@@ -1123,6 +1142,12 @@ begin
              aosError: ShowMessage(DarErrorMessage);
         end;
    StatusBar.Panels[SELECT_STATUSBAR].Text := '';
+end;
+
+procedure TMainForm.ReportProgress ( p: integer ) ;
+begin
+  StatusBar.Panels[SELECT_STATUSBAR].Text := #32 + rsMessBUSY + #32 + IntToStr(p) + '%';
+  Application.ProcessMessages;
 end;
 
 procedure TMainForm.pmiRestoreSelectedClick(Sender: TObject);

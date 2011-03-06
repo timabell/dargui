@@ -157,6 +157,7 @@ type
     BatchFile: TStringList;
     ArchiveBaseName: string;
     procedure LoadSettings(configfile:TFilename);
+    function SaveSettings ( configfile: TFilename; notes: string ) : Boolean;
     function CreateBatchfile: Boolean;
     function GetUniqueScriptName(aDir: string): string;
   end;
@@ -259,95 +260,15 @@ end;
 procedure TArchiveForm.SaveButtonClick ( Sender: TObject ) ;
 var
   SaveDlg: TCreateSaveDialog;
-  SaveContent: TFileStream;
-  datasize: smallint;
-  datatype: TControlType;
-  dataname: string;
-  datatext: string;
-  x: Integer;
-  y: Integer;
 begin
   SaveDlg := TCreateSaveDialog.Create(nil);
   SaveDlg.NotesMemo.Text := BackupNotes;
   SaveDlg.FilenameEdit.Text := BackupFilename;
   if SaveDlg <> nil then
      try
-       if SaveDlg.ShowModal = mrOK then
-          begin
-            SaveContent := TFileStream.Create(SaveDlg.FilenameEdit.Text, fmCreate);
-            datatext := 'DarGUI' + SVN_REVISION + #32;
-            SaveContent.Write(datatext[1], Length(datatext));
-            SaveContent.Write(LastBackupTime, SizeOf(LastBackupTime));
-            datatext := SaveDlg.NotesMemo.Text;
-            datasize := Length(datatext);
-            SaveContent.Write(datasize, SizeOf(datasize));
-            SaveContent.Write(datatext[1], datasize);
-            for x := 0 to ComponentCount-1 do
-                begin
-                  datatype := ctNone;
-                  if Components[x] is TEdit then
-                     if TEdit(Components[x]) <> BatchFileBox then
-                       begin
-                         datatype := ctEdit;
-                         dataname := TEdit(Components[x]).Name;
-                         datatext := TEdit(Components[x]).Text;
-                       end;
-                  if Components[x] is TComboBox then
-                     begin
-                       datatype := ctCombobox;
-                       dataname := TComboBox(Components[x]).Name;
-                       datatext := IntToStr(TComboBox(Components[x]).ItemIndex);
-                     end;
-                  if Components[x] is TCheckBox then
-                     begin
-                       datatype := ctCheckbox;
-                       dataname := TCheckBox(Components[x]).Name;
-                       if TCheckBox(Components[x]).Checked
-                          then datatext := '1'
-                          else datatext := '0';
-                     end;
-                  if Components[x] is TRadioButton then
-                     begin
-                       datatype := ctRadiobutton;
-                       dataname := TRadioButton(Components[x]).Name;
-                       if TRadioButton(Components[x]).Checked
-                          then datatext := '1'
-                          else datatext := '0';
-                     end;
-                  if Components[x] is TDateEdit then
-                     begin
-                       datatype := ctDateEdit;
-                       dataname := TDateEdit(Components[x]).Name;
-                       datatext := FloatToStr(TDateEdit(Components[x]).Date);
-                     end;
-                  if Components[x] is TListBox then
-                     begin
-                       datatype := ctListBox;
-                       dataname := TListBox(Components[x]).Name;
-                       datatext := IntToStr(TListBox(Components[x]).Count);
-                    end;
-                  if datatype <> ctNone then
-                     begin
-                       SaveContent.Write(datatype, Sizeof(datatype));
-                       datasize := Length(dataname);
-                       SaveContent.Write(datasize, SizeOf(datasize));
-                       SaveContent.Write(dataname[1], datasize);
-                       datasize := Length(datatext);
-                       SaveContent.Write(datasize, SizeOf(datasize));
-                       SaveContent.Write(datatext[1], datasize);
-                       if datatype=ctListBox then
-                          for y := 0 to TListBox(Components[x]).Count-1 do
-                              begin
-                                datatext := TListBox(Components[x]).Items[y];
-                                datasize := Length(datatext);
-                                SaveContent.Write(datasize, SizeOf(datasize));
-                                SaveContent.Write(datatext[1], datasize);
-                              end;
-                     end;
-              end;
-            SaveContent.Free;
-          end;
-     finally
+       if SaveDlg.ShowModal = mrOK
+           then SaveSettings(SaveDlg.FilenameEdit.Text, SaveDlg.NotesMemo.Text);
+      finally
        SaveDlg.Free;
      end;
 end;
@@ -531,7 +452,7 @@ begin
                     DelBn := DelExcludeFileButton;
                     end;
            end;
-        ResolveConflicts(LB, ConflictList, ConflictMessage );
+        ResolveConflicts(LB, ConflictList, ConflictMessage );     //TODO: does this do anything useful?
         for x := 0 to OpenDialog.Files.Count -1 do
             begin
               fn := ExtractFileName( OpenDialog.Files[x] );
@@ -719,8 +640,8 @@ procedure TArchiveForm.LabelResize(Sender: TObject);
 begin
     with TLabel(Sender) do
        begin
-         if FocusControl <> nil then
-            Top := FocusControl.Top - Height;
+    //     if FocusControl <> nil then
+    //        Top := FocusControl.Top - Height;
        end;
 end;
 
@@ -936,6 +857,7 @@ end;
  procedure TArchiveForm.LoadSettings(configfile: TFilename);
  var
   SavedSettings: TFileStream;
+  header: TSettingsHeader;
   datasize: smallint;
   datatype: TControlType;
   dataname: string;
@@ -982,45 +904,49 @@ begin
       p := 1;
       SetLength(datatext, p);
       bytesread := bytesread + SavedSettings.Read(datatext[p], 1);
-      while (datatext[p] <> #32) and (bytesread < SavedSettings.Size) do
-            begin
-              Inc(p);
-              SetLength(datatext, p);
-              bytesread := bytesread + SavedSettings.Read(datatext[p], 1);
-            end;
-      if TryStrToInt(Trim(datatext), p) then
-         begin
+      if bytesread<p then exit;
+      if datatext[1] > #57
+         then SavedSettings.Read(header, SizeOf(header)) // file created by > 0.5.2
+      else
+         begin      //original file format
+          SavedSettings.Seek(-p, soFromCurrent);
+          while (datatext[p] <> #32) and (bytesread < SavedSettings.Size) do
+                begin
+                  Inc(p);
+                  SetLength(datatext, p);
+                  bytesread := bytesread + SavedSettings.Read(datatext[p], 1); //datatext contains SVN revision number + #32
+                end;
            SavedSettings.Read(LastBackupTime, SizeOf(LastBackupTime));
-           SavedSettings.Read(datasize,SizeOf(datasize));
-           if datasize > 0 then
-              begin
-                SetLength(BackupNotes, datasize);
-                SavedSettings.Read(BackupNotes[1], datasize);
-              end;
-           while SavedSettings.Position < SavedSettings.Size do
-             begin
-               SavedSettings.Read(datatype, Sizeof(datatype));
-               dataname := GetDataChunk;
-               datatext := GetDataChunk;
-               controlindex := GetComponentByName(dataname);
-               if controlindex > -1 then
-                  case datatype of
-                       ctEdit:        TEdit(Components[controlindex]).Text := datatext;
-                       ctCombobox:    TComboBox(Components[controlindex]).ItemIndex := StrToInt(datatext);
-                       ctDateEdit:    TDateEdit(Components[controlindex]).Date := StrToFloat(datatext);
-                       ctRadiobutton: TRadioButton(Components[controlindex]).Checked := datatext = '1';
-                       ctCheckbox:    TCheckBox(Components[controlindex]).Checked := datatext = '1';
-                       ctListBox:     begin
-                                        p := StrToInt(datatext);
-                                        TListBox(Components[controlindex]).Clear;
-                                        for x := 1 to p do
-                                            begin
-                                             datatext := GetDataChunk;
-                                             TListBox(Components[controlindex]).Items.Add(datatext);
-                                            end;
-                                      end;
-                       end;
-             end;
+         end;
+       SavedSettings.Read(datasize,SizeOf(datasize));
+       if datasize > 0 then
+          begin
+            SetLength(BackupNotes, datasize);
+            SavedSettings.Read(BackupNotes[1], datasize);
+          end;
+       while SavedSettings.Position < SavedSettings.Size do
+         begin
+           SavedSettings.Read(datatype, Sizeof(datatype));
+           dataname := GetDataChunk;
+           datatext := GetDataChunk;
+           controlindex := GetComponentByName(dataname);
+           if controlindex > -1 then
+              case datatype of
+                   ctEdit:        TEdit(Components[controlindex]).Text := datatext;
+                   ctCombobox:    TComboBox(Components[controlindex]).ItemIndex := StrToInt(datatext);
+                   ctDateEdit:    TDateEdit(Components[controlindex]).Date := StrToFloat(datatext);
+                   ctRadiobutton: TRadioButton(Components[controlindex]).Checked := datatext = '1';
+                   ctCheckbox:    TCheckBox(Components[controlindex]).Checked := datatext = '1';
+                   ctListBox:     begin
+                                    p := StrToInt(datatext);
+                                    TListBox(Components[controlindex]).Clear;
+                                    for x := 1 to p do
+                                        begin
+                                         datatext := GetDataChunk;
+                                         TListBox(Components[controlindex]).Items.Add(datatext);
+                                        end;
+                                  end;
+                   end;
          end;
     finally
       SavedSettings.Free;
@@ -1031,6 +957,107 @@ begin
       DelCompressMaskButton.Enabled := NoCompressList.Count > 0;
       LoadingSettings := false;
     end;
+ end;
+
+function TArchiveForm.SaveSettings ( configfile: TFilename; notes: string ) : Boolean;
+var
+  SaveContent: TFileStream;
+  header: TSettingsHeader;
+  datasize: smallint;
+  datatype: TControlType;
+  dataname: string;
+  datatext: string;
+  x: longint;
+  y: longint;
+  headerpos: Int64;
+ begin
+   Result := false;
+   SaveContent := TFileStream.Create(configfile, fmCreate);
+   if SaveContent<> nil then
+     try
+       datatext := 'DarGUI' + #58;    // > #57 is marker for files created by > 0.5.2
+       SaveContent.Write(datatext[1], Length(datatext));
+       headerpos := SaveContent.Position;
+       header.version_major := APP_VERSION_MAJOR;
+       header.version_minor := APP_VERSION_MINOR;
+       header.version_revision := APP_VERSION_REVISION;
+       header.rootdir := BaseDirectory.Text;
+       header.reserve1 := 0;
+       header.reserve2 := 0;
+       header.reserve3 := 0;
+       header.backuptime := Now;
+       SaveContent.Write(header, SizeOf(header));
+       datatext := notes;
+       datasize := Length(datatext);
+       SaveContent.Write(datasize, SizeOf(datasize));
+       SaveContent.Write(datatext[1], datasize);
+       for x := 0 to ComponentCount-1 do
+           begin
+             datatype := ctNone;
+             if Components[x] is TEdit then
+                if TEdit(Components[x]) <> BatchFileBox then
+                  begin
+                    datatype := ctEdit;
+                    dataname := TEdit(Components[x]).Name;
+                    datatext := TEdit(Components[x]).Text;
+                  end;
+             if Components[x] is TComboBox then
+                begin
+                  datatype := ctCombobox;
+                  dataname := TComboBox(Components[x]).Name;
+                  datatext := IntToStr(TComboBox(Components[x]).ItemIndex);
+                end;
+             if Components[x] is TCheckBox then
+                begin
+                  datatype := ctCheckbox;
+                  dataname := TCheckBox(Components[x]).Name;
+                  if TCheckBox(Components[x]).Checked
+                     then datatext := '1'
+                     else datatext := '0';
+                end;
+             if Components[x] is TRadioButton then
+                begin
+                  datatype := ctRadiobutton;
+                  dataname := TRadioButton(Components[x]).Name;
+                  if TRadioButton(Components[x]).Checked
+                     then datatext := '1'
+                     else datatext := '0';
+                end;
+             if Components[x] is TDateEdit then
+                begin
+                  datatype := ctDateEdit;
+                  dataname := TDateEdit(Components[x]).Name;
+                  datatext := FloatToStr(TDateEdit(Components[x]).Date);
+                end;
+             if Components[x] is TListBox then
+                begin
+                  datatype := ctListBox;
+                  dataname := TListBox(Components[x]).Name;
+                  datatext := IntToStr(TListBox(Components[x]).Count);
+               end;
+             if datatype <> ctNone then
+                begin
+                  SaveContent.Write(datatype, Sizeof(datatype));
+                  datasize := Length(dataname);
+                  SaveContent.Write(datasize, SizeOf(datasize));
+                  SaveContent.Write(dataname[1], datasize);
+                  datasize := Length(datatext);
+                  SaveContent.Write(datasize, SizeOf(datasize));
+                  SaveContent.Write(datatext[1], datasize);
+                  if datatype=ctListBox then
+                     for y := 0 to TListBox(Components[x]).Count-1 do
+                         begin
+                           datatext := TListBox(Components[x]).Items[y];
+                           datasize := Length(datatext);
+                           SaveContent.Write(datasize, SizeOf(datasize));
+                           SaveContent.Write(datatext[1], datasize);
+                         end;
+                end;
+         end;
+     finally
+       SaveContent.Free;
+       Result := true;
+     end;
  end;
 
 function TArchiveForm.CreateBatchfile : Boolean;
