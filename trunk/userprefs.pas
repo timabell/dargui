@@ -26,18 +26,18 @@ type
     CancelButton: TBitBtn;
     DarLocationEdit: TFileNameEdit;
     DarLocationLabel: TLabel;
-    ToolbarCheck: TCheckBox;
     DefaultConfigEdit: TFileNameEdit;
-    FilesOpenedLbl: TLabel;
     DefConfigLabel: TLabel;
-    OKButton: TBitBtn;
-    RememberLbl: TLabel;
+    FilesOpenedLbl: TLabel;
     MainFormPosition: TCheckBox;
     MainFormSize: TCheckBox;
-    MainNotebook: TNotebook;
-    ButtonPanel: TPanel;
-    DisplayPage: TPage;
+    OptsPageControl: TPageControl;
     RecentFilesSpinEdit: TSpinEdit;
+    RememberLbl: TLabel;
+    DisplayPage: TTabSheet;
+    OKButton: TBitBtn;
+    ButtonPanel: TPanel;
+    ToolbarCheck: TCheckBox;
     procedure FormCreate(Sender: TObject);
   private
     { private declarations }
