@@ -32,11 +32,12 @@ type
     MainFormPosition: TCheckBox;
     MainFormSize: TCheckBox;
     OptsPageControl: TPageControl;
-    RecentFilesSpinEdit: TSpinEdit;
-    RememberLbl: TLabel;
     DisplayPage: TTabSheet;
     OKButton: TBitBtn;
     ButtonPanel: TPanel;
+    DisplayPanel: TPanel;
+    RecentFilesSpinEdit: TSpinEdit;
+    RememberLbl: TLabel;
     ToolbarCheck: TCheckBox;
     procedure FormCreate(Sender: TObject);
   private

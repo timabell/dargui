@@ -215,7 +215,7 @@ begin
   //TODO: reload crontab and atq to reduce risk of deleting entries newly created by other apps
   scriptname := ScheduleList.Cells[COL_SCRIPT_NAME, ScheduleList.Selection.Top];
   if MessageDlg(rsConfirmCancel,
-                Format(rsCancelSchedScript, [#10, scriptname]),
+                Format(rsCancelSchedScript, [scriptname]),
                 mtConfirmation, mbYesNo, 0) = mrYes then
         case TScriptInfo(ScheduleList.Objects[0, ScheduleList.Selection.Top]).ScriptType of
              SCRIPT_TYPE_AT    : if DeleteAtScript( TScriptInfo(ScheduleList.Objects[0, ScheduleList.Selection.Top]) )

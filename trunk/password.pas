@@ -54,7 +54,7 @@ end;
 procedure TPasswordDlg.FormShow ( Sender: TObject ) ;
 begin
     PasswordLabel.Caption := Format ( rsTheFileIsEncryptedEn, [ ExtractFileName
-      ( ArchiveName ) , #10 ] ) ;
+      ( ArchiveName ) ] ) ;
 end;
 
 function TPasswordDlg.GetPassword: string;

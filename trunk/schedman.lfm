@@ -1,7 +1,7 @@
 object ScheduleManagerForm: TScheduleManagerForm
-  Left = 552
+  Left = 98
   Height = 325
-  Top = 259
+  Top = 102
   Width = 595
   ActiveControl = ScheduleList
   Caption = 'ScheduleManagerForm'
@@ -13,12 +13,22 @@ object ScheduleManagerForm: TScheduleManagerForm
   OnDestroy = FormDestroy
   OnResize = FormResize
   Position = poMainFormCenter
-  LCLVersion = '0.9.27'
+  LCLVersion = '0.9.29'
   object ScheduleList: TStringGrid
-    Left = 16
-    Height = 130
-    Top = 16
-    Width = 560
+    AnchorSideLeft.Control = Owner
+    AnchorSideTop.Control = Owner
+    AnchorSideRight.Control = Owner
+    AnchorSideRight.Side = asrBottom
+    AnchorSideBottom.Control = CancelButton
+    Left = 15
+    Height = 178
+    Top = 15
+    Width = 565
+    Anchors = [akTop, akLeft, akRight, akBottom]
+    BorderSpacing.Left = 15
+    BorderSpacing.Top = 15
+    BorderSpacing.Right = 15
+    BorderSpacing.Bottom = 15
     ColCount = 3
     Columns = <    
       item
@@ -41,16 +51,19 @@ object ScheduleManagerForm: TScheduleManagerForm
     OnHeaderSized = ScheduleListHeaderSized
   end
   object CancelButton: TButton
+    AnchorSideBottom.Side = asrBottom
     Left = 16
     Height = 35
-    Top = 152
+    Top = 208
     Width = 112
+    Anchors = [akLeft, akBottom]
     Caption = 'CancelButton'
     Enabled = False
     OnClick = CancelButtonClick
     TabOrder = 1
   end
   object ResultButtonPanel: TPanel
+    Left = 0
     Height = 58
     Top = 267
     Width = 595
@@ -60,6 +73,9 @@ object ScheduleManagerForm: TScheduleManagerForm
     ClientWidth = 595
     TabOrder = 2
     object CloseButton: TBitBtn
+      AnchorSideTop.Control = ResultButtonPanel
+      AnchorSideTop.Side = asrCenter
+      AnchorSideBottom.Side = asrCenter
       Left = 248
       Height = 35
       Top = 12
@@ -143,4 +159,4 @@ object ScheduleManagerForm: TScheduleManagerForm
       0000000000000000000000000000
     }
   end
-end
+end
