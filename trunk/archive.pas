@@ -8,110 +8,119 @@ interface
 
 uses
   Classes, SysUtils, LResources, Forms, Controls, Graphics, Dialogs, ExtCtrls,
-  Buttons, StdCtrls, EditBtn;
+  Buttons, StdCtrls, EditBtn, ComCtrls;
 
 type
 
   { TArchiveForm }
 
   TArchiveForm = class ( TForm )
+    AddExcludeFileButton: TButton;
+    AddIncludeDirButton: TButton;
+    AddIncludeFileButton: TButton;
+    ArchiveBaseLabel: TLabel;
+    ArchiveDirButton: TButton;
+    ArchiveDirectory: TEdit;
+    ArchiveName: TEdit;
+    BaseDirButton: TButton;
+    BaseDirectory: TEdit;
+    BaseDirLabel: TLabel;
+    BatchFileBox: TEdit;
+    BatchFileButton: TButton;
+    BatchLabel: TLabel;
+    Bzip2Check: TCheckBox;
+    CompLvlLabel: TLabel;
+    CompLwrLimitCombo: TComboBox;
+    CompressionExceptions: TGroupBox;
+    CompressionLevel: TEdit;
+    CompressionLwrLimit: TEdit;
+    CompressionTypes: TGroupBox;
+    CompressMasks: TButton;
+    CompSizeLabel: TLabel;
+    DelCompressMaskButton: TButton;
+    DelExcludeFileButton: TButton;
+    DelIncludeDirButton: TButton;
+    DelIncludeFileButton: TButton;
+    DiffFileCheck: TCheckBox;
+    DiffRefButton: TButton;
+    DryRunCheck: TCheckBox;
+    DiffReference: TEdit;
     EmptyDirCheck: TCheckBox;
     EncryptArchiveCheck: TCheckBox;
     EncryptedSymbolImage: TImage;
     EncryptionImageList: TImageList;
-    OpenCreatedArchiveCheck: TCheckBox;
-    IncludeDirsRadioButton: TRadioButton;
     ExcludeDirsRadioButton: TRadioButton;
-    RepeatMonthLabel: TLabel;
-    RepeatMonthDayLabel: TLabel;
-    RepeatWeekDayLabel: TLabel;
-    RunOncePanel: TPanel;
-    RepeatPanel: TPanel;
+    ExcludeFileMasks: TButton;
+    ExcludeFiles: TListBox;
+    ExcludeFilesLabel: TLabel;
+    GZipCheck: TCheckBox;
+    IncludeDirectories: TListBox;
+    IncludeDirsRadioButton: TRadioButton;
+    IncludeFileMasks: TButton;
+    IncludeFiles: TListBox;
+    IncludeFilesLabel: TLabel;
+    DiffRefLabel: TLabel;
+    NoCompressList: TListBox;
+    NowRadioButton: TRadioButton;
+    OpenCreatedArchiveCheck: TCheckBox;
+    ArchiveNotebook: TPageControl;
+    NotebookPanel: TPanel;
+    ArchivePanel: TPanel;
+    DirectoriesPanel: TPanel;
+    FilesPanel: TPanel;
+    CompressionPanel: TPanel;
+    OptionsPanel: TPanel;
+    FilesButtonPanel: TPanel;
     RepeatHourBox: TComboBox;
+    RepeatHourLabel: TLabel;
     RepeatMinuteBox: TComboBox;
+    RepeatMinuteLabel: TLabel;
     RepeatMonthBox: TComboBox;
     RepeatMonthDayBox: TComboBox;
+    RepeatMonthDayLabel: TLabel;
+    RepeatMonthLabel: TLabel;
+    RepeatPanel: TPanel;
+    RepeatRadioButton: TRadioButton;
     RepeatWeekDayBox: TComboBox;
+    RepeatWeekDayLabel: TLabel;
     RunOnceDateEdit: TDateEdit;
     RunOnceDateLabel: TLabel;
     RunOnceHourBox: TComboBox;
     RunOnceHourLabel: TLabel;
-    RepeatHourLabel: TLabel;
     RunOnceMinuteBox: TComboBox;
     RunOnceMinuteLabel: TLabel;
-    RepeatMinuteLabel: TLabel;
+    RunOncePanel: TPanel;
+    RunOnceRadioButton: TRadioButton;
+    SchedulePanel: TPanel;
+    PauseCheck: TCheckBox;
+    ReadConfigCheck: TCheckBox;
+    SaveArchiveInLabel: TLabel;
     SaveButton: TSpeedButton;
     LoadButton: TSpeedButton;
-    TimestampCheck: TCheckBox;
-    DiffRefButton: TButton;
-    DiffFileCheck: TCheckBox;
-    CompressMasks: TButton;
-    ExcludeFileMasks: TButton;
-    IncludeFileMasks: TButton;
-    BatchFileButton: TButton;
-    BatchFileBox: TEdit;
-    DiffReference: TLabeledEdit;
-    RepeatRadioButton: TRadioButton;
-    RunOnceRadioButton: TRadioButton;
-    SchedulePage: TPage;
-    PauseCheck: TCheckBox;
-    BatchLabel: TLabel;
-    OKButton: TBitBtn;
-    CancelButton: TBitBtn;
-    ArchiveDirButton: TButton;
-    AddIncludeFileButton: TButton;
-    BaseDirButton: TButton;
-    ArchiveDirectory: TEdit;
-    BaseDirectory: TEdit;
-    ArchiveName: TEdit;
-    AddIncludeDirButton: TButton;
-    Bzip2Check: TCheckBox;
-    NowRadioButton: TRadioButton;
+    ArchivePage: TTabSheet;
+    DirectoriesPage: TTabSheet;
+    FilesPage: TTabSheet;
+    CompressionPage: TTabSheet;
     SaveScriptCheckBox: TCheckBox;
     ScriptFileButton: TButton;
     ScriptFilenameBox: TEdit;
-    SliceSize: TEdit;
-    SliceSizeLabel: TLabel;
     SliceMbLabel: TLabel;
     SlicesCheck: TCheckBox;
-    CompLwrLimitCombo: TComboBox;
-    CompressionLevel: TEdit;
-    DelCompressMaskButton: TButton;
-    CompressionLwrLimit: TEdit;
-    DryRunCheck: TCheckBox;
-    CompressionPage: TPage;
-    CompressionExceptions: TGroupBox;
-    CompressionTypes: TGroupBox;
-    GZipCheck: TCheckBox;
-    CompLvlLabel: TLabel;
-    CompSizeLabel: TLabel;
-    NoCompressList: TListBox;
-    ReadConfigCheck: TCheckBox;
-    DelIncludeDirButton: TButton;
-    DelExcludeFileButton: TButton;
-    AddExcludeFileButton: TButton;
-    DelIncludeFileButton: TButton;
-    ArchiveBaseLabel: TLabel;
-    BaseDirLabel: TLabel;
-    SaveArchiveInLabel: TLabel;
-    IncludeFilesLabel: TLabel;
-    ExcludeFilesLabel: TLabel;
-    IncludeDirectories: TListBox;
-    IncludeFiles: TListBox;
-    ExcludeFiles: TListBox;
-    ArchiveNotebook: TNotebook;
-    ArchivePage: TPage;
+    SliceSize: TEdit;
+    SliceSizeLabel: TLabel;
+    OptionsPage: TTabSheet;
+    SchedulePage: TTabSheet;
+    OKButton: TBitBtn;
+    CancelButton: TBitBtn;
     OpenDialog: TOpenDialog;
-    OptionsPage: TPage;
-    DirectoriesPage: TPage;
-    FilesPage: TPage;
     OKCancelPanel: TPanel;
-    NoteBookPanel: TPanel;
     SaveDialog: TSaveDialog;
     IncludeDirList: TStringList;
     ExcludeDirList: TStringList;
     SelectDirectoryDialog: TSelectDirectoryDialog;
+    TimestampCheck: TCheckBox;
     procedure ArchiveNameExit ( Sender: TObject ) ;
+    procedure CompressionPageResize ( Sender: TObject ) ;
     procedure CompressMasksClick ( Sender: TObject ) ;
     procedure AddIncludeDirButtonClick ( Sender: TObject ) ;
     procedure AddFileButtonClick ( Sender: TObject ) ;
@@ -128,6 +137,7 @@ type
     procedure FormDestroy ( Sender: TObject ) ;
     procedure LabelResize(Sender: TObject);
     procedure LoadButtonClick ( Sender: TObject ) ;
+    procedure NotebookPanelResize ( Sender: TObject ) ;
     procedure OKButtonClick ( Sender: TObject ) ;
     procedure DelExcludeFileButtonClick ( Sender: TObject ) ;
     procedure DelIncludeDirButtonClick ( Sender: TObject ) ;
@@ -380,7 +390,7 @@ begin
   SchedulePage.Caption := rsScheduling;
   TimestampCheck.Caption := rsIncludeTimeInName;
   DiffFileCheck.Caption := rsDifferentialBackup;
-  DiffReference.EditLabel.Caption := rsReferenceArchive;
+  DiffRefLabel.Caption := rsReferenceArchive;
   DiffRefButton.Caption := rsButtonBrowse;
   RunOnceDateLabel.Caption := rsColDate;
   RunOnceHourLabel.Caption := rsHour;
@@ -512,6 +522,11 @@ begin
   TEdit(Sender).Text := Archname;
 end;
 
+procedure TArchiveForm.CompressionPageResize ( Sender: TObject ) ;
+begin
+  CompressionTypes.Width := TWinControl(Sender).Width-20;
+end;
+
 procedure TArchiveForm.ArchiveDirButtonClick ( Sender: TObject ) ;
 begin
   SelectDirectoryDialog.Options := SelectDirectoryDialog.Options-[ofAllowMultiSelect];
@@ -577,6 +592,7 @@ procedure TArchiveForm.DiffFileCheckChange ( Sender: TObject ) ;
 begin
   DiffReference.Enabled := DiffFileCheck.Checked;
   DiffRefButton.Enabled := DiffFileCheck.Checked;
+  DiffRefLabel.Enabled := DiffFileCheck.Checked;
   if EncryptedSymbolImage.Visible then
      begin
        NowRadioButton.Checked := true;
@@ -655,6 +671,11 @@ begin
   OpenDialog.Filter := rsFilterAllFiles + '|*';
 end;
 
+procedure TArchiveForm.NotebookPanelResize ( Sender: TObject ) ;
+begin
+  CompressionTypes.Width := CompressionPage.Width-20;
+end;
+
 procedure TArchiveForm.OKButtonClick ( Sender: TObject ) ;
 var
   isScript: Boolean;
@@ -692,7 +713,7 @@ begin        //TODO: check that script is not to be created within base director
   Result := true;
   if not NowRadioButton.Checked then
      if EncryptArchiveCheck.Checked then
-         if MessageDlg(Format(rsPasswordWarning, [#10, #10]), mtConfirmation,
+         if MessageDlg(rsPasswordWarning, mtConfirmation,
            mbYesNo, 0) = mrNo
                 then begin
                        ArchiveNotebook.PageIndex := 4;
@@ -773,7 +794,7 @@ begin        //TODO: check that script is not to be created within base director
            and (RepeatMonthDayBox.ItemIndex < 1)
            and (RepeatWeekDayBox.ItemIndex < 1) then
               begin
-                if MessageDlg(Format(rsScriptWarning2, [#10]), mtWarning,
+                if MessageDlg(rsScriptWarning2, mtWarning,
                   mbYesNo, 0) = mrNo
                 then begin
                        ArchiveNotebook.PageIndex := 5;
@@ -784,7 +805,7 @@ begin        //TODO: check that script is not to be created within base director
                end
           else
                if RepeatMinuteBox.ItemIndex < 1 then
-                  if MessageDlg(Format(rsScriptWarning1, [#10]), mtWarning,
+                  if MessageDlg(rsScriptWarning1, mtWarning,
                     mbYesNo, 0) = mrNo
                   then begin
                          ArchiveNotebook.PageIndex := 5;

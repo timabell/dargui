@@ -1,14 +1,14 @@
 object ArchiveForm: TArchiveForm
-  Left = 101
+  Left = 73
   Height = 490
-  Top = 78
-  Width = 637
-  ActiveControl = ArchiveName
+  Top = 133
+  Width = 650
+  ActiveControl = ArchivePanel
   AutoScroll = True
   AutoSize = True
   Caption = 'New Archive'
   ClientHeight = 490
-  ClientWidth = 637
+  ClientWidth = 650
   Constraints.MinHeight = 490
   Constraints.MinWidth = 637
   Icon.Data = {
@@ -56,15 +56,15 @@ object ArchiveForm: TArchiveForm
   LCLVersion = '0.9.29'
   object OKCancelPanel: TPanel
     Left = 0
-    Height = 66
-    Top = 424
-    Width = 637
+    Height = 56
+    Top = 434
+    Width = 650
     Align = alBottom
-    ClientHeight = 66
-    ClientWidth = 637
+    ClientHeight = 56
+    ClientWidth = 650
     TabOrder = 0
     object SaveButton: TSpeedButton
-      Left = 16
+      Left = 8
       Height = 22
       Top = 6
       Width = 23
@@ -111,7 +111,7 @@ object ArchiveForm: TArchiveForm
       ParentShowHint = False
     end
     object LoadButton: TSpeedButton
-      Left = 16
+      Left = 8
       Height = 22
       Top = 30
       Width = 23
@@ -159,9 +159,9 @@ object ArchiveForm: TArchiveForm
     end
     object OKButton: TBitBtn
       AnchorSideRight.Control = CancelButton
-      Left = 412
+      Left = 425
       Height = 32
-      Top = 15
+      Top = 10
       Width = 80
       Anchors = [akTop, akRight]
       AutoSize = True
@@ -176,9 +176,9 @@ object ArchiveForm: TArchiveForm
       TabOrder = 0
     end
     object CancelButton: TBitBtn
-      Left = 512
+      Left = 525
       Height = 32
-      Top = 15
+      Top = 10
       Width = 80
       Anchors = [akTop, akRight]
       AutoSize = True
@@ -192,1001 +192,1235 @@ object ArchiveForm: TArchiveForm
       TabOrder = 1
     end
   end
-  object NoteBookPanel: TPanel
+  object NotebookPanel: TPanel
     Left = 0
-    Height = 424
+    Height = 434
     Top = 0
-    Width = 637
+    Width = 650
     Align = alClient
-    AutoSize = True
-    Caption = 'NoteBookPanel'
-    ClientHeight = 424
-    ClientWidth = 637
+    Caption = 'NotebookPanel'
+    ClientHeight = 434
+    ClientWidth = 650
     TabOrder = 1
-    object ArchiveNotebook: TNotebook
-      Left = 11
-      Height = 402
-      Top = 11
-      Width = 615
+    object ArchiveNotebook: TPageControl
+      Left = 6
+      Height = 422
+      Top = 6
+      Width = 638
+      ActivePage = ArchivePage
       Align = alClient
-      BorderSpacing.Around = 10
-      PageIndex = 0
+      BorderSpacing.Around = 5
+      TabIndex = 0
       TabOrder = 0
-      object ArchivePage: TPage
-        Caption = 'Archive'
-        ClientWidth = 613
-        ClientHeight = 375
-        object ArchiveBaseLabel: TLabel
-          Left = 19
-          Height = 18
-          Top = 12
-          Width = 124
-          Caption = 'Archive base name'
-          FocusControl = ArchiveName
-          ParentColor = False
-          OnChangeBounds = LabelResize
-        end
-        object BaseDirLabel: TLabel
-          AnchorSideTop.Control = ArchiveDirectory
-          AnchorSideTop.Side = asrBottom
-          Left = 19
-          Height = 18
-          Top = 128
-          Width = 93
-          BorderSpacing.Top = 15
-          Caption = 'Base directory'
-          FocusControl = BaseDirectory
-          ParentColor = False
-          OnChangeBounds = LabelResize
-        end
-        object SaveArchiveInLabel: TLabel
-          AnchorSideTop.Control = ArchiveName
-          AnchorSideTop.Side = asrBottom
-          Left = 19
-          Height = 18
-          Top = 70
-          Width = 98
-          BorderSpacing.Top = 15
-          Caption = 'Save archive in'
-          FocusControl = ArchiveDirectory
-          ParentColor = False
-          OnChangeBounds = LabelResize
-        end
-        object BatchLabel: TLabel
-          AnchorSideTop.Control = BaseDirectory
-          AnchorSideTop.Side = asrBottom
-          Left = 19
-          Height = 18
-          Top = 186
-          Width = 60
-          BorderSpacing.Top = 15
-          Caption = 'Batch file'
-          FocusControl = BatchFileBox
-          ParentColor = False
-          OnChangeBounds = LabelResize
-        end
-        object ArchiveDirectory: TEdit
-          AnchorSideTop.Control = SaveArchiveInLabel
-          AnchorSideTop.Side = asrBottom
-          Left = 19
-          Height = 25
-          Top = 88
-          Width = 350
-          TabOrder = 1
-          Text = 'ArchiveDirectory'
-        end
-        object ArchiveDirButton: TButton
-          AnchorSideTop.Control = ArchiveDirectory
-          AnchorSideTop.Side = asrCenter
-          Left = 389
-          Height = 30
-          Top = 85
-          Width = 90
-          Caption = 'Browse'
-          OnClick = ArchiveDirButtonClick
-          TabOrder = 2
-        end
-        object BaseDirectory: TEdit
-          AnchorSideTop.Control = BaseDirLabel
-          AnchorSideTop.Side = asrBottom
-          Left = 19
-          Height = 25
-          Top = 146
-          Width = 350
-          TabOrder = 3
-          Text = 'Edit1'
-        end
-        object BaseDirButton: TButton
-          AnchorSideTop.Control = BaseDirectory
-          AnchorSideTop.Side = asrCenter
-          Left = 389
-          Height = 30
-          Top = 143
-          Width = 90
-          Caption = 'Browse'
-          OnClick = BaseDirButtonClick
-          TabOrder = 4
-        end
-        object ArchiveName: TEdit
-          AnchorSideTop.Control = ArchiveBaseLabel
-          AnchorSideTop.Side = asrBottom
-          Left = 19
-          Height = 25
-          Top = 30
-          Width = 282
-          OnExit = ArchiveNameExit
+      object ArchivePage: TTabSheet
+        Caption = 'ArchivePage'
+        ClientHeight = 395
+        ClientWidth = 636
+        object ArchivePanel: TPanel
+          Left = 0
+          Height = 395
+          Top = 0
+          Width = 636
+          Align = alClient
+          ClientHeight = 395
+          ClientWidth = 636
           TabOrder = 0
-        end
-        object BatchFileButton: TButton
-          AnchorSideTop.Control = BatchFileBox
-          AnchorSideTop.Side = asrCenter
-          Left = 389
-          Height = 30
-          Top = 201
-          Width = 90
-          Caption = 'Browse'
-          OnClick = BatchFileButtonClick
-          TabOrder = 6
-        end
-        object BatchFileBox: TEdit
-          AnchorSideTop.Control = BatchLabel
-          AnchorSideTop.Side = asrBottom
-          Left = 19
-          Height = 25
-          Top = 204
-          Width = 350
-          TabOrder = 5
-          Text = 'Edit1'
-        end
-        object DiffFileCheck: TCheckBox
-          AnchorSideTop.Control = BatchFileBox
-          AnchorSideTop.Side = asrBottom
-          Left = 21
-          Height = 21
-          Top = 244
-          Width = 142
-          BorderSpacing.Top = 15
-          Caption = 'Differential backup'
-          OnChange = DiffFileCheckChange
-          TabOrder = 7
-        end
-        object DiffReference: TLabeledEdit
-          AnchorSideTop.Control = DiffFileCheck
-          AnchorSideTop.Side = asrBottom
-          Left = 45
-          Height = 25
-          Top = 285
-          Width = 324
-          BorderSpacing.Top = 20
-          EditLabel.AnchorSideLeft.Control = DiffReference
-          EditLabel.AnchorSideBottom.Control = DiffReference
-          EditLabel.Left = 45
-          EditLabel.Height = 18
-          EditLabel.Top = 247
-          EditLabel.Width = 114
-          EditLabel.Caption = 'Reference archive'
-          EditLabel.ParentColor = False
-          EditLabel.Layout = tlBottom
-          Enabled = False
-          TabOrder = 8
-          OnChange = DiffReferenceChange
-        end
-        object DiffRefButton: TButton
-          AnchorSideTop.Control = DiffReference
-          AnchorSideTop.Side = asrCenter
-          Left = 389
-          Height = 30
-          Top = 282
-          Width = 90
-          Caption = 'Browse'
-          Enabled = False
-          OnClick = DiffRefButtonClick
-          TabOrder = 9
-        end
-        object TimestampCheck: TCheckBox
-          AnchorSideTop.Control = ArchiveName
-          AnchorSideTop.Side = asrCenter
-          Left = 325
-          Height = 21
-          Top = 32
-          Width = 134
-          Caption = 'TimestampCheck'
-          TabOrder = 10
-        end
-        object EncryptedSymbolImage: TImage
-          AnchorSideTop.Control = DiffReference
-          Left = 14
-          Height = 28
-          Top = 285
-          Width = 27
-          Visible = False
-        end
-      end
-      object DirectoriesPage: TPage
-        Caption = 'Directories'
-        ClientWidth = 613
-        ClientHeight = 375
-        object IncludeDirectories: TListBox
-          AnchorSideTop.Control = ExcludeDirsRadioButton
-          AnchorSideTop.Side = asrBottom
-          AnchorSideRight.Control = AddIncludeDirButton
-          AnchorSideBottom.Control = EmptyDirCheck
-          Left = 19
-          Height = 236
-          Top = 54
-          Width = 481
-          Anchors = [akTop, akLeft, akRight, akBottom]
-          BorderSpacing.Top = 10
-          BorderSpacing.Right = 10
-          BorderSpacing.Bottom = 20
-          ItemHeight = 0
-          TabOrder = 0
-          TopIndex = -1
-        end
-        object AddIncludeDirButton: TButton
-          Left = 510
-          Height = 30
-          Top = 58
-          Width = 90
-          Anchors = [akTop, akRight]
-          AutoSize = True
-          Caption = 'Add'
-          Constraints.MinHeight = 30
-          Constraints.MinWidth = 90
-          OnClick = AddIncludeDirButtonClick
-          TabOrder = 1
-        end
-        object DelIncludeDirButton: TButton
-          Left = 510
-          Height = 30
-          Top = 96
-          Width = 90
-          Anchors = [akTop, akRight]
-          AutoSize = True
-          Caption = 'Remove'
-          Constraints.MinHeight = 30
-          Constraints.MinWidth = 90
-          Enabled = False
-          OnClick = DelIncludeDirButtonClick
-          TabOrder = 2
-        end
-        object IncludeDirsRadioButton: TRadioButton
-          Left = 19
-          Height = 21
-          Top = 2
-          Width = 171
-          Caption = 'IncludeDirsRadioButton'
-          Checked = True
-          OnChange = DirectoryRBChange
-          TabOrder = 3
-          TabStop = True
-        end
-        object ExcludeDirsRadioButton: TRadioButton
-          AnchorSideTop.Control = IncludeDirsRadioButton
-          AnchorSideTop.Side = asrBottom
-          Left = 19
-          Height = 21
-          Top = 23
-          Width = 175
-          Caption = 'ExcludeDirsRadioButton'
-          TabOrder = 4
-        end
-        object EmptyDirCheck: TCheckBox
-          Left = 19
-          Height = 21
-          Top = 310
-          Width = 150
-          Anchors = [akLeft, akBottom]
-          Caption = 'Preserve directories'
-          TabOrder = 5
-        end
-      end
-      object FilesPage: TPage
-        Caption = 'Files'
-        ClientWidth = 613
-        ClientHeight = 375
-        object IncludeFilesLabel: TLabel
-          Left = 19
-          Height = 18
-          Top = 18
-          Width = 79
-          Caption = 'Include files:'
-          FocusControl = IncludeFiles
-          ParentColor = False
-          OnChangeBounds = LabelResize
-        end
-        object ExcludeFilesLabel: TLabel
-          AnchorSideTop.Control = IncludeFiles
-          AnchorSideTop.Side = asrBottom
-          Left = 19
-          Height = 18
-          Top = 196
-          Width = 83
-          BorderSpacing.Top = 40
-          Caption = 'Exclude files:'
-          FocusControl = ExcludeFiles
-          ParentColor = False
-          OnChangeBounds = LabelResize
-        end
-        object IncludeFiles: TListBox
-          Tag = 1
-          AnchorSideTop.Control = IncludeFilesLabel
-          AnchorSideTop.Side = asrBottom
-          AnchorSideRight.Control = AddIncludeFileButton
-          Left = 19
-          Height = 120
-          Top = 36
-          Width = 441
-          Anchors = [akTop, akLeft, akRight]
-          BorderSpacing.Right = 20
-          ItemHeight = 0
-          TabOrder = 0
-          TopIndex = -1
-        end
-        object ExcludeFiles: TListBox
-          Tag = 1
-          AnchorSideTop.Control = ExcludeFilesLabel
-          AnchorSideTop.Side = asrBottom
-          AnchorSideRight.Control = AddIncludeFileButton
-          Left = 19
-          Height = 120
-          Top = 214
-          Width = 441
-          Anchors = [akTop, akLeft, akRight]
-          BorderSpacing.Right = 20
-          ItemHeight = 0
-          TabOrder = 4
-          TopIndex = -1
-        end
-        object DelExcludeFileButton: TButton
-          Tag = 1
-          AnchorSideTop.Control = ExcludeFileMasks
-          AnchorSideTop.Side = asrBottom
-          Left = 480
-          Height = 30
-          Top = 314
-          Width = 120
-          Anchors = [akTop, akRight]
-          AutoSize = True
-          BorderSpacing.Top = 25
-          Caption = 'Remove'
-          Constraints.MinHeight = 30
-          Constraints.MinWidth = 120
-          Enabled = False
-          OnClick = DelExcludeFileButtonClick
-          TabOrder = 7
-        end
-        object AddExcludeFileButton: TButton
-          Tag = 1
-          AnchorSideTop.Control = ExcludeFiles
-          Left = 480
-          Height = 30
-          Top = 219
-          Width = 120
-          Anchors = [akTop, akRight]
-          AutoSize = True
-          BorderSpacing.Top = 5
-          Caption = 'Add file'
-          Constraints.MinHeight = 30
-          Constraints.MinWidth = 120
-          OnClick = AddFileButtonClick
-          TabOrder = 5
-        end
-        object DelIncludeFileButton: TButton
-          AnchorSideTop.Control = IncludeFileMasks
-          AnchorSideTop.Side = asrBottom
-          Left = 480
-          Height = 30
-          Top = 136
-          Width = 120
-          Anchors = [akTop, akRight]
-          AutoSize = True
-          BorderSpacing.Top = 25
-          Caption = 'Remove'
-          Constraints.MinHeight = 30
-          Constraints.MinWidth = 120
-          Enabled = False
-          OnClick = DelIncludeFileButtonClick
-          TabOrder = 3
-        end
-        object AddIncludeFileButton: TButton
-          AnchorSideTop.Control = IncludeFiles
-          Left = 480
-          Height = 30
-          Top = 41
-          Width = 120
-          Anchors = [akTop, akRight]
-          AutoSize = True
-          BorderSpacing.Top = 5
-          Caption = 'Add file'
-          Constraints.MinHeight = 30
-          Constraints.MinWidth = 120
-          OnClick = AddFileButtonClick
-          TabOrder = 1
-        end
-        object IncludeFileMasks: TButton
-          Tag = 1
-          AnchorSideTop.Control = AddIncludeFileButton
-          AnchorSideTop.Side = asrBottom
-          Left = 480
-          Height = 30
-          Top = 81
-          Width = 120
-          Anchors = [akTop, akRight]
-          AutoSize = True
-          BorderSpacing.Top = 10
-          Caption = 'Add mask'
-          Constraints.MinHeight = 30
-          Constraints.MinWidth = 120
-          OnClick = CompressMasksClick
-          TabOrder = 2
-        end
-        object ExcludeFileMasks: TButton
-          Tag = 2
-          AnchorSideTop.Control = AddExcludeFileButton
-          AnchorSideTop.Side = asrBottom
-          Left = 480
-          Height = 30
-          Top = 259
-          Width = 120
-          Anchors = [akTop, akRight]
-          AutoSize = True
-          BorderSpacing.Top = 10
-          Caption = 'Add mask'
-          Constraints.MinHeight = 30
-          Constraints.MinWidth = 120
-          OnClick = CompressMasksClick
-          TabOrder = 6
-        end
-      end
-      object CompressionPage: TPage
-        Caption = 'Compression'
-        ClientWidth = 613
-        ClientHeight = 375
-        object CompressionExceptions: TGroupBox
-          Left = 301
-          Height = 329
-          Top = 10
-          Width = 288
-          Caption = ' Do not compress ... '
-          ClientHeight = 310
-          ClientWidth = 284
-          TabOrder = 0
-          object CompSizeLabel: TLabel
-            Left = 21
+          object ArchiveBaseLabel: TLabel
+            Left = 19
             Height = 18
-            Top = 240
-            Width = 209
-            Caption = 'Lower size limit for compression:'
-            FocusControl = CompressionLwrLimit
+            Top = 12
+            Width = 124
+            Caption = 'Archive base name'
             ParentColor = False
             OnChangeBounds = LabelResize
           end
-          object NoCompressList: TListBox
-            Left = 13
-            Height = 192
-            Top = 24
-            Width = 139
-            Items.Strings = (
-              '*.zip'
-              '*.jpg'
-              '*.jpeg'
-              '*.bz2'
-              '*.gz'
-              '*.gif'
-              '*.png'
-              '*.mpg'
-              '*.mpeg'
-              '*.mp4'
-              '*.wmv'
-              '*.flv'
-              '*.swf'
-              '*.mov'
-              '*.divx'
-              '*.mp3'
-              '*.ogg'
-              '*.wma'
-            )
-            ItemHeight = 23
-            TabOrder = 0
+          object BaseDirLabel: TLabel
+            AnchorSideTop.Side = asrBottom
+            Left = 19
+            Height = 18
+            Top = 128
+            Width = 93
+            BorderSpacing.Top = 15
+            Caption = 'Base directory'
+            ParentColor = False
+            OnChangeBounds = LabelResize
           end
-          object CompressMasks: TButton
-            Left = 165
+          object SaveArchiveInLabel: TLabel
+            AnchorSideTop.Side = asrBottom
+            Left = 19
+            Height = 18
+            Top = 70
+            Width = 98
+            BorderSpacing.Top = 15
+            Caption = 'Save archive in'
+            ParentColor = False
+            OnChangeBounds = LabelResize
+          end
+          object BatchLabel: TLabel
+            AnchorSideTop.Side = asrBottom
+            Left = 19
+            Height = 18
+            Top = 186
+            Width = 60
+            BorderSpacing.Top = 15
+            Caption = 'Batch file'
+            ParentColor = False
+            OnChangeBounds = LabelResize
+          end
+          object ArchiveDirectory: TEdit
+            AnchorSideTop.Control = SaveArchiveInLabel
+            AnchorSideTop.Side = asrBottom
+            Left = 19
+            Height = 25
+            Top = 88
+            Width = 350
+            TabOrder = 0
+            Text = 'ArchiveDirectory'
+          end
+          object ArchiveDirButton: TButton
+            AnchorSideLeft.Control = ArchiveDirectory
+            AnchorSideLeft.Side = asrBottom
+            AnchorSideTop.Control = ArchiveDirectory
+            AnchorSideTop.Side = asrCenter
+            Left = 379
             Height = 30
-            Top = 24
+            Top = 85
             Width = 90
+            BorderSpacing.Left = 10
+            Caption = 'Browse'
+            OnClick = ArchiveDirButtonClick
+            TabOrder = 1
+          end
+          object BaseDirectory: TEdit
+            AnchorSideTop.Control = BaseDirLabel
+            AnchorSideTop.Side = asrBottom
+            Left = 19
+            Height = 25
+            Top = 146
+            Width = 350
+            TabOrder = 2
+            Text = 'Edit1'
+          end
+          object BaseDirButton: TButton
+            AnchorSideLeft.Control = BaseDirectory
+            AnchorSideLeft.Side = asrBottom
+            AnchorSideTop.Control = BaseDirectory
+            AnchorSideTop.Side = asrCenter
+            Left = 379
+            Height = 30
+            Top = 143
+            Width = 90
+            BorderSpacing.Left = 10
+            Caption = 'Browse'
+            OnClick = BaseDirButtonClick
+            TabOrder = 3
+          end
+          object ArchiveName: TEdit
+            AnchorSideTop.Control = ArchiveBaseLabel
+            AnchorSideTop.Side = asrBottom
+            Left = 19
+            Height = 25
+            Top = 30
+            Width = 282
+            OnExit = ArchiveNameExit
+            TabOrder = 4
+          end
+          object BatchFileButton: TButton
+            AnchorSideLeft.Control = BatchFileBox
+            AnchorSideLeft.Side = asrBottom
+            AnchorSideTop.Control = BatchFileBox
+            AnchorSideTop.Side = asrCenter
+            Left = 379
+            Height = 30
+            Top = 201
+            Width = 90
+            BorderSpacing.Left = 10
+            Caption = 'Browse'
+            OnClick = BatchFileButtonClick
+            TabOrder = 5
+          end
+          object BatchFileBox: TEdit
+            AnchorSideTop.Control = BatchLabel
+            AnchorSideTop.Side = asrBottom
+            Left = 19
+            Height = 25
+            Top = 204
+            Width = 350
+            TabOrder = 6
+            Text = 'Edit1'
+          end
+          object DiffFileCheck: TCheckBox
+            AnchorSideTop.Control = BatchFileBox
+            AnchorSideTop.Side = asrBottom
+            Left = 21
+            Height = 21
+            Top = 244
+            Width = 142
+            BorderSpacing.Top = 15
+            Caption = 'Differential backup'
+            OnChange = DiffFileCheckChange
+            TabOrder = 7
+          end
+          object TimestampCheck: TCheckBox
+            AnchorSideTop.Control = ArchiveName
+            AnchorSideTop.Side = asrCenter
+            Left = 310
+            Height = 21
+            Top = 32
+            Width = 134
+            Caption = 'TimestampCheck'
+            TabOrder = 8
+          end
+          object EncryptedSymbolImage: TImage
+            AnchorSideLeft.Control = BatchFileBox
+            AnchorSideTop.Control = DiffReference
+            AnchorSideTop.Side = asrCenter
+            Left = 19
+            Height = 28
+            Top = 296
+            Width = 27
+            Visible = False
+          end
+          object DiffRefButton: TButton
+            AnchorSideLeft.Control = DiffReference
+            AnchorSideLeft.Side = asrBottom
+            AnchorSideTop.Control = DiffReference
+            AnchorSideTop.Side = asrCenter
+            Left = 379
+            Height = 30
+            Top = 295
+            Width = 90
+            BorderSpacing.Left = 10
+            Caption = 'Browse'
+            Enabled = False
+            OnClick = DiffRefButtonClick
+            TabOrder = 9
+          end
+          object DiffReference: TEdit
+            AnchorSideTop.Control = DiffRefLabel
+            AnchorSideTop.Side = asrBottom
+            Left = 53
+            Height = 25
+            Top = 298
+            Width = 316
+            Enabled = False
+            OnChange = DiffReferenceChange
+            TabOrder = 10
+          end
+          object DiffRefLabel: TLabel
+            AnchorSideTop.Control = DiffFileCheck
+            AnchorSideTop.Side = asrBottom
+            Left = 53
+            Height = 18
+            Top = 280
+            Width = 75
+            BorderSpacing.Top = 15
+            Caption = 'DiffRefLabel'
+            Enabled = False
+            FocusControl = DiffReference
+            ParentColor = False
+          end
+        end
+      end
+      object DirectoriesPage: TTabSheet
+        Caption = 'DirectoriesPage'
+        ClientHeight = 395
+        ClientWidth = 636
+        object DirectoriesPanel: TPanel
+          Left = 0
+          Height = 395
+          Top = 0
+          Width = 656
+          Align = alClient
+          Caption = 'DirectoriesPanel'
+          ClientHeight = 395
+          ClientWidth = 656
+          TabOrder = 0
+          object IncludeDirectories: TListBox
+            AnchorSideLeft.Control = DirectoriesPanel
+            AnchorSideTop.Control = ExcludeDirsRadioButton
+            AnchorSideTop.Side = asrBottom
+            AnchorSideRight.Control = AddIncludeDirButton
+            AnchorSideBottom.Control = EmptyDirCheck
+            Left = 11
+            Height = 265
+            Top = 63
+            Width = 529
+            Anchors = [akTop, akLeft, akRight, akBottom]
+            BorderSpacing.Left = 10
+            BorderSpacing.Top = 10
+            BorderSpacing.Right = 10
+            BorderSpacing.Bottom = 20
+            ItemHeight = 0
+            TabOrder = 0
+            TopIndex = -1
+          end
+          object AddIncludeDirButton: TButton
+            AnchorSideRight.Control = DirectoriesPanel
+            AnchorSideRight.Side = asrBottom
+            Left = 550
+            Height = 30
+            Top = 58
+            Width = 90
+            Anchors = [akTop, akRight]
             AutoSize = True
+            BorderSpacing.Right = 15
             Caption = 'Add'
             Constraints.MinHeight = 30
             Constraints.MinWidth = 90
-            OnClick = CompressMasksClick
+            OnClick = AddIncludeDirButtonClick
             TabOrder = 1
           end
-          object DelCompressMaskButton: TButton
-            Left = 165
+          object DelIncludeDirButton: TButton
+            AnchorSideRight.Control = DirectoriesPanel
+            AnchorSideRight.Side = asrBottom
+            Left = 550
             Height = 30
-            Top = 59
+            Top = 96
             Width = 90
+            Anchors = [akTop, akRight]
             AutoSize = True
+            BorderSpacing.Right = 15
             Caption = 'Remove'
             Constraints.MinHeight = 30
             Constraints.MinWidth = 90
-            OnClick = DelCompressMaskButtonClick
+            Enabled = False
+            OnClick = DelIncludeDirButtonClick
             TabOrder = 2
           end
-          object CompressionLwrLimit: TEdit
-            Left = 27
+          object IncludeDirsRadioButton: TRadioButton
+            AnchorSideTop.Control = DirectoriesPanel
+            Left = 19
+            Height = 21
+            Top = 11
+            Width = 171
+            BorderSpacing.Top = 10
+            Caption = 'IncludeDirsRadioButton'
+            Checked = True
+            OnChange = DirectoryRBChange
+            TabOrder = 3
+            TabStop = True
+          end
+          object ExcludeDirsRadioButton: TRadioButton
+            AnchorSideTop.Control = IncludeDirsRadioButton
+            AnchorSideTop.Side = asrBottom
+            Left = 19
+            Height = 21
+            Top = 32
+            Width = 175
+            Caption = 'ExcludeDirsRadioButton'
+            TabOrder = 4
+          end
+          object EmptyDirCheck: TCheckBox
+            AnchorSideBottom.Control = DirectoriesPanel
+            AnchorSideBottom.Side = asrBottom
+            Left = 19
+            Height = 21
+            Top = 348
+            Width = 150
+            Anchors = [akLeft, akBottom]
+            BorderSpacing.Bottom = 25
+            Caption = 'Preserve directories'
+            TabOrder = 5
+          end
+        end
+      end
+      object FilesPage: TTabSheet
+        Caption = 'FilesPage'
+        ClientHeight = 395
+        ClientWidth = 636
+        object FilesPanel: TPanel
+          Left = 0
+          Height = 395
+          Top = 0
+          Width = 656
+          Align = alClient
+          ClientHeight = 395
+          ClientWidth = 656
+          TabOrder = 0
+          object IncludeFilesLabel: TLabel
+            Left = 19
+            Height = 18
+            Top = 18
+            Width = 79
+            Caption = 'Include files:'
+            ParentColor = False
+            OnChangeBounds = LabelResize
+          end
+          object ExcludeFilesLabel: TLabel
+            AnchorSideTop.Control = IncludeFiles
+            AnchorSideTop.Side = asrBottom
+            Left = 19
+            Height = 18
+            Top = 196
+            Width = 83
+            BorderSpacing.Top = 40
+            Caption = 'Exclude files:'
+            ParentColor = False
+            OnChangeBounds = LabelResize
+          end
+          object IncludeFiles: TListBox
+            Tag = 1
+            AnchorSideLeft.Control = FilesPanel
+            AnchorSideTop.Control = IncludeFilesLabel
+            AnchorSideTop.Side = asrBottom
+            AnchorSideRight.Control = FilesButtonPanel
+            Left = 11
+            Height = 120
+            Top = 36
+            Width = 499
+            Anchors = [akTop, akLeft, akRight]
+            BorderSpacing.Left = 10
+            BorderSpacing.Right = 10
+            ItemHeight = 0
+            TabOrder = 0
+            TopIndex = -1
+          end
+          object ExcludeFiles: TListBox
+            Tag = 1
+            AnchorSideLeft.Control = FilesPanel
+            AnchorSideTop.Control = ExcludeFilesLabel
+            AnchorSideTop.Side = asrBottom
+            AnchorSideRight.Control = FilesButtonPanel
+            Left = 11
+            Height = 120
+            Top = 214
+            Width = 499
+            Anchors = [akTop, akLeft, akRight]
+            BorderSpacing.Left = 10
+            BorderSpacing.Right = 10
+            ItemHeight = 0
+            TabOrder = 1
+            TopIndex = -1
+          end
+          object FilesButtonPanel: TPanel
+            Left = 520
+            Height = 393
+            Top = 1
+            Width = 135
+            Align = alRight
+            AutoSize = True
+            BevelOuter = bvNone
+            ClientHeight = 393
+            ClientWidth = 135
+            TabOrder = 2
+            object AddIncludeFileButton: TButton
+              AnchorSideRight.Control = FilesButtonPanel
+              AnchorSideRight.Side = asrBottom
+              Left = 0
+              Height = 30
+              Top = 41
+              Width = 120
+              Anchors = [akTop, akRight]
+              AutoSize = True
+              BorderSpacing.Top = 5
+              BorderSpacing.Right = 15
+              Caption = 'Add file'
+              Constraints.MinHeight = 30
+              Constraints.MinWidth = 120
+              OnClick = AddFileButtonClick
+              TabOrder = 0
+            end
+            object IncludeFileMasks: TButton
+              Tag = 1
+              AnchorSideTop.Control = AddIncludeFileButton
+              AnchorSideTop.Side = asrBottom
+              AnchorSideRight.Control = FilesButtonPanel
+              AnchorSideRight.Side = asrBottom
+              Left = 0
+              Height = 30
+              Top = 81
+              Width = 120
+              Anchors = [akTop, akRight]
+              AutoSize = True
+              BorderSpacing.Top = 10
+              BorderSpacing.Right = 15
+              Caption = 'Add mask'
+              Constraints.MinHeight = 30
+              Constraints.MinWidth = 120
+              OnClick = CompressMasksClick
+              TabOrder = 1
+            end
+            object DelIncludeFileButton: TButton
+              AnchorSideTop.Side = asrBottom
+              AnchorSideRight.Control = FilesButtonPanel
+              AnchorSideRight.Side = asrBottom
+              Left = 0
+              Height = 30
+              Top = 136
+              Width = 120
+              Anchors = [akTop, akRight]
+              AutoSize = True
+              BorderSpacing.Top = 25
+              BorderSpacing.Right = 15
+              Caption = 'Remove'
+              Constraints.MinHeight = 30
+              Constraints.MinWidth = 120
+              Enabled = False
+              OnClick = DelIncludeFileButtonClick
+              TabOrder = 2
+            end
+            object AddExcludeFileButton: TButton
+              Tag = 1
+              AnchorSideRight.Control = FilesButtonPanel
+              AnchorSideRight.Side = asrBottom
+              Left = 0
+              Height = 30
+              Top = 219
+              Width = 120
+              Anchors = [akTop, akRight]
+              AutoSize = True
+              BorderSpacing.Top = 5
+              BorderSpacing.Right = 15
+              Caption = 'Add file'
+              Constraints.MinHeight = 30
+              Constraints.MinWidth = 120
+              OnClick = AddFileButtonClick
+              TabOrder = 3
+            end
+            object ExcludeFileMasks: TButton
+              Tag = 2
+              AnchorSideTop.Control = AddExcludeFileButton
+              AnchorSideTop.Side = asrBottom
+              AnchorSideRight.Control = FilesButtonPanel
+              AnchorSideRight.Side = asrBottom
+              Left = 0
+              Height = 30
+              Top = 259
+              Width = 120
+              Anchors = [akTop, akRight]
+              AutoSize = True
+              BorderSpacing.Top = 10
+              BorderSpacing.Right = 15
+              Caption = 'Add mask'
+              Constraints.MinHeight = 30
+              Constraints.MinWidth = 120
+              OnClick = CompressMasksClick
+              TabOrder = 4
+            end
+            object DelExcludeFileButton: TButton
+              Tag = 1
+              AnchorSideTop.Control = ExcludeFileMasks
+              AnchorSideTop.Side = asrBottom
+              AnchorSideRight.Control = FilesButtonPanel
+              AnchorSideRight.Side = asrBottom
+              Left = 0
+              Height = 30
+              Top = 314
+              Width = 120
+              Anchors = [akTop, akRight]
+              AutoSize = True
+              BorderSpacing.Top = 25
+              BorderSpacing.Right = 15
+              Caption = 'Remove'
+              Constraints.MinHeight = 30
+              Constraints.MinWidth = 120
+              Enabled = False
+              OnClick = DelExcludeFileButtonClick
+              TabOrder = 5
+            end
+          end
+        end
+      end
+      object CompressionPage: TTabSheet
+        Caption = 'CompressionPage'
+        ClientHeight = 395
+        ClientWidth = 636
+        object CompressionPanel: TPanel
+          Left = 0
+          Height = 395
+          Top = 0
+          Width = 656
+          Align = alClient
+          ClientHeight = 395
+          ClientWidth = 656
+          TabOrder = 0
+          object CompressionTypes: TGroupBox
+            Left = 11
+            Height = 373
+            Top = 11
+            Width = 258
+            Align = alLeft
+            BorderSpacing.Around = 10
+            Caption = ' Compression type '
+            ClientHeight = 354
+            ClientWidth = 254
+            TabOrder = 0
+            object CompLvlLabel: TLabel
+              Left = 30
+              Height = 18
+              Top = 111
+              Width = 118
+              Caption = 'Compression level'
+              Enabled = False
+              FocusControl = CompressionLevel
+              ParentColor = False
+              OnChangeBounds = LabelResize
+            end
+            object GZipCheck: TCheckBox
+              Left = 14
+              Height = 21
+              Top = 29
+              Width = 162
+              Caption = 'use gzip compression'
+              OnClick = ZipCheckChange
+              TabOrder = 0
+            end
+            object Bzip2Check: TCheckBox
+              Left = 14
+              Height = 21
+              Top = 67
+              Width = 170
+              Caption = 'use bzip2 compression'
+              OnClick = ZipCheckChange
+              TabOrder = 1
+            end
+            object CompressionLevel: TEdit
+              Left = 30
+              Height = 25
+              Top = 135
+              Width = 80
+              Enabled = False
+              MaxLength = 1
+              OnExit = CompressionLevelExit
+              TabOrder = 2
+              Text = '9'
+            end
+          end
+          object CompressionExceptions: TGroupBox
+            Left = 279
+            Height = 373
+            Top = 11
+            Width = 354
+            Align = alLeft
+            Anchors = [akRight]
+            BorderSpacing.Around = 10
+            Caption = ' Do not compress ... '
+            ClientHeight = 354
+            ClientWidth = 350
+            TabOrder = 1
+            object CompSizeLabel: TLabel
+              Left = 21
+              Height = 18
+              Top = 240
+              Width = 209
+              Caption = 'Lower size limit for compression:'
+              FocusControl = CompressionLwrLimit
+              ParentColor = False
+              OnChangeBounds = LabelResize
+            end
+            object NoCompressList: TListBox
+              Left = 13
+              Height = 192
+              Top = 24
+              Width = 139
+              Items.Strings = (
+                '*.zip'
+                '*.jpg'
+                '*.jpeg'
+                '*.bz2'
+                '*.gz'
+                '*.gif'
+                '*.png'
+                '*.mpg'
+                '*.mpeg'
+                '*.mp4'
+                '*.wmv'
+                '*.flv'
+                '*.swf'
+                '*.mov'
+                '*.divx'
+                '*.mp3'
+                '*.ogg'
+                '*.wma'
+              )
+              ItemHeight = 0
+              TabOrder = 0
+              TopIndex = -1
+            end
+            object CompressMasks: TButton
+              Left = 165
+              Height = 30
+              Top = 24
+              Width = 90
+              AutoSize = True
+              Caption = 'Add'
+              Constraints.MinHeight = 30
+              Constraints.MinWidth = 90
+              OnClick = CompressMasksClick
+              TabOrder = 1
+            end
+            object DelCompressMaskButton: TButton
+              Left = 165
+              Height = 30
+              Top = 59
+              Width = 90
+              AutoSize = True
+              Caption = 'Remove'
+              Constraints.MinHeight = 30
+              Constraints.MinWidth = 90
+              OnClick = DelCompressMaskButtonClick
+              TabOrder = 2
+            end
+            object CompressionLwrLimit: TEdit
+              Left = 27
+              Height = 25
+              Top = 267
+              Width = 114
+              OnExit = CompressionLwrLimitExit
+              TabOrder = 3
+              Text = '100'
+            end
+            object CompLwrLimitCombo: TComboBox
+              Left = 149
+              Height = 27
+              Top = 267
+              Width = 100
+              ItemHeight = 0
+              ItemIndex = 0
+              Items.Strings = (
+                'bytes'
+                'kilobytes'
+                'Megabytes'
+              )
+              TabOrder = 4
+              Text = 'bytes'
+            end
+          end
+        end
+      end
+      object OptionsPage: TTabSheet
+        Caption = 'OptionsPage'
+        ClientHeight = 395
+        ClientWidth = 636
+        object OptionsPanel: TPanel
+          Left = 0
+          Height = 395
+          Top = 0
+          Width = 656
+          Align = alClient
+          ClientHeight = 395
+          ClientWidth = 656
+          TabOrder = 0
+          object SliceMbLabel: TLabel
+            AnchorSideLeft.Side = asrBottom
+            Left = 360
+            Height = 18
+            Top = 45
+            Width = 20
+            BorderSpacing.Left = 10
+            Caption = 'Mb'
+            Enabled = False
+            ParentColor = False
+          end
+          object SliceSizeLabel: TLabel
+            AnchorSideLeft.Side = asrBottom
+            Left = 220
+            Height = 18
+            Top = 45
+            Width = 60
+            Alignment = taRightJustify
+            BorderSpacing.Left = 100
+            Caption = 'Slice size'
+            Enabled = False
+            ParentBidiMode = False
+            ParentColor = False
+          end
+          object ReadConfigCheck: TCheckBox
+            Left = 33
+            Height = 21
+            Top = 9
+            Width = 273
+            Caption = 'Attempt to read DAR configuration files'
+            Checked = True
+            State = cbChecked
+            TabOrder = 0
+          end
+          object DryRunCheck: TCheckBox
+            AnchorSideTop.Side = asrBottom
+            Left = 33
+            Height = 21
+            Top = 252
+            Width = 103
+            BorderSpacing.Top = 15
+            Caption = 'Test run only'
+            TabOrder = 1
+          end
+          object SlicesCheck: TCheckBox
+            AnchorSideTop.Control = ReadConfigCheck
+            AnchorSideTop.Side = asrBottom
+            Left = 33
+            Height = 21
+            Top = 45
+            Width = 87
+            BorderSpacing.Top = 15
+            Caption = 'Use slices'
+            OnClick = SlicesCheckClick
+            TabOrder = 2
+          end
+          object SliceSize: TEdit
+            AnchorSideLeft.Control = SliceSizeLabel
+            AnchorSideLeft.Side = asrBottom
+            AnchorSideTop.Control = SliceSizeLabel
+            AnchorSideTop.Side = asrCenter
+            Left = 290
             Height = 25
-            Top = 267
-            Width = 114
+            Top = 42
+            Width = 60
+            Alignment = taRightJustify
+            BorderSpacing.Left = 10
+            Constraints.MinWidth = 60
+            Enabled = False
             OnExit = CompressionLwrLimitExit
             TabOrder = 3
-            Text = '100'
+            Text = '695'
           end
-          object CompLwrLimitCombo: TComboBox
-            Left = 149
-            Height = 27
-            Top = 267
-            Width = 100
-            ItemHeight = 0
-            ItemIndex = 0
-            Items.Strings = (
-              'bytes'
-              'kilobytes'
-              'Megabytes'
-            )
+          object PauseCheck: TCheckBox
+            AnchorSideTop.Control = SliceSizeLabel
+            AnchorSideTop.Side = asrBottom
+            Left = 61
+            Height = 21
+            Top = 73
+            Width = 158
+            BorderSpacing.Top = 10
+            Caption = 'Pause between slices'
+            Enabled = False
             TabOrder = 4
-            Text = 'bytes'
           end
-        end
-        object CompressionTypes: TGroupBox
-          Left = 12
-          Height = 329
-          Top = 11
-          Width = 257
-          Caption = ' Compression type '
-          ClientHeight = 310
-          ClientWidth = 253
-          TabOrder = 1
-          object CompLvlLabel: TLabel
-            Left = 30
-            Height = 18
-            Top = 111
-            Width = 118
-            Caption = 'Compression level'
-            Enabled = False
-            FocusControl = CompressionLevel
-            ParentColor = False
-            OnChangeBounds = LabelResize
-          end
-          object GZipCheck: TCheckBox
-            Left = 14
+          object SaveScriptCheckBox: TCheckBox
+            AnchorSideTop.Side = asrBottom
+            Left = 33
             Height = 21
-            Top = 29
-            Width = 162
-            Caption = 'use gzip compression'
-            OnClick = ZipCheckChange
-            TabOrder = 0
+            Top = 181
+            Width = 113
+            BorderSpacing.Top = 15
+            Caption = 'Save script as'
+            OnClick = SaveScriptCheckBoxClick
+            TabOrder = 5
           end
-          object Bzip2Check: TCheckBox
-            Left = 14
-            Height = 21
-            Top = 67
-            Width = 170
-            Caption = 'use bzip2 compression'
-            OnClick = ZipCheckChange
-            TabOrder = 1
-          end
-          object CompressionLevel: TEdit
-            Left = 30
+          object ScriptFilenameBox: TEdit
+            AnchorSideTop.Control = SaveScriptCheckBox
+            AnchorSideTop.Side = asrBottom
+            Left = 61
             Height = 25
-            Top = 135
-            Width = 80
+            Top = 212
+            Width = 350
+            BorderSpacing.Top = 10
             Enabled = False
-            MaxLength = 1
-            OnExit = CompressionLevelExit
-            TabOrder = 2
-            Text = '9'
+            TabOrder = 6
+          end
+          object ScriptFileButton: TButton
+            AnchorSideTop.Control = ScriptFilenameBox
+            AnchorSideTop.Side = asrCenter
+            Left = 431
+            Height = 30
+            Top = 209
+            Width = 90
+            AutoSize = True
+            Caption = 'Browse'
+            Constraints.MinHeight = 30
+            Constraints.MinWidth = 90
+            Enabled = False
+            OnClick = ScriptFileButtonClick
+            TabOrder = 7
+          end
+          object OpenCreatedArchiveCheck: TCheckBox
+            AnchorSideTop.Side = asrBottom
+            Left = 33
+            Height = 21
+            Top = 145
+            Width = 194
+            BorderSpacing.Top = 15
+            Caption = 'OpenCreatedArchiveCheck'
+            Checked = True
+            State = cbChecked
+            TabOrder = 8
+          end
+          object EncryptArchiveCheck: TCheckBox
+            AnchorSideTop.Control = PauseCheck
+            AnchorSideTop.Side = asrBottom
+            Left = 33
+            Height = 21
+            Top = 109
+            Width = 157
+            BorderSpacing.Top = 15
+            Caption = 'EncryptArchiveCheck'
+            TabOrder = 9
           end
         end
       end
-      object OptionsPage: TPage
-        Caption = 'Options'
-        ClientWidth = 613
-        ClientHeight = 375
-        object SliceMbLabel: TLabel
-          Left = 509
-          Height = 18
-          Top = 52
-          Width = 20
-          Caption = 'Mb'
-          Enabled = False
-          ParentColor = False
-        end
-        object SliceSizeLabel: TLabel
-          Left = 237
-          Height = 32
-          Top = 49
-          Width = 175
-          Alignment = taRightJustify
-          AutoSize = False
-          Caption = 'Slice size'
-          Enabled = False
-          ParentBidiMode = False
-          ParentColor = False
-        end
-        object ReadConfigCheck: TCheckBox
-          Left = 33
-          Height = 21
-          Top = 9
-          Width = 273
-          Caption = 'Attempt to read DAR configuration files'
-          Checked = True
-          State = cbChecked
+      object SchedulePage: TTabSheet
+        Caption = 'SchedulePage'
+        ClientHeight = 395
+        ClientWidth = 636
+        object SchedulePanel: TPanel
+          Left = 0
+          Height = 395
+          Top = 0
+          Width = 636
+          Align = alClient
+          ClientHeight = 395
+          ClientWidth = 636
           TabOrder = 0
-        end
-        object DryRunCheck: TCheckBox
-          Left = 33
-          Height = 21
-          Top = 305
-          Width = 103
-          Caption = 'Test run only'
-          TabOrder = 4
-        end
-        object SlicesCheck: TCheckBox
-          Left = 33
-          Height = 21
-          Top = 49
-          Width = 87
-          Caption = 'Use slices'
-          OnClick = SlicesCheckClick
-          TabOrder = 1
-        end
-        object SliceSize: TEdit
-          Left = 421
-          Height = 25
-          Top = 43
-          Width = 80
-          Enabled = False
-          OnExit = CompressionLwrLimitExit
-          TabOrder = 2
-          Text = '695'
-        end
-        object PauseCheck: TCheckBox
-          Left = 61
-          Height = 21
-          Top = 81
-          Width = 158
-          Caption = 'Pause between slices'
-          Enabled = False
-          TabOrder = 3
-        end
-        object SaveScriptCheckBox: TCheckBox
-          Left = 33
-          Height = 21
-          Top = 188
-          Width = 113
-          Caption = 'Save script as'
-          OnClick = SaveScriptCheckBoxClick
-          TabOrder = 5
-        end
-        object ScriptFilenameBox: TEdit
-          Left = 61
-          Height = 25
-          Top = 221
-          Width = 350
-          Enabled = False
-          TabOrder = 7
-        end
-        object ScriptFileButton: TButton
-          Left = 431
-          Height = 30
-          Top = 218
-          Width = 90
-          AutoSize = True
-          Caption = 'Browse'
-          Constraints.MinHeight = 30
-          Constraints.MinWidth = 90
-          Enabled = False
-          OnClick = ScriptFileButtonClick
-          TabOrder = 8
-        end
-        object OpenCreatedArchiveCheck: TCheckBox
-          Left = 33
-          Height = 21
-          Top = 153
-          Width = 194
-          Caption = 'OpenCreatedArchiveCheck'
-          Checked = True
-          State = cbChecked
-          TabOrder = 6
-        end
-        object EncryptArchiveCheck: TCheckBox
-          Left = 33
-          Height = 21
-          Top = 116
-          Width = 157
-          Caption = 'EncryptArchiveCheck'
-          TabOrder = 9
-        end
-      end
-      object SchedulePage: TPage
-        Caption = 'Scheduling'
-        ClientWidth = 613
-        ClientHeight = 375
-        object NowRadioButton: TRadioButton
-          Left = 35
-          Height = 21
-          Top = 27
-          Width = 128
-          Caption = 'NowRadioButton'
-          Checked = True
-          OnChange = ScheduleRadioChange
-          TabOrder = 0
-          TabStop = True
-        end
-        object RunOnceRadioButton: TRadioButton
-          Left = 35
-          Height = 21
-          Top = 58
-          Width = 128
-          Caption = 'Run once only at'
-          OnChange = ScheduleRadioChange
-          TabOrder = 1
-        end
-        object RepeatRadioButton: TRadioButton
-          Left = 35
-          Height = 21
-          Top = 177
-          Width = 125
-          Caption = 'Run regularily at'
-          OnChange = ScheduleRadioChange
-          TabOrder = 2
-        end
-        object RunOncePanel: TPanel
-          Left = 5
-          Height = 81
-          Top = 89
-          Width = 602
-          BevelOuter = bvNone
-          ClientHeight = 81
-          ClientWidth = 602
-          TabOrder = 3
-          object RunOnceHourLabel: TLabel
-            Left = 65
-            Height = 18
-            Top = 12
-            Width = 122
-            Caption = 'RunOnceHourLabel'
-            Enabled = False
-            FocusControl = RunOnceHourBox
-            ParentColor = False
-            OnChangeBounds = LabelResize
-          end
-          object RunOnceMinuteLabel: TLabel
-            Left = 158
-            Height = 18
-            Top = 12
-            Width = 134
-            Caption = 'RunOnceMinuteLabel'
-            Enabled = False
-            FocusControl = RunOnceMinuteBox
-            ParentColor = False
-            OnChangeBounds = LabelResize
-          end
-          object RunOnceDateLabel: TLabel
-            Left = 273
-            Height = 18
-            Top = 12
-            Width = 122
-            Caption = 'RunOnceDateLabel'
-            Enabled = False
-            FocusControl = RunOnceDateEdit
-            ParentColor = False
-            OnChangeBounds = LabelResize
-          end
-          object RunOnceDateEdit: TDateEdit
-            Left = 273
-            Height = 25
-            Top = 35
-            Width = 112
-            CalendarDisplaySettings = [dsShowHeadings, dsShowDayNames]
-            OnAcceptDate = RunOnceDateEditAcceptDate
-            OKCaption = 'OK'
-            CancelCaption = 'Cancel'
-            DateOrder = doNone
-            ButtonWidth = 23
-            CharCase = ecNormal
-            Glyph.Data = {
-              D6020000424DD60200000000000036000000280000000E0000000C0000000100
-              200000000000A002000064000000640000000000000000000000000000000000
-              000000000000808080FF808080FF808080FF808080FF808080FF808080FF8080
-              80FF808080FF808080FF808080FF808080FF0000000000000000000000FF0000
-              00FF800000FF000000FF800000FF800000FF000000FF800000FF000000FF0000
-              00FF800000FF808080FF0000000000000000808080FF808080FF808080FF8080
-              80FF808080FF808080FF808080FF808080FF808080FF808080FF800000FF8080
-              80FF0000000000000000808080FF000000FF000000FF000000FF808080FF0000
-              00FF000000FF000000FFC0C0C0FF808080FF800000FF808080FF000000000000
-              0000808080FF808080FF000000FF808080FF808080FFC0C0C0FF808080FFC0C0
-              C0FF000000FF808080FF800000FF808080FF0000000000000000808080FF8080
-              80FF000000FF808080FF808080FF808080FF808080FF808080FF000000FF8080
-              80FF800000FF808080FF0000000000000000808080FF808080FF000000FF8080
-              80FF808080FF000000FF000000FF000000FFC0C0C0FF808080FF800000FF8080
-              80FF0000000000000000808080FF000000FF000000FF808080FF808080FF0000
-              00FF808080FF808080FF808080FF808080FF800000FF808080FF000000000000
-              0000808080FF808080FF000000FF808080FF808080FF000000FF000000FF0000
-              00FF000000FF808080FF800000FF808080FF0000000000000000808080FF8080
-              80FF808080FF808080FF808080FF808080FF808080FF808080FF808080FF8080
-              80FF800000FF808080FF0000000000000000808080FFC0C0C0FFC0C0C0FFC0C0
-              C0FFC0C0C0FFC0C0C0FFC0C0C0FFC0C0C0FFC0C0C0FF808080FF800000FF8080
-              80FF0000000000000000000000FF000000FF000000FF000000FF000000FF0000
-              00FF000000FF000000FF000000FF000000FF0000000000000000
-            }
-            NumGlyphs = 1
-            Enabled = False
-            MaxLength = 0
+          object NowRadioButton: TRadioButton
+            Left = 35
+            Height = 21
+            Top = 27
+            Width = 128
+            Caption = 'NowRadioButton'
+            Checked = True
+            OnChange = ScheduleRadioChange
             TabOrder = 0
+            TabStop = True
           end
-          object RunOnceHourBox: TComboBox
-            Left = 65
-            Height = 27
-            Top = 33
-            Width = 70
-            Enabled = False
-            ItemHeight = 0
-            OnExit = ScheduleBoxExit
+          object RunOnceRadioButton: TRadioButton
+            AnchorSideTop.Control = NowRadioButton
+            AnchorSideTop.Side = asrBottom
+            Left = 32
+            Height = 21
+            Top = 68
+            Width = 128
+            BorderSpacing.Top = 20
+            Caption = 'Run once only at'
+            OnChange = ScheduleRadioChange
             TabOrder = 1
           end
-          object RunOnceMinuteBox: TComboBox
-            Left = 158
-            Height = 27
-            Top = 33
-            Width = 70
-            Enabled = False
-            ItemHeight = 0
-            OnExit = ScheduleBoxExit
+          object RepeatRadioButton: TRadioButton
+            AnchorSideTop.Control = RunOncePanel
+            AnchorSideTop.Side = asrBottom
+            Left = 35
+            Height = 21
+            Top = 159
+            Width = 125
+            BorderSpacing.Top = 25
+            Caption = 'Run regularily at'
+            OnChange = ScheduleRadioChange
             TabOrder = 2
           end
-        end
-        object RepeatPanel: TPanel
-          Left = 5
-          Height = 75
-          Top = 209
-          Width = 596
-          BevelOuter = bvNone
-          ClientHeight = 75
-          ClientWidth = 596
-          TabOrder = 4
-          object RepeatHourLabel: TLabel
-            Left = 59
-            Height = 18
-            Top = 12
-            Width = 122
-            Caption = 'RunOnceHourLabel'
-            Enabled = False
-            FocusControl = RepeatHourBox
-            ParentColor = False
-            OnChangeBounds = LabelResize
-          end
-          object RepeatMinuteLabel: TLabel
-            Left = 158
-            Height = 18
-            Top = 12
-            Width = 122
-            Caption = 'RepeatMinuteLabel'
-            Enabled = False
-            FocusControl = RepeatMinuteBox
-            ParentColor = False
-            OnChangeBounds = LabelResize
-          end
-          object RepeatWeekDayLabel: TLabel
-            Left = 243
-            Height = 18
-            Top = 12
-            Width = 137
-            Caption = 'RepeatWeekDayLabel'
-            Enabled = False
-            FocusControl = RepeatWeekDayBox
-            ParentColor = False
-            OnChangeBounds = LabelResize
-          end
-          object RepeatMonthDayLabel: TLabel
-            Left = 371
-            Height = 18
-            Top = 12
-            Width = 144
-            Caption = 'RepeatMonthDayLabel'
-            Enabled = False
-            FocusControl = RepeatMonthDayBox
-            ParentColor = False
-            OnChangeBounds = LabelResize
-          end
-          object RepeatMonthLabel: TLabel
-            Left = 467
-            Height = 18
-            Top = 12
-            Width = 119
-            Caption = 'RepeatMonthLabel'
-            Enabled = False
-            FocusControl = RepeatMonthBox
-            ParentColor = False
-            OnChangeBounds = LabelResize
-          end
-          object RepeatHourBox: TComboBox
-            Left = 59
-            Height = 27
-            Top = 32
-            Width = 70
-            Enabled = False
-            ItemHeight = 0
-            ItemIndex = 0
-            Items.Strings = (
-              '*'
-            )
-            OnExit = ScheduleBoxExit
-            Style = csSimple
-            TabOrder = 0
-            Text = '*'
-          end
-          object RepeatMinuteBox: TComboBox
-            Left = 152
-            Height = 27
-            Top = 32
-            Width = 70
-            Enabled = False
-            ItemHeight = 0
-            ItemIndex = 0
-            Items.Strings = (
-              '*'
-            )
-            OnExit = ScheduleBoxExit
-            TabOrder = 1
-            Text = '*'
-          end
-          object RepeatWeekDayBox: TComboBox
-            Left = 243
-            Height = 27
-            Top = 32
-            Width = 100
-            Enabled = False
-            ItemHeight = 0
-            ItemIndex = 0
-            Items.Strings = (
-              '*'
-            )
-            OnExit = ScheduleBoxExit
-            TabOrder = 2
-            Text = '*'
-          end
-          object RepeatMonthDayBox: TComboBox
-            Left = 371
-            Height = 27
-            Top = 32
-            Width = 70
-            Enabled = False
-            ItemHeight = 0
-            ItemIndex = 0
-            Items.Strings = (
-              '*'
-            )
-            OnExit = ScheduleBoxExit
+          object RunOncePanel: TPanel
+            AnchorSideLeft.Control = SchedulePanel
+            AnchorSideTop.Control = RunOnceRadioButton
+            AnchorSideTop.Side = asrBottom
+            AnchorSideRight.Control = SchedulePanel
+            AnchorSideRight.Side = asrBottom
+            Left = 71
+            Height = 45
+            Top = 89
+            Width = 564
+            Anchors = [akTop, akLeft, akRight]
+            BorderSpacing.Left = 70
+            BevelOuter = bvNone
+            ClientHeight = 45
+            ClientWidth = 564
             TabOrder = 3
-            Text = '*'
+            object RunOnceHourLabel: TLabel
+              Left = 0
+              Height = 18
+              Top = 0
+              Width = 122
+              Caption = 'RunOnceHourLabel'
+              Enabled = False
+              FocusControl = RunOnceHourBox
+              ParentColor = False
+            end
+            object RunOnceMinuteLabel: TLabel
+              AnchorSideLeft.Control = RunOnceHourBox
+              AnchorSideLeft.Side = asrBottom
+              Left = 100
+              Height = 18
+              Top = 0
+              Width = 134
+              BorderSpacing.Left = 20
+              Caption = 'RunOnceMinuteLabel'
+              Enabled = False
+              FocusControl = RunOnceMinuteBox
+              ParentColor = False
+            end
+            object RunOnceDateLabel: TLabel
+              AnchorSideLeft.Control = RunOnceMinuteBox
+              AnchorSideLeft.Side = asrBottom
+              Left = 254
+              Height = 18
+              Top = 0
+              Width = 122
+              BorderSpacing.Left = 20
+              Caption = 'RunOnceDateLabel'
+              Enabled = False
+              FocusControl = RunOnceDateEdit
+              ParentColor = False
+            end
+            object RunOnceDateEdit: TDateEdit
+              AnchorSideLeft.Control = RunOnceDateLabel
+              AnchorSideTop.Control = RunOnceDateLabel
+              AnchorSideTop.Side = asrBottom
+              Left = 254
+              Height = 25
+              Top = 18
+              Width = 150
+              CalendarDisplaySettings = [dsShowHeadings, dsShowDayNames]
+              OnAcceptDate = RunOnceDateEditAcceptDate
+              OKCaption = 'OK'
+              CancelCaption = 'Cancel'
+              DateOrder = doNone
+              ButtonWidth = 23
+              Constraints.MinWidth = 150
+              CharCase = ecNormal
+              Glyph.Data = {
+                D6020000424DD60200000000000036000000280000000E0000000C0000000100
+                200000000000A002000064000000640000000000000000000000000000000000
+                000000000000808080FF808080FF808080FF808080FF808080FF808080FF8080
+                80FF808080FF808080FF808080FF808080FF0000000000000000000000FF0000
+                00FF800000FF000000FF800000FF800000FF000000FF800000FF000000FF0000
+                00FF800000FF808080FF0000000000000000808080FF808080FF808080FF8080
+                80FF808080FF808080FF808080FF808080FF808080FF808080FF800000FF8080
+                80FF0000000000000000808080FF000000FF000000FF000000FF808080FF0000
+                00FF000000FF000000FFC0C0C0FF808080FF800000FF808080FF000000000000
+                0000808080FF808080FF000000FF808080FF808080FFC0C0C0FF808080FFC0C0
+                C0FF000000FF808080FF800000FF808080FF0000000000000000808080FF8080
+                80FF000000FF808080FF808080FF808080FF808080FF808080FF000000FF8080
+                80FF800000FF808080FF0000000000000000808080FF808080FF000000FF8080
+                80FF808080FF000000FF000000FF000000FFC0C0C0FF808080FF800000FF8080
+                80FF0000000000000000808080FF000000FF000000FF808080FF808080FF0000
+                00FF808080FF808080FF808080FF808080FF800000FF808080FF000000000000
+                0000808080FF808080FF000000FF808080FF808080FF000000FF000000FF0000
+                00FF000000FF808080FF800000FF808080FF0000000000000000808080FF8080
+                80FF808080FF808080FF808080FF808080FF808080FF808080FF808080FF8080
+                80FF800000FF808080FF0000000000000000808080FFC0C0C0FFC0C0C0FFC0C0
+                C0FFC0C0C0FFC0C0C0FFC0C0C0FFC0C0C0FFC0C0C0FF808080FF800000FF8080
+                80FF0000000000000000000000FF000000FF000000FF000000FF000000FF0000
+                00FF000000FF000000FF000000FF000000FF0000000000000000
+              }
+              NumGlyphs = 1
+              Enabled = False
+              MaxLength = 0
+              TabOrder = 0
+            end
+            object RunOnceHourBox: TComboBox
+              AnchorSideTop.Control = RunOnceHourLabel
+              AnchorSideTop.Side = asrBottom
+              AnchorSideRight.Control = RunOnceHourLabel
+              Left = 0
+              Height = 27
+              Top = 18
+              Width = 80
+              Anchors = [akTop, akLeft, akRight]
+              Constraints.MinWidth = 80
+              Enabled = False
+              ItemHeight = 0
+              OnExit = ScheduleBoxExit
+              TabOrder = 1
+            end
+            object RunOnceMinuteBox: TComboBox
+              AnchorSideLeft.Control = RunOnceMinuteLabel
+              AnchorSideTop.Control = RunOnceMinuteLabel
+              AnchorSideTop.Side = asrBottom
+              AnchorSideRight.Control = RunOnceMinuteLabel
+              AnchorSideRight.Side = asrBottom
+              Left = 100
+              Height = 27
+              Top = 18
+              Width = 134
+              Anchors = [akTop, akLeft, akRight]
+              Constraints.MinWidth = 80
+              Enabled = False
+              ItemHeight = 0
+              OnExit = ScheduleBoxExit
+              TabOrder = 2
+            end
           end
-          object RepeatMonthBox: TComboBox
-            Left = 467
-            Height = 27
-            Top = 32
-            Width = 100
-            Enabled = False
-            ItemHeight = 0
-            ItemIndex = 0
-            Items.Strings = (
-              '*'
-            )
-            OnExit = ScheduleBoxExit
+          object RepeatPanel: TPanel
+            AnchorSideLeft.Control = SchedulePanel
+            AnchorSideTop.Control = RepeatRadioButton
+            AnchorSideTop.Side = asrBottom
+            AnchorSideRight.Control = SchedulePanel
+            AnchorSideRight.Side = asrBottom
+            Left = 71
+            Height = 45
+            Top = 180
+            Width = 564
+            Anchors = [akTop, akLeft, akRight]
+            BorderSpacing.Left = 70
+            BevelOuter = bvNone
+            ClientHeight = 45
+            ClientWidth = 564
             TabOrder = 4
-            Text = '*'
+            object RepeatHourLabel: TLabel
+              Left = 0
+              Height = 18
+              Top = 0
+              Width = 122
+              Caption = 'RunOnceHourLabel'
+              Enabled = False
+              FocusControl = RepeatHourBox
+              ParentColor = False
+              OnChangeBounds = LabelResize
+            end
+            object RepeatMinuteLabel: TLabel
+              AnchorSideLeft.Control = RepeatHourBox
+              AnchorSideLeft.Side = asrBottom
+              Left = 142
+              Height = 18
+              Top = 0
+              Width = 122
+              BorderSpacing.Left = 20
+              Caption = 'RepeatMinuteLabel'
+              Enabled = False
+              FocusControl = RepeatMinuteBox
+              ParentColor = False
+              OnChangeBounds = LabelResize
+            end
+            object RepeatWeekDayLabel: TLabel
+              AnchorSideLeft.Control = RepeatMinuteBox
+              AnchorSideLeft.Side = asrBottom
+              Left = 284
+              Height = 18
+              Top = 0
+              Width = 137
+              BorderSpacing.Left = 20
+              Caption = 'RepeatWeekDayLabel'
+              Enabled = False
+              FocusControl = RepeatWeekDayBox
+              ParentColor = False
+              OnChangeBounds = LabelResize
+            end
+            object RepeatMonthDayLabel: TLabel
+              AnchorSideLeft.Control = RepeatWeekDayBox
+              AnchorSideLeft.Side = asrBottom
+              Left = 441
+              Height = 18
+              Top = 0
+              Width = 144
+              BorderSpacing.Left = 20
+              Caption = 'RepeatMonthDayLabel'
+              Enabled = False
+              FocusControl = RepeatMonthDayBox
+              ParentColor = False
+              OnChangeBounds = LabelResize
+            end
+            object RepeatMonthLabel: TLabel
+              AnchorSideLeft.Control = RepeatMonthDayBox
+              AnchorSideLeft.Side = asrBottom
+              Left = 605
+              Height = 18
+              Top = 0
+              Width = 119
+              BorderSpacing.Left = 20
+              Caption = 'RepeatMonthLabel'
+              Enabled = False
+              FocusControl = RepeatMonthBox
+              ParentColor = False
+              OnChangeBounds = LabelResize
+            end
+            object RepeatHourBox: TComboBox
+              AnchorSideTop.Control = RepeatHourLabel
+              AnchorSideTop.Side = asrBottom
+              AnchorSideRight.Control = RepeatHourLabel
+              AnchorSideRight.Side = asrBottom
+              Left = 0
+              Height = 27
+              Top = 18
+              Width = 122
+              Anchors = [akTop, akLeft, akRight]
+              Constraints.MinWidth = 60
+              Enabled = False
+              ItemHeight = 0
+              ItemIndex = 0
+              Items.Strings = (
+                '*'
+              )
+              OnExit = ScheduleBoxExit
+              Style = csSimple
+              TabOrder = 0
+              Text = '*'
+            end
+            object RepeatMinuteBox: TComboBox
+              AnchorSideLeft.Control = RepeatMinuteLabel
+              AnchorSideTop.Control = RepeatMinuteLabel
+              AnchorSideTop.Side = asrBottom
+              AnchorSideRight.Control = RepeatMinuteLabel
+              AnchorSideRight.Side = asrBottom
+              Left = 142
+              Height = 27
+              Top = 18
+              Width = 122
+              Anchors = [akTop, akLeft, akRight]
+              Constraints.MinWidth = 60
+              Enabled = False
+              ItemHeight = 0
+              ItemIndex = 0
+              Items.Strings = (
+                '*'
+              )
+              OnExit = ScheduleBoxExit
+              TabOrder = 1
+              Text = '*'
+            end
+            object RepeatWeekDayBox: TComboBox
+              AnchorSideLeft.Control = RepeatWeekDayLabel
+              AnchorSideTop.Control = RepeatWeekDayLabel
+              AnchorSideTop.Side = asrBottom
+              AnchorSideRight.Control = RepeatWeekDayLabel
+              AnchorSideRight.Side = asrBottom
+              Left = 284
+              Height = 27
+              Top = 18
+              Width = 137
+              Anchors = [akTop, akLeft, akRight]
+              Constraints.MinWidth = 60
+              Enabled = False
+              ItemHeight = 0
+              ItemIndex = 0
+              Items.Strings = (
+                '*'
+              )
+              OnExit = ScheduleBoxExit
+              TabOrder = 2
+              Text = '*'
+            end
+            object RepeatMonthDayBox: TComboBox
+              AnchorSideLeft.Control = RepeatMonthDayLabel
+              AnchorSideTop.Control = RepeatMonthDayLabel
+              AnchorSideTop.Side = asrBottom
+              AnchorSideRight.Control = RepeatMonthDayLabel
+              AnchorSideRight.Side = asrBottom
+              Left = 441
+              Height = 27
+              Top = 18
+              Width = 144
+              Anchors = [akTop, akLeft, akRight]
+              Constraints.MinWidth = 60
+              Enabled = False
+              ItemHeight = 0
+              ItemIndex = 0
+              Items.Strings = (
+                '*'
+              )
+              OnExit = ScheduleBoxExit
+              TabOrder = 3
+              Text = '*'
+            end
+            object RepeatMonthBox: TComboBox
+              AnchorSideLeft.Control = RepeatMonthLabel
+              AnchorSideTop.Control = RepeatMonthLabel
+              AnchorSideTop.Side = asrBottom
+              AnchorSideRight.Control = RepeatMonthLabel
+              AnchorSideRight.Side = asrBottom
+              Left = 605
+              Height = 27
+              Top = 18
+              Width = 119
+              Anchors = [akTop, akLeft, akRight]
+              Constraints.MinWidth = 80
+              Enabled = False
+              ItemHeight = 0
+              ItemIndex = 0
+              Items.Strings = (
+                '*'
+              )
+              OnExit = ScheduleBoxExit
+              TabOrder = 4
+              Text = '*'
+            end
           end
         end
       end
