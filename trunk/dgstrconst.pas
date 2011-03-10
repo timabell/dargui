@@ -14,8 +14,8 @@ var
   WeekdayNames: array[1..7] of string;
 
 resourcestring
-rsErrScriptNotSetUp = 'Unable to schedule script execution.%sError when '
-  +'executing at: %s%s';
+rsErrScriptNotSetUp = 'Unable to schedule script execution.' + #10
+  + 'Error when executing at: ' + #10 + '%s';
 //Time
 rsJan = 'Jan';
 rsFeb = 'Feb';
@@ -78,8 +78,8 @@ rsCptRestoringFiles = 'restoring files...';
 rsCptRestoreSelected = 'Restore selected files';
 rsCptDarGUICheckingArchive = 'DarGUI: checking archive integrity...';
 rsScriptExecuteTime = 'DAR script will be executed at %s:%s on %s';
-rsQueryExecuteScript = 'A Dar backup script has been saved to %s%s%sDo you '
-  +'want to execute the script now?';
+rsQueryExecuteScript = 'A Dar backup script has been saved to ' + #10 + '%s' + #10#10
+  + 'Do you want to execute the script now?';
 rsScriptSetUpOK = 'Script successfully scheduled for execution';
 
 
@@ -98,7 +98,7 @@ rsErrDateCannotBeInPast = 'Date cannot be in the past';
 rsButtonCancel = 'Cancel';
 rsEnterPassword = 'Enter Password';
 rsIncorrectPasswordEnt = 'Incorrect password entered';
-rsTheFileIsEncryptedEn = 'The file %s is encrypted. %sEnter the correct password for this archive.';
+rsTheFileIsEncryptedEn = 'The file %s is encrypted. ' + #10 + 'Enter the correct password for this archive.';
 rsSourceArchive = 'Source archive';
 rsSaveCatalogueAs = 'Save catalogue as';
 rsButtonBrowse = 'Browse';
@@ -185,23 +185,23 @@ rsColGroup = ' Group ';
 rsColStatus = ' Status ';
 
 //ArchiveForm
-rsDirectoriesAreExcluded = 'These directories are already selected to be excluded from the archive. %sDo you really want to include them?';
+rsDirectoriesAreExcluded = 'These directories are already selected to be excluded from the archive. ' + #10 + 'Do you really want to include them?';
 rsButtonAddMask = 'Add mask';
-rsDirectoriesAreIncluded = 'These directories are already selected to be included in the archive.%sDo you really want to exclude them?';
-rsFilesAlreadyExcluded = 'These files are already selected to be excluded from the archive.%sDo you really want to include them?';
-rsFilesAlreadyIncluded = 'These files are already selected to be included in the archive.%sDo you really want to exclude them?';
+rsDirectoriesAreIncluded = 'These directories are already selected to be included in the archive.' + #10 + 'Do you really want to exclude them?';
+rsFilesAlreadyExcluded = 'These files are already selected to be excluded from the archive.' + #10 + 'Do you really want to include them?';
+rsFilesAlreadyIncluded = 'These files are already selected to be included in the archive.' + #10 + 'Do you really want to exclude them?';
 rsCptResolveConflict = 'Resolve conflict';
 rsOverwriteExistingArc = 'Overwrite existing archive?';
 rsErrInvalidArchiveName = 'Invalid archive name';
-rsPasswordWarning = 'You have chosen to encrypt this scheduled backup.%sThe '
-  +'password for the encrypted archive will be included in the backup script.%'
-  +'sAre you sure that you want to do this?';
+rsPasswordWarning = 'You have chosen to encrypt this scheduled backup.' + #10 + 'The '
+  +'password for the encrypted archive will be included in the backup script.' + #10#10
+   + 'Are you sure that you want to do this?';
 rsFilterAllFiles = 'All files';
 rsErrInvalidDirectory = 'Invalid directory';
 rsErrRefArchiveNotFound = 'Reference archive not found';
 rsScriptWarning1 = 'The backup script will run every minute on the days '
-  +'selected%sAre you sure that you want to do this?';
-rsScriptWarning2 = 'The backup script will run every minute of every day%sAre '
+  +'selected' + #10 + 'Are you sure that you want to do this?';
+rsScriptWarning2 = 'The backup script will run every minute of every day' + #10 + 'Are '
   +'you sure that you want to do this?';
 rsErrCompressionLevelMust = 'Compression level must be between 0 and 9';
 rsErrInvalidFileSize = 'Invalid number for file size';
@@ -275,10 +275,10 @@ rsMessInvalidArchiveName = 'Invalid archive name';
 rsMessInvalidCatalogueName = 'Invalid catalogue name';
 rsMessUnableToFindArchive = 'Unable to find archive ''%s''';
 rsCptScheduledBackups = 'Scheduled backups';
-rsErrDeletingCron = 'Error when deleting crontab entry: %s%s';
+rsErrDeletingCron = 'Error when deleting crontab entry: ' + #10;
 rsErrDeletingSched = 'Error when deleting scheduled backup';
 rsConfirmCancel = 'Confirm cancellation';
-rsCancelSchedScript = 'Are you sure that you want to cancel scheduled script %s%s';
+rsCancelSchedScript = 'Are you sure that you want to cancel scheduled script ' + #10 + '%s';
 
 // Preferences form
 rsUserPreferen = 'User preferences';

@@ -330,7 +330,6 @@ var
     refarch: string;
     ArchiveStatus: TArchiveOpenStatus;
     dFlag: String;
-
   begin
      try
       Enabled := false;
@@ -453,8 +452,7 @@ var
            then if WriteScript(ArchiveForm.ScriptFilenameBox.Text)
               then
               begin
-                if MessageDlg(Format(rsQueryExecuteScript, [#10,
-                  ArchiveForm.ScriptFilenameBox.Text, #10#10]), mtInformation, [
+                if MessageDlg(Format(rsQueryExecuteScript, [ArchiveForm.ScriptFilenameBox.Text]), mtInformation, [
                   mbYes, mbNo], 0) = mrYes
                  then  begin
                          Proc := TProcess.Create(Application);
@@ -500,8 +498,7 @@ var
                      ArchiveForm.RunOnceDateEdit.Date)]));
                  end
               else
-                 ShowMessage(Format(rsErrScriptNotSetUp, [#10, #10, atresponse])
-                   );
+                 ShowMessage(Format(rsErrScriptNotSetUp, [atresponse]) );
             end;
        end;
   end;
@@ -671,7 +668,6 @@ end;
 procedure TMainForm.RecentMenuClick ( Sender: TObject ) ;
 var
   fn: string;
-  Archivestatus: Tarchiveopenstatus;
 begin
   fn := TMenuItem(Sender).Caption + '.1.dar';
   if FileExists(fn)
@@ -878,7 +874,6 @@ end;
 
 procedure TMainForm.miFileOpenClick(Sender: TObject);
 var
-  fn: String;
   Archivestatus: Tarchiveopenstatus;
 begin
   OpenDialog.Title := rsOpenExisting;

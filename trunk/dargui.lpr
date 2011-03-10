@@ -1,4 +1,4 @@
-{ DarGUI v.0.5.2
+{ DarGUI v.0.5.3
 
   Copyright (C) 2008 Malcolm Poole mgpoole@users.sourceforge.net
 
