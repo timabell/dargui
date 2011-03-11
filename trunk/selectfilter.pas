@@ -18,14 +18,15 @@ type
   TSelectFilterForm = class ( TForm )
     AddFilterButton: TButton;
     CancelButton: TBitBtn;
+    ClearFiltersButton: TButton;
+    DelFilterButton: TButton;
     MatchAllCheck: TCheckBox;
     FileNamesOnlyCheck: TCheckBox;
-    DelFilterButton: TButton;
-    ClearFiltersButton: TButton;
     FilterList: TListBox;
     OKButton: TBitBtn;
     OKCancelPanel: TPanel;
     MainPanel: TPanel;
+    ButtonPanel: TPanel;
     RegExpList: TStringList;
     procedure AddFilterButtonClick ( Sender: TObject ) ;
     procedure ClearFiltersButtonClick ( Sender: TObject ) ;
