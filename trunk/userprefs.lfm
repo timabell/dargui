@@ -71,12 +71,13 @@ object OptionsForm: TOptionsForm
       Caption = 'Display'
       ClientHeight = 306
       ClientWidth = 567
-      object DisplayPanel: TPanel
+      object ScrollBox1: TScrollBox
         Left = 0
         Height = 306
         Top = 0
         Width = 567
         Align = alClient
+        BorderStyle = bsNone
         ClientHeight = 306
         ClientWidth = 567
         TabOrder = 0
@@ -85,7 +86,7 @@ object OptionsForm: TOptionsForm
           AnchorSideTop.Side = asrBottom
           Left = 40
           Height = 25
-          Top = 245
+          Top = 240
           Width = 368
           DialogOptions = []
           FilterIndex = 0
@@ -100,7 +101,7 @@ object OptionsForm: TOptionsForm
           AnchorSideTop.Side = asrBottom
           Left = 40
           Height = 18
-          Top = 227
+          Top = 222
           Width = 112
           BorderSpacing.Top = 15
           Caption = 'DarLocationLabel'
@@ -111,7 +112,7 @@ object OptionsForm: TOptionsForm
           AnchorSideTop.Side = asrBottom
           Left = 40
           Height = 25
-          Top = 187
+          Top = 182
           Width = 368
           DialogOptions = []
           Filter = 'DarGUI Files|*.dargui|All Files|*'
@@ -123,12 +124,13 @@ object OptionsForm: TOptionsForm
           TabOrder = 1
         end
         object DefConfigLabel: TLabel
+          AnchorSideTop.Control = RecentFilesSpinEdit
           AnchorSideTop.Side = asrBottom
           Left = 40
           Height = 18
-          Top = 169
+          Top = 164
           Width = 97
-          BorderSpacing.Top = 15
+          BorderSpacing.Top = 10
           Caption = 'DefConfigLabel'
           ParentColor = False
         end

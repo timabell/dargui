@@ -35,9 +35,9 @@ type
     DisplayPage: TTabSheet;
     OKButton: TBitBtn;
     ButtonPanel: TPanel;
-    DisplayPanel: TPanel;
     RecentFilesSpinEdit: TSpinEdit;
     RememberLbl: TLabel;
+    ScrollBox1: TScrollBox;
     ToolbarCheck: TCheckBox;
     procedure FormCreate(Sender: TObject);
   private
