@@ -27,6 +27,7 @@ object OptionsForm: TOptionsForm
       Top = 16
       Width = 100
       Anchors = [akTop, akRight]
+      AutoSize = True
       Cancel = True
       Caption = 'Cancel'
       Constraints.MinHeight = 35
@@ -80,6 +81,7 @@ object OptionsForm: TOptionsForm
         ClientWidth = 567
         TabOrder = 0
         object DarLocationEdit: TFileNameEdit
+          AnchorSideTop.Control = DarLocationLabel
           AnchorSideTop.Side = asrBottom
           Left = 40
           Height = 25
@@ -94,6 +96,7 @@ object OptionsForm: TOptionsForm
           TabOrder = 0
         end
         object DarLocationLabel: TLabel
+          AnchorSideTop.Control = DefaultConfigEdit
           AnchorSideTop.Side = asrBottom
           Left = 40
           Height = 18
@@ -104,6 +107,7 @@ object OptionsForm: TOptionsForm
           ParentColor = False
         end
         object DefaultConfigEdit: TFileNameEdit
+          AnchorSideTop.Control = DefConfigLabel
           AnchorSideTop.Side = asrBottom
           Left = 40
           Height = 25
@@ -129,7 +133,9 @@ object OptionsForm: TOptionsForm
           ParentColor = False
         end
         object FilesOpenedLbl: TLabel
+          AnchorSideLeft.Control = RecentFilesSpinEdit
           AnchorSideLeft.Side = asrBottom
+          AnchorSideTop.Control = RecentFilesSpinEdit
           AnchorSideTop.Side = asrCenter
           Left = 208
           Height = 18
@@ -140,7 +146,9 @@ object OptionsForm: TOptionsForm
           ParentColor = False
         end
         object RecentFilesSpinEdit: TSpinEdit
+          AnchorSideLeft.Control = RememberLbl
           AnchorSideLeft.Side = asrBottom
+          AnchorSideTop.Control = ToolbarCheck
           AnchorSideTop.Side = asrBottom
           Left = 148
           Height = 25
@@ -165,6 +173,7 @@ object OptionsForm: TOptionsForm
           ParentColor = False
         end
         object ToolbarCheck: TCheckBox
+          AnchorSideTop.Control = MainFormSize
           AnchorSideTop.Side = asrBottom
           Left = 40
           Height = 21
@@ -177,6 +186,7 @@ object OptionsForm: TOptionsForm
           TabOrder = 3
         end
         object MainFormSize: TCheckBox
+          AnchorSideTop.Control = MainFormPosition
           AnchorSideTop.Side = asrBottom
           Left = 40
           Height = 21
