@@ -1,0 +1,43 @@
+{ This is an automatically generated lazarus resource file }
+
+LazarusResources.Add('TForm1','FORMDATA',[
+  'TPF0'#6'TForm1'#5'Form1'#4'Left'#3'D'#1#6'Height'#3#131#1#3'Top'#3#245#0#5'W'
+  +'idth'#3'`'#3#13'ActiveControl'#7#7'Button1'#7'Caption'#6#5'Form1'#12'Client'
+  +'Height'#3#131#1#11'ClientWidth'#3'`'#3#7'OnClose'#7#9'FormClose'#10'LCLVers'
+  +'ion'#6#6'0.9.29'#0#7'TButton'#7'Button1'#4'Left'#2';'#6'Height'#2#25#3'Top'
+  +#2'+'#5'Width'#3#181#0#7'Caption'#6#10'Create VTE'#7'OnClick'#7#12'Button1Cl'
+  +'ick'#8'TabOrder'#2#0#0#0#7'TButton'#7'Button2'#4'Left'#2';'#6'Height'#2#25#3
+  +'Top'#2'P'#5'Width'#3#181#0#7'Caption'#6#11'Destroy VTE'#7'OnClick'#7#12'But'
+  +'ton2Click'#8'TabOrder'#2#1#0#0#7'TButton'#7'Button3'#4'Left'#2'8'#6'Height'
+  +#2#25#3'Top'#3#136#0#5'Width'#3#171#0#7'Caption'#6#7'Execute'#7'OnClick'#7#12
+  +'Button3Click'#8'TabOrder'#2#2#0#0#5'TEdit'#5'Edit1'#4'Left'#3#16#1#6'Height'
+  +#2#25#3'Top'#3#138#0#5'Width'#3#168#1#8'TabOrder'#2#3#4'Text'#6#28'dar -l /h'
+  +'ome/malcolm/test -v'#0#0#7'TButton'#7'Button4'#4'Left'#2'>'#6'Height'#2#25#3
+  +'Top'#3#181#0#5'Width'#3#178#0#7'Caption'#6#7'Send \n'#7'OnClick'#7#12'Butto'
+  +'n4Click'#8'TabOrder'#2#4#0#0#7'TButton'#7'Button5'#4'Left'#3#195#1#6'Height'
+  +#2#25#3'Top'#3#16#1#5'Width'#2'e'#7'Caption'#6#10'Set Colors'#7'OnClick'#7#12
+  +'Button5Click'#8'TabOrder'#2#5#0#0#7'TButton'#7'Button6'#4'Left'#2'>'#6'Heig'
+  +'ht'#2#25#3'Top'#3#217#0#5'Width'#3#178#0#7'Caption'#6#8'Send Esc'#7'OnClick'
+  +#7#12'Button6Click'#8'TabOrder'#2#6#0#0#6'TPanel'#6'Panel1'#4'Left'#3#195#1#6
+  +'Height'#2'"'#3'Top'#3#191#0#5'Width'#2'e'#7'Caption'#6#10'Background'#5'Col'
+  +'or'#7#7'clBlack'#10'Font.Color'#7#8'clYellow'#11'ParentColor'#8#10'ParentFo'
+  +'nt'#8#8'TabOrder'#2#7#7'OnClick'#7#11'Panel1Click'#0#0#6'TPanel'#6'Panel2'#4
+  +'Left'#3#195#1#6'Height'#2'"'#3'Top'#3#232#0#5'Width'#2'e'#7'Caption'#6#9'Te'
+  +'xtColor'#5'Color'#7#7'clWhite'#10'Font.Color'#7#8'clYellow'#11'ParentColor'
+  +#8#10'ParentFont'#8#8'TabOrder'#2#8#7'OnClick'#7#11'Panel1Click'#0#0#7'TButt'
+  +'on'#7'Button7'#4'Left'#3#6#1#6'Height'#2#25#3'Top'#3#25#1#5'Width'#2'K'#7'C'
+  +'aption'#6#7'Button7'#7'OnClick'#7#12'Button7Click'#8'TabOrder'#2#9#0#0#6'TP'
+  +'anel'#6'Panel3'#4'Left'#3#7#1#6'Height'#2'z'#3'Top'#2#7#5'Width'#3'I'#2#7'C'
+  +'aption'#6#6'Panel3'#8'TabOrder'#2#10#0#0#7'TButton'#7'Button8'#4'Left'#2'D'
+  +#6'Height'#2#25#3'Top'#3#16#1#5'Width'#2'K'#7'Caption'#6#7'Button8'#7'OnClic'
+  +'k'#7#12'Button8Click'#8'TabOrder'#2#11#0#0#10'TScrollBox'#10'ScrollBox1'#4
+  +'Left'#3'8'#2#6'Height'#3#195#0#3'Top'#3#181#0#5'Width'#3#24#1#8'AutoSize'#9
+  +#8'TabOrder'#2#12#0#0#12'TColorDialog'#12'ColorDialog1'#5'Color'#7#7'clBlack'
+  +#20'CustomColors.Strings'#1#6#13'ColorA=000000'#6#13'ColorB=000080'#6#13'Col'
+  +'orC=008000'#6#13'ColorD=008080'#6#13'ColorE=800000'#6#13'ColorF=800080'#6#13
+  +'ColorG=808000'#6#13'ColorH=808080'#6#13'ColorI=C0C0C0'#6#13'ColorJ=0000FF'#6
+  +#13'ColorK=00FF00'#6#13'ColorL=00FFFF'#6#13'ColorM=FF0000'#6#13'ColorN=FF00F'
+  +'F'#6#13'ColorO=FFFF00'#6#13'ColorP=FFFFFF'#6#13'ColorQ=C0DCC0'#6#13'ColorR='
+  +'F0CAA6'#6#13'ColorS=F0FBFF'#6#13'ColorT=A4A0A0'#0#4'left'#3#29#2#3'top'#3
+  +#223#0#0#0#0
+]);

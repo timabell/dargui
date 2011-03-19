@@ -1,0 +1,161 @@
+object Form1: TForm1
+  Left = 324
+  Height = 387
+  Top = 245
+  Width = 864
+  ActiveControl = Button1
+  Caption = 'Form1'
+  ClientHeight = 387
+  ClientWidth = 864
+  OnClose = FormClose
+  LCLVersion = '0.9.29'
+  object Button1: TButton
+    Left = 59
+    Height = 25
+    Top = 43
+    Width = 181
+    Caption = 'Create VTE'
+    OnClick = Button1Click
+    TabOrder = 0
+  end
+  object Button2: TButton
+    Left = 59
+    Height = 25
+    Top = 80
+    Width = 181
+    Caption = 'Destroy VTE'
+    OnClick = Button2Click
+    TabOrder = 1
+  end
+  object Button3: TButton
+    Left = 56
+    Height = 25
+    Top = 136
+    Width = 171
+    Caption = 'Execute'
+    OnClick = Button3Click
+    TabOrder = 2
+  end
+  object Edit1: TEdit
+    Left = 272
+    Height = 25
+    Top = 138
+    Width = 424
+    TabOrder = 3
+    Text = 'dar -l /home/malcolm/test -v'
+  end
+  object Button4: TButton
+    Left = 62
+    Height = 25
+    Top = 181
+    Width = 178
+    Caption = 'Send \n'
+    OnClick = Button4Click
+    TabOrder = 4
+  end
+  object Button5: TButton
+    Left = 451
+    Height = 25
+    Top = 272
+    Width = 101
+    Caption = 'Set Colors'
+    OnClick = Button5Click
+    TabOrder = 5
+  end
+  object Button6: TButton
+    Left = 62
+    Height = 25
+    Top = 217
+    Width = 178
+    Caption = 'Send Esc'
+    OnClick = Button6Click
+    TabOrder = 6
+  end
+  object Panel1: TPanel
+    Left = 451
+    Height = 34
+    Top = 191
+    Width = 101
+    Caption = 'Background'
+    Color = clBlack
+    Font.Color = clYellow
+    ParentColor = False
+    ParentFont = False
+    TabOrder = 7
+    OnClick = Panel1Click
+  end
+  object Panel2: TPanel
+    Left = 451
+    Height = 34
+    Top = 232
+    Width = 101
+    Caption = 'TextColor'
+    Color = clWhite
+    Font.Color = clYellow
+    ParentColor = False
+    ParentFont = False
+    TabOrder = 8
+    OnClick = Panel1Click
+  end
+  object Button7: TButton
+    Left = 262
+    Height = 25
+    Top = 281
+    Width = 75
+    Caption = 'Button7'
+    OnClick = Button7Click
+    TabOrder = 9
+  end
+  object Panel3: TPanel
+    Left = 263
+    Height = 122
+    Top = 7
+    Width = 585
+    Caption = 'Panel3'
+    TabOrder = 10
+  end
+  object Button8: TButton
+    Left = 68
+    Height = 25
+    Top = 272
+    Width = 75
+    Caption = 'Button8'
+    OnClick = Button8Click
+    TabOrder = 11
+  end
+  object ScrollBox1: TScrollBox
+    Left = 568
+    Height = 195
+    Top = 181
+    Width = 280
+    AutoSize = True
+    TabOrder = 12
+  end
+  object ColorDialog1: TColorDialog
+    Color = clBlack
+    CustomColors.Strings = (
+      'ColorA=000000'
+      'ColorB=000080'
+      'ColorC=008000'
+      'ColorD=008080'
+      'ColorE=800000'
+      'ColorF=800080'
+      'ColorG=808000'
+      'ColorH=808080'
+      'ColorI=C0C0C0'
+      'ColorJ=0000FF'
+      'ColorK=00FF00'
+      'ColorL=00FFFF'
+      'ColorM=FF0000'
+      'ColorN=FF00FF'
+      'ColorO=FFFF00'
+      'ColorP=FFFFFF'
+      'ColorQ=C0DCC0'
+      'ColorR=F0CAA6'
+      'ColorS=F0FBFF'
+      'ColorT=A4A0A0'
+    )
+    left = 541
+    top = 223
+  end
+end
