@@ -1,6 +1,11 @@
 unit vte;
 interface
 uses glib2, pango, gdk2, gtk2, gdk2pixbuf;
+
+{$DEFINE VTEVERSION_17}  // remove this define if compiling for libvte9 < 0.17.6
+{$DEFINE VTEVERSION_20}  // remove this define if compiling for libvte9 < 0.20
+{$DEFINE VTEVERSION_26}  // remove this define if compiling for libvte9 < 0.26
+
 {$H+}
 {$linklib vte}
 const
@@ -18,13 +23,40 @@ const
 type
  pid_t = Integer;
  PVteTerminal = PGtkWidget;
- PVteTerminalEraseBinding = ^TVteTerminalEraseBinding;
  TVteTerminalEraseBinding = (VTE_ERASE_AUTO,VTE_ERASE_ASCII_BACKSPACE,VTE_ERASE_ASCII_DELETE,VTE_ERASE_DELETE_SEQUENCE);
- PVteTerminalAntiAlias = ^TVteTerminalAntiAlias;
+ TVteTerminalCursorBlinkMode = (VTE_CURSOR_BLINK_SYSTEM, VTE_CURSOR_BLINK_ON, VTE_CURSOR_BLINK_OFF);
  TVteTerminalAntiAlias = (VTE_ANTI_ALIAS_USE_DEFAULT,VTE_ANTI_ALIAS_FORCE_ENABLE,VTE_ANTI_ALIAS_FORCE_DISABLE);
+ TVteTerminalCursorShape = (VTE_CURSOR_SHAPE_BLOCK, VTE_CURSOR_SHAPE_IBEAM, VTE_CURSOR_SHAPE_UNDERLINE);
+
+ PVtePty = Pointer;
+
+ TVtePtyFlags = (VTE_PTY_NO_LASTLOG  = 1 shl 0,
+                 VTE_PTY_NO_UTMP     = 1 shl 1,
+                 VTE_PTY_NO_WTMP     = 1 shl 2,
+                 VTE_PTY_NO_HELPER   = 1 shl 3,
+                 VTE_PTY_NO_FALLBACK = 1 shl 4,
+                 VTE_PTY_DEFAULT     = 0);
+
+ TGSpawnFlags = (G_SPAWN_LEAVE_DESCRIPTORS_OPEN = 1 shl 0,
+                 G_SPAWN_DO_NOT_REAP_CHILD      = 1 shl 1,
+                 // look for argv[0] in the path i.e. use execvp()
+                 G_SPAWN_SEARCH_PATH            = 1 shl 2,
+                 // Dump output to /dev/null
+                 G_SPAWN_STDOUT_TO_DEV_NULL     = 1 shl 3,
+                 G_SPAWN_STDERR_TO_DEV_NULL     = 1 shl 4,
+                 G_SPAWN_CHILD_INHERITS_STDIN   = 1 shl 5,
+                 G_SPAWN_FILE_AND_ARGV_ZERO     = 1 shl 6 );
+
+  PGRegex = Pointer;
+
 
     { You can get by with just these two functions.  }
     function vte_terminal_new:PGtkWidget;cdecl;external External_library name 'vte_terminal_new';
+
+    {void        vte_terminal_im_append_menuitems
+                                            (VteTerminal *terminal,
+                                             GtkMenuShell *menushell);
+}
 
     function vte_terminal_fork_command(terminal:PVteTerminal; command:Pchar; argv:PPchar; envv:PPchar; directory:Pchar; 
                lastlog:gboolean; utmp:gboolean; wtmp:gboolean):pid_t;cdecl;external External_library name 'vte_terminal_fork_command';
@@ -247,7 +279,77 @@ type
 (* Const before type ignored *)
     function vte_terminal_get_icon_title(terminal:PVteTerminal):Pchar;cdecl;external External_library name 'vte_terminal_get_icon_title';
 
-    function vte_terminal_get_child_exit_status  (terminal:PVteTerminal):glong;cdecl;external External_library name 'vte_terminal_get_child_exit_status';
+    {$IFDEF VTEVERSION_17}
+    function vte_terminal_get_cursor_shape(terminal:PVteTerminal):TVteTerminalCursorShape;cdecl;external External_library name 'vte_terminal_get_cursor_shape';
+    {$ENDIF}
+
+    {$IFDEF VTEVERSION_20}
+    function vte_terminal_get_child_exit_status(terminal:PVteTerminal):glong;cdecl;external External_library name 'vte_terminal_get_child_exit_status';
+
+    function vte_terminal_get_pty (terminal:PVteTerminal):gint;cdecl;external External_library name 'vte_terminal_get_pty';
+    {vte_terminal_get_pty has been deprecated since version 0.26 and should not be used in newly-written code.
+    Use vte_terminal_get_pty_object() and vte_pty_get_fd()}
+
+    procedure vte_terminal_set_cursor_shape(terminal:PVteTerminal; shape: TVteTerminalCursorShape);cdecl;external External_library name 'vte_terminal_set_cursor_shape';
+    {$ENDIF}
+
+    {$IFDEF VTEVERSION_24}
+
+{    gboolean            vte_terminal_write_contents         (VteTerminal *terminal,
+                                                         GOutputStream *stream,
+                                                         VteTerminalWriteFlags flags,
+                                                         GCancellable *cancellable,
+                                                         GError **error);}
+    {$ENDIF}
+    {$IFDEF VTEVERSION_26}    //all untested unless marked otherwise
+    function vte_terminal_fork_command_full(terminal:PVteTerminal;
+                                            pty_flags: TVtePtyFlags;
+                                            working_directory: Pchar;
+                                            argv: PPchar;
+                                            envv: PPchar;
+                                            spawn_flags: TGSpawnFlags;
+                                            child_setup: pointer; //pointer to GSpawnChildSetupFunc
+                                            child_setup_data: gpointer;
+                                            child_pid: gint;
+                                            error: PGError): Boolean;cdecl;external External_library name 'vte_terminal_fork_command_full';
+
+    function vte_terminal_get_pty_object(terminal:PVteTerminal): PVtePty; cdecl;external External_library name 'vte_terminal_get_pty_object';
+
+    function vte_terminal_pty_new(terminal:PVteTerminal; flags: TVtePtyFlags; error: PGError): PVtePty; cdecl;external External_library name 'vte_terminal_pty_new';
+
+    function vte_terminal_search_find_next(terminal:PVteTerminal): gboolean;cdecl;external External_library name 'vte_terminal_search_find_next';
+
+    function vte_terminal_search_find_previous(terminal:PVteTerminal): gboolean;cdecl;external External_library name 'vte_terminal_search_find_previous';
+
+    function vte_terminal_search_get_gregex(terminal:PVteTerminal): PGRegex;cdecl;external External_library name 'vte_terminal_search_get_gregex';
+
+    function vte_terminal_search_get_wrap_around (terminal:PVteTerminal): gboolean;cdecl;external External_library name 'vte_terminal_search_get_wrap_around';
+
+    procedure vte_terminal_search_set_gregex(terminal:PVteTerminal; regex: PGRegex); cdecl;external External_library name 'vte_terminal_search_set_gregex';
+
+    procedure vte_terminal_search_set_wrap_around (terminal:PVteTerminal; wrap_around: gboolean); cdecl;external External_library name 'vte_terminal_search_set_wrap_around';
+
+    procedure vte_terminal_watch_child(terminal:PVteTerminal; child_pid: gint); cdecl;external External_library name 'vte_terminal_watch_child';
+
+    { Vte-Pty }
+    function vte_pty_new (flags: TVtePtyFlags; error: PGError): PVtePty; cdecl;external External_library name 'vte_pty_new';
+
+    function vte_pty_new_foreign(fd: gint; error: PGError): PVtePty; cdecl;external External_library name 'vte_pty_new_foreign';
+
+    procedure vte_pty_close(pty: PVtePty); cdecl;external External_library name 'vte_pty_close';
+
+    procedure vte_pty_child_setup(pty: PVtePty); cdecl;external External_library name 'vte_pty_child_setup';
+
+    function vte_pty_get_fd(pty: PVtePty): gint; cdecl;external External_library name 'vte_pty_get_fd';
+
+    function vte_pty_set_size(pty: PVtePty; rows: gint; columns: gint; error: PGError): gboolean; cdecl;external External_library name 'vte_pty_set_size';
+
+    function vte_pty_get_size(pty: PVtePty; rows: Pgint; columns: Pgint; error: PGError): gboolean; cdecl;external External_library name 'vte_pty_get_size';
+
+    procedure vte_pty_set_term(pty: PVtePty; emulation: PChar);cdecl;external External_library name 'vte_pty_set_term';
+
+    function vte_pty_set_utf8(pty: PVtePty; utf8: gboolean; error: PGError): gboolean; cdecl;external External_library name 'vte_pty_set_utf8';
+{$ENDIF}
 
 implementation
 

@@ -2,6 +2,8 @@ unit VTETerminal;
 
 {$mode objfpc}{$H+}
 
+{$DEFINE VTEVERSION_20}  // remove this define if compiling for libvte9 < 0.20
+
 interface
 
 uses
@@ -425,8 +427,13 @@ procedure TCustomVTETerminal.DoSizeAllocate ( terminalwidth,
   end;
 
 procedure TCustomVTETerminal.DoProcessExit;
+var
+  exitcode: byte;
 begin
+  exitcode := -1;
+  {$IFDEF VTEVERSION_20}   // libvte9 >0.19 necessary to obtain exit status of child
   exitcode := vte_terminal_get_child_exit_status( Vte ) shr 8;
+  {$ENDIF}
   writeln('exit signal: ', exitcode);
   if Assigned(OnProcessExit)
      then OnProcessExit(Self, exitcode) ;
