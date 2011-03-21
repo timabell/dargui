@@ -1,0 +1,799 @@
+<?xml version="1.0"?>
+<CONFIG>
+  <ProjectOptions>
+    <Version Value="9"/>
+    <General>
+      <MainUnit Value="0"/>
+      <UseXPManifest Value="True"/>
+      <Icon Value="0"/>
+      <ActiveWindowIndexAtStart Value="0"/>
+    </General>
+    <VersionInfo>
+      <Language Value=""/>
+      <CharSet Value=""/>
+      <StringTable ProductVersion=""/>
+    </VersionInfo>
+    <PublishOptions>
+      <Version Value="2"/>
+      <IgnoreBinaries Value="False"/>
+      <IncludeFileFilter Value="*.(pas|pp|inc|lfm|lpr|lrs|lpi|lpk|sh|xml)"/>
+      <ExcludeFileFilter Value="*.(bak|ppu|ppw|o|so);*~;backup"/>
+    </PublishOptions>
+    <RunParams>
+      <local>
+        <FormatVersion Value="1"/>
+        <LaunchingApplication Use="True" PathPlusParams="/usr/bin/xterm -T 'Lazarus Run Output' -e $(LazarusDir)/tools/runwait.sh $(TargetCmdLine)"/>
+      </local>
+    </RunParams>
+    <RequiredPackages Count="1">
+      <Item1>
+        <PackageName Value="LCL"/>
+      </Item1>
+    </RequiredPackages>
+    <Units Count="82">
+      <Unit0>
+        <Filename Value="testvte.lpr"/>
+        <IsPartOfProject Value="True"/>
+        <UnitName Value="testvte"/>
+        <EditorIndex Value="3"/>
+        <WindowIndex Value="0"/>
+        <TopLine Value="1"/>
+        <CursorPos X="27" Y="8"/>
+        <UsageCount Value="146"/>
+        <Loaded Value="True"/>
+        <LoadedDesigner Value="True"/>
+      </Unit0>
+      <Unit1>
+        <Filename Value="unit1.pas"/>
+        <IsPartOfProject Value="True"/>
+        <ComponentName Value="VTEDemoForm"/>
+        <ResourceBaseClass Value="Form"/>
+        <UnitName Value="Unit1"/>
+        <IsVisibleTab Value="True"/>
+        <EditorIndex Value="7"/>
+        <WindowIndex Value="0"/>
+        <TopLine Value="27"/>
+        <CursorPos X="50" Y="45"/>
+        <UsageCount Value="146"/>
+        <Loaded Value="True"/>
+        <LoadedDesigner Value="True"/>
+      </Unit1>
+      <Unit2>
+        <Filename Value="vteterminal.pas"/>
+        <UnitName Value="VTETerminal"/>
+        <EditorIndex Value="0"/>
+        <WindowIndex Value="0"/>
+        <TopLine Value="193"/>
+        <CursorPos X="46" Y="211"/>
+        <UsageCount Value="71"/>
+        <Loaded Value="True"/>
+      </Unit2>
+      <Unit3>
+        <Filename Value="vte.pas"/>
+        <UnitName Value="vte"/>
+        <EditorIndex Value="4"/>
+        <WindowIndex Value="0"/>
+        <TopLine Value="34"/>
+        <CursorPos X="1" Y="46"/>
+        <UsageCount Value="71"/>
+        <Loaded Value="True"/>
+      </Unit3>
+      <Unit4>
+        <Filename Value="/usr/share/fpcsrc/packages/gtk2/src/gtk+/gdk/gdkcolor.inc"/>
+        <TopLine Value="1"/>
+        <CursorPos X="4" Y="11"/>
+        <UsageCount Value="6"/>
+      </Unit4>
+      <Unit5>
+        <Filename Value="/usr/share/fpcsrc/packages/gtk2/src/gtk+/gtk/gtk2.pas"/>
+        <UnitName Value="gtk2"/>
+        <TopLine Value="130"/>
+        <CursorPos X="18" Y="159"/>
+        <UsageCount Value="4"/>
+      </Unit5>
+      <Unit6>
+        <Filename Value="/usr/share/fpcsrc/packages/gtk2/src/gtk+/gtk/gtkincludes.inc"/>
+        <TopLine Value="131"/>
+        <CursorPos X="1" Y="1"/>
+        <UsageCount Value="4"/>
+      </Unit6>
+      <Unit7>
+        <Filename Value="../../lazarus_svn/lcl/graphics.pp"/>
+        <UnitName Value="Graphics"/>
+        <TopLine Value="242"/>
+        <CursorPos X="3" Y="258"/>
+        <UsageCount Value="6"/>
+      </Unit7>
+      <Unit8>
+        <Filename Value="../../lazarus_svn/lcl/graphtype.pp"/>
+        <UnitName Value="GraphType"/>
+        <TopLine Value="11"/>
+        <CursorPos X="3" Y="39"/>
+        <UsageCount Value="6"/>
+      </Unit8>
+      <Unit9>
+        <Filename Value="/usr/share/fpc-2.2.2/fpcsrc/packages/graph/src/win32/graph.pp"/>
+        <UnitName Value="Graph"/>
+        <TopLine Value="25"/>
+        <CursorPos X="5" Y="21"/>
+        <UsageCount Value="4"/>
+      </Unit9>
+      <Unit10>
+        <Filename Value="/usr/share/fpcsrc/rtl/inc/objpash.inc"/>
+        <TopLine Value="130"/>
+        <CursorPos X="21" Y="156"/>
+        <UsageCount Value="4"/>
+      </Unit10>
+      <Unit11>
+        <Filename Value="/usr/share/fpcsrc/rtl/inc/objpas.inc"/>
+        <TopLine Value="147"/>
+        <CursorPos X="12" Y="150"/>
+        <UsageCount Value="4"/>
+      </Unit11>
+      <Unit12>
+        <Filename Value="/usr/share/fpc-2.2.2/fpcsrc/tests/test/texception10.pp"/>
+        <UnitName Value="texception10"/>
+        <TopLine Value="13"/>
+        <CursorPos X="11" Y="30"/>
+        <UsageCount Value="4"/>
+      </Unit12>
+      <Unit13>
+        <Filename Value="/usr/share/fpc-2.2.2/fpcsrc/tests/utils/testsuite/utests.pp"/>
+        <UnitName Value="utests"/>
+        <TopLine Value="1251"/>
+        <CursorPos X="86" Y="1268"/>
+        <UsageCount Value="4"/>
+      </Unit13>
+      <Unit14>
+        <Filename Value="/usr/share/fpcsrc/rtl/unix/baseunix.pp"/>
+        <UnitName Value="BaseUnix"/>
+        <TopLine Value="1"/>
+        <CursorPos X="1" Y="1"/>
+        <UsageCount Value="4"/>
+      </Unit14>
+      <Unit15>
+        <Filename Value="/usr/share/fpcsrc/packages/gtk2/src/gtk+/gtk/gtkwindow.inc"/>
+        <TopLine Value="164"/>
+        <CursorPos X="31" Y="181"/>
+        <UsageCount Value="4"/>
+      </Unit15>
+      <Unit16>
+        <Filename Value="../lazarus_svn/lcl/forms.pp"/>
+        <UnitName Value="Forms"/>
+        <WindowIndex Value="0"/>
+        <TopLine Value="50"/>
+        <CursorPos X="3" Y="68"/>
+        <UsageCount Value="10"/>
+      </Unit16>
+      <Unit17>
+        <Filename Value="/usr/share/fpcsrc/2.2.4/rtl/objpas/classes/classesh.inc"/>
+        <TopLine Value="1387"/>
+        <CursorPos X="15" Y="1400"/>
+        <UsageCount Value="12"/>
+      </Unit17>
+      <Unit18>
+        <Filename Value="../lazarus_svn/lcl/interfaces/gtk2/gtk2wsdialogs.pp"/>
+        <UnitName Value="Gtk2WSDialogs"/>
+        <TopLine Value="560"/>
+        <CursorPos X="10" Y="574"/>
+        <UsageCount Value="4"/>
+      </Unit18>
+      <Unit19>
+        <Filename Value="/usr/share/fpcsrc/2.2.4/packages/gtk2/src/gtk+/gtk/gtktypeutils.inc"/>
+        <TopLine Value="155"/>
+        <CursorPos X="10" Y="169"/>
+        <UsageCount Value="4"/>
+      </Unit19>
+      <Unit20>
+        <Filename Value="/usr/share/fpcsrc/2.2.4/packages/fcl-process/src/process.pp"/>
+        <UnitName Value="process"/>
+        <TopLine Value="302"/>
+        <CursorPos X="1" Y="1"/>
+        <UsageCount Value="11"/>
+      </Unit20>
+      <Unit21>
+        <Filename Value="/usr/share/fpcsrc/2.2.4/packages/fcl-process/src/unix/process.inc"/>
+        <TopLine Value="286"/>
+        <CursorPos X="17" Y="208"/>
+        <UsageCount Value="6"/>
+      </Unit21>
+      <Unit22>
+        <Filename Value="/usr/share/fpcsrc/2.2.4/packages/fcl-process/src/pipes.pp"/>
+        <UnitName Value="Pipes"/>
+        <TopLine Value="34"/>
+        <CursorPos X="10" Y="48"/>
+        <UsageCount Value="6"/>
+      </Unit22>
+      <Unit23>
+        <Filename Value="/usr/share/fpcsrc/2.2.4/packages/fcl-process/src/unix/pipes.inc"/>
+        <TopLine Value="1"/>
+        <CursorPos X="54" Y="19"/>
+        <UsageCount Value="6"/>
+      </Unit23>
+      <Unit24>
+        <Filename Value="/usr/share/fpcsrc/2.2.4/rtl/unix/bunxh.inc"/>
+        <TopLine Value="22"/>
+        <CursorPos X="15" Y="36"/>
+        <UsageCount Value="4"/>
+      </Unit24>
+      <Unit25>
+        <Filename Value="/usr/share/fpcsrc/2.2.4/rtl/inc/varianth.inc"/>
+        <TopLine Value="440"/>
+        <CursorPos X="10" Y="457"/>
+        <UsageCount Value="4"/>
+      </Unit25>
+      <Unit26>
+        <Filename Value="/usr/share/fpcsrc/2.2.4/rtl/inc/objpash.inc"/>
+        <TopLine Value="142"/>
+        <CursorPos X="21" Y="160"/>
+        <UsageCount Value="7"/>
+      </Unit26>
+      <Unit27>
+        <Filename Value="/usr/share/fpcsrc/2.2.4/rtl/inc/objpas.inc"/>
+        <TopLine Value="147"/>
+        <CursorPos X="12" Y="150"/>
+        <UsageCount Value="7"/>
+      </Unit27>
+      <Unit28>
+        <Filename Value="../lazarus_svn/lcl/include/control.inc"/>
+        <TopLine Value="1565"/>
+        <CursorPos X="1" Y="1583"/>
+        <UsageCount Value="7"/>
+      </Unit28>
+      <Unit29>
+        <Filename Value="vteterminal (copy).pas"/>
+        <TopLine Value="331"/>
+        <CursorPos X="1" Y="344"/>
+        <UsageCount Value="5"/>
+      </Unit29>
+      <Unit30>
+        <Filename Value="/usr/share/fpcsrc/2.2.4/rtl/objpas/sysutils/filutilh.inc"/>
+        <TopLine Value="39"/>
+        <CursorPos X="43" Y="70"/>
+        <UsageCount Value="7"/>
+      </Unit30>
+      <Unit31>
+        <Filename Value="/usr/share/fpcsrc/2.2.4/rtl/unix/sysutils.pp"/>
+        <UnitName Value="sysutils"/>
+        <TopLine Value="275"/>
+        <CursorPos X="3" Y="278"/>
+        <UsageCount Value="14"/>
+      </Unit31>
+      <Unit32>
+        <Filename Value="../../lazarus/dargui/darintf.pas"/>
+        <UnitName Value="darintf"/>
+        <TopLine Value="219"/>
+        <CursorPos X="16" Y="236"/>
+        <UsageCount Value="14"/>
+      </Unit32>
+      <Unit33>
+        <Filename Value="/usr/share/fpcsrc/2.2.4/rtl/objpas/classes/streams.inc"/>
+        <TopLine Value="445"/>
+        <CursorPos X="41" Y="452"/>
+        <UsageCount Value="10"/>
+      </Unit33>
+      <Unit34>
+        <Filename Value="/usr/share/fpcsrc/2.2.4/packages/fcl-process/src/unix/simpleipc.inc"/>
+        <TopLine Value="92"/>
+        <CursorPos X="49" Y="129"/>
+        <UsageCount Value="9"/>
+      </Unit34>
+      <Unit35>
+        <Filename Value="/usr/share/fpcsrc/2.2.4/rtl/unix/tthread.inc"/>
+        <TopLine Value="244"/>
+        <CursorPos X="3" Y="191"/>
+        <UsageCount Value="5"/>
+      </Unit35>
+      <Unit36>
+        <Filename Value="/usr/share/fpcsrc/2.2.4/rtl/freebsd/unxfunc.inc"/>
+        <TopLine Value="23"/>
+        <CursorPos X="52" Y="46"/>
+        <UsageCount Value="5"/>
+      </Unit36>
+      <Unit37>
+        <Filename Value="/usr/share/fpcsrc/2.2.4/packages/gtk2/src/gtk+/gtk/gtkwidget.inc"/>
+        <TopLine Value="311"/>
+        <CursorPos X="11" Y="329"/>
+        <UsageCount Value="6"/>
+      </Unit37>
+      <Unit38>
+        <Filename Value="../lazarus_svn/lcl/include/buttoncontrol.inc"/>
+        <TopLine Value="34"/>
+        <CursorPos X="1" Y="53"/>
+        <UsageCount Value="7"/>
+      </Unit38>
+      <Unit39>
+        <Filename Value="../lazarus_svn/lcl/include/buttons.inc"/>
+        <TopLine Value="223"/>
+        <CursorPos X="1" Y="241"/>
+        <UsageCount Value="7"/>
+      </Unit39>
+      <Unit40>
+        <Filename Value="../lazarus_svn/lcl/include/wincontrol.inc"/>
+        <WindowIndex Value="0"/>
+        <TopLine Value="7554"/>
+        <CursorPos X="3" Y="7563"/>
+        <UsageCount Value="10"/>
+      </Unit40>
+      <Unit41>
+        <Filename Value="../lazarus_svn/lcl/lclmessageglue.pas"/>
+        <UnitName Value="LCLMessageGlue"/>
+        <TopLine Value="91"/>
+        <CursorPos X="1" Y="109"/>
+        <UsageCount Value="7"/>
+      </Unit41>
+      <Unit42>
+        <Filename Value="../lazarus_svn/lcl/interfaces/gtk2/gtk2wsstdctrls.pp"/>
+        <UnitName Value="Gtk2WSStdCtrls"/>
+        <TopLine Value="1634"/>
+        <CursorPos X="1" Y="1653"/>
+        <UsageCount Value="7"/>
+      </Unit42>
+      <Unit43>
+        <Filename Value="/media/data1/Projects/testvte/vteterminal.pas"/>
+        <UnitName Value="VTETerminal"/>
+        <WindowIndex Value="0"/>
+        <TopLine Value="142"/>
+        <CursorPos X="1" Y="161"/>
+        <UsageCount Value="7"/>
+      </Unit43>
+      <Unit44>
+        <Filename Value="../../lazarus/dargui/trunk/darintf.pas"/>
+        <UnitName Value="darintf"/>
+        <WindowIndex Value="0"/>
+        <TopLine Value="1"/>
+        <CursorPos X="1" Y="1"/>
+        <UsageCount Value="10"/>
+      </Unit44>
+      <Unit45>
+        <Filename Value="/media/data1/fpc-2.4.0-src/rtl/inc/systemh.inc"/>
+        <WindowIndex Value="0"/>
+        <TopLine Value="1002"/>
+        <CursorPos X="10" Y="1020"/>
+        <UsageCount Value="13"/>
+      </Unit45>
+      <Unit46>
+        <Filename Value="/media/data1/fpc-2.4.0-src/rtl/inc/system.inc"/>
+        <WindowIndex Value="0"/>
+        <TopLine Value="1126"/>
+        <CursorPos X="3" Y="1122"/>
+        <UsageCount Value="13"/>
+      </Unit46>
+      <Unit47>
+        <Filename Value="../../lazarus/GtkMozEmbed/testgtk.lpr"/>
+        <UnitName Value="Testgtk"/>
+        <WindowIndex Value="0"/>
+        <TopLine Value="204"/>
+        <CursorPos X="17" Y="212"/>
+        <UsageCount Value="30"/>
+      </Unit47>
+      <Unit48>
+        <Filename Value="/media/data1/fpc-2.4.0-src/rtl/unix/bunxh.inc"/>
+        <WindowIndex Value="0"/>
+        <TopLine Value="43"/>
+        <CursorPos X="15" Y="65"/>
+        <UsageCount Value="14"/>
+      </Unit48>
+      <Unit49>
+        <Filename Value="/media/data1/fpc-2.4.0-src/rtl/linux/bunxsysc.inc"/>
+        <WindowIndex Value="0"/>
+        <TopLine Value="18"/>
+        <CursorPos X="21" Y="18"/>
+        <UsageCount Value="14"/>
+      </Unit49>
+      <Unit50>
+        <Filename Value="/media/data1/fpc-2.4.0-src/rtl/objpas/classes/classesh.inc"/>
+        <WindowIndex Value="0"/>
+        <TopLine Value="77"/>
+        <CursorPos X="3" Y="95"/>
+        <UsageCount Value="11"/>
+      </Unit50>
+      <Unit51>
+        <Filename Value="/media/data1/fpc-2.4.0-src/rtl/inc/objpash.inc"/>
+        <WindowIndex Value="0"/>
+        <TopLine Value="162"/>
+        <CursorPos X="21" Y="184"/>
+        <UsageCount Value="9"/>
+      </Unit51>
+      <Unit52>
+        <Filename Value="/media/data1/fpc-2.4.0-src/packages/gtk2/src/gtk+/gdk/gdkcolor.inc"/>
+        <WindowIndex Value="0"/>
+        <TopLine Value="30"/>
+        <CursorPos X="4" Y="12"/>
+        <UsageCount Value="10"/>
+      </Unit52>
+      <Unit53>
+        <Filename Value="../lazarus_svn/lcl/graphics.pp"/>
+        <UnitName Value="Graphics"/>
+        <WindowIndex Value="0"/>
+        <TopLine Value="231"/>
+        <CursorPos X="3" Y="239"/>
+        <UsageCount Value="12"/>
+      </Unit53>
+      <Unit54>
+        <Filename Value="../lazarus_svn/lcl/graphtype.pp"/>
+        <UnitName Value="GraphType"/>
+        <WindowIndex Value="0"/>
+        <TopLine Value="17"/>
+        <CursorPos X="3" Y="39"/>
+        <UsageCount Value="9"/>
+      </Unit54>
+      <Unit55>
+        <Filename Value="/media/data1/fpc-2.4.0-src/packages/gtk2/src/gtk2x11/gdk2x.pas"/>
+        <UnitName Value="gdk2x"/>
+        <WindowIndex Value="0"/>
+        <TopLine Value="1"/>
+        <CursorPos X="1" Y="1"/>
+        <UsageCount Value="9"/>
+      </Unit55>
+      <Unit56>
+        <Filename Value="/media/data1/fpc-2.4.0-src/packages/gtk2/src/gtk+/gdk/gdkevents.inc"/>
+        <WindowIndex Value="0"/>
+        <TopLine Value="316"/>
+        <CursorPos X="4" Y="334"/>
+        <UsageCount Value="12"/>
+      </Unit56>
+      <Unit57>
+        <Filename Value="/media/data1/fpc-2.4.0-src/packages/gtk2/src/gtk2x11/include/gdkx.inc"/>
+        <WindowIndex Value="0"/>
+        <TopLine Value="25"/>
+        <CursorPos X="54" Y="43"/>
+        <UsageCount Value="9"/>
+      </Unit57>
+      <Unit58>
+        <Filename Value="/media/data1/fpc-2.4.0-src/packages/x11/src/x.pp"/>
+        <UnitName Value="x"/>
+        <WindowIndex Value="0"/>
+        <TopLine Value="1"/>
+        <CursorPos X="14" Y="41"/>
+        <UsageCount Value="9"/>
+      </Unit58>
+      <Unit59>
+        <Filename Value="/media/data1/fpc-2.4.0-src/rtl/unix/aliasctp.inc"/>
+        <WindowIndex Value="0"/>
+        <TopLine Value="15"/>
+        <CursorPos X="3" Y="33"/>
+        <UsageCount Value="10"/>
+      </Unit59>
+      <Unit60>
+        <Filename Value="../lazarus_svn/lcl/controls.pp"/>
+        <UnitName Value="Controls"/>
+        <WindowIndex Value="0"/>
+        <TopLine Value="1616"/>
+        <CursorPos X="3" Y="1634"/>
+        <UsageCount Value="10"/>
+      </Unit60>
+      <Unit61>
+        <Filename Value="../lazarus_svn/lcl/lcltype.pp"/>
+        <UnitName Value="LCLType"/>
+        <WindowIndex Value="0"/>
+        <TopLine Value="90"/>
+        <CursorPos X="3" Y="108"/>
+        <UsageCount Value="10"/>
+      </Unit61>
+      <Unit62>
+        <Filename Value="/media/data1/fpc-2.4.0-src/packages/gtk2/src/gtk+/gtk/gtkwidget.inc"/>
+        <WindowIndex Value="0"/>
+        <TopLine Value="386"/>
+        <CursorPos X="66" Y="394"/>
+        <UsageCount Value="11"/>
+      </Unit62>
+      <Unit63>
+        <Filename Value="/media/data1/fpc-2.4.0-src/packages/gtk2/src/gtk+/gtk/gtkenums.inc"/>
+        <WindowIndex Value="0"/>
+        <TopLine Value="149"/>
+        <CursorPos X="4" Y="167"/>
+        <UsageCount Value="10"/>
+      </Unit63>
+      <Unit64>
+        <Filename Value="/media/data1/fpc-2.4.0-src/packages/gtk2/src/gtk+/gdk/gdktypes.inc"/>
+        <WindowIndex Value="0"/>
+        <TopLine Value="17"/>
+        <CursorPos X="15" Y="37"/>
+        <UsageCount Value="10"/>
+      </Unit64>
+      <Unit65>
+        <Filename Value="/media/data1/fpc-2.4.0-src/packages/gtk2/src/glib/gtypes.inc"/>
+        <WindowIndex Value="0"/>
+        <TopLine Value="15"/>
+        <CursorPos X="15" Y="33"/>
+        <UsageCount Value="10"/>
+      </Unit65>
+      <Unit66>
+        <Filename Value="/media/data1/fpc-2.4.0-src/packages/gtk2/src/gtk+/gtk/gtkadjustment.inc"/>
+        <WindowIndex Value="0"/>
+        <TopLine Value="1"/>
+        <CursorPos X="4" Y="10"/>
+        <UsageCount Value="11"/>
+      </Unit66>
+      <Unit67>
+        <Filename Value="gtkterm.pas"/>
+        <IsPartOfProject Value="True"/>
+        <UnitName Value="gtkterm"/>
+        <EditorIndex Value="6"/>
+        <WindowIndex Value="0"/>
+        <TopLine Value="39"/>
+        <CursorPos X="35" Y="57"/>
+        <UsageCount Value="45"/>
+        <Loaded Value="True"/>
+      </Unit67>
+      <Unit68>
+        <Filename Value="../lazarus_svn/lcl/extctrls.pp"/>
+        <UnitName Value="ExtCtrls"/>
+        <WindowIndex Value="0"/>
+        <TopLine Value="941"/>
+        <CursorPos X="15" Y="959"/>
+        <UsageCount Value="10"/>
+      </Unit68>
+      <Unit69>
+        <Filename Value="../lazarus_svn/lcl/include/menuitem.inc"/>
+        <WindowIndex Value="0"/>
+        <TopLine Value="243"/>
+        <CursorPos X="22" Y="261"/>
+        <UsageCount Value="10"/>
+      </Unit69>
+      <Unit70>
+        <Filename Value="../lazarus_svn/lcl/interfaces/fpgui/.fr-T0rjZj/fpgui/src/gui/fpg_mru.pas"/>
+        <UnitName Value="fpg_mru"/>
+        <WindowIndex Value="0"/>
+        <TopLine Value="33"/>
+        <CursorPos X="17" Y="51"/>
+        <UsageCount Value="10"/>
+      </Unit70>
+      <Unit71>
+        <Filename Value="/media/data1/fpc-2.4.0-src/packages/gtk2/src/pango/pango.pas"/>
+        <UnitName Value="pango"/>
+        <WindowIndex Value="0"/>
+        <TopLine Value="81"/>
+        <CursorPos X="19" Y="103"/>
+        <UsageCount Value="10"/>
+      </Unit71>
+      <Unit72>
+        <Filename Value="/media/data1/fpc-2.4.0-src/packages/gtk2/src/pango/pangoincludes.inc"/>
+        <WindowIndex Value="0"/>
+        <TopLine Value="1"/>
+        <CursorPos X="20" Y="10"/>
+        <UsageCount Value="10"/>
+      </Unit72>
+      <Unit73>
+        <Filename Value="/media/data1/fpc-2.4.0-src/packages/gtk2/src/pango/pango-font.inc"/>
+        <WindowIndex Value="0"/>
+        <TopLine Value="100"/>
+        <CursorPos X="43" Y="173"/>
+        <UsageCount Value="10"/>
+      </Unit73>
+      <Unit74>
+        <Filename Value="/media/data1/fpc-2.4.0-src/packages/gtk2/src/glib/gtype.inc"/>
+        <WindowIndex Value="0"/>
+        <TopLine Value="1"/>
+        <CursorPos X="4" Y="5"/>
+        <UsageCount Value="10"/>
+      </Unit74>
+      <Unit75>
+        <Filename Value="/media/data1/fpc-2.4.0-src/packages/gtk2/src/gtk+/gtk/gtkmenushell.inc"/>
+        <WindowIndex Value="0"/>
+        <TopLine Value="1"/>
+        <CursorPos X="4" Y="9"/>
+        <UsageCount Value="11"/>
+      </Unit75>
+      <Unit76>
+        <Filename Value="../../../Projects/lazarus_svn/lcl/controls.pp"/>
+        <UnitName Value="Controls"/>
+        <WindowIndex Value="0"/>
+        <TopLine Value="109"/>
+        <CursorPos X="3" Y="116"/>
+        <UsageCount Value="11"/>
+      </Unit76>
+      <Unit77>
+        <Filename Value="../../../Projects/lazarus_svn/lcl/graphics.pp"/>
+        <UnitName Value="Graphics"/>
+        <EditorIndex Value="2"/>
+        <WindowIndex Value="0"/>
+        <TopLine Value="232"/>
+        <CursorPos X="3" Y="239"/>
+        <UsageCount Value="13"/>
+        <Loaded Value="True"/>
+      </Unit77>
+      <Unit78>
+        <Filename Value="../../../Projects/lazarus_svn/lcl/graphtype.pp"/>
+        <UnitName Value="GraphType"/>
+        <WindowIndex Value="0"/>
+        <TopLine Value="21"/>
+        <CursorPos X="3" Y="39"/>
+        <UsageCount Value="10"/>
+      </Unit78>
+      <Unit79>
+        <Filename Value="../../../Projects/lazarus_svn/lcl/forms.pp"/>
+        <UnitName Value="Forms"/>
+        <WindowIndex Value="0"/>
+        <TopLine Value="1308"/>
+        <CursorPos X="15" Y="1326"/>
+        <UsageCount Value="10"/>
+      </Unit79>
+      <Unit80>
+        <Filename Value="/media/data1/fpc-2.4.0-src/packages/gtk2/src/gtk+/gdk/gdkwindow.inc"/>
+        <EditorIndex Value="1"/>
+        <WindowIndex Value="0"/>
+        <TopLine Value="124"/>
+        <CursorPos X="4" Y="142"/>
+        <UsageCount Value="10"/>
+        <Loaded Value="True"/>
+      </Unit80>
+      <Unit81>
+        <Filename Value="/media/data1/fpc-2.4.0-src/packages/gtk2/src/glib/gspawn.inc"/>
+        <EditorIndex Value="5"/>
+        <WindowIndex Value="0"/>
+        <TopLine Value="17"/>
+        <CursorPos X="3" Y="35"/>
+        <UsageCount Value="10"/>
+        <Loaded Value="True"/>
+      </Unit81>
+    </Units>
+    <JumpHistory Count="30" HistoryIndex="29">
+      <Position1>
+        <Filename Value="unit1.pas"/>
+        <Caret Line="35" Column="1" TopLine="17"/>
+      </Position1>
+      <Position2>
+        <Filename Value="gtkterm.pas"/>
+        <Caret Line="78" Column="10" TopLine="56"/>
+      </Position2>
+      <Position3>
+        <Filename Value="unit1.pas"/>
+        <Caret Line="181" Column="46" TopLine="177"/>
+      </Position3>
+      <Position4>
+        <Filename Value="unit1.pas"/>
+        <Caret Line="188" Column="46" TopLine="184"/>
+      </Position4>
+      <Position5>
+        <Filename Value="unit1.pas"/>
+        <Caret Line="120" Column="1" TopLine="97"/>
+      </Position5>
+      <Position6>
+        <Filename Value="unit1.pas"/>
+        <Caret Line="119" Column="1" TopLine="96"/>
+      </Position6>
+      <Position7>
+        <Filename Value="gtkterm.pas"/>
+        <Caret Line="31" Column="20" TopLine="15"/>
+      </Position7>
+      <Position8>
+        <Filename Value="gtkterm.pas"/>
+        <Caret Line="96" Column="3" TopLine="76"/>
+      </Position8>
+      <Position9>
+        <Filename Value="gtkterm.pas"/>
+        <Caret Line="18" Column="1" TopLine="12"/>
+      </Position9>
+      <Position10>
+        <Filename Value="gtkterm.pas"/>
+        <Caret Line="72" Column="18" TopLine="52"/>
+      </Position10>
+      <Position11>
+        <Filename Value="gtkterm.pas"/>
+        <Caret Line="61" Column="17" TopLine="46"/>
+      </Position11>
+      <Position12>
+        <Filename Value="unit1.pas"/>
+        <Caret Line="192" Column="16" TopLine="163"/>
+      </Position12>
+      <Position13>
+        <Filename Value="unit1.pas"/>
+        <Caret Line="190" Column="1" TopLine="163"/>
+      </Position13>
+      <Position14>
+        <Filename Value="vteterminal.pas"/>
+        <Caret Line="632" Column="3" TopLine="611"/>
+      </Position14>
+      <Position15>
+        <Filename Value="vteterminal.pas"/>
+        <Caret Line="222" Column="69" TopLine="213"/>
+      </Position15>
+      <Position16>
+        <Filename Value="vteterminal.pas"/>
+        <Caret Line="784" Column="45" TopLine="771"/>
+      </Position16>
+      <Position17>
+        <Filename Value="vte.pas"/>
+        <Caret Line="59" Column="2" TopLine="29"/>
+      </Position17>
+      <Position18>
+        <Filename Value="vteterminal.pas"/>
+        <Caret Line="784" Column="40" TopLine="766"/>
+      </Position18>
+      <Position19>
+        <Filename Value="unit1.pas"/>
+        <Caret Line="182" Column="12" TopLine="179"/>
+      </Position19>
+      <Position20>
+        <Filename Value="unit1.pas"/>
+        <Caret Line="181" Column="12" TopLine="178"/>
+      </Position20>
+      <Position21>
+        <Filename Value="gtkterm.pas"/>
+        <Caret Line="108" Column="66" TopLine="1"/>
+      </Position21>
+      <Position22>
+        <Filename Value="gtkterm.pas"/>
+        <Caret Line="8" Column="54" TopLine="1"/>
+      </Position22>
+      <Position23>
+        <Filename Value="unit1.pas"/>
+        <Caret Line="181" Column="12" TopLine="178"/>
+      </Position23>
+      <Position24>
+        <Filename Value="gtkterm.pas"/>
+        <Caret Line="8" Column="61" TopLine="1"/>
+      </Position24>
+      <Position25>
+        <Filename Value="vteterminal.pas"/>
+        <Caret Line="784" Column="34" TopLine="766"/>
+      </Position25>
+      <Position26>
+        <Filename Value="vteterminal.pas"/>
+        <Caret Line="777" Column="58" TopLine="759"/>
+      </Position26>
+      <Position27>
+        <Filename Value="vte.pas"/>
+        <Caret Line="59" Column="42" TopLine="32"/>
+      </Position27>
+      <Position28>
+        <Filename Value="vte.pas"/>
+        <Caret Line="47" Column="9" TopLine="34"/>
+      </Position28>
+      <Position29>
+        <Filename Value="unit1.pas"/>
+        <Caret Line="10" Column="3" TopLine="1"/>
+      </Position29>
+      <Position30>
+        <Filename Value="unit1.pas"/>
+        <Caret Line="151" Column="1" TopLine="144"/>
+      </Position30>
+    </JumpHistory>
+  </ProjectOptions>
+  <CompilerOptions>
+    <Version Value="9"/>
+    <SearchPaths>
+      <IncludeFiles Value="$(ProjOutDir)/"/>
+      <Libraries Value="/usr/lib/"/>
+    </SearchPaths>
+    <Parsing>
+      <SyntaxOptions>
+        <CStyleOperator Value="False"/>
+        <UseAnsiStrings Value="False"/>
+      </SyntaxOptions>
+    </Parsing>
+    <CodeGeneration>
+      <Checks>
+        <IOChecks Value="True"/>
+        <RangeChecks Value="True"/>
+        <OverflowChecks Value="True"/>
+        <StackChecks Value="True"/>
+      </Checks>
+      <VerifyObjMethodCallValidity Value="True"/>
+    </CodeGeneration>
+    <Linking>
+      <Debugging>
+        <GenerateDebugInfo Value="True"/>
+        <UseHeaptrc Value="True"/>
+      </Debugging>
+    </Linking>
+    <Other>
+      <CompilerPath Value="$(CompPath)"/>
+    </Other>
+  </CompilerOptions>
+  <Debugging>
+    <Exceptions Count="3">
+      <Item1>
+        <Name Value="EAbort"/>
+      </Item1>
+      <Item2>
+        <Name Value="ECodetoolError"/>
+      </Item2>
+      <Item3>
+        <Name Value="EFOpenError"/>
+      </Item3>
+    </Exceptions>
+  </Debugging>
+</CONFIG>

@@ -29,57 +29,41 @@ type
  TVteTerminalCursorShape = (VTE_CURSOR_SHAPE_BLOCK, VTE_CURSOR_SHAPE_IBEAM, VTE_CURSOR_SHAPE_UNDERLINE);
 
  PVtePty = Pointer;
+ PGRegex = Pointer;
 
- TVtePtyFlags = (VTE_PTY_NO_LASTLOG  = 1 shl 0,
-                 VTE_PTY_NO_UTMP     = 1 shl 1,
-                 VTE_PTY_NO_WTMP     = 1 shl 2,
-                 VTE_PTY_NO_HELPER   = 1 shl 3,
-                 VTE_PTY_NO_FALLBACK = 1 shl 4,
-                 VTE_PTY_DEFAULT     = 0);
+type
+ VtePtyFlags = ^TVtePtyFlags;
+ TVtePtyFlags = longint;
 
- TGSpawnFlags = (G_SPAWN_LEAVE_DESCRIPTORS_OPEN = 1 shl 0,
-                 G_SPAWN_DO_NOT_REAP_CHILD      = 1 shl 1,
-                 // look for argv[0] in the path i.e. use execvp()
-                 G_SPAWN_SEARCH_PATH            = 1 shl 2,
-                 // Dump output to /dev/null
-                 G_SPAWN_STDOUT_TO_DEV_NULL     = 1 shl 3,
-                 G_SPAWN_STDERR_TO_DEV_NULL     = 1 shl 4,
-                 G_SPAWN_CHILD_INHERITS_STDIN   = 1 shl 5,
-                 G_SPAWN_FILE_AND_ARGV_ZERO     = 1 shl 6 );
-
-  PGRegex = Pointer;
+const //values for TVtePtyFlags
+ VTE_PTY_NO_LASTLOG  = 1 shl 0;
+ VTE_PTY_NO_UTMP     = 1 shl 1;
+ VTE_PTY_NO_WTMP     = 1 shl 2;
+ VTE_PTY_NO_HELPER   = 1 shl 3;
+ VTE_PTY_NO_FALLBACK = 1 shl 4;
+ VTE_PTY_DEFAULT     = 0;
 
 
-    { You can get by with just these two functions.  }
+
+    { You can get by with just vte_terminal_new and vte_terminal_fork_command }
     function vte_terminal_new:PGtkWidget;cdecl;external External_library name 'vte_terminal_new';
 
-    {void        vte_terminal_im_append_menuitems
-                                            (VteTerminal *terminal,
-                                             GtkMenuShell *menushell);
-}
-
-    function vte_terminal_fork_command(terminal:PVteTerminal; command:Pchar; argv:PPchar; envv:PPchar; directory:Pchar; 
+    function vte_terminal_fork_command(terminal:PVteTerminal; command:Pchar; argv:PPchar; envv:PPchar; directory:Pchar;
                lastlog:gboolean; utmp:gboolean; wtmp:gboolean):pid_t;cdecl;external External_library name 'vte_terminal_fork_command';
     //NOTE: vte_terminal_fork_command has been deprecated since version 0.26 and should not be used in newly-written code. Use vte_terminal_fork_command_full()
 
-    { Users of libzvt may find this useful.  }
-(* Const before type ignored *)
-    function vte_terminal_forkpty(terminal:PVteTerminal; envv:PPchar; directory:Pchar; lastlog:gboolean; utmp:gboolean; 
-               wtmp:gboolean):pid_t;cdecl;external External_library name 'vte_terminal_forkpty';
+    function vte_terminal_forkpty(terminal:PVteTerminal; envv:PPchar; directory:Pchar; lastlog:gboolean; utmp:gboolean;
+               wtmp:gboolean):pid_t; cdecl;external External_library name 'vte_terminal_forkpty';
 
     { Send data to the terminal to display, or to the terminal's forked command
      * to handle in some way.  If it's 'cat', they should be the same.  }
-(* Const before type ignored *)
     procedure vte_terminal_feed(terminal:PVteTerminal; data:Pchar; length:glong);cdecl;external External_library name 'vte_terminal_feed';
 
-(* Const before type ignored *)
     procedure vte_terminal_feed_child(terminal:PVteTerminal; text:Pchar; length:glong);cdecl;external External_library name 'vte_terminal_feed_child';
 
-(* Const before type ignored *)
     procedure vte_terminal_feed_child_binary(terminal:PVteTerminal; data:Pchar; length:glong);cdecl;external External_library name 'vte_terminal_feed_child_binary';
 
-    { Copy currently-selected text to the clipboard, or from the clipboard to
-     * the terminal.  }
+    { Copy currently-selected text to the clipboard, or from the clipboard to the terminal.  }
     procedure vte_terminal_copy_clipboard(terminal:PVteTerminal);cdecl;external External_library name 'vte_terminal_copy_clipboard';
 
     procedure vte_terminal_paste_clipboard(terminal:PVteTerminal);cdecl;external External_library name 'vte_terminal_paste_clipboard';
@@ -112,27 +96,18 @@ type
     procedure vte_terminal_set_scroll_on_keystroke(terminal:PVteTerminal; scroll:gboolean);cdecl;external External_library name 'vte_terminal_set_scroll_on_keystroke';
 
     { Set the color scheme.  }
-(* Const before type ignored *)
     procedure vte_terminal_set_color_dim(terminal:PVteTerminal; dim:PGdkColor);cdecl;external External_library name 'vte_terminal_set_color_dim';
 
-(* Const before type ignored *)
     procedure vte_terminal_set_color_bold(terminal:PVteTerminal; bold:PGdkColor);cdecl;external External_library name 'vte_terminal_set_color_bold';
 
-(* Const before type ignored *)
     procedure vte_terminal_set_color_foreground(terminal:PVteTerminal; foreground:PGdkColor);cdecl;external External_library name 'vte_terminal_set_color_foreground';
 
-(* Const before type ignored *)
     procedure vte_terminal_set_color_background(terminal:PVteTerminal; background:PGdkColor);cdecl;external External_library name 'vte_terminal_set_color_background';
 
-(* Const before type ignored *)
     procedure vte_terminal_set_color_cursor(terminal:PVteTerminal; cursor_background:PGdkColor);cdecl;external External_library name 'vte_terminal_set_color_cursor';
 
-(* Const before type ignored *)
     procedure vte_terminal_set_color_highlight(terminal:PVteTerminal; highlight_background:PGdkColor);cdecl;external External_library name 'vte_terminal_set_color_highlight';
 
-(* Const before type ignored *)
-(* Const before type ignored *)
-(* Const before type ignored *)
     procedure vte_terminal_set_colors(terminal:PVteTerminal; foreground:PGdkColor; background:PGdkColor; palette:PGdkColor; palette_size:glong);cdecl;external External_library name 'vte_terminal_set_colors';
 
     procedure vte_terminal_set_default_colors(terminal:PVteTerminal);cdecl;external External_library name 'vte_terminal_set_default_colors';
@@ -140,10 +115,8 @@ type
     { Background effects.  }
     procedure vte_terminal_set_background_image(terminal:PVteTerminal; image:PGdkPixbuf);cdecl;external External_library name 'vte_terminal_set_background_image';
 
-(* Const before type ignored *)
     procedure vte_terminal_set_background_image_file(terminal:PVteTerminal; path:Pchar);cdecl;external External_library name 'vte_terminal_set_background_image_file';
 
-(* Const before type ignored *)
     procedure vte_terminal_set_background_tint_color(terminal:PVteTerminal; color:PGdkColor);cdecl;external External_library name 'vte_terminal_set_background_tint_color';
 
     procedure vte_terminal_set_background_saturation(terminal:PVteTerminal; saturation:double);cdecl;external External_library name 'vte_terminal_set_background_saturation';
@@ -162,19 +135,14 @@ type
     procedure vte_terminal_im_append_menuitems(terminal:PVteTerminal; menushell:PGtkMenuShell);cdecl;external External_library name 'vte_terminal_im_append_menuitems';
 
     { Set or retrieve the current font.  }
-(* Const before type ignored *)
     procedure vte_terminal_set_font(terminal:PVteTerminal; font_desc:PPangoFontDescription);cdecl;external External_library name 'vte_terminal_set_font';
 
-(* Const before type ignored *)
     procedure vte_terminal_set_font_full(terminal:PVteTerminal; font_desc:PPangoFontDescription; antialias:TVteTerminalAntiAlias);cdecl;external External_library name 'vte_terminal_set_font_full';
 
-(* Const before type ignored *)
     procedure vte_terminal_set_font_from_string(terminal:PVteTerminal; name:Pchar);cdecl;external External_library name 'vte_terminal_set_font_from_string';
 
-(* Const before type ignored *)
     procedure vte_terminal_set_font_from_string_full(terminal:PVteTerminal; name:Pchar; antialias:TVteTerminalAntiAlias);cdecl;external External_library name 'vte_terminal_set_font_from_string_full';
 
-(* Const before type ignored *)
     function vte_terminal_get_font(terminal:PVteTerminal):PPangoFontDescription;cdecl;external External_library name 'vte_terminal_get_font';
 
     function vte_terminal_get_using_xft(terminal:PVteTerminal):gboolean;cdecl;external External_library name 'vte_terminal_get_using_xft';
@@ -214,7 +182,6 @@ type
 
     { Add a matching expression, returning the tag the widget assigns to that
      * expression.  }
-(* Const before type ignored *)
     function vte_terminal_match_add(terminal:PVteTerminal; match:Pchar):longint;cdecl;external External_library name 'vte_terminal_match_add';
 
     { Set the cursor to be used when the pointer is over a given match.  }
@@ -231,24 +198,18 @@ type
     function vte_terminal_match_check(terminal:PVteTerminal; column:glong; row:glong; tag:Plongint):Pchar;cdecl;external External_library name 'vte_terminal_match_check';
 
     { Set the emulation type.  Most of the time you won't need this.  }
-(* Const before type ignored *)
     procedure vte_terminal_set_emulation(terminal:PVteTerminal; emulation:Pchar);cdecl;external External_library name 'vte_terminal_set_emulation';
 
-(* Const before type ignored *)
     function vte_terminal_get_emulation(terminal:PVteTerminal):Pchar;cdecl;external External_library name 'vte_terminal_get_emulation';
 
-(* Const before type ignored *)
     function vte_terminal_get_default_emulation(terminal:PVteTerminal):Pchar;cdecl;external External_library name 'vte_terminal_get_default_emulation';
 
     { Set the character encoding.  Most of the time you won't need this.  }
-(* Const before type ignored *)
     procedure vte_terminal_set_encoding(terminal:PVteTerminal; codeset:Pchar);cdecl;external External_library name 'vte_terminal_set_encoding';
 
-(* Const before type ignored *)
     function vte_terminal_get_encoding(terminal:PVteTerminal):Pchar;cdecl;external External_library name 'vte_terminal_get_encoding';
 
     { Get the contents of the status line.  }
-(* Const before type ignored *)
     function vte_terminal_get_status_line(terminal:PVteTerminal):Pchar;cdecl;external External_library name 'vte_terminal_get_status_line';
 
     { Get the padding the widget is using.  }
@@ -273,12 +234,9 @@ type
 
     function vte_terminal_get_column_count(terminal:PVteTerminal):glong;cdecl;external External_library name 'vte_terminal_get_column_count';
 
-(* Const before type ignored *)
     function vte_terminal_get_window_title(terminal:PVteTerminal):Pchar;cdecl;external External_library name 'vte_terminal_get_window_title';
 
-(* Const before type ignored *)
     function vte_terminal_get_icon_title(terminal:PVteTerminal):Pchar;cdecl;external External_library name 'vte_terminal_get_icon_title';
-
     {$IFDEF VTEVERSION_17}
     function vte_terminal_get_cursor_shape(terminal:PVteTerminal):TVteTerminalCursorShape;cdecl;external External_library name 'vte_terminal_get_cursor_shape';
     {$ENDIF}
@@ -287,20 +245,19 @@ type
     function vte_terminal_get_child_exit_status(terminal:PVteTerminal):glong;cdecl;external External_library name 'vte_terminal_get_child_exit_status';
 
     function vte_terminal_get_pty (terminal:PVteTerminal):gint;cdecl;external External_library name 'vte_terminal_get_pty';
-    {vte_terminal_get_pty has been deprecated since version 0.26 and should not be used in newly-written code.
-    Use vte_terminal_get_pty_object() and vte_pty_get_fd()}
+    {vte_terminal_get_pty has been deprecated since version 0.26 Use vte_terminal_get_pty_object() and vte_pty_get_fd() instead}
 
     procedure vte_terminal_set_cursor_shape(terminal:PVteTerminal; shape: TVteTerminalCursorShape);cdecl;external External_library name 'vte_terminal_set_cursor_shape';
     {$ENDIF}
 
     {$IFDEF VTEVERSION_24}
-
 {    gboolean            vte_terminal_write_contents         (VteTerminal *terminal,
                                                          GOutputStream *stream,
                                                          VteTerminalWriteFlags flags,
                                                          GCancellable *cancellable,
                                                          GError **error);}
     {$ENDIF}
+
     {$IFDEF VTEVERSION_26}    //all untested unless marked otherwise
     function vte_terminal_fork_command_full(terminal:PVteTerminal;
                                             pty_flags: TVtePtyFlags;
@@ -349,7 +306,7 @@ type
     procedure vte_pty_set_term(pty: PVtePty; emulation: PChar);cdecl;external External_library name 'vte_pty_set_term';
 
     function vte_pty_set_utf8(pty: PVtePty; utf8: gboolean; error: PGError): gboolean; cdecl;external External_library name 'vte_pty_set_utf8';
-{$ENDIF}
+    {$ENDIF}
 
 implementation
 

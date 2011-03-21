@@ -1,161 +1,172 @@
-object Form1: TForm1
-  Left = 324
-  Height = 387
-  Top = 245
-  Width = 864
-  ActiveControl = Button1
-  Caption = 'Form1'
-  ClientHeight = 387
-  ClientWidth = 864
+object VTEDemoForm: TVTEDemoForm
+  Left = 0
+  Height = 494
+  Top = 0
+  Width = 1051
+  ActiveControl = CreateEmbedButton
+  Caption = 'Libvte Demo'
+  ClientHeight = 494
+  ClientWidth = 1051
   OnClose = FormClose
   LCLVersion = '0.9.29'
-  object Button1: TButton
-    Left = 59
+  object GroupBox3: TGroupBox
+    Left = 12
+    Height = 326
+    Top = 142
+    Width = 465
+    Caption = ' Standard Terminal '
+    TabOrder = 14
+  end
+  object GroupBox2: TGroupBox
+    Left = 11
+    Height = 127
+    Top = 8
+    Width = 466
+    Caption = ' Slave Terminal Window '
+    TabOrder = 13
+  end
+  object GroupBox1: TGroupBox
+    Left = 496
+    Height = 459
+    Top = 8
+    Width = 537
+    Caption = ' Embedded Terminal '
+    TabOrder = 12
+  end
+  object CreateSlaveButton: TButton
+    Left = 32
     Height = 25
-    Top = 43
+    Top = 83
     Width = 181
-    Caption = 'Create VTE'
-    OnClick = Button1Click
+    Caption = 'Create Slave'
+    OnClick = CreateSlaveButtonClick
     TabOrder = 0
   end
-  object Button2: TButton
-    Left = 59
+  object DestroyTerminalButton: TButton
+    Left = 224
     Height = 25
-    Top = 80
+    Top = 161
     Width = 181
-    Caption = 'Destroy VTE'
-    OnClick = Button2Click
+    Caption = 'Destroy Terminal'
+    Enabled = False
+    OnClick = DestroyTerminalButtonClick
     TabOrder = 1
   end
-  object Button3: TButton
-    Left = 56
+  object ExecuteButton: TButton
+    Left = 38
     Height = 25
-    Top = 136
-    Width = 171
-    Caption = 'Execute'
-    OnClick = Button3Click
+    Top = 224
+    Width = 89
+    Caption = 'Execute ->'
+    OnClick = ExecuteButtonClick
     TabOrder = 2
   end
   object Edit1: TEdit
-    Left = 272
+    Left = 32
     Height = 25
-    Top = 138
+    Top = 48
     Width = 424
     TabOrder = 3
-    Text = 'dar -l /home/malcolm/test -v'
+    Text = 'cat vte.pas'
   end
-  object Button4: TButton
-    Left = 62
+  object SendNewlineButton: TButton
+    Left = 38
     Height = 25
-    Top = 181
+    Top = 264
     Width = 178
     Caption = 'Send \n'
-    OnClick = Button4Click
+    OnClick = SendNewlineButtonClick
     TabOrder = 4
   end
-  object Button5: TButton
-    Left = 451
+  object SendEscButton: TButton
+    Left = 272
     Height = 25
-    Top = 272
-    Width = 101
-    Caption = 'Set Colors'
-    OnClick = Button5Click
-    TabOrder = 5
-  end
-  object Button6: TButton
-    Left = 62
-    Height = 25
-    Top = 217
+    Top = 264
     Width = 178
     Caption = 'Send Esc'
-    OnClick = Button6Click
+    OnClick = SendEscButtonClick
+    TabOrder = 5
+  end
+  object CreateEmbedButton: TButton
+    Left = 536
+    Height = 25
+    Top = 32
+    Width = 216
+    Caption = 'Create Embedded Terminal'
+    OnClick = CreateEmbedButtonClick
     TabOrder = 6
   end
-  object Panel1: TPanel
-    Left = 451
-    Height = 34
-    Top = 191
-    Width = 101
-    Caption = 'Background'
-    Color = clBlack
-    Font.Color = clYellow
-    ParentColor = False
-    ParentFont = False
+  object DemoPanel: TPanel
+    Left = 512
+    Height = 392
+    Top = 64
+    Width = 497
+    BorderSpacing.Around = 5
+    Caption = 'DemoPanel'
     TabOrder = 7
-    OnClick = Panel1Click
   end
-  object Panel2: TPanel
-    Left = 451
-    Height = 34
-    Top = 232
-    Width = 101
-    Caption = 'TextColor'
-    Color = clWhite
-    Font.Color = clYellow
+  object Label1: TLabel
+    Left = 32
+    Height = 18
+    Top = 32
+    Width = 166
+    Caption = 'Slave terminal command:'
     ParentColor = False
-    ParentFont = False
-    TabOrder = 8
-    OnClick = Panel1Click
   end
-  object Button7: TButton
-    Left = 262
+  object CreateTerminalButton: TButton
+    Left = 38
     Height = 25
-    Top = 281
-    Width = 75
-    Caption = 'Button7'
-    OnClick = Button7Click
-    TabOrder = 9
+    Top = 161
+    Width = 163
+    Caption = 'Create Terminal'
+    OnClick = CreateTerminalButtonClick
+    TabOrder = 8
   end
-  object Panel3: TPanel
-    Left = 263
-    Height = 122
-    Top = 7
-    Width = 585
-    Caption = 'Panel3'
+  object ExecuteCommandEdit: TEdit
+    Left = 144
+    Height = 25
+    Top = 224
+    Width = 312
+    TabOrder = 9
+    Text = 'ls -l'
+  end
+  object ForegroundColorBox: TColorBox
+    Left = 150
+    Height = 29
+    Top = 320
+    Width = 138
+    DefaultColorColor = clWhite
+    Selected = clBlue
+    Color = clNone
+    ItemHeight = 0
+    OnChange = ColorBoxChange
     TabOrder = 10
   end
-  object Button8: TButton
-    Left = 68
-    Height = 25
-    Top = 272
-    Width = 75
-    Caption = 'Button8'
-    OnClick = Button8Click
+  object BackgroundColorBox: TColorBox
+    Left = 150
+    Height = 29
+    Top = 368
+    Width = 138
+    Selected = clCream
+    Color = clCream
+    ItemHeight = 0
+    OnChange = ColorBoxChange
     TabOrder = 11
   end
-  object ScrollBox1: TScrollBox
-    Left = 568
-    Height = 195
-    Top = 181
-    Width = 280
-    AutoSize = True
-    TabOrder = 12
+  object Label2: TLabel
+    Left = 38
+    Height = 18
+    Top = 327
+    Width = 78
+    Caption = 'Foreground:'
+    ParentColor = False
   end
-  object ColorDialog1: TColorDialog
-    Color = clBlack
-    CustomColors.Strings = (
-      'ColorA=000000'
-      'ColorB=000080'
-      'ColorC=008000'
-      'ColorD=008080'
-      'ColorE=800000'
-      'ColorF=800080'
-      'ColorG=808000'
-      'ColorH=808080'
-      'ColorI=C0C0C0'
-      'ColorJ=0000FF'
-      'ColorK=00FF00'
-      'ColorL=00FFFF'
-      'ColorM=FF0000'
-      'ColorN=FF00FF'
-      'ColorO=FFFF00'
-      'ColorP=FFFFFF'
-      'ColorQ=C0DCC0'
-      'ColorR=F0CAA6'
-      'ColorS=F0FBFF'
-      'ColorT=A4A0A0'
-    )
-    left = 541
-    top = 223
+  object Label3: TLabel
+    Left = 38
+    Height = 18
+    Top = 376
+    Width = 81
+    Caption = 'Background:'
+    ParentColor = False
   end
 end

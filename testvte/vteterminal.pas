@@ -55,7 +55,7 @@ type
      - OnProcessExit will be called when the program terminates
      - OnStdOut and OnStdErr events can be used to read output from the pipes
 
-  To create a GtkTerm clone
+  To create a GtkTerm clone with a 'Close' button at the bottom
      - create a TVTETerminal with parameter nil
      - call Show
      - OnClose will be called if the user closes the window
@@ -66,8 +66,6 @@ type
   private
     fCols: integer;
     fRows: integer;
-    fWidth: Integer;
-    fHeight: Integer;
     fVTECellWidth: integer;
     fVTECellHeight: integer;
     fVTEHeightPixels: Integer;
@@ -77,6 +75,7 @@ type
     fTransparent: Boolean;
     fBackgroundColor: TColor;
     fForegroundColor: TColor;
+    fBackgroundImage: TFilename;
     fOnDestroy: TCancelEvent;
     fChildPid: pid_t;
     fCommand: string;
@@ -87,7 +86,6 @@ type
     fOnStdout: TPipeOutputEvent;
     fOnStdErr: TPipeOutputEvent;
     fOnProcessExit: TProcessExitEvent;
-    fOnResize: TNotifyEvent;
     procedure SetErrorOutput(AValue: TFilename);
     procedure SetOutput(AValue: TFilename);
     function fGetEOF: Boolean;
@@ -95,17 +93,21 @@ type
     procedure fSetRows(Value: integer);
     procedure fSetAudibleBell(Value: Boolean);
     procedure fSetTransparent(Value: Boolean);
-    procedure SetForeground(const AValue: TColor);
-    procedure SetBackground( AValue: TColor);
-    procedure ResizeVTEtofit(maxwidth, maxheight: integer);
+    procedure SetForeground(AValue: TColor);
+    procedure SetBackground(AValue: TColor);
+    procedure fSetBackgroundImage(Value: TFilename);
   protected
+    fWidth: Integer;
+    fHeight: Integer;
+    fOnResize: TNotifyEvent;
+    procedure ResizeVTEtofit(maxwidth, maxheight: integer);
     procedure DoSizeAllocate(terminalwidth, terminalheight: integer); virtual;
     procedure DoProcessExit;  virtual;
   public
     constructor Create ( Commandline: PChar ); virtual;
     destructor Destroy; override;
     procedure ExecuteCommand( Commandline: string );
-    procedure Execute;
+    procedure Execute; virtual;
     procedure TerminateProcess( sig: integer );
     procedure Print( Msg: string );
     procedure SendNewline;
@@ -132,13 +134,13 @@ type
     property Transparent: Boolean read fTransparent write fSetTransparent;
     property Foreground: TColor read fForegroundColor write SetForeground;
     property Background: TColor read fBackgroundColor write SetBackground;
+    property BackgroundImage: TFilename read fBackgroundImage write fSetBackgroundImage;
  end;
 
  { TVTETerminal }
 
  TVTETerminal = class ( TCustomVTETerminal )
   private
-    fOnCancel: TCancelEvent;
     VteWindow: PGtkWidget;
     fGtkLayout: PGtkWidget;
     vBox: PGtkWidget;
@@ -148,11 +150,14 @@ type
     fCaption: string;
     fWindowStateChange: TWindowStateEvent;
     FwindowState: byte;
+    fCancelButtonVisible:Boolean;
+    fOncancel:TCancelEvent;
     function GetWindowState: TWindowState;
     procedure SetCaption( AValue: string);
     procedure setHeight ( const AValue: integer ) ;
     procedure setWidth ( const AValue: integer ) ;
     procedure setWindowState ( const AValue: TWindowState ) ;
+    procedure setCancelButtonVisible(aValue: Boolean);
   protected
     procedure DoProcessExit; override;
   public
@@ -161,7 +166,9 @@ type
     procedure Show;
     procedure ShowModal( ParentWindow: TForm );
     procedure Hide;
+    procedure Execute; override;
     procedure EnableButton(Button: PGtkWidget; Enable: boolean);
+    procedure BringToFront;
     property Caption: string read fCaption write SetCaption;
     property OnClose: TCancelEvent read FOnDestroy write FOnDestroy; // if function returns true then window is allowed to close
     property OnCancel: TCancelEvent read fOnCancel write fOnCancel;
@@ -170,7 +177,8 @@ type
     property WindowState: TWindowState read GetWindowState write setWindowState;
     property Width: integer read fWidth write setWidth;
     property Height: integer read fHeight write setHeight;
-    end;
+    property CancelButtonVisible: Boolean read fCancelButtonVisible write setCancelButtonVisible;
+  end;
 
   { TBlindTerminal }
 
@@ -244,7 +252,6 @@ var
   WindowState: TGdkEventWindowState;
 begin
   WindowState := Event^.window_state;
-writeln('New window state: ',  WindowState.new_window_state);
   if Assigned(TVTETerminal(Term).OnWindowStateChange)
      then TVTETerminal(Term).OnWindowStateChange(Term, WindowState.new_window_state) ;
   result := true;
@@ -277,7 +284,8 @@ begin
     TVTETerminal(Term).fWidth := allocation^.width;
     if Assigned(TVTETerminal(Term).fOnResize) then
        TVTETerminal(Term).fOnResize(Term);
-    TVTETerminal(Term).ResizeVTEtofit(allocation^.width, allocation^.height);
+    TVTETerminal(Term).ResizeVTEtofit(allocation^.width,
+                               allocation^.height - TVTETerminal(Term).fButtonBarHeightPixels - (WINDOW_PADDING*PAD_COUNT));
   end;
   w := allocation^.width;
   writeln('window allocation ', w, 'x', allocation^.height);
@@ -412,25 +420,22 @@ end;
 procedure TCustomVTETerminal.DoSizeAllocate ( terminalwidth,
   terminalheight: integer ) ;
   begin
-   if fVTEHeightPixels < 1 then    // code executed only on first callback
-   begin
-     //gtk_window_resize(PGtkWindow( TVTETerminal(term).VteWindow ), requ^.width,
-     //          allocation^.height + TVTETerminal(term).fButtonBarHeightPixels + (WINDOW_PADDING*PAD_COUNT));
-     fVTEHeightPixels := terminalheight;
-     fVTEWidthPixels := terminalwidth;
-     fVTECellHeight := fVTEHeightPixels div fRows;
-   writeln('CellHeight: ', fVTECellHeight);
-     fVTECellWidth := fVTEWidthPixels div fCols;
-   writeln('CellWidth: ', fVTECellWidth);
-   end;
-
+   if fVTECellHeight < 1 then    // code executed only on first callback
+       begin
+         fVTEHeightPixels := terminalheight;
+         fVTEWidthPixels := terminalwidth;
+         fVTECellHeight := fVTEHeightPixels div fRows;
+       writeln('CellHeight: ', fVTECellHeight);
+         fVTECellWidth := fVTEWidthPixels div fCols;
+       writeln('CellWidth: ', fVTECellWidth);
+       end;
   end;
 
 procedure TCustomVTETerminal.DoProcessExit;
 var
   exitcode: byte;
 begin
-  exitcode := -1;
+  exitcode := 0;
   {$IFDEF VTEVERSION_20}   // libvte9 >0.19 necessary to obtain exit status of child
   exitcode := vte_terminal_get_child_exit_status( Vte ) shr 8;
   {$ENDIF}
@@ -447,16 +452,16 @@ begin
   fCommand := CommandLine;
   fOutput := '';
   fStdErr := '';
+  fBackgroundColor := clBlack;
+  fForegroundColor := clWhite;
   fCols := vte_terminal_get_column_count(Vte);
-  writeln('Cols: ', fcols);
   fRows := vte_terminal_get_row_count(Vte);
-  writeln('Rows: ', fRows);
   gtk_signal_connect(GTK_OBJECT(Vte), 'size-request',
 		                   GTK_SIGNAL_FUNC(@CustomVTE_sizerequest_callback), Self);
   gtk_signal_connect(pGtkObject(Vte), 'child-exited',
                                      GTK_SIGNAL_FUNC (@CustomVTE_child_exit_callback), Self);
- if CommandLine=nil then
-    ChildPid := vte_terminal_fork_command(Vte, nil, nil, nil, nil, false, false, false);
+  if CommandLine=nil then
+        ChildPid := vte_terminal_fork_command(Vte, nil, nil, nil, nil, false, false, false);
 end;
 
 destructor TCustomVTETerminal.Destroy;
@@ -507,11 +512,11 @@ begin
 end;
 
 { This is how to output to the pipes
-     dar -l /home/malcolm/test -v 1>|/tmp/stdout 2>|/tmp/stderr
+     dar -l /media/backup/test -v 1>|/tmp/stdout 2>|/tmp/stderr
 }
 
 { And this is how to output stderr and stdout to two separate apps
-     { dar -l /home/malcolm/test -v | app1; } 3>&1 1>&2 2>&3 | app2
+     { dar -l /media/backup/test -v | app1; } 3>&1 1>&2 2>&3 | app2
 
 }
 
@@ -566,18 +571,16 @@ var
   c: TGdkColor;
 begin
   if AValue=fBackgroundColor then exit;
-  writeln('new background: ', AValue);
   c := GetGdkColor(AValue);
   vte_terminal_set_color_background(VTE, PGdkColor( @c ));
   fBackgroundColor := AValue;
 end;
 
-procedure TCustomVTETerminal.SetForeground(const AValue: TColor);
+procedure TCustomVTETerminal.SetForeground(AValue: TColor);
 var
   c: TGdkColor;
 begin
   if AValue=fForegroundColor then exit;
-  writeln('new foreground: ', AValue);
   c := GetGdkColor(AValue);
   vte_terminal_set_color_foreground(VTE, @c);
   fForegroundColor := AValue;
@@ -620,11 +623,23 @@ var
   targetCols: LongInt;
   targetRows: LongInt;
 begin
+//  writeln('Called ResizeVTEtofit - fVTECellHeight=', fVTECellHeight);
+  if fVTECellHeight<1 then Exit;
   targetCols := maxwidth div fVTECellWidth;
-  targetRows := (maxheight-fButtonBarHeightPixels-(WINDOW_PADDING*PAD_COUNT)) div fVTECellHeight;
-  Cols := targetCols;
-  Rows := targetRows;
-//  vte_terminal_set_size(PVteTerminal(Vte);
+  targetRows := maxheight div fVTECellHeight;
+  fCols := targetCols;
+  fRows := targetRows;
+//writeln('  vte_terminal_set_size(PVteTerminal(Vte), ',targetCols, ',',targetRows);
+  vte_terminal_set_size(PVteTerminal(Vte), targetCols, targetRows);
+end;
+
+procedure TCustomVTETerminal.fSetBackgroundImage ( Value: TFilename ) ;
+begin
+  if Value <> fBackgroundImage then
+     begin
+       vte_terminal_set_background_image_file(Vte, Pchar(Value));
+       fBackgroundImage := Value;
+     end;
 end;
 
 
@@ -684,6 +699,14 @@ begin
   end;
 end;
 
+procedure TVTETerminal.setCancelButtonVisible ( aValue: Boolean ) ;
+begin
+  if aValue=fCancelButtonVisible then exit;
+  if aValue then gtk_widget_show(cancelButton)
+  else gtk_widget_hide(cancelButton);
+  fCancelButtonVisible := aValue;
+end;
+
 procedure TVTETerminal.DoProcessExit;
 begin
   inherited DoProcessExit;
@@ -713,35 +736,39 @@ begin
   closeButton := gtk_button_new_from_stock(GTK_STOCK_CLOSE);
   gtk_box_pack_end(PGtkBox(buttonBox), closeButton, false, false, WINDOW_PADDING);
   gtk_box_pack_end(PGtkBox(buttonBox), cancelButton, false, false, WINDOW_PADDING);
+  fCancelButtonVisible := false;
   gtk_signal_connect(GTK_OBJECT(buttonBox), 'size-allocate',
 		                   GTK_SIGNAL_FUNC(@buttonbox_sizeallocate_callback), Self);
   // gtk_layout_put(PGtkLayout(vBox), buttonBox, 0,500);
- gtk_box_pack_start(GTK_BOX(vBox), buttonBox, false, false, WINDOW_PADDING);
-  gtk_widget_set_sensitive(closeButton, false);
+  gtk_box_pack_start(GTK_BOX(vBox), buttonBox, false, false, WINDOW_PADDING);
   gtk_signal_connect(GTK_OBJECT(cancelButton), 'clicked',
 		                   GTK_SIGNAL_FUNC(@cancelButtonClick), Self);
   gtk_signal_connect(GTK_OBJECT(closeButton), 'clicked',
 		                   GTK_SIGNAL_FUNC(@closeButtonClick), Self);
-
   Caption := 'TVTETerminal';
+  gtk_widget_show(PGtkWidget(Vte));
+  gtk_widget_show(PGtkWidget(vBox));
+  gtk_widget_show(PGtkWidget(fGtkLayout));
+  gtk_widget_show(PGtkWidget(buttonBox));
+  gtk_widget_show(closeButton);
 end;
 
 destructor TVTETerminal.Destroy;
 begin
   inherited Destroy;
-  gtk_widget_destroy(cancelButton);
-  gtk_widget_destroy(closeButton);
-  gtk_widget_destroy(buttonBox);
-  writeln('about to destroy vBox');
-  gtk_widget_destroy(vBox);
-  writeln('about to destroy VTEWindow');
   gtk_widget_destroy(VteWindow);
-  writeln('OK: done');
 end;
 
 procedure TVTETerminal.Show;
+var
+  f: TGdkColor;
+  b: TGdkColor;
 begin
-  gtk_widget_show_all(VteWindow);
+  gtk_widget_show(VteWindow);
+  f := GetGdkColor(fForegroundColor);
+  b := GetGdkColor(fBackgroundColor);
+  vte_terminal_set_color_background(PVteTerminal(Vte), @b);
+  vte_terminal_set_color_foreground(PVteTerminal(Vte), @f);
 end;
 
 procedure TVTETerminal.ShowModal ( ParentWindow: TForm ) ;
@@ -749,7 +776,7 @@ begin
   gtk_window_set_modal( PGtkWindow( VteWindow ), true);
   gtk_window_set_transient_for( PGtkWindow( VteWindow ), PGtkWindow(ParentWindow.Handle));
   gtk_window_set_position( PGtkWindow( VteWindow ), GTK_WIN_POS_CENTER_ON_PARENT);
-  gtk_widget_show_all(VteWindow);
+  gtk_widget_show(VteWindow);
 end;
 
 procedure TVTETerminal.Hide;
@@ -757,10 +784,21 @@ begin
   gtk_widget_hide(VteWindow);
 end;
 
+procedure TVTETerminal.Execute;
+begin
+  inherited Execute;
+  gtk_widget_set_sensitive(closeButton, false);
+end;
+
 //Print output on the terminal which will not be interpreted by bash
 procedure TVTETerminal.EnableButton(Button: PGtkWidget; Enable: boolean);
 begin
   gtk_widget_set_sensitive(Button, Enable);
+end;
+
+procedure TVTETerminal.BringToFront;
+begin
+  gtk_window_present(PGtkWindow(VteWindow));
 end;
 
 

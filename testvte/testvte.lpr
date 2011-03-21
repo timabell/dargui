@@ -15,7 +15,7 @@ uses
 begin
   {$I testvte.lrs}
   Application.Initialize;
-  Application.CreateForm(TForm1, Form1);
+  Application.CreateForm ( TVTEDemoForm, VTEDemoForm ) ;
   Application.Run;
 end.
 
