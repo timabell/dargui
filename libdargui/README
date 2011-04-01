@@ -1,0 +1,30 @@
+31 March 2011
+~~~~~~~~~~~~~
+
+libdargui : an interface to libdar
+
+
+Freepascal applications can not access C++ libraries directly due to differences
+in function name mangling.
+
+libdargui provides a C interface to a small number of libdar functions to enable
+DarGUI to access them directly instead of calling commandline dar.
+
+libdargui is envisaged mainly as a way of overcoming current limitations of
+DarGUI when opening dar archives and should enable handling of archives stored
+on multiple disks and faster loading of archives.
+
+Drawbacks are that libdargui is compiled against specific versions of libdar -
+this will probably complicate installation procedure, with multiple versions of
+libdargui provided, or reduce the number of distributions on which DarGUI will
+work.
+Also, at today's date the program crashes and closes if you answer 'No' to a question....
+
+When writing libdargui I have drawn heavily on the examples provided by Denis
+Corbin in his LIBDAR APPLICATION INTERFACE TUTORIAL and "How to use C code in
+Free Pascal projects" by G. Marcou, E. Engler, A. Varnek.
+These documents can be found at
+  http://dar.linux.free.fr/doc/api_tutorial.html
+  ftp://ftp.freepascal.org/pub/fpc/docs-pdf/CinFreePascal.pdf
+
+libdargui is licensed under the Gnu Public Licence version 3

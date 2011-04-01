@@ -1,0 +1,79 @@
+object Form1: TForm1
+  Left = 555
+  Height = 298
+  Top = 225
+  Width = 462
+  ActiveControl = FileNameEdit1
+  Caption = 'Form1'
+  ClientHeight = 298
+  ClientWidth = 462
+  LCLVersion = '0.9.29'
+  object Button1: TButton
+    Left = 8
+    Height = 25
+    Top = 80
+    Width = 180
+    Caption = 'Initialise libdar'
+    OnClick = Button1Click
+    TabOrder = 0
+  end
+  object Button2: TButton
+    Left = 8
+    Height = 25
+    Top = 112
+    Width = 180
+    Caption = 'List archive'
+    OnClick = Button2Click
+    TabOrder = 1
+  end
+  object Button3: TButton
+    Left = 344
+    Height = 25
+    Top = 80
+    Width = 75
+    Caption = 'Button3'
+    OnClick = Button3Click
+    TabOrder = 2
+  end
+  object SpinEdit1: TSpinEdit
+    Left = 352
+    Height = 25
+    Top = 112
+    Width = 50
+    MinValue = 1
+    TabOrder = 3
+    Value = 1
+  end
+  object FileNameEdit1: TFileNameEdit
+    Left = 11
+    Height = 25
+    Top = 28
+    Width = 381
+    DialogTitle = 'Open dar archive'
+    DialogOptions = []
+    Filter = 'DAR archives|*.dar'
+    FilterIndex = 0
+    HideDirectories = False
+    ButtonWidth = 23
+    NumGlyphs = 0
+    MaxLength = 0
+    TabOrder = 4
+  end
+  object Memo1: TMemo
+    Left = 12
+    Height = 134
+    Top = 154
+    Width = 438
+    ScrollBars = ssAutoBoth
+    TabOrder = 5
+    WordWrap = False
+  end
+  object Label1: TLabel
+    Left = 16
+    Height = 18
+    Top = 8
+    Width = 253
+    Caption = 'Select a DAR archive, then ''List archive'''
+    ParentColor = False
+  end
+end
