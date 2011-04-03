@@ -1,17 +1,11 @@
 #include "dar4pas.h"
-//#include "user_interaction.hpp"
 #include <dar/archive.hpp>
+#include <stdio.h>
+#include <string.h>
 using namespace std;
 using namespace libdar;
 
 extern "C"{
-
-int EXPORTCALL test_call(char *txt, void (*fpcproc)(char * )){
- printf("test_callback (dar4pas.cc) %s\n---------------\n", txt);
- fpcproc(txt);
- printf("-- %s --\n","Completed test_callback");
- return 5;
-}
 
 unsigned int EXPORTCALL get_dar_version(U_Int *major, U_Int *minor, U_Int *sub){
  U_I maj, med, min;
@@ -63,8 +57,8 @@ void EXPORTCALL get_dar_features(dar_features *feat){
 
 void warning(const string &x, void *context)
 {
-    printf("[%d]%s\n", (U_I)context, x.c_str());
-   // printf("%s", x.c_str());
+    //printf("[%d]%s\n", (U_I)context, x.c_str());
+    printf("%s", x.c_str());
 }
 
 void warning2(const string &x, void *context)
@@ -106,8 +100,8 @@ return "getstring result";
 string getstring2(const string &x, bool echo, void *context)
 {
     //throw SRC_BUG;
-printf("called getstring");
-return "getstring result";
+printf("called getstring2\n");
+return "test";
 }
 
 static user_interaction_callback listing_ui = user_interaction_callback(warning, question, getstring, (void *)1000);
@@ -126,52 +120,104 @@ void listing(const std::string & flag,
    listing_ui.printf("[[%d]][%S][%S][%S][%S][%S][%S][%S][%s][%s]\n", (U_I)context, &flag, &perm, &uid, &gid, &size, &date, &filename, is_dir ? "dir" : "not_dir", has_children ? "has children" : "no children");
 }
 
-void EXPORTCALL list_archive(dar_archive *archiveinfo){
+archiveHandle EXPORTCALL open_archive(dar_archive *archiveinfo){
+static user_interaction_callback ui = user_interaction_callback(warning, question2, getstring2, archiveinfo);
+
+  U_32 blocksize = 0;
+  crypto_algo encryption = crypto_none;
+  string passphrase = "";
   
-static user_interaction_callback ui = user_interaction_callback(warning2, question2, getstring2, archiveinfo);
+  if (archiveinfo->password != NULL) { passphrase = archiveinfo->password; }
 
-  //libdar::user_interaction_callback dialog;
-     U_16 code;
+    U_16 code;
     string msg;
-    
 
-archive *arch = open_archive_noexcept(ui,
-        archiveinfo->directory,  // where is the archive
+    
+static archiveHandle arch = open_archive_noexcept(ui,
+        archiveinfo->directory,  // location of the archive
         archiveinfo->name, // slice name
         "dar",   // dar's archive extensions
-        crypto_none,
-        "",
-        0, // these three previous are for encryptions
+        encryption,
+        passphrase,
+        blocksize, // these three previous are for encryptions
         "",    // not used as we didn't gave "-" as
         "",    // slice name
         "",    // no command executed for now
-        true,
+        false,  // verbose output
 	code,
-	msg); // no verbose output
+	msg);
 
-    if(code != LIBDAR_NOEXCEPT)
+if(code != LIBDAR_NOEXCEPT)
     {
 	ui.printf("exception opening archive: %S\n", &msg);
-	return;
+	return NULL;
+    }
+  return arch;
+}
+
+unsigned short int EXPORTCALL list_archive(dar_archive *archiveinfo){
+
+  static user_interaction_callback ui = user_interaction_callback(warning2, question2, getstring2, archiveinfo);
+  
+  U_32 blocksize = 0;
+  crypto_algo encryption = crypto_none;
+  string passphrase = "";
+  
+  if (archiveinfo->password != NULL) { passphrase = archiveinfo->password; }
+  
+  if (archiveinfo->encrypted) { 
+             blocksize = DEFAULT_CRYPTO_SIZE;
+	     encryption = crypto_blowfish;
+	 }
+
+    U_16 code;
+    string msg;
+    
+ archiveHandle arch = open_archive_noexcept(ui,
+        archiveinfo->directory,  // location of the archive
+        archiveinfo->name, // slice name
+        "dar",   // dar's archive extensions
+        encryption,
+        "",
+        blocksize , // these three previous are for encryptions
+        "",    // not used as we didn't gave "-" as
+        "",    // slice name
+        "",    // no command executed for now
+        false,  // verbose output
+	code,
+	msg);
+ 
+if(code != LIBDAR_NOEXCEPT)
+    {
+	ui.printf("%S\n", &msg);
+	return code;
     }
 
-arch->op_listing(ui,
-             true, //  verbose output
-             arch->tree, // using the tar-like format
-             bool_mask(true),
-                    // all filenames are listed
-             false);// do not filter unsaved files}
+op_listing_noexcept(ui,
+				    arch,
+				    true,
+				    arch->tree,
+				    bool_mask(true),
+				    false,
+				    code,
+				    msg);
+				    
 
+				    
+if(code != LIBDAR_NOEXCEPT)
+    {
+	ui.printf("exception listing: %S\n", &msg);
+	return code;
+    }
 close_archive_noexcept(arch, code, msg);
     if(code != LIBDAR_NOEXCEPT)
     {
 	ui.printf("exception closing: %S\n", &msg);
-	return;
+	return code;
     }
+    
+return LIBDAR_NOEXCEPT;
 }
 
-extern int EXPORTCALL libraryfunction(int numb){
- return numb*numb; 
 }
 
-}

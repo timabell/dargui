@@ -26,7 +26,8 @@ type
     procedure Button1Click ( Sender: TObject ) ;
     procedure Button2Click ( Sender: TObject ) ;
     procedure Button3Click ( Sender: TObject ) ;
-  private
+    procedure FileNameEdit1Change ( Sender: TObject ) ;
+ private
     { private declarations }
   public
     { public declarations }
@@ -52,17 +53,20 @@ type
    directory: Pchar;
    encrypted: Boolean;
    password: Pchar;
-   listcallback: Pointer;
-   questioncallback: Pointer;
+   listcb: Pointer;
+   questioncb: Pointer;
+   passwordcb: Pointer;
   end;
 
   PDarArchive = ^TDarArchive;
 
   function get_dar_version(maj, med, min: PCardinal): cardinal; cdecl; external 'dargui';
   procedure get_dar_features( feat: PDarFeatures ); cdecl; external 'dargui';
-  procedure list_archive(arc: PDarArchive); cdecl; external 'dargui';
-  function libraryfunction(dir: PChar; callback: Pointer):integer; cdecl; external 'dargui' name 'test_call';
-  function libraryfunction2(I: integer):integer; cdecl; external 'dargui' name 'libraryfunction';
+  function list_archive(arc: PDarArchive):smallint; cdecl; external 'dargui';
+  function open_archive(arc: PDarArchive): smallint; cdecl; external 'dargui';
+
+
+  function libdar_get_dar_version(maj, med, min: PCardinal): cardinal; cdecl; external 'dar' name 'get_dar_version';
 
 var
   Form1: TForm1; 
@@ -72,6 +76,9 @@ var
   astr: string;
   n: integer;
   arch: TDarArchive;
+  fn: string;
+  f: string;
+  d: string;
 
   procedure callback(mess: Pchar); cdecl;
   function qcallback(mess: Pchar): Boolean; cdecl;
@@ -105,30 +112,50 @@ procedure TForm1.Button1Click ( Sender: TObject ) ;
 begin
    if get_dar_version(@v1, @v2, @v3)=4
       then WriteLn('libdar version ',v1,'.',v2,'.', v3)
-      else writeln('Error found when getting dar version');;
+      else writeln('Error found when getting dar version');
 end;
 
 procedure TForm1.Button2Click ( Sender: TObject ) ;
 begin
-  get_dar_version(@v1, @v2, @v3);
-  if FileNameEdit1.FileName<>'' then
+   if get_dar_version(@v1, @v2, @v3)=4
+      then WriteLn('libdar version ',v1,'.',v2,'.', v3)
+      else writeln('Error found when getting dar version');
+   //arch.encrypted := true;
+   //arch.password := Pchar('test');
+   if arch.name <> nil then
     begin
-      Memo1.Lines.Clear;
-      arch.name := Pchar('DarGUI_releases_to_041');
-      arch.directory := PChar('/media/data1/backups');
-      arch.listcallback := @callback;
-      arch.questioncallback := @qcallback;
-      list_archive(@arch);
+     // if open_archive(@arch) = 0 then
+         list_archive(@arch);
     end;
 end;
 
 procedure TForm1.Button3Click ( Sender: TObject ) ;
 begin
-  astr := 'Howdy!';
-  libraryfunction(Pchar(astr), @callback);
-   //n := spinEdit1.Value);
-  writeln(  libraryfunction2(spinEdit1.Value) );
+    { if libdar_get_dar_version(@v1, @v2, @v3)=4
+      then WriteLn('libdar version ',v1,'.',v2,'.', v3)
+      else writeln('Error found when getting libdar version');}
+
 end;
+
+procedure TForm1.FileNameEdit1Change ( Sender: TObject ) ;
+begin
+    if FileNameEdit1.FileName<>'' then
+    begin
+       WriteLn('Filename: ', FileNameEdit1.FileName);
+      Memo1.Lines.Clear;
+      f := ExtractFileName( FileNameEdit1.FileName );
+      Delete(f, Length(f)-5, MaxInt);
+      arch.name := Pchar( f );
+      writeln(arch.name);
+      d :=  ExtractFileDir( FileNameEdit1.FileName ) ;
+      arch.directory := PChar(d);
+      writeln(arch.directory);
+      arch.listcb := @callback;
+      arch.questioncb := @qcallback;
+      arch.passwordcb := nil;
+    end;
+end;
+
 
 end.
 

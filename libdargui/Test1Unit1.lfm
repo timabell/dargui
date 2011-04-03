@@ -58,6 +58,7 @@ object Form1: TForm1
     NumGlyphs = 0
     MaxLength = 0
     TabOrder = 4
+    OnChange = FileNameEdit1Change
   end
   object Memo1: TMemo
     Left = 12

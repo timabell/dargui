@@ -4,10 +4,14 @@
 #ifdef __cplusplus
 #include <dar/libdar.hpp>
 #define EXPORTCALL __attribute__((stdcall))
+typedef libdar::archive *archiveHandle;
 #else
 typedef int bool;
+typedef struct dar_archive_t *archiveHandle;
 #define EXPORTCALL
 #endif
+
+#define DEFAULT_CRYPTO_SIZE 10240
 
 #ifdef __cplusplus
 
@@ -31,24 +35,21 @@ typedef struct {
 } dar_features;
 
 typedef struct {
-   char  *name;
+   char *name;
    char *directory;
    bool encrypted;
    char *password;
    void (*listcallback)(const char*); 
    bool (*questioncallback)(const char*);
+   char *(*passwordcallback)(const char*);
 } dar_archive;
 
 
 extern unsigned int EXPORTCALL get_dar_version( U_Int *major,  U_Int *minor,  U_Int *sub);
 extern void EXPORTCALL get_dar_features( dar_features *feat );
 
-extern int EXPORTCALL test_call(char *txt, void (*fpcproc)(char * ));
-//extern int EXPORTCALL libraryfunction(char *txt);
-
-extern void EXPORTCALL list_archive(dar_archive *archiveinfo);
-
-extern int EXPORTCALL libraryfunction(int numb);
+extern archiveHandle EXPORTCALL open_archive(dar_archive *archiveinfo);
+extern unsigned short int EXPORTCALL list_archive(dar_archive *archiveinfo);
 
 #ifdef __cplusplus
 }
