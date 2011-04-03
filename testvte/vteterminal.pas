@@ -199,7 +199,7 @@ const
 
 
   { TCustomVTETerminal callbacks }
-  procedure CustomVTE_child_exit_callback( Term: TObject);
+  procedure CustomVTE_child_exit_callback( Term: TObject); cdecl;
   procedure CustomVTE_sizerequest_callback( VteWidget: PGtkWidget; requ: PGtkRequisition; Term: TObject); cdecl;
 
   { TVTETerminal callbacks }
