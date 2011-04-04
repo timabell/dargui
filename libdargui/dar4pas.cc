@@ -7,6 +7,10 @@ using namespace libdar;
 
 extern "C"{
 
+  
+// ==============================================================================================
+// get_dar_version
+// ==============================================================================================
 unsigned int EXPORTCALL get_dar_version(U_Int *major, U_Int *minor, U_Int *sub){
  U_I maj, med, min;
    try
@@ -28,7 +32,10 @@ unsigned int EXPORTCALL get_dar_version(U_Int *major, U_Int *minor, U_Int *sub){
 return maj;
 };
 
-void EXPORTCALL get_dar_features(dar_features *feat){
+// ==============================================================================================
+// get_dar_features
+// ==============================================================================================
+void EXPORTCALL get_dar_features(dar_features_t *feat){
   bool ea;
   bool largefile;
   bool nodump;
@@ -55,58 +62,51 @@ void EXPORTCALL get_dar_features(dar_features *feat){
   feat->new_blowfish = new_blowfish;
 };
 
-void warning(const string &x, void *context)
-{
-    //printf("[%d]%s\n", (U_I)context, x.c_str());
-    printf("%s", x.c_str());
-}
-
-void warning2(const string &x, void *context)
+// ==============================================================================================
+// CALLBACKS
+// ==============================================================================================
+void message_cb(const string &x, void *context)   // listings and other information
 {
   void (*cb)(const char*); 
   
-   cb = ((dar_archive*)context)->listcallback;
+   cb = ((dar_archive_t*)context)->listcallback;
+   if (cb == NULL) {
+		    printf("Error: message callback is NULL\n");
+		    return;
+		   }
    cb(x.c_str());
 
 }
 
-bool question(const string & x, void *context)
-{
-    bool rep = false;
-	    char r;
-
-	    printf("[%d]%s\n", (U_I)context, x.c_str());
-	    scanf("%c", &r);
-	    rep = r == 'y';
-
-    return rep;
-}
-
-bool question2(const string & x, void *context)
+// ==============================================================================================
+bool question_cb(const string & x, void *context) // requests true/false responses
 {
     bool (*cb)(const char*);
 
-   cb = ((dar_archive*)context)->questioncallback;
+   cb = ((dar_archive_t*)context)->questioncallback;
+   if (cb == NULL) {
+		    printf("Error: question callback is NULL\n");
+		    return false;
+		   }
    return cb(x.c_str());
 }
 
-string getstring(const string &x, bool echo, void *context)
+// ==============================================================================================
+string getstring_cb(const string &x, bool echo, void *context) // requests passwords
 {
-    //throw SRC_BUG;
-printf("called getstring");
-return "getstring result";
+    char *(*cb)(const char*);
+  
+   cb = ((dar_archive_t*)context)->passwordcallback;
+   if (cb == NULL) {
+		    printf("Error: getstring callback is NULL\n");
+		    return "";
+		   }
+   string pw(cb(((dar_archive_t*)context)->name)); 
+   return pw;
 }
 
-string getstring2(const string &x, bool echo, void *context)
-{
-    //throw SRC_BUG;
-printf("called getstring2\n");
-return "test";
-}
-
-static user_interaction_callback listing_ui = user_interaction_callback(warning, question, getstring, (void *)1000);
-
-void listing(const std::string & flag,
+// ==============================================================================================
+void listing(const std::string & flag,  // used by dg_get_children_of to send listing
 	     const std::string & perm,
 	     const std::string & uid,
 	     const std::string & gid,
@@ -117,23 +117,65 @@ void listing(const std::string & flag,
 	     bool has_children,
 	     void *context)
 {
-   listing_ui.printf("[[%d]][%S][%S][%S][%S][%S][%S][%S][%s][%s]\n", (U_I)context, &flag, &perm, &uid, &gid, &size, &date, &filename, is_dir ? "dir" : "not_dir", has_children ? "has children" : "no children");
+  U_16 code;
+  string msg;
+  void (*cb)(listing_output_t*); 
+  
+  cb = ((dar_archive_t*)context)->listlevelcallback;
+  if (cb == NULL) {
+		    printf("Error: listlevel callback is NULL\n");
+		    return;
+		   }
+ 
+  listing_output_t *output = new listing_output_t;
+      output->flag = libdar_str2charptr_noexcept(flag, code, msg);
+      output->perm = libdar_str2charptr_noexcept(perm, code, msg);
+      output->uid =  libdar_str2charptr_noexcept(uid, code, msg);
+      output->gid =  libdar_str2charptr_noexcept(gid, code, msg);
+      output->size = libdar_str2charptr_noexcept(size, code, msg);
+      output->date = libdar_str2charptr_noexcept(date, code, msg);
+      output->filename = libdar_str2charptr_noexcept(filename, code, msg);
+      output->is_dir = is_dir;
+      output->has_children = has_children;
+      output->context = context;
+  if(code != LIBDAR_NOEXCEPT)
+    {
+	printf("exception when listing\n");
+	return;
+    }
+  
+  cb(output);
+  
+  delete output;
+  
 }
+ 
+ 
 
-archiveHandle EXPORTCALL open_archive(dar_archive *archiveinfo){
-static user_interaction_callback ui = user_interaction_callback(warning, question2, getstring2, archiveinfo);
 
+// ==============================================================================================
+// dg_open_archive
+// ==============================================================================================
+unsigned short int EXPORTCALL dg_open_archive(dar_archive_t *archiveinfo){
+
+static user_interaction_callback ui = user_interaction_callback(message_cb, question_cb, getstring_cb, archiveinfo);
+  U_16 code;
+  string msg;
   U_32 blocksize = 0;
   crypto_algo encryption = crypto_none;
   string passphrase = "";
   
+  if (archiveinfo->name == NULL) { return LIBDAR_ELIBCALL; }
+  if (archiveinfo->directory == NULL) { return LIBDAR_ELIBCALL; }
+  
   if (archiveinfo->password != NULL) { passphrase = archiveinfo->password; }
 
-    U_16 code;
-    string msg;
-
-    
-static archiveHandle arch = open_archive_noexcept(ui,
+  if (archiveinfo->encrypted) { 
+             blocksize = DEFAULT_CRYPTO_SIZE;
+	     encryption = crypto_blowfish;
+	 }
+ 
+  archive *arch = open_archive_noexcept(ui,
         archiveinfo->directory,  // location of the archive
         archiveinfo->name, // slice name
         "dar",   // dar's archive extensions
@@ -147,77 +189,97 @@ static archiveHandle arch = open_archive_noexcept(ui,
 	code,
 	msg);
 
-if(code != LIBDAR_NOEXCEPT)
+  if(code != LIBDAR_NOEXCEPT)
     {
 	ui.printf("exception opening archive: %S\n", &msg);
-	return NULL;
-    }
-  return arch;
-}
-
-unsigned short int EXPORTCALL list_archive(dar_archive *archiveinfo){
-
-  static user_interaction_callback ui = user_interaction_callback(warning2, question2, getstring2, archiveinfo);
-  
-  U_32 blocksize = 0;
-  crypto_algo encryption = crypto_none;
-  string passphrase = "";
-  
-  if (archiveinfo->password != NULL) { passphrase = archiveinfo->password; }
-  
-  if (archiveinfo->encrypted) { 
-             blocksize = DEFAULT_CRYPTO_SIZE;
-	     encryption = crypto_blowfish;
-	 }
-
-    U_16 code;
-    string msg;
-    
- archiveHandle arch = open_archive_noexcept(ui,
-        archiveinfo->directory,  // location of the archive
-        archiveinfo->name, // slice name
-        "dar",   // dar's archive extensions
-        encryption,
-        "",
-        blocksize , // these three previous are for encryptions
-        "",    // not used as we didn't gave "-" as
-        "",    // slice name
-        "",    // no command executed for now
-        false,  // verbose output
-	code,
-	msg);
- 
-if(code != LIBDAR_NOEXCEPT)
-    {
-	ui.printf("%S\n", &msg);
 	return code;
     }
+  archiveinfo->arch = arch;
+  return LIBDAR_NOEXCEPT;
+}
 
-op_listing_noexcept(ui,
-				    arch,
-				    true,
-				    arch->tree,
-				    bool_mask(true),
-				    false,
-				    code,
-				    msg);
-				    
+// ==============================================================================================
+// dg_list_archive
+// ==============================================================================================
+unsigned short int EXPORTCALL dg_list_archive(dar_archive_t *archiveinfo){
 
+  static user_interaction_callback ui = user_interaction_callback(message_cb, question_cb, getstring_cb, archiveinfo);
+  
+  U_16 code;
+  string msg;
+  
+  if (archiveinfo->arch == NULL) { return LIBDAR_ELIBCALL; }
+
+  op_listing_noexcept(ui,
+		        archiveinfo->arch,
+		        archiveinfo->verbosity,
+			(libdar::archive::listformat)archiveinfo->fmt,
+			bool_mask(true),
+			false,
+			code,
+			msg);
 				    
-if(code != LIBDAR_NOEXCEPT)
+  if(code != LIBDAR_NOEXCEPT)
     {
 	ui.printf("exception listing: %S\n", &msg);
 	return code;
     }
-close_archive_noexcept(arch, code, msg);
+    
+  return LIBDAR_NOEXCEPT;
+}
+
+// ==============================================================================================
+// dg_close_archive
+// ==============================================================================================
+unsigned short int EXPORTCALL dg_close_archive(dar_archive_t *archiveinfo) {
+  
+  static user_interaction_callback ui = user_interaction_callback(message_cb, question_cb, getstring_cb, archiveinfo);
+  
+  U_16 code;
+  string msg;
+  
+  if (archiveinfo->arch == NULL) { return LIBDAR_ELIBCALL; }
+
+  close_archive_noexcept(archiveinfo->arch, code, msg);
     if(code != LIBDAR_NOEXCEPT)
     {
 	ui.printf("exception closing: %S\n", &msg);
 	return code;
     }
+  archiveinfo->arch = NULL;  
+  return LIBDAR_NOEXCEPT;
+}
+
+
+// ==============================================================================================
+// dg_get_children_of
+// ==============================================================================================
+unsigned short int EXPORTCALL dg_get_children_of(dar_archive_t *archiveinfo, char *directory) {
+
+  static user_interaction_callback ui = user_interaction_callback(message_cb, question_cb, getstring_cb, archiveinfo);
+  ui.set_listing_callback(&listing);
+
+  U_16 code;
+  string msg;
+  string dir;
+  if (directory == NULL) { return LIBDAR_ELIBCALL; }
+  else { dir = directory; }
+  
+  if (archiveinfo->arch == NULL) { return LIBDAR_ELIBCALL; }
+
+  get_children_of_noexcept(ui,
+			 archiveinfo->arch,
+			 dir,
+			 code,
+			 msg);
+  if(code != LIBDAR_NOEXCEPT)
+    {
+	ui.printf("exception listing: %S\n", &msg);
+	return code;
+    }
     
 return LIBDAR_NOEXCEPT;
-}
+ }
 
 }
 

@@ -22,27 +22,18 @@ object Form1: TForm1
     Height = 25
     Top = 112
     Width = 180
-    Caption = 'List archive'
+    Caption = 'List archive first level'
     OnClick = Button2Click
     TabOrder = 1
   end
   object Button3: TButton
-    Left = 344
-    Height = 25
-    Top = 80
-    Width = 75
-    Caption = 'Button3'
-    OnClick = Button3Click
-    TabOrder = 2
-  end
-  object SpinEdit1: TSpinEdit
-    Left = 352
+    Left = 216
     Height = 25
     Top = 112
-    Width = 50
-    MinValue = 1
-    TabOrder = 3
-    Value = 1
+    Width = 176
+    Caption = 'List all files'
+    OnClick = Button3Click
+    TabOrder = 2
   end
   object FileNameEdit1: TFileNameEdit
     Left = 11
@@ -57,7 +48,7 @@ object Form1: TForm1
     ButtonWidth = 23
     NumGlyphs = 0
     MaxLength = 0
-    TabOrder = 4
+    TabOrder = 3
     OnChange = FileNameEdit1Change
   end
   object Memo1: TMemo
@@ -66,7 +57,7 @@ object Form1: TForm1
     Top = 154
     Width = 438
     ScrollBars = ssAutoBoth
-    TabOrder = 5
+    TabOrder = 4
     WordWrap = False
   end
   object Label1: TLabel
