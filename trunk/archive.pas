@@ -1102,6 +1102,7 @@ var
      then B := CompLwrLimitCombo.Items[CompLwrLimitCombo.ItemIndex][1];
   if not ((CompressionLwrLimit.Text = '100') and (B = 'b')) then
      begin
+       if B='b' then B := '';
        BatchFile.Add(#10 + rsNotCompressSmaller);
        BatchFile.Add('-m ' + CompressionLwrLimit.Text + B);
      end;
